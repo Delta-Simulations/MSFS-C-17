@@ -1,0 +1,41 @@
+@font-face {
+    font-family: "OCRB";
+    src: url("/Fonts/BoeingFont.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Degrees";
+    src: url("/Fonts/mono.ttf") format("truetype");
+}
+text {
+    font-family: "OCRB";
+    fill: #2CE832;
+}
+.text {
+    fill: white;
+    text-anchor: end;
+    paint-order: stroke;
+}
+
+.text-4 {
+    @extend .text;
+    font-size: 42px;
+}
+.degrees {
+    font-family: "Degrees";
+}
+.readouts {
+    font-style: 'italic';
+}
+
+.readouts {
+    stroke: #2CE832;
+}
+.a{
+    fill:none;
+    stroke:#2CE832;
+    stroke-width:1.5px;
+}
+.a2{
+    fill:none;
+    stroke:#2CE832;
+}

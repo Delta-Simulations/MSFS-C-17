@@ -1,0 +1,29 @@
+<Gauge Name="Altitude of Next Waypoint Digital - Virtavia C-17" Version="1.0">
+ <Image Name="NextWptAltOff.bmp"/>
+
+  <Element>
+  	<Visible>(A:ELECTRICAL MASTER BATTERY,bool) (A:TURB ENG1 N1,Percent) 20 &gt; (A:TURB ENG2 N1,Percent) 20 &gt; (A:TURB ENG3 N1,Percent) 20 &gt; (A:TURB ENG4 N1,Percent) 20 &gt; || || || ||</Visible>
+ 	
+   <Element>
+	<Image Name="NextWptAltOn.bmp"/>
+     <Position X="7" Y="13"/>
+      <Text X="62" Y="16" Length="5" Fixed="Yes" Font="Quartz" FontHeight="0" FontWeight="400" Charset="Default" Attributes="Normal" Adjust="Center" VerticalAdjust="Center" Multiline="No" Color="#00EE00" BackgroundColor="transparent" HilightColor="white" Bright="Yes" UseTransparency="Yes">
+
+         <String>%((A:GPS WP NEXT ALT,feet))%!05d!</String>
+
+         <Failures>
+            <SYSTEM_ELECTRICAL_PANELS Action=""/>
+         </Failures>
+      </Text>
+    </Element>
+
+
+  </Element>
+
+   <Mouse>
+     <Tooltip>Altitude of Next Waypoint</Tooltip>
+         </Mouse>
+
+</Gauge>
+
+

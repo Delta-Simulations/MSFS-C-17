@@ -1,0 +1,72 @@
+<Gauge Name="PWS - Pers Warn Signs" Version="C-17" Author="Herbert Pralle">
+  <Image Name="PWS_Backgrnd.bmp"/>
+  <Element>
+    <Visible>(A:Circuit general panel on, bool)</Visible>
+    <Element>
+      <Position X="0" Y="0"/>
+      <Select>
+        <Value>(L:OVH light,bool)</Value>
+        <Case Value="1">
+          <Image Name="PWS_light.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+  </Element>
+  <Element>
+    <Position X="26" Y="96"/>
+    <Select>
+      <Value>(A:CABIN NO SMOKING ALERT SWITCH,bool)</Value>
+      <Case Value="0">
+        <Image Name="PWS_sw_off.bmp"/>
+      </Case>
+      <Case Value="1">
+        <Image Name="PWS_sw_on.bmp"/>
+      </Case>
+    </Select>
+  </Element>
+  <Element>
+    <Position X="114" Y="96"/>
+    <Select>
+      <Value>(A:CABIN SEATBELTS ALERT SWITCH,bool)</Value>
+      <Case Value="0">
+        <Image Name="PWS_sw_off.bmp"/>
+      </Case>
+      <Case Value="1">
+        <Image Name="PWS_sw_on.bmp"/>
+      </Case>
+    </Select>
+  </Element>
+  <Element>
+    <Visible>(A:Circuit general panel on, bool)</Visible>
+    <Element>
+      <Position X="39" Y="161"/>
+      <Select>
+        <Value>(A:CABIN NO SMOKING ALERT SWITCH,bool)</Value>
+        <Case Value="1">
+          <Image Name="PWS_sw_light.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="127" Y="161"/>
+      <Select>
+        <Value>(A:CABIN SEATBELTS ALERT SWITCH,bool)</Value>
+        <Case Value="1">
+          <Image Name="PWS_sw_light.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+  </Element>
+  <Mouse>
+    <Area Left="24" Top="94" Width="46" Height="82">
+      <Cursor Type="Hand"/>
+      <Tooltip ID="TOOLTIPTEXT_NOSMOKING_SWITCH"/>
+      <Click>(>K:CABIN_NO_SMOKING_ALERT_SWITCH_TOGGLE)</Click>
+    </Area>
+    <Area Left="112" Top="94" Width="46" Height="82">
+      <Cursor Type="Hand"/>
+      <Tooltip ID="TOOLTIPTEXT_SEATBELTS_SWITCH"/>
+      <Click>(>K:CABIN_SEATBELTS_ALERT_SWITCH_TOGGLE)</Click>
+    </Area>
+  </Mouse>
+</Gauge>

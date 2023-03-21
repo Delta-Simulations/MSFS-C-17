@@ -1,0 +1,12 @@
+<Gauge Name="Engine Fire Light" Version="C-17" Author="Herbert Pralle">
+  <Image Name="Engine3_fire_off.bmp" Bright="No"/>
+  <Element>
+    <Position X="0" Y="0"/>
+    <Select>
+      <Value>(A:Eng3 ON FIRE,bool) (A:Circuit general panel on, bool) &amp;&amp;</Value>
+      <Case Value="1">
+        <Image Name="Engine3_fire_on.bmp" Bright="Yes"/>
+      </Case>
+    </Select>
+  </Element>
+</Gauge>

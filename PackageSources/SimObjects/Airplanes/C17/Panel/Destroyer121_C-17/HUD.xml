@@ -1,0 +1,740 @@
+<Gauge Name="HUD" Version="C-17 v2" Author="Herbert Pralle">
+
+  <Element>
+    <Visible>(A:ELECTRICAL MASTER BATTERY,bool) (A:TURB ENG1 N1,Percent) 20 &gt; (A:TURB ENG2 N1,Percent) 20 &gt; (A:TURB ENG3 N1,Percent) 20 &gt; (A:TURB ENG4 N1,Percent) 20 &gt; || || || || (L:HUD_DISABLE,bool) &gt; </Visible>
+    <!--==== 0 HUD ====-->
+    <Element>
+      <Element>
+        <Position X="0" Y="0"/>
+        <Image Name="HUD_screen.bmp" Bright="1"/>
+      </Element>
+      <!--ATTITUDE-->
+      <Element>
+        <Position X="0" Y="0"/>
+        <MaskImage Name="HUD_ATT_mask.bmp" Bright="1">
+          <Axis X="272" Y="222"/>
+        </MaskImage>
+        <Image Name="HUD_ATT2.bmp" Bright="1">
+          <Axis X="160" Y="800"/>
+        </Image>
+        <Shift>
+          <Value Minimum="-80" Maximum="80">(A:Attitude indicator pitch degrees,degrees) /-/</Value>
+          <Scale Y="8"/>
+          <Failures>
+            <GAUGE_GYRO_HEADING Action="Freeze"/>
+          </Failures>
+        </Shift>
+        <Rotate>
+          <Value>(A:Attitude indicator bank degrees,radians)</Value>
+          <Failures>
+            <GAUGE_GYRO_HEADING Action="Freeze"/>
+          </Failures>
+        </Rotate>
+      </Element>
+      <Element>
+        <Position X="0" Y="0"/>
+        <MaskImage Name="HUD_ATT_mask.bmp" Bright="1">
+          <Axis X="272" Y="222"/>
+        </MaskImage>
+        <FormattedText X="40" Y="1360" Font="Arial" FontSize="24" LineSpacing="80" Adjust="Right" Color="#00CC00" Bright="Yes">
+          <String>% 80 %\n% 70 %\n% 60 %\n% 50 %\n% 40 %\n% 30 %\n% 20 %\n% 10 %\n% %\n% 10 %\n% 20 %\n% 30 %\n% 40 %\n% 50 %\n% 60 %\n% 70 %\n% 80 %</String>
+          <Pivot X="126" Y="706"/>
+        </FormattedText>
+        <Shift>
+          <Value Minimum="-80" Maximum="80">(A:Attitude indicator pitch degrees,degrees) /-/</Value>
+          <Scale Y="8"/>
+          <Failures>
+            <GAUGE_GYRO_HEADING Action="Freeze"/>
+          </Failures>
+        </Shift>
+        <Rotate>
+          <Value>(A:Attitude indicator bank degrees,radians)</Value>
+          <Failures>
+            <GAUGE_GYRO_HEADING Action="Freeze"/>
+          </Failures>
+        </Rotate>
+      </Element>
+      <Element>
+        <Position X="0" Y="0"/>
+        <MaskImage Name="HUD_ATT_mask.bmp" Bright="1">
+          <Axis X="272" Y="222"/>
+        </MaskImage>
+        <FormattedText X="40" Y="1360" Font="Arial" FontSize="24" LineSpacing="80" Adjust="Right" Color="#00CC00" Bright="Yes">
+          <String>% 80 %\n% 70 %\n% 60 %\n% 50 %\n% 40 %\n% 30 %\n% 20 %\n% 10 %\n% %\n% 10 %\n% 20 %\n% 30 %\n% 40 %\n% 50 %\n% 60 %\n% 70 %\n% 80 %</String>
+          <Pivot X="-86" Y="706"/>
+        </FormattedText>
+        <Shift>
+          <Value Minimum="-80" Maximum="80">(A:Attitude indicator pitch degrees,degrees) /-/</Value>
+          <Scale Y="8"/>
+          <Failures>
+            <GAUGE_GYRO_HEADING Action="Freeze"/>
+          </Failures>
+        </Shift>
+        <Rotate>
+          <Value>(A:Attitude indicator bank degrees,radians)</Value>
+          <Failures>
+            <GAUGE_GYRO_HEADING Action="Freeze"/>
+          </Failures>
+        </Rotate>
+      </Element>
+      <Element>
+        <Position X="0" Y="0"/>
+        <MaskImage Name="HUD_ATT_mask.bmp" Bright="1">
+          <Axis X="272" Y="222"/>
+        </MaskImage>
+        <Rectangle Height="4" Width="300" FillColor="#00CC00" Bright="Yes">
+          <Pivot X="150" Y="2"/>
+        </Rectangle>
+        <Shift>
+          <Value Minimum="-80" Maximum="80">(A:Attitude indicator pitch degrees,degrees) /-/</Value>
+          <Scale Y="8"/>
+          <Failures>
+            <GAUGE_GYRO_HEADING Action="Freeze"/>
+          </Failures>
+        </Shift>
+        <Rotate>
+          <Value>(A:Attitude indicator bank degrees,radians)</Value>
+          <Failures>
+            <GAUGE_GYRO_HEADING Action="Freeze"/>
+          </Failures>
+        </Rotate>
+      </Element>
+
+   <!-- APPROACH PATH INDICATOR -->
+     <Element>
+	<Visible>(L:C17_API,enum) 0 &gt; </Visible>
+        <Position X="100" Y="0"/>
+        <MaskImage Name="HUD_ATT_mask.bmp" Bright="1">
+          <Axis X="272" Y="222"/>
+        </MaskImage>
+        <Rectangle Height="4" Width="100" FillColor="#ffffff" Bright="Yes">
+          <Pivot X="150" Y="2"/>
+        </Rectangle>
+        <Shift>
+          <Value Minimum="0" Maximum="10">(L:C17_API,enum)</Value>
+          <Scale Y="8"/>
+          <Failures>
+            <GAUGE_GYRO_HEADING Action="Freeze"/>
+          </Failures>
+        </Shift>
+        <Rotate>
+          <Value>(A:Attitude indicator bank degrees,radians)</Value>
+          <Failures>
+            <GAUGE_GYRO_HEADING Action="Freeze"/>
+          </Failures>
+        </Rotate>
+      </Element>
+
+      <Element>
+        <Position X="272" Y="222"/>
+        <Polygon LineWidth="3" Color="#00CC00" FillColor="#000000" Bright="yes">
+          <Point X="0" Y="0"/>
+          <Point X="-8" Y="16"/>
+          <Point X="-8" Y="22"/>
+          <Point X="10" Y="22"/>
+          <Point X="10" Y="16"/>
+          <Point X="2" Y="0"/>
+          <Pivot X="3" Y="142"/>
+        </Polygon>
+        <Rotate>
+          <Value>(A:Attitude indicator bank degrees,radians)</Value>
+          <Failures>
+            <GAUGE_GYRO_HEADING Action="Freeze"/>
+          </Failures>
+        </Rotate>
+      </Element>
+      <Element>
+        <Position X="272" Y="222"/>
+        <Polygon LineWidth="3" Color="#00CC00" FillColor="#000000" Bright="yes">
+          <Point X="-8" Y="16"/>
+          <Point X="-8" Y="22"/>
+          <Point X="10" Y="22"/>
+          <Point X="10" Y="18"/>
+          <Pivot X="3" Y="140"/>
+        </Polygon>
+        <Rotate>
+          <Value>(A:Attitude indicator bank degrees,radians)</Value>
+          <Failures>
+            <GAUGE_GYRO_HEADING Action="Freeze"/>
+          </Failures>
+        </Rotate>
+        <Shift>
+          <Value Minimum="-1" Maximum="1">(A:Turn coordinator ball,position)</Value>
+          <Scale X="20"/>
+          <Delay PixelsPerSecond="40"/>
+        </Shift>
+      </Element>
+      <!--FPV-->
+      <Element>
+        <Visible>(A:Airspeed select indicated or true,knots) 60 ></Visible>
+        <Position X="272" Y="222"/>
+        <Element>
+          <Circle Radius="16" LineWidth="2" Color="#00CC00" FillColor="#000000" Bright="Yes">
+            <Pivot X="18" Y="16"/>
+          </Circle>
+        </Element>
+        <Element>
+          <Image Name="HUD_FPV.bmp" Bright="1">
+            <Axis X="20" Y="18"/>
+          </Image>
+        </Element>
+        <Shift>
+          <Value Minimum="-45" Maximum="45">(A:GPS GROUND TRUE TRACK,radians) (A:gps ground true heading,radians) - sin 60 *</Value>
+          <Scale X="2"/>
+        </Shift>
+        <Shift>
+          <Value Minimum="-13" Maximum="13">
+						(A:Vertical speed,m/s) (A:Ground Velocity, m/s) / atan (&gt;L:FPVAtanR, radians)
+						(L:FPVAtanR, radians) rddg (&gt;L:FPVAtanD, degrees)
+						(L:FPVAtanR, degrees)
+          </Value>
+          <Scale Y="-8"/>
+        </Shift>
+      </Element>
+      <!--HEADING-->
+      <Element>
+        <Visible>(A:Avionics master switch,bool)</Visible>
+        <Position X="140" Y="450"/>
+        <MaskImage Name="HUD_HDG_mask.bmp" Bright="0">
+          <Axis X="130" Y="12"/>
+        </MaskImage>
+        <Image Name="HUD_HDG_strip.bmp" Bright="1">
+          <Nonlinearity>
+            <Item Value="360" X="2356" Y="0"/>
+            <Item Value="0" X="196" Y="0"/>
+          </Nonlinearity>
+        </Image>
+        <Shift>
+          <Value>(A:Plane heading degrees gyro,degrees)</Value>
+          <Failures>
+            <GAUGE_GYRO_HEADING Action="Freeze"/>
+          </Failures>
+        </Shift>
+      </Element>
+      <Element>
+        <Position X="272" Y="458"/>
+        <Image Name="HUD_HDG_bug.bmp" Bright="1">
+          <Axis X="14" Y="-8"/>
+        </Image>
+        <Shift>
+          <Value Minimum="-24" Maximum="24">(A:Autopilot heading lock dir,degrees) (A:Plane heading degrees gyro,degrees) - -180 &lt; if{ (A:Autopilot heading lock dir,degrees) (A:Plane heading degrees gyro,degrees) - 360 + } els{ (A:Autopilot heading lock dir,degrees) (A:Plane heading degrees gyro,degrees) - 180 > if{ (A:Autopilot heading lock dir,degrees) (A:Plane heading degrees gyro,degrees) - 360 - } els{ (A:Autopilot heading lock dir,degrees) (A:Plane heading degrees gyro,degrees) - } }</Value>
+          <Scale X="6"/>
+          <Failures>
+            <GAUGE_GYRO_HEADING Action="Freeze"/>
+          </Failures>
+        </Shift>
+      </Element>
+      <Element>
+        <Position X="272" Y="450"/>
+        <Image Name="HUD_CRS_bug.bmp" Bright="1">
+          <Axis X="8" Y="0"/>
+        </Image>
+        <Shift>
+          <Value Minimum="-24" Maximum="24">(A:NAV1 OBS,degrees) (A:Plane heading degrees gyro,degrees) - -180 &lt; if{ (A:NAV1 OBS,degrees) (A:Plane heading degrees gyro,degrees) - 360 + } els{ (A:NAV1 OBS,degrees) (A:Plane heading degrees gyro,degrees) - 180 > if{ (A:NAV1 OBS,degrees) (A:Plane heading degrees gyro,degrees) - 360 - } els{ (A:NAV1 OBS,degrees) (A:Plane heading degrees gyro,degrees) - } }</Value>
+          <Scale X="6"/>
+          <Failures>
+            <GAUGE_GYRO_HEADING Action="Freeze"/>
+          </Failures>
+        </Shift>
+      </Element>
+      <!--SPEED-->
+      <Element>
+        <Position X="200" Y="150"/>
+        <FormattedText X="45" Y="24" Font="Arial" FontSize="24" LineSpacing="24" Adjust="Right" Color="#00CC00" Bright="Yes">
+          <String>%((A:Airspeed select indicated or true,knots) 999 min 0 max)%!3d!</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="8" Y="398"/>
+        <FormattedText X="30" Y="28" Font="Arial" FontSize="24" LineSpacing="24" Adjust="Left" Color="#00CC00" Bright="Yes">
+          <String>M</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="34" Y="398"/>
+        <FormattedText X="68" Y="28" Font="Arial" FontSize="24" LineSpacing="24" Adjust="Right" Color="#00CC00" Bright="Yes">
+          <String>%((A:PARTIAL PANEL AIRSPEED,bool))%{if} - -%{else}%((A:Airspeed mach, machs) 0 max 9.99 min)%!1.2f!</String>
+        </FormattedText>
+      </Element>
+      <!--ALTITUDE-->
+      <Element>
+        <Position X="270" Y="150"/>
+        <FormattedText X="75" Y="24" Font="Arial" FontSize="24" LineSpacing="24" Adjust="Right" Color="#00CC00" Bright="Yes">
+          <String>%((A:Indicated Altitude,feet) 100 / flr 100 *)%!5d!</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="270" Y="174"/>
+        <FormattedText X="75" Y="24" Font="Arial" FontSize="24" LineSpacing="24" Adjust="Right" Color="#00CC00" Bright="Yes">
+          <String>%((A:PARTIAL PANEL VERTICAL VELOCITY,bool))%{if} - - -%{else}%((A:Vertical speed,feet per minute) 20 / int 20 *)%!4d!</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="444" Y="434"/>
+        <FormattedText X="92" Y="28" Font="Arial" FontSize="24" LineSpacing="24" Adjust="Right" Color="#00CC00" Bright="Yes">
+          <String>%((A:G FORCE, G Force))%!1.2f!% G%</String>
+        </FormattedText>
+      </Element>
+      <!--NAV INFO-->
+      <!--LOC AND GS-->
+      <!--O M I -->
+      <!--AUTOPILOT VALUES-->
+      <Element>
+        <Visible>(A:Autopilot airspeed hold, bool)</Visible>
+        <Element>
+          <Position X="10" Y="40"/>
+          <Rectangle Height="4" Width="96" LineWidth="1" Color="#00CC00" FillColor="#000000" Bright="Yes"/>
+        </Element>
+        <Element>
+          <Position X="12" Y="10"/>
+          <FormattedText X="40" Y="24" Font="Arial" FontSize="20" LineSpacing="24" Adjust="Left" Color="#00CC00" Bright="Yes">
+            <String>KN</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="52" Y="10"/>
+          <FormattedText X="52" Y="24" Font="Arial" FontSize="20" LineSpacing="24" Adjust="Right" Color="#00CC00" Bright="Yes">
+            <String>%((A:Autopilot airspeed hold var,knots))%!03d!%</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="12" Y="44"/>
+          <FormattedText X="40" Y="24" Font="Arial" FontSize="20" LineSpacing="24" Adjust="Left" Color="#00CC00" Bright="Yes">
+            <String>A/T</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="52" Y="44"/>
+          <FormattedText X="52" Y="24" Font="Arial" FontSize="20" LineSpacing="24" Adjust="Right" Color="#00CC00" Bright="Yes">
+            <String>%((A:GENERAL ENG1 THROTTLE LEVER POSITION,percent) (A:GENERAL ENG2 THROTTLE LEVER POSITION,percent) + (A:GENERAL ENG3 THROTTLE LEVER POSITION,percent) + (A:GENERAL ENG4 THROTTLE LEVER POSITION,percent) + (A:Number of engines,number) /)%!3d!%</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Autopilot mach hold, bool)</Visible>
+        <Element>
+          <Position X="10" Y="40"/>
+          <Rectangle Height="4" Width="96" LineWidth="1" Color="#00CC00" FillColor="#000000" Bright="Yes"/>
+        </Element>
+        <Element>
+          <Position X="12" Y="10"/>
+          <FormattedText X="40" Y="24" Font="Arial" FontSize="20" LineSpacing="24" Adjust="Left" Color="#00CC00" Bright="Yes">
+            <String>M</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="52" Y="10"/>
+          <FormattedText X="60" Y="24" Font="Arial" FontSize="20" LineSpacing="24" Adjust="Right" Color="#00CC00" Bright="Yes">
+            <String>%((A:Autopilot mach hold var, mach))%!1.2f!%</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="12" Y="44"/>
+          <FormattedText X="40" Y="24" Font="Arial" FontSize="20" LineSpacing="24" Adjust="Left" Color="#00CC00" Bright="Yes">
+            <String>A/T</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="52" Y="44"/>
+          <FormattedText X="52" Y="24" Font="Arial" FontSize="20" LineSpacing="24" Adjust="Right" Color="#00CC00" Bright="Yes">
+            <String>%((A:GENERAL ENG1 THROTTLE LEVER POSITION,percent) (A:GENERAL ENG2 THROTTLE LEVER POSITION,percent) + (A:GENERAL ENG3 THROTTLE LEVER POSITION,percent) + (A:GENERAL ENG4 THROTTLE LEVER POSITION,percent) + (A:Number of engines,number) /)%!3d!%</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Autopilot altitude lock,bool)</Visible>
+        <Element>
+          <Position X="440" Y="40"/>
+          <Rectangle Height="4" Width="96" LineWidth="1" Color="#00CC00" FillColor="#000000" Bright="Yes"/>
+        </Element>
+        <Element>
+          <Position X="442" Y="10"/>
+          <FormattedText X="92" Y="24" Font="Arial" FontSize="20" LineSpacing="24" Adjust="Center" Color="#00CC00" Bright="Yes">
+            <String>ALT</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="442" Y="44"/>
+          <FormattedText X="92" Y="24" Font="Arial" FontSize="20" LineSpacing="24" Adjust="Right" Color="#00CC00" Bright="Yes">
+            <String>%((A:Autopilot altitude lock var, feet))%!5d!</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Autopilot heading lock,bool)</Visible>
+        <Element>
+          <Position X="10" Y="474"/>
+          <Rectangle Height="4" Width="70" LineWidth="1" Color="#00CC00" FillColor="#000000" Bright="Yes"/>
+        </Element>
+        <Element>
+          <Position X="12" Y="442"/>
+          <FormattedText X="66" Y="24" Font="Arial" FontSize="20" LineSpacing="24" Adjust="Center" Color="#00CC00" Bright="Yes">
+            <String>HDG</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="12" Y="476"/>
+          <FormattedText X="66" Y="24" Font="Arial" FontSize="20" LineSpacing="24" Adjust="Center" Color="#00CC00" Bright="Yes">
+            <String>%((A:Autopilot heading lock dir, degrees))%!03d!</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Autopilot Nav1 lock,bool)</Visible>
+        <Element>
+          <Position X="10" Y="474"/>
+          <Rectangle Height="4" Width="70" LineWidth="1" Color="#00CC00" FillColor="#000000" Bright="Yes"/>
+        </Element>
+        <Element>
+          <Position X="12" Y="442"/>
+          <FormattedText X="56" Y="24" Font="Arial" FontSize="20" LineSpacing="24" Adjust="Center" Color="#00CC00" Bright="Yes">
+            <String>CRS</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="12" Y="476"/>
+          <FormattedText X="66" Y="24" Font="Arial" FontSize="20" LineSpacing="24" Adjust="Center" Color="#00CC00" Bright="Yes">
+            <String>%((A:NAV1 OBS, degrees))%!03d!</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <!--AUTOPILOT MODES-->
+      <Element>
+        <Visible>(A:Autopilot airspeed hold, bool)</Visible>
+        <Element>
+          <Position X="116" Y="10"/>
+          <FormattedText X="56" Y="24" Font="Arial" FontSize="20" LineSpacing="24" Adjust="Center" Color="#00CC00" Bright="Yes">
+            <String>IAS</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Autopilot mach hold, bool)</Visible>
+        <Element>
+          <Position X="116" Y="10"/>
+          <FormattedText X="56" Y="24" Font="Arial" FontSize="20" LineSpacing="24" Adjust="Center" Color="#00CC00" Bright="Yes">
+            <String>MCH</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Autopilot wing leveler, bool) (A:Autopilot Attitude hold,bool) ! &amp;&amp;</Visible>
+        <Element>
+          <Position X="380" Y="10"/>
+          <FormattedText X="56" Y="24" Font="Arial" FontSize="20" LineSpacing="24" Adjust="Center" Color="#00CC00" Bright="Yes">
+            <String>LVL</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Autopilot attitude hold, bool)</Visible>
+        <Element>
+          <Position X="380" Y="10"/>
+          <FormattedText X="56" Y="24" Font="Arial" FontSize="20" LineSpacing="24" Adjust="Center" Color="#00CC00" Bright="Yes">
+            <String>ATT</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Autopilot approach hold,bool) (A:Autopilot backcourse hold,bool) ! &amp;&amp;</Visible>
+        <Element>
+          <Position X="80" Y="476"/>
+          <FormattedText X="56" Y="24" Font="Arial" FontSize="20" LineSpacing="24" Adjust="Center" Color="#00CC00" Bright="Yes">
+            <String>APR</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Autopilot backcourse hold,bool)</Visible>
+        <Element>
+          <Position X="80" Y="476"/>
+          <FormattedText X="56" Y="24" Font="Arial" FontSize="20" LineSpacing="24" Adjust="Center" Color="#00CC00" Bright="Yes">
+            <String>B/C</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <!--FLIGHT DIRECTOR-->
+      <Element>
+        <Visible>(A:AUTOPILOT FLIGHT DIRECTOR ACTIVE,bool)</Visible>
+        <Element>
+          <Position X="272" Y="222"/>
+          <Rectangle Height="4" Width="120" LineWidth="1" Color="#00CC00" FillColor="#00CC00" Bright="Yes">
+            <Pivot X="60" Y="2"/>
+          </Rectangle>
+          <Shift>
+            <Value Minimum="-50" Maximum="50">(A:Autopilot flight director pitch, degrees) (A:Attitude indicator pitch degrees, degrees) -</Value>
+            <Scale Y="2"/>
+          </Shift>
+        </Element>
+        <Element>
+          <Position X="272" Y="222"/>
+          <Rectangle Height="120" Width="4" LineWidth="1" Color="#00CC00" FillColor="#00CC00" Bright="Yes">
+            <Pivot X="2" Y="60"/>
+          </Rectangle>
+          <Shift>
+            <Value Minimum="-45" Maximum="45">(A:Autopilot flight director bank, degrees) (A:Attitude indicator bank degrees, degrees) -</Value>
+            <Scale X="-2"/>
+          </Shift>
+        </Element>
+      </Element>
+      <!--MESSAGES-->
+      <Element>
+        <Visible>(A:Overspeed warning, bool)</Visible>
+        <Element>
+          <Position X="170" Y="102"/>
+          <FormattedText X="200" Y="36" Font="Arial Black" FontSize="24" LineSpacing="24" Adjust="Center" Color="#00CC00" Bright="Yes">
+            <String>OVERSPEED</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Stall warning, bool)</Visible>
+        <Element>
+          <Position X="170" Y="200"/>
+          <FormattedText X="200" Y="36" Font="Arial Black" FontSize="24" LineSpacing="24" Adjust="Center" Color="#00CC00" Bright="Yes">
+            <String>STALL</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Radio Height,feet) 10000 > if{ 0 } els{ (A:Vertical speed,feet per minute) (A:Radio Height,feet) 2.28 * 1200 + /-/ &lt; }</Visible>
+        <Element>
+          <Position X="170" Y="232"/>
+          <FormattedText X="200" Y="36" Font="Arial Black" FontSize="24" LineSpacing="24" Adjust="Center" Color="#00CC00" Bright="Yes">
+            <String>SINKRATE</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Gear handle position,percent) 0 == (A:Radio Height,feet) 1007 &lt; &amp;&amp;</Visible>
+        <Element>
+          <Position X="170" Y="264"/>
+          <FormattedText X="200" Y="36" Font="Arial Black" FontSize="24" LineSpacing="24" Adjust="Center" Color="#00CC00" Bright="Yes">
+            <String>TERRAIN</String>
+          </FormattedText>
+        </Element>
+      </Element>
+    </Element>
+    <!--==== 1 HUD ====-->
+    <Element>
+      <Visible>(L:HUD mode,enum) 1 &lt;</Visible>
+      <!--ATTITUDE-->
+      <!--HEADING-->
+      <!--SPEED-->
+      <!--ALTITUDE-->
+      <Element>
+	      <Position X="426" Y="398"/>
+	    	<FormattedText X="40" Y="28" Font="Arial" FontSize="24" LineSpacing="24" Adjust="Left" Color="#00CC00" Bright="Yes">
+	      	<String>RA</String>
+	    	</FormattedText>
+      </Element>
+      <Element>
+        <Position X="456" Y="398"/>
+        <FormattedText X="80" Y="28" Font="Arial" FontSize="24" LineSpacing="24" Adjust="Right" Color="#00CC00" Bright="Yes">
+          <String>%((A:PARTIAL PANEL ALTIMETER,bool))%{if} - - -%{else}%((A:Radio Height,feet) 7 - 0 max)%!5d!%</String>
+        </FormattedText>
+      </Element>
+      <!--NAV INFO-->
+      <Element>
+        <Position X="128" Y="426"/>
+        <FormattedText X="92" Y="28" Font="Arial" FontSize="24" LineSpacing="24" Adjust="Left" Color="#00CC00" Bright="Yes">
+          <String>%D %((A:NAV1 DME,nmiles) 99.9 >)%{if}%((A:NAV1 DME,nmiles))%!3d!%{else}%((A:NAV1 DME,nmiles) 0 >)%{if}%((A:NAV1 DME,nmiles))%!2.1f!%{else}% - - -%{end}%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="128" Y="398"/>
+        <FormattedText X="92" Y="28" Font="Arial" FontSize="24" LineSpacing="24" Adjust="Left" Color="#00CC00" Bright="Yes">
+          <String>%((A:NAV1 DME,nmiles) 0 >)%{if}%((A:NAV1 ident, string))%!s!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="348" Y="398"/>
+        <FormattedText X="66" Y="28" Font="Arial Black" FontSize="24" LineSpacing="24" Adjust="Center" Color="#00CC00" Bright="Yes">
+          <String>%((A:GPS drives nav1, bool))%{if}GPS %</String>
+        </FormattedText>
+      </Element>
+      <!--LOC AND GS-->
+      <Element>
+        <Visible>(A:HSI GSI needle valid, bool)</Visible>
+        <Position X="398" Y="160"/>
+        <Image Name="HUD_GS.bmp" Bright="1"/>
+      </Element>
+      <Element>
+        <Visible>(A:HSI GSI needle valid, bool)</Visible>
+        <Position X="392" Y="221"/>
+        <Polygon LineWidth="4" Color="#00CC00" FillColor="#00CC00" Bright="yes">
+          <Point X="12" Y="0"/>
+          <Point X="0" Y="8"/>
+          <Point X="12" Y="16"/>
+          <Point X="24" Y="8"/>
+          <Pivot X="0" Y="0"/>
+        </Polygon>
+        <Shift>
+          <Value Minimum="-120" Maximum="120">(A:HSI GSI needle, number)</Value>
+          <Scale Y="0.6"/>
+        </Shift>
+      </Element>
+      <Element>
+        <Visible>(A:HSI has localizer, bool)</Visible>
+        <Position X="210" Y="404"/>
+        <Image Name="HUD_LOC.bmp" Bright="1"/>
+      </Element>
+      <Element>
+        <Visible>(A:HSI has localizer, bool)</Visible>
+        <Position X="271" Y="400"/>
+        <Polygon LineWidth="4" Color="#00CC00" FillColor="#00CC00" Bright="yes">
+          <Point X="8" Y="0"/>
+          <Point X="0" Y="12"/>
+          <Point X="8" Y="24"/>
+          <Point X="16" Y="12"/>
+          <Pivot X="2" Y="0"/>
+        </Polygon>
+        <Shift>
+          <Value Minimum="-120" Maximum="120">(A:HSI CDI needle, number)</Value>
+          <Scale X="0.3"/>
+        </Shift>
+      </Element>
+      <!--O M I -->
+      <Element>
+        <Position X="302" Y="440"/>
+        <FormattedText X="92" Y="28" Font="Arial" FontSize="20" LineSpacing="24" Adjust="Left" Color="#00CC00" Bright="Yes">
+          <String>%((A:Inner Marker,bool))%{if}%I%((A:Middle Marker,bool))%{if}%M%((A:Outer Marker,bool))%{if}%O%</String>
+        </FormattedText>
+      </Element>
+      <!--AUTOPILOT VALUES-->
+      <!--AUTOPILOT MODES-->
+      <!--FLIGHT DIRECTOR-->
+      <!--MESSAGES-->
+    </Element>
+    <!--==== 2 HUD ====-->
+    <Element>
+      <Visible>(L:HUD mode,enum) 2 &lt;</Visible>
+      <Element>
+        <Position X="0" Y="0"/>
+        <Image Name="HUD_screen2.bmp" Bright="1"/>
+      </Element>
+      <!--ATTITUDE-->
+      <!--HEADING-->
+      <!--SPEED-->
+      <Element>
+        <Position X="4" Y="108"/>
+        <MaskImage Name="HUD_KNT_mask.bmp">
+          <Axis X="0" Y="112"/>
+        </MaskImage>
+        <Image Name="HUD_KNT_strip.bmp" Bright="1">
+          <Nonlinearity>
+            <Item Value="0" X="0" Y="22"/>
+            <Item Value="900" X="0" Y="2722"/>
+          </Nonlinearity>
+        </Image>
+        <Shift>
+          <Value Minimum="0" Maximum="980">(A:Airspeed select indicated or true,knots)</Value>
+          <Failures>
+            <SYSTEM_PITOT_STATIC Action="0"/>
+            <GAUGE_AIRSPEED Action="Freeze"/>
+          </Failures>
+        </Shift>
+      </Element>
+      <!--ALTITUDE-->
+      <Element>
+        <Position X="452" Y="92"/>
+        <MaskImage Name="HUD_ALT_mask.bmp">
+          <Axis X="0" Y="128"/>
+        </MaskImage>
+        <Image Name="HUD_ALT_strip.bmp" Bright="1">
+          <Nonlinearity>
+            <Item Value="0" X="0" Y="7300"/>
+            <Item Value="30000" X="0" Y="3700"/>
+            <Item Value="60000" X="0" Y="100"/>
+          </Nonlinearity>
+        </Image>
+        <Shift>
+          <Value Minimum="-1000" Maximum="60000">(A:Indicated Altitude,feet)</Value>
+          <Failures>
+            <SYSTEM_PITOT_STATIC Action="0"/>
+            <GAUGE_AIRSPEED Action="Freeze"/>
+          </Failures>
+        </Shift>
+      </Element>
+      <!--NAV INFO-->
+      <!--LOC AND GS-->
+      <!--O M I -->
+      <!--AUTOPILOT VALUES-->
+      <Element>
+        <Visible>(A:Autopilot airspeed hold, bool)</Visible>
+        <Position X="80" Y="220"/>
+        <Polyline LineWidth="3" Color="#00CC00" Bright="Yes">
+          <Point X="12" Y="0"/>
+          <Point X="0" Y="12"/>
+          <Point X="12" Y="25"/>
+          <Pivot X="0" Y="12"/>
+        </Polyline>
+        <Shift>
+          <Value Minimum="-40" Maximum="40">(A:Airspeed select indicated or true,knots) (A:Autopilot airspeed hold var,knots) -</Value>
+          <Scale Y="-3"/>
+        </Shift>
+      </Element>
+      <Element>
+        <Visible>(A:Airspeed select indicated or true,knots) (A:Autopilot airspeed hold var,knots) - abs 40 > (A:Autopilot airspeed hold, bool) &amp;&amp;</Visible>
+        <Position X="72" Y="220"/>
+        <Polyline LineWidth="3" Color="#00CC00" Bright="Yes">
+          <Point X="12" Y="0"/>
+          <Point X="0" Y="12"/>
+          <Point X="12" Y="25"/>
+          <Pivot X="0" Y="12"/>
+        </Polyline>
+        <Shift>
+          <Value Minimum="-40" Maximum="40">(A:Airspeed select indicated or true,knots) (A:Autopilot airspeed hold var,knots) -</Value>
+          <Scale Y="-3"/>
+        </Shift>
+      </Element>
+      <Element>
+        <Visible>(A:Autopilot altitude lock,bool)</Visible>
+        <Position X="430" Y="220"/>
+        <Polyline LineWidth="3" Color="#00CC00" Bright="Yes">
+          <Point X="0" Y="0"/>
+          <Point X="12" Y="12"/>
+          <Point X="0" Y="25"/>
+          <Pivot X="0" Y="12"/>
+        </Polyline>
+        <Shift>
+          <Value Minimum="-1000" Maximum="1000">(A:Indicated Altitude,feet) (A:Autopilot altitude lock var, feet) -</Value>
+          <Scale Y="0.12"/>
+        </Shift>
+      </Element>
+      <Element>
+        <Visible>(A:Indicated Altitude,feet) (A:Autopilot altitude lock var, feet) - abs 1000 > (A:Autopilot altitude lock,bool) &amp;&amp;</Visible>
+        <Position X="438" Y="220"/>
+        <Polyline LineWidth="3" Color="#00CC00" Bright="Yes">
+          <Point X="0" Y="0"/>
+          <Point X="12" Y="12"/>
+          <Point X="0" Y="25"/>
+          <Pivot X="0" Y="12"/>
+        </Polyline>
+        <Shift>
+          <Value Minimum="-1000" Maximum="1000">(A:Indicated Altitude,feet) (A:Autopilot altitude lock var, feet) -</Value>
+          <Scale Y="0.12"/>
+        </Shift>
+      </Element>
+      <!--AUTOPILOT MODES-->
+      <!--FLIGHT DIRECTOR-->
+      <!--MESSAGES-->
+    </Element>
+  </Element>
+  <!--==== DIMM ====-->
+ <Element>
+    <Position X="0" Y="0"/>
+    <Select>
+      <Value>(L:HUD dim,enum)</Value>
+      <Case Value="1">
+        <Image Name="HUD_dim1.bmp" Alpha="Yes"/>
+      </Case>
+      <Case Value="2">
+        <Image Name="HUD_dim2.bmp" Alpha="Yes"/>
+      </Case>
+      <Case Value="3">
+        <Image Name="HUD_dim3.bmp" Alpha="Yes"/>
+      </Case>
+    </Select>
+  </Element>
+</Gauge>

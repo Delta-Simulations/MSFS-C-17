@@ -1,0 +1,7 @@
+<Gauge Name="Warning Sinkrate" Version="C-17" Author="Herbert Pralle">
+  <Element>
+    <Visible>(A:Circuit general panel on, bool) (A:Radio Height,feet) 10000 &lt; &amp;&amp; if{ (A:Vertical speed,feet per minute) (A:Radio Height,feet) 2.28 * 1200 + /-/ &lt; }</Visible>
+    <Position X="0" Y="0"/>
+    <Image Name="Warning_sinkrate_light.bmp" Bright="1"/>
+  </Element>
+</Gauge>

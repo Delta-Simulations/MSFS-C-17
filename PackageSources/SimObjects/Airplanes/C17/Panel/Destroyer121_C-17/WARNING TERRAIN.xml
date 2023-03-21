@@ -1,0 +1,7 @@
+<Gauge Name="Warning Terrain" Version="C-17" Author="Herbert Pralle">
+  <Element>
+    <Visible>(A:Gear handle position,percent) 0 == (A:Radio Height,feet) 1007 &lt; &amp;&amp; (A:Circuit general panel on, bool) &amp;&amp;</Visible>
+    <Position X="0" Y="0"/>
+    <Image Name="Warning_terrain_light.bmp" Bright="1"/>
+  </Element>
+</Gauge>

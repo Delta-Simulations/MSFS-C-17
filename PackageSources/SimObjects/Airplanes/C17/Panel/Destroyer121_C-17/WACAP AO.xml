@@ -1,0 +1,23 @@
+<Gauge Name="WACAP AO - WACAP Auto Open" Version="C-17" Author="Herbert Pralle">
+  <Element>
+    <Select>
+      <Value>(L:WACAP auto,bool)</Value>
+      <Case Value="0">
+        <Image Name="WACAP_ao_on.bmp"/>
+      </Case>
+      <Case Value="1">
+        <Image Name="WACAP_ao_off.bmp"/>
+      </Case>
+    </Select>
+  </Element>
+  <Element>
+    <Select>
+      <Value>(L:WACAP auto,bool) (L:WACAP open,bool) ! &amp;&amp; if{ (L:Master caution,bool) (L:Master Warning,bool) || if{ 10003 (>K:PANEL_ID_OPEN) 1 (>L:WACAP open,bool) } }</Value>
+    </Select>
+  </Element>
+  <Mouse>
+    <Tooltip>Auto Open Annunciator Panel</Tooltip>
+    <Cursor Type="Hand"/>
+    <Click Repeat="No">(L:WACAP auto,bool) if{ 10003 (>K:PANEL_ID_CLOSE) } (L:WACAP auto,bool) ! (>L:WACAP auto,bool)</Click>
+  </Mouse>
+</Gauge>

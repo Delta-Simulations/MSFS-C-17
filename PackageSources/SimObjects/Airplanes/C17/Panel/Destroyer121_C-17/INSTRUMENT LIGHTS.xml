@@ -1,0 +1,22 @@
+<Gauge Name="Instrument Lights" Version="C-17" Author="Herbert Pralle">
+  <Image Name="Instrument_Lights_backgrnd.bmp"/>
+  <Element>
+    <Position X="38" Y="38"/>
+    <Image Name="Instrument_Lights_Knob.bmp">
+      <Axis X="38" Y="38"/>
+    </Image>
+    <Rotate>
+      <Value>(L:Instrument light on, bool)</Value>
+      <Nonlinearity>
+        <Item Value="0" Degrees="0"/>
+        <Item Value="1" Degrees="135"/>
+      </Nonlinearity>
+      <Delay DegreesPerSecond="360"/>
+    </Rotate>
+  </Element>
+  <Mouse>
+    <Cursor Type="Hand"/>
+    <Click>(L:Instrument light on, bool) ! (>L:Instrument light on, bool) (>K:PANEL_LIGHTS_TOGGLE)</Click>
+    <Tooltip>%Instrument Lights %((L:Instrument light on,bool,bool))%{if} (ON)%{else} (OFF)%</Tooltip>
+  </Mouse>
+</Gauge>

@@ -1,0 +1,50 @@
+<Gauge Name="APU Numeric Display EGT - Virtavia C-17" Version="1.0">
+   <Image Name="APUrpm.bmp"/>
+
+  <Element>
+  	<Visible>(A:ELECTRICAL MASTER BATTERY,bool) (A:TURB ENG1 N1,Percent) 20 &gt; (A:TURB ENG2 N1,Percent) 20 &gt; (A:TURB ENG3 N1,Percent) 20 &gt; (A:TURB ENG4 N1,Percent) 20 &gt; || || || ||</Visible>
+  
+  <Element>
+	<Select>
+		<Value>(A:Ambient Temperature,Celsius) (>G:Var1)
+			(L:C17_APU,enum) 0 == 
+				if{ (G:Var1) (>L:APUegt,enum) }
+		</Value>
+	</Select>
+  </Element>
+
+  <Element>
+	<Select>
+		<Value>
+			(L:C17_APU,enum) 0 &gt; (L:APUegt,enum) 400 &lt; (L:APUrpm,enum) 25 &gt; &amp;&amp; &amp;&amp;
+				if{ (L:APUegt,enum) ++ (>L:APUegt,enum) }
+		</Value>
+	</Select>
+  </Element>
+
+ <Element>
+	<Select>
+		<Value>
+			(L:C17_APU,enum) 0 == (L:APUegt,enum) 1 &gt; &amp;&amp; if{ (L:APUegt,enum) -- (>L:APUegt,enum) }
+		</Value>
+	</Select>
+  </Element>
+
+  <Element>
+    <Visible>(L:C17_APU, enum) 0 &gt;</Visible>
+    <Element>
+     <Position X="3" Y="4"/>
+      <Text X="104" Y="40" Length="3" Fixed="Yes" Font="Quartz" FontHeight="0" FontWeight="400" Charset="Default" Attributes="Normal" Adjust="Center" VerticalAdjust="Center" Multiline="No" Color="#00EE00" BackgroundColor="transparent" HilightColor="white" Bright="Yes" UseTransparency="Yes">
+
+         <String>%((L:APUegt,enum))%!03d!</String>
+
+         <Failures>
+            <SYSTEM_ELECTRICAL_PANELS Action=""/>
+         </Failures>
+      </Text>
+    </Element>
+  </Element>
+
+  </Element>
+
+</Gauge>

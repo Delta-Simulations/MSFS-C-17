@@ -1,0 +1,60 @@
+<Gauge Name="Total fuel" Version="C-17" Author="Herbert Pralle">
+  <Image Name="Totalfuel_backgrnd.bmp"/>
+  <Element>
+    <Visible>(A:Circuit general panel on, bool)</Visible>
+    <Element>
+      <Position X="50" Y="202"/>
+      <Image Name="Totalfuel_screen.bmp" Bright="1"/>
+    </Element>
+    <Element>
+      <Position X="58" Y="206"/>
+      <FormattedText X="124" Y="30" Font="QUARTZ" FontSize="36" LineSpacing="36" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((A:Fuel total quantity weight,pounds) 100 / near 100 *)%!6d!%</String>
+      </FormattedText>
+    </Element>
+  </Element>
+  <Element>
+    <Position X="50" Y="202"/>
+    <Select>
+      <Value>(L:digit dim,enum)</Value>
+      <Case Value="1">
+        <Image Name="Totalfuel_dim1.bmp" Alpha="Yes"/>
+      </Case>
+      <Case Value="2">
+        <Image Name="Totalfuel_dim2.bmp" Alpha="Yes"/>
+      </Case>
+      <Case Value="3">
+        <Image Name="Totalfuel_dim3.bmp" Alpha="Yes"/>
+      </Case>
+    </Select>
+  </Element>
+  <Element>
+    <Position X="179" Y="62"/>
+    <Select>
+      <Value>(G:Var1)</Value>
+      <Case Value="0">
+        <Image Name="Totalfuel_out.bmp" Luminous="0"/>
+      </Case>
+      <Case Value="1">
+        <Image Name="Totalfuel_in.bmp" Luminous="0"/>
+      </Case>
+    </Select>
+  </Element>
+  <Element>
+    <Position X="238" Y="202"/>
+    <Select>
+      <Value>(A:Fuel total quantity weight,pounds) 16000 &lt;</Value>
+      <Case Value="1">
+        <Image Name="Totalfuel_low.bmp" Bright="1"/>
+      </Case>
+    </Select>
+  </Element>
+  <Macro Name="FUELRESET">(A:Fuel total quantity weight,pounds) (>L:Fuel actual quantity,pounds)</Macro>
+  <Mouse>
+    <Area Left="176" Top="60" Width="62" Height="60">
+      <Cursor Type="Hand"/>
+      <Tooltip>Reset Used Fuel</Tooltip>
+      <Click Kind="LeftSingle+Leave" Repeat="No">(M:Event) 'LeftSingle' scmp 0 == if{ 1 (>G:Var1) @FUELRESET } (M:Event) 'Leave' scmp 0 == if{ 0 (>G:Var1) }</Click>
+    </Area>
+  </Mouse>
+</Gauge>

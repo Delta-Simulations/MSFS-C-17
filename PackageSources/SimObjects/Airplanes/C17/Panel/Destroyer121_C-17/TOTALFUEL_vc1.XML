@@ -1,0 +1,36 @@
+<Gauge Name="Total fuel" Version="C-17vc1" Author="Herbert Pralle">
+  <Image Name="Totalfuel_bg_vc1.bmp"/>
+  <Element>
+    <Visible>(A:Circuit general panel on, bool)</Visible>
+
+    <Element>
+      <Position X="0" Y="0"/>
+      <Image Name="Totalfuel_screen.bmp" Bright="1"/>
+    </Element>
+
+    <Element>
+      <Position X="8" Y="2"/>
+      <FormattedText X="124" Y="30" Font="QUARTZ" FontSize="36" LineSpacing="36" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((A:Fuel total quantity weight,pounds) 100 / near 100 *)%!6d!%</String>
+      </FormattedText>
+    </Element>
+  
+  <Element>
+    <Position X="0" Y="0"/>
+    <Select>
+      <Value>(L:digit dim,enum)</Value>
+      <Case Value="1">
+        <Image Name="Totalfuel_dim1.bmp" Alpha="Yes"/>
+      </Case>
+      <Case Value="2">
+        <Image Name="Totalfuel_dim2.bmp" Alpha="Yes"/>
+      </Case>
+      <Case Value="3">
+        <Image Name="Totalfuel_dim3.bmp" Alpha="Yes"/>
+      </Case>
+    </Select>
+  </Element>
+
+ </Element>
+
+</Gauge>

@@ -1,0 +1,38 @@
+<Gauge Name="Stab Trim" Version="C-17" Author="Herbert Pralle">
+  <Element>
+    <Position X="0" Y="0"/>
+    <Image Name="Stab_Trim_card.bmp" Luminous="0"/>
+  </Element>
+  <Element>
+    <Position X="56" Y="56"/>
+    <Image Name="Stab_Trim_needle.bmp" Luminous="0" PointsTo="North">
+      <Axis X="12" Y="52"/>
+    </Image>
+    <Rotate>
+      <Value Minimum="-5" Maximum="15">(A:Elevator Trim Position,degrees)</Value>
+      <Nonlinearity>
+        <Item Value="-5" X="20" Y="94"/>
+        <Item Value="0" X="2" Y="56"/>
+        <Item Value="5" X="18" Y="18"/>
+        <Item Value="10" X="56" Y="2"/>
+        <Item Value="15" X="94" Y="18"/>
+      </Nonlinearity>
+    </Rotate>
+  </Element>
+  <Element>
+    <Position X="0" Y="0"/>
+    <Visible>(P:TIME OF DAY,enum) (A:Light Panel,bool) + 3 &lt;</Visible>
+    <Image Name="Stab_Trim_rfl.bmp" Alpha="Yes"/>
+  </Element>
+  <Mouse>
+    <Area Top="56">
+      <Cursor Type="DownArrow"/>
+      <Click Event="ELEV_TRIM_DN" Repeat="Yes" MouseWheelFlip="Yes"/>
+    </Area>
+    <Area Bottom="56">
+      <Cursor Type="UpArrow"/>
+      <Click Event="ELEV_TRIM_UP" Repeat="Yes" MouseWheelFlip="Yes"/>
+    </Area>
+    <Tooltip ID="TOOLTIPTEXT_PITCH_TRIM"/>
+  </Mouse>
+</Gauge>

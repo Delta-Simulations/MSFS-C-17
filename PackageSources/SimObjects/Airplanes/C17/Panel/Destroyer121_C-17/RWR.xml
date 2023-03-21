@@ -1,0 +1,24 @@
+<Gauge Name="RWR Indicator - Virtavia C-17" Version="1.0">
+ <Image Name="RWR_Off.bmp"/>
+
+  <Element>
+  	<Visible>(A:ELECTRICAL MASTER BATTERY,bool) (A:TURB ENG1 N1,Percent) 20 &gt; (A:TURB ENG2 N1,Percent) 20 &gt; (A:TURB ENG3 N1,Percent) 20 &gt; (A:TURB ENG4 N1,Percent) 20 &gt; || || || ||</Visible>
+ 	
+   <Element>
+      <Select>
+         <Value>(L:C17_RWR,bool)</Value>
+         <Case Value="1">
+            <Image Name="RWR_On.bmp"/>
+         </Case>
+      </Select>
+   </Element>
+   
+  </Element>
+
+   <Mouse>
+     <Tooltip>Radar/Laser Threat Indicator</Tooltip>
+         </Mouse>
+
+</Gauge>
+
+

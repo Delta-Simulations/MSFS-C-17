@@ -1,0 +1,22 @@
+<Gauge Name="Panel Light" Version="C-17" Author="Herbert Pralle">
+  <Image Name="Panel_Light_backgrnd.bmp"/>
+  <Element>
+    <Position X="38" Y="38"/>
+    <Image Name="Panel_Light_Knob.bmp">
+      <Axis X="38" Y="38"/>
+    </Image>
+    <Rotate>
+      <Value>(A:Light panel,bool)</Value>
+      <Nonlinearity>
+        <Item Value="0" Degrees="0"/>
+        <Item Value="1" Degrees="135"/>
+      </Nonlinearity>
+      <Delay DegreesPerSecond="360"/>
+    </Rotate>
+  </Element>
+  <Mouse>
+    <Cursor Type="Hand"/>
+    <Click Event="PANEL_LIGHTS_TOGGLE"/>
+    <Tooltip>%Panel Lights %((A:Light panel,bool))%{if} (ON)%{else} (OFF)%</Tooltip>
+  </Mouse>
+</Gauge>

@@ -1,0 +1,36 @@
+<Gauge Name="Aileron Trim" Version="C-17" Author="Herbert Pralle">
+  <Element>
+    <Position X="0" Y="0"/>
+    <Image Name="Ail_Trim_card.bmp" Luminous="0"/>
+  </Element>
+  <Element>
+    <Position X="56" Y="56"/>
+    <Image Name="Ail_Trim_needle.bmp" Luminous="0" PointsTo="North">
+      <Axis X="12" Y="52"/>
+    </Image>
+    <Rotate>
+      <Value Minimum="-10" Maximum="10">(A:Aileron Trim,degrees)</Value>
+      <Nonlinearity>
+        <Item Value="-10" X="40" Y="108"/>
+        <Item Value="0" X="56" Y="3"/>
+        <Item Value="10" X="72" Y="108"/>
+      </Nonlinearity>
+    </Rotate>
+  </Element>
+  <Element>
+    <Position X="0" Y="0"/>
+    <Visible>(P:TIME OF DAY,enum) (A:Light Panel,bool) + 3 &lt;</Visible>
+    <Image Name="Ail_Trim_rfl.bmp" Alpha="Yes"/>
+  </Element>
+  <Mouse>
+    <Tooltip ID="TOOLTIPTEXT_ROLL_TRIM"/>
+    <Area Right="56">
+      <Cursor Type="DownArrow"/>
+      <Click Event="AILERON_TRIM_LEFT" Repeat="Yes" MouseWheelFlip="Yes"/>
+    </Area>
+    <Area Left="56">
+      <Cursor Type="UpArrow"/>
+      <Click Event="AILERON_TRIM_RIGHT" Repeat="Yes" MouseWheelFlip="Yes"/>
+    </Area>
+  </Mouse>
+</Gauge>

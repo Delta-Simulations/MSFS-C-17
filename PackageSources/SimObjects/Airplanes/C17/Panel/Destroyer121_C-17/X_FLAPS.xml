@@ -1,0 +1,97 @@
+<Gauge Name="Flaps" Version="C-17" Author="Herbert Pralle">
+  <Element>
+    <Position X="0" Y="0"/>
+    <Image Name="Flaps_card.bmp" Luminous="0"/>
+  </Element>
+  <Element>
+    <Position X="133" Y="133"/>
+    <Image Name="Flaps_Needle_R.bmp" PointsTo="North" Luminous="0">
+      <Axis X="15" Y="96"/>
+    </Image>
+    <Rotate>
+      <Value Minimum="0" Maximum="100">(A:TRAILING EDGE FLAPS RIGHT PERCENT,percent)</Value>
+      <Nonlinearity>
+        <Item Value="0" X="133" Y="32"/>
+        <Item Value="50" X="232" Y="133"/>
+        <Item Value="100" X="133" Y="232"/>
+      </Nonlinearity>
+      <Failures>
+        <SYSTEM_ELECTRICAL_PANELS Action="0"/>
+      </Failures>
+    </Rotate>
+  </Element>
+  <Element>
+    <Position X="133" Y="133"/>
+    <Image Name="Flaps_Needle_L.bmp" PointsTo="North" Luminous="0">
+      <Axis X="15" Y="96"/>
+    </Image>
+    <Rotate>
+      <Value Minimum="0" Maximum="100">(A:TRAILING EDGE FLAPS LEFT PERCENT,percent)</Value>
+      <Nonlinearity>
+        <Item Value="0" X="133" Y="32"/>
+        <Item Value="50" X="232" Y="133"/>
+        <Item Value="100" X="133" Y="232"/>
+      </Nonlinearity>
+      <Failures>
+        <SYSTEM_ELECTRICAL_PANELS Action="0"/>
+      </Failures>
+    </Rotate>
+  </Element>
+  <Element>
+    <Position X="40" Y="131"/>
+    <Visible>(A:Circuit general panel on, bool)</Visible>
+    <Image Name="Flaps_screen.bmp" Bright="1"/>
+  </Element>
+  <Element>
+    <Position X="40" Y="130"/>
+    <Visible>(A:Circuit general panel on, bool)</Visible>
+    <FormattedText X="56" Y="26" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+      <String>%(100 (L:Flaps Index,number) 20 * -)%!d!%</String>
+    </FormattedText>
+  </Element>
+  <Element>
+    <Position X="40" Y="131"/>
+    <Select>
+      <Value>(L:digit dim,enum)</Value>
+      <Case Value="1">
+        <Image Name="Flaps_dim1.bmp" Alpha="Yes"/>
+      </Case>
+      <Case Value="2">
+        <Image Name="Flaps_dim2.bmp" Alpha="Yes"/>
+      </Case>
+      <Case Value="3">
+        <Image Name="Flaps_dim3.bmp" Alpha="Yes"/>
+      </Case>
+    </Select>
+  </Element>
+  <!--==== REFLECTION ====-->
+  <Element>
+    <Position X="0" Y="0"/>
+    <Visible>(P:TIME OF DAY,enum) (A:Light Panel,bool) + 3 &lt;</Visible>
+    <Image Name="Flaps_rfl.bmp" Alpha="Yes"/>
+  </Element>
+  <Mouse>
+    <Area Left="130" Top="30" Width="100" Height="200">
+      <Tooltip ID="TOOLTIPTEXT_FLAPS_SWITCH"/>
+      <Area Top="100">
+        <Cursor Type="UpArrow"/>
+        <Click Event="FLAPS_INCR"/>
+      </Area>
+      <Area Bottom="100">
+        <Cursor Type="DownArrow"/>
+        <Click Event="FLAPS_DECR"/>
+      </Area>
+    </Area>
+    <Area Left="30" Top="80" Width="80" Height="120">
+      <Tooltip>Flaps Index</Tooltip>
+      <Area Top="60">
+        <Cursor Type="UpArrow"/>
+        <Click Kind="LeftSingle" Repeat="Yes" MouseWheelFlip="Yes">(L:Flaps Index,number) 1 - 0 max (>L:Flaps Index,number)</Click>
+      </Area>
+      <Area Bottom="60">
+        <Cursor Type="DownArrow"/>
+        <Click Kind="LeftSingle" Repeat="Yes" MouseWheelFlip="Yes">(L:Flaps Index,number) 1 + 5 min (>L:Flaps Index,number)</Click>
+      </Area>
+    </Area>
+  </Mouse>
+</Gauge>

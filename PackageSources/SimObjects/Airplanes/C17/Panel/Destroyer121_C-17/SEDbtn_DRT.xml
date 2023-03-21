@@ -1,0 +1,27 @@
+<Gauge Name="Standby Engine Display Button DRT" Version="C-17vc" Author="Herbert Pralle">
+  <Image Name="SEDbtn_DRT.bmp"/>
+
+  <Macro Name="TempComp">(L:AP N1 rating,number) (A:Ambient Temperature,Celsius) 27 - 0.122 * 0 max - (>L:AP N1 rating,number)</Macro>
+
+  <Element>
+    <Select>
+      <Value>(L:STDBENG mode,number) 2 > if{ (A:Ambient Temperature,Celsius) (G:Var1) - abs 2 > if{ (A:Ambient Temperature,Celsius) (>G:Var1) @TempComp } }</Value>
+    </Select>
+  </Element>
+
+  <Element>
+ 	<Select>
+		<Value>(L:STDBENG button,enum) 1 == if{ 10 (>L:SED_btn_DRT,enum) } els{ 0 (>L:SED_btn_DRT,enum) }</Value>
+ 	</Select>
+   </Element>
+
+  <Macro Name="MODEDRT">95.5 (A:Ambient Temperature,Celsius) 27 - 0.122 * 0 max - (>L:AP N1 rating,number) (A:Ambient Temperature,Celsius) (>G:Var1)</Macro> 
+   
+  <Mouse>
+        <Cursor Type="Hand"/>
+      <Tooltip>Thrust Rating : Derated Thrust</Tooltip>
+      <Click>1 (>L:STDBENG button,enum) (L:STDBENG mode,enum) 1 > 
+		if{ 5 (>L:STDBENG mode,enum) @MODEDRT }</Click>
+  </Mouse>
+
+</Gauge>

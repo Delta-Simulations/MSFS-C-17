@@ -1,0 +1,534 @@
+<Gauge Name="CHANNELS" Version="AlphaSim" Author="Herbert Pralle">
+  <Image Name="CHANNELS_backgrnd.bmp" Luminous="1"/>
+  <Element>
+    <Position X="8" Y="2"/>
+    <FormattedText X="150" Y="14" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Center" Color="#0C0C0C" Bright="Yes">
+      <String>FREQUENCY PRESETS</String>
+    </FormattedText>
+  </Element>
+  <Element>
+    <Position X="183" Y="2"/>
+    <FormattedText X="230" Y="14" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Center" Color="#0C0C0C" Bright="Yes">
+      <String>S = STORE IN CHANNEL A = ACTIVATE</String>
+    </FormattedText>
+  </Element>
+  <Element>
+    <Position X="11" Y="35"/>
+    <FormattedText X="49" Y="14" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Center" Color="#0C0C0C" Bright="Yes">
+      <String>COMM 1</String>
+    </FormattedText>
+  </Element>
+  <Element>
+    <Position X="111" Y="35"/>
+    <FormattedText X="49" Y="14" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Center" Color="#0C0C0C" Bright="Yes">
+      <String>COMM 2</String>
+    </FormattedText>
+  </Element>
+  <Element>
+    <Position X="221" Y="35"/>
+    <FormattedText X="49" Y="14" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Center" Color="#0C0C0C" Bright="Yes">
+      <String>NAV 1</String>
+    </FormattedText>
+  </Element>
+  <Element>
+    <Position X="321" Y="35"/>
+    <FormattedText X="49" Y="14" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Center" Color="#0C0C0C" Bright="Yes">
+      <String>NAV 2</String>
+    </FormattedText>
+  </Element>
+  <!--==== INPUT FREQUENCIES ====-->
+  <Element>
+    <Element>
+      <Position X="13" Y="22"/>
+      <FormattedText X="45" Y="13" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#0C0C0C" Bright="Yes">
+        <String>%((L:C1Input,number))%!3.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="113" Y="22"/>
+      <FormattedText X="45" Y="13" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#0C0C0C" Bright="Yes">
+        <String>%((L:C2Input,number))%!3.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="223" Y="22"/>
+      <FormattedText X="45" Y="13" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#0C0C0C" Bright="Yes">
+        <String>%((L:N1Input,number))%!3.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="323" Y="22"/>
+      <FormattedText X="45" Y="13" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#0C0C0C" Bright="Yes">
+        <String>%((L:N2Input,number))%!3.2f!%</String>
+      </FormattedText>
+    </Element>
+  </Element>
+  <!--==== ACTIVE MARKERS ====-->
+  <Element>
+    <Visible>(L:CNCP show channel,bool)</Visible>
+    <Element>
+      <Visible>(L:C1,enum) 0 ></Visible>
+      <Position X="12" Y="51"/>
+      <Image Name="Channels_active.bmp" Bright="1"/>
+      <Shift>
+        <Value Minimum="0" Maximum="6">(L:C1,enum) 1 -</Value>
+        <Scale Y="20"/>
+      </Shift>
+    </Element>
+    <Element>
+      <Visible>(L:C2,enum) 0 ></Visible>
+      <Position X="112" Y="51"/>
+      <Image Name="Channels_active.bmp" Bright="1"/>
+      <Shift>
+        <Value Minimum="0" Maximum="6">(L:C2,enum) 1 -</Value>
+        <Scale Y="20"/>
+      </Shift>
+    </Element>
+    <Element>
+      <Visible>(L:N1,enum) 0 ></Visible>
+      <Position X="222" Y="51"/>
+      <Image Name="Channels_active.bmp" Bright="1"/>
+      <Shift>
+        <Value Minimum="0" Maximum="6">(L:N1,enum) 1 -</Value>
+        <Scale Y="20"/>
+      </Shift>
+    </Element>
+    <Element>
+      <Visible>(L:N2,enum) 0 ></Visible>
+      <Position X="322" Y="51"/>
+      <Image Name="Channels_active.bmp" Bright="1"/>
+      <Shift>
+        <Value Minimum="0" Maximum="6">(L:N2,enum) 1 -</Value>
+        <Scale Y="20"/>
+      </Shift>
+    </Element>
+  </Element>
+  <!--==== STORED FREQUENCIES ====-->
+  <Element>
+    <!--COM1-->
+    <Element>
+      <Position X="13" Y="52"/>
+      <FormattedText X="45" Y="13" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#0C0C0C" Bright="Yes">
+        <String>%((L:C1Channel1,number))%!3.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="13" Y="72"/>
+      <FormattedText X="45" Y="13" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#0C0C0C" Bright="Yes">
+        <String>%((L:C1Channel2,number))%!3.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="13" Y="92"/>
+      <FormattedText X="45" Y="13" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#0C0C0C" Bright="Yes">
+        <String>%((L:C1Channel3,number))%!3.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="13" Y="112"/>
+      <FormattedText X="45" Y="13" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#0C0C0C" Bright="Yes">
+        <String>%((L:C1Channel4,number))%!3.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="13" Y="132"/>
+      <FormattedText X="45" Y="13" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#0C0C0C" Bright="Yes">
+        <String>%((L:C1Channel5,number))%!3.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="13" Y="152"/>
+      <FormattedText X="45" Y="13" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#0C0C0C" Bright="Yes">
+        <String>%((L:C1Channel6,number))%!3.2f!%</String>
+      </FormattedText>
+    </Element>
+    <!--COM2-->
+    <Element>
+      <Position X="113" Y="52"/>
+      <FormattedText X="45" Y="13" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#0C0C0C" Bright="Yes">
+        <String>%((L:C2Channel1,number))%!3.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="113" Y="72"/>
+      <FormattedText X="45" Y="13" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#0C0C0C" Bright="Yes">
+        <String>%((L:C2Channel2,number))%!3.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="113" Y="92"/>
+      <FormattedText X="45" Y="13" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#0C0C0C" Bright="Yes">
+        <String>%((L:C2Channel3,number))%!3.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="113" Y="112"/>
+      <FormattedText X="45" Y="13" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#0C0C0C" Bright="Yes">
+        <String>%((L:C2Channel4,number))%!3.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="113" Y="132"/>
+      <FormattedText X="45" Y="13" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#0C0C0C" Bright="Yes">
+        <String>%((L:C2Channel5,number))%!3.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="113" Y="152"/>
+      <FormattedText X="45" Y="13" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#0C0C0C" Bright="Yes">
+        <String>%((L:C2Channel6,number))%!3.2f!%</String>
+      </FormattedText>
+    </Element>
+    <!--NAV1-->
+    <Element>
+      <Position X="223" Y="52"/>
+      <FormattedText X="45" Y="13" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#0C0C0C" Bright="Yes">
+        <String>%((L:N1Channel1,number))%!3.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="223" Y="72"/>
+      <FormattedText X="45" Y="13" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#0C0C0C" Bright="Yes">
+        <String>%((L:N1Channel2,number))%!3.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="223" Y="92"/>
+      <FormattedText X="45" Y="13" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#0C0C0C" Bright="Yes">
+        <String>%((L:N1Channel3,number))%!3.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="223" Y="112"/>
+      <FormattedText X="45" Y="13" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#0C0C0C" Bright="Yes">
+        <String>%((L:N1Channel4,number))%!3.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="223" Y="132"/>
+      <FormattedText X="45" Y="13" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#0C0C0C" Bright="Yes">
+        <String>%((L:N1Channel5,number))%!3.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="223" Y="152"/>
+      <FormattedText X="45" Y="13" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#0C0C0C" Bright="Yes">
+        <String>%((L:N1Channel6,number))%!3.2f!%</String>
+      </FormattedText>
+    </Element>
+    <!--NAV2-->
+    <Element>
+      <Position X="323" Y="52"/>
+      <FormattedText X="45" Y="13" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#0C0C0C" Bright="Yes">
+        <String>%((L:N2Channel1,number))%!3.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="323" Y="72"/>
+      <FormattedText X="45" Y="13" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#0C0C0C" Bright="Yes">
+        <String>%((L:N2Channel2,number))%!3.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="323" Y="92"/>
+      <FormattedText X="45" Y="13" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#0C0C0C" Bright="Yes">
+        <String>%((L:N2Channel3,number))%!3.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="323" Y="112"/>
+      <FormattedText X="45" Y="13" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#0C0C0C" Bright="Yes">
+        <String>%((L:N2Channel4,number))%!3.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="323" Y="132"/>
+      <FormattedText X="45" Y="13" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#0C0C0C" Bright="Yes">
+        <String>%((L:N2Channel5,number))%!3.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="323" Y="152"/>
+      <FormattedText X="45" Y="13" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#0C0C0C" Bright="Yes">
+        <String>%((L:N2Channel6,number))%!3.2f!%</String>
+      </FormattedText>
+    </Element>
+  </Element>
+  <Macro Name="C1Activate">(L:TempFrequency,number) 100 - 100 * s0 1000 / flr s1 l0 100 / flr l1 10 * - s2 l0 10 / flr l1 100 * - l2 10 * - s3 l0 l1 1000 * - l2 100 * - l3 10 * - s4 l3 16 * + l2 256 * + l1 4096 * + (>K:COM_RADIO_SET)</Macro>
+  <Macro Name="C2Activate">(L:TempFrequency,number) 100 - 100 * s0 1000 / flr s1 l0 100 / flr l1 10 * - s2 l0 10 / flr l1 100 * - l2 10 * - s3 l0 l1 1000 * - l2 100 * - l3 10 * - s4 l3 16 * + l2 256 * + l1 4096 * + (>K:COM2_RADIO_SET)</Macro>
+  <Macro Name="N1Activate">(L:TempFrequency,number) 100 - 100 * s0 1000 / flr s1 l0 100 / flr l1 10 * - s2 l0 10 / flr l1 100 * - l2 10 * - s3 l0 l1 1000 * - l2 100 * - l3 10 * - s4 l3 16 * + l2 256 * + l1 4096 * + (>K:NAV1_RADIO_SET)</Macro>
+  <Macro Name="N2Activate">(L:TempFrequency,number) 100 - 100 * s0 1000 / flr s1 l0 100 / flr l1 10 * - s2 l0 10 / flr l1 100 * - l2 10 * - s3 l0 l1 1000 * - l2 100 * - l3 10 * - s4 l3 16 * + l2 256 * + l1 4096 * + (>K:NAV2_RADIO_SET)</Macro>
+  <Mouse>
+    <!--==== FREQUENCIES INPUT ====-->
+    <!--COM1-->
+    <Area Left="61" Top="19" Width="21" Height="10">
+      <Cursor Type="Hand"/>
+      <Click Repeat="Yes">(L:C1Input,number) 135.95 &lt; if{ (L:C1Input,number) 1 + (>L:C1Input,number) } els{ 136.95 (>L:C1Input,number) }</Click>
+    </Area>
+    <Area Left="61" Top="29" Width="21" Height="10">
+      <Cursor Type="Hand"/>
+      <Click Repeat="Yes">(L:C1Input,number) 119.00 > if{ (L:C1Input,number) 1 - (>L:C1Input,number) } els{ 118.00 (>L:C1Input,number) }</Click>
+    </Area>
+    <Area Left="83" Top="19" Width="17" Height="10">
+      <Cursor Type="Hand"/>
+      <Click Repeat="Yes">(L:C1Input,number) 136.975 &lt; if{ (L:C1Input,number) 0.025 + (>L:C1Input,number) } els{ }</Click>
+    </Area>
+    <Area Left="83" Top="29" Width="17" Height="10">
+      <Cursor Type="Hand"/>
+      <Click Repeat="Yes">(L:C1Input,number) 118.025 >= if{ (L:C1Input,number) 0.025 - (>L:C1Input,number) } els{ }</Click>
+    </Area>
+    <!--COM2-->
+    <Area Left="161" Top="19" Width="21" Height="10">
+      <Cursor Type="Hand"/>
+      <Click Repeat="Yes">(L:C2Input,number) 135.95 &lt; if{ (L:C2Input,number) 1 + (>L:C2Input,number) } els{ 136.95 (>L:C2Input,number) }</Click>
+    </Area>
+    <Area Left="161" Top="29" Width="21" Height="10">
+      <Cursor Type="Hand"/>
+      <Click Repeat="Yes">(L:C2Input,number) 119.00 > if{ (L:C2Input,number) 1 - (>L:C2Input,number) } els{ 118.00 (>L:C2Input,number) }</Click>
+    </Area>
+    <Area Left="183" Top="19" Width="17" Height="10">
+      <Cursor Type="Hand"/>
+      <Click Repeat="Yes">(L:C2Input,number) 136.975 &lt; if{ (L:C2Input,number) 0.025 + (>L:C2Input,number) } els{ }</Click>
+    </Area>
+    <Area Left="183" Top="29" Width="17" Height="10">
+      <Cursor Type="Hand"/>
+      <Click Repeat="Yes">(L:C2Input,number) 118.025 >= if{ (L:C2Input,number) 0.025 - (>L:C2Input,number) } els{ }</Click>
+    </Area>
+    <!--NAV1-->
+    <Area Left="271" Top="19" Width="21" Height="10">
+      <Cursor Type="Hand"/>
+      <Click Repeat="Yes">(L:N1Input,number) 115.95 &lt; if{ (L:N1Input,number) 1 + (>L:N1Input,number) } els{ 116.95 (>L:N1Input,number) }</Click>
+    </Area>
+    <Area Left="271" Top="29" Width="21" Height="10">
+      <Cursor Type="Hand"/>
+      <Click Repeat="Yes">(L:N1Input,number) 109.00 > if{ (L:N1Input,number) 1 - (>L:N1Input,number) } els{ 108.00 (>L:N1Input,number) }</Click>
+    </Area>
+    <Area Left="293" Top="19" Width="17" Height="10">
+      <Cursor Type="Hand"/>
+      <Click Repeat="Yes">(L:N1Input,number) 116.95 &lt; if{ (L:N1Input,number) 0.05 + (>L:N1Input,number) } els{ 116.95 (>L:N1Input,number) }</Click>
+    </Area>
+    <Area Left="293" Top="29" Width="17" Height="10">
+      <Cursor Type="Hand"/>
+      <Click Repeat="Yes">(L:N1Input,number) 108.05 >= if{ (L:N1Input,number) 0.05 - (>L:N1Input,number) } els{ 108.00 (>L:N1Input,number) }</Click>
+    </Area>
+    <!--NAV2-->
+    <Area Left="371" Top="19" Width="21" Height="10">
+      <Cursor Type="Hand"/>
+      <Click Repeat="Yes">(L:N2Input,number) 115.95 &lt; if{ (L:N2Input,number) 1 + (>L:N2Input,number) } els{ 116.95 (>L:N2Input,number) }</Click>
+    </Area>
+    <Area Left="371" Top="29" Width="21" Height="10">
+      <Cursor Type="Hand"/>
+      <Click Repeat="Yes">(L:N2Input,number) 109.00 > if{ (L:N2Input,number) 1 - (>L:N2Input,number) } els{ 108.00 (>L:N2Input,number) }</Click>
+    </Area>
+    <Area Left="393" Top="19" Width="17" Height="10">
+      <Cursor Type="Hand"/>
+      <Click Repeat="Yes">(L:N2Input,number) 116.95 &lt; if{ (L:N2Input,number) 0.05 + (>L:N2Input,number) } els{ 116.95 (>L:N2Input,number) }</Click>
+    </Area>
+    <Area Left="393" Top="29" Width="17" Height="10">
+      <Cursor Type="Hand"/>
+      <Click Repeat="Yes">(L:N2Input,number) 108.05 >= if{ (L:N2Input,number) 0.05 - (>L:N2Input,number) } els{ 108.00 (>L:N2Input,number) }</Click>
+    </Area>
+    <!--==== STORE BUTTONS ====-->
+    <!--COM1-->
+    <Area Left="65" Top="51" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:C1Input,number) (>L:C1Channel1,number)</Click>
+    </Area>
+    <Area Left="65" Top="71" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:C1Input,number) (>L:C1Channel2,number)</Click>
+    </Area>
+    <Area Left="65" Top="91" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:C1Input,number) (>L:C1Channel3,number)</Click>
+    </Area>
+    <Area Left="65" Top="111" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:C1Input,number) (>L:C1Channel4,number)</Click>
+    </Area>
+    <Area Left="65" Top="131" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:C1Input,number) (>L:C1Channel5,number)</Click>
+    </Area>
+    <Area Left="65" Top="151" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:Test) >@SceneryName2</Click>
+    </Area>
+    <!--COM2-->
+    <Area Left="165" Top="51" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:C2Input,number) (>L:C2Channel1,number)</Click>
+    </Area>
+    <Area Left="165" Top="71" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:C2Input,number) (>L:C2Channel2,number)</Click>
+    </Area>
+    <Area Left="165" Top="91" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:C2Input,number) (>L:C2Channel3,number)</Click>
+    </Area>
+    <Area Left="165" Top="111" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:C2Input,number) (>L:C2Channel4,number)</Click>
+    </Area>
+    <Area Left="165" Top="131" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:C2Input,number) (>L:C2Channel5,number)</Click>
+    </Area>
+    <Area Left="165" Top="151" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:C2Input,number) (>L:C2Channel6,number)</Click>
+    </Area>
+    <!--NAV1-->
+    <Area Left="275" Top="51" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:N1Input,number) (>L:N1Channel1,number)</Click>
+    </Area>
+    <Area Left="275" Top="71" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:N1Input,number) (>L:N1Channel2,number)</Click>
+    </Area>
+    <Area Left="275" Top="91" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:N1Input,number) (>L:N1Channel3,number)</Click>
+    </Area>
+    <Area Left="275" Top="111" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:N1Input,number) (>L:N1Channel4,number)</Click>
+    </Area>
+    <Area Left="275" Top="131" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:N1Input,number) (>L:N1Channel5,number)</Click>
+    </Area>
+    <Area Left="275" Top="151" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:N1Input,number) (>L:N1Channel6,number)</Click>
+    </Area>
+    <!--NAV2-->
+    <Area Left="375" Top="51" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:N2Input,number) (>L:N2Channel1,number)</Click>
+    </Area>
+    <Area Left="375" Top="71" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:N2Input,number) (>L:N2Channel2,number)</Click>
+    </Area>
+    <Area Left="375" Top="91" Width="16" Height="57">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:N2Input,number) (>L:N2Channel3,number)</Click>
+    </Area>
+    <Area Left="375" Top="111" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:N2Input,number) (>L:N2Channel4,number)</Click>
+    </Area>
+    <Area Left="375" Top="131" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:N2Input,number) (>L:N2Channel5,number)</Click>
+    </Area>
+    <Area Left="375" Top="151" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:N2Input,number) (>L:N2Channel6,number)</Click>
+    </Area>
+    <!--==== ACTIVATE BUTTONS ====-->
+    <!--COM1-->
+    <Area Left="84" Top="51" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:C1Channel1,number) (>L:TempFrequency,number) @C1Activate 1 (>L:C1,enum)</Click>
+    </Area>
+    <Area Left="84" Top="71" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:C1Channel2,number) (>L:TempFrequency,number) @C1Activate 2 (>L:C1,enum)</Click>
+    </Area>
+    <Area Left="84" Top="91" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:C1Channel3,number) (>L:TempFrequency,number) @C1Activate 3 (>L:C1,enum)</Click>
+    </Area>
+    <Area Left="84" Top="111" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:C1Channel4,number) (>L:TempFrequency,number) @C1Activate 4 (>L:C1,enum)</Click>
+    </Area>
+    <Area Left="84" Top="131" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:C1Channel5,number) (>L:TempFrequency,number) @C1Activate 5 (>L:C1,enum)</Click>
+    </Area>
+    <Area Left="84" Top="151" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:C1Channel6,number) (>L:TempFrequency,number) @C1Activate 6 (>L:C1,enum)</Click>
+    </Area>
+    <!--COM2-->
+    <Area Left="184" Top="51" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:C2Channel1,number) (>L:TempFrequency,number) @C2Activate 1 (>L:C2,enum)</Click>
+    </Area>
+    <Area Left="184" Top="71" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:C2Channel2,number) (>L:TempFrequency,number) @C2Activate 2 (>L:C2,enum)</Click>
+    </Area>
+    <Area Left="184" Top="91" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:C2Channel3,number) (>L:TempFrequency,number) @C2Activate 3 (>L:C2,enum)</Click>
+    </Area>
+    <Area Left="184" Top="111" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:C2Channel4,number) (>L:TempFrequency,number) @C2Activate 4 (>L:C2,enum)</Click>
+    </Area>
+    <Area Left="184" Top="131" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:C2Channel5,number) (>L:TempFrequency,number) @C2Activate 5 (>L:C2,enum)</Click>
+    </Area>
+    <Area Left="184" Top="151" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:C2Channel6,number) (>L:TempFrequency,number) @C2Activate 6 (>L:C2,enum)</Click>
+    </Area>
+    <!--NAV1-->
+    <Area Left="294" Top="51" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:N1Channel1,number) (>L:TempFrequency,number) @N1Activate 1 (>L:N1,enum)</Click>
+    </Area>
+    <Area Left="294" Top="71" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:N1Channel2,number) (>L:TempFrequency,number) @N1Activate 2 (>L:N1,enum)</Click>
+    </Area>
+    <Area Left="294" Top="91" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:N1Channel3,number) (>L:TempFrequency,number) @N1Activate 3 (>L:N1,enum)</Click>
+    </Area>
+    <Area Left="294" Top="111" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:N1Channel4,number) (>L:TempFrequency,number) @N1Activate 4 (>L:N1,enum)</Click>
+    </Area>
+    <Area Left="294" Top="131" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:N1Channel5,number) (>L:TempFrequency,number) @N1Activate 5 (>L:N1,enum)</Click>
+    </Area>
+    <Area Left="294" Top="151" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:N1Channel6,number) (>L:TempFrequency,number) @N1Activate 6 (>L:N1,enum)</Click>
+    </Area>
+    <!--NAV2-->
+    <Area Left="394" Top="51" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:N2Channel1,number) (>L:TempFrequency,number) @N2Activate 1 (>L:N2,enum)</Click>
+    </Area>
+    <Area Left="394" Top="71" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:N2Channel2,number) (>L:TempFrequency,number) @N2Activate 2 (>L:N2,enum)</Click>
+    </Area>
+    <Area Left="394" Top="91" Width="19" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:N2Channel3,number) (>L:TempFrequency,number) @N2Activate 3 (>L:N2,enum)</Click>
+    </Area>
+    <Area Left="394" Top="111" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:N2Channel4,number) (>L:TempFrequency,number) @N2Activate 4 (>L:N2,enum)</Click>
+    </Area>
+    <Area Left="394" Top="131" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:N2Channel5,number) (>L:TempFrequency,number) @N2Activate 5 (>L:N2,enum)</Click>
+    </Area>
+    <Area Left="394" Top="151" Width="16" Height="15">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:N2Channel6,number) (>L:TempFrequency,number) @N2Activate 6 (>L:N2,enum)</Click>
+    </Area>
+  </Mouse>
+</Gauge>

@@ -1,0 +1,134 @@
+<Gauge Name="Standby Engine Display" Version="C-17 vc" Author="Herbert Pralle">
+  <Image Name="STDBENG_backgrnd_vc.bmp"/>
+  <Element>
+  	<Visible>(A:ELECTRICAL MASTER BATTERY,bool) (A:TURB ENG1 N1,Percent) 20 &gt; (A:TURB ENG2 N1,Percent) 20 &gt; (A:TURB ENG3 N1,Percent) 20 &gt; (A:TURB ENG4 N1,Percent) 20 &gt; || || || ||</Visible>
+  
+  <!--==== DISPLAY ====-->
+
+  <Element>
+    <Visible>(A:Circuit general panel on, bool) (L:STDBENG mode,enum) 0 > &amp;&amp;</Visible>
+    <Element>
+      <Position X="0" Y="0"/>
+      <Image Name="STDBENG_screen_vc.bmp" Bright="1"/>
+    </Element>
+    <Element>
+      <Position X="52" Y="0"/>
+      <FormattedText X="54" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((L:STDBENG mode,enum) 3 &lt;)%{if}%((L:AP N1 rating display,number) 1 max)%!1.2f!%{else}%((L:AP N1 rating,number) 23 max 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * +)%!1.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Visible>(L:STDBENG mode,enum) 1 ></Visible>
+      <Element>
+        <Position X="204" Y="0"/>
+        <FormattedText X="54" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+          <String>%((L:STDBENG mode,enum) 3 &lt;)%{if}%MAN%{else}%((L:STDBENG mode,enum) 3 ==)%{if}%INT%{else}%((L:STDBENG mode,enum) 4 ==)%{if}%MCT%{else}%((L:STDBENG mode,enum) 5 ==)%{if}%DRT%{else}%((L:STDBENG mode,enum) 6 ==)%{if}%MAX%</String>
+        </FormattedText>
+      </Element>
+    </Element>
+
+    <!--EPR (N1) OR N2-->
+
+    <Element>
+      <Position X="4" Y="30"/>
+      <FormattedText X="54" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((L:STDBENG mode,enum) 1 ==)%{if}%((A:Turb Eng1 corrected N2, percent))%!3d!%{else}%((A:Turb Eng1 N1, percent) 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * + 0 max 1.65 min)%!1.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="62" Y="30"/>
+      <FormattedText X="54" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((L:STDBENG mode,enum) 1 ==)%{if}%((A:Turb Eng2 corrected N2, percent))%!3d!%{else}%((A:Turb Eng2 N1, percent) 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * + 0 max 1.65 min)%!1.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="150" Y="30"/>
+      <FormattedText X="54" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((L:STDBENG mode,enum) 1 ==)%{if}%((A:Turb Eng3 corrected N2, percent))%!3d!%{else}%((A:Turb Eng3 N1, percent) 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * + 0 max 1.65 min)%!1.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="208" Y="30"/>
+      <FormattedText X="54" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((L:STDBENG mode,enum) 1 ==)%{if}%((A:Turb Eng4 corrected N2, percent))%!3d!%{else}%((A:Turb Eng4 N1, percent) 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * + 0 max 1.65 min)%!1.2f!%</String>
+      </FormattedText>
+    </Element>
+    <!--EGT-->
+    <Element>
+      <Position X="4" Y="58"/>
+      <FormattedText X="54" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((A:General eng1 exhaust gas temperature, celsius))%!3d!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="62" Y="58"/>
+      <FormattedText X="54" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((A:General eng2 exhaust gas temperature, celsius))%!3d!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="150" Y="58"/>
+      <FormattedText X="54" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((A:General eng3 exhaust gas temperature, celsius))%!3d!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="208" Y="58"/>
+      <FormattedText X="54" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((A:General eng4 exhaust gas temperature, celsius))%!3d!%</String>
+      </FormattedText>
+    </Element>
+    <!--N1-->
+    <Element>
+      <Position X="4" Y="86"/>
+      <FormattedText X="54" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((A:Turb Eng1 corrected N1, percent))%!3d!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="62" Y="86"/>
+      <FormattedText X="54" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((A:Turb Eng2 corrected N1, percent))%!3d!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="150" Y="86"/>
+      <FormattedText X="54" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((A:Turb Eng3 corrected N1, percent))%!3d!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="208" Y="86"/>
+      <FormattedText X="54" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((A:Turb Eng4 corrected N1, percent))%!3d!%</String>
+      </FormattedText>
+    </Element>
+  </Element>
+
+  <!--==== DIM ====-->
+
+  <Element>
+    <Position X="0" Y="0"/>
+    <Select>
+      <Value>(L:digit dim,enum)</Value>
+      <Case Value="1">
+        <Image Name="STDBENG_dim1.bmp" Alpha="Yes"/>
+      </Case>
+      <Case Value="2">
+        <Image Name="STDBENG_dim2.bmp" Alpha="Yes"/>
+      </Case>
+      <Case Value="3">
+        <Image Name="STDBENG_dim3.bmp" Alpha="Yes"/>
+      </Case>
+    </Select>
+  </Element>
+
+</Element>
+
+  <Element>
+    <Position X="0" Y="0"/>
+    <Visible>(P:TIME OF DAY,enum) (A:Light Panel,bool) + 3 &lt;</Visible>
+    <Image Name="STDBENG_rfl.bmp" Alpha="Yes"/>
+  </Element>
+   
+</Gauge>

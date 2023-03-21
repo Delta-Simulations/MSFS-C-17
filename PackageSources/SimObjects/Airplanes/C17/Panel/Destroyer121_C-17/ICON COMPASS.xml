@@ -1,0 +1,8 @@
+<Gauge Name="Icon Compass" Author="Herbert Pralle">
+  <Image Name="Icon_compass.bmp" Luminous="0"/>
+  <Mouse>
+    <Help ID="HELPID_GAUGE_TOGGLE_COMPASS_WINDOW"/>
+    <Cursor Type="Hand"/>
+    <Click>10007 (>K:PANEL_ID_TOGGLE)</Click>
+  </Mouse>
+</Gauge>

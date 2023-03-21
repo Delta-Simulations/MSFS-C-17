@@ -1,0 +1,23 @@
+<Gauge Name="Oxy Flow Lamp - Virtavia C-17 FSX" Version="1.0">
+
+  <Element>
+  	<Visible>(A:ELECTRICAL MASTER BATTERY,bool) (A:TURB ENG1 N1,Percent) 20 &gt; (A:TURB ENG2 N1,Percent) 20 &gt; (A:TURB ENG3 N1,Percent) 20 &gt; (A:TURB ENG4 N1,Percent) 20 &gt; || || || || (L:OxyShutOff, bool) ! &amp; </Visible>
+ 	
+   <Element>
+      <Select>
+         <Value>(L:C17_oxyflow, enum) -1 == </Value>
+	<Case Value="1">
+            <Image Name="OxyFlowOn.bmp"/>
+         </Case>
+      </Select>
+   </Element>
+   
+  </Element>
+
+   <Mouse>
+     <Tooltip>Oxygen flow status</Tooltip>
+         </Mouse>
+
+</Gauge>
+
+

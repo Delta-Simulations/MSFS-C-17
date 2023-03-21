@@ -1,0 +1,31 @@
+<Gauge Name="HUD Dim" Version="C-17" Author="Herbert Pralle">
+  <Image Name="HUD_dim_backgrnd.bmp" Luminous="0"/>
+  <Element>
+    <Position X="0" Y="0"/>
+    <Select>
+      <Value>(L:HUD dim,enum)</Value>
+      <Case Value="1">
+        <Image Name="HUD_dim_wheel1.bmp"/>
+      </Case>
+      <Case Value="2">
+        <Image Name="HUD_dim_wheel2.bmp"/>
+      </Case>
+      <Case Value="3">
+        <Image Name="HUD_dim_wheel3.bmp"/>
+      </Case>
+    </Select>
+  </Element>
+  <Mouse>
+    <Area Left="0" Top="3" Width="50" Height="120">
+      <Area Top="60">
+        <Cursor Type="DownArrow"/>
+        <Click Repeat="Yes">(L:HUD dim,enum) 1 + 3 min (>L:HUD dim,enum)</Click>
+      </Area>
+      <Area Bottom="60">
+        <Cursor Type="UpArrow"/>
+        <Click Repeat="Yes">(L:HUD dim,enum) 1 - 0 max (>L:HUD dim,enum)</Click>
+      </Area>
+      <Tooltip>Dim HUD</Tooltip>
+    </Area>
+  </Mouse>
+</Gauge>

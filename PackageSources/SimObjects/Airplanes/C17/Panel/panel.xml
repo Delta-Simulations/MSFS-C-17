@@ -1,0 +1,204 @@
+<PlaneHTMLConfig>
+	<!-- Voices Alerts -->
+	<VoicesAlerts>
+		<Alert>
+			<Type>SoundOnly</Type>
+			<SoundEvent>aural_500ft</SoundEvent>
+			<Condition>
+				<StateMachine>
+					<State id="Under" value="0">
+						<Transition to="Over">
+							<GreaterEqual>
+								<Simvar name="PLANE ALT ABOVE GROUND MINUS CG" unit="feet"/>
+								<Constant>510</Constant>
+							</GreaterEqual>
+						</Transition>
+					</State>
+					<State id="Over" value="0">
+						<Transition to="Alerting">
+							<LowerEqual>
+								<Simvar name="PLANE ALT ABOVE GROUND MINUS CG" unit="feet"/>
+								<Constant>500</Constant>
+							</LowerEqual>
+						</Transition>
+					</State>
+					<State id="Alerting" value="1">
+						<Transition to="Under">
+							<Constant>1</Constant>
+						</Transition>
+					</State>
+				</StateMachine>
+			</Condition>
+		</Alert>
+		<Alert>
+			<Type>SoundOnly</Type>
+			<SoundEvent>aural_stall</SoundEvent>
+			<Condition>
+				<Simvar name="STALL WARNING" unit="Bool"/>
+			</Condition>
+		</Alert>
+		<Alert>
+			<Type>SoundOnly</Type>
+			<SoundEvent>aural_pull_up</SoundEvent>
+			<Condition>
+				<And>
+					<LinearMultiPoint>
+						<Table>
+							<ReferencePoints>1160,2320,4930,12000</ReferencePoints>
+							<Maximums>0,1070,2380,4285</Maximums>
+						</Table>
+						<Param>
+							<Multiply>
+								<Simvar name="VERTICAL SPEED" unit="feet per minute"/>
+								<Constant>-1</Constant>
+							</Multiply>
+						</Param>
+						<Param>
+							<Simvar name="PLANE ALT ABOVE GROUND" unit="feet"/>
+						</Param>
+					</LinearMultiPoint>
+					<Not>
+						<Simvar name="SIM ON GROUND" unit="bool"/>
+					</Not>
+				</And>
+			</Condition>
+		</Alert>
+		<Alert>
+			<Type>SoundOnly</Type>
+			<SoundEvent>aural_overspeed</SoundEvent>
+			<Condition>
+				<Simvar name="OVERSPEED WARNING" unit="bool"/>
+			</Condition>
+		</Alert>
+		<Alert>
+			<Type>Caution</Type>
+			<SoundEvent>aural_sink_rate</SoundEvent>
+			<Condition>
+				<And>
+					<LinearMultiPoint>
+						<Table>
+							<ReferencePoints>1160,2320,4930,12000</ReferencePoints>
+							<Minimums>0,1070,2380,4285</Minimums>
+							<Maximums>0,1460,2980,5360</Maximums>
+						</Table>
+						<Param>
+							<Multiply>
+								<Simvar name="VERTICAL SPEED" unit="feet per minute"/>
+								<Constant>-1</Constant>
+							</Multiply>
+						</Param>
+						<Param>
+							<Simvar name="PLANE ALT ABOVE GROUND" unit="feet"/>
+						</Param>
+					</LinearMultiPoint>
+					<Not>
+						<Simvar name="SIM ON GROUND" unit="bool"/>
+					</Not>
+				</And>
+			</Condition>
+		</Alert>
+		<Alert>
+			<Type>Caution</Type>
+			<ShortText>TERRAIN</ShortText>
+			<LongText>DONT' SINK</LongText>
+			<SoundEvent>aural_dont_sink</SoundEvent>
+			<Condition>
+				<And>
+					<Lower>
+						<DistanceFromOrigin/>
+						<Constant>5</Constant>
+					</Lower>
+					<Lower>
+						<HeadingChangeFromDeparture/>
+						<Constant>110</Constant>
+					</Lower>
+					<Or>
+						<LinearMultiPoint>
+							<Table>
+								<ReferencePoints>0,500,7000</ReferencePoints>
+								<Maximums>50,700,700</Maximums>
+								<Minimums>50,50,50</Minimums>
+							</Table>
+							<Param>
+								<Multiply>
+									<Simvar name="VERTICAL SPEED" unit="feet per minute"/>
+									<Constant>-1</Constant>
+								</Multiply>
+							</Param>
+							<Param>
+								<Simvar name="PLANE ALT ABOVE GROUND" unit="feet"/>
+							</Param>
+						</LinearMultiPoint>
+						<LinearMultiPoint>
+							<Table>
+								<ReferencePoints>10,70,150</ReferencePoints>
+								<Maximums>50,700,700</Maximums>
+								<Minimums>50,50,50</Minimums>
+							</Table>
+							<Param>
+								<Substract>
+									<MaxSinceStart>
+										<Simvar name="PLANE ALTITUDE" unit="feet"/>
+									</MaxSinceStart>
+									<Simvar name="PLANE ALTITUDE" unit="feet"/>
+								</Substract>
+							</Param>
+							<Param>
+								<Simvar name="PLANE ALT ABOVE GROUND" unit="feet"/>
+							</Param>
+						</LinearMultiPoint>
+					</Or>
+				</And>
+			</Condition>
+		</Alert>
+		<Alert>
+			<Type>SoundOnly</Type>
+			<SoundEvent>aural_landing_gear</SoundEvent>
+			<Condition>
+				<And>
+					<Simvar name="IS GEAR RETRACTABLE" unit="Boolean"/>
+					<Not>
+						<Simvar name="GEAR HANDLE POSITION" unit="Boolean"/>
+					</Not>
+					<Or>
+						<Greater>
+							<Simvar name="FLAPS HANDLE INDEX" unit="number"/>
+							<Constant>1</Constant>
+						</Greater>
+						<Equal>
+							<Simvar name="GENERAL ENG THROTTLE LEVER POSITION:1" unit="percent"/>
+							<Constant>0</Constant>
+						</Equal>
+					</Or>
+				</And>
+			</Condition>
+		</Alert>
+		<Alert>
+			<Type>Test</Type>
+			<ShortText>TAWS TEST</ShortText>
+			<Condition>
+				<And>
+					<Lower>
+						<TimeSinceStart/>
+						<Constant>30000</Constant>
+					</Lower>
+					<InstrumentWasOff/>
+				</And>
+			</Condition>
+		</Alert>
+		<Alert>
+			<Type>SoundOnly</Type>
+			<SoundEvent>aural_taws_system_test_ok</SoundEvent>
+			<Condition>
+				<And>
+					<Greater>
+						<TimeSinceStart/>
+						<Constant>30000</Constant>
+					</Greater>
+					<InstrumentWasOff/>
+				</And>
+			</Condition>
+			<Once>True</Once>
+		</Alert>
+	</VoicesAlerts>
+</PlaneHTMLConfig>

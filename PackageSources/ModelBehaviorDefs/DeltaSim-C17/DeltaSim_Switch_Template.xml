@@ -1,0 +1,234 @@
+<ModelBehaviors>
+    <!-- CREATED FOR DELTA SIMULATIONS AIRCRAFT- PERMISSION REQUIRED FOR DIRECT USE###################################### -->
+    <Include ModelBehaviorFile="Asobo\Common.xml"/> 
+    <Include ModelBehaviorFile="Asobo\Airliner\AirlinerCommon.xml"/>
+    <Include ModelBehaviorFile="Asobo\Airliner\Boeing.xml"/>
+    <Include ModelBehaviorFile="Asobo\Airliner\FMC.xml"/>
+    <Include ModelBehaviorFile="Asobo\Airliner\GlassCockpit.xml"/>
+    <Include ModelBehaviorFile="Asobo\Airliner\Airbus.xml"/>
+
+
+<Template Name="AircraftVar_Switch_DELTASIM">
+    <DefaultTemplateParameters>
+        
+        <ANIM_LENGTH>100</ANIM_LENGTH>
+        <OFFSET>0</OFFSET>
+		<ANIMREF_ID>0</ANIMREF_ID>
+		<ANIMTIP_0_ON_PERCENT>0.0</ANIMTIP_0_ON_PERCENT>
+		<ANIMTIP_1_ON_PERCENT>1.0</ANIMTIP_1_ON_PERCENT>
+        <CONVERSION_FACTOR>1</CONVERSION_FACTOR>
+        <!-- PUMP OR VALVE
+		ex <SYSTYPE>PUMP</SYSTYPE> -->
+        <!-- INDEX OF PART
+        ex <INDEX>0</INDEX> -->
+        <!-- NAME OF EVENT SIMVAR
+        <EVENT_SIMVAR> </EVENT_SIMVAR>
+        -->
+        <!-- NAME OF SIMVAR
+        <SIMVAR> </SIMVAR>
+        -->
+
+        <ANIM_LAG>300</ANIM_LAG>			
+    </DefaultTemplateParameters>
+
+    <Component ID="#NODE_ID#" Node="#NODE_ID#">
+        <UseTemplate Name="ASOBO_GT_Anim_Code">
+            <ANIM_NAME>#NODE_ID#</ANIM_NAME>
+            <ANIM_CODE>(A:#SIMVAR#:#INDEX#,bool) #ANIM_LENGTH# * #OFFSET# + </ANIM_CODE>
+            <ANIM_LENGTH>#ANIM_LENGTH#</ANIM_LENGTH>
+        </UseTemplate>
+
+        <UseTemplate Name="ASOBO_GT_MouseRect">
+            <CURSOR>Hand</CURSOR>
+            <TOOLTIPID>#TOOLTIPID#</TOOLTIPID>
+            <MOUSEFLAGS_DEFAULT_IM>LeftSingle+LeftRelease</MOUSEFLAGS_DEFAULT_IM>
+            <CALLBACKCODE_DEFAULT_IM>
+                (M:Event) 'LeftSingle' scmi 0 == if{
+                    #INDEX# (&gt;K:#EVENT_SIMVAR#)
+                }
+            </CALLBACKCODE_DEFAULT_IM>
+        </UseTemplate>
+    </Component>
+</Template>
+
+<Template Name="AircraftVar_Switch_Toggle_DELTASIM">
+    <DefaultTemplateParameters>
+        
+        <ANIM_LENGTH>100</ANIM_LENGTH>
+        <OFFSET>0</OFFSET>
+		<ANIMREF_ID>0</ANIMREF_ID>
+		<ANIMTIP_0_ON_PERCENT>0.0</ANIMTIP_0_ON_PERCENT>
+		<ANIMTIP_1_ON_PERCENT>1.0</ANIMTIP_1_ON_PERCENT>
+        <CONVERSION_FACTOR>1</CONVERSION_FACTOR>
+        <!-- PUMP OR VALVE
+		ex <SYSTYPE>PUMP</SYSTYPE> -->
+        <!-- NAME OF EVENT SIMVAR
+        <EVENT_SIMVAR> </EVENT_SIMVAR>
+        -->
+        <!-- NAME OF SIMVAR
+        <SIMVAR> </SIMVAR>
+        -->
+
+        <ANIM_LAG>300</ANIM_LAG>			
+    </DefaultTemplateParameters>
+
+    <Component ID="#NODE_ID#" Node="#NODE_ID#">
+        <UseTemplate Name="ASOBO_GT_Anim_Code">
+            <ANIM_NAME>#NODE_ID#</ANIM_NAME>
+            <ANIM_CODE>(A:#SIMVAR#,bool) #ANIM_LENGTH# * #OFFSET# + </ANIM_CODE>
+            <ANIM_LENGTH>#ANIM_LENGTH#</ANIM_LENGTH>
+        </UseTemplate>
+
+        <UseTemplate Name="ASOBO_GT_MouseRect">
+            <CURSOR>Hand</CURSOR>
+            <TOOLTIPID>#TOOLTIPID#</TOOLTIPID>
+            <MOUSEFLAGS_DEFAULT_IM>LeftSingle+LeftRelease</MOUSEFLAGS_DEFAULT_IM>
+            <CALLBACKCODE_DEFAULT_IM>
+                (M:Event) 'LeftSingle' scmi 0 == if{
+                    (K:#EVENT_SIMVAR#) ! (&gt;K:#EVENT_SIMVAR#)
+                }
+            </CALLBACKCODE_DEFAULT_IM>
+        </UseTemplate>
+    </Component>
+</Template>
+
+
+<Template Name="LVAR_Switch_Template">
+    <DefaultTemplateParameters>
+        <SIMVAR_PREFIX>L</SIMVAR_PREFIX>
+        <ANIM_LENGTH>100</ANIM_LENGTH>
+        <CONVERSION_FACTOR>1</CONVERSION_FACTOR>
+        <OFFSET>0</OFFSET>
+        <PRE_CODE></PRE_CODE>
+        <POST_CODE></POST_CODE>
+		<ANIMREF_ID>0</ANIMREF_ID>
+		<ANIMTIP_0_ON_PERCENT>0.0</ANIMTIP_0_ON_PERCENT>
+		<ANIMTIP_1_ON_PERCENT>1.0</ANIMTIP_1_ON_PERCENT>
+		<ANIM_LAG>400</ANIM_LAG>				
+    </DefaultTemplateParameters>
+
+    <Component ID="#NODE_ID#" Node="#NODE_ID#">
+        <UseTemplate Name="ASOBO_GT_Anim_Code">
+            <ANIM_NAME>#NODE_ID#</ANIM_NAME>
+            <ANIM_CODE>(L:#SIMVAR#,bool) #ANIM_LENGTH# * #OFFSET# + </ANIM_CODE>
+            <ANIM_LENGTH>#ANIM_LENGTH#</ANIM_LENGTH>
+        </UseTemplate>
+
+        <UseTemplate Name="ASOBO_GT_MouseRect">
+            <CURSOR>Hand</CURSOR>
+            <TOOLTIPID>#TOOLTIPID#</TOOLTIPID>
+            <MOUSEFLAGS_DEFAULT_IM>LeftSingle+LeftRelease</MOUSEFLAGS_DEFAULT_IM>
+            <CALLBACKCODE_DEFAULT_IM>
+                (M:Event) 'LeftSingle' scmi 0 == if{
+                    (L:#SIMVAR#,bool) ! (&gt;L:#SIMVAR#,bool)
+                }
+            </CALLBACKCODE_DEFAULT_IM>
+        </UseTemplate>
+    </Component>
+</Template>
+
+<Template Name="GENERIC_Toggle_Switch_Template">
+    <DefaultTemplateParameters>
+        <ANIM_LENGTH>100</ANIM_LENGTH>
+        <CONVERSION_FACTOR>1</CONVERSION_FACTOR>
+        <OFFSET>0</OFFSET>
+        <PRE_CODE></PRE_CODE>
+        <POST_CODE></POST_CODE>
+		<ANIMREF_ID>0</ANIMREF_ID>
+		<ANIMTIP_0_ON_PERCENT>0.0</ANIMTIP_0_ON_PERCENT>
+		<ANIMTIP_1_ON_PERCENT>1.0</ANIMTIP_1_ON_PERCENT>
+		<ANIM_LAG>400</ANIM_LAG>				
+    </DefaultTemplateParameters>
+
+    <Component ID="#NODE_ID#" Node="#NODE_ID#">
+        <UseTemplate Name="ASOBO_GT_Anim_Code">
+            <ANIM_NAME>#NODE_ID#</ANIM_NAME>
+            <ANIM_CODE>#ANIM#</ANIM_CODE>
+            <ANIM_LENGTH>#ANIM_LENGTH#</ANIM_LENGTH>
+        </UseTemplate>
+
+        <UseTemplate Name="ASOBO_GT_MouseRect">
+            <CURSOR>Hand</CURSOR>
+            <TOOLTIPID>#TOOLTIPID#</TOOLTIPID>
+            <MOUSEFLAGS_DEFAULT_IM>LeftSingle+LeftRelease</MOUSEFLAGS_DEFAULT_IM>
+            <CALLBACKCODE_DEFAULT_IM>
+                #PRE_CODE#
+                (M:Event) 'LeftSingle' scmi 0 == if{
+                    #INTERACT_CODE#
+                }
+                #POST_CODE#
+            </CALLBACKCODE_DEFAULT_IM>
+        </UseTemplate>
+    </Component>
+</Template>
+
+<Template Name="DELTASIM_Finite_Knob_Template">
+    <DefaultTemplateParameters>
+        <ANIM_LENGTH>100</ANIM_LENGTH>
+		<ANIM_LAG>400</ANIM_LAG>		
+    </DefaultTemplateParameters>
+    <Component ID="#NODE_ID#" Node="#NODE_ID#">
+        <UseTemplate Name="ASOBO_GT_Knob_Finite_Code">
+          <NODE_ID>#NODE_ID#</NODE_ID>
+          <ANIM_NAME>#NODE_ID#</ANIM_NAME>
+          <ANIM_CODE>#ANIM_CODE#</ANIM_CODE>
+          <ANIM_LENGTH>#ANIM_LENGTH#</ANIM_LENGTH>
+          <CLOCKWISE_CODE>
+            #CLOCKWISE_CODE#
+          </CLOCKWISE_CODE>
+          <ANTICLOCKWISE_CODE>
+            #ANTICLOCKWISE_CODE#
+          </ANTICLOCKWISE_CODE>
+          <ANIMTIP_0>#CW_ANIMTIP#</ANIMTIP_0>
+          <ANIMTIP_0_ON_CURSOR>TurnLeft</ANIMTIP_0_ON_CURSOR>
+          <ANIMTIP_1>#CCW_ANIMTIP#</ANIMTIP_1>
+          <ANIMTIP_1_ON_CURSOR>TurnRight</ANIMTIP_1_ON_CURSOR>
+          <THRESHOLD_X_INPUT>0.05</THRESHOLD_X_INPUT>
+          <THRESHOLD_X_MOUSE>0.015</THRESHOLD_X_MOUSE>
+        </UseTemplate>
+      </Component>
+</Template>
+
+<Template Name="DELTASIM_Momentary_Cargo">
+	<Parameters Type="Default">
+		<MOMENTARY_REPEAT_FREQUENCY>5</MOMENTARY_REPEAT_FREQUENCY>
+		<VAR_CLAMP></VAR_CLAMP>
+        <INCREMENT>12.5</INCREMENT>
+        <INCREMENT_FAST>25</INCREMENT_FAST>
+        <INCREMENT_FASTEST>50</INCREMENT_FASTEST>
+		<CODE_POS_1></CODE_POS_1>
+        <CONTROLLED_VAR>L:C17_CargoDoor_POS</CONTROLLED_VAR>
+        <MIN_VALUE>-0.01</MIN_VALUE>
+        <MAX_VALUE>100.1</MAX_VALUE>
+	</Parameters>
+	<Parameters Type="Override">
+		<Condition Valid="ACCELERATE_ON_HOLD">
+			<True>
+				<INCREMENT_VALUE>(O:XMLVAR_IncrementCount) 10 &gt; if{ (O:XMLVAR_IncrementCount) 25 &gt; if{ #INCREMENT_FASTEST# } els{ #INCREMENT_FAST# } } els{ #INCREMENT# }</INCREMENT_VALUE>
+			</True>
+			<False>
+				<INCREMENT_VALUE>#INCREMENT#</INCREMENT_VALUE>
+			</False>
+		</Condition>
+	</Parameters>
+	<UseTemplate Name="ASOBO_GT_Switch_3States">
+		<CODE_POS_0>
+            (#CONTROLLED_VAR#) #MAX_VALUE# &lt;
+             if{
+            (#CONTROLLED_VAR#) #INCREMENT_VALUE# + #VAR_CLAMP# (&gt;#CONTROLLED_VAR#) (O:XMLVAR_IncrementCount) 1 + (&gt;O:XMLVAR_IncrementCount)
+                }
+        </CODE_POS_0>
+		<CODE_POS_1>#CODE_POS_1# 0 (&gt;O:XMLVAR_IncrementCount)</CODE_POS_1>
+		<CODE_POS_2>
+            (#CONTROLLED_VAR#) #MIN_VALUE# &gt;
+            if{
+            (#CONTROLLED_VAR#) #INCREMENT_VALUE# - #VAR_CLAMP# (&gt;#CONTROLLED_VAR#) (O:XMLVAR_IncrementCount) 1 + (&gt;O:XMLVAR_IncrementCount)
+            }
+        </CODE_POS_2>
+		<MOMENTARY_SWITCH>True</MOMENTARY_SWITCH>
+		<STATE0_TIMER>0.01</STATE0_TIMER>
+		<STATE_MAX_TIMER>0.01</STATE_MAX_TIMER>
+	</UseTemplate>
+</Template>
+
+</ModelBehaviors>

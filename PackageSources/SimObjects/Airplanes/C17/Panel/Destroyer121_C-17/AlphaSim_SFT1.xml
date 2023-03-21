@@ -1,0 +1,36 @@
+<Gauge Name="Scenery Frequency Table 1" Version="C-17" Author="Herbert Pralle">
+  <!--FREQUENCIES TO EDIT-->
+  <Image Name="freqscan_backgrnd.bmp"/>
+  <Macro Name="SceneryName1">Admiral</Macro>
+  <Macro Name="N1Freq1">110.30</Macro>
+  <Macro Name="N1Freq2">116.80</Macro>
+  <Macro Name="N1Freq3">110.60</Macro>
+  <Macro Name="N1Freq4">113.40</Macro>
+  <Macro Name="N1Freq4ID">OLM</Macro>
+  <!--NOTHING MORE TO EDIT FROM HERE ON !!-->
+  <Macro Name="IDS">0</Macro>
+  <Macro Name="FREQS">@N1Freq3 (>L:N1Channel3,number) @N1Freq4 (>L:N1Channel4,number) @SceneryName1 (>L:Test)  </Macro>
+  <Element>
+    <Select>
+      <Value>(L:AS SFT1,bool) ! if{ @IDS @FREQS } 1 (>L:AS SFT1,bool)</Value>
+    </Select>
+  </Element>
+  <Element>
+    <Position X="7" Y="40"/>
+    <FormattedText X="80" Y="30" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Center" Color="BLUE" Bright="Yes">
+      <String>@N1Freq1</String>
+    </FormattedText>
+  </Element>
+  <Element>
+    <Position X="189" Y="40"/>
+    <FormattedText X="80" Y="30" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Center" Color="BLUE" Bright="Yes">
+      <String>%((g:@N1Freq1))%!3.2f!%</String>
+    </FormattedText>
+  </Element>
+  <Element>
+    <Position X="7" Y="86"/>
+    <FormattedText X="80" Y="30" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Right" Color="BLUE" Bright="Yes">
+      <String>@SceneryName1</String>
+    </FormattedText>
+  </Element>
+</Gauge>

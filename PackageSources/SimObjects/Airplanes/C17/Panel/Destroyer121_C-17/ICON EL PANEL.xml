@@ -1,0 +1,8 @@
+<Gauge Name="Icon Electric" Version="C-17" Author="Herbert Pralle">
+  <Image Name="Icon_EL_panel.bmp" Luminous="0"/>
+  <Mouse>
+    <Tooltip>Electric Panel</Tooltip>
+    <Cursor Type="Hand"/>
+    <Click Repeat="Yes">10006 (>K:PANEL_ID_TOGGLE)</Click>
+  </Mouse>
+</Gauge>

@@ -1,0 +1,27 @@
+<Gauge Name="AFCSCP Heading Display - Virtavia C-17" Version="1.0">
+   <Image Name="AFCSCP_HDGdsp.bmp"/>
+
+  <Element>
+  	<Visible>(A:ELECTRICAL MASTER BATTERY,bool) (A:TURB ENG1 N1,Percent) 20 &gt; (A:TURB ENG2 N1,Percent) 20 &gt; (A:TURB ENG3 N1,Percent) 20 &gt; (A:TURB ENG4 N1,Percent) 20 &gt; || || || ||</Visible>
+
+   <Element>
+     <Position X="35" Y="10"/>
+      <Text X="77" Y="30" Length="4" Fixed="Yes" Font="Quartz" FontHeight="0" FontWeight="400" Charset="Default" Attributes="Normal" Adjust="Center" VerticalAdjust="Center" Multiline="No" Color="#BDBDDF" BackgroundColor="transparent" HilightColor="white" Bright="Yes" UseTransparency="Yes">
+
+         <String>%((A:Autopilot heading lock dir, degrees))%!03d!%M%</String>
+
+         <Failures>
+            <SYSTEM_ELECTRICAL_PANELS Action=""/>
+         </Failures>
+      </Text>
+    </Element>
+  
+  </Element>
+
+ <Mouse>
+  <Tooltip>Heading</Tooltip>
+ </Mouse>
+
+</Gauge>
+
+

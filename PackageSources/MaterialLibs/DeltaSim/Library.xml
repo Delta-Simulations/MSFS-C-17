@@ -1,0 +1,39 @@
+<Library Version="1.1.0">
+
+	<Material Version="1.4.0" Name="MATERIAL FLARE FLAME" Guid="{a8c1fd70-41ab-46bd-9459-dfed92634e0f}" SurfaceType="UNDEFINED" Type="CODE_DIFFUSE" Metal="0.000000" Rough="0.000000" Opacity="1.000000" BlendMode="Transparent">
+		<TagList/>
+		<FlagList/>
+		<TextureList>
+			<Texture FileName="TEXTURES\SMOKE16CLEAR.TIF" Binding="MTL_BITMAP_DECAL0"/>
+			<Texture FileName="TEXTURES\NORMAL_NORMALDUST16.TIF" Binding="MTL_BITMAP_NORMAL"/>
+		</TextureList>
+		<Attributes>
+			<Diffuse Red="1.000000" Green="1.000000" Blue="1.000000"/>
+			<Emissive Red="1.000000" Green="0.7500000" Blue="0.500000"/>
+			<UVOffset U="0.000000" V="0.000000"/>
+			<UVScale U="1.000000" V="1.000000"/>
+			<UVRotate>0.000000</UVRotate>
+			<ExtraParameters>
+				<Parameter Value="0.000000"/>
+			</ExtraParameters>
+		</Attributes>
+	</Material>	
+	<Material Version="1.4.0" Name="MATERIAL FLARE SMOKE" Guid="{b8e24ae3-43f6-4a3e-899d-a179bb1bf7f8}" SurfaceType="UNDEFINED" Type="CODE_DIFFUSE" Metal="0.000000" Rough="0.000000" Opacity="1.000000" BlendMode="Transparent">
+		<TagList/>
+		<FlagList/>
+		<TextureList>
+			<Texture FileName="TEXTURES\SMOKE16CLEAR.TIF" Binding="MTL_BITMAP_DECAL0"/>
+			<Texture FileName="TEXTURES\NORMAL_NORMALDUST16.TIF" Binding="MTL_BITMAP_NORMAL"/>
+		</TextureList>
+		<Attributes>
+			<Diffuse Red="1.000000" Green="1.000000" Blue="1.000000"/>
+			<Emissive Red="0.000000" Green="0.000000" Blue="0.000000"/>
+			<UVOffset U="0.000000" V="0.000000"/>
+			<UVScale U="1.000000" V="1.000000"/>
+			<UVRotate>0.000000</UVRotate>
+			<ExtraParameters>
+				<Parameter Value="0.000000"/>
+			</ExtraParameters>
+		</Attributes>
+	</Material>	
+</Library>

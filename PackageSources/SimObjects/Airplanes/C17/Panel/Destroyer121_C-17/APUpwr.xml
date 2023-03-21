@@ -1,0 +1,23 @@
+<Gauge Name="APU Power On Switchlight - Virtavia C-17" Version="1.0">
+
+  <Element>
+  	<Visible>(A:ELECTRICAL MASTER BATTERY,bool) (A:TURB ENG1 N1,Percent) 20 &gt; (A:TURB ENG2 N1,Percent) 20 &gt; (A:TURB ENG3 N1,Percent) 20 &gt; (A:TURB ENG4 N1,Percent) 20 &gt; || || || ||</Visible>
+ 
+       <Element>
+      <Select>
+         <Value>(L:APUrpm,enum) 90 &gt; </Value>
+           <Case Value="1">
+            <Image Name="APUpwr.bmp"  Bright="1"/>
+         </Case>
+      </Select>
+   </Element>
+   
+  </Element>
+
+   <Mouse>
+     <ToolTip>APU Power Indicator</ToolTip>
+   </Mouse>
+
+</Gauge>
+
+

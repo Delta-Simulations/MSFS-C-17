@@ -1,0 +1,23 @@
+<Gauge Name="Slat Warning Lamp - Travelling - Virtavia C-17" Version="1.0">
+ <Image Name="SlatDisag_bg.bmp"/>
+  <Element>
+  	<Visible>(A:ELECTRICAL MASTER BATTERY,bool) (A:TURB ENG1 N1,Percent) 20 &gt; (A:TURB ENG2 N1,Percent) 20 &gt; (A:TURB ENG3 N1,Percent) 20 &gt; (A:TURB ENG4 N1,Percent) 20 &gt; || || || ||</Visible>
+ 	
+   <Element>
+      <Select>
+         <Value>(A:LEADING EDGE FLAPS RIGHT PERCENT,percent) 100 &lt; (A:LEADING EDGE FLAPS RIGHT PERCENT,percent) 1 &gt; &amp; </Value>
+	 <Case Value="1">
+            <Image Name="SlatDisagOn.bmp"/>
+         </Case>
+      </Select>
+   </Element>
+   
+  </Element>
+
+   <Mouse>
+     <Tooltip>Slats Extending</Tooltip>
+         </Mouse>
+
+</Gauge>
+
+

@@ -1,0 +1,63 @@
+@font-face {
+  font-family: "OCRB";
+
+  src: url("/Fonts/BoeingFont.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Degrees";
+
+  src: url("/Fonts/mono.ttf") format("truetype");
+}
+
+text {
+  font-family: "OCRB";
+  fill: #2CE832;
+}
+
+.text, .text-4 {
+  fill: white;
+  text-anchor: end;
+  paint-order: stroke;
+}
+
+.text-4 {
+  font-size: 42px;
+}
+
+.degrees {
+  font-family: "Degrees";
+}
+
+.readouts {
+  font-style: "italic";
+}
+
+.readouts {
+  stroke: #2CE832;
+}
+
+.a {
+  fill: none;
+  stroke: #2CE832;
+  stroke-width: 1.5px;
+}
+
+.a2 {
+  fill: none;
+  stroke: #2CE832;
+}
+/* Property of FlyByWire Simulations and it's contributors */
+
+/* LCD pixel effect for screens */
+
+.LcdOverlay {
+  content: "";
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  position: absolute;
+  background-size: 2px;
+  transition: opacity 0.5s;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M0 0 V10 Z H10 Z' stroke='%23000' stroke-width='3' fill='none'/%3E%3C/svg%3E");
+}

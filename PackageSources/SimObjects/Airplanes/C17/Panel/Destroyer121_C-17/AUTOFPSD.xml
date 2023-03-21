@@ -1,0 +1,24 @@
+<Gauge Name="AP EPR" Version="C-17" Author="Herbert Pralle">
+  <Update Frequency="1"/>
+  <!--ENG 1 TO 4-->
+  <Element>
+    <Select>
+      <Value>(L:FSP FP1,bool) 0 == (A:FUEL TANK CENTER LEVEL,percent) 50 &lt; &amp;&amp; (A:Attitude indicator bank degrees,degrees) 18 > &amp;&amp; if{ (>K:MIXTURE1_LEAN) }</Value>
+    </Select>
+  </Element>
+  <Element>
+    <Select>
+      <Value>(L:FSP FP2,bool) 0 == (A:FUEL TANK CENTER LEVEL,percent) 70 &lt; &amp;&amp; (A:Attitude indicator bank degrees,degrees) 15 > &amp;&amp; if{ (>K:MIXTURE2_LEAN) }</Value>
+    </Select>
+  </Element>
+  <Element>
+    <Select>
+      <Value>(L:FSP FP3,bool) 0 == (A:FUEL TANK CENTER2 LEVEL,percent) 68 &lt; &amp;&amp; (A:Attitude indicator bank degrees,degrees) -16 &lt; &amp;&amp; if{ (>K:MIXTURE3_LEAN) }</Value>
+    </Select>
+  </Element>
+  <Element>
+    <Select>
+      <Value>(L:FSP FP4,bool) 0 == (A:FUEL TANK CENTER2 LEVEL,percent) 48 &lt; &amp;&amp; (A:Attitude indicator bank degrees,degrees) -20 &lt; &amp;&amp; if{ (>K:MIXTURE4_LEAN) }</Value>
+    </Select>
+  </Element>
+</Gauge>

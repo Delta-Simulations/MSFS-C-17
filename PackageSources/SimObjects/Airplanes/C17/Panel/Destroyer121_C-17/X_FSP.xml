@@ -1,0 +1,735 @@
+<Gauge Name="FSP FUEL SYSTEM PANEL" Version="C-17 v2" Author="Herbert Pralle">
+  <Image Name="FSP_backgrnd.bmp"/>
+  <Element>
+    <Visible>(A:Circuit general panel on, bool)</Visible>
+    <Element>
+      <Position X="0" Y="0"/>
+      <Select>
+        <Value>(L:OVH light,bool)</Value>
+        <Case Value="1">
+          <Image Name="FSP_light.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+  </Element>
+  <!--==== BUTTONS ===-->
+  <Element>
+    <Element>
+      <Position X="54" Y="22"/>
+      <Select>
+        <Value>(L:FSP refuel,bool)</Value>
+        <Case Value="1">
+          <Image Name="FSP_refuel.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="444" Y="22"/>
+      <Select>
+        <Value>(L:FSP dump,bool)</Value>
+        <Case Value="1">
+          <Image Name="FSP_dump.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+    <!--FUEL PUMPS-->
+    <Element>
+      <Position X="204" Y="32"/>
+      <Select>
+        <Value>(L:FSP FP1,bool)</Value>
+        <Case Value="1">
+          <Image Name="FSP_fp1.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="242" Y="32"/>
+      <Select>
+        <Value>(L:FSP FP2,bool)</Value>
+        <Case Value="1">
+          <Image Name="FSP_fp2.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="280" Y="32"/>
+      <Select>
+        <Value>(L:FSP FP3,bool)</Value>
+        <Case Value="1">
+          <Image Name="FSP_fp3.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="318" Y="32"/>
+      <Select>
+        <Value>(L:FSP FP4,bool)</Value>
+        <Case Value="1">
+          <Image Name="FSP_fp4.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+    <!--FUEL TRANSFER-->
+    <Element>
+      <Position X="28" Y="112"/>
+      <Select>
+        <Value>(L:FSP butt1,bool)</Value>
+        <Case Value="1">
+          <Image Name="FSP_xfer.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="58" Y="112"/>
+      <Select>
+        <Value>(L:FSP butt2,bool)</Value>
+        <Case Value="1">
+          <Image Name="FSP_fill.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="160" Y="112"/>
+      <Select>
+        <Value>(L:FSP butt3,bool)</Value>
+        <Case Value="1">
+          <Image Name="FSP_xfer.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="190" Y="112"/>
+      <Select>
+        <Value>(L:FSP butt4,bool)</Value>
+        <Case Value="2">
+          <Image Name="FSP_fill.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="308" Y="112"/>
+      <Select>
+        <Value>(L:FSP butt5,bool)</Value>
+        <Case Value="2">
+          <Image Name="FSP_xfer.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="338" Y="112"/>
+      <Select>
+        <Value>(L:FSP butt6,bool)</Value>
+        <Case Value="1">
+          <Image Name="FSP_fill.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="440" Y="112"/>
+      <Select>
+        <Value>(L:FSP butt7,bool)</Value>
+        <Case Value="2">
+          <Image Name="FSP_xfer.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="470" Y="112"/>
+      <Select>
+        <Value>(L:FSP butt8,bool)</Value>
+        <Case Value="1">
+          <Image Name="FSP_fill.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+    <!--CROSSFEED-->
+    <Element>
+      <Position X="254" Y="252"/>
+      <Select>
+        <Value>(L:FSP crossfeed R,bool)</Value>
+        <Case Value="1">
+          <Image Name="FSP_crfd_r.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="254" Y="282"/>
+      <Select>
+        <Value>(L:FSP crossfeed L,bool)</Value>
+        <Case Value="1">
+          <Image Name="FSP_crfd_l.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+  </Element>
+  <!--==== BUTTON LIGHTS ====-->
+  <Element>
+    <Visible>(A:Circuit general panel on, bool)</Visible>
+    <Element>
+      <Position X="56" Y="24"/>
+      <Select>
+        <Value>(L:FSP refuel,bool)</Value>
+        <Case Value="1">
+          <Image Name="FSP_refuel_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="446" Y="24"/>
+      <Select>
+        <Value>(L:FSP dump,bool)</Value>
+        <Case Value="1">
+          <Image Name="FSP_dump_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <!--FUEL PUMPS-->
+    <Element>
+      <Position X="206" Y="34"/>
+      <Select>
+        <Value>(L:FSP FP1,bool)</Value>
+        <Case Value="0">
+          <Image Name="FSP_fp1_off.bmp" Bright="1"/>
+        </Case>
+        <Case Value="1">
+          <Image Name="FSP_fp1_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="244" Y="34"/>
+      <Select>
+        <Value>(L:FSP FP2,bool)</Value>
+        <Case Value="0">
+          <Image Name="FSP_fp2_off.bmp" Bright="1"/>
+        </Case>
+        <Case Value="1">
+          <Image Name="FSP_fp2_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="282" Y="34"/>
+      <Select>
+        <Value>(L:FSP FP3,bool)</Value>
+        <Case Value="0">
+          <Image Name="FSP_fp3_off.bmp" Bright="1"/>
+        </Case>
+        <Case Value="1">
+          <Image Name="FSP_fp3_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="320" Y="34"/>
+      <Select>
+        <Value>(L:FSP FP4,bool)</Value>
+        <Case Value="0">
+          <Image Name="FSP_fp4_off.bmp" Bright="1"/>
+        </Case>
+        <Case Value="1">
+          <Image Name="FSP_fp4_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <!--FUEL TRANSFER-->
+    <Element>
+      <Position X="30" Y="114"/>
+      <Select>
+        <Value>(L:FSP transfer,enum)</Value>
+        <Case Value="1">
+          <Image Name="FSP_xfer_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="60" Y="114"/>
+      <Select>
+        <Value>(L:FSP transfer,enum)</Value>
+        <Case Value="2">
+          <Image Name="FSP_fill_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="162" Y="114"/>
+      <Select>
+        <Value>(L:FSP transfer,enum)</Value>
+        <Case Value="1">
+          <Image Name="FSP_xfer_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="192" Y="114"/>
+      <Select>
+        <Value>(L:FSP transfer,enum)</Value>
+        <Case Value="2">
+          <Image Name="FSP_fill_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="310" Y="114"/>
+      <Select>
+        <Value>(L:FSP transfer,enum)</Value>
+        <Case Value="2">
+          <Image Name="FSP_xfer_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="340" Y="114"/>
+      <Select>
+        <Value>(L:FSP transfer,enum)</Value>
+        <Case Value="1">
+          <Image Name="FSP_fill_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="442" Y="114"/>
+      <Select>
+        <Value>(L:FSP transfer,enum)</Value>
+        <Case Value="2">
+          <Image Name="FSP_xfer_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="472" Y="114"/>
+      <Select>
+        <Value>(L:FSP transfer,enum)</Value>
+        <Case Value="1">
+          <Image Name="FSP_fill_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <!--CROSSFEED-->
+    <Element>
+      <Position X="256" Y="254"/>
+      <Select>
+        <Value>(L:FSP crossfeed R,bool)</Value>
+        <Case Value="1">
+          <Image Name="FSP_crfd_r_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="256" Y="284"/>
+      <Select>
+        <Value>(L:FSP crossfeed L,bool)</Value>
+        <Case Value="1">
+          <Image Name="FSP_crfd_l_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+  </Element>
+  <!--==== DISPLAY ====-->
+  <Element>
+    <Visible>(A:Circuit general panel on, bool)</Visible>
+    <Element>
+      <Position X="22" Y="200"/>
+      <Image Name="FSP_screen.bmp" Bright="1"/>
+    </Element>
+    <Element>
+      <Position X="22" Y="200"/>
+      <FormattedText X="92" Y="28" Font="Quartz" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((A:FUEL TANK LEFT AUX QUANTITY,gallons) 6.7 * )%!05d!</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="154" Y="200"/>
+      <FormattedText X="92" Y="28" Font="Quartz" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((A:FUEL TANK LEFT MAIN QUANTITY,gallons) 6.7 * )%!05d!</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="304" Y="200"/>
+      <FormattedText X="92" Y="28" Font="Quartz" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((A:FUEL TANK RIGHT MAIN QUANTITY,gallons) 6.7 * )%!05d!</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="436" Y="200"/>
+      <FormattedText X="92" Y="28" Font="Quartz" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((A:FUEL TANK RIGHT AUX QUANTITY,gallons) 6.7 * )%!05d!</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="22" Y="200"/>
+      <Select>
+        <Value>(L:OVH dim,enum)</Value>
+        <Case Value="1">
+          <Image Name="FSP_dim1.bmp" Alpha="Yes"/>
+        </Case>
+        <Case Value="2">
+          <Image Name="FSP_dim2.bmp" Alpha="Yes"/>
+        </Case>
+        <Case Value="3">
+          <Image Name="FSP_dim3.bmp" Alpha="Yes"/>
+        </Case>
+      </Select>
+    </Element>
+  </Element>
+  <!--==== FUEL VALVE FUEL LOW AND STARTER LIGHTS====-->
+  <Element>
+    <Visible>(A:Circuit general panel on, bool)</Visible>
+    <Element>
+      <Position X="50" Y="296"/>
+      <Select>
+        <Value>(A:GENERAL ENG1 FUEL VALVE,bool)</Value>
+        <Case Value="1">
+          <Image Name="FSP_valve_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="72" Y="296"/>
+      <Select>
+        <Value>(A:FUEL TANK LEFT MAIN LEVEL,percent) 10 &lt;</Value>
+        <Case Value="1">
+          <Image Name="FSP_fuel_low.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="162" Y="296"/>
+      <Select>
+        <Value>(A:GENERAL ENG2 FUEL VALVE,bool)</Value>
+        <Case Value="1">
+          <Image Name="FSP_valve_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="184" Y="296"/>
+      <Select>
+        <Value>(A:FUEL TANK LEFT MAIN LEVEL,percent) 10 &lt;</Value>
+        <Case Value="1">
+          <Image Name="FSP_fuel_low.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="352" Y="296"/>
+      <Select>
+        <Value>(A:FUEL TANK RIGHT MAIN LEVEL,percent) 10 &lt;</Value>
+        <Case Value="1">
+          <Image Name="FSP_fuel_low.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="374" Y="296"/>
+      <Select>
+        <Value>(A:GENERAL ENG3 FUEL VALVE,bool)</Value>
+        <Case Value="1">
+          <Image Name="FSP_valve_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="464" Y="296"/>
+      <Select>
+        <Value>(A:FUEL TANK RIGHT MAIN LEVEL,percent) 10 &lt;</Value>
+        <Case Value="1">
+          <Image Name="FSP_fuel_low.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="486" Y="296"/>
+      <Select>
+        <Value>(A:GENERAL ENG4 FUEL VALVE,bool)</Value>
+        <Case Value="1">
+          <Image Name="FSP_valve_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <!--STARTERS-->
+    <Element>
+      <Position X="38" Y="456"/>
+      <Select>
+        <Value>(G:Var1) 0 ></Value>
+        <Case Value="1">
+          <Image Name="FSP_ignition_light.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="150" Y="456"/>
+      <Select>
+        <Value>(G:Var2) 0 ></Value>
+        <Case Value="1">
+          <Image Name="FSP_ignition_light.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="360" Y="456"/>
+      <Select>
+        <Value>(G:Var3) 0 ></Value>
+        <Case Value="1">
+          <Image Name="FSP_ignition_light.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="472" Y="456"/>
+      <Select>
+        <Value>(G:Var4) 0 ></Value>
+        <Case Value="1">
+          <Image Name="FSP_ignition_light.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+  </Element>
+  <!--==== FUEL VALVES STARTER IGNITION ====-->
+  <Element>
+    <Element>
+      <Position X="62" Y="404"/>
+      <Image Name="FSP_valve_knob.bmp" PointsTo="North">
+        <Axis X="26" Y="26"/>
+      </Image>
+      <Rotate>
+        <Value>(A:GENERAL ENG1 FUEL VALVE,bool)</Value>
+        <Nonlinearity>
+          <Item Value="0" Degrees="0"/>
+          <Item Value="1" Degrees="90"/>
+        </Nonlinearity>
+        <Delay DegreesPerSecond="180"/>
+      </Rotate>
+    </Element>
+    <Element>
+      <Position X="174" Y="404"/>
+      <Image Name="FSP_valve_knob.bmp" PointsTo="North">
+        <Axis X="26" Y="26"/>
+      </Image>
+      <Rotate>
+        <Value>(A:GENERAL ENG2 FUEL VALVE,bool)</Value>
+        <Nonlinearity>
+          <Item Value="0" Degrees="0"/>
+          <Item Value="1" Degrees="90"/>
+        </Nonlinearity>
+        <Delay DegreesPerSecond="180"/>
+      </Rotate>
+    </Element>
+    <Element>
+      <Position X="384" Y="404"/>
+      <Image Name="FSP_valve_knob.bmp" PointsTo="North">
+        <Axis X="26" Y="26"/>
+      </Image>
+      <Rotate>
+        <Value>(A:GENERAL ENG3 FUEL VALVE,bool)</Value>
+        <Nonlinearity>
+          <Item Value="0" Degrees="0"/>
+          <Item Value="1" Degrees="90"/>
+        </Nonlinearity>
+        <Delay DegreesPerSecond="180"/>
+      </Rotate>
+    </Element>
+    <Element>
+      <Position X="496" Y="404"/>
+      <Image Name="FSP_valve_knob.bmp" PointsTo="North">
+        <Axis X="26" Y="26"/>
+      </Image>
+      <Rotate>
+        <Value>(A:GENERAL ENG4 FUEL VALVE,bool)</Value>
+        <Nonlinearity>
+          <Item Value="0" Degrees="0"/>
+          <Item Value="1" Degrees="90"/>
+        </Nonlinearity>
+        <Delay DegreesPerSecond="180"/>
+      </Rotate>
+    </Element>
+  </Element>
+  <Element>
+    <Element>
+      <Position X="46" Y="534"/>
+      <Select>
+        <Value>(G:Var1) if{ (A:Circuit general panel on, bool) (A:Eng1 N2 RPM, percent) 50 &lt; &amp;&amp; if{ 0 (>K:TOGGLE_STARTER1) } els{ (G:Var1) -- (>G:Var1) } } (G:Var1) 0 != (A:General eng1 starter, bool) ||</Value>
+        <Case Value="1">
+          <Image Name="FSP_starter_on.bmp" Bright="0"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="158" Y="534"/>
+      <Select>
+        <Value>(G:Var2) if{ (A:Circuit general panel on, bool) (A:Eng2 N2 RPM, percent) 50 &lt; &amp;&amp; if{ 0 (>K:TOGGLE_STARTER2) } els{ (G:Var2) -- (>G:Var2) } } (G:Var2) 0 != (A:General eng2 starter, bool) ||</Value>
+        <Case Value="1">
+          <Image Name="FSP_starter_on.bmp" Bright="0"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="366" Y="534"/>
+      <Select>
+        <Value>(G:Var3) if{ (A:Circuit general panel on, bool) (A:Eng3 N2 RPM, percent) 50 &lt; &amp;&amp; if{ 0 (>K:TOGGLE_STARTER3) } els{ (G:Var3) -- (>G:Var3) } } (G:Var3) 0 != (A:General eng3 starter, bool) ||</Value>
+        <Case Value="1">
+          <Image Name="FSP_starter_on.bmp" Bright="0"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="478" Y="534"/>
+      <Select>
+        <Value>(G:Var4) if{ (A:Circuit general panel on, bool) (A:Eng4 N2 RPM, percent) 50 &lt; &amp;&amp; if{ 0 (>K:TOGGLE_STARTER4) } els{ (G:Var4) -- (>G:Var4) } } (G:Var4) 0 != (A:General eng4 starter, bool) ||</Value>
+        <Case Value="1">
+          <Image Name="FSP_starter_on.bmp" Bright="0"/>
+        </Case>
+      </Select>
+    </Element>
+  </Element>
+  <Element>
+    <Position X="250" Y="522"/>
+    <Select>
+      <Value>(L:FSP ignition,bool)</Value>
+      <Case Value="0">
+        <Image Name="FSP_ignition_off.bmp" Bright="0"/>
+      </Case>
+      <Case Value="1">
+        <Image Name="FSP_ignition_on.bmp" Bright="0"/>
+      </Case>
+    </Select>
+  </Element>
+  <Macro Name="TRANSFERTORIGHT">(L:FSP transfer,enum) 1 == if{ 0 (>L:FSP transfer,enum) } els{ 1 (>L:FSP transfer,enum) }</Macro>
+  <Macro Name="TRANSFERTOLEFT">(L:FSP transfer,enum) 2 == if{ 0 (>L:FSP transfer,enum) } els{ 2 (>L:FSP transfer,enum) }</Macro>
+  <Macro Name="CROSSFEEDR">3 (>K:FUEL_SELECTOR_SET) 3 (>K:FUEL_SELECTOR_2_SET)</Macro>
+  <Macro Name="CROSSFEEDL">2 (>K:FUEL_SELECTOR_3_SET) 2 (>K:FUEL_SELECTOR_4_SET)</Macro>
+  <Macro Name="CROSSFEEDLOFF">1 (>K:FUEL_SELECTOR_3_SET) 1 (>K:FUEL_SELECTOR_4_SET)</Macro>
+  <Macro Name="CROSSFEEDROFF">1 (>K:FUEL_SELECTOR_SET) 1 (>K:FUEL_SELECTOR_2_SET)</Macro>
+  <Mouse>
+    <Area Left="48" Top="16" Width="64" Height="44">
+      <Cursor Type="Hand"/>
+      <Tooltip>Start / Stop Ground Refuel</Tooltip>
+      <Click Repeat="No">(L:FSP refuel,bool) ! (>L:FSP refuel,bool)</Click>
+    </Area>
+    <Area Left="438" Top="16" Width="64" Height="44">
+      <Cursor Type="Hand"/>
+      <Tooltip>Start / Stop Fuel Dump</Tooltip>
+      <Click Repeat="No">(L:FSP dump,bool) ! (>L:FSP dump,bool) (>K:FUEL_DUMP_TOGGLE)</Click>
+    </Area>
+    <!--==== FUEL PUMPS ====-->
+    <Area Left="202" Top="30" Width="36" Height="36">
+      <Cursor Type="Hand"/>
+      <Tooltip>Electric Fuel Pump</Tooltip>
+      <Click Repeat="No">(L:FSP FP1,bool) 0 == if{ (>K:MIXTURE1_RICH) } (L:FSP FP1,bool) ! (>L:FSP FP1,bool)</Click>
+    </Area>
+    <Area Left="240" Top="30" Width="36" Height="36">
+      <Cursor Type="Hand"/>
+      <Tooltip>Electric Fuel Pump</Tooltip>
+      <Click Repeat="No">(L:FSP FP2,bool) 0 == if{ (>K:MIXTURE2_RICH) } (L:FSP FP2,bool) ! (>L:FSP FP2,bool)</Click>
+    </Area>
+    <Area Left="278" Top="30" Width="36" Height="36">
+      <Cursor Type="Hand"/>
+      <Tooltip>Electric Fuel Pump</Tooltip>
+      <Click Repeat="No">(L:FSP FP3,bool) 0 == if{ (>K:MIXTURE3_RICH) } (L:FSP FP3,bool) ! (>L:FSP FP3,bool)</Click>
+    </Area>
+    <Area Left="316" Top="30" Width="36" Height="36">
+      <Cursor Type="Hand"/>
+      <Tooltip>Electric Fuel Pump</Tooltip>
+      <Click Repeat="No">(L:FSP FP4,bool) 0 == if{ (>K:MIXTURE4_RICH) } (L:FSP FP4,bool) ! (>L:FSP FP4,bool)</Click>
+    </Area>
+    <!--==== FUEL TRANSFER DUMMY ====-->
+    <Area Left="20" Top="106" Width="36" Height="60">
+      <Cursor Type="Hand"/>
+      <Tooltip>Start / Stop Fuel Transfer (non operative)</Tooltip>
+      <Click Kind="LeftSingle+Leave" Repeat="No">(M:Event) 'LeftSingle' scmp 0 == if{ 1 (>L:FSP butt1) @TRANSFERTORIGHT } (M:Event) 'Leave' scmp 0 == if{ 0 (>L:FSP butt1) }</Click>
+    </Area>
+    <Area Left="58" Top="106" Width="36" Height="60">
+      <Cursor Type="Hand"/>
+      <Tooltip>Start / Stop Fuel Transfer (non operative)</Tooltip>
+      <Click Kind="LeftSingle+Leave" Repeat="No">(M:Event) 'LeftSingle' scmp 0 == if{ 1 (>L:FSP butt2) @TRANSFERTOLEFT } (M:Event) 'Leave' scmp 0 == if{ 0 (>L:FSP butt2) }</Click>
+    </Area>
+    <Area Left="152" Top="106" Width="36" Height="60">
+      <Cursor Type="Hand"/>
+      <Tooltip>Start / Stop Fuel Transfer (non operative)</Tooltip>
+      <Click Kind="LeftSingle+Leave" Repeat="No">(M:Event) 'LeftSingle' scmp 0 == if{ 1 (>L:FSP butt3) @TRANSFERTORIGHT } (M:Event) 'Leave' scmp 0 == if{ 0 (>L:FSP butt3) }</Click>
+    </Area>
+    <Area Left="190" Top="106" Width="36" Height="60">
+      <Cursor Type="Hand"/>
+      <Tooltip>Start / Stop Fuel Transfer (non operative)</Tooltip>
+      <Click Kind="LeftSingle+Leave" Repeat="No">(M:Event) 'LeftSingle' scmp 0 == if{ 1 (>L:FSP butt4) @TRANSFERTOLEFT } (M:Event) 'Leave' scmp 0 == if{ 0 (>L:FSP butt4) }</Click>
+    </Area>
+    <Area Left="300" Top="106" Width="36" Height="60">
+      <Cursor Type="Hand"/>
+      <Tooltip>Start / Stop Fuel Transfer (non operative)</Tooltip>
+      <Click Kind="LeftSingle+Leave" Repeat="No">(M:Event) 'LeftSingle' scmp 0 == if{ 1 (>L:FSP butt5) @TRANSFERTOLEFT } (M:Event) 'Leave' scmp 0 == if{ 0 (>L:FSP butt5) }</Click>
+    </Area>
+    <Area Left="338" Top="106" Width="36" Height="60">
+      <Cursor Type="Hand"/>
+      <Tooltip>Start / Stop Fuel Transfer (non operative)</Tooltip>
+      <Click Kind="LeftSingle+Leave" Repeat="No">(M:Event) 'LeftSingle' scmp 0 == if{ 1 (>L:FSP butt6) @TRANSFERTORIGHT } (M:Event) 'Leave' scmp 0 == if{ 0 (>L:FSP butt6) }</Click>
+    </Area>
+    <Area Left="432" Top="106" Width="36" Height="60">
+      <Cursor Type="Hand"/>
+      <Tooltip>Start / Stop Fuel Transfer (non operative)</Tooltip>
+      <Click Kind="LeftSingle+Leave" Repeat="No">(M:Event) 'LeftSingle' scmp 0 == if{ 1 (>L:FSP butt7) @TRANSFERTOLEFT } (M:Event) 'Leave' scmp 0 == if{ 0 (>L:FSP butt7) }</Click>
+    </Area>
+    <Area Left="470" Top="106" Width="36" Height="60">
+      <Cursor Type="Hand"/>
+      <Tooltip>Start / Stop Fuel Transfer (non operative)</Tooltip>
+      <Click Kind="LeftSingle+Leave" Repeat="No">(M:Event) 'LeftSingle' scmp 0 == if{ 1 (>L:FSP butt8) @TRANSFERTORIGHT } (M:Event) 'Leave' scmp 0 == if{ 0 (>L:FSP butt8) }</Click>
+    </Area>
+    <!--==== CROSSFEED ====-->
+    <Area Left="246" Top="246" Width="64" Height="34">
+      <Cursor Type="Hand"/>
+      <Tooltip>Crossfeed</Tooltip>
+      <Click Repeat="No">(L:FSP crossfeed R,bool) 0 == if{ @CROSSFEEDR 1 (>L:FSP crossfeed R,bool) 0 (>L:FSP crossfeed L,bool) } els{ @CROSSFEEDROFF 0 (>L:FSP crossfeed R,bool) }</Click>
+    </Area>
+    <Area Left="246" Top="282" Width="64" Height="34">
+      <Cursor Type="Hand"/>
+      <Tooltip>Crossfeed</Tooltip>
+      <Click Repeat="No">(L:FSP crossfeed L,bool) 0 == if{ @CROSSFEEDL 1 (>L:FSP crossfeed L,bool) 0 (>L:FSP crossfeed R,bool) } els{ @CROSSFEEDLOFF 0 (>L:FSP crossfeed L,bool) }</Click>
+    </Area>
+    <!--==== FUEL VALVES ====-->
+    <Area Left="32" Top="376" Width="60" Height="60">
+      <Cursor Type="Hand"/>
+      <Tooltip>Open / Close Fuel Valve</Tooltip>
+      <Click Repeat="No">(>K:TOGGLE_FUEL_VALVE_ENG1)</Click>
+    </Area>
+    <Area Left="144" Top="376" Width="60" Height="60">
+      <Cursor Type="Hand"/>
+      <Tooltip>Open / Close Fuel Valve</Tooltip>
+      <Click Repeat="No">(>K:TOGGLE_FUEL_VALVE_ENG2)</Click>
+    </Area>
+    <Area Left="354" Top="376" Width="60" Height="60">
+      <Cursor Type="Hand"/>
+      <Tooltip>Open / Close Fuel Valve</Tooltip>
+      <Click Repeat="No">(>K:TOGGLE_FUEL_VALVE_ENG3)</Click>
+    </Area>
+    <Area Left="466" Top="376" Width="60" Height="60">
+      <Cursor Type="Hand"/>
+      <Tooltip>Open / Close Fuel Valve</Tooltip>
+      <Click Repeat="No">(>K:TOGGLE_FUEL_VALVE_ENG4)</Click>
+    </Area>
+    <!--==== STARTERS ====-->
+    <Area Left="40" Top="526" Width="50" Height="50">
+      <Cursor Type="Hand"/>
+      <Tooltip ID="TOOLTIPTEXT_ENG1_STARTER_SWITCH"/>
+      <Click>(A:Circuit general panel on, bool) (L:FSP ignition,bool) &amp;&amp; if{ 5 (>G:Var1) }</Click>
+    </Area>
+    <Area Left="152" Top="526" Width="50" Height="50">
+      <Cursor Type="Hand"/>
+      <Tooltip ID="TOOLTIPTEXT_ENG2_STARTER_SWITCH"/>
+      <Click>(A:Circuit general panel on, bool) (L:FSP ignition,bool) &amp;&amp; if{ 5 (>G:Var2) }</Click>
+    </Area>
+    <Area Left="360" Top="526" Width="50" Height="50">
+      <Cursor Type="Hand"/>
+      <Tooltip ID="TOOLTIPTEXT_ENG3_STARTER_SWITCH"/>
+      <Click>(A:Circuit general panel on, bool) (L:FSP ignition,bool) &amp;&amp; if{ 5 (>G:Var3) }</Click>
+    </Area>
+    <Area Left="472" Top="526" Width="50" Height="50">
+      <Cursor Type="Hand"/>
+      <Tooltip ID="TOOLTIPTEXT_ENG4_STARTER_SWITCH"/>
+      <Click>(A:Circuit general panel on, bool) (L:FSP ignition,bool) &amp;&amp; if{ 5 (>G:Var4) }</Click>
+    </Area>
+    <Area Left="242" Top="522" Width="80" Height="80">
+      <Cursor Type="Hand"/>
+      <Tooltip>Ignition</Tooltip>
+      <Click>(L:FSP ignition,bool) ! (>L:FSP ignition,bool)</Click>
+    </Area>
+  </Mouse>
+</Gauge>

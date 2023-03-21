@@ -1,0 +1,8 @@
+<Gauge Name="Icon Annunciator" Version="C-17" Author="Herbert Pralle">
+  <Image Name="Icon_AN_panel.bmp" Luminous="0"/>
+  <Mouse>
+    <Tooltip>Open / Close Annunciator</Tooltip>
+    <Cursor Type="Hand"/>
+    <Click Repeat="Yes">(L:WACAP open,bool) if{ 0 (>L:WACAP open,bool) 10003 (>K:PANEL_ID_CLOSE) } els{ 1 (>L:WACAP open,bool) 10003 (>K:PANEL_ID_OPEN) }</Click>
+  </Mouse>
+</Gauge>

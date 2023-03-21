@@ -1,0 +1,79 @@
+<Gauge Name="Oxygen Qty" Version="C-17 FSX v2.1" Author="Virtavia">
+
+  <Element>
+       <Select>
+		<Value>(P:TIME OF DAY,enum) (A:Light Panel,bool) + 3 &lt;</Value>
+			<Case Value="1">
+         			<Image Name="OxyQty.bmp" Bright="Yes"/>
+          		</Case>
+			<Case Value="0">
+         			<Image Name="OxyQty_n.bmp" Bright="No"/>
+          		</Case>
+	</Select>
+  </Element>
+
+  <Element>
+	<Select>
+		<Value>(L:OxyQtyDisplay,enum) 1 == if{ 75 (>L:OxyQty,liters) }
+		(L:OxyQtyDisplay,enum) 0 == if{ 25 (>L:OxyQty,liters) }
+		(L:OxyQtyDisplay,enum) -1 == if{ 75 (>L:OxyQty,liters) } </Value>
+	</Select>
+  </Element>
+
+  <Element>
+	<Select>
+		<Value>(L:OxyQtyTest,bool) if{ 0 (>L:OxyQty,liters) } </Value>
+	</Select>
+  </Element>
+
+  <Element>
+   <Visible>(P:TIME OF DAY,enum) (A:Light Panel,bool) + 3 &lt;</Visible>
+
+  <Element>
+    <Position X="60" Y="60"/>
+    <Image Name="OxyQty_ndl.bmp" Luminous="1" PointsTo="North">
+      <Axis X="12.5" Y="51"/>
+    </Image>
+    <Rotate>
+      <Value Minimum="0" Maximum="75">(L:OxyQty,liters)</Value>
+      <Nonlinearity>
+        <Item Value="0" X="2" Y="60"/>
+ 	<Item Value="25" X="30" Y="11"/>
+        <Item Value="75" X="116" Y="60"/>
+      </Nonlinearity>
+     <Delay DegreesPerSecond="180"/>
+    </Rotate>
+  </Element>
+
+ </Element>
+
+  <Element>
+   <Visible>(P:TIME OF DAY,enum) 3 == </Visible>
+
+  <Element>
+  <Position X="60" Y="60"/>
+    <Image Name="OxyQty_ndl_n.bmp" Luminous="1" PointsTo="North">
+      <Axis X="12.5" Y="51"/>
+    </Image>
+   <Rotate>
+      <Value Minimum="0" Maximum="75">(L:OxyQty,liters)</Value>
+      <Nonlinearity>
+        <Item Value="0" X="2" Y="60"/>
+ 	<Item Value="25" X="30" Y="11"/>
+        <Item Value="75" X="116" Y="60"/>
+      </Nonlinearity>
+     <Delay DegreesPerSecond="180"/>
+    </Rotate>
+   </Element>
+
+ </Element>
+
+  <Element>
+    <Position X="0" Y="0"/>
+    <Visible>(P:TIME OF DAY,enum) (A:Light Panel,bool) + 3 &lt;</Visible>
+    <Image Name="Brake_Press_rfl.bmp" Alpha="1"/>
+  </Element>
+  <Mouse>
+    <Tooltip>Liquid Oxygen Quantity</Tooltip>
+  </Mouse>
+</Gauge>

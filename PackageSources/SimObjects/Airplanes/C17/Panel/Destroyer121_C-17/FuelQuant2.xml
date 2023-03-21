@@ -1,0 +1,29 @@
+<Gauge Name="Fuel Quantity Tank 2 Display - Virtavia C-17" Version="1.0">
+   <Image Name="FuelQuant.bmp"/>
+
+  <Element>
+  	<Visible>(A:ELECTRICAL MASTER BATTERY,bool) (A:TURB ENG1 N1,Percent) 20 &gt; (A:TURB ENG2 N1,Percent) 20 &gt; (A:TURB ENG3 N1,Percent) 20 &gt; (A:TURB ENG4 N1,Percent) 20 &gt; || || || ||</Visible>
+
+ 
+
+  <Element>
+     <Position X="2" Y="4"/>
+      <Text X="169" Y="41" Length="5" Fixed="Yes" Font="Quartz" FontHeight="0" FontWeight="400" Charset="Default" Attributes="Normal" Adjust="Center" VerticalAdjust="Center" Multiline="No" Color="#00EE00" BackgroundColor="transparent" HilightColor="white" Bright="Yes" UseTransparency="Yes">
+
+         <String>%((A:FUEL TANK LEFT MAIN QUANTITY,gallons) 6.7 * )%!05d!</String>
+
+         <Failures>
+            <SYSTEM_ELECTRICAL_PANELS Action=""/>
+         </Failures>
+      </Text>
+    </Element>
+  
+  </Element>
+
+ <Mouse>
+  <Tooltip>Fuel Quantity - Tank 2</Tooltip>
+ </Mouse>
+
+</Gauge>
+
+

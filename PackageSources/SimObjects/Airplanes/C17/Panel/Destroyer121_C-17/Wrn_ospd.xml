@@ -1,0 +1,26 @@
+<Gauge Name="Overspeed Warning Lamp - Virtavia C-17" Version="1.0">
+
+  <Element>
+  	<Visible>(A:ELECTRICAL MASTER BATTERY,bool) (A:TURB ENG1 N1,Percent) 20 &gt; (A:TURB ENG2 N1,Percent) 20 &gt; (A:TURB ENG3 N1,Percent) 20 &gt; (A:TURB ENG4 N1,Percent) 20 &gt; || || || ||</Visible>
+ 	
+   <Element>
+      <Select>
+         <Value>(A:Overspeed warning, bool) (L:LampTest,bool) | </Value>
+	 <Case Value="0">
+            <Image Name="Wrn_GrndProx_Off.bmp"/>
+         </Case>
+         <Case Value="1">
+            <Image Name="Wrn_ospd_On.bmp"/>
+         </Case>
+      </Select>
+   </Element>
+   
+  </Element>
+
+   <Mouse>
+     <Tooltip>Overspeed Warning</Tooltip>
+         </Mouse>
+
+</Gauge>
+
+

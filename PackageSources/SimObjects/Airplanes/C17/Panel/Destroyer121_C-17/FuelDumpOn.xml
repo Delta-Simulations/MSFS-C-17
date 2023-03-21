@@ -1,0 +1,19 @@
+<Gauge Name="Fuel Dump - Virtavia C-17 FSX" Version="1.0">
+
+  <Element>
+  	<Visible>(A:ELECTRICAL MASTER BATTERY,bool) (A:TURB ENG1 N1,Percent) 20 &gt; (A:TURB ENG2 N1,Percent) 20 &gt; (A:TURB ENG3 N1,Percent) 20 &gt; (A:TURB ENG4 N1,Percent) 20 &gt; || || || ||</Visible>
+ 
+    <Element>
+      <Select>
+         <Value>(A:FUEL DUMP ACTIVE,bool)</Value>
+         <Case Value="1">
+            <Image Name="FuelDumpOn.bmp"  Bright="1"/>
+         </Case>
+      </Select>
+   </Element>
+   
+  </Element>
+
+</Gauge>
+
+

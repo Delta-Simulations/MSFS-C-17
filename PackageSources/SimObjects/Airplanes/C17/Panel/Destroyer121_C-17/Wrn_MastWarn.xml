@@ -1,0 +1,67 @@
+<Gauge Name="Master Warning" Version="C-17 VC" Author="Herbert Pralle">
+  <Image Name="Wrn_MastWarn_bg.bmp"/>
+  <Update Frequency="6"/>
+  <!--ENG 1 TO 4-->
+  <Element>
+    <Select>
+      <Value>(A:General Eng1 oil pressure, PSI) 70 &lt; (L:ENG1 OP,bool) ! &amp;&amp; if{ 1 (>L:ENG1 OP,bool) 1 (>L:Master Warning,bool) } (A:General Eng1 oil pressure,PSI) 75 > (L:ENG1 OP,bool) &amp;&amp; if{ 0 (>L:ENG1 OP,bool) } (A:Eng1 on fire,bool) (L:ENG1 FIRE,bool) ! &amp;&amp; if{ 1 (>L:ENG1 FIRE,bool) 1 (>L:Master Warning,bool) } (A.Eng1 on fire,bool) ! (L:ENG1 FIRE,bool) &amp;&amp; if{ 0 (>L:ENG1 FIRE,bool) }</Value>
+    </Select>
+  </Element>
+  <Element>
+    <Select>
+      <Value>(A:General Eng2 oil pressure, PSI) 70 &lt; (L:ENG2 OP,bool) ! &amp;&amp; if{ 1 (>L:ENG2 OP,bool) 1 (>L:Master Warning,bool) } (A:General Eng2 oil pressure,PSI) 75 > (L:ENG2 OP,bool) &amp;&amp; if{ 0 (>L:ENG2 OP,bool) } (A:Eng2 on fire,bool) (L:ENG2 FIRE,bool) ! &amp;&amp; if{ 1 (>L:ENG2 FIRE,bool) 1 (>L:Master Warning,bool) } (A.Eng2 on fire,bool) ! (L:ENG2 FIRE,bool) &amp;&amp; if{ 0 (>L:ENG2 FIRE,bool) }</Value>
+    </Select>
+  </Element>
+  <Element>
+    <Select>
+      <Value>(A:General Eng3 oil pressure, PSI) 70 &lt; (L:ENG3 OP,bool) ! &amp;&amp; if{ 1 (>L:ENG3 OP,bool) 1 (>L:Master Warning,bool) } (A:General Eng3 oil pressure,PSI) 75 > (L:ENG3 OP,bool) &amp;&amp; if{ 0 (>L:ENG3 OP,bool) } (A:Eng3 on fire,bool) (L:ENG3 FIRE,bool) ! &amp;&amp; if{ 1 (>L:ENG3 FIRE,bool) 1 (>L:Master Warning,bool) } (A.Eng3 on fire,bool) ! (L:ENG3 FIRE,bool) &amp;&amp; if{ 0 (>L:ENG3 FIRE,bool) }</Value>
+    </Select>
+  </Element>
+  <Element>
+    <Select>
+      <Value>(A:General Eng4 oil pressure, PSI) 70 &lt; (L:ENG4 OP,bool) ! &amp;&amp; if{ 1 (>L:ENG4 OP,bool) 1 (>L:Master Warning,bool) } (A:General Eng4 oil pressure,PSI) 75 > (L:ENG4 OP,bool) &amp;&amp; if{ 0 (>L:ENG4 OP,bool) } (A:Eng4 on fire,bool) (L:ENG4 FIRE,bool) ! &amp;&amp; if{ 1 (>L:ENG4 FIRE,bool) 1 (>L:Master Warning,bool) } (A.Eng4 on fire,bool) ! (L:ENG4 FIRE,bool) &amp;&amp; if{ 0 (>L:ENG4 FIRE,bool) }</Value>
+    </Select>
+  </Element>
+  <!--GENERAL-->
+  <Element>
+    <Select>
+      <Value>(A:Fuel total quantity weight,pounds) 16000 &lt; (L:FUELLOW,bool) ! &amp;&amp; if{ 1 (>L:FUELLOW,bool) 1 (>L:Master Warning,bool) } (A:Fuel total quantity weight,pounds) 20000 > (L:FUELLOW,bool) &amp;&amp; if{ 0 (>L:FUELLOW,bool) }</Value>
+    </Select>
+  </Element>
+  <Macro Name="MWRESET">0 (>L:Master Warning,bool) (L:WACAP auto,bool) (L:WACAP open,bool) &amp;&amp; if{ 10003 (>K:PANEL_ID_CLOSE) 0 (>L:WACAP open,bool) }</Macro>
+  <Element>
+    <Position X="0" Y="0"/>
+    <Select>
+      <Value>(G:Var1)</Value>
+      <Case Value="1">
+        <Image Name="Wrn_MastWarn.bmp" Bright="0"/>
+      </Case>
+    </Select>
+  </Element>
+  <Element>
+    <Visible>(A:Circuit general panel on, bool)</Visible>
+    <Element>
+      <Position X="0" Y="0"/>
+      <Select>
+        <Value>(L:Master Warning,bool)</Value>
+        <Case Value="1">
+          <Image Name="Wrn_MastWarn.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="0" Y="0"/>
+      <Select>
+        <Value>(G:Var1) (L:Master Warning,bool) &amp;&amp;</Value>
+        <Case Value="1">
+          <Image Name="Wrn_MastWarn.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+  </Element>
+  <Mouse>
+    <Tooltip>Reset</Tooltip>
+    <Cursor Type="Hand"/>
+    <Click Kind="LeftSingle+Leave" Repeat="No">(M:Event) 'LeftSingle' scmp 0 == if{ 1 (>G:Var1) @MWRESET } (M:Event) 'Leave' scmp 0 == if{ 0 (>G:Var1) }</Click>
+  </Mouse>
+</Gauge>

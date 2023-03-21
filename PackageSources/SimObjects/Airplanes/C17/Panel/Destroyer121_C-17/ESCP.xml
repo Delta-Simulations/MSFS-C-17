@@ -1,0 +1,348 @@
+<Gauge Name="ESCP ELECTRIC SYSTEMS CONTROL PANEL" Version="C-17" Author="Herbert Pralle">
+  <Image Name="ESCP_backgrnd.bmp"/>
+  <Element>
+    <Visible>(A:Circuit general panel on, bool)</Visible>
+    <Element>
+      <Position X="0" Y="0"/>
+      <Select>
+        <Value>(L:OVH light,bool)</Value>
+        <Case Value="1">
+          <Image Name="ESCP_light.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+  </Element>
+  <Element>
+    <Select>
+      <Value>(L:ESCP INI,bool) ! (A:Electrical master battery,bool) &amp;&amp; if{ 1 (>L:ESCP batt,bool) 1 (>L:ESCP INI,bool) }</Value>
+    </Select>
+  </Element>
+  <!--==== GEN BUTTONS ===-->
+  <Element>
+    <Element>
+      <Position X="56" Y="38"/>
+      <Select>
+        <Value>(A:General eng1 generator switch,bool)</Value>
+        <Case Value="1">
+          <Image Name="ESCP_gen.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="178" Y="38"/>
+      <Select>
+        <Value>(A:General eng2 generator switch,bool)</Value>
+        <Case Value="1">
+          <Image Name="ESCP_gen.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="298" Y="38"/>
+      <Select>
+        <Value>(A:General eng3 generator switch,bool)</Value>
+        <Case Value="1">
+          <Image Name="ESCP_gen.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="420" Y="38"/>
+      <Select>
+        <Value>(A:General eng4 generator switch,bool)</Value>
+        <Case Value="1">
+          <Image Name="ESCP_gen.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+  </Element>
+  <!--==== SWITCHES ====-->
+  <Element>
+    <Position X="118" Y="130"/>
+    <Select>
+      <Value>(L:ESCP apu,bool)</Value>
+      <Case Value="0">
+        <Image Name="ESCP_SW_off.bmp"/>
+      </Case>
+      <Case Value="1">
+        <Image Name="ESCP_SW_on.bmp"/>
+      </Case>
+    </Select>
+  </Element>
+  <Element>
+    <Position X="354" Y="130"/>
+    <Select>
+      <Value>(L:ESCP gpwr,bool)</Value>
+      <Case Value="0">
+        <Image Name="ESCP_SW_off.bmp"/>
+      </Case>
+      <Case Value="1">
+        <Image Name="ESCP_SW_on.bmp"/>
+      </Case>
+    </Select>
+  </Element>
+  <Element>
+    <Position X="108" Y="516"/>
+    <Select>
+      <Value>(L:ESCP batt,bool)</Value>
+      <Case Value="0">
+        <Image Name="ESCP_SW_off.bmp"/>
+      </Case>
+      <Case Value="1">
+        <Image Name="ESCP_SW_on.bmp"/>
+      </Case>
+    </Select>
+  </Element>
+  <Element>
+    <Position X="234" Y="516"/>
+    <Select>
+      <Value>(L:ESCP epwr,bool)</Value>
+      <Case Value="0">
+        <Image Name="ESCP_SW_off.bmp"/>
+      </Case>
+      <Case Value="1">
+        <Image Name="ESCP_SW_on.bmp"/>
+      </Case>
+    </Select>
+  </Element>
+  <Element>
+    <Position X="360" Y="516"/>
+    <Select>
+      <Value>(A:Avionics master switch,bool)</Value>
+      <Case Value="0">
+        <Image Name="ESCP_SW_off.bmp"/>
+      </Case>
+      <Case Value="1">
+        <Image Name="ESCP_SW_on.bmp"/>
+      </Case>
+    </Select>
+  </Element>
+  <!--==== LIGHTS ====-->
+  <Element>
+    <Visible>(A:Circuit general panel on, bool)</Visible>
+    <Element>
+      <Position X="58" Y="40"/>
+      <Select>
+        <Value>(A:General eng1 generator switch,bool)</Value>
+        <Case Value="1">
+          <Image Name="ESCP_gen_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="76" Y="40"/>
+      <Select>
+        <Value>(A:General eng1 generator switch,bool) (A:Electrical Genalt1 bus voltage,volts) 22 &lt; &amp;&amp;</Value>
+        <Case Value="1">
+          <Image Name="ESCP_gen_off.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="180" Y="40"/>
+      <Select>
+        <Value>(A:General eng2 generator switch,bool)</Value>
+        <Case Value="1">
+          <Image Name="ESCP_gen_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="198" Y="40"/>
+      <Select>
+        <Value>(A:General eng2 generator switch,bool) (A:Electrical Genalt2 bus voltage,volts) 22 &lt; &amp;&amp;</Value>
+        <Case Value="1">
+          <Image Name="ESCP_gen_off.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="300" Y="40"/>
+      <Select>
+        <Value>(A:General eng3 generator switch,bool)</Value>
+        <Case Value="1">
+          <Image Name="ESCP_gen_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="318" Y="40"/>
+      <Select>
+        <Value>(A:General eng3 generator switch,bool) (A:Electrical Genalt3 bus voltage,volts) 22 &lt; &amp;&amp;</Value>
+        <Case Value="1">
+          <Image Name="ESCP_gen_off.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="422" Y="40"/>
+      <Select>
+        <Value>(A:General eng4 generator switch,bool)</Value>
+        <Case Value="1">
+          <Image Name="ESCP_gen_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="440" Y="40"/>
+      <Select>
+        <Value>(A:General eng4 generator switch,bool) (A:Electrical Genalt4 bus voltage,volts) 22 &lt; &amp;&amp;</Value>
+        <Case Value="1">
+          <Image Name="ESCP_gen_off.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <!--APU GRND PWR-->
+    <Element>
+      <Position X="112" Y="96"/>
+      <Select>
+        <Value>(L:ESCP apu,bool)</Value>
+        <Case Value="1">
+          <Image Name="ESCP_avail.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="112" Y="108"/>
+      <Select>
+        <Value>(L:ESCP apu,bool)</Value>
+        <Case Value="1">
+          <Image Name="ESCP_inuse.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="352" Y="96"/>
+      <Select>
+        <Value>0</Value>
+        <Case Value="1">
+          <Image Name="ESCP_avail.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="352" Y="108"/>
+      <Select>
+        <Value>0</Value>
+        <Case Value="1">
+          <Image Name="ESCP_inuse.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <!--BATT EMER PWR AVI-->
+    <Element>
+      <Position X="94" Y="462"/>
+      <Select>
+        <Value>(L:ESCP batt,bool)</Value>
+        <Case Value="1">
+          <Image Name="ESCP_batt_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="220" Y="462"/>
+      <Select>
+        <Value>(L:ESCP epwr,bool)</Value>
+        <Case Value="1">
+          <Image Name="ESCP_emerpwr_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="344" Y="462"/>
+      <Select>
+        <Value>(A:Avionics master switch,bool)</Value>
+        <Case Value="1">
+          <Image Name="ESCP_avi_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+  </Element>
+  <!--==== DISPLAY ====-->
+  <Element>
+    <Visible>(A:Circuit general panel on, bool)</Visible>
+    <Element>
+      <Position X="68" Y="256"/>
+      <Image Name="ESCP_screen.bmp" Bright="1"/>
+    </Element>
+    <Element>
+      <Position X="68" Y="256"/>
+      <FormattedText X="70" Y="28" Font="Quartz" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((A:Electrical Genalt1 bus voltage,volts))%!2.1f!</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="140" Y="256"/>
+      <FormattedText X="70" Y="28" Font="Quartz" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((A:Electrical Genalt2 bus voltage,volts))%!2.1f!</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="304" Y="256"/>
+      <FormattedText X="70" Y="28" Font="Quartz" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((A:Electrical Genalt3 bus voltage,volts))%!2.1f!</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="376" Y="256"/>
+      <FormattedText X="70" Y="28" Font="Quartz" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((A:Electrical Genalt4 bus voltage,volts))%!2.1f!</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="68" Y="256"/>
+      <Select>
+        <Value>(L:OVH dim,enum)</Value>
+        <Case Value="1">
+          <Image Name="ESCP_dim1.bmp" Alpha="Yes"/>
+        </Case>
+        <Case Value="2">
+          <Image Name="ESCP_dim2.bmp" Alpha="Yes"/>
+        </Case>
+        <Case Value="3">
+          <Image Name="ESCP_dim3.bmp" Alpha="Yes"/>
+        </Case>
+      </Select>
+    </Element>
+  </Element>
+  <Mouse>
+    <!--==== GENERATORS ====-->
+    <Area Left="50" Top="32" Width="52" Height="54">
+      <Cursor Type="Hand"/>
+      <Click Event="TOGGLE_ALTERNATOR1"/>
+      <Tooltip>%Generator 1 %((A:General eng1 generator switch,bool))%{if} (ON)%{else} (OFF)%</Tooltip>
+    </Area>
+    <Area Left="172" Top="32" Width="52" Height="54">
+      <Cursor Type="Hand"/>
+      <Click Event="TOGGLE_ALTERNATOR2"/>
+      <Tooltip>%Generator 2 %((A:General eng2 generator switch,bool))%{if} (ON)%{else} (OFF)%</Tooltip>
+    </Area>
+    <Area Left="292" Top="32" Width="52" Height="54">
+      <Cursor Type="Hand"/>
+      <Click Event="TOGGLE_ALTERNATOR3"/>
+      <Tooltip>%Generator 3 %((A:General eng3 generator switch,bool))%{if} (ON)%{else} (OFF)%</Tooltip>
+    </Area>
+    <Area Left="414" Top="32" Width="52" Height="54">
+      <Cursor Type="Hand"/>
+      <Click Event="TOGGLE_ALTERNATOR4"/>
+      <Tooltip>%Generator 4 %((A:General eng4 generator switch,bool))%{if} (ON)%{else} (OFF)%</Tooltip>
+    </Area>
+    <!--==== APU GRND PWR ====-->
+    <!--==== BATT EMER PWR AVI ====-->
+    <Area Left="104" Top="516" Width="52" Height="78">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:ESCP epwr,bool) 0 == if{ (>K:TOGGLE_MASTER_BATTERY) } (L:ESCP batt,bool) ! (>L:ESCP batt,bool)</Click>
+      <Tooltip>%Main Battery %((L:ESCP batt,bool))%{if} (ON)%{else} (OFF)%</Tooltip>
+    </Area>
+    <Area Left="228" Top="516" Width="52" Height="78">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:ESCP batt,bool) 0 == if{ (>K:TOGGLE_MASTER_BATTERY) } (L:ESCP epwr,bool) ! (>L:ESCP epwr,bool)</Click>
+      <Tooltip>%Emergency Power %((L:ESCP epwr,bool))%{if} (ON)%{else} (OFF)%</Tooltip>
+    </Area>
+    <Area Left="356" Top="516" Width="52" Height="78">
+      <Cursor Type="Hand"/>
+      <Click Event="TOGGLE_AVIONICS_MASTER"/>
+      <Tooltip>%Avionics %((A:Avionics master switch,bool))%{if} (ON)%{else} (OFF)%</Tooltip>
+    </Area>
+  </Mouse>
+</Gauge>

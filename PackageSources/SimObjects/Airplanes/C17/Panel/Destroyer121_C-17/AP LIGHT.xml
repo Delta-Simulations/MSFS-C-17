@@ -1,0 +1,11 @@
+<Gauge Name="Autopilot Master light" Version="C-17" Author="Herbert Pralle">
+  <Element>
+    <Position X="0" Y="0"/>
+    <Select>
+      <Value>(A:Autopilot master,bool)</Value>
+      <Case Value="1">
+        <Image Name="AP_light_on.bmp" Bright="Yes"/>
+      </Case>
+    </Select>
+  </Element>
+</Gauge>

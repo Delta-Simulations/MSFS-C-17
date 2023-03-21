@@ -1,0 +1,195 @@
+<Gauge Name="BDHI" Version="C-17" Authot="Herbert Pralle">
+  <Element>
+    <Position X="0" Y="0"/>
+    <Image Name="BDHI_Card.bmp" Luminous="0"/>
+  </Element>
+  <Element>
+    <Position X="136" Y="221"/>
+    <Image Name="BDHI_Rose.bmp" Luminous="0">
+      <Axis X="100" Y="100"/>
+    </Image>
+    <Rotate>
+      <Value>(A:Plane heading degrees gyro,radians) /-/</Value>
+      <Failures>
+        <SYSTEM_ELECTRICAL_PANELS Action="Freeze"/>
+        <GAUGE_GYRO_HEADING Action="Freeze"/>
+      </Failures>
+    </Rotate>
+  </Element>
+  <!--==== DISPLAY ====-->
+  <Element>
+    <Visible>(A:Circuit general panel on, bool)</Visible>
+    <Element>
+      <Position X="38" Y="30"/>
+      <Image Name="BDHI_screen.bmp" Bright="1"/>
+    </Element>
+    <Element>
+      <Position X="147" Y="30"/>
+      <Image Name="BDHI_screen.bmp" Bright="1"/>
+    </Element>
+    <Element>
+      <Position X="38" Y="34"/>
+      <FormattedText X="80" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="32" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((L:BDHI select1,enum) 1 ==)%{if}%ADF %{else}%((A:NAV1 signal,number) abs 10 &lt;)%{if}%--- %{else}%((A:NAV1 DME,nmiles) 100 >=)%{if}%((A:NAV1 DME,nmiles))%!d!%{else}%((A:NAV1 DME,nmiles) abs)%!02.1f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="147" Y="34"/>
+      <FormattedText X="80" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="32" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((L:BDHI select2,enum) 1 ==)%{if}%ADF %{else}%((A:NAV2 signal,number) abs 10 &lt;)%{if}%--- %{else}%((A:NAV2 DME,nmiles) 100 >=)%{if}%((A:NAV2 DME,nmiles))%!d!%{else}%((A:NAV2 DME,nmiles) abs)%!02.1f!%</String>
+      </FormattedText>
+    </Element>
+  </Element>
+  <Element>
+    <Position X="38" Y="30"/>
+    <Select>
+      <Value>(L:digit dim,enum)</Value>
+      <Case Value="1">
+        <Image Name="BDHI_dim1.bmp" Alpha="1"/>
+      </Case>
+      <Case Value="2">
+        <Image Name="BDHI_dim2.bmp" Alpha="1"/>
+      </Case>
+      <Case Value="3">
+        <Image Name="BDHI_dim3.bmp" Alpha="1"/>
+      </Case>
+    </Select>
+  </Element>
+  <Element>
+    <Position X="147" Y="30"/>
+    <Select>
+      <Value>(L:digit dim,enum)</Value>
+      <Case Value="1">
+        <Image Name="BDHI_dim1.bmp" Alpha="Yes"/>
+      </Case>
+      <Case Value="2">
+        <Image Name="BDHI_dim2.bmp" Alpha="Yes"/>
+      </Case>
+      <Case Value="3">
+        <Image Name="BDHI_dim3.bmp" Alpha="Yes"/>
+      </Case>
+    </Select>
+  </Element>
+  <!--==== NEEDLE 2 ====-->
+  <Element>
+    <Position X="114" Y="200"/>
+    <Image Name="BDHI_needle_base.bmp" Luminous="0"/>
+  </Element>
+  <Element>
+    <Position X="136" Y="221"/>
+    <Image Name="BDHI_needle2.bmp" Luminous="0">
+      <Axis X="14" Y="92"/>
+    </Image>
+    <Rotate>
+      <Value>(L:BDHI select2,bool) 0 == if{ (A:NAV2 signal,number) abs 10 > if{ (A:NAV2 Radial,radians) (A:Plane heading degrees gyro,radians) - pi + } els{ 1.57 } } (L:BDHI select2,bool) 1 == if{ (L:CNCP adf mode,bool) 0 == if{ (A:ADF signal:1,number) 10 > if{ (A:ADF Radial:1,radians) } els{ 1.57 } } els{ (A:ADF signal:2,number) 10 > if{ (A:ADF Radial:2,radians) } els{ 1.57 } } }</Value>
+      <Failures>
+        <SYSTEM_ELECTRICAL_PANELS Action="1:57"/>
+        <SYSTEM_ELECTRICAL_AVIONICS Action="1:57"/>
+        <GAUGE_GYRO_HEADING Action="Freeze"/>
+      </Failures>
+      <Delay DegreesPerSecond="180"/>
+    </Rotate>
+  </Element>
+  <!--==== NEEDLE 1 ====-->
+  <Element>
+    <Position X="136" Y="221"/>
+    <Image Name="BDHI_needle1.bmp" Luminous="0">
+      <Axis X="10" Y="94"/>
+    </Image>
+    <Rotate>
+      <Value>(L:BDHI select1,bool) 0 == if{ (A:NAV1 signal,number) abs 10 > if{ (A:NAV1 Radial,radians) (A:Plane heading degrees gyro,radians) - pi + } els{ 1.57 } } (L:BDHI select1,bool) 1 == if{ (L:CNCP adf mode,bool) 0 == if{ (A:ADF signal:1,number) 10 > if{ (A:ADF Radial:1,radians) } els{ 1.57 } } els{ (A:ADF signal:2,number) 10 > if{ (A:ADF Radial:2,radians) } els{ 1.57 } } }</Value>
+      <Failures>
+        <SYSTEM_ELECTRICAL_PANELS Action="1:57"/>
+        <SYSTEM_ELECTRICAL_AVIONICS Action="1:57"/>
+        <GAUGE_GYRO_HEADING Action="Freeze"/>
+      </Failures>
+      <Delay DegreesPerSecond="180"/>
+    </Rotate>
+  </Element>
+  <!--==== FLAGS ====-->
+  <Element>
+    <Position X="132" Y="110"/>
+    <Image Name="BDHI_Pointer.bmp" Luminous="0"/>
+  </Element>
+  <Element>
+    <Visible>(A:Partial panel heading,bool)</Visible>
+    <Position X="141" Y="118"/>
+    <Image Name="BDHI_flag.bmp" Luminous="0">
+      <Nonlinearity>
+        <Item Value="0" X="0" Y="0"/>
+        <Item Value="1" X="7" Y="0"/>
+        <Item Value="2" X="14" Y="0"/>
+      </Nonlinearity>
+    </Image>
+  </Element>
+  <Element>
+    <Visible>(L:BDHI select1,bool) 0 == if{ (A:NAV1 signal,number) abs 10 &lt; } (L:BDHI select1,bool) 1 == if{ (L:CNCP adf mode,bool) 0 == if{ (A:ADF signal:1,number) 10 &lt; } els{ (A:ADF signal:2,number) 10 &lt; } }</Visible>
+    <Position X="23" Y="134"/>
+    <Image Name="BDHI_flag1.bmp" Luminous="0">
+      <Nonlinearity>
+        <Item Value="0" X="0" Y="0"/>
+        <Item Value="1" X="7" Y="0"/>
+        <Item Value="2" X="14" Y="0"/>
+      </Nonlinearity>
+    </Image>
+  </Element>
+  <Element>
+    <Visible>(L:BDHI select2,enum) 0 == if{ (A:NAV2 signal,number) abs 10 &lt; } els{ (L:CNCP ADF mode,bool) 0 == if{ (A:ADF signal:1, number) 10 &lt; } els{ (A:ADF signal:2,number) 10 &lt; } }</Visible>
+    <Position X="222" Y="134"/>
+    <Image Name="BDHI_flag2.bmp" Luminous="0">
+      <Nonlinearity>
+        <Item Value="0" X="0" Y="0"/>
+        <Item Value="1" X="7" Y="0"/>
+        <Item Value="2" X="14" Y="0"/>
+      </Nonlinearity>
+    </Image>
+  </Element>
+  <!--==== MARKER KNOB ====-->
+  <Element>
+    <Position X="136" Y="221"/>
+    <Image Name="BDHI_marker.bmp" Luminous="0">
+      <Axis X="10" Y="102"/>
+    </Image>
+    <Rotate>
+      <Value>(L:BDHI dir,number) (A:Plane heading degrees gyro,degrees) -</Value>
+      <Nonlinearity>
+        <Item Value="0" Degrees="0"/>
+        <Item Value="180" Degrees="180"/>
+      </Nonlinearity>
+    </Rotate>
+  </Element>
+  <Element>
+    <Position X="27" Y="292"/>
+    <Image Name="BDHI_knob.bmp" Luminous="0">
+      <Axis X="20" Y="20"/>
+    </Image>
+    <Rotate>
+      <Value>(L:BDHI dir,number)</Value>
+      <Nonlinearity>
+        <Item Value="0" Degrees="0"/>
+        <Item Value="18" Degrees="180"/>
+      </Nonlinearity>
+    </Rotate>
+  </Element>
+  <!--==== REFLECTION ====-->
+  <Element>
+    <Position X="0" Y="0"/>
+    <Visible>(P:TIME OF DAY,enum) (A:Light Panel,bool) + 3 &lt;</Visible>
+    <Image Name="BDHI_rfl.bmp" Alpha="Yes"/>
+  </Element>
+  <Mouse>
+    <Help ID="HELPID_GAUGE_RMI"/>
+    <Area Left="0" Top="260" Width="50" Height="50">
+      <Area Right="25">
+        <Cursor Type="DownArrow"/>
+        <Click Kind="LeftSingle" Repeat="Yes">(L:BDHI dir,number) 0 &lt;= if{ 359 (>L:BDHI dir,number) } els{ (L:BDHI dir,number) 1 - (>L:BDHI dir,number) }</Click>
+      </Area>
+      <Area Left="25">
+        <Cursor Type="UpArrow"/>
+        <Click Kind="LeftSingle" Repeat="Yes">(>K:VOR1_OBI_INC) (L:CNCP Crs,enum) 19 >= if{ 0 (>L:CNCP crs,enum) } els{ (L:CNCP crs,enum) 1 + (>L:CNCP crs,enum) }</Click>
+        <Click Kind="LeftSingle" Repeat="Yes">(L:BDHI dir,number) 359 >= if{ 0 (>L:BDHI dir,number) } els{ (L:BDHI dir,number) 1 + (>L:BDHI dir,number) }</Click>
+      </Area>
+      <Tooltip>%Marker Pos. %((L:BDHI dir))%!03d!%&#176; %</Tooltip>
+    </Area>
+  </Mouse>
+</Gauge>

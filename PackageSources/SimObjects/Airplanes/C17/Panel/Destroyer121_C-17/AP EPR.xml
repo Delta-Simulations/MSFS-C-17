@@ -1,0 +1,9 @@
+<Gauge Name="AP EPR" Version="C-17" Author="Herbert Pralle">
+  <Update Frequency="3"/>
+  <!--ENG 1 TO 4-->
+  <Element>
+    <Select>
+      <Value>(L:AP EPR ON,bool) if{ (A:General Eng1 Throttle Lever Position,percent) (L:AP EPR preset,number) * (A:Turb eng1 pressure ratio, ratio) / 1 max 100 min 163.8 * (>K:THROTTLE_SET) }</Value>
+    </Select>
+  </Element>
+</Gauge>

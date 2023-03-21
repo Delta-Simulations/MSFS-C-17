@@ -1,0 +1,74 @@
+<Gauge Name="Oxygen Pressure" Version="C-17" Author="Herbert Pralle">
+  
+  <Element>
+       <Select>
+		<Value>(P:TIME OF DAY,enum) (A:Light Panel,bool) + 3 &lt;</Value>
+			<Case Value="1">
+         			<Image Name="Oxypress.bmp" Bright="Yes"/>
+          		</Case>
+			<Case Value="0">
+         			<Image Name="Oxypress_n.bmp" Bright="No"/>
+          		</Case>
+	</Select>
+  </Element>
+
+  <Element>
+ 	<Select>
+		<Value>(A:ELECTRICAL MASTER BATTERY,bool) (A:TURB ENG1 N1,Percent) 20 &gt; (A:TURB ENG2 N1,Percent) 20 &gt; (A:TURB ENG3 N1,Percent) 20 &gt; (A:TURB ENG4 N1,Percent) 20 &gt; || || || || 
+		if{ 350 (>L:OxyPress,psi) } els{ 0 (>L:OxyPress,psi) } </Value>	</Select>
+  </Element>
+
+  <Element>
+   <Visible>(P:TIME OF DAY,enum) (A:Light Panel,bool) + 3 &lt;</Visible>
+
+  <Element>
+   <Position X="77" Y="75"/>
+    <Image Name="Oxypress_ndl.bmp" Luminous="1" PointsTo="North">
+      <Axis X="9.5" Y="54"/>
+    </Image>
+    <Rotate>
+      <Value Minimum="0" Maximum="350">(L:OxyPress,psi)</Value>
+      <Nonlinearity>
+        <Item Value="0" X="6" Y="77"/>
+        <Item Value="350" X="135" Y="38"/>
+      </Nonlinearity>
+    </Rotate>
+   <Delay DegreesPerSecond="180"/>
+  </Element>
+  <Element>
+    <Position X="0" Y="0"/>
+    <Visible>(P:TIME OF DAY,enum) 3 &lt; </Visible>
+    <Image Name="Brake_Press_rfl.bmp" Alpha="1"/>
+   </Element>
+
+  </Element>
+
+ <Element>
+   <Visible>(P:TIME OF DAY,enum) 3 == </Visible>
+
+  <Element>
+   <Position X="77" Y="75"/>
+    <Image Name="Oxypress_ndl_n.bmp" Luminous="1" PointsTo="North">
+      <Axis X="9.5" Y="54"/>
+    </Image>
+    <Rotate>
+      <Value Minimum="0" Maximum="350">(L:OxyPress,psi)</Value>
+      <Nonlinearity>
+        <Item Value="0" X="6" Y="77"/>
+        <Item Value="350" X="135" Y="38"/>
+      </Nonlinearity>
+    </Rotate>
+   <Delay DegreesPerSecond="180"/>
+  </Element>
+  <Element>
+    <Position X="0" Y="0"/>
+    <Visible>(P:TIME OF DAY,enum) (A:Light Panel,bool) + 3 &lt;</Visible>
+    <Image Name="Brake_Press_rfl.bmp" Alpha="1"/>
+   </Element>
+
+  </Element>
+
+  <Mouse>
+    <Tooltip>Oxygen Pressure</Tooltip>
+  </Mouse>
+</Gauge>

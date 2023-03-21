@@ -1,0 +1,43 @@
+<Gauge Name="APU Numeric Display RPM - Virtavia C-17" Version="1.0">
+   <Image Name="APUrpm.bmp"/>
+
+  <Element>
+  	<Visible>(A:ELECTRICAL MASTER BATTERY,bool) (A:TURB ENG1 N1,Percent) 20 &gt; (A:TURB ENG2 N1,Percent) 20 &gt; (A:TURB ENG3 N1,Percent) 20 &gt; (A:TURB ENG4 N1,Percent) 20 &gt; || || || ||</Visible>
+
+  <Element>
+	<Select>
+		<Value>
+			(L:C17_APU,enum) 2 == (L:APUrpm,enum) 100 &lt; &amp;&amp; 
+				if{ (L:APUrpm,enum) ++ (>L:APUrpm,enum) }
+		</Value>
+	</Select>
+  </Element>
+
+ <Element>
+	<Select>
+		<Value>
+			(L:C17_APU, enum) 0 == (L:APUrpm,enum) 0 &gt; &amp;&amp; if{ (L:APUrpm,enum) -- (>L:APUrpm,enum) }
+		</Value>
+	</Select>
+  </Element>
+
+  <Element>
+    <Visible>(L:APUrpm,enum) 0 &gt;</Visible>
+    <Element>
+     <Position X="3" Y="4"/>
+      <Text X="104" Y="40" Length="3" Fixed="Yes" Font="Quartz" FontHeight="0" FontWeight="400" Charset="Default" Attributes="Normal" Adjust="Center" VerticalAdjust="Center" Multiline="No" Color="#00EE00" BackgroundColor="transparent" HilightColor="white" Bright="Yes" UseTransparency="Yes">
+
+         <String>%((L:APUrpm,enum))%!03d!</String>
+
+         <Failures>
+            <SYSTEM_ELECTRICAL_PANELS Action=""/>
+         </Failures>
+      </Text>
+    </Element>
+  </Element>
+
+  </Element>
+
+</Gauge>
+
+

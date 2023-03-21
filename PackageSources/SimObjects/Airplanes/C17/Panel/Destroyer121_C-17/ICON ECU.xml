@@ -1,0 +1,8 @@
+<Gauge Name="Icon ECU" Version="C-17" Author="Herbert Pralle">
+  <Image Name="Icon_ECU.bmp" Luminous="0"/>
+  <Mouse>
+    <Tooltip>Open / Close ECU Panel</Tooltip>
+    <Cursor Type="Hand"/>
+    <Click Repeat="Yes">10005 (>K:PANEL_ID_TOGGLE)</Click>
+  </Mouse>
+</Gauge>

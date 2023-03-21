@@ -1,0 +1,23 @@
+<Gauge Name="AR Signal Amp On Lamp - Virtavia C-17 FSX" Version="1.0">
+
+  <Element>
+  	<Visible>(A:ELECTRICAL MASTER BATTERY,bool) (A:TURB ENG1 N1,Percent) 20 &gt; (A:TURB ENG2 N1,Percent) 20 &gt; (A:TURB ENG3 N1,Percent) 20 &gt; (A:TURB ENG4 N1,Percent) 20 &gt; || || || ||</Visible>
+ 
+       <Element>
+      <Select>
+         <Value>(L:RefuelMaster_L,bool) (L:RefuelMaster_R,bool) || </Value>
+           <Case Value="1">
+            <Image Name="ReflAnnAmplOr.bmp"  Bright="1"/>
+         </Case>
+      </Select>
+   </Element>
+   
+  </Element>
+
+  <Mouse>
+     <Tooltip>Air Refuel Signal Amplifier On</Tooltip>
+         </Mouse>
+
+</Gauge>
+
+

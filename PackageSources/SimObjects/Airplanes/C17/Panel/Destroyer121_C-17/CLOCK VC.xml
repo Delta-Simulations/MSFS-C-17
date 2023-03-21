@@ -1,0 +1,74 @@
+<Gauge Name="CLOCK" Version="C-17vc" Author="Herbert Pralle">
+  <Element>
+    <Position X="0" Y="0"/>
+    <Image Name="Clock_card_vc.bmp" Luminous="1"/>
+  </Element>
+  <Element>
+    <Visible>(A:Circuit general panel on, bool)</Visible>
+    <Element>
+      <Position X="0" Y="0"/>
+      <Image Name="Clock_screen.bmp" Bright="1"/>
+    </Element>
+    <Element>
+      <Position X="54" Y="58"/>
+      <FormattedText X="80" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+        <String>%((L:Clock mode,bool) 0 ==)%{if}%((P:Local time,hours) 24 % flr)%!02d!%:%((P:Local time,minutes) 60 % flr)%!02d!%{else}%((L:Clock ET,enum) 0 ==)%{if}%0%!02d!%:%0%!02d!%{else}%((L:Clock ET,enum) 1 ==)%{if}%((P:Absolute time,seconds) (L:Clock start,seconds) - 3600 / flr)%!02d!%:%((P:Absolute time,seconds) (L:Clock start,seconds) - 60 / flr 60 %)%!02d!%{else}%((L:Clock ET,enum) 2 ==)%{if}%((L:Clock stop,seconds) 3600 / flr)%!02d!%:%((L:Clock stop,seconds) 60 / flr 60 %)%!02d!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="54" Y="86"/>
+      <FormattedText X="80" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+        <String>%((L:Clock mode,bool) 0 ==)%{if}%((P:Local time,seconds) flr 60 %)%!02d!%{else}%((L:Clock ET,enum) 0 ==)%{if}%0%!02d!%{else}%((L:Clock ET,enum) 1 ==)%{if}%((P:Absolute time,seconds) (L:Clock start,seconds) - flr 60 %)%!02d!%{else}%((L:Clock ET,enum) 2 ==)%{if}%((L:Clock stop,seconds) flr 60 %)%!02d!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="60" Y="114"/>
+      <FormattedText X="48" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+        <String>%((L:Clock mode,bool) 1 ==)%{if}%ET %</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="100" Y="114"/>
+      <FormattedText X="24" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+        <String>%((L:Clock mode,bool) 0 ==)%{if}%C %</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="94" Y="94"/>
+      <Image Name="Clock_S_Needle.bmp" PointsTo="North" Bright="1">
+        <Axis X="3" Y="67"/>
+      </Image>
+      <Rotate>
+        <Value>(L:Clock mode,bool) 0 == if{ (P:Local time,seconds) flr 60 % } els{ (L:Clock ET,enum) 0 == if{ 0 } (L:Clock ET,enum) 1 == if{ (P:Absolute time,seconds) (L:Clock start,seconds) - flr 60 % } (L:Clock ET,enum) 2 == if{ (L:Clock stop,seconds) flr 60 % } }</Value>
+        <Nonlinearity>
+          <Item Value="15" X="160" Y="94"/>
+          <Item Value="30" X="94" Y="160"/>
+          <Item Value="45" X="26" Y="94"/>
+          <Item Value="60" X="94" Y="26"/>
+        </Nonlinearity>
+      </Rotate>
+    </Element>
+  </Element>
+  <!--DIM-->
+  <Element>
+    <Position X="0" Y="0"/>
+    <Select>
+      <Value>(L:digit dim,enum)</Value>
+      <Case Value="1">
+        <Image Name="Clock_dim1.bmp" Alpha="Yes"/>
+      </Case>
+      <Case Value="2">
+        <Image Name="Clock_dim2.bmp" Alpha="Yes"/>
+      </Case>
+      <Case Value="3">
+        <Image Name="Clock_dim3.bmp" Alpha="Yes"/>
+      </Case>
+    </Select>
+  </Element>
+   <!--REFLECTION-->
+  <Element>
+    <Position X="0" Y="0"/>
+    <Visible>(P:TIME OF DAY,enum) (A:Light Panel,bool) + 3 &lt;</Visible>
+    <Image Name="Clock_rfl.bmp" Alpha="Yes"/>
+  </Element>
+ </Gauge>

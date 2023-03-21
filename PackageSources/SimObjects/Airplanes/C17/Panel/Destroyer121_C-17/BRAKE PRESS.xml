@@ -1,0 +1,28 @@
+<Gauge Name="Brake Pressure" Version="C-17" Author="Herbert Pralle">
+  <Element>
+    <Position X="0" Y="0"/>
+    <Image Name="Brake_Press_card.bmp" Luminous="1"/>
+  </Element>
+  <Element>
+    <Position X="56" Y="56"/>
+    <Image Name="Brake_Press_needle.bmp" Luminous="1" PointsTo="North">
+      <Axis X="12" Y="52"/>
+    </Image>
+    <Rotate>
+      <Value Minimum="0" Maximum="5">(A:Eng hydraulic pressure:1,psi) 1000 /</Value>
+      <Nonlinearity>
+        <Item Value="0" X="56" Y="110"/>
+        <Item Value="3" X="36" Y="4"/>
+        <Item Value="5" X="108" Y="38"/>
+      </Nonlinearity>
+    </Rotate>
+  </Element>
+  <Element>
+    <Position X="0" Y="0"/>
+    <Visible>(P:TIME OF DAY,enum) (A:Light Panel,bool) + 3 &lt;</Visible>
+    <Image Name="Brake_Press_rfl.bmp" Alpha="1"/>
+  </Element>
+  <Mouse>
+    <Tooltip>Brake Pressure</Tooltip>
+  </Mouse>
+</Gauge>

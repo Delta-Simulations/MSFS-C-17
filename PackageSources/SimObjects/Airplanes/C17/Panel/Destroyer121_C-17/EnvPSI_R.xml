@@ -1,0 +1,71 @@
+<Gauge Name="ENVIR panel Pressure Display (right) - Virtavia C-17" Version="1.0">
+   <Image Name="EnvPSI.bmp"/>
+
+  <Element>
+  	<Visible>(A:ELECTRICAL MASTER BATTERY,bool) (A:TURB ENG1 N1,Percent) 20 &gt; (A:TURB ENG2 N1,Percent) 20 &gt; (A:TURB ENG3 N1,Percent) 20 &gt; (A:TURB ENG4 N1,Percent) 20 &gt; || || || ||</Visible>
+
+ <!--==== set pressure to ambient ====-->
+  <Element>
+	<Select>
+		<Value>(A:Ambient Pressure,PSI) (>G:Var1)
+			(L:EnvPSI_R,enum) 15 &lt; if{ (G:Var1) (>L:EnvPSI_R,enum) }
+		</Value>
+	</Select>
+  </Element>
+    
+ <!--==== increment up to idle value from zero ====-->
+  <Element>
+	<Select>
+		<Value>
+			(L:Eng3Bleed,bool) (L:Eng4Bleed,bool) || (L:EnvPSI_R,enum) 32 &lt; &amp; if{ (L:EnvPSI_R,enum) ++ (>L:EnvPSI_R,enum) }
+		</Value>
+	</Select>
+  </Element>
+
+ <!--==== decrement from idle to zero ====-->
+  <Element>
+	<Select>
+		<Value>
+			(L:Eng3Bleed,bool) ! (L:Eng4Bleed,bool) ! (L:EnvPSI_R,enum) (G:Var1) &gt; &amp;&amp; &amp;&amp; if{ (L:EnvPSI_R,enum) -- (>L:EnvPSI_R,enum) }
+		</Value>
+	</Select>
+  </Element>
+
+ <!--==== increment from idle to max value ====-->
+  <Element>
+	<Select>
+		<Value>
+			(A:TURB ENG3 N2,Percent) 70 &gt; (A:TURB ENG4 N2,Percent) 70 &gt; || (L:EnvPSI_R,enum) 45 &lt; &amp; if{ (L:EnvPSI_R,enum) ++ (>L:EnvPSI_R,enum) }
+		</Value>
+	</Select>
+  </Element>
+
+ <!--==== decrement from max to idle value ====-->
+  <Element>
+	<Select>
+		<Value>
+			(A:TURB ENG3 N2,Percent) 70 &lt; (A:TURB ENG4 N2,Percent) 70 &lt; &amp;&amp; (L:EnvPSI_R,enum) 32 &gt; &amp; if{ (L:EnvPSI_R,enum) -- (>L:EnvPSI_R,enum) }
+		</Value>
+	</Select>
+  </Element>
+
+
+  <Element>
+     <Position X="3" Y="4"/>
+      <Text X="95" Y="39" Length="3" Fixed="Yes" Font="Quartz" FontHeight="0" FontWeight="400" Charset="Default" Attributes="Normal" Adjust="Center" VerticalAdjust="Center" Multiline="No" Color="#00EE00" BackgroundColor="transparent" HilightColor="white" Bright="Yes" UseTransparency="Yes">
+
+         <String>%((L:EnvPSI_R,enum))%!03d!</String>
+
+         <Failures>
+            <SYSTEM_ELECTRICAL_PANELS Action=""/>
+         </Failures>
+      </Text>
+    </Element>
+  
+  </Element>
+
+ <Mouse>
+  <Tooltip>Right Wing Manifold Bleed Air Press.</Tooltip>
+ </Mouse>
+
+</Gauge>

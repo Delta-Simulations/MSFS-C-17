@@ -1,0 +1,28 @@
+<Gauge Name="Hyd Panel Switchlights Sys. 4 - Virtavia C-17" Version="1.0">
+
+  <Element>
+  	<Visible>(A:ELECTRICAL MASTER BATTERY,bool) (A:TURB ENG1 N1,Percent) 20 &gt; (A:TURB ENG2 N1,Percent) 20 &gt; (A:TURB ENG3 N1,Percent) 20 &gt; (A:TURB ENG4 N1,Percent) 20 &gt; || || || ||</Visible>
+ 
+   <Element>
+      <Visible>(L:HydPress4,enum) 4000 &lt; </Visible>
+        <Position X="0" Y="0"/>
+          <Image Name="HydLamps_Aux.bmp" Bright="1"/>
+   </Element>
+
+   <Element>
+      <Visible>(L:HydPress4,enum) 4000 == </Visible>
+        <Position X="0" Y="0"/>
+          <Image Name="HydLamps_PS.bmp" Bright="1"/>
+   </Element>
+
+  <Element>
+      <Visible>(L:LampTest,bool)</Visible>
+        <Position X="0" Y="0"/>
+          <Image Name="HydLamps_Test.bmp" Bright="1"/>
+   </Element>
+   
+  </Element>
+
+</Gauge>
+
+

@@ -1,0 +1,235 @@
+<Gauge Name="Engine Control Unit" Version="C-17" Author="Herbert Pralle">
+  <Image Name="ECU_Backgrnd.bmp"/>
+  <!--==== PARKBRAKE TRIM FLAPS ====-->
+  <Element>
+    <Position X="13" Y="220"/>
+    <Select>
+      <Value>(A:Brake parking position, percent) 50 ></Value>
+      <Case Value="0">
+        <Image Name="ECU_parkbrake0.bmp" Bright="0"/>
+      </Case>
+      <Case Value="1">
+        <Image Name="ECU_parkbrake1.bmp" Bright="0"/>
+      </Case>
+    </Select>
+  </Element>
+  <Element>
+    <Position X="89" Y="264"/>
+    <Image Name="ECU_trim_lever.bmp"/>
+    <Shift>
+      <Value Minimum="-5" Maximum="15">(A:Elevator Trim Position,degrees)</Value>
+      <Scale Y="3"/>
+    </Shift>
+  </Element>
+  <Element>
+    <Position X="69" Y="252"/>
+    <Image Name="ECU_trim_grip.bmp"/>
+    <Shift>
+      <Value Minimum="-5" Maximum="15">(A:Elevator Trim Position,degrees)</Value>
+      <Scale Y="6"/>
+    </Shift>
+  </Element>
+  <Element>
+    <Position X="190" Y="221"/>
+    <Select>
+      <Value>(A:Flaps handle index,number)</Value>
+      <Case Value="0">
+        <Image Name="ECU_flaps0.bmp"/>
+      </Case>
+      <Case Value="1">
+        <Image Name="ECU_flaps1.bmp"/>
+      </Case>
+      <Case Value="2">
+        <Image Name="ECU_flaps2.bmp"/>
+      </Case>
+      <Case Value="3">
+        <Image Name="ECU_flaps2.bmp"/>
+      </Case>
+      <Case Value="4">
+        <Image Name="ECU_flaps3.bmp"/>
+      </Case>
+      <Case Value="5">
+        <Image Name="ECU_flaps3.bmp"/>
+      </Case>
+      <Case Value="6">
+        <Image Name="ECU_flaps5.bmp"/>
+      </Case>
+      <Case Value="7">
+        <Image Name="ECU_flaps5.bmp"/>
+      </Case>
+    </Select>
+  </Element>
+  <!--==== THROTTLE ====-->
+  <Element>
+    <Position X="4" Y="102"/>
+    <Image Name="ECU_Throttle1.bmp">
+      <Axis X="0" Y="0"/>
+    </Image>
+    <Shift>
+      <Value Minimum="-25" Maximum="100">(A:general eng1 throttle lever position,percent)</Value>
+      <Nonlinearity>
+        <Item Value="100" X="4" Y="2"/>
+        <Item Value="50" X="4" Y="52"/>
+        <Item Value="0" X="4" Y="102"/>
+        <Item Value="-25" X="4" Y="127"/>
+      </Nonlinearity>
+    </Shift>
+    <Delay PixelsPerSecond="60"/>
+  </Element>
+  <Element>
+    <Position X="79" Y="102"/>
+    <Image Name="ECU_Throttle2.bmp">
+      <Axis X="0" Y="0"/>
+    </Image>
+    <Shift>
+      <Value Minimum="-25" Maximum="100">(A:general eng2 throttle lever position,percent)</Value>
+      <Nonlinearity>
+        <Item Value="100" X="79" Y="2"/>
+        <Item Value="50" X="79" Y="52"/>
+        <Item Value="0" X="79" Y="102"/>
+        <Item Value="-25" X="79" Y="127"/>
+      </Nonlinearity>
+    </Shift>
+    <Delay PixelsPerSecond="60"/>
+  </Element>
+  <Element>
+    <Position X="138" Y="102"/>
+    <Image Name="ECU_Throttle3.bmp">
+      <Axis X="0" Y="0"/>
+    </Image>
+    <Shift>
+      <Value Minimum="-25" Maximum="100">(A:general eng3 throttle lever position,percent)</Value>
+      <Nonlinearity>
+        <Item Value="100" X="138" Y="2"/>
+        <Item Value="50" X="138" Y="52"/>
+        <Item Value="0" X="138" Y="102"/>
+        <Item Value="-25" X="138" Y="127"/>
+      </Nonlinearity>
+    </Shift>
+    <Delay PixelsPerSecond="60"/>
+  </Element>
+  <Element>
+    <Position X="196" Y="102"/>
+    <Image Name="ECU_Throttle4.bmp">
+      <Axis X="0" Y="0"/>
+    </Image>
+    <Shift>
+      <Value Minimum="-25" Maximum="100">(A:general eng4 throttle lever position,percent)</Value>
+      <Nonlinearity>
+        <Item Value="100" X="196" Y="2"/>
+        <Item Value="50" X="196" Y="52"/>
+        <Item Value="0" X="196" Y="102"/>
+        <Item Value="-25" X="196" Y="127"/>
+      </Nonlinearity>
+    </Shift>
+    <Delay PixelsPerSecond="60"/>
+  </Element>
+  <!--==== SWITCHES ====-->
+  <Element>
+    <Position X="150" Y="228"/>
+    <Select>
+      <Value>(A:Spoilers handle position,percent) 40 > (A:Circuit general panel on, bool) &amp;&amp;</Value>
+      <Case Value="1">
+        <Image Name="ECU_airbrake.bmp" Bright="1"/>
+      </Case>
+    </Select>
+  </Element>
+  <Element>
+    <Position X="138" Y="307"/>
+    <Select>
+      <Value>(L:Flaps Index Set,enum)</Value>
+      <Case Value="0">
+        <Image Name="ECU_flaps_mid.bmp" Bright="0"/>
+      </Case>
+      <Case Value="1">
+        <Image Name="ECU_flaps_incr.bmp" Bright="0"/>
+      </Case>
+      <Case Value="2">
+        <Image Name="ECU_flaps_decr.bmp" Bright="0"/>
+      </Case>
+    </Select>
+  </Element>
+  <Mouse>
+    <!--==== THROTTLE ==== -->
+    <Area Left="20" Top="2" Width="45" Height="190">
+      <Tooltip ID="TOOLTIPTEXT_THROTTLE_ENG1_THROTTLE_PERCENT"/>
+      <Cursor Type="Hand"/>
+      <Click Kind="LeftSingle+LeftDrag">(M:Y) 65 - 125 / 0 max 1 min 1 - /-/ 1 (A:Throttle lower limit,part) s0 - * l0 + 16384.0 * d (>K:THROTTLE1_SET)</Click>
+      <MouseWheelUp>(>K:THROTTLE1_INCR)</MouseWheelUp>
+      <MouseWheelDown>(>K:THROTTLE1_DECR)</MouseWheelDown>
+    </Area>
+    <Area Left="70" Top="2" Width="30" Height="190">
+      <Tooltip ID="TOOLTIPTEXT_THROTTLE_ENG2_THROTTLE_PERCENT"/>
+      <Cursor Type="Hand"/>
+      <Click Kind="LeftSingle+LeftDrag">(M:Y) 65 - 125 / 0 max 1 min 1 - /-/ 1 (A:Throttle lower limit,part) s0 - * l0 + 16384.0 * d (>K:THROTTLE2_SET)</Click>
+      <MouseWheelUp>(>K:THROTTLE2_INCR)</MouseWheelUp>
+      <MouseWheelDown>(>K:THROTTLE2_DECR)</MouseWheelDown>
+    </Area>
+    <Area Left="105" Top="2" Width="50" Height="190">
+      <Tooltip ID="TOOLTIPTEXT_THROTTLE_THROTTLE_PERCENT"/>
+      <Cursor Type="Hand"/>
+      <Click Kind="LeftSingle+LeftDrag">(M:Y) 65 - 125 / 0 max 1 min 1 - /-/ 1 (A:Throttle lower limit,part) s0 - * l0 + 16384.0 * d (>K:THROTTLE_SET)</Click>
+      <MouseWheelUp>(>K:THROTTLE_INCR)</MouseWheelUp>
+      <MouseWheelDown>(>K:THROTTLE_DECR)</MouseWheelDown>
+    </Area>
+    <Area Left="165" Top="2" Width="30" Height="190">
+      <Tooltip ID="TOOLTIPTEXT_THROTTLE_ENG3_THROTTLE_PERCENT"/>
+      <Cursor Type="Hand"/>
+      <Click Kind="LeftSingle+LeftDrag">(M:Y) 65 - 125 / 0 max 1 min 1 - /-/ 1 (A:Throttle lower limit,part) s0 - * l0 + 16384.0 * d (>K:THROTTLE3_SET)</Click>
+      <MouseWheelUp>(>K:THROTTLE3_INCR)</MouseWheelUp>
+      <MouseWheelDown>(>K:THROTTLE3_DECR)</MouseWheelDown>
+    </Area>
+    <Area Left="206" Top="2" Width="45" Height="190">
+      <Tooltip ID="TOOLTIPTEXT_THROTTLE_ENG4_THROTTLE_PERCENT"/>
+      <Cursor Type="Hand"/>
+      <Click Kind="LeftSingle+LeftDrag">(M:Y) 65 - 125 / 0 max 1 min 1 - /-/ 1 (A:Throttle lower limit,part) s0 - * l0 + 16384.0 * d (>K:THROTTLE4_SET)</Click>
+      <MouseWheelUp>(>K:THROTTLE4_INCR)</MouseWheelUp>
+      <MouseWheelDown>(>K:THROTTLE4_DECR)</MouseWheelDown>
+    </Area>
+    <!--==== PARKBRAKE TRIM FLAPS ====-->
+    <Area Left="14" Top="220" Width="37" Height="150">
+      <Tooltip>Parking Brake</Tooltip>
+      <Cursor Type="Hand"/>
+      <Click Kind="LeftSingle">(>K:PARKING_BRAKES)</Click>
+    </Area>
+    <Area Left="69" Top="223" Width="45" Height="190">
+      <Tooltip ID="TOOLTIPTEXT_PITCH_TRIM"/>
+      <Cursor Type="Hand"/>
+      <Click Kind="LeftSingle+LeftDrag">(M:Y) 70 - 120 / 16384 * (>K:ELEVATOR_TRIM_SET)</Click>
+      <MouseWheelUp>(>K:ELEV_TRIM_DN)</MouseWheelUp>
+      <MouseWheelDown>(>K:ELEV_TRIM_UP)</MouseWheelDown>
+    </Area>
+    <Area Left="190" Top="221" Width="80" Height="180">
+      <Area Top="90">
+        <Cursor Type="UpArrow"/>
+        <Click MouseWheelFlip="Yes">0 (>K:FLAPS_INCR)</Click>
+      </Area>
+      <Area Bottom="90">
+        <Cursor Type="DownArrow"/>
+        <Click MouseWheelFlip="Yes">0 (>K:FLAPS_DECR)</Click>
+      </Area>
+      <Tooltip ID="TOOLTIPTEXT_FLAPS_SWITCH"/>
+    </Area>
+    <!--==== SWITCHES ====-->
+    <Area Left="146" Top="225" Width="30" Height="30">
+      <Tooltip ID="TOOLTIPTEXT_SPEED_BRAKE"/>
+      <Cursor Type="Hand"/>
+      <Click Event="SPOILERS_TOGGLE"/>
+    </Area>
+    <Area Left="246" Top="0" Width="20" Height="20">
+      <Tooltip>Close</Tooltip>
+      <Cursor Type="Hand"/>
+      <Click Repeat="Yes">10005 (>K:PANEL_ID_CLOSE)</Click>
+    </Area>
+    <Area Left="150" Top="310" Width="30" Height="35">
+      <Cursor Type="Hand"/>
+      <Tooltip>Increase Flaps Index</Tooltip>
+      <Click Kind="LeftSingle+Leave" Repeat="Yes">(M:Event) 'LeftSingle' scmp 0 == if{ 2 (>L:Flaps Index Set,enum) (L:Flaps Index,number) 0 == if{ 5 (>L:Flaps Index,number) (A:Flaps handle Index,number) 2 > if{ (>K:FLAPS_DECR) (L:Flaps compare,number) -- (>L:Flaps compare,number) } } } (M:Event) 'Leave' scmp 0 == if{ 0 (>L:Flaps Index Set,enum) }</Click>
+    </Area>
+    <Area Left="150" Top="350" Width="30" Height="35">
+      <Cursor Type="Hand"/>
+      <Tooltip>Decrease Flaps Index</Tooltip>
+      <Click Kind="LeftSingle+Leave" Repeat="Yes">(M:Event) 'LeftSingle' scmp 0 == if{ 1 (>L:Flaps Index Set,enum) (L:Flaps Index,number) 5 == if{ 0 (>L:Flaps Index,number) (A:Flaps handle Index,number) 1 > if{ (>K:FLAPS_INCR) (L:Flaps compare,number) ++ (>L:Flaps compare,number) } } } (M:Event) 'Leave' scmp 0 == if{ 0 (>L:Flaps Index Set,enum) }</Click>
+    </Area>
+  </Mouse>
+</Gauge>

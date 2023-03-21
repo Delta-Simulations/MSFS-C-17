@@ -1,0 +1,29 @@
+<Gauge Name="AP EPR" Version="C-17" Author="Herbert Pralle">
+  <Update Frequency="3"/>
+  <!--ENG 1 TO 4-->
+  <Element>
+    <Select>
+      <Value>(L:AP EPR ON,bool) if{ (L:AP EPR preset,enum) 0.9 + (A:Turb eng1 pressure ratio, ratio) - (>L:AP EPR delta,number) }</Value>
+    </Select>
+  </Element>
+  <Element>
+    <Select>
+      <Value>(L:AP EPR ON,bool) (L:AP EPR set,number) 0 == &amp;&amp; if{ (L:AP EPR delta,number) 0.02 > if{ (L:AP EPR delta,number) (>L:AP EPR old delta,number) (A:General Eng1 Throttle Lever Position,percent) 1 + 163.8 * 16383 min (>K:THROTTLE_SET) 1 (>L:AP EPR set,number) } els{ (L:AP EPR delta,number) -0.02 &lt; (A:General Eng1 Throttle Lever Position,percent) s0 2 > &amp;&amp; if{ (L:AP EPR delta,number) (>L:AP EPR old delta,number) l0 1 - 163.8 * 1 max (>K:THROTTLE_SET) 2 (>L:AP EPR set,number) } }</Value>
+    </Select>
+  </Element>
+  <Element>
+    <Select>
+      <Value>(L:AP EPR ON,bool) (L:AP EPR set,number) 1 == &amp;&amp; if{ (L:AP EPR delta,number) (L:AP EPR old delta,number) 0.005 - &lt; if{ (L:AP EPR delta,number) (>L:AP EPR old delta,number) } els{ (A:General Eng1 Throttle Lever Position,percent) 1 + 163.8 * 16383 min (>K:THROTTLE_SET) } }</Value>
+    </Select>
+  </Element>
+  <Element>
+    <Select>
+      <Value>(L:AP EPR ON,bool) (L:AP EPR set,number) 2 == &amp;&amp; if{ (L:AP EPR delta,number) (L:AP EPR old delta,number) 0.005 + > if{ (L:AP EPR delta,number) (>L:AP EPR old delta,number) } els{ (A:General Eng1 Throttle Lever Position,percent) s1 2 > if{ l1 0.5 - 163.8 * 0 max (>K:THROTTLE_SET) } } }</Value>
+    </Select>
+  </Element>
+  <Element>
+    <Select>
+      <Value>(L:AP EPR ON,bool) (L:AP EPR set,number) 1 == &amp;&amp; (L:AP EPR delta,number) 0.01 &lt; &amp;&amp; if{ 0 (>L:AP EPR set,number) } (L:AP EPR set,number) 2 == (L:AP EPR delta,number) -0.01 > &amp;&amp; if{ 0 (>L:AP EPR set,number) }</Value>
+    </Select>
+  </Element>
+</Gauge>

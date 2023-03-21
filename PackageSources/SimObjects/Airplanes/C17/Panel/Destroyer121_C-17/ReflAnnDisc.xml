@@ -1,0 +1,24 @@
+<Gauge Name="AR Disconnenct On Lamp - Virtavia C-17 FSX" Version="1.0">
+
+  <Element>
+  	<Visible>(A:ELECTRICAL MASTER BATTERY,bool) (A:TURB ENG1 N1,Percent) 20 &gt; (A:TURB ENG2 N1,Percent) 20 &gt; (A:TURB ENG3 N1,Percent) 20 &gt; (A:TURB ENG4 N1,Percent) 20 &gt; || || || ||</Visible>
+ 
+       <Element>
+		<Visible>(L:RefuelMaster_L,bool) (L:RefuelMaster_R,bool) &amp;</Visible>
+      <Select>
+         <Value> (A:Attitude indicator bank degrees,degrees) 5 &gt; (A:Attitude indicator bank degrees,degrees) -5 &lt; (A:Attitude indicator pitch degrees,degrees) 5 &gt; (A:Attitude indicator pitch degrees,degrees) -5 &lt; || || || </Value>
+           <Case Value="1">
+            <Image Name="ReflAnnDisc.bmp"  Bright="1"/>
+         </Case>
+      </Select>
+   </Element>
+   
+  </Element>
+
+  <Mouse>
+     <Tooltip>Air Refuel Disconnect Warning</Tooltip>
+         </Mouse>
+
+</Gauge>
+
+

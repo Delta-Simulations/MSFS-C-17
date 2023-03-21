@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<Gauge Name="C-17 CALLOUTS" Version="1.0">
+
+  <!-- CORRECT INCORRECT RADAR ALT-->
+  <Element>
+    <Select>
+          <Value>    
+            (A:PLANE ALT ABOVE GROUND,feet) 10 - (&gt;L:C17_RADALT,feet)
+          </Value>
+    </Select>
+  </Element>
+
+
+
+
+  <!-- ARM CALLOUTS-->
+<Element>
+  <Select>
+      <Value>
+    (A:ELECTRICAL MASTER BATTERY, bool) 1 ==
+    (A:SIM ON GROUND,bool) 0 == and
+    if{ 1 ( &gt;L:C17_AURAL_ACTIVE,bool) }
+    els{ 0 ( &gt;L:C17_AURAL_ACTIVE,bool) }
+      </Value>
+  </Select>
+</Element>	
+ 
+<!--		MISSILE WARNING		-->	
+
+<Element>
+  <Select>
+        <Value>        
+          (A:ELECTRICAL MASTER BATTERY, bool) 1 ==
+          (L:C17_MISSILE_DETECTED,bool) 1 == and
+          if{ 1 (&gt;L:C17_MissileLaunch,bool) }
+          els{ 0 (&gt;L:C17_MissileLaunch,bool) }					
+        </Value>
+  </Select>
+</Element>
+
+<!--		APU DOOR OPEN FOR TAKEOFF		-->	
+<Element>
+  <Select>
+        <Value>        
+          (A:ELECTRICAL MASTER BATTERY, bool) 1 ==
+          (L:C17_APUDOOR_OPEN,bool) 1 == and
+          (A:TURB ENG THROTTLE COMMANDED N1:2,percent) 70 &gt; and
+          if{ 1 (&gt;L:C17_ALERT_APU_DOOR,bool) }
+          els{ 0 (&gt;L:C17_ALERT_APU_DOOR,bool) }					
+        </Value>
+  </Select>
+</Element>
+
+<!--		TAKEOFF FLAPS NOT SET		-->	
+<Element>
+  <Select>
+        <Value>        
+          (A:ELECTRICAL MASTER BATTERY, bool) 1 ==
+          (A:SIM ON GROUND,bool) 1 == and
+          (A:TURB ENG THROTTLE COMMANDED N1:2,percent) 70 &gt; and
+          (A:TRAILING EDGE FLAPS RIGHT PERCENT,percent) 30 &lt; and
+          if{ 1 (&gt;L:C17_SET_TAKEOFF_FLAPS,bool) }
+          els{ 0 (&gt;L:C17_SET_TAKEOFF_FLAPS,bool) }					
+        </Value>
+  </Select>
+</Element>
+
+<!--		TAKEOFF PARKING BRAKE SET		-->	
+<Element>
+  <Select>
+        <Value>        
+          (A:ELECTRICAL MASTER BATTERY, bool) 1 ==
+          (A:SIM ON GROUND,bool) 1 == and
+          (A:TURB ENG THROTTLE COMMANDED N1:2,percent) 70 &gt; and
+          (A:BRAKE PARKING POSITION,bool) 1 == and
+          if{ 1 (&gt;L:C17_SET_TAKEOFF_BRAKE,bool) }
+          els{ 0 (&gt;L:C17_SET_TAKEOFF_BRAKE,bool) }					
+        </Value>
+  </Select>
+</Element>
+
+<!--		TAKEOFF SPOILERS SET		-->	
+<Element>
+  <Select>
+        <Value>        
+          (A:ELECTRICAL MASTER BATTERY, bool) 1 ==
+          (A:SIM ON GROUND,bool) 1 == and
+          (A:TURB ENG THROTTLE COMMANDED N1:2,percent) 70 &gt; and
+          (A:SPOILERS HANDLE POSITION,bool) 1 == and
+          if{ 1 (&gt;L:C17_SET_TAKEOFF_SPOILERS,bool) }
+          els{ 0 (&gt;L:C17_SET_TAKEOFF_SPOILERS,bool) }					
+        </Value>
+  </Select>
+</Element>
+
+<!--		GEAR OVERSPEED		-->	
+<Element>
+  <Select>
+        <Value>        
+          (L:C17_AURAL_ACTIVE,bool) 1 ==
+          (A:GEAR HANDLE POSITION,bool) 1 == and
+          (A:AIRSPEED INDICATED, Knots) 250 &gt; and
+          if{ 1 (&gt;L:C17_GEAR_OVERSPEED,bool) }
+          els{ 0 (&gt;L:C17_GEAR_OVERSPEED,bool) }					
+        </Value>
+  </Select>
+</Element>
+
+<!--		FLAP OVERSPEED		-->	
+<Element>
+  <Select>
+        <Value>        
+          (L:C17_AURAL_ACTIVE,bool) 1 ==
+          (A:TRAILING EDGE FLAPS RIGHT PERCENT,bool) 1 == and
+          (A:AIRSPEED INDICATED, Knots) 280 &gt; and
+          if{ 1 (&gt;L:C17_FLAP_OVERSPEED,bool) }
+          els{ 0 ( &gt;L:C17_FLAP_OVERSPEED,bool) }					
+        </Value>
+  </Select>
+</Element>
+
+<!--		LANDING CONFIG SET		-->	
+<Element>
+  <Select>
+        <Value>        
+          (L:C17_AURAL_ACTIVE,bool) 1 ==
+          (A:TRAILING EDGE FLAPS RIGHT PERCENT,percent) 40 &gt; and
+          (A:GEAR HANDLE POSITION,bool) 1 == and
+          if{ 1 ( &gt;L:C17_IN_LANDING_CFG,bool) }
+          els{ 0 ( &gt;L:C17_IN_LANDING_CFG,bool) }					
+        </Value>
+  </Select>
+</Element>
+
+<!--		TERRAIN FLY UP		-->	
+<Element>
+  <Select>
+        <Value>        
+          (L:C17_AURAL_ACTIVE, bool) 1 ==
+          (L:C17_IN_LANDING_CFG, bool) 0 == and
+          (A:VERTICAL SPEED,feet per minute) -1000 &lt; and
+          (L:C17_RADALT,feet) 400 &lt; and	
+          if{ 1 ( &gt;L:C17_TERRAIN_FLYUP,BOOL) }
+          els{ 0 ( &gt;L:C17_TERRAIN_FLYUP,BOOL) }					
+        </Value>
+  </Select>
+</Element>
+
+<!--		FLAPS NOT DEPLOYED		-->	
+<Element>
+  <Select>
+        <Value>        
+          (L:C17_AURAL_ACTIVE, bool) 1 ==
+          (A:TRAILING EDGE FLAPS RIGHT PERCENT,percent) 0 == and
+          (A:GEAR HANDLE POSITION,bool) 1 == and
+          (L:C17_RADALT,feet) 500 &lt; and	
+          (A:VERTICAL SPEED,feet per minute) -100 &lt; and
+          if{ 1 ( &gt;L:C17_RETRACT_FLAPS,BOOL) }
+          els{ 0 ( &gt;L:C17_RETRACT_FLAPS,BOOL) }					
+        </Value>
+  </Select>
+</Element>
+
+<!--		GEAR NOT DOWN		-->	
+<Element>
+  <Select>
+        <Value>        
+          (L:C17_AURAL_ACTIVE, bool) 1 ==
+          (A:TRAILING EDGE FLAPS RIGHT PERCENT,percent) 60 &gt; and
+          (A:VERTICAL SPEED,feet per minute) -100 &lt; and
+          (A:GEAR HANDLE POSITION,bool) 0 == and
+          (L:C17_RADALT,feet) 250 &lt; and	
+          if{ 1 ( &gt;L:C17_EXTEND_GEAR,BOOL) }
+          els{ 0 ( &gt;L:C17_EXTEND_GEAR,BOOL) }					
+        </Value>
+  </Select>
+</Element>
+
+<!--		SINKRATE		-->	
+<Element>
+  <Select>
+        <Value>        
+          (L:C17_AURAL_ACTIVE, bool) 1 ==
+          (L:C17_TERRAIN_FLYUP, BOOL) 0 == and
+          (A:VERTICAL SPEED,feet per minute) -5000 &lt; and
+          (L:C17_RADALT,feet) 10000 &lt; and	
+          if{ 1 ( &gt;L:C17_SINKRATE,bool) }
+          els{ 0 ( &gt;L:C17_SINKRATE,bool) }					
+        </Value>
+  </Select>
+</Element>
+
+<!--		OVERSPEED		-->	
+  <Element>
+    <Select>
+          <Value>        
+            (L:C17_AURAL_ACTIVE,bool) 1 ==
+            (A:AIRSPEED INDICATED, Knots) 370 &gt; and
+            if{ 1 ( &gt;L:C17_OVERSPEED,bool) }
+            els{ 0 ( &gt;L:C17_OVERSPEED,bool) }					
+          </Value>
+    </Select>
+  </Element>
+
+
+
+
+<!--		STICK SHAKER AND STALL		-->	
+<Element>
+    <Select>
+        <Value>
+      (A:STALL WARNING,bool) 1 ==
+      (L:C17_AURAL_ACTIVE,bool) 1 == and
+      
+      if{ 1 ( &gt;L:C17_STICK_SHAKER,bool) }
+      els{ 0 ( &gt;L:C17_STICK_SHAKER,bool) }
+
+      (A:ELECTRICAL MASTER BATTERY, bool) 1 ==
+      (L:C17_STALL_TEST,bool) 1 == and
+      if{ 1 ( &gt;L:C17_STICK_SHAKER,bool) }
+      els{ 0 ( &gt;L:C17_STICK_SHAKER,bool) }
+
+
+        </Value>
+    </Select>
+</Element>	
+
+<!--	GPWS - ARM	-->	
+<Element>
+    <Select>
+        <Value>
+      (L:C17_IN_LANDING_CFG, bool) 1 ==
+      (A:VERTICAL SPEED,feet per minute) 0 &lt; and
+      if{ 1 ( &gt;L:C17_GPWS_ACTIVE,bool) }
+      els{ 0 ( &gt;L:C17_GPWS_ACTIVE,bool) }
+        </Value>
+    </Select>
+</Element>	
+
+<!--		GPWS - 2500	-->	
+<Element>
+  <Select>
+        <Value>
+      (L:C17_GPWS_ACTIVE, bool) 1 ==
+      (L:C17_RADALT,feet) 2497 &gt; and
+      (L:C17_RADALT,feet) 2503 &lt; and	
+      if{ 1 ( &gt;L:C17_GPWS_2500,bool) }
+      els{ 0 ( &gt;L:C17_GPWS_2500,bool) }		
+        </Value>
+  </Select>
+</Element>
+
+
+<!--		GPWS - 1000		-->	
+<Element>
+  <Select>
+        <Value>
+      (L:C17_GPWS_ACTIVE, bool) 1 ==
+      (L:C17_RADALT,feet) 997 &gt; and
+      (L:C17_RADALT,feet) 1003 &lt; and	
+      if{ 1 ( &gt;L:C17_GPWS_1000,bool) }
+      els{ 0 ( &gt;L:C17_GPWS_1000,bool) }		
+        </Value>
+  </Select>
+</Element>
+
+<!--		GPWS - 500		-->	
+<Element>
+    <Select>
+          <Value>
+        (L:C17_GPWS_ACTIVE, bool) 1 ==
+        (L:C17_RADALT,feet) 497 &gt; and
+        (L:C17_RADALT,feet) 503 &lt; and	
+        if{ 1 ( &gt;L:C17_GPWS_500,bool) }
+        els{ 0 ( &gt;L:C17_GPWS_500,bool) }		
+          </Value>
+    </Select>
+</Element>
+<!--		GPWS - 400		-->	
+<Element>
+  <Select>
+        <Value>
+          (L:C17_GPWS_ACTIVE, bool) 1 ==
+          (L:C17_RADALT,feet) 397 &gt; and
+          (L:C17_RADALT,feet) 403 &lt; and	
+          if{ 1 ( &gt;L:C17_GPWS_400,bool) }
+          els{ 0 ( &gt;L:C17_GPWS_400,bool) }					
+        </Value>
+  </Select>
+</Element>
+<!--		GPWS - 300		-->	
+<Element>
+  <Select>
+        <Value>
+          (L:C17_GPWS_ACTIVE, bool) 1 ==
+          (L:C17_RADALT,feet) 297 &gt; and
+          (L:C17_RADALT,feet) 303 &lt; and	
+          if{ 1 ( &gt;L:C17_GPWS_300,bool) }
+          els{ 0 ( &gt;L:C17_GPWS_300,bool) }					
+        </Value>
+  </Select>
+</Element>
+<!--		GPWS - 200		-->	
+<Element>
+  <Select>
+        <Value>
+          (L:C17_GPWS_ACTIVE, bool) 1 ==
+          (L:C17_RADALT,feet) 197 &gt; and
+          (L:C17_RADALT,feet) 203 &lt; and	
+          if{ 1 ( &gt;L:C17_GPWS_200,bool) }
+          els{ 0 ( &gt;L:C17_GPWS_200,bool) }					
+        </Value>
+  </Select>
+</Element>
+<!--		GPWS - 100		-->	
+<Element>
+    <Select>
+          <Value>
+            (L:C17_GPWS_ACTIVE, bool) 1 ==
+            (L:C17_RADALT,feet) 97 &gt; and
+            (L:C17_RADALT,feet) 103 &lt; and	
+            if{ 1 ( &gt;L:C17_GPWS_100,bool) }
+            els{ 0 ( &gt;L:C17_GPWS_100,bool) }					
+          </Value>
+    </Select>
+</Element>
+<!--		GPWS - 50		-->	
+<Element>
+    <Select>
+          <Value>        
+            (L:C17_GPWS_ACTIVE, bool) 1 ==
+            (L:C17_RADALT,feet) 47 &gt; and
+            (L:C17_RADALT,feet) 53 &lt; and	
+            if{ 1 ( &gt;L:C17_GPWS_50,bool) }
+            els{ 0 ( &gt;L:C17_GPWS_50,bool) }					
+          </Value>
+    </Select>
+</Element>
+
+<!--		GPWS - 40		-->	
+<Element>
+  <Select>
+        <Value>      
+          (L:C17_GPWS_ACTIVE, bool) 1 ==
+ 
+          (L:C17_RADALT,feet) 37 &gt; and
+          (L:C17_RADALT,feet) 43 &lt; and	
+          if{ 1 ( &gt;L:C17_GPWS_40,bool) }
+          els{ 0 ( &gt;L:C17_GPWS_40,bool) }					
+        </Value>
+  </Select>
+</Element>
+
+<!--		GPWS - 30		-->	
+<Element>
+  <Select>
+        <Value>
+          (L:C17_GPWS_ACTIVE, bool) 1 ==
+        
+          (L:C17_RADALT,feet) 27 &gt; and
+          (L:C17_RADALT,feet) 33 &lt; and	
+          if{ 1 ( &gt;L:C17_GPWS_30,bool) }
+          els{ 0 ( &gt;L:C17_GPWS_30,bool) }					
+        </Value>
+  </Select>
+</Element>
+
+<!--		GPWS - 20		-->	
+<Element>
+  <Select>
+        <Value>  
+          (L:C17_GPWS_ACTIVE, bool) 1 ==
+      
+          (L:C17_RADALT,feet) 17 &gt; and
+          (L:C17_RADALT,feet) 23 &lt; and	
+          if{ 1 ( &gt;L:C17_GPWS_20,bool) }
+          els{ 0 ( &gt;L:C17_GPWS_20,bool) }					
+        </Value>
+  </Select>
+</Element>
+
+<!--		GPWS - 10		-->	
+<Element>
+  <Select>
+        <Value>    
+          (L:C17_GPWS_ACTIVE, bool) 1 ==
+    
+          (L:C17_RADALT,feet) 7 &gt; and
+          (L:C17_RADALT,feet) 13 &lt; and	
+          if{ 1 ( &gt;L:C17_GPWS_10,bool) }
+          els{ 0 ( &gt;L:C17_GPWS_10,bool) }					
+        </Value>
+  </Select>
+</Element>
+
+</Gauge>

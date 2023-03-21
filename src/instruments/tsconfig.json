@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "module": "esnext",
+        "target": "ESNext",
+        "esModuleInterop": true,
+        "jsx": "react",
+        "moduleResolution": "node",
+        "downlevelIteration": true,
+        "skipLibCheck": true,
+        "strictNullChecks": true
+    }
+}

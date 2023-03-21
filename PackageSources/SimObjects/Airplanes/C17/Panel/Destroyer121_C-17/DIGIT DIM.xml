@@ -1,0 +1,32 @@
+<Gauge Name="DIGIT DIM" Version="C-17" Author="Herbert Pralle">
+  <Image Name="Digit_Dim_backgrnd.bmp"/>
+  <Element>
+    <Position X="38" Y="38"/>
+    <Image Name="Digit_dim_Knob.bmp">
+      <Axis X="38" Y="38"/>
+    </Image>
+    <Rotate>
+      <Value>3 (L:digit dim,enum) -</Value>
+      <Nonlinearity>
+        <Item Value="0" Degrees="0"/>
+        <Item Value="1" Degrees="90"/>
+        <Item Value="2" Degrees="180"/>
+        <Item Value="3" Degrees="270"/>
+      </Nonlinearity>
+      <Delay DegreesPerSecond="180"/>
+    </Rotate>
+  </Element>
+  <Mouse>
+    <Area Left="0" Top="0" Width="76" Height="76">
+      <Area Left="38">
+        <Cursor Type="UpArrow"/>
+        <Click Repeat="Yes">(L:digit dim,enum) 1 - 0 max (>L:digit dim,enum)</Click>
+      </Area>
+      <Area Right="38">
+        <Cursor Type="DownArrow"/>
+        <Click Repeat="Yes">(L:digit dim,enum) 1 + 3 min (>L:digit dim,enum)</Click>
+      </Area>
+      <Tooltip>Dim Digits</Tooltip>
+    </Area>
+  </Mouse>
+</Gauge>

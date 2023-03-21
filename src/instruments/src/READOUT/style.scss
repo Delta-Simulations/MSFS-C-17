@@ -1,0 +1,44 @@
+@font-face {
+    font-family: "Digital";
+    src: url("/Fonts/Quartz.ttf") format("truetype");
+}
+@font-face {
+    font-family: "mono";
+    src: url("/Fonts/mono.ttf") format("truetype");
+}
+@font-face {
+    font-family: "OCRB";
+    src: url("/Fonts/OcrB2.ttf") format("truetype");
+}
+.Radio {
+    font-style: 'italic';
+    font-family: "OCRB";
+}
+.FrontPNL {
+    font-family: "Digital";
+}
+.WAPanel {
+    font-family: "Digital";
+    letter-spacing: -1px;
+}
+.UpperPNL {
+    font-family: "mono";
+    fill: #00EE00;
+}
+
+.Horizon_lower {
+    fill: #00FF00
+}
+.OHDispBackrnd {
+    fill: rgb(0, 14, 2)
+}
+.OHPNL {
+    font-family: "Digital";
+    fill: rgb(0, 255, 42);
+}
+.YllwAccent {
+    fill: rgb(245, 255, 137)
+}
+.YllwRect {
+    stroke: rgb(245, 255, 137)
+}

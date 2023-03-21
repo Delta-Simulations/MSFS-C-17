@@ -1,0 +1,24 @@
+<Gauge Name="AP EPR" Version="C-17" Author="Herbert Pralle">
+  <Update Frequency="2"/>
+  <!--ENG 1 TO 4-->
+  <Element>
+    <Select>
+      <Value>(L:AP EPR ON,bool) if{ (L:AP EPR preset,enum) 0.9 + (A:Turb eng1 pressure ratio, ratio) - s1 0.02 > if{ (>K:THROTTLE1_INCR) } els{ l1 0.01 > if{ (>K:THROTTLE1_INCR_SMALL) } els{ } } l1 -0.01 &lt; (A:general eng1 throttle lever position,percent) 5 > &amp;&amp; if{ (>K:THROTTLE1_DECR) } }</Value>
+    </Select>
+  </Element>
+  <Element>
+    <Select>
+      <Value>(L:AP EPR ON,bool) if{ (L:AP EPR preset,enum) 0.9 + (A:Turb eng2 pressure ratio, ratio) - s2 0.02 > if{ (>K:THROTTLE2_INCR) } els{ l2 0.01 > if{ (>K:THROTTLE2_INCR_SMALL) } els{ } } l2 -0.01 &lt; (A:general eng2 throttle lever position,percent) 5 > &amp;&amp; if{ (>K:THROTTLE2_DECR) } }</Value>
+    </Select>
+  </Element>
+  <Element>
+    <Select>
+      <Value>(L:AP EPR ON,bool) if{ (L:AP EPR preset,enum) 0.9 + (A:Turb eng3 pressure ratio, ratio) - s3 0.02 > if{ (>K:THROTTLE3_INCR) } els{ l3 0.01 > if{ (>K:THROTTLE3_INCR_SMALL) } els{ } } l3 -0.01 &lt; (A:general eng3 throttle lever position,percent) 5 > &amp;&amp; if{ (>K:THROTTLE3_DECR) } }</Value>
+    </Select>
+  </Element>
+  <Element>
+    <Select>
+      <Value>(L:AP EPR ON,bool) if{ (L:AP EPR preset,enum) 0.9 + (A:Turb eng4 pressure ratio, ratio) - s4 0.02 > if{ (>K:THROTTLE4_INCR) } els{ l4 0.01 > if{ (>K:THROTTLE4_INCR_SMALL) } els{ } } l4 -0.01 &lt; (A:general eng4 throttle lever position,percent) 5 > &amp;&amp; if{ (>K:THROTTLE4_DECR) } }</Value>
+    </Select>
+  </Element>
+</Gauge>

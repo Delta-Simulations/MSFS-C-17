@@ -1,0 +1,8 @@
+<Gauge Name="Icon Map" Author="Herbert Pralle">
+  <Image Name="Icon_map.bmp" Luminous="0"/>
+  <Mouse>
+    <Help ID="HELPID_GAUGE_FLIGHT_MAP"/>
+    <Cursor Type="Hand"/>
+    <Click Event="FLIGHT_MAP"/>
+  </Mouse>
+</Gauge>

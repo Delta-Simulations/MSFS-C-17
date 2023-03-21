@@ -1,0 +1,51 @@
+<Gauge Name="ENVIR panel AirCon Pack Discharge Display (left) - Virtavia C-17" Version="1.0">
+   <Image Name="EnvPSI.bmp"/>
+
+  <Element>
+  	<Visible>(A:ELECTRICAL MASTER BATTERY,bool) (A:TURB ENG1 N1,Percent) 20 &gt; (A:TURB ENG2 N1,Percent) 20 &gt; (A:TURB ENG3 N1,Percent) 20 &gt; (A:TURB ENG4 N1,Percent) 20 &gt; || || || ||</Visible>
+
+ <!--==== increment up to max from ambient on startup ====-->
+  <Element>
+	<Select>
+		<Value>
+			(L:AirCon1,bool) (L:EnvDisch_L,enum) 50 &lt; &amp; if{ (L:EnvDisch_L,enum) ++ (>L:EnvDisch_L,enum) }
+		</Value>
+	</Select>
+  </Element>
+
+ <!--==== decrement to ambient on shutdown ====-->
+  <Element>
+	<Select>
+		<Value>(L:AirCon1,bool) ! (L:EnvDisch_L,enum) (G:Var1) &gt; &amp; if{ (L:EnvDisch_L,enum) -- (>L:EnvDisch_L,enum) } </Value>
+	</Select>
+  </Element>
+
+ <!--==== turn off aircon on no bleed air ====-->
+  <Element>
+	<Select>
+		<Value>(L:Eng1Bleed,bool) ! (L:Eng2Bleed,bool) ! (L:Eng3Bleed,bool) ! (L:Eng4Bleed,bool) ! (L:APUBleed,bool) ! &amp;&amp; &amp;&amp; &amp;&amp; &amp;&amp; if{ 0 (>L:AirCon1,bool) } </Value>
+	</Select>
+  </Element>
+
+ 
+  <Element>
+     <Position X="3" Y="4"/>
+      <Text X="95" Y="39" Length="3" Fixed="Yes" Font="Quartz" FontHeight="0" FontWeight="400" Charset="Default" Attributes="Normal" Adjust="Center" VerticalAdjust="Center" Multiline="No" Color="#00EE00" BackgroundColor="transparent" HilightColor="white" Bright="Yes" UseTransparency="Yes">
+
+         <String>%((L:EnvDisch_L,enum))%!03d!</String>
+
+         <Failures>
+            <SYSTEM_ELECTRICAL_PANELS Action=""/>
+         </Failures>
+      </Text>
+    </Element>
+  
+  </Element>
+
+ <Mouse>
+  <Tooltip>Left AC Pack Disch. Temp.</Tooltip>
+ </Mouse>
+
+</Gauge>
+
+

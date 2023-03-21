@@ -1,0 +1,26 @@
+<Gauge Name="Ground Proximity Warning Lamp - Virtavia C-17" Version="1.0">
+
+  <Element>
+  	<Visible>(A:ELECTRICAL MASTER BATTERY,bool) (A:TURB ENG1 N1,Percent) 20 &gt; (A:TURB ENG2 N1,Percent) 20 &gt; (A:TURB ENG3 N1,Percent) 20 &gt; (A:TURB ENG4 N1,Percent) 20 &gt; || || || ||</Visible>
+ 	
+   <Element>
+      <Select>
+         <Value>(A:Ground Altitude,feet) 500 &lt; (A:Gear center position,percent) 2 &lt; (A:sim on ground, bool) ! &amp;&amp; &amp;&amp; </Value>
+	 <Case Value="0">
+            <Image Name="Wrn_GrndProx_Off.bmp"/>
+         </Case>
+         <Case Value="1">
+            <Image Name="Wrn_GrndProx_On.bmp"/>
+         </Case>
+      </Select>
+   </Element>
+   
+  </Element>
+
+   <Mouse>
+     <Tooltip>Ground Proximity Warning</Tooltip>
+         </Mouse>
+
+</Gauge>
+
+

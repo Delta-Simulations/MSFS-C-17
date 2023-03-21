@@ -1,0 +1,19 @@
+<Gauge Name="Eng 4 Anti-Ice On - Virtavia C-17" Version="1.0">
+
+  <Element>
+  	<Visible>(A:ELECTRICAL MASTER BATTERY,bool) (A:TURB ENG1 N1,Percent) 20 &gt; (A:TURB ENG2 N1,Percent) 20 &gt; (A:TURB ENG3 N1,Percent) 20 &gt; (A:TURB ENG4 N1,Percent) 20 &gt; || || || ||</Visible>
+ 
+   <Element>
+      <Select>
+         <Value>(A:General eng4 anti ice position,bool)</Value>
+         <Case Value="1">
+            <Image Name="EngAntiIceOn.bmp"  Bright="1"/>
+         </Case>
+      </Select>
+   </Element>
+
+  </Element>
+
+</Gauge>
+
+

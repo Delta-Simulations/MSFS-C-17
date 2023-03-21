@@ -1,0 +1,66 @@
+<Gauge Name="Hyd Pressure 2 Display - Virtavia C-17" Version="1.0">
+   <Image Name="HydPress.bmp"/>
+
+  <Element>
+  	<Visible>(A:ELECTRICAL MASTER BATTERY,bool) (A:TURB ENG1 N1,Percent) 20 &gt; (A:TURB ENG2 N1,Percent) 20 &gt; (A:TURB ENG3 N1,Percent) 20 &gt; (A:TURB ENG4 N1,Percent) 20 &gt; || || || ||</Visible>
+
+    <Element>
+	<Select>
+		<Value>(A:Ambient Pressure,PSI) (>G:Var1)</Value>
+	</Select>
+  </Element>
+
+  <Element>
+	<Select>
+		<Value>
+			(A:TURB ENG2 N1,Percent) 0 == if{ (G:Var1) (>L:HydPress2,enum) }
+		</Value>
+	</Select>
+  </Element>
+
+  <Element>
+	<Select>
+		<Value>
+			(A:TURB ENG2 N1,Percent) 5 &gt; (L:HydPress2,enum) 4000 &lt; &amp;&amp; 
+				if{ 10 (L:HydPress2,enum) + (>L:HydPress2,enum) }
+		</Value>
+	</Select>
+  </Element>
+
+  <Element>
+	<Select>
+		<Value>
+			(L:HydPress2,enum) 4000 &gt; if{ 4000 (>L:HydPress2,enum) }
+		</Value>
+	</Select>
+  </Element>
+
+  <Element>
+	<Select>
+		<Value>
+			(A:TURB ENG2 N1,Percent) 10 &lt; (L:HydPress2,enum) (G:Var1) >= &amp;&amp; if{ (L:HydPress2,enum) -- (>L:HydPress2,enum) }
+		</Value>
+	</Select>
+  </Element>
+
+  <Element>
+     <Position X="36" Y="4"/>
+      <Text X="127" Y="41" Length="4" Fixed="Yes" Font="Quartz" FontHeight="0" FontWeight="400" Charset="Default" Attributes="Normal" Adjust="Center" VerticalAdjust="Center" Multiline="No" Color="#00EE00" BackgroundColor="transparent" HilightColor="white" Bright="Yes" UseTransparency="Yes">
+
+         <String>%((L:HydPress2,enum))%!04d!</String>
+
+         <Failures>
+            <SYSTEM_ELECTRICAL_PANELS Action=""/>
+         </Failures>
+      </Text>
+    </Element>
+  
+  </Element>
+
+ <Mouse>
+  <Tooltip>Sys. 2 Hyd. Oil Press.</Tooltip>
+ </Mouse>
+
+</Gauge>
+
+

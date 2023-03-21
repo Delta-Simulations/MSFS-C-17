@@ -1,0 +1,181 @@
+<Gauge Name="Lights" Version="2.0">
+
+
+<Comment>
+*************************************************
+Cockpit Lights
+*************************************************
+[1] [0] (>K:2:[key_event_name])
+</Comment>
+
+<Element>
+<Select>
+<Value>
+
+<!--  LANDING/TAXI ===============-->
+(L:C17_LIGHTS_R_LDG, enum) 0 ==
+if{ 
+  1 (>K:TAXI_LIGHTS_OFF)
+  1 (>K:LANDING_LIGHTS_OFF)
+  0 (&gt;K:LIGHT_POTENTIOMETER_1_SET)
+  100 (&gt;K:LIGHT_POTENTIOMETER_10_SET)
+
+}
+(L:C17_LIGHTS_R_LDG, enum) 1 ==
+if{
+  1 (>K:TAXI_LIGHTS_ON)
+  1 (>K:LANDING_LIGHTS_ON)
+  50 (&gt;K:LIGHT_POTENTIOMETER_1_SET)
+}
+(L:C17_LIGHTS_R_LDG, enum) 2 ==
+if{ 
+  1 (>K:TAXI_LIGHTS_OFF)
+  1 (>K:LANDING_LIGHTS_ON)
+  100 (&gt;K:LIGHT_POTENTIOMETER_1_SET)
+}
+(L:C17_LIGHTS_L_LDG, enum) 0 ==
+if{ 
+  2 (>K:TAXI_LIGHTS_OFF)
+  2 (>K:LANDING_LIGHTS_OFF)
+  0 (&gt;K:LIGHT_POTENTIOMETER_2_SET)
+}
+(L:C17_LIGHTS_L_LDG, enum) 1 ==
+if{
+  2 (>K:TAXI_LIGHTS_ON)
+  2 (>K:LANDING_LIGHTS_ON)
+  50 (&gt;K:LIGHT_POTENTIOMETER_2_SET)
+}
+(L:C17_LIGHTS_L_LDG, enum) 2 ==
+if{ 
+  2 (>K:TAXI_LIGHTS_OFF)
+  2 (>K:LANDING_LIGHTS_ON)
+  100 (&gt;K:LIGHT_POTENTIOMETER_2_SET)
+}
+
+(L:C17_LIGHTS_L_LDG_WING, bool) 1 ==
+if{
+  4 (>K:LANDING_LIGHTS_ON)
+  100 (&gt;K:LIGHT_POTENTIOMETER_3_SET) 
+} els{
+  4 (>K:LANDING_LIGHTS_OFF)
+}
+
+(L:C17_LIGHTS_R_LDG_WING, bool) 1 ==
+if{ 
+  3 (>K:LANDING_LIGHTS_ON)
+} els{
+  3 (>K:LANDING_LIGHTS_OFF)
+}
+<!--  NAV ===============-->
+<!-- Beacon and strobe mode- Belly,top and bottom, all and strobes(WoW off) -->
+(L:C17_ANTICOLL_MODE, enum) 0 ==
+if{ 
+  1 (>K:STROBES_OFF)
+  1 (>K:BEACON_LIGHTS_OFF)
+  2 (>K:BEACON_LIGHTS_OFF)
+  0 (&gt;K:LIGHT_POTENTIOMETER_4_SET) 
+}
+(L:C17_ANTICOLL_MODE, enum) 1 ==
+if{
+  2 (>K:BEACON_LIGHTS_ON)
+}
+(L:C17_ANTICOLL_MODE, enum) 2 ==
+if{ 
+  2 (>K:BEACON_LIGHTS_ON)
+  1 (>K:BEACON_LIGHTS_ON)
+}
+(L:C17_ANTICOLL_MODE, enum) 3 ==
+(A:SIM ON GROUND,bool) 0 == and
+if{ 
+  1 (>K:STROBES_ON)
+  100 (&gt;K:LIGHT_POTENTIOMETER_4_SET)
+}
+
+(L:C17_LIGHTS_EPC, bool) 1 ==
+(L:C17_CPIT_ILLUM_MODE, enum) 0 != and
+if{ 
+  5 (>K:CABIN_LIGHTS_ON)
+  100 (&gt;K:LIGHT_POTENTIOMETER_16_SET)
+} els{
+  5 (>K:CABIN_LIGHTS_OFF)
+  0 (&gt;K:LIGHT_POTENTIOMETER_16_SET)
+}
+
+
+
+
+<!-- ILLUMINATION MODES-NVG(OFF), NORM, THUNDERSTORM(FULL) -->
+(L:C17_CPIT_ILLUM_MODE, enum) 0 ==
+if{ 
+  0 (&gt;K:LIGHT_POTENTIOMETER_11_SET)
+  0 (&gt;K:LIGHT_POTENTIOMETER_12_SET)
+  0 (&gt;K:LIGHT_POTENTIOMETER_13_SET)
+  0 (&gt;K:LIGHT_POTENTIOMETER_14_SET)
+  0 (&gt;K:LIGHT_POTENTIOMETER_15_SET)
+  0 (&gt;K:LIGHT_POTENTIOMETER_17_SET)
+}
+(L:C17_CPIT_ILLUM_MODE, enum) 2 ==
+if{ 
+  80 (&gt;K:LIGHT_POTENTIOMETER_11_SET)
+  80 (&gt;K:LIGHT_POTENTIOMETER_12_SET)
+  80 (&gt;K:LIGHT_POTENTIOMETER_13_SET)
+  80 (&gt;K:LIGHT_POTENTIOMETER_14_SET)
+  80 (&gt;K:LIGHT_POTENTIOMETER_15_SET)
+  80 (&gt;K:LIGHT_POTENTIOMETER_17_SET)
+}
+
+<!--  COCKPIT===============================================================================================-->
+
+<!-- Autopilot glaresheild LGT -->
+(A:LIGHT POTENTIOMETER:11, percent) 0 > (A:LIGHT GLARESHIELD:1, bool) 0 == and if{ 1 (&gt;K:GLARESHIELD_LIGHTS_TOGGLE) }
+(A:LIGHT POTENTIOMETER:11, percent) 0 == (A:LIGHT GLARESHIELD:1, bool) 1 == and if{ 1 (&gt;K:GLARESHIELD_LIGHTS_TOGGLE) }
+
+<!-- pilot flood LGT -->
+(A:LIGHT POTENTIOMETER:12, percent) 0 > (A:LIGHT CABIN:1, bool) 0 == and if{ 1 (&gt;K:TOGGLE_CABIN_LIGHTS) }
+(A:LIGHT POTENTIOMETER:12, percent) 0 == (A:LIGHT CABIN:1, bool) 1 == and if{ 1 (&gt;K:TOGGLE_CABIN_LIGHTS) }
+<!-- COpilot flood LGT -->
+(A:LIGHT POTENTIOMETER:13, percent) 0 > (A:LIGHT CABIN:2, bool) 0 == and if{ 2 (&gt;K:TOGGLE_CABIN_LIGHTS) }
+(A:LIGHT POTENTIOMETER:13, percent) 0 == (A:LIGHT CABIN:2, bool) 1 == and if{ 2 (&gt;K:TOGGLE_CABIN_LIGHTS) }
+<!-- Dome flood LGT -->
+(A:LIGHT POTENTIOMETER:14, percent) 0 > (A:LIGHT CABIN:3, bool) 0 == and if{ 3 (&gt;K:TOGGLE_CABIN_LIGHTS) }
+(A:LIGHT POTENTIOMETER:14, percent) 0 == (A:LIGHT CABIN:3, bool) 1 == and if{ 3 (&gt;K:TOGGLE_CABIN_LIGHTS) }
+<!-- Pedestal flood LGT -->
+(A:LIGHT POTENTIOMETER:15, percent) 0 > (A:LIGHT CABIN:4, bool) 0 == and if{ 4 (&gt;K:TOGGLE_CABIN_LIGHTS) }
+(A:LIGHT POTENTIOMETER:15, percent) 0 == (A:LIGHT CABIN:4, bool) 1 == and if{ 4 (&gt;K:TOGGLE_CABIN_LIGHTS) }
+<!-- Overhead flood LGT -->
+(A:LIGHT POTENTIOMETER:17, percent) 0 > (A:LIGHT CABIN:6, bool) 0 == and if{ 6 (&gt;K:TOGGLE_CABIN_LIGHTS) }
+(A:LIGHT POTENTIOMETER:17, percent) 0 == (A:LIGHT CABIN:6, bool) 1 == and if{ 6 (&gt;K:TOGGLE_CABIN_LIGHTS) }
+<!-- Cargo flood LGT -->
+(A:LIGHT POTENTIOMETER:18, percent) 0 > (A:LIGHT CABIN:7, bool) 0 == and if{ 7 (&gt;K:TOGGLE_CABIN_LIGHTS) }
+(A:LIGHT POTENTIOMETER:18, percent) 0 == (A:LIGHT CABIN:7, bool) 1 == and if{ 7 (&gt;K:TOGGLE_CABIN_LIGHTS) }
+
+
+
+<!-- POTENTIOMETER LGTS -->
+<!-- NAV -->
+(A:LIGHT POTENTIOMETER:5, percent) 0 > (A:LIGHT NAV:1, bool) 0 == and if{ 1 (&gt;K:TOGGLE_NAV_LIGHTS) }
+(A:LIGHT POTENTIOMETER:5, percent) 0 == (A:LIGHT NAV:1, bool) 1 == and if{ 1 (&gt;K:TOGGLE_NAV_LIGHTS) }
+<!-- AR Floodlight-tied to staging lights as well -->
+(A:LIGHT POTENTIOMETER:6, percent) 0 > (A:LIGHT LOGO:1, bool) 0 == and if{ 1 (&gt;K:TOGGLE_LOGO_LIGHTS) }
+(A:LIGHT POTENTIOMETER:6, percent) 0 == (A:LIGHT LOGO:1, bool) 1 == and if{ 1 (&gt;K:TOGGLE_LOGO_LIGHTS) }
+<!-- Wing check -->
+(A:LIGHT POTENTIOMETER:7, percent) 0 > (A:LIGHT WING:1, bool) 0 == and if{ 1 (&gt;K:TOGGLE_WING_LIGHTS) }
+(A:LIGHT POTENTIOMETER:7, percent) 0 == (A:LIGHT WING:1, bool) 1 == and if{ 1 (&gt;K:TOGGLE_WING_LIGHTS) }
+<!-- UARRSI SPILLWAY LGT -->
+(A:LIGHT POTENTIOMETER:8, percent) 0 > (A:LIGHT LOGO:2, bool) 0 == and if{ 2 (&gt;K:TOGGLE_LOGO_LIGHTS) }
+(A:LIGHT POTENTIOMETER:8, percent) 0 == (A:LIGHT LOGO:2, bool) 1 == and if{ 2 (&gt;K:TOGGLE_LOGO_LIGHTS) }
+<!-- TRAIL FORMATION -->
+(A:LIGHT POTENTIOMETER:9, percent) 0 > (A:LIGHT NAV:2, bool) 0 == and if{ 2 (&gt;K:TOGGLE_NAV_LIGHTS) }
+(A:LIGHT POTENTIOMETER:9, percent) 0 == (A:LIGHT NAV:2, bool) 1 == and if{ 2 (&gt;K:TOGGLE_NAV_LIGHTS) }
+
+<!-- TRAIL FORMATION -->
+(A:LIGHT POTENTIOMETER:9, percent) 0 > (A:LIGHT NAV:3, bool) 0 == and if{ 3 (&gt;K:TOGGLE_NAV_LIGHTS) }
+(A:LIGHT POTENTIOMETER:9, percent) 0 == (A:LIGHT NAV:3, bool) 1 == and if{ 3 (&gt;K:TOGGLE_NAV_LIGHTS) }
+
+
+</Value>
+</Select>
+</Element> 
+
+
+</Gauge>

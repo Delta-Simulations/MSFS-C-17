@@ -1,0 +1,19 @@
+<Gauge Name="HUD Switch" Version="C-17" Author="Herbert Pralle">
+  <Image Name="HUD_switch_backgrnd.bmp" Luminous="0"/>
+  <Element>
+    <Position X="0" Y="0"/>
+    <Select>
+      <Value>(L:HUD on,bool)</Value>
+      <Case Value="1">
+        <Image Name="HUD_switch_on.bmp"/>
+      </Case>
+    </Select>
+  </Element>
+  <Mouse>
+    <Area Left="64" Top="3" Width="50" Height="120">
+      <Tooltip>HUD On/Off</Tooltip>
+      <Cursor Type="Hand"/>
+      <Click Repeat="Yes">(L:HUD on,bool) ! (>L:HUD on,bool)</Click>
+    </Area>
+  </Mouse>
+</Gauge>

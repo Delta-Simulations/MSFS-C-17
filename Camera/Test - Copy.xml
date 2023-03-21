@@ -1,0 +1,21 @@
+<ThumbnailFile Version="1.0">
+	<ThumbnailGroup SubFolder="">
+		<Thumbnail Width="1920" Height="1080" Camera="Custom" CaptureAlpha="0" File="thumbnail" MakeUniqueFilename="1" ShowsGround="0" ShowsHangar="0" CloseHangarDoors="0">
+			<CustomCamera OffsetX="47.00" OffsetY="7.70" OffsetZ="-9.40" Yaw="-1.799999952" Roll="0.000000000" Pitch="0.000000000" Fov="0.200001001"/>
+		</Thumbnail>
+	</ThumbnailGroup>
+	<ThumbnailGroup SubFolder="">
+		<Thumbnail Width="3840" Height="1600" Camera="Custom" CaptureAlpha="0" File="thumbnail" MakeUniqueFilename="1" ShowsGround="1" ShowsHangar="0" CloseHangarDoors="0">
+			<CustomCamera OffsetX="45.03" OffsetY="-2.97" OffsetZ="65.42" Yaw="-8.710691452" Roll="0.000000000" Pitch="0.052128538" Fov="0.149320930"/>
+		</Thumbnail>
+	</ThumbnailGroup>
+	<ThumbnailGroup SubFolder="">
+		<Thumbnail Width="1920" Height="1080" Camera="Custom" CaptureAlpha="0" File="thumbnail" MakeUniqueFilename="1" ShowsGround="1" ShowsHangar="0" CloseHangarDoors="1">
+			<CustomCamera OffsetX="-1.01" OffsetY="2.59" OffsetZ="16.11" Yaw="0.482264608" Roll="0.000000000" Pitch="-0.379543811" Fov="0.629308939"/>
+		</Thumbnail>
+		<Thumbnail Width="1920" Height="1080" Camera="Custom" CaptureAlpha="0" File="thumbnail" MakeUniqueFilename="1" ShowsGround="1" ShowsHangar="0" CloseHangarDoors="1">
+			<CustomCamera OffsetX="-31.77" OffsetY="-2.50" OffsetZ="76.52" Yaw="-3.613035679" Roll="0.000000000" Pitch="0.049528331" Fov="0.205310568"/>
+		</Thumbnail>
+	</ThumbnailGroup>
+</ThumbnailFile>
+

@@ -1,0 +1,17 @@
+<Gauge Name="Total fuel" Version="C-17vc2" Author="Herbert Pralle">
+  <Image Name="Totalfuel_bg_vc2.bmp"/>
+  <Element>
+    <Visible>(A:Circuit general panel on, bool)</Visible>
+     
+  <Element>
+    <Position X="0" Y="0"/>
+    <Select>
+      <Value>(A:Fuel total quantity weight,pounds) 16000 &lt;</Value>
+      <Case Value="1">
+        <Image Name="Totalfuel_low.bmp" Bright="1"/>
+      </Case>
+    </Select>
+  </Element>
+
+  </Element>
+</Gauge>

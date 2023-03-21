@@ -1,0 +1,127 @@
+<Gauge Name="ATT" Version="C-17" Author="Herbert Pralle">
+  <Element>
+    <Position X="0" Y="0"/>
+    <Image Name="ATT_card.bmp" Luminous="0"/>
+  </Element>
+  <!--==== NUMBER ====-->
+  <Element>
+    <Position X="0" Y="0"/>
+    <MaskImage Name="Att_number_mask.bmp">
+      <Axis X="136" Y="140"/>
+    </MaskImage>
+    <Image Name="Att_number.bmp" Luminous="0">
+      <Axis X="130" Y="250"/>
+    </Image>
+    <Shift>
+      <Value Minimum="-90" Maximum="90">(A:Attitude indicator pitch degrees,degrees) /-/</Value>
+      <Scale Y="2"/>
+      <Failures>
+        <SYSTEM_ELECTRICAL_PANELS Action="-20"/>
+        <SYSTEM_ELECTRICAL_AVIONICS Action="-20"/>
+      </Failures>
+    </Shift>
+    <Rotate>
+      <Value>(A:Attitude indicator bank degrees,radians)</Value>
+      <Failures>
+        <SYSTEM_ELECTRICAL_PANELS Action="-20"/>
+        <SYSTEM_ELECTRICAL_AVIONICS Action="-20"/>
+      </Failures>
+    </Rotate>
+  </Element>
+  <!--==== SHADDOW ====-->
+  <Element>
+    <Position X="0" Y="0"/>
+    <Image Name="ATT_alpha.bmp" Alpha="1"/>
+  </Element>
+  <!--==== BANK INDICATOR ====-->
+  <Element>
+    <Position X="136" Y="140"/>
+    <Image Name="ATT_pointer.bmp" Luminous="0">
+      <Axis X="9" Y="102"/>
+    </Image>
+    <Rotate>
+      <Value>(A:Attitude indicator bank degrees,radians)</Value>
+      <Failures>
+        <SYSTEM_ELECTRICAL_PANELS Action="-20"/>
+        <SYSTEM_ELECTRICAL_AVIONICS Action="-20"/>
+      </Failures>
+    </Rotate>
+  </Element>
+  <!--==== SLIP ====-->
+  <Element>
+    <Position X="101" Y="234"/>
+    <MaskImage Name="ATT_ball_mask.bmp">
+      <Axis X="30" Y="1"/>
+    </MaskImage>
+    <Image Name="ATT_ball.bmp" Luminous="0">
+      <Nonlinearity>
+        <Item Value="-1" X="30" Y="-1"/>
+        <Item Value="0" X="0" Y="0"/>
+        <Item Value="1" X="-30" Y="-1"/>
+      </Nonlinearity>
+    </Image>
+    <Shift>
+      <Value Minimum="-1" Maximum="1">(A:Turn coordinator ball,position)</Value>
+      <Delay PixelsPerSecond="40"/>
+    </Shift>
+  </Element>
+  <!--==== ADJUST WING ====-->
+  <Element>
+    <Position X="28" Y="133"/>
+    <Image Name="Att_wing.bmp" Luminous="0"/>
+    <Shift>
+      <Value Minimum="-1" Maximum="3">(L:ATT adjust,enum)</Value>
+      <Scale Y="-3"/>
+    </Shift>
+  </Element>
+  <Element>
+    <Position X="235" Y="246"/>
+    <Image Name="ATT_knob.bmp">
+      <Axis X="20" Y="20"/>
+    </Image>
+    <Rotate>
+      <Value>(L:ATT adjust,enum)</Value>
+      <Nonlinearity>
+        <Item Value="-1" Degrees="330"/>
+        <Item Value="0" Degrees="0"/>
+        <Item Value="1" Degrees="30"/>
+        <Item Value="2" Degrees="60"/>
+        <Item Value="3" Degrees="90"/>
+      </Nonlinearity>
+    </Rotate>
+  </Element>
+  <!--==== OFF FLAG ====-->
+  <Element>
+    <Position X="21" Y="41"/>
+    <Select>
+      <Value>(A:CIRCUIT GENERAL PANEL ON,bool) (A:Avionics master switch,bool) &amp;&amp;</Value>
+      <Case Value="0">
+        <Image Name="ATT_flag.bmp" Luminous="0">
+          <Axis X="0" Y="0"/>
+        </Image>
+      </Case>
+    </Select>
+  </Element>
+  <!--==== REFLECTION ====-->
+  <Element>
+    <Position X="0" Y="0"/>
+    <Visible>(P:TIME OF DAY,enum) (A:Light Panel,bool) + 3 &lt;</Visible>
+    <Image Name="ATT_rfl.bmp" Alpha="Yes"/>
+  </Element>
+  <Mouse>
+    <Area Left="0" Top="0" Width="268" Height="200">
+      <Tooltip ID="TOOLTIPTEXT_ATTITUDE_INDICATOR_BANK_PITCH"/>
+    </Area>
+    <Area Left="192" Top="212" Width="80" Height="60">
+      <Tooltip>Attitude Adjust</Tooltip>
+      <Area Right="40">
+        <Cursor Type="DownArrow"/>
+        <Click Repeat="No">(L:ATT adjust,enum) 1 - -1 max (>L:ATT adjust,enum) }</Click>
+      </Area>
+      <Area Left="40">
+        <Cursor Type="UpArrow"/>
+        <Click Repeat="No">(L:ATT adjust,enum) 1 + 3 min (>L:ATT adjust,enum) }</Click>
+      </Area>
+    </Area>
+  </Mouse>
+</Gauge>

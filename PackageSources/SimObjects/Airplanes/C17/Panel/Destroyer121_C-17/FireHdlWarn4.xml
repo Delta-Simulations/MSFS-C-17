@@ -1,0 +1,23 @@
+<Gauge Name="Fire Extng Hdl Warn 4 - Virtavia C-17" Version="1.0">
+
+  <Element>
+  	<Visible>(A:ELECTRICAL MASTER BATTERY,bool) (A:TURB ENG1 N1,Percent) 20 &gt; (A:TURB ENG2 N1,Percent) 20 &gt; (A:TURB ENG3 N1,Percent) 20 &gt; (A:TURB ENG4 N1,Percent) 20 &gt; || || || ||</Visible>
+ 
+    <Element>
+      <Select>
+         <Value>(L:C17_FireExtng4,bool)</Value>
+         <Case Value="1">
+            <Image Name="FireHdlWarn4.bmp"  Bright="1"/>
+         </Case>
+      </Select>
+   </Element>
+   
+  </Element>
+
+   <Mouse>
+      <ToolTip>Eng 4 Fire Extng Hdl Pulled</ToolTip>
+   </Mouse>
+
+</Gauge>
+
+

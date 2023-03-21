@@ -1,0 +1,63 @@
+<Gauge Name="BDHI" Version="C-17vc1" Author="Herbert Pralle">
+  <Element>
+    <Position X="0" Y="0"/>
+    <Image Name="BDHI_Card_vc1.bmp" Luminous="1"/>
+  </Element>
+  
+  <!--==== DISPLAY ====-->
+  <Element>
+    <Visible>(A:Circuit general panel on, bool)</Visible>
+    <Element>
+      <Position X="38" Y="30"/>
+      <Image Name="BDHI_screen.bmp" Bright="1"/>
+    </Element>
+    <Element>
+      <Position X="147" Y="30"/>
+      <Image Name="BDHI_screen.bmp" Bright="1"/>
+    </Element>
+    <Element>
+      <Position X="38" Y="30"/>
+      <FormattedText X="80" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="32" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((L:BDHI select1,enum) 1 ==)%{if}%ADF %{else}%((A:NAV1 signal,number) abs 10 &lt;)%{if}%--- %{else}%((A:NAV1 DME,nmiles) 100 >=)%{if}%((A:NAV1 DME,nmiles))%!d!%{else}%((A:NAV1 DME,nmiles) abs)%!02.1f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="147" Y="30"/>
+      <FormattedText X="80" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="32" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((L:BDHI select2,enum) 1 ==)%{if}%ADF %{else}%((A:NAV2 signal,number) abs 10 &lt;)%{if}%--- %{else}%((A:NAV2 DME,nmiles) 100 >=)%{if}%((A:NAV2 DME,nmiles))%!d!%{else}%((A:NAV2 DME,nmiles) abs)%!02.1f!%</String>
+      </FormattedText>
+    </Element>
+  </Element>
+  <Element>
+    <Position X="38" Y="30"/>
+    <Select>
+      <Value>(L:digit dim,enum)</Value>
+      <Case Value="1">
+        <Image Name="BDHI_dim1.bmp" Alpha="1"/>
+      </Case>
+      <Case Value="2">
+        <Image Name="BDHI_dim2.bmp" Alpha="1"/>
+      </Case>
+      <Case Value="3">
+        <Image Name="BDHI_dim3.bmp" Alpha="1"/>
+      </Case>
+    </Select>
+  </Element>
+  <Element>
+    <Position X="147" Y="30"/>
+    <Select>
+      <Value>(L:digit dim,enum)</Value>
+      <Case Value="1">
+        <Image Name="BDHI_dim1.bmp" Alpha="Yes"/>
+      </Case>
+      <Case Value="2">
+        <Image Name="BDHI_dim2.bmp" Alpha="Yes"/>
+      </Case>
+      <Case Value="3">
+        <Image Name="BDHI_dim3.bmp" Alpha="Yes"/>
+      </Case>
+    </Select>
+  </Element>
+  
+ 
+</Gauge>

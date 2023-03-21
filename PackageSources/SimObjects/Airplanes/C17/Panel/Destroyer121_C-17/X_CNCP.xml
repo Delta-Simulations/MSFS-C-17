@@ -1,0 +1,660 @@
+<Gauge Name="CNCP - Communication Navigation Control Panel" Version="C-17" Author="Herbert Pralle">
+  <Image Name="CNCP_backgrnd.bmp"/>
+  <Macro Name="StartUpPresets">(A:COM1 active frequency,Megahertz) 10 * int 10 / s0 (A:COM1 standby frequency,Megahertz) 10 * int 10 / s1 (A:COM2 active frequency,Megahertz) 10 * nt 10 / s2 (A:COM2 standby frequency,Megahertz) 10 * nt 10 / s3 (A:NAV1 active frequency,Megahertz) s4 (A:NAV1 standby frequency,Megahertz) s5 (A:NAV2 active frequency,Megahertz) s6 (A:NAV2 standby frequency,Megahertz) s7 l0 (>L:C1Input,number) l0 (>L:C1Channel1,number) l1 (>L:C1Channel2,number) l2 (>L:C2Input,number) l2 (>L:C2Channel1,number) l3 (>L:C2Channel2,number) l4 (>L:N1Input,number) l4 (>L:N1Channel1,number) l5 (>L:N1Channel2,number) l5 (>L:N2Input,number) l6 (>L:N2Channel1,number) l6 (>L:N2Channel2,number)</Macro>
+  <Element>
+    <Select>
+      <Value>(L:CNCP INI,bool) 0 == if{ @StartUpPresets 1 (>L:CNCP INI,bool) }</Value>
+    </Select>
+  </Element>
+  <!--==== BUTTONS ====-->
+  <Element>
+    <Element>
+      <Position X="20" Y="28"/>
+      <Select>
+        <Value>(L:CNCP xfer,bool)</Value>
+        <Case Value="1">
+          <Image Name="CNCP_button1.bmp" Luminous="0"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="494" Y="28"/>
+      <Select>
+        <Value>(L:CNCP ident,bool)</Value>
+        <Case Value="1">
+          <Image Name="CNCP_button1.bmp" Luminous="0"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="44" Y="130"/>
+      <Select>
+        <Value>(L:CNCP com1,bool)</Value>
+        <Case Value="1">
+          <Image Name="CNCP_button2.bmp" Luminous="0"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="44" Y="178"/>
+      <Select>
+        <Value>(L:CNCP com2,bool)</Value>
+        <Case Value="1">
+          <Image Name="CNCP_button2.bmp" Luminous="0"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="109" Y="130"/>
+      <Select>
+        <Value>(L:CNCP nav1,bool)</Value>
+        <Case Value="1">
+          <Image Name="CNCP_button2.bmp" Luminous="0"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="109" Y="178"/>
+      <Select>
+        <Value>(L:CNCP nav2,bool)</Value>
+        <Case Value="1">
+          <Image Name="CNCP_button2.bmp" Luminous="0"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="378" Y="130"/>
+      <Select>
+        <Value>(L:CNCP adf,bool)</Value>
+        <Case Value="1">
+          <Image Name="CNCP_button2.bmp" Luminous="0"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="378" Y="178"/>
+      <Select>
+        <Value>(L:CNCP display mode,bool)</Value>
+        <Case Value="1">
+          <Image Name="CNCP_button2.bmp" Luminous="0"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="443" Y="130"/>
+      <Select>
+        <Value>(L:CNCP iff,bool)</Value>
+        <Case Value="1">
+          <Image Name="CNCP_button2.bmp" Luminous="0"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="443" Y="178"/>
+      <Select>
+        <Value>(L:CNCP audio,bool)</Value>
+        <Case Value="0">
+          <Image Name="CNCP_button2.bmp" Luminous="0"/>
+        </Case>
+      </Select>
+    </Element>
+  </Element>
+  <Element>
+    <Position X="0" Y="0"/>
+    <Image Name="CNCP_decals.bmp" Luminous="0"/>
+  </Element>
+  <Element>
+    <Visible>(A:Circuit general panel on, bool)</Visible>
+    <Element>
+      <Position X="20" Y="28"/>
+      <Select>
+        <Value>(L:CNCP xfer,bool)</Value>
+        <Case Value="1">
+          <Image Name="CNCP_xfer.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="494" Y="28"/>
+      <Select>
+        <Value>(L:CNCP ident,bool)</Value>
+        <Case Value="1">
+          <Image Name="CNCP_ident.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="44" Y="130"/>
+      <Select>
+        <Value>(L:CNCP com1,bool)</Value>
+        <Case Value="1">
+          <Image Name="CNCP_com1.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="44" Y="178"/>
+      <Select>
+        <Value>(L:CNCP com2,bool)</Value>
+        <Case Value="1">
+          <Image Name="CNCP_com2.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="109" Y="130"/>
+      <Select>
+        <Value>(L:CNCP nav1,bool)</Value>
+        <Case Value="1">
+          <Image Name="CNCP_nav1.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="108" Y="178"/>
+      <Select>
+        <Value>(L:CNCP nav2,bool)</Value>
+        <Case Value="1">
+          <Image Name="CNCP_nav2.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="378" Y="130"/>
+      <Select>
+        <Value>(L:CNCP adf,bool)</Value>
+        <Case Value="1">
+          <Image Name="CNCP_adf.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="378" Y="178"/>
+      <Select>
+        <Value>(L:CNCP display mode,bool)</Value>
+        <Case Value="1">
+          <Image Name="CNCP_mode.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="443" Y="130"/>
+      <Select>
+        <Value>(L:CNCP iff,bool)</Value>
+        <Case Value="1">
+          <Image Name="CNCP_iff.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="443" Y="178"/>
+      <Select>
+        <Value>(L:CNCP audio,bool)</Value>
+        <Case Value="0">
+          <Image Name="CNCP_audio.bmp" Luminous="0"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="257" Y="255"/>
+      <Select>
+        <Value>(L:CNCP E,bool)</Value>
+        <Case Value="1">
+          <Image Name="CNCP_E.bmp" Luminous="1"/>
+        </Case>
+      </Select>
+    </Element>
+  </Element>
+  <!--==== DISPLAY ====-->
+  <Element>
+    <Visible>(A:Circuit general panel on, bool)</Visible>
+    <Element>
+      <Position X="0" Y="0"/>
+      <Image Name="CNCP_screen.bmp" Bright="1"/>
+    </Element>
+    <!--C1-->
+    <Element>
+      <Visible>(L:CNCP mode,enum) 0 ==</Visible>
+      <Element>
+        <Position X="102" Y="26"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String>%((L:CNCP show channel,bool))%{if}%CH %((L:C1,enum))%!02d!%{else}%MHz%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="102" Y="72"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String>%((A:Com active frequency:1,Megahertz))%!3.2f!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="218" Y="26"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String>C1</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="218" Y="72"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String/>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="334" Y="26"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String>MHz</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="334" Y="72"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String>%((A:Com standby frequency:1,Megahertz))%!3.2f!%</String>
+        </FormattedText>
+      </Element>
+    </Element>
+    <!--C2-->
+    <Element>
+      <Visible>(L:CNCP mode,enum) 1 ==</Visible>
+      <Element>
+        <Position X="102" Y="26"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String>%((L:CNCP show channel,bool))%{if}%CH %((L:C2,enum))%!02d!%{else}%MHz%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="102" Y="72"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String>%((A:Com active frequency:2,Megahertz))%!3.2f!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="218" Y="26"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String>C2</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="218" Y="72"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String/>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="334" Y="26"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String>MHz</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="334" Y="72"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String>%((A:Com standby frequency:2,Megahertz))%!3.2f!%</String>
+        </FormattedText>
+      </Element>
+    </Element>
+    <!--N1-->
+    <Element>
+      <Visible>(L:CNCP mode,enum) 2 ==</Visible>
+      <Element>
+        <Position X="102" Y="26"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String>%((L:CNCP show channel,bool))%{if}%CH %((L:N1,enum))%!02d!%{else}%((L:CNCP show ident,bool))%{if}%ID%{else}%MHz%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="102" Y="72"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String>%((L:CNCP show ident,bool))%{if}%((A:NAV1 signal, number) abs 10 >)%{if}%((A:Nav1 ident, string))%!s!%{else}% --- %{end}%{else}%((A:Nav active frequency:1,Megahertz))%!3.2f!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="218" Y="26"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String>V/L1</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="218" Y="72"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String>%((A:NAV1 OBS,degrees))%!03d!%&#176;%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="334" Y="26"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String>MHz</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="334" Y="72"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String>%((A:Nav standby frequency:1,Megahertz))%!3.2f!%</String>
+        </FormattedText>
+      </Element>
+    </Element>
+    <!--N2-->
+    <Element>
+      <Visible>(L:CNCP mode,enum) 3 ==</Visible>
+      <Element>
+        <Position X="102" Y="26"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String>%((L:CNCP show channel,bool))%{if}%CH %((L:N2,enum))%!02d!%{else}%((L:CNCP show ident,bool))%{if}%ID%{else}%MHz%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="102" Y="72"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String>%((L:CNCP show ident,bool))%{if}%((A:NAV2 signal, number) abs 10 >)%{if}%((A:Nav2 ident, string))%!s!%{else}% --- %{end}%{else}%((A:Nav active frequency:2,Megahertz))%!3.2f!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="218" Y="26"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String>V/L2</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="218" Y="72"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String/>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="334" Y="26"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String>MHz</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="334" Y="72"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String>%((A:Nav standby frequency:2,Megahertz))%!3.2f!%</String>
+        </FormattedText>
+      </Element>
+    </Element>
+    <!--ADF-->
+    <Element>
+      <Visible>(L:CNCP mode,enum) 4 ==</Visible>
+      <Element>
+        <Position X="102" Y="26"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String>%((L:CNCP show ident,bool))%{if}%ID%{else}%kHz%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Element>
+          <Visible>(L:CNCP adf mode,bool) 0 ==</Visible>
+          <Position X="102" Y="72"/>
+          <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+            <String>%((L:CNCP show ident,bool))%{if}%((A:ADF signal:1, number) 10 >)%{if}%((A:ADF ident:1, string))%!s!%{else}% --- %{end}%{else}%((A:ADF active frequency:1, kilohertz))%!4.1f!%{end}%</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Visible>(L:CNCP adf mode,bool) 1 ==</Visible>
+          <Position X="102" Y="72"/>
+          <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+            <String>%((L:CNCP show ident,bool))%{if}%((A:ADF signal:2, number) 10 >)%{if}%((A:ADF ident:2, string))%!s!%{else}% --- %{end}%{else}%((A:ADF active frequency:2, kilohertz))%!4.1f!%{end}%</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <Element>
+        <Position X="218" Y="26"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String>ADF</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="218" Y="72"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String/>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="334" Y="26"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String>%kHz%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Element>
+          <Visible>(L:CNCP adf mode,bool) 0 ==</Visible>
+          <Position X="334" Y="72"/>
+          <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+            <String>%((L:CNCP show ident,bool))%{if}%((A:ADF signal:2, number) 10 >)%{if}%((A:ADF ident:2, string))%!s!%{else}% --- %{end}%{else}%((A:ADF active frequency:2, kilohertz))%!4.1f!%{end}%</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Visible>(L:CNCP adf mode,bool) 1 ==</Visible>
+          <Position X="334" Y="72"/>
+          <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+            <String>%((L:CNCP show ident,bool))%{if}%((A:ADF signal:1, number) 10 >)%{if}%((A:ADF ident:1, string))%!s!%{else}% --- %{end}%{else}%((A:ADF active frequency:1, kilohertz))%!4.1f!%{end}%</String>
+          </FormattedText>
+        </Element>
+      </Element>
+    </Element>
+    <!--TRNSP-->
+    <Element>
+      <Visible>(L:CNCP mode,enum) 5 ==</Visible>
+      <Element>
+        <Position X="102" Y="26"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String>CODE</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="102" Y="72"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String>%((A:transponder1 code,Hz))%!04d!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="218" Y="26"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String>IFF</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="218" Y="72"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String/>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="334" Y="26"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String/>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="334" Y="72"/>
+        <FormattedText X="112" Y="32" Font="QUARTZ" FontSize="32" LineSpacing="36" Adjust="Center" Color="#BDBDDF" Bright="Yes">
+          <String/>
+        </FormattedText>
+      </Element>
+    </Element>
+  </Element>
+  <Element>
+    <Position X="0" Y="0"/>
+    <Select>
+      <Value>(L:digit dim,enum)</Value>
+      <Case Value="1">
+        <Image Name="CNCP_dim1.bmp" Alpha="Yes"/>
+      </Case>
+      <Case Value="2">
+        <Image Name="CNCP_dim2.bmp" Alpha="Yes"/>
+      </Case>
+      <Case Value="3">
+        <Image Name="CNCP_dim3.bmp" Alpha="Yes"/>
+      </Case>
+    </Select>
+  </Element>
+  <Element>
+    <Position X="0" Y="0"/>
+    <Visible>(P:TIME OF DAY,enum) (A:Light Panel,bool) + 3 &lt;</Visible>
+    <Image Name="CNCP_rfl.bmp" Alpha="Yes"/>
+  </Element>
+  <!--==== KNOBS ====-->
+  <Element>
+    <Position X="230" Y="192"/>
+    <Image Name="CNCP_knob1.bmp" PointsTo="North">
+      <Axis X="26" Y="26"/>
+    </Image>
+    <Rotate>
+      <Value>(L:CNCP frq1,enum)</Value>
+      <Nonlinearity>
+        <Item Value="0" Degrees="0"/>
+        <Item Value="10" Degrees="180"/>
+      </Nonlinearity>
+    </Rotate>
+  </Element>
+  <Element>
+    <Position X="204" Y="165"/>
+    <Image Name="CNCP_knob_alpha.bmp" Alpha="1"/>
+  </Element>
+  <Element>
+    <Position X="230" Y="192"/>
+    <Image Name="CNCP_knob2.bmp" PointsTo="North">
+      <Axis X="22" Y="22"/>
+    </Image>
+  </Element>
+  <Element>
+    <Position X="230" Y="192"/>
+    <Image Name="CNCP_knob3.bmp" PointsTo="North">
+      <Axis X="19" Y="19"/>
+    </Image>
+    <Rotate>
+      <Value>(L:CNCP frq2,enum)</Value>
+      <Nonlinearity>
+        <Item Value="0" Degrees="0"/>
+        <Item Value="10" Degrees="180"/>
+      </Nonlinearity>
+    </Rotate>
+  </Element>
+  <Element>
+    <Position X="316" Y="194"/>
+    <Image Name="CNCP_knob4.bmp" PointsTo="North">
+      <Axis X="20" Y="20"/>
+    </Image>
+    <Rotate>
+      <Value>(L:CNCP crs,enum)</Value>
+      <Nonlinearity>
+        <Item Value="0" Degrees="0"/>
+        <Item Value="10" Degrees="180"/>
+      </Nonlinearity>
+    </Rotate>
+  </Element>
+  <!--==== MACROS ====-->
+  <Macro Name="ADF10INC">(L:CNCP adf mode,bool) if{ (>K:ADF1_WHOLE_INC) (>K:ADF1_WHOLE_INC) (>K:ADF1_WHOLE_INC) (>K:ADF1_WHOLE_INC) (>K:ADF1_WHOLE_INC) (>K:ADF1_WHOLE_INC) (>K:ADF1_WHOLE_INC) (>K:ADF1_WHOLE_INC) (>K:ADF1_WHOLE_INC) (>K:ADF1_WHOLE_INC) } els{ (>K:ADF2_WHOLE_INC) (>K:ADF2_WHOLE_INC) (>K:ADF2_WHOLE_INC) (>K:ADF2_WHOLE_INC) (>K:ADF2_WHOLE_INC) (>K:ADF2_WHOLE_INC) (>K:ADF2_WHOLE_INC) (>K:ADF2_WHOLE_INC) (>K:ADF2_WHOLE_INC) (>K:ADF2_WHOLE_INC) }</Macro>
+  <Macro Name="ADF10DEC">(L:CNCP adf mode,bool) if{ (>K:ADF1_WHOLE_DEC) (>K:ADF1_WHOLE_DEC) (>K:ADF1_WHOLE_DEC) (>K:ADF1_WHOLE_DEC) (>K:ADF1_WHOLE_DEC) (>K:ADF1_WHOLE_DEC) (>K:ADF1_WHOLE_DEC) (>K:ADF1_WHOLE_DEC) (>K:ADF1_WHOLE_DEC) (>K:ADF1_WHOLE_DEC) } els{ (>K:ADF2_WHOLE_DEC) (>K:ADF2_WHOLE_DEC) (>K:ADF2_WHOLE_DEC) (>K:ADF2_WHOLE_DEC) (>K:ADF2_WHOLE_DEC) (>K:ADF2_WHOLE_DEC) (>K:ADF2_WHOLE_DEC) (>K:ADF2_WHOLE_DEC) (>K:ADF2_WHOLE_DEC) (>K:ADF2_WHOLE_DEC) }</Macro>
+  <Macro Name="ADFINC">(L:CNCP adf mode,bool) if{ (>K:ADF_FRACT_INC_CARRY) (>K:ADF_FRACT_INC_CARRY) (>K:ADF_FRACT_INC_CARRY) (>K:ADF_FRACT_INC_CARRY) (>K:ADF_FRACT_INC_CARRY) } els{ (>K:ADF2_FRACT_INC_CARRY) (>K:ADF2_FRACT_INC_CARRY) (>K:ADF2_FRACT_INC_CARRY) (>K:ADF2_FRACT_INC_CARRY) (>K:ADF2_FRACT_INC_CARRY) }</Macro>
+  <Macro Name="ADFDEC">(L:CNCP adf mode,bool) if{ (>K:ADF_RADIO_FRACT_DEC_CARRY) (>K:ADF_FRACT_DEC_CARRY) (>K:ADF_FRACT_DEC_CARRY) (>K:ADF_FRACT_DEC_CARRY) (>K:ADF_FRACT_DEC_CARRY) } els{ (>K:ADF2_FRACT_DEC_CARRY) (>K:ADF2_FRACT_DEC_CARRY) (>K:ADF2_FRACT_DEC_CARRY) (>K:ADF2_FRACT_DEC_CARRY) (>K:ADF2_FRACT_DEC_CARRY) }</Macro>
+  <Macro Name="TRN10INC">(A:transponder1 code,Hz) 1000 / flr s0 (A:transponder1 code,Hz) 100 / flr l0 10 * - 7 == if{ (>K:XPNDR_1000_INC) (>K:XPNDR_100_INC) } els{ (>K:XPNDR_100_INC) }</Macro>
+  <Macro Name="TRN10DEC">(A:transponder1 code,Hz) 1000 / flr s0 (A:transponder1 code,Hz) 100 / flr l0 10 * - 0 == if{ (>K:XPNDR_1000_DEC) (>K:XPNDR_100_DEC) } els{ (>K:XPNDR_100_DEC) }</Macro>
+  <Macro Name="TRNINC">(>K:XPNDR_INC_CARRY)</Macro>
+  <Macro Name="TRNDEC">(>K:XPNDR_DEC_CARRY)</Macro>
+  <Macro Name="C1ChannelINC">(L:C1,enum) 5 > if{ 1 (>L:C1,enum) } els{ (L:C1,enum) 1 + (>L:C1,enum) } (L:C1Channel6,number) (L:C1Channel5,number) (L:C1Channel4,number) (L:C1Channel3,number) (L:C1Channel2,number) (L:C1Channel1,number) 1 7 (L:C1,enum) case 100 - 100 * s0 1000 / flr s1 l0 100 / flr l1 10 * - s2 l0 10 / flr l1 100 * - l2 10 * - s3 l0 l1 1000 * - l2 100 * - l3 10 * - s4 l3 16 * + l2 256 * + l1 4096 * + (>K:COM_RADIO_SET)</Macro>
+  <Macro Name="C1ChannelDEC">(L:C1,enum) 2 &lt; if{ 6 (>L:C1,enum) } els{ (L:C1,enum) 1 - (>L:C1,enum) } (L:C1Channel6,number) (L:C1Channel5,number) (L:C1Channel4,number) (L:C1Channel3,number) (L:C1Channel2,number) (L:C1Channel1,number) 1 7 (L:C1,enum) case 100 - 100 * s0 1000 / flr s1 l0 100 / flr l1 10 * - s2 l0 10 / flr l1 100 * - l2 10 * - s3 l0 l1 1000 * - l2 100 * - l3 10 * - s4 l3 16 * + l2 256 * + l1 4096 * + (>K:COM_RADIO_SET)</Macro>
+  <Macro Name="C2ChannelINC">(L:C2,enum) 5 > if{ 1 (>L:C2,enum) } els{ (L:C2,enum) 1 + (>L:C2,enum) } (L:C2Channel6,number) (L:C2Channel5,number) (L:C2Channel4,number) (L:C2Channel3,number) (L:C2Channel2,number) (L:C2Channel1,number) 1 7 (L:C2,enum) case 100 - 100 * s0 1000 / flr s1 l0 100 / flr l1 10 * - s2 l0 10 / flr l1 100 * - l2 10 * - s3 l0 l1 1000 * - l2 100 * - l3 10 * - s4 l3 16 * + l2 256 * + l1 4096 * + (>K:COM2_RADIO_SET)</Macro>
+  <Macro Name="C2ChannelDEC">(L:C2,enum) 2 &lt; if{ 6 (>L:C2,enum) } els{ (L:C2,enum) 1 - (>L:C2,enum) } (L:C2Channel6,number) (L:C2Channel5,number) (L:C2Channel4,number) (L:C2Channel3,number) (L:C2Channel2,number) (L:C2Channel1,number) 1 7 (L:C2,enum) case 100 - 100 * s0 1000 / flr s1 l0 100 / flr l1 10 * - s2 l0 10 / flr l1 100 * - l2 10 * - s3 l0 l1 1000 * - l2 100 * - l3 10 * - s4 l3 16 * + l2 256 * + l1 4096 * + (>K:COM2_RADIO_SET)</Macro>
+  <Macro Name="N1ChannelINC">(L:N1,enum) 5 > if{ 1 (>L:N1,enum) } els{ (L:N1,enum) 1 + (>L:N1,enum) } (L:N1Channel6,number) (L:N1Channel5,number) (L:N1Channel4,number) (L:N1Channel3,number) (L:N1Channel2,number) (L:N1Channel1,number) 1 7 (L:N1,enum) case 100 - 100 * s0 1000 / flr s1 l0 100 / flr l1 10 * - s2 l0 10 / flr l1 100 * - l2 10 * - s3 l0 l1 1000 * - l2 100 * - l3 10 * - s4 l3 16 * + l2 256 * + l1 4096 * + (>K:NAV1_RADIO_SET)</Macro>
+  <Macro Name="N1ChannelDEC">(L:N1,enum) 2 &lt; if{ 6 (>L:N1,enum) } els{ (L:N1,enum) 1 - (>L:N1,enum) } (L:N1Channel6,number) (L:N1Channel5,number) (L:N1Channel4,number) (L:N1Channel3,number) (L:N1Channel2,number) (L:N1Channel1,number) 1 7 (L:N1,enum) case 100 - 100 * s0 1000 / flr s1 l0 100 / flr l1 10 * - s2 l0 10 / flr l1 100 * - l2 10 * - s3 l0 l1 1000 * - l2 100 * - l3 10 * - s4 l3 16 * + l2 256 * + l1 4096 * + (>K:NAV1_RADIO_SET)</Macro>
+  <Macro Name="N2ChannelINC">(L:N2,enum) 5 > if{ 1 (>L:N2,enum) } els{ (L:N2,enum) 1 + (>L:N2,enum) } (L:N2Channel6,number) (L:N2Channel5,number) (L:N2Channel4,number) (L:N2Channel3,number) (L:N2Channel2,number) (L:N2Channel1,number) 1 7 (L:N2,enum) case 100 - 100 * s0 1000 / flr s1 l0 100 / flr l1 10 * - s2 l0 10 / flr l1 100 * - l2 10 * - s3 l0 l1 1000 * - l2 100 * - l3 10 * - s4 l3 16 * + l2 256 * + l1 4096 * + (>K:NAV2_RADIO_SET)</Macro>
+  <Macro Name="N2ChannelDEC">(L:N2,enum) 2 &lt; if{ 6 (>L:N2,enum) } els{ (L:N2,enum) 1 - (>L:N2,enum) } (L:N2Channel6,number) (L:N2Channel5,number) (L:N2Channel4,number) (L:N2Channel3,number) (L:N2Channel2,number) (L:N2Channel1,number) 1 7 (L:N2,enum) case 100 - 100 * s0 1000 / flr s1 l0 100 / flr l1 10 * - s2 l0 10 / flr l1 100 * - l2 10 * - s3 l0 l1 1000 * - l2 100 * - l3 10 * - s4 l3 16 * + l2 256 * + l1 4096 * + (>K:NAV2_RADIO_SET)</Macro>
+  <Macro Name="MODE">(L:CNCP mode,enum) 5 &lt; if{ (L:CNCP show channel,bool) ! (>L:CNCP show channel,bool) }</Macro>
+  <Macro Name="IDENT">(L:CNCP mode,enum) 1 > (L:CNCP mode,enum) 5 &lt; &amp;&amp; if{ (L:CNCP show ident,bool) ! (>L:CNCP show ident,bool) }</Macro>
+  <Macro Name="XFER">(L:CNCP mode,enum) 0 == if{ (>K:COM_RADIO) (>K:FREQUENCY_SWAP) } els{ (L:CNCP mode,enum) 1 == if{ (>K:COM_RADIO) (>K:SELECT_2) (>K:FREQUENCY_SWAP) } els{ (L:CNCP mode,enum) 2 == if{ (>K:NAV_RADIO) (>K:FREQUENCY_SWAP) } els{ (L:CNCP mode,enum) 3 == if{ (>K:NAV_RADIO) (>K:SELECT_2) (>K:FREQUENCY_SWAP) } els{ (L:CNCP mode,enum,bool) 4 == if{ (L:CNCP adf mode,bool) ! (>L:CNCP adf mode,bool) } } } } }</Macro>
+  <Mouse>
+    <!--==== XFER IDENT ====-->
+    <Area Left="16" Top="28" Width="40" Height="90">
+      <Cursor Type="Hand"/>
+      <Tooltip>Frequency Swap</Tooltip>
+      <Click Kind="LeftSingle+Leave" Repeat="No">(M:Event) 'LeftSingle' scmp 0 == if{ 1 (>L:CNCP xfer,bool) @XFER } (M:Event) 'Leave' scmp 0 == if{ 0 (>L:CNCP xfer,bool) }</Click>
+    </Area>
+    <Area Left="490" Top="28" Width="40" Height="90">
+      <Cursor Type="Hand"/>
+      <Tooltip>Show V/L Ident</Tooltip>
+      <Click Kind="LeftSingle+Leave" Repeat="No">(M:Event) 'LeftSingle' scmp 0 == if{ 1 (>L:CNCP ident,bool) @IDENT } (M:Event) 'Leave' scmp 0 == if{ 0 (>L:CNCP ident,bool) }</Click>
+    </Area>
+    <!--==== BUTTONS ====-->
+    <Area Left="44" Top="130" Width="60" Height="44">
+      <Cursor Type="Hand"/>
+      <Tooltip>Select COMM 1 Mode</Tooltip>
+      <Click Kind="LeftSingle+Leave" Repeat="No">(M:Event) 'LeftSingle' scmp 0 == if{ 1 (>L:CNCP com1,bool) 0 (>L:CNCP mode,enum) } (M:Event) 'Leave' scmp 0 == if{ 0 (>L:CNCP com1,bool) }</Click>
+    </Area>
+    <Area Left="44" Top="178" Width="60" Height="44">
+      <Cursor Type="Hand"/>
+      <Tooltip>Select COMM 2 Mode</Tooltip>
+      <Click Kind="LeftSingle+Leave" Repeat="No">(M:Event) 'LeftSingle' scmp 0 == if{ 1 (>L:CNCP com2,bool) 1 (>L:CNCP mode,enum) } (M:Event) 'Leave' scmp 0 == if{ 0 (>L:CNCP com2,bool) }</Click>
+    </Area>
+    <Area Left="108" Top="130" Width="60" Height="44">
+      <Cursor Type="Hand"/>
+      <Tooltip>Select V/L (NAV) 1 Mode</Tooltip>
+      <Click Kind="LeftSingle+Leave" Repeat="No">(M:Event) 'LeftSingle' scmp 0 == if{ 1 (>L:CNCP nav1,bool) 2 (>L:CNCP mode,enum) } (M:Event) 'Leave' scmp 0 == if{ 0 (>L:CNCP nav1,bool) }</Click>
+    </Area>
+    <Area Left="108" Top="178" Width="60" Height="44">
+      <Cursor Type="Hand"/>
+      <Tooltip>Select V/L (NAV) 2 Mode</Tooltip>
+      <Click Kind="LeftSingle+Leave" Repeat="No">(M:Event) 'LeftSingle' scmp 0 == if{ 1 (>L:CNCP nav2,bool) 3 (>L:CNCP mode,enum) } (M:Event) 'Leave' scmp 0 == if{ 0 (>L:CNCP nav2,bool) }</Click>
+    </Area>
+    <Area Left="378" Top="130" Width="60" Height="44">
+      <Cursor Type="Hand"/>
+      <Tooltip>Select ADF Mode</Tooltip>
+      <Click Kind="LeftSingle+Leave" Repeat="No">(M:Event) 'LeftSingle' scmp 0 == if{ 1 (>L:CNCP adf,bool) 4 (>L:CNCP mode,enum) } (M:Event) 'Leave' scmp 0 == if{ 0 (>L:CNCP adf,bool) }</Click>
+    </Area>
+    <Area Left="378" Top="178" Width="60" Height="44">
+      <Cursor Type="Hand"/>
+      <Tooltip>Toggle Display Mode</Tooltip>
+      <Click Kind="LeftSingle+Leave" Repeat="No">(M:Event) 'LeftSingle' scmp 0 == if{ 1 (>L:CNCP display mode,bool) @MODE } (M:Event) 'Leave' scmp 0 == if{ 0 (>L:CNCP display mode,bool) }</Click>
+    </Area>
+    <Area Left="442" Top="130" Width="60" Height="44">
+      <Cursor Type="Hand"/>
+      <Tooltip>Select IFF (Transponder) Mode</Tooltip>
+      <Click Kind="LeftSingle+Leave" Repeat="No">(M:Event) 'LeftSingle' scmp 0 == if{ 1 (>L:CNCP iff,bool) 5 (>L:CNCP mode,enum) } (M:Event) 'Leave' scmp 0 == if{ 0 (>L:CNCP iff,bool) }</Click>
+    </Area>
+    <Area Left="442" Top="178" Width="60" Height="44">
+      <Cursor Type="Hand"/>
+      <Tooltip>%Toggle Audio Ident %((A:NAV1 SOUND,bool))%{if} (ON)%{else} (OFF)%</Tooltip>
+      <Click>(L:CNCP audio,bool) ! (>L:CNCP audio,bool) 0 (>K:RADIO_VOR1_IDENT_TOGGLE) 0 (>K:RADIO_DME1_IDENT_TOGGLE) 0 (>K:RADIO_ADF_IDENT_TOGGLE) 0 (>K:MARKER_SOUND_TOGGLE)</Click>
+    </Area>
+    <!--==== KNOBS ====-->
+    <Area Left="190" Top="190" Width="80" Height="50">
+      <Area Right="40">
+        <Cursor Type="DownArrow"/>
+        <Click Kind="LeftSingle" Repeat="Yes" MouseWheelFlip="Yes">(L:CNCP show channel,bool) if{ } els{ (L:CNCP mode,enum) 0 == if{ (>K:COM_RADIO_WHOLE_DEC) } (L:CNCP mode,enum) 1 == if{ (>K:COM2_RADIO_WHOLE_DEC) } (L:CNCP mode,enum) 2 == if{ (>K:NAV1_RADIO_WHOLE_DEC) } (L:CNCP mode,enum) 3 == if{ (>K:NAV2_RADIO_WHOLE_DEC) } (L:CNCP mode,enum) 4 == if{ @ADF10DEC } } (L:CNCP mode,enum) 5 == if{ @TRN10DEC } (L:CNCP frq1,enum) 0 &lt;= if{ 19 (>L:CNCP frq1,enum) } els{ (L:CNCP frq1,enum) 1 - (>L:CNCP frq1,enum) }</Click>
+      </Area>
+      <Area Left="40">
+        <Cursor Type="UpArrow"/>
+        <Click Kind="LeftSingle" Repeat="Yes" MouseWheelFlip="Yes">(L:CNCP show channel,bool) if{ } els{ (L:CNCP mode,enum) 0 == if{ (>K:COM_RADIO_WHOLE_INC) } (L:CNCP mode,enum) 1 == if{ (>K:COM2_RADIO_WHOLE_INC) } (L:CNCP mode,enum) 2 == if{ (>K:NAV1_RADIO_WHOLE_INC) } (L:CNCP mode,enum) 3 == if{ (>K:NAV2_RADIO_WHOLE_INC) } (L:CNCP mode,enum) 4 == if{ @ADF10INC } } (L:CNCP mode,enum) 5 == if{ @TRN10INC } (L:CNCP frq1,enum) 19 >= if{ 0 (>L:CNCP frq1,enum) } els{ (L:CNCP frq1,enum) 1 + (>L:CNCP frq1,enum) }</Click>
+      </Area>
+      <Tooltip>Tune</Tooltip>
+    </Area>
+    <Area Left="190" Top="136" Width="80" Height="50">
+      <Area Right="40">
+        <Cursor Type="DownArrow"/>
+        <Click Kind="LeftSingle" Repeat="Yes" MouseWheelFlip="Yes">(L:CNCP mode,enum) 0 == if{ (L:CNCP show channel,bool) if{ @C1ChannelDEC } els{ (>K:COM_RADIO_FRACT_DEC) } } (L:CNCP mode,enum) 1 == if{ (L:CNCP show channel,bool) if{ @C2ChannelDEC } els{ (>K:COM2_RADIO_FRACT_DEC) } } (L:CNCP mode,enum) 2 == if{ (L:CNCP show channel,bool) if{ @N1ChannelDEC } els{ (>K:NAV1_RADIO_FRACT_DEC) } } (L:CNCP mode,enum) 3 == if{ (L:CNCP show channel,bool) if{ @N2ChannelDEC } els{ (>K:NAV2_RADIO_FRACT_DEC) } } (L:CNCP mode,enum) 4 == if{ @ADFDEC } (L:CNCP mode,enum) 5 == if{ @TRNDEC } (L:CNCP frq2,enum) 0 &lt;= if{ 19 (>L:CNCP frq2,enum) } els{ (L:CNCP frq2,enum) 1 - (>L:CNCP frq2,enum) }</Click>
+      </Area>
+      <Area Left="40">
+        <Cursor Type="UpArrow"/>
+        <Click Kind="LeftSingle" Repeat="Yes" MouseWheelFlip="Yes">(L:CNCP mode,enum) 0 == if{ (L:CNCP show channel,bool) if{ @C1ChannelINC } els{ (>K:COM_RADIO_FRACT_INC) } } (L:CNCP mode,enum) 1 == if{ (L:CNCP show channel,bool) if{ @C2ChannelINC } els{ (>K:COM2_RADIO_FRACT_INC) } } (L:CNCP mode,enum) 2 == if{ (L:CNCP show channel,bool) if{ @N1ChannelINC } els{ (>K:NAV1_RADIO_FRACT_INC) } } (L:CNCP mode,enum) 3 == if{ (L:CNCP show channel,bool) if{ @N2ChannelINC } els{ (>K:NAV2_RADIO_FRACT_INC) } } (L:CNCP mode,enum) 4 == if{ @ADFINC } (L:CNCP mode,enum) 5 == if{ @TRNINC } (L:CNCP frq2,enum) 19 >= if{ 0 (>L:CNCP frq2,enum) } els{ (L:CNCP frq2,enum) 1 + (>L:CNCP frq2,enum) }</Click>
+      </Area>
+      <Tooltip>Tune</Tooltip>
+    </Area>
+    <Area Left="284" Top="162" Width="60" Height="60">
+      <Area Right="30">
+        <Cursor Type="DownArrow"/>
+        <Click Kind="LeftSingle" Repeat="Yes" MouseWheelFlip="Yes">(>K:VOR1_OBI_DEC) (L:CNCP Crs,enum) 0 &lt;= if{ 19 (>L:CNCP crs,enum) } els{ (L:CNCP crs,enum) 1 - (>L:CNCP crs,enum) }</Click>
+      </Area>
+      <Area Left="30">
+        <Cursor Type="UpArrow"/>
+        <Click Kind="LeftSingle" Repeat="Yes" MouseWheelFlip="Yes">(>K:VOR1_OBI_INC) (L:CNCP Crs,enum) 19 >= if{ 0 (>L:CNCP crs,enum) } els{ (L:CNCP crs,enum) 1 + (>L:CNCP crs,enum) }</Click>
+      </Area>
+      <Tooltip>%CRS %((A:NAV1 OBS,degrees))%!03d!%&#176; %</Tooltip>
+    </Area>
+    <!--CHANNELS-->
+    <Area Left="250" Top="250" Width="48" Height="48">
+      <Cursor Type="Hand"/>
+      <Tooltip>Toggle Channel Preset Window</Tooltip>
+      <Click Kind="LeftSingle+Leave" Repeat="No">(M:Event) 'LeftSingle' scmp 0 == if{ 1 (>L:CNCP E,bool) } (M:Event) 'Leave' scmp 0 == if{ 0 (>L:CNCP E,bool) 10004 (>K:PANEL_ID_TOGGLE) }</Click>
+    </Area>
+  </Mouse>
+</Gauge>

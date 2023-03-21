@@ -1,0 +1,306 @@
+<Gauge Name="ALTIAS - Altitude IAS" Version="C-17" Author="Herbert Pralle">
+  <Element>
+    <Position X="0" Y="0"/>
+    <Image Name="Altias_Card.bmp" Luminous="0"/>
+  </Element>
+  <!--==== BARO MB ====-->
+  <Element>
+    <Position X="26" Y="142"/>
+    <MaskImage Name="ALTIAS_baro_mask.bmp">
+      <Axis X="0" Y="0"/>
+    </MaskImage>
+    <Image Name="ALTIAS_strip1.bmp" Luminous="0">
+      <Nonlinearity>
+        <Item Value="0" X="0" Y="20"/>
+        <Item Value="10" X="0" Y="220"/>
+      </Nonlinearity>
+    </Image>
+    <Shift>
+      <Value Minimum="0" Maximum="10">(A:Kohlsman setting hg,mbar) 1000 / flr</Value>
+    </Shift>
+  </Element>
+  <Element>
+    <Position X="40" Y="142"/>
+    <MaskImage Name="ALTIAS_baro_mask.bmp">
+      <Axis X="0" Y="0"/>
+    </MaskImage>
+    <Image Name="ALTIAS_strip1.bmp" Luminous="0">
+      <Nonlinearity>
+        <Item Value="0" X="0" Y="20"/>
+        <Item Value="10" X="0" Y="220"/>
+      </Nonlinearity>
+    </Image>
+    <Shift>
+      <Value Minimum="0" Maximum="10">(A:Kohlsman setting hg,mbar) 1000 % 100 / flr</Value>
+    </Shift>
+  </Element>
+  <Element>
+    <Position X="54" Y="142"/>
+    <MaskImage Name="ALTIAS_baro_mask.bmp">
+      <Axis X="0" Y="0"/>
+    </MaskImage>
+    <Image Name="ALTIAS_strip1.bmp" Luminous="0">
+      <Nonlinearity>
+        <Item Value="0" X="0" Y="20"/>
+        <Item Value="10" X="0" Y="220"/>
+      </Nonlinearity>
+    </Image>
+    <Shift>
+      <Value Minimum="0" Maximum="10">(A:Kohlsman setting hg,mbar) 100 % 10 / flr</Value>
+    </Shift>
+  </Element>
+  <Element>
+    <Position X="68" Y="142"/>
+    <MaskImage Name="ALTIAS_baro_mask.bmp">
+      <Axis X="0" Y="0"/>
+    </MaskImage>
+    <Image Name="ALTIAS_strip1.bmp" Luminous="0">
+      <Nonlinearity>
+        <Item Value="0" X="0" Y="20"/>
+        <Item Value="10" X="0" Y="220"/>
+      </Nonlinearity>
+    </Image>
+    <Shift>
+      <Value Minimum="0" Maximum="10">(A:Kohlsman setting hg,mbar) 10 % flr</Value>
+    </Shift>
+  </Element>
+  <!--==== BARO HG ====-->
+  <Element>
+    <Position X="180" Y="142"/>
+    <MaskImage Name="ALTIAS_baro_mask.bmp">
+      <Axis X="0" Y="0"/>
+    </MaskImage>
+    <Image Name="ALTIAS_strip1.bmp" Luminous="0">
+      <Nonlinearity>
+        <Item Value="0" X="0" Y="20"/>
+        <Item Value="10" X="0" Y="220"/>
+      </Nonlinearity>
+    </Image>
+    <Shift>
+      <Value Minimum="0" Maximum="10">(A:Kohlsman setting hg,inHg) 10 / flr</Value>
+    </Shift>
+  </Element>
+  <Element>
+    <Position X="194" Y="142"/>
+    <MaskImage Name="ALTIAS_baro_mask.bmp">
+      <Axis X="0" Y="0"/>
+    </MaskImage>
+    <Image Name="ALTIAS_strip1.bmp" Luminous="0">
+      <Nonlinearity>
+        <Item Value="0" X="0" Y="20"/>
+        <Item Value="10" X="0" Y="220"/>
+      </Nonlinearity>
+    </Image>
+    <Shift>
+      <Value Minimum="0" Maximum="10">(A:Kohlsman setting hg,inHg) 10 % flr</Value>
+    </Shift>
+  </Element>
+  <Element>
+    <Position X="208" Y="142"/>
+    <MaskImage Name="ALTIAS_baro_mask.bmp">
+      <Axis X="0" Y="0"/>
+    </MaskImage>
+    <Image Name="ALTIAS_strip1.bmp" Luminous="0">
+      <Nonlinearity>
+        <Item Value="0" X="0" Y="20"/>
+        <Item Value="10" X="0" Y="220"/>
+      </Nonlinearity>
+    </Image>
+    <Shift>
+      <Value Minimum="0" Maximum="10">(A:Kohlsman setting hg,inHg) 10 * 10 % flr</Value>
+    </Shift>
+  </Element>
+  <Element>
+    <Position X="222" Y="142"/>
+    <MaskImage Name="ALTIAS_baro_mask.bmp">
+      <Axis X="0" Y="0"/>
+    </MaskImage>
+    <Image Name="ALTIAS_strip1.bmp" Luminous="0">
+      <Nonlinearity>
+        <Item Value="0" X="0" Y="20"/>
+        <Item Value="10" X="0" Y="220"/>
+      </Nonlinearity>
+    </Image>
+    <Shift>
+      <Value Minimum="0" Maximum="10">(A:Kohlsman setting hg,inHg) 100 * 10 % flr</Value>
+    </Shift>
+  </Element>
+  <!--==== ALTITUDE =====-->
+  <Element>
+    <Position X="82" Y="62"/>
+    <MaskImage Name="ALTIAS_alt_mask.bmp">
+      <Axis X="0" Y="0"/>
+    </MaskImage>
+    <Image Name="ALTIAS_strip2.bmp" Luminous="0">
+      <Nonlinearity>
+        <Item Value="0" X="0" Y="21"/>
+        <Item Value="10" X="0" Y="221"/>
+      </Nonlinearity>
+    </Image>
+    <Shift>
+      <Value>(A:Indicated Altitude,feet) 10000 / flr</Value>
+      <Failures>
+        <SYSTEM_PITOT_STATIC Action="Freeze"/>
+        <GAUGE_ALTIMETER Action="Freeze"/>
+      </Failures>
+    </Shift>
+  </Element>
+  <Element>
+    <Position X="98" Y="62"/>
+    <MaskImage Name="ALTIAS_alt_mask.bmp">
+      <Axis X="0" Y="0"/>
+    </MaskImage>
+    <Image Name="ALTIAS_strip2.bmp" Luminous="0">
+      <Nonlinearity>
+        <Item Value="0" X="0" Y="21"/>
+        <Item Value="10" X="0" Y="221"/>
+      </Nonlinearity>
+    </Image>
+    <Shift>
+      <Value>(A:Indicated Altitude,feet) 10000 % 1000 / flr</Value>
+      <Failures>
+        <SYSTEM_PITOT_STATIC Action="Freeze"/>
+        <GAUGE_ALTIMETER Action="Freeze"/>
+      </Failures>
+    </Shift>
+  </Element>
+  <Element>
+    <Position X="114" Y="62"/>
+    <MaskImage Name="ALTIAS_alt_mask.bmp">
+      <Axis X="0" Y="0"/>
+    </MaskImage>
+    <Image Name="ALTIAS_strip2.bmp" Luminous="0">
+      <Nonlinearity>
+        <Item Value="0" X="0" Y="21"/>
+        <Item Value="10" X="0" Y="221"/>
+      </Nonlinearity>
+    </Image>
+    <Shift>
+      <Value>(A:Indicated Altitude,feet) 1000 % 100 / flr</Value>
+      <Failures>
+        <SYSTEM_PITOT_STATIC Action="Freeze"/>
+        <GAUGE_ALTIMETER Action="Freeze"/>
+      </Failures>
+    </Shift>
+  </Element>
+  <Element>
+    <Position X="130" Y="62"/>
+    <MaskImage Name="ALTIAS_alt_mask.bmp">
+      <Axis X="0" Y="0"/>
+    </MaskImage>
+    <Image Name="ALTIAS_strip2.bmp" Luminous="0">
+      <Nonlinearity>
+        <Item Value="0" X="0" Y="21"/>
+        <Item Value="10" X="0" Y="221"/>
+      </Nonlinearity>
+    </Image>
+    <Shift>
+      <Value>0</Value>
+      <Failures>
+        <SYSTEM_PITOT_STATIC Action="Freeze"/>
+        <GAUGE_ALTIMETER Action="Freeze"/>
+      </Failures>
+    </Shift>
+  </Element>
+  <Element>
+    <Position X="146" Y="62"/>
+    <MaskImage Name="ALTIAS_alt_mask.bmp">
+      <Axis X="0" Y="0"/>
+    </MaskImage>
+    <Image Name="ALTIAS_strip2.bmp" Luminous="0">
+      <Nonlinearity>
+        <Item Value="0" X="0" Y="21"/>
+        <Item Value="10" X="0" Y="221"/>
+      </Nonlinearity>
+    </Image>
+    <Shift>
+      <Value>0</Value>
+      <Failures>
+        <SYSTEM_PITOT_STATIC Action="Freeze"/>
+        <GAUGE_ALTIMETER Action="Freeze"/>
+      </Failures>
+    </Shift>
+  </Element>
+  <!--==== IAS ====-->
+  <Element>
+    <Position X="66" Y="178"/>
+    <MaskImage Name="ALTIAS_ias_mask.bmp">
+      <Axis X="64" Y="0"/>
+    </MaskImage>
+    <Image Name="ALTIAS_strip3.bmp" Luminous="0">
+      <Nonlinearity>
+        <Item Value="0" X="78" Y="0"/>
+        <Item Value="1000" X="1278" Y="0"/>
+      </Nonlinearity>
+    </Image>
+    <Shift>
+      <Value Minimum="0" Maximum="980">(A:Airspeed select indicated or true,knots)</Value>
+      <Failures>
+        <SYSTEM_PITOT_STATIC Action="Freeze"/>
+        <GAUGE_ALTIMETER Action="Freeze"/>
+      </Failures>
+    </Shift>
+  </Element>
+  <!--==== ALPHA ====-->
+  <Element>
+    <Position X="0" Y="0"/>
+    <Image Name="ALTIAS_alpha.bmp" Alpha="Yes"/>
+  </Element>
+  <!--==== KNOB ====-->
+  <Element>
+    <Position X="39" Y="235"/>
+    <Image Name="ALTIAS_knob.bmp" PointsTo="East">
+      <Axis X="20" Y="20"/>
+    </Image>
+    <Rotate>
+      <Value Minimum="28.1" Maximum="31.5">(A:Kohlsman setting hg,inHg)</Value>
+      <Nonlinearity>
+        <Item Value="28.1" Degrees="0"/>
+        <Item Value="31.5" Degrees="720"/>
+      </Nonlinearity>
+    </Rotate>
+  </Element>
+  <!--==== NEEDLE ====-->
+  <Element>
+    <Position X="128" Y="88"/>
+    <Image Name="ALTIAS_Needle.bmp" Luminous="0">
+      <Axis X="10" Y="10" PointsTo="Eaast"/>
+    </Image>
+    <Rotate>
+      <Value>(A:Indicated Altitude,feet) 100 /</Value>
+      <Failures>
+        <GAUGE_ALTIMETER Action="Freeze"/>
+        <SYSTEM_PITOT_STATIC Action="Freeze"/>
+      </Failures>
+      <Nonlinearity>
+        <Item Value="0" X="128" Y="22"/>
+        <Item Value="5" X="128" Y="152"/>
+      </Nonlinearity>
+    </Rotate>
+  </Element>
+  <!--==== REFLECTION ====-->
+  <Element>
+    <Position X="0" Y="0"/>
+    <Visible>(P:TIME OF DAY,enum) (A:Light Panel,bool) + 3 &lt;</Visible>
+    <Image Name="Altias_rfl.bmp" Alpha="Yes"/>
+  </Element>
+  <Mouse>
+    <Area Left="0" Top="0" Width="260" Height="160">
+      <Tooltip ID="TOOLTIPTEXT_ALTIMETER_FEET" EnglishID="TOOLTIPTEXT_ALTIMETER_FEET" MetricID="TOOLTIPTEXT_ALTIMETER_FEET_METERS_SPECIAL"/>
+    </Area>
+    <Area Left="80" Top="164" Width="180" Height="90">
+      <Tooltip ID="TOOLTIPTEXT_AIRSPEED_KNOTS" MetricID="TOOLTIPTEXT_AIRSPEED_KILOS"/>
+    </Area>
+    <Area Left="0" Top="200" Width="76" Height="60">
+      <Tooltip ID="TOOLTIPTEXT_ALTIMETER_KOHLSMAN_INHG" MetricID="TOOLTIPTEXT_ALTIMETER_KOHLSMAN_MBAR"/>
+      <Area Right="38">
+        <Cursor Type="DownArrow"/>
+        <Click Event="KOHLSMAN_DEC" Repeat="Yes"/>
+      </Area>
+      <Area Left="38">
+        <Cursor Type="UpArrow"/>
+        <Click Event="KOHLSMAN_INC" Repeat="Yes"/>
+      </Area>
+    </Area>
+  </Mouse>
+</Gauge>

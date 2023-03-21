@@ -1,0 +1,203 @@
+<Gauge Name="Mission Computer Display 1 - Virtavia C-17" Version="2.0">
+<Image Name="MCD_off.bmp"/>
+  <Element>
+  	<Visible>(A:ELECTRICAL MASTER BATTERY,bool) (A:TURB ENG1 N1,Percent) 20 &gt; (A:TURB ENG2 N1,Percent) 20 &gt; (A:TURB ENG3 N1,Percent) 20 &gt; (A:TURB ENG4 N1,Percent) 20 &gt; || || || ||</Visible>
+
+ <!--==== GPS WayPoint Data ====-->
+
+	<!-- BEGIN MODE 1 -->
+
+		<Element>
+			<Visible>(L:MCD1power,bool)</Visible>
+			<Position X="0" Y="0"/>
+			<Image Name="MCD_bg1.bmp" Bright="Yes"/>
+
+ 		<!-- FD ON -->
+
+			<Element>
+				<Visible>(A:AUTOPILOT FLIGHT DIRECTOR ACTIVE, bool)</Visible>
+				<Element>
+					<Position X="130" Y="71"/>
+					<FormattedText X="43" Y="14" Font="Arial" FontSize="13" LineSpacing="0" Adjust="CENTER" Color="#00EE00" Bright="Yes" Luminous="1">
+						<String>FD ON</String>
+					</FormattedText>
+				</Element>
+			</Element> 
+
+		<!-- RANGE DIGI READOUT -->
+
+			<Element>
+				<Position X="106" Y="99"/>
+				<FormattedText X="50" Y="14" Font="Arial" FontSize="13" LineSpacing="0" Adjust="LEFT" Color="#00EE00" Bright="Yes" Luminous="1">
+					<String>%((A:GPS WP DISTANCE,miles))%!2.1f!</String>
+				</FormattedText>
+			</Element>
+
+		<!-- NEXT WPT DIGI READOUT -->
+
+			<Element>
+				<Position X="95" Y="134"/>
+				<FormattedText X="50" Y="14" Font="Arial" FontSize="13" LineSpacing="0" Adjust="LEFT" Color="#00EE00" Bright="Yes" Luminous="1">
+					<String>%((A:GPS WP NEXT ID,string))%!s!</String>
+				</FormattedText>
+			</Element>
+
+		<!-- TTG DIGI READOUT -->
+
+			<Element>
+				<Position X="71" Y="163"/>
+				<FormattedText X="50" Y="14" Font="Arial" FontSize="13" LineSpacing="0" Adjust="LEFT" Color="#00EE00" Bright="Yes" Luminous="1">
+					<String>%((A:GPS WP ETE,hours))%!02d!:%((A:GPS WP ETE,minutes) flr (A:GPS WP ETE,hours) flr 60 * - flr)%!02d!%</String>
+				</FormattedText>
+			</Element>
+			
+		<!-- WPT DIGI READOUT -->
+
+			<Element>
+				<Position X="83" Y="196"/>
+				<FormattedText X="20" Y="14" Font="Arial" FontSize="13" LineSpacing="0" Adjust="CENTER" Color="#00EE00" Bright="Yes" Luminous="1">
+					<String>%((A:GPS FLIGHT PLAN WP INDEX,number))%!02d!</String>
+				</FormattedText>
+			</Element>
+
+		</Element>
+
+<!--==== Aircraft Situation Data ====-->
+
+		<!-- BEGIN MODE 2 -->
+
+		<Element>
+			<Visible>(L:C17_MCD1_1,bool) (L:MCD1power,bool) &amp; </Visible>
+			<Position X="0" Y="0"/>
+			<Image Name="MCD_bg2.bmp" Bright="Yes"/>
+
+			
+		<!-- BRG DIGI READOUT -->
+
+			<Element>
+				<Position X="78" Y="67"/>
+				<FormattedText X="50" Y="14" Font="Arial" FontSize="13" LineSpacing="0" Adjust="LEFT" Color="#00EE00" Bright="Yes" Luminous="1">
+					<String>%((A:PLANE HEADING DEGREES GYRO,degrees))%!03d!</String>
+				</FormattedText>
+			</Element>
+						
+		<!-- WIND DIGI READOUT -->
+
+			<Element>
+				<Position X="82" Y="99"/>
+				<FormattedText X="60" Y="14" Font="Arial" FontSize="13" LineSpacing="0" Adjust="LEFT" Color="#00EE00" Bright="Yes" Luminous="1">
+					<String>%((A:AMBIENT WIND DIRECTION,degrees))%!03d! / %((A:AMBIENT WIND VELOCITY,knots))%!03d!</String>
+				</FormattedText>
+			</Element>
+			
+		<!-- MSL ALT DIGI READOUT -->
+
+			<Element>
+				<Position X="90" Y="130"/>
+				<FormattedText X="50" Y="14" Font="Arial" FontSize="13" LineSpacing="0" Adjust="LEFT" Color="#00EE00" Bright="Yes" Luminous="1">
+					<String>%((A:PLANE ALTITUDE,feet))%!05d!</String>
+				</FormattedText>
+			</Element>
+			
+		<!-- GS DIGI READOUT -->
+
+			<Element>
+				<Position X="48" Y="163"/>
+				<FormattedText X="50" Y="14" Font="Arial" FontSize="13" LineSpacing="0" Adjust="LEFT" Color="#00EE00" Bright="Yes" Luminous="1">
+					<String>%((A:AIRSPEED INDICATED,knots))%!03d!</String>
+				</FormattedText>
+			</Element>
+
+			<Element>
+				<Position X="63" Y="196"/>
+				<FormattedText X="50" Y="14" Font="Arial" FontSize="13" LineSpacing="0" Adjust="LEFT" Color="#00EE00" Bright="Yes" Luminous="1">
+					<String>%((A:AIRSPEED MACH,mach))%!1.1f!</String>
+				</FormattedText>
+			</Element>
+
+		</Element>
+
+ <!--==== Time Data ====-->
+
+		<!-- BEGIN MODE 3 -->
+
+		<Element>
+			<Visible>(L:C17_MCD1_2,bool) (L:MCD1power,bool) &amp; </Visible>
+			<Position X="0" Y="0"/>
+			<Image Name="MCD_bg3.bmp" Bright="Yes"/>
+			
+		<!-- LOCAL TIME -->
+
+			<Element>
+				<Position X="64" Y="67"/>
+				<FormattedText X="70" Y="14" Font="Arial" FontSize="13" LineSpacing="0" Adjust="LEFT" Color="#00EE00" Bright="Yes" Luminous="1">
+					<String>%((P:Local Time,hours) flr 11 + 12 % 1 +)%!02d!%:%((P:Local Time,minutes) flr (P:Local Time,hours) flr 60 * - flr)%!02d!%:%((P:Local Time,minutes) 60 /) %!02d!</String>
+				</FormattedText>
+			</Element>
+
+		<!-- ZULU TIME -->
+
+			<Element>
+				<Position X="57" Y="98"/>
+				<FormattedText X="70" Y="14" Font="Arial" FontSize="13" LineSpacing="0" Adjust="LEFT" Color="#00EE00" Bright="Yes" Luminous="1">
+					<String>%((P:ZULU Time,hours) flr 11 + 12 % 1 +)%!02d!%:%((P:ZULU Time,minutes) flr (P:ZULU Time,hours) flr 60 * - flr)%!02d!%:%((P:ZULU Time,seconds) flr 60 %) %!02d!</String>
+				</FormattedText>
+			</Element>
+
+		<!-- SYSTEM TIME -->
+
+			<Element>
+				<Position X="73" Y="130"/>
+				<FormattedText X="70" Y="14" Font="Arial" FontSize="13" LineSpacing="0" Adjust="LEFT" Color="#00EE00" Bright="Yes" Luminous="1">
+					<String>%((P:Local Time,hours) flr 11 + 12 % 1 +)%!02d!%:%((P:Local Time,minutes) flr (P:Local Time,hours) flr 60 * - flr)%!02d!%:%((P:Local Time,seconds) flr 60 %) %!02d!</String>
+				</FormattedText>
+			</Element>
+
+		<!-- LOCAL DATE -->
+
+			<Element>
+				<Position X="96" Y="163"/>
+				<FormattedText X="80" Y="14" Font="Arial" FontSize="13" LineSpacing="0" Adjust="LEFT" Color="#00EE00" Bright="Yes" Luminous="1">
+					<String>%((P:LOCAL DAY OF MONTH,number)) %!02d!-%((P:LOCAL MONTH OF YEAR,number)) %!02d!-%((P:LOCAL YEAR,year)) %!02d!</String>
+				</FormattedText>
+			</Element>
+			
+		<!-- ZULU DATE -->
+
+			<Element>
+				<Position X="90" Y="196"/>
+				<FormattedText X="80" Y="14" Font="Arial" FontSize="13" LineSpacing="0" Adjust="LEFT" Color="#00EE00" Bright="Yes" Luminous="1">
+					<String>%((P:ZULU DAY OF MONTH,number)) %!02d!-%((P:ZULU MONTH OF YEAR,number)) %!02d!-%((P:ZULU YEAR,year)) %!02d!</String>
+				</FormattedText>
+			</Element>
+
+ 		</Element>
+
+	</Element>
+
+<!--==== Dimming ====-->
+
+	<Element>
+    		<Position X="0" Y="0"/>
+    			<Select>
+      			<Value>(L:digit dim,enum)</Value>
+      				<Case Value="1">
+        				<Image Name="MCD_dim3.bmp" Alpha="Yes"/>
+      				</Case>
+      				<Case Value="2">
+        				<Image Name="MCD_dim2.bmp" Alpha="Yes"/>
+      				</Case>
+      				<Case Value="3">
+        				<Image Name="MCD_dim1.bmp" Alpha="Yes"/>
+      				</Case>
+    			</Select>
+  	</Element>		
+		
+ 
+ <Mouse>
+      <Tooltip>Mission Computer</Tooltip>
+ </Mouse>
+
+</Gauge>
+
+

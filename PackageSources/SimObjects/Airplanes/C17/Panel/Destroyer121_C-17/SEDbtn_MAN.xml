@@ -1,0 +1,19 @@
+<Gauge Name="Standby Engine Display Button MAN" Version="C-17vc" Author="Herbert Pralle">
+  <Image Name="SEDbtn_MAN.bmp"/>
+
+  <Element>
+ 	<Select>
+		<Value>(L:STDBENG button,enum) 0 == if{ 10 (>L:SED_btn_MAN,enum) } els{ 0 (>L:SED_btn_MAN,enum) }</Value>
+ 	</Select>
+   </Element>
+
+<Macro Name="MODEMAN">(L:AP N1 rating display,number) (A:Indicated Altitude,feet) 0.00000515 * - 0.86 - 0.00607 / (>L:AP N1 rating,number)</Macro>   
+   
+  <Mouse>
+        <Cursor Type="Hand"/>
+      <Tooltip>Thrust Rating : Manual Control</Tooltip>
+      <Click>0 (>L:STDBENG button,enum) (L:STDBENG mode,enum) 1 > 
+		if{ 2 (>L:STDBENG mode,enum) @MODEMAN }</Click>
+  </Mouse>
+
+</Gauge>

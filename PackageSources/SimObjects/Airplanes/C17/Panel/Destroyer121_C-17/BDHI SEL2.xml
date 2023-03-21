@@ -1,0 +1,18 @@
+<Gauge Name="BDHI selector2" Version="C-17" Author="Herbert Pralle">
+  <Element>
+    <Position X="0" Y="0"/>
+    <Select>
+      <Value>(L:BDHI select2,bool)</Value>
+      <Case Value="0">
+        <Image Name="BDHI_sel_knobl.bmp"/>
+      </Case>
+      <Case Value="1">
+        <Image Name="BDHI_sel_knobr.bmp"/>
+      </Case>
+    </Select>
+  </Element>
+  <Mouse>
+    <Cursor Type="Hand"/>
+    <Click>(L:BDHI select2, bool) ! (>L:BDHI select2,bool) }</Click>
+  </Mouse>
+</Gauge>

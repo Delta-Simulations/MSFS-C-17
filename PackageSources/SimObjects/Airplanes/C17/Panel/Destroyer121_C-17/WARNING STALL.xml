@@ -1,0 +1,7 @@
+<Gauge Name="Warning Stall" Version="C-17" Author="Herbert Pralle">
+  <Element>
+    <Visible>(A:Circuit general panel on, bool) (A:Stall warning, bool) &amp;&amp;</Visible>
+    <Position X="0" Y="0"/>
+    <Image Name="Warning_stall_light.bmp" Bright="1"/>
+  </Element>
+</Gauge>

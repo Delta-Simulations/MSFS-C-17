@@ -1,0 +1,854 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ModelInfo>
+	<LODS>
+		<LOD minSize="0" ModelFile="C17.gltf"/>
+	</LODS>
+	<Behaviors>
+		<Include ModelBehaviorFile="Asobo\Exterior.xml"/>
+		<Include ModelBehaviorFile="Asobo\Common.xml"/>
+		<Include ModelBehaviorFile="Asobo\Generic\FX.xml"/>
+		<Include Path="Asobo\Exterior.xml"/>
+
+
+		<Component ID="FX_FLARES_LEFT" node="C-17_LG_doors_mainF_R">
+			<UseTemplate Name="ASOBO_GT_FX">
+				  <FX_GUID>{7E7AFC8D-0EC2-4EC9-BAD4-E5AE509EFB55}</FX_GUID>
+			  <FX_CODE>(L:C17_EFFECT_FLARE,bool)</FX_CODE>
+			  <FX_GRAPH_PARAM_0>FlareOrientation, 1</FX_GRAPH_PARAM_0>
+			  </UseTemplate>
+		 </Component>
+		 
+		 <Component ID="FX_FLARES_RIGHT" node="C-17_LG_doors_mainF_L.001">
+			 <UseTemplate Name="ASOBO_GT_FX">
+					 <FX_GUID>{7E7AFC8D-0EC2-4EC9-BAD4-E5AE509EFB55}</FX_GUID>
+					 <FX_CODE>(L:C17_EFFECT_FLARE,bool)</FX_CODE>
+					 <FX_GRAPH_PARAM_0>FlareOrientation, -1</FX_GRAPH_PARAM_0>
+			   </UseTemplate>
+		   </Component>
+
+		   <Component ID="FX_FLARES_LEFT2" node="C-17_LG_doors_mainF_R">
+			<UseTemplate Name="ASOBO_GT_FX">
+				  <FX_GUID>{7E7AFC8D-0EC2-4EC9-BAD4-E5AE509EFB55}</FX_GUID>
+			  <FX_CODE>(L:C17_EFFECT_FLARE,bool)</FX_CODE>
+			  <FX_GRAPH_PARAM_0>FlareOrientation, 6</FX_GRAPH_PARAM_0>
+			  </UseTemplate>
+		 </Component>
+		 
+		 <Component ID="FX_FLARES_RIGHT2" node="C-17_LG_doors_mainF_L.001">
+			 <UseTemplate Name="ASOBO_GT_FX">
+					 <FX_GUID>{7E7AFC8D-0EC2-4EC9-BAD4-E5AE509EFB55}</FX_GUID>
+					 <FX_CODE>(L:C17_EFFECT_FLARE,bool)</FX_CODE>
+					 <FX_GRAPH_PARAM_0>FlareOrientation, -6</FX_GRAPH_PARAM_0>
+			   </UseTemplate>
+		   </Component>
+
+		   
+		   <Component ID = "DragTrail_Left_FX">
+            <Parameters Type="Override">
+                <FX_GRAPH_PARAM_0>DT_Side, -1</FX_GRAPH_PARAM_0>
+            </Parameters>
+            <UseTemplate Name="ASOBO_FX_DRAGTRAIL">
+                <FX_CONTACT_POINT_ID>3</FX_CONTACT_POINT_ID>
+            </UseTemplate>
+        </Component>
+
+        <Component ID = "DragTrail_Right_FX">
+            <Parameters Type="Override">
+                <FX_GRAPH_PARAM_0>DT_Side, 1</FX_GRAPH_PARAM_0>
+            </Parameters>
+            <UseTemplate Name="ASOBO_FX_DRAGTRAIL">
+                <FX_CONTACT_POINT_ID>4</FX_CONTACT_POINT_ID>
+            </UseTemplate>
+        </Component>
+
+
+		<Component ID="HANDLING">
+			<UseTemplate Name="ASOBO_HANDLING_Elevator_Template">
+				<ANIM_NAME>elevator_percent_key</ANIM_NAME>
+			</UseTemplate>
+			<UseTemplate Name="ASOBO_HANDLING_Elevator_Template">
+				<TRIM_ONLY>True</TRIM_ONLY>
+				<ANIM_NAME_TRIM>trimtab_elevator_key</ANIM_NAME_TRIM>
+			</UseTemplate>
+			<UseTemplate Name="ASOBO_HANDLING_Aileron_Template">
+				<ANIM_NAME_LEFT>l_aileron_percent_key</ANIM_NAME_LEFT>
+				<ANIM_NAME_RIGHT>r_aileron_percent_key</ANIM_NAME_RIGHT>
+			</UseTemplate>
+			<UseTemplate Name="ASOBO_HANDLING_Rudder_Template">
+				<ANIM_NAME>rudder_percent_key</ANIM_NAME>
+				<USE_INTEGRATED_TRIM>True</USE_INTEGRATED_TRIM>
+			</UseTemplate>
+		</Component>
+		<Component ID="GEARS">
+			<UseTemplate Name="ASOBO_GEAR_Center_Template">
+				<ANIM_NAME>c_gear</ANIM_NAME>
+			  </UseTemplate>
+			  <UseTemplate Name="ASOBO_GEAR_Left_Template">
+				<ANIM_NAME>l_gear</ANIM_NAME>
+			  </UseTemplate>
+			  <UseTemplate Name="ASOBO_GEAR_Right_Template">
+				<ANIM_NAME>r_gear</ANIM_NAME>
+			  </UseTemplate>
+			<UseTemplate Name="ASOBO_GEAR_Center_Tire_Template">
+				<ANIM_NAME>c_tire_key</ANIM_NAME>
+				<NODE_ID_STILL>Wheel_Nose_Still</NODE_ID_STILL>
+				<NODE_ID_BLURRED>Wheel_Nose_blurred</NODE_ID_BLURRED>
+				<MIN_RPM_FOR_BLUR>100</MIN_RPM_FOR_BLUR>
+			</UseTemplate>
+			<UseTemplate Name="ASOBO_GEAR_Center_Tire_Template">
+				<ANIM_NAME>c_tire_key</ANIM_NAME>
+				<NODE_ID_STILL>LANDINGGEAR_Front_Wheel_Still_Center</NODE_ID_STILL>
+				<NODE_ID_BLURRED>LANDINGGEAR_Front_Wheel_Blurred_Center</NODE_ID_BLURRED>
+			</UseTemplate>
+
+			<UseTemplate Name="ASOBO_GEAR_Left_Tire_Template">
+				<ANIM_NAME>l_tire_key</ANIM_NAME>
+				<NODE_ID_STILL>LANDINGGEAR_Wing_Wheel1_Still_Left</NODE_ID_STILL>
+				<NODE_ID_STILL_2>LANDINGGEAR_Wing_Wheel2_Still_Left</NODE_ID_STILL_2>
+				<NODE_ID_BLURRED>LANDINGGEAR_Wing_Wheel1_Blurred_Left</NODE_ID_BLURRED>
+				<NODE_ID_BLURRED_2>LANDINGGEAR_Wing_Wheel2_Blurred_Left</NODE_ID_BLURRED_2>
+			</UseTemplate>
+			<UseTemplate Name="ASOBO_GEAR_Right_Tire_Template">
+				<ANIM_NAME>r_tire_key</ANIM_NAME>
+				<NODE_ID_STILL>LANDINGGEAR_Wing_Wheel1_Still_Right</NODE_ID_STILL>
+				<NODE_ID_STILL_2>LANDINGGEAR_Wing_Wheel2_Still_Right</NODE_ID_STILL_2>
+				<NODE_ID_BLURRED>LANDINGGEAR_Wing_Wheel1_Blurred_Right</NODE_ID_BLURRED>
+				<NODE_ID_BLURRED_2>LANDINGGEAR_Wing_Wheel2_Blurred_Right</NODE_ID_BLURRED_2>
+			</UseTemplate>
+		</Component>
+		<Component ID="ENGINE">
+			<DefaultTemplateParameters>
+				<STILL_NODE_ID_COUNT>2</STILL_NODE_ID_COUNT>
+			</DefaultTemplateParameters>
+			<UseTemplate Name="ASOBO_ENGINE_Turbine_Template">
+				<ID>1</ID>
+				<ANIM_NODE_ID>N1_1_anim</ANIM_NODE_ID>
+				<ANIM_NAME>N1_1_anim</ANIM_NAME>
+				<STILL_NODE_ID>ENG_1_STILL_LEFT</STILL_NODE_ID>
+				<SLOW_NODE_ID>ENG_1_SLOW_LEFT</SLOW_NODE_ID>
+				<BLURRED_NODE_ID>ENG_1_BLURRED_LEFT</BLURRED_NODE_ID>
+			</UseTemplate>
+			<UseTemplate Name="ASOBO_ENGINE_Turbine_Template">
+				<ID>2</ID>
+				<ANIM_NODE_ID>N1_2_anim</ANIM_NODE_ID>
+				<ANIM_NAME>N1_2_anim</ANIM_NAME>
+				<STILL_NODE_ID>ENG_2_STILL_LEFT</STILL_NODE_ID>
+				<SLOW_NODE_ID>ENG_2_SLOW_LEFT</SLOW_NODE_ID>
+				<BLURRED_NODE_ID>ENG_2_BLURRED_LEFT</BLURRED_NODE_ID>
+			</UseTemplate>
+			<UseTemplate Name="ASOBO_ENGINE_Turbine_Template">
+				<ID>3</ID>
+				<ANIM_NODE_ID>N1_3_anim</ANIM_NODE_ID>
+				<ANIM_NAME>N1_3_anim</ANIM_NAME>
+				<STILL_NODE_ID>ENG_3_STILL_LEFT</STILL_NODE_ID>
+				<SLOW_NODE_ID>ENG_3_SLOW_LEFT</SLOW_NODE_ID>
+				<BLURRED_NODE_ID>ENG_3_BLURRED_LEFT</BLURRED_NODE_ID>
+			</UseTemplate>
+			<UseTemplate Name="ASOBO_ENGINE_Turbine_Template">
+				<ID>4</ID>
+				<ANIM_NODE_ID>N1_4_anim</ANIM_NODE_ID>
+				<ANIM_NAME>N1_4_anim</ANIM_NAME>
+				<STILL_NODE_ID>ENG_4_STILL_LEFT</STILL_NODE_ID>
+				<SLOW_NODE_ID>ENG_4_SLOW_LEFT</SLOW_NODE_ID>
+				<BLURRED_NODE_ID>ENG_4_BLURRED_LEFT</BLURRED_NODE_ID>
+			</UseTemplate>
+
+			<UseTemplate Name="ASOBO_ENGINE_Turbine_ReverseThrust_Template">
+				<ID>1</ID>
+				<ANIM_NAME>thrust_rev_1</ANIM_NAME>
+				<ANIM_LAG>3</ANIM_LAG>
+			</UseTemplate>
+			<UseTemplate Name="ASOBO_ENGINE_Turbine_ReverseThrust_Template">
+				<ID>2</ID>
+				<ANIM_NAME>thrust_rev_2</ANIM_NAME>
+				<ANIM_LAG>400</ANIM_LAG>
+			</UseTemplate>
+			<UseTemplate Name="ASOBO_ENGINE_Turbine_ReverseThrust_Template">
+				<ID>3</ID>
+				<ANIM_NAME>thrust_rev_3</ANIM_NAME>
+				<ANIM_LAG>400</ANIM_LAG>
+			</UseTemplate>
+			<UseTemplate Name="ASOBO_ENGINE_Turbine_ReverseThrust_Template">
+				<ID>4</ID>
+				<ANIM_NAME>thrust_rev_4</ANIM_NAME>
+				<ANIM_LAG>400</ANIM_LAG>
+			</UseTemplate>
+		</Component>
+		<Component ID="INTERACTIVE_POINTS">
+			<UseTemplate Name="ASOBO_FuelHose_InteractivePoint_Template">
+				<ID>9</ID>
+				<NODE_ID>GROUND_FUELPIPE</NODE_ID>
+			</UseTemplate>
+			<UseTemplate Name="ASOBO_FuelHose_InteractivePoint_Template">
+				<ID>8</ID>
+				<NODE_ID>GROUND_GPUPIPE</NODE_ID>
+			</UseTemplate>
+		</Component>
+
+  <!-- ============FX=============-->
+  <!-- <Component ID = "FX1_LOW_ALTITUDE">
+    <Parameters Type="Override">
+      <FX_GRAPH_PARAM_0>part_size_clamp, 28</FX_GRAPH_PARAM_0>
+    </Parameters>
+    <UseTemplate Name="ASOBO_FX_LOW_ALTITUDE_DUST">
+      <FX_GUID>{C8FB3147-D775-4CD1-AC8F-AEB717924F86}</FX_GUID>
+    </UseTemplate>
+  </Component> -->
+
+  <Component ID = "FX1_LOW_ALTITUDE">
+	<Parameters Type="Override">
+		<FX_GRAPH_PARAM_0>part_size_clamp, 28</FX_GRAPH_PARAM_0>
+	</Parameters>
+	<UseTemplate Name="ASOBO_FX_LOW_ALTITUDE_DUST">
+	</UseTemplate>
+</Component>
+
+<Component ID = "FX_LOW_ALTITUDE_VORTEX_RIGHT">
+	<Parameters Type="Override">
+		<FX_GRAPH_PARAM_0>GP_Side, 0</FX_GRAPH_PARAM_0>
+	</Parameters>
+	<UseTemplate Name="ASOBO_GROUND_CP_LOWALTITUDEDUSTFX2_FX">
+	</UseTemplate>
+</Component>
+
+<Component ID = "FX_LOW_ALTITUDE_VORTEX_LEFT">
+	<Parameters Type="Override">
+		<FX_GRAPH_PARAM_0>GP_Side, 1</FX_GRAPH_PARAM_0>
+	</Parameters>
+	<UseTemplate Name="ASOBO_GROUND_CP_LOWALTITUDEDUSTFX2_FX">
+	</UseTemplate>
+</Component>
+
+<Component ID = "DragTrail_Left_FX">
+	<Parameters Type="Override">
+		<FX_GRAPH_PARAM_0>DT_Side, -1</FX_GRAPH_PARAM_0>
+	</Parameters>
+	<UseTemplate Name="ASOBO_FX_DRAGTRAIL">
+		<FX_NODE>STROBE R</FX_NODE>
+	</UseTemplate>
+</Component>
+
+<Component ID = "DragTrail_Right_FX">
+	<Parameters Type="Override">
+		<FX_GRAPH_PARAM_0>DT_Side, 1</FX_GRAPH_PARAM_0>
+	</Parameters>
+	<UseTemplate Name="ASOBO_FX_DRAGTRAIL">
+		<FX_NODE>STROBE L</FX_NODE>
+	</UseTemplate>
+</Component>
+
+
+  <Component ID="LANDING_FX">
+    <UseTemplate Name="ASOBO_LANDING_FX"/>
+  </Component>
+   
+
+		<Component ID="FX_CONTRAIL_QUAD">
+			<OverrideTemplateParameters>
+					<FX_CODE>(A:CONTRAILS CONDITIONS MET:1, Keyframe) 0 &gt;</FX_CODE>
+					<FX_OFFSET_X>0</FX_OFFSET_X>
+					<FX_OFFSET_Y>0</FX_OFFSET_Y>
+					<FX_OFFSET_Z>0</FX_OFFSET_Z>
+					<FX_GUID>{F42CE638-11EB-4FC8-B9B0-111A220D681F}</FX_GUID>
+					<FX_NAME>FX_CONTRAILS</FX_NAME>
+			</OverrideTemplateParameters>
+			<Component ID="FX_CONTRAIL_QUAD_LEFT_IN" Node="L1_EngineFX">
+				<UseTemplate Name="ASOBO_GT_FX">
+				</UseTemplate>
+			</Component>
+			<Component ID="FX_CONTRAIL_QUAD_LEFT_OUT" Node="L2_EngineFX">
+				<UseTemplate Name="ASOBO_GT_FX">
+				</UseTemplate>
+			</Component>
+			<Component ID="FX_CONTRAIL_QUAD_RIGHT_IN" Node="R1_EngineFX">
+				<UseTemplate Name="ASOBO_GT_FX">
+				</UseTemplate>
+			</Component>
+			<Component ID="FX_CONTRAIL_QUAD_RIGHT_OUT" Node="R2_EngineFX">
+				<UseTemplate Name="ASOBO_GT_FX">
+				</UseTemplate>
+			</Component>
+		</Component>
+		<Component ID="FX_CONTRAIL_RIBBON">
+			<OverrideTemplateParameters>
+					<FX_CODE>(A:CONTRAILS CONDITIONS MET:1, Keyframe) 0 &gt;</FX_CODE>
+					<FX_OFFSET_X>0</FX_OFFSET_X>
+					<FX_OFFSET_Y>0</FX_OFFSET_Y>
+					<FX_OFFSET_Z>0</FX_OFFSET_Z>
+					<FX_GUID>{904EC2CE-F8DD-4480-99E7-B33F7CF6E114}</FX_GUID>
+					<FX_NAME>FX_CONTRAILS_RIBBON</FX_NAME>
+			</OverrideTemplateParameters>
+			<Component ID="FX_CONTRAIL_RIBBON_LEFT_OUT" Node="L2_EngineFX">
+				<UseTemplate Name="ASOBO_GT_FX">
+				</UseTemplate>
+			</Component>
+			<Component ID="FX_CONTRAIL_RIBBON_RIGHT_OUT" Node="R2_EngineFX">
+				<UseTemplate Name="ASOBO_GT_FX">
+				</UseTemplate>
+			</Component>
+		</Component>
+		
+	</Behaviors>
+
+	<Animation name="KC135 Move" guid="adf8e8b3-065d-4721-a178-e690b9a93df8" type="Sim" typeParam="AutoPlay" />
+	<PartInfo>
+	  <Name>KC135 Move</Name>
+	  <AnimLength>500</AnimLength>
+	  <Animation>
+		<Parameter>
+		  <Code>(E:ABSOLUTE TIME, second) 6 % 125 *</Code>
+		</Parameter>
+	  </Animation>
+	</PartInfo>
+
+	<Animation name="Boom_drop" guid="033aa907-d913-4426-ae46-0c240bcd7163" type="Sim" typeParam="AutoPlay" />
+	<PartInfo>
+	  <Name>Boom_drop</Name>
+	  <AnimLength>100</AnimLength>
+	  <Animation>
+		<Parameter>
+		  <Code>(L:C17_KC135_BoomPOS, enum)</Code>
+		  <Lag>10</Lag>
+		</Parameter>
+	  </Animation>
+	</PartInfo>
+
+
+	<Animation name="WIPER_MOVE" guid="b436ca33-9a63-44ea-855f-4bd6f3049b0f" type="Sim" typeParam="AutoPlay" />
+    <PartInfo>
+        <Name>WIPER_MOVE</Name>
+        <AnimLength>100</AnimLength>
+        <Animation>
+            <Parameter>
+                 <Code>
+                  (L:C17_WIPER, bool) 1 == if{ 
+                  (E:ABSOLUTE TIME, second) 2 % 100 *
+                  } els{ 0 }
+                 </Code>
+        </Parameter>
+        </Animation>
+    </PartInfo>
+	<Animation name="Refuellight" guid="3e16dd94-4e75-4b77-b365-2ced234b3886" length="1" type="Sim" typeParam="AutoPlay" />
+	<PartInfo>
+	  <Name>Refuellight</Name>
+	  <AnimLength>1</AnimLength>
+	  <Visibility>
+		<Parameter>
+		  <Code>
+			(A:LIGHT LANDING,bool) (A:ELECTRICAL MASTER BATTERY, bool) and
+			if{ 1 } els{ 0 }
+		  </Code>
+		</Parameter>
+	  </Visibility>
+	</PartInfo>
+    <Animation name="LDG_C_EXTEND" guid="a82a6883-6623-4935-a8fa-4ab3330dbf5d" length="50" type="Sim"  typeParam="AutoPlay" />
+    <PartInfo>
+        <Name>LDG_C_EXTEND</Name>
+        <AnimLength>50</AnimLength>
+        <Animation>
+            <Parameter>
+				<Code>
+					(L:C17_LDG_C_EXTEND,bool) 1 == if{ 50 } els{ 0 }
+				  </Code>
+				  <Lag>10</Lag>
+            </Parameter>
+        </Animation>
+    </PartInfo>
+    <Animation name="LDG_R_EXTEND" guid="33ec8256-6912-464a-b3b5-c9f63808e90e" length="50" type="Sim"  typeParam="AutoPlay" />
+    <PartInfo>
+        <Name>LDG_R_EXTEND</Name>
+        <AnimLength>50</AnimLength>
+        <Animation>
+            <Parameter>
+				 <Code>
+                 	(L:C17_LDG_R_EXTEND,bool) 1 == if{ 50 } els{ 0 }
+                 </Code>
+				<Lag>10</Lag>
+            </Parameter>
+        </Animation>
+    </PartInfo>   
+    <Animation name="LDG_L_EXTEND" guid="f6f99309-5020-4fd0-9e73-528bb2726d8b" length="50" type="Sim" typeParam="AutoPlay" />
+    <PartInfo>
+        <Name>LDG_L_EXTEND</Name>
+        <AnimLength>50</AnimLength>
+        <Animation>
+            <Parameter>
+				 <Code>
+                 	(L:C17_LDG_L_EXTEND,bool) 1 == if{ 50 } els{ 0 }
+                 </Code>
+				<Lag>10</Lag>
+            </Parameter>
+        </Animation>
+    </PartInfo>   
+
+	<Animation name="INTLIGHT" guid="7793e9b4-53ea-43cd-9285-f58ea3e47cb4" length="1" type="Sim" typeParam="AutoPlay" />
+    <PartInfo>
+    <Name>INTLIGHT</Name>
+    <Materials> <Emissive> <Parameter>
+    <Code>(A:LIGHT POTENTIOMETER:20, percent) 100 /</Code> 
+    </Parameter> </Emissive> </Materials>
+    </PartInfo>
+
+    <Animation name="Aidrop_main" guid="ff3a42f8-abc2-4d9c-bae6-86d217abf46b" type="Sim" typeParam="AutoPlay" />
+    <PartInfo>
+        <Name>Aidrop_main</Name>
+        <AnimLength>500</AnimLength>
+        <Animation>
+            <Parameter>
+				 <Code>
+                 	(L:C17_Hummer_Airdrop,bool) 1 == if{ 500 } els{ 0 }
+                 </Code>
+				<Lag>30</Lag>
+            </Parameter>
+        </Animation>
+		<Visibility>
+			<Parameter>
+			  <Code>
+				  (L:C17_Show_Cargo, bool) 1 ==
+			  </Code>
+			  <Lag>10</Lag>
+			</Parameter>
+		</Visibility>
+    </PartInfo>   
+
+
+	<Animation name="tire_anim" guid="d42f8553-3ec7-4bfc-a9ba-0d669b174ef4" length="100" type="Sim" typeParam="AutoPlay" />
+	<Animation name="c_tire_still_key" guid="2788ac1a-4f88-402d-88fc-01a979ce48f8" length="100" type="Sim" typeParam="AutoPlay" />
+	<Animation name="l_tire_still_key" guid="33249ea2-f0e7-4e3f-9498-754697cf50bb" length="100" type="Sim" typeParam="AutoPlay" />
+	<Animation name="r_tire_still_key" guid="6114e2ca-5fb8-4d20-a880-56945094247f" length="100" type="Sim" typeParam="AutoPlay" />
+	<PartInfo>
+		<Name>tire_anim</Name>
+		<AnimLength>100</AnimLength>
+		<Animation>
+		  <Parameter>
+			<Sim>
+			  <Variable>CENTER WHEEL ROTATION ANGLE</Variable>
+			  <Units>radians</Units>
+			  <Bias>0</Bias>
+			  <Scale>15.91</Scale>
+			</Sim>
+		  </Parameter>
+		</Animation>
+	  </PartInfo>
+	  <PartInfo>
+		<Name>c_tire_still_key</Name>
+		<Copy>tire_anim</Copy>
+		<Visibility>
+		  <Parameter>
+			<Code>
+						(A:CENTER WHEEL RPM, grads) 100 &gt; if{ 0 } els{ 1 }
+					</Code>
+		  </Parameter>
+		</Visibility>
+		<AnimLength>100</AnimLength>
+		<Animation>
+		  <Parameter>
+			<Sim>
+			  <Variable>CENTER WHEEL ROTATION ANGLE</Variable>
+			  <Units>radians</Units>
+			  <Scale>15.91</Scale>
+			</Sim>
+		  </Parameter>
+		</Animation>
+	  </PartInfo>
+	  <PartInfo>
+		<Name>l_tire_still_key</Name>
+		<Copy>tire_anim</Copy>
+		<Visibility>
+		  <Parameter>
+			<Code>
+				(A:LEFT WHEEL RPM, grads) 100 &gt; if{ 0 } els{ 1 }
+			  </Code>
+		  </Parameter>
+		</Visibility>
+		<AnimLength>100</AnimLength>
+		<Animation>
+		  <Parameter>
+			<Sim>
+			  <Variable>LEFT WHEEL ROTATION ANGLE</Variable>
+			  <Units>radians</Units>
+			  <Scale>15.91</Scale>
+			</Sim>
+		  </Parameter>
+		</Animation>
+	  </PartInfo>
+	  <PartInfo>
+		<Name>r_tire_still_key</Name>
+		<Copy>tire_anim</Copy>
+		<Visibility>
+		  <Parameter>
+			<Code>
+				(A:RIGHT WHEEL RPM, grads) 100 &gt; if{ 0 } els{ 1 }
+			  </Code>
+		  </Parameter>
+		</Visibility>
+		<AnimLength>100</AnimLength>
+		<Animation>
+		  <Parameter>
+			<Sim>
+			  <Variable>RIGHT WHEEL ROTATION ANGLE</Variable>
+			  <Units>radians</Units>
+			  <Scale>15.91</Scale>
+			</Sim>
+		  </Parameter>
+		</Animation>
+	  </PartInfo>
+<Animation name="c_tire_blurred_key" guid="4e1cc3e5-5933-445d-80e0-b0dd693125f0" length="100" type="Sim" typeParam="AutoPlay" />
+<Animation name="l_tire_blurred_key" guid="2c52a54a-9902-487a-a355-d00874ce7d0f" length="100" type="Sim" typeParam="AutoPlay" />
+<Animation name="r_tire_blurred_key" guid="aa67f522-28c5-4d09-a246-2823d34a686b" length="100" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+	<Name>c_tire_blurred_key</Name>
+	<Copy>tire_anim</Copy>
+	<AnimLength>100</AnimLength>
+	<Visibility>
+		<Parameter>
+	  <Code>
+		(A:CENTER WHEEL RPM, grads) 100 &gt; if{ 1 } els{ 0 }
+	  </Code>
+		</Parameter>
+	</Visibility>
+	<Animation>
+		<Parameter>
+			<Sim>
+				<Variable>CENTER WHEEL ROTATION ANGLE</Variable>
+			</Sim>
+		</Parameter>
+	</Animation>
+</PartInfo>
+<PartInfo>
+	<Name>l_tire_blurred_key</Name>
+	<Copy>tire_anim</Copy>
+	<AnimLength>100</AnimLength>
+	<Visibility>
+		<Parameter>
+	  <Code>
+		(A:LEFT WHEEL RPM, grads) 100 &gt; if{ 1 } els{ 0 }
+	  </Code>
+	</Parameter>
+  </Visibility>
+  <Animation>
+		<Parameter>
+			<Sim>
+				<Variable>LEFT WHEEL ROTATION ANGLE</Variable>
+			</Sim>
+		</Parameter>
+	</Animation>
+</PartInfo>
+<PartInfo>
+	<Name>r_tire_blurred_key</Name>
+	<Copy>tire_anim</Copy>
+	<AnimLength>100</AnimLength>
+	<Visibility>
+		<Parameter>
+	  <Code>
+		(A:RIGHT WHEEL RPM, grads) 100 &gt; if{ 1 } els{ 0 }
+	  </Code>
+	</Parameter>
+  </Visibility>
+  <Animation>
+		<Parameter>
+			<Sim>
+				<Variable>RIGHT WHEEL ROTATION ANGLE</Variable>
+			</Sim>
+		</Parameter>
+	</Animation>
+</PartInfo>
+
+
+<Animation name="l_wing_flex" guid="29b17cb1-6891-41c3-b88a-112c2bd91d5f" length="100" type="Sim" typeParam="AutoPlay" />
+<Animation name="r_wing_flex" guid="4b8c8dca-b810-4c3c-98e5-576757872749" length="100" type="Sim" typeParam="AutoPlay" />
+	  <PartInfo>
+			<Name>r_wing_flex</Name>
+			<AnimLength>100</AnimLength>
+			<Animation>
+				<Parameter>
+					<Sim>
+						<Variable>WING FLEX PCT:2</Variable>
+						<Scale>0.5</Scale>
+						<Units>percent</Units>
+						<Bias>50</Bias>
+					</Sim>
+				</Parameter>
+			</Animation>
+		</PartInfo>
+		<PartInfo>
+			<Name>l_wing_flex</Name>
+			<AnimLength>100</AnimLength>
+			<Animation>
+				<Parameter>
+					<Sim>
+						<Variable>WING FLEX PCT:1</Variable>
+						<Scale>0.5</Scale>
+						<Units>percent</Units>
+						<Bias>50</Bias>
+					</Sim>
+				</Parameter>
+			</Animation>
+		</PartInfo>
+<!-- REFUEL LIGHTS-->
+
+<Animation name="SLIMELIGHT" guid="c81d560e-cd12-4c98-af43-771a54fbef07" length="1" type="Sim" typeParam="AutoPlay" />
+ <PartInfo>
+    <Name>SLIMELIGHT</Name>
+    <Materials> 
+		<Emissive> 
+			<Parameter>
+					<Code>
+						(L:C17_SLIMELIGHT, percent) 0.15 * (A:CIRCUIT ON:65,bool) *
+					</Code>
+					<Lag>20</Lag>
+			</Parameter> 
+		</Emissive> 
+	</Materials>
+</PartInfo>
+
+<Animation name="Lead_In_Lights" guid="25e9db8e-4dc9-46a5-8c18-b3cbbdcfac2a" length="1" type="Sim" typeParam="AutoPlay" />
+ <PartInfo>
+    <Name>Lead_In_Lights</Name>
+    <Materials> 
+		<Emissive> 
+			<Parameter>
+					<Code>
+						(L:C17_AR_LeadIn_LGT, percent) 0.15 * (A:CIRCUIT ON:65,bool) *
+					</Code>
+					<Lag>20</Lag>
+			</Parameter> 
+		</Emissive> 
+	</Materials>
+</PartInfo>
+
+
+<!-- HUMMER-TRIGGERED OVER 15K POUNDS-->
+<Animation name="Humvee_VIS" guid="aee400df-2ac7-4525-9a75-c111e056aba9" length="1" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+    <Name>Humvee_VIS</Name>
+    <AnimLength>1</AnimLength>
+    <Visibility>
+        <Parameter>
+            <Code>
+				(A:Payload Station Weight:3, pounds) 20000 &gt;
+				(A:Payload Station Weight:3, pounds) 35400 &lt; &amp;&amp;
+				 if{ 1 } els{ 0 }
+			</Code>
+        </Parameter>
+    </Visibility>
+</PartInfo>
+
+<Animation name="c_wheel" guid="c5a5a7f1-d27f-47ec-acef-7d3c3ee88a64" length="200" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+	<Name>c_wheel</Name>
+	<AnimLength>200</AnimLength>
+	<Animation>
+	  <Parameter>
+		<Code>
+			(A:GEAR CENTER STEER ANGLE, grads) 0 &gt; 
+			if{ (A:GEAR CENTER STEER ANGLE, grads) 0.5 * } 
+			els{ (A:GEAR CENTER STEER ANGLE, grads) 0.5 * 200 + }
+		  </Code>
+	  </Parameter>
+	</Animation>
+  </PartInfo>
+
+<!-- old code-->	  
+<Animation name="doorfront" guid="bfe53d1d-7b4c-495f-84ec-586bcb249fbd" length="50" type="Sim" typeparam="AutoPlay" />
+	  <PartInfo>
+		  <Name>doorfront</Name>
+		  <AnimLength>50</AnimLength>
+		  <Animation>
+			  <Parameter>
+				  <Code>(L:DOORS_OPEN_FRONT, bool) 50 *</Code>
+				  <Lag>20</Lag>
+		  </Parameter>
+		  </Animation>
+		  <MouseRect>
+			  <Cursor>Hand</Cursor>
+			  <HelpID>HELPID_DOOR_FRONT</HelpID>
+			  <TooltipID>TOOLTIPTEXT_DOOR_FRONT</TooltipID>
+			  <CallbackCode>(L:DOORS_OPEN_FRONT, bool) ! (>L:DOORS_OPEN_FRONT, bool)
+		  </CallbackCode>
+		  </MouseRect>
+	  </PartInfo> 
+
+<Animation name="INT DOOR" guid="d2edd596-24c8-414d-92b4-7d1f3ea47a04" length="100" type="Sim" typeparam="AutoPlay" />
+<PartInfo>
+	<Name>INT DOOR</Name>
+	<AnimLength>100</AnimLength>
+	<Animation>
+		<Parameter>
+			<Code>(L:INT DOOR, bool) 100 *</Code>
+			<Lag>10</Lag>
+	</Parameter>
+	</Animation>
+</PartInfo>
+
+<Animation name="Ramp_main" guid="ad635157-f30f-4c38-9853-3baa5a26b216" type="Sim" typeparam="AutoPlay" />
+<PartInfo>
+	<Name>Ramp_main</Name>
+	<AnimLength>100</AnimLength>
+	<Animation>
+	<Parameter>
+		<Code>
+			(L:C17_CargoDoor_POS, enum)
+		</Code>
+		<Lag>10</Lag>
+	</Parameter>
+	</Animation>
+</PartInfo>
+
+
+<Animation name="Ramp_top" guid="21f7f8fa-5c90-4a32-b413-84ba658197e4" type="Sim" typeparam="AutoPlay" />
+<PartInfo>
+	<Name>Ramp_top</Name>
+	<AnimLength>100</AnimLength>
+	<Animation>
+	  <Parameter>
+		<Code>
+			(L:C17_CargoDoor_POS, enum) 2 *
+		</Code>
+		<Lag>10</Lag>
+	  </Parameter>
+	</Animation>
+  </PartInfo>
+
+
+<Animation name="EXT_Door2" guid="22a2cf61-1140-40d3-809e-7d1b39326a9d" type="Sim" typeparam="AutoPlay" />
+<PartInfo>
+	<Name>EXT_Door2</Name>
+	<AnimLength>100</AnimLength>
+	<Animation>
+	  <Parameter>
+		<Code>
+			(L:C17_Crew_Enterance, bool) 100 * 50 +
+		</Code>
+		<Lag>10</Lag>
+	  </Parameter>
+	</Animation>
+  </PartInfo>
+
+
+
+  <Animation name="PARA DOORL" guid="795ad260-d165-4486-bc6b-84cd202e3693" type="Sim" typeparam="AutoPlay" />
+  <PartInfo>
+	  <Name>PARA DOORL</Name>
+	  <AnimLength>100</AnimLength>
+	  <Animation>
+		  <Parameter>
+			   <Code>(L:PARA DOORL, bool) 100 *</Code>
+			  <Lag>10</Lag>
+	  </Parameter>
+	  </Animation>
+  </PartInfo>
+  
+  <Animation name="PARA DOORR" guid="151fc768-add1-4ee5-bbd0-649918ef0ea8" type="Sim" typeparam="AutoPlay" />
+  <PartInfo>
+	  <Name>PARA DOORR</Name>
+	  <AnimLength>100</AnimLength>
+	  <Animation>
+		  <Parameter>
+			   <Code>(L:PARA DOORR, bool) 100 *</Code>
+			  <Lag>10</Lag>
+	  </Parameter>
+	  </Animation>
+  </PartInfo>
+
+<Animation name="C17_UARRSI" guid="430b1bbc-0a25-4cf1-a877-d3288e3de9e9" length="100" type="Sim" typeparam="AutoPlay" />
+<PartInfo>
+	<Name>C17_UARRSI</Name>
+	<AnimLength>100</AnimLength>
+	<Animation>
+		<Parameter>
+			<Code>(L:C17_UARRSI_Slipway, bool) 100 *</Code>
+			<Lag>10</Lag>
+	</Parameter>
+	</Animation>
+</PartInfo>
+
+<Animation guid="bd7e5faa-0d3c-4d11-b1bf-e7db7e349791" name="Slats_Left" type="Sim" typeparam="AutoPlay"/>
+<Animation guid="f945aa4a-8213-4ae9-84b8-54b78d15a649" name="Slats_Right" type="Sim" typeparam="AutoPlay"/>
+<Animation guid="e8cc59f8-b2de-4ef9-a747-822265db2d4c" name="Flaps_Left" type="Sim" typeparam="AutoPlay"/>
+<Animation guid="b8f394b5-3c3a-424f-9b50-e81bc4fb486e" name="Flaps_Right" type="Sim" typeparam="AutoPlay"/>
+<PartInfo>
+  <Name>Slats_Left</Name>
+  <AnimLength>100</AnimLength>
+  <Animation>
+    <Parameter>
+      <Sim>
+        <Variable>LEADING EDGE FLAPS LEFT PERCENT</Variable>
+        <Units>percent</Units>
+        <Scale>1</Scale>
+        <Bias>0</Bias>
+      </Sim>
+    </Parameter>
+  </Animation>
+</PartInfo>
+<PartInfo>
+  <Name>Slats_Right</Name>
+  <AnimLength>100</AnimLength>
+  <Animation>
+    <Parameter>
+      <Sim>
+        <Variable>LEADING EDGE FLAPS RIGHT PERCENT</Variable>
+        <Units>percent</Units>
+        <Scale>1</Scale>
+        <Bias>0</Bias>
+      </Sim>
+    </Parameter>
+  </Animation>
+</PartInfo>
+<PartInfo>
+  <Name>Flaps_Left</Name>
+  <AnimLength>100</AnimLength>
+  <Animation>
+    <Parameter>
+      <Sim>
+        <Variable>TRAILING EDGE FLAPS LEFT PERCENT</Variable>
+        <Units>percent</Units>
+        <Scale>1</Scale>
+        <Bias>0</Bias>
+      </Sim>
+    </Parameter>
+  </Animation>
+</PartInfo>
+<PartInfo>
+  <Name>Flaps_Right</Name>
+  <AnimLength>100</AnimLength>
+  <Animation>
+    <Parameter>
+      <Sim>
+        <Variable>TRAILING EDGE FLAPS RIGHT PERCENT</Variable>
+        <Units>percent</Units>
+        <Scale>1</Scale>
+        <Bias>0</Bias>
+      </Sim>
+    </Parameter>
+  </Animation>
+</PartInfo>
+<Animation name="l_spoiler_key" guid="F5D81E0E-0238-43a6-B169-2A7DF682295F" type="Sim" typeParam="AutoPlay" />
+<Animation name="r_spoiler_key" guid="1DAC9F00-4B37-417f-A463-8D6F2B72024D" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+  <Name>l_spoiler_key</Name>
+  <AnimLength>100</AnimLength>
+  <Animation>
+    <Parameter>
+      <Sim>
+        <Variable>SPOILERS LEFT POSITION</Variable>
+        <Units>percent</Units>
+      </Sim>
+    </Parameter>
+  </Animation>
+</PartInfo>
+<PartInfo>
+  <Name>r_spoiler_key</Name>
+  <AnimLength>100</AnimLength>
+  <Animation>
+    <Parameter>
+      <Sim>
+        <Variable>SPOILERS RIGHT POSITION</Variable>
+        <Units>percent</Units>
+      </Sim>
+    </Parameter>
+  </Animation>
+</PartInfo>
+
+
+</ModelInfo>

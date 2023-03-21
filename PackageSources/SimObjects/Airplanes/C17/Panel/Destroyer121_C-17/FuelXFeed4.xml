@@ -1,0 +1,24 @@
+<Gauge Name="Fuel XFeed Lamp 4 - Virtavia C-17 FSX" Version="1.0">
+
+  <Element>
+  	<Visible>(A:ELECTRICAL MASTER BATTERY,bool) (A:TURB ENG1 N1,Percent) 20 &gt; (A:TURB ENG2 N1,Percent) 20 &gt; (A:TURB ENG3 N1,Percent) 20 &gt; (A:TURB ENG4 N1,Percent) 20 &gt; || || || ||</Visible>
+ 
+    <Element>
+      <Select>
+         <Value>(A:FUEL DUMP ACTIVE,bool) (A:FUEL TANK RIGHT AUX QUANTITY,gallons) 6.7 * 1 &lt; &amp; </Value>
+         <Case Value="1">
+            <Image Name="FuelXFeedDisag.bmp"  Bright="1"/>
+         </Case>
+      </Select>
+   </Element>
+   
+  </Element>
+
+ <Mouse>
+  <Tooltip>Fuel Crossfeed Valve - Tank 4</Tooltip>
+ </Mouse>
+
+
+</Gauge>
+
+

@@ -1,0 +1,8 @@
+<Gauge Name="Icon GPS" Author="Herbert Pralle">
+  <Image Name="Icon_GPS.bmp" Luminous="0"/>
+  <Mouse>
+    <Help ID="HELPID_GAUGE_TOGGLE_GPS_WINDOW"/>
+    <Cursor Type="Hand"/>
+    <Click>225 (>K:PANEL_ID_TOGGLE)</Click>
+  </Mouse>
+</Gauge>

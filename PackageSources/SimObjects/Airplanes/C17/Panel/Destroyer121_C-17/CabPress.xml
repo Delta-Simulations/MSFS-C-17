@@ -1,0 +1,110 @@
+<Gauge Name="Cabin Pressure Gauge Display - Virtavia C-17 FSX only" Version="1.0">
+   <Image Name="CabPress.bmp"/>
+
+ <!--==== Cabin Differential Pressure Ind ====-->
+
+  <Element>
+	  <Position X="71" Y="76"/>
+    <Image Name="CabPress_Ndl.bmp" Luminous="1">
+      <Axis X="10" Y="10" PointsTo="East"/>
+    </Image>
+    <Rotate>
+      <Value Minimum="0" Maximum="7.8">(A:PRESSURIZATION PRESSURE DIFFERENTIAL,feet) 1000 / 2 / </Value>
+      <Nonlinearity>
+        <Item Value="0" X="71" Y="42"/>
+        <Item Value="0.5" X="88" Y="46"/>
+        <Item Value="1" X="100" Y="57"/>
+        <Item Value="2" X="107" Y="73"/>
+        <Item Value="4" X="95" Y="102"/>
+        <Item Value="6" X="63" Y="109"/>
+	<Item Value="7.8" X="40" Y="91"/>
+     </Nonlinearity>
+      <Failures>
+        <SYSTEM_PITOT_STATIC Action="0"/>
+        <SYSTEM_ELECTRICAL_PANELS Action=""/>
+      </Failures>
+      <Delay DegreesPerSecond="90"/>
+    </Rotate>
+  </Element>
+
+ <!--==== Cabin Altitude Ind ====-->
+
+  <Element>
+	  <Position X="176" Y="76"/>
+    <Image Name="CabPress_Ndl.bmp" Luminous="1">
+      <Axis X="10" Y="10" PointsTo="East"/>
+    </Image>
+    <Rotate>
+      <Value Minimum="-1" Maximum="40">(A:PRESSURIZATION CABIN ALTITUDE,feet) 1000 / </Value>
+      <Nonlinearity>
+	<Item Value="-1" X="163" Y="45"/>
+        <Item Value="0" X="177" Y="42"/>
+        <Item Value="1" X="190" Y="46"/>
+        <Item Value="2" X="200" Y="52"/>
+        <Item Value="4" X="212" Y="74"/>
+        <Item Value="6" X="205" Y="98"/>
+	<Item Value="8" X="183" Y="112"/>
+	<Item Value="10" X="158" Y="107"/>
+	<Item Value="20" X="146" Y="96"/>
+	<Item Value="30" X="141" Y="80"/>
+	<Item Value="40" X="142" Y="64"/>
+     </Nonlinearity>
+      <Failures>
+        <SYSTEM_PITOT_STATIC Action="0"/>
+        <SYSTEM_ELECTRICAL_PANELS Action=""/>
+      </Failures>
+      <Delay DegreesPerSecond="90"/>
+    </Rotate>
+  </Element>
+
+
+ <!--==== Cabin Altitude Rate Ind ====-->
+
+  <Element>
+	  <Position X="282" Y="76"/>
+    <Image Name="CabPress_Ndl.bmp" Luminous="1">
+      <Axis X="10" Y="10" PointsTo="East"/>
+    </Image>
+     <Rotate>
+      <Value Minimum="-6" Maximum="6">(A:PRESSURIZATION CABIN ALTITUDE RATE) 1000 /</Value>
+      <Nonlinearity>
+        <Item Value="-6" X="312" Y="94"/>
+        <Item Value="-2" X="282" Y="112"/>
+        <Item Value="-1" X="256" Y="100"/>
+        <Item Value="-0.5" X="249" Y="89"/>
+        <Item Value="0" X="245" Y="76"/>
+        <Item Value="0.5" X="249" Y="62"/>
+        <Item Value="1" X="255" Y="62"/>
+        <Item Value="2" X="281" Y="42"/>
+        <Item Value="6" X="312" Y="59"/>
+      </Nonlinearity>
+      <Failures>
+        <GAUGE_VERTICAL_SPEED Action="Freeze"/>
+        <SYSTEM_ELECTRICAL_PANELS Action=""/>
+      </Failures>
+      <Delay DegreesPerSecond="90"/>
+    </Rotate>
+  </Element>
+
+  <!--==== REFLECTION ====-->
+  <Element>
+    <Position X="0" Y="0"/>
+    <Visible>(P:TIME OF DAY,enum) (A:Light Panel,bool) + 3 &lt;</Visible>
+    <Image Name="CabPress_rfl.bmp" Alpha="1"/>
+  </Element>
+ 
+ <Mouse>
+   <Area Left="0" Top="0" Width="120" Height="154">
+      <Tooltip>Cabin Differential Pressure</Tooltip>
+    </Area>
+   <Area Left="124" Top="0" Width="106" Height="154">
+      <Tooltip>Cabin Altitude</Tooltip>
+    </Area>
+   <Area Left="232" Top="0" Width="108" Height="154">
+      <Tooltip>Cabin Altitude Rate</Tooltip>
+    </Area>
+ </Mouse>
+
+</Gauge>
+
+

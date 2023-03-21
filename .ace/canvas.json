@@ -1,0 +1,15 @@
+{
+    "elements": [
+        {
+            "__uuid": "36b1ff22-f3e1-4ad8-b05d-3180ec5a83e5",
+            "__kind": "instrument",
+            "dataKind": "bundled",
+            "title": "READOUT",
+            "instrumentName": "READOUT",
+            "position": {
+                "x": 0,
+                "y": 0
+            }
+        }
+    ]
+}

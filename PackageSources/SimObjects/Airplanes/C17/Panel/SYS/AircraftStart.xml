@@ -1,0 +1,44 @@
+<Gauge Name="AircraftStart" Version="1.0">
+<Comment>
+*************************************************
+FOR DELTA SIMULATIONS UH60M
+Produced by Destroyer121 (delta.simulations0@gmail.com)
+*************************************************
+</Comment>
+
+<Element>
+<Select>
+<Value>
+(L:UH60Init,bool) !
+if{
+
+5 (>L:Light_ROTATE, enum)
+0 (>L:Light_SEARCH, enum)
+0 (>L:HUMVEE, bool)
+0 (>L:MODEL_TYPE, enum)
+0 (>L:ADDITIONSVIS, enum)
+10 (>L:HUDEMIS, percent)
+37 (>L:Uh60_EFB_BRT, enum)
+}
+</Value>
+</Select>
+</Element>
+
+<Element>
+<Select>
+<Value>
+(L:UH60Init,bool) !
+if{
+1 (>L:UH60Init,bool)
+}
+</Value>
+</Select>
+</Element>
+
+
+    
+
+
+
+
+</Gauge>

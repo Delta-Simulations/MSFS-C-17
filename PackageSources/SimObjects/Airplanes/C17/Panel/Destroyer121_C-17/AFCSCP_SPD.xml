@@ -1,0 +1,37 @@
+<Gauge Name="AFCSCP Airspeed Display - Virtavia C-17" Version="1.1">
+   <Image Name="AFCSCP_SPD_bg.bmp"/>
+
+  <Element>
+  	<Visible>(A:ELECTRICAL MASTER BATTERY,bool) (A:TURB ENG1 N1,Percent) 20 &gt; (A:TURB ENG2 N1,Percent) 20 &gt; (A:TURB ENG3 N1,Percent) 20 &gt; (A:TURB ENG4 N1,Percent) 20 &gt; || || || ||</Visible>
+
+   <Element>
+     <Position X="10" Y="10"/>
+      <Text X="60" Y="30" Length="4" Fixed="Yes" Font="Quartz" FontHeight="0" FontWeight="400" Charset="Default" Attributes="Normal" Adjust="Center" VerticalAdjust="Center" Multiline="No" Color="#BDBDDF" BackgroundColor="transparent" HilightColor="white" Bright="Yes" UseTransparency="Yes">
+
+       <String>%((L:Mach-IAS select, bool))%{if}%((A:Autopilot mach hold var, mach))%!1.2f!%{else}%((A:Autopilot airspeed hold var,knots))%!03d!%{end}</String>
+
+         <Failures>
+            <SYSTEM_ELECTRICAL_PANELS Action=""/>
+         </Failures>
+      </Text>
+    </Element>
+
+
+   <Element>
+      <Position X="70" Y="10"/>
+           <Text X="60" Y="30" Length="3" Fixed="Yes" Font="Quartz" FontHeight="0" FontWeight="400" Charset="Default" Attributes="Normal" Adjust="Center" VerticalAdjust="Center" Multiline="No" Color="#BDBDDF" BackgroundColor="transparent" HilightColor="white" Bright="Yes" UseTransparency="Yes">
+        
+	<String>%((A:Autopilot attitude hold, bool))%{if}%PTC%{else}%THR%</String>
+      
+	</Text>
+    </Element>
+  
+  </Element>
+
+ <Mouse>
+  <Tooltip>Airpseed</Tooltip>
+ </Mouse>
+
+</Gauge>
+
+

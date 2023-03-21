@@ -1,0 +1,29 @@
+<SimBase.Document Type="AceXML" version="1.0" id="Herbert Pralle">
+  <Descr>AceXML Document</Descr>
+  <Filename>SWITCH.xml</Filename>
+  <SimGauge.Gauge id="Gauge">
+    <Update id="Update">
+      <Script>(L:SwitchIni) 0 == if{ 0.5 (>L:AS,number) 1 (>L:SwitchIni) }</Script>
+    </Update>
+    <Element id="Switch">
+      <FloatPosition>0,0</FloatPosition>
+      <Select id="Select">
+        <Expression id="Expression">
+          <Script>(L:Switch)</Script>
+        </Expression>
+        <Case id="Case">
+          <ExpressionResult>0</ExpressionResult>
+          <Image id="Image" Name="Switch_Off.bmp">
+            <Transparent>True</Transparent>
+          </Image>
+        </Case>
+        <Case id="Case">
+          <ExpressionResult>1</ExpressionResult>
+          <Image id="Image" Name="Switch_On.bmp">
+            <Transparent>True</Transparent>
+          </Image>
+        </Case>
+      </Select>
+    </Element>
+  </SimGauge.Gauge>
+</SimBase.Document>

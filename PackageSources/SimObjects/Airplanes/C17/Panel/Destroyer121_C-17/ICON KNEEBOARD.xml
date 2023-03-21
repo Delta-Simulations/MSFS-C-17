@@ -1,0 +1,8 @@
+<Gauge Name="Icon Kneeboard" Author="Herbert Pralle">
+  <Image Name="Icon_kneeboard.bmp" Luminous="0"/>
+  <Mouse>
+    <Help ID="HELPID_GAUGE_TOGGLE_CHECKLIST_WINDOW"/>
+    <Cursor Type="Hand"/>
+    <Click Event="KNEEBOARD_VIEW"/>
+  </Mouse>
+</Gauge>

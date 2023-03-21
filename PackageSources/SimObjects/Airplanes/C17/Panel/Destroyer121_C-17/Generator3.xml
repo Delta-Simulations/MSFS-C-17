@@ -1,0 +1,22 @@
+<Gauge Name="Generator Switchlight 3 - Virtavia C-17 FSX" Version="1.0">
+
+  <Element>
+  	<Visible>(A:ELECTRICAL MASTER BATTERY,bool) (A:TURB ENG1 N1,Percent) 20 &gt; (A:TURB ENG2 N1,Percent) 20 &gt; (A:TURB ENG3 N1,Percent) 20 &gt; (A:TURB ENG4 N1,Percent) 20 &gt; || || || ||</Visible>
+ 
+       <Element>
+      <Select>
+         <Value>(A:General eng3 generator switch,bool)</Value>
+         <Case Value="0">
+            <Image Name="GeneratorOffR.bmp"  Bright="1"/>
+         </Case>
+         <Case Value="1">
+            <Image Name="GeneratorOnR.bmp"  Bright="1"/>
+         </Case>
+      </Select>
+   </Element>
+   
+  </Element>
+
+</Gauge>
+
+

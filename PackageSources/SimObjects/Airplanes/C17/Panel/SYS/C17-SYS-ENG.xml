@@ -1,0 +1,76 @@
+<Gauge Name="ENG_SYS" Version="1.0">
+	<Comment>
+		*************************************************
+		FOR DELTA SIMULATIONS C-17
+		*************************************************
+	</Comment>
+
+
+<Element>
+	<Select>
+			<Value>
+
+			(L:C17_APUSTARTER, enum) 0 !=
+			if{ 
+				9 (&gt;K:FUELSYSTEM_PUMP_ON,bool) 
+				9 (&gt;K:FUELSYSTEM_VALVE_OPEN,bool) 
+
+			} els{ 
+				0 (&gt;K:APU_OFF_SWITCH,bool)
+				9 (&gt;K:FUELSYSTEM_PUMP_TOGGLE,bool) 
+				9 (&gt;K:FUELSYSTEM_PUMP_OFF,bool) 
+			}
+
+			(L:C17_APUSTARTER, enum) 2 == if{
+				1 (&gt;K:APU_STARTER,bool)
+			}
+			</Value>
+	</Select>
+</Element>
+
+<Element>
+	<Select>
+			<Value>
+
+			(L:C17_APUSTARTER, enum) 0 !=
+			if{ 
+				9 (&gt;K:FUELSYSTEM_PUMP_ON,bool) 
+				9 (&gt;K:FUELSYSTEM_VALVE_OPEN,bool) 
+
+			} els{ 
+				0 (&gt;K:APU_OFF_SWITCH,bool)
+				9 (&gt;K:FUELSYSTEM_PUMP_TOGGLE,bool) 
+				9 (&gt;K:FUELSYSTEM_PUMP_OFF,bool) 
+			}
+
+			(L:C17_APUSTARTER, enum) 2 == if{
+				1 (&gt;K:APU_STARTER,bool)
+			}
+			</Value>
+	</Select>
+</Element>
+
+<Element>
+	<Select>
+			<Value>
+
+
+				(A:APU PCT RPM, percent) 7 &gt; 
+				if{
+					1 (&gt;L:C17_APUDOOR_OPEN, bool)
+				}else{
+					0 (&gt;L:C17_APUDOOR_OPEN, bool)
+				}
+
+				<!-- 0 1 (&gt;K:2:ENGINE_BLEED_AIR_SOURCE_SET)
+				0 2 (&gt;K:2:ENGINE_BLEED_AIR_SOURCE_SET)
+				0 (&gt;K:APU_BLEED_AIR_SOURCE_SET) -->
+
+
+
+			</Value>
+	</Select>
+</Element>
+
+
+</Gauge>

@@ -1,0 +1,17 @@
+<Gauge Name="Icon AP Panel" Version="C-17" Author="Herbert Pralle">
+  <Image Name="Icon_AP_panel_open.bmp" Luminous="0"/>
+  <Element>
+    <Position X="0" Y="0"/>
+    <Select>
+      <Value>(L:AP panel,bool)</Value>
+      <Case Value="1">
+        <Image Name="Icon_AP_panel_close.bmp" Luminous="0"/>
+      </Case>
+    </Select>
+  </Element>
+  <Mouse>
+    <Tooltip>Open / Close Panel</Tooltip>
+    <Cursor Type="Hand"/>
+    <Click Repeat="Yes">(L:AP panel,bool) ! (>L:AP panel,bool) 10001 (>K:PANEL_ID_TOGGLE)</Click>
+  </Mouse>
+</Gauge>

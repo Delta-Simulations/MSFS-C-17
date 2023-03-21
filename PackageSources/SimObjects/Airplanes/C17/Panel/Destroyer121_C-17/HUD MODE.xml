@@ -1,0 +1,28 @@
+<Gauge Name="HUD Mode" Version="C-17" Author="Herbert Pralle">
+  <Image Name="HUD_mode_backgrnd.bmp" Luminous="0"/>
+  <Element>
+    <Position X="0" Y="0"/>
+    <Select>
+      <Value>(L:HUD mode,enum)</Value>
+      <Case Value="1">
+        <Image Name="HUD_mode_wheel1.bmp"/>
+      </Case>
+      <Case Value="2">
+        <Image Name="HUD_mode_wheel2.bmp"/>
+      </Case>
+    </Select>
+  </Element>
+  <Mouse>
+    <Area Left="0" Top="3" Width="50" Height="120">
+      <Area Top="60">
+        <Cursor Type="DownArrow"/>
+        <Click Repeat="Yes">(L:HUD mode,enum) 1 - 0 max (>L:HUD mode,enum)</Click>
+      </Area>
+      <Area Bottom="60">
+        <Cursor Type="UpArrow"/>
+        <Click Repeat="Yes">(L:HUD mode,enum) 1 + 2 min (>L:HUD mode,enum)</Click>
+      </Area>
+      <Tooltip>HUD Declutter Level</Tooltip>
+    </Area>
+  </Mouse>
+</Gauge>

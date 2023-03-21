@@ -1,0 +1,152 @@
+@font-face {
+  font-family: "OCRB";
+
+  src: url("/Fonts/OcrB2.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "system-ui";
+
+  src: url("/Fonts/roboto.ttf") format("truetype");
+}
+
+text {
+  font-family: "system-ui";
+  fill: white;
+  font-size: 25px;
+}
+
+.EFBContainer {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 1040px;
+  height: 810px;
+  background-color: #1a1b26;
+  font-family: system-ui;
+}
+.homeContainer {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 1040px;
+  height: 810px;
+  background-image: url("/images/LOGO.png"), url("/images/EFB_Backround.jpg");
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+  background-size: 45%, cover;
+}
+.ButtonBarContainer {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  height: 50px;
+  background-color: #16161e;
+  width: 1026px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.699);
+}
+.aircraftContainer {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 1040;
+  height: 810px;
+  background-position: right;
+  background-size: 80%;
+  background-repeat: no-repeat;
+}
+.checklistContiner {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 1040;
+  height: 810px;
+  background-position: right;
+  background-color: rgba(0, 0, 0, 0);
+  background-size: 80%;
+  background-repeat: no-repeat;
+}
+.traditionalContainer {
+  position: absolute;
+  margin-left: 30px;
+  background-color: #16161e;
+  left: 0px;
+  top: 68px;
+  width: 980px;
+  height: 625px;
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.65);
+  margin-top: 40px;
+  border-radius: 5px;
+}
+.emergencyContainer {
+  position: abolute;
+  margin-left: 30px;
+  background-color: #16161e;
+  left: 30px;
+  width: 980px;
+  height: 625px;
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.65);
+  margin-top: 40px;
+  border-radius: 5px;
+}
+.checklistContents {
+  position: absolute;
+  left: 40px;
+  top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.traditionalControls {
+  position: absolute;
+  right: 20px;
+  top: 220px;
+}
+
+.warning, .advisory {
+  position: absolute;
+  bottom: 10px;
+  left: 5%;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 84%;
+  color: red;
+  border-left: 3px solid red;
+  border-radius: 4px;
+  background-color: #16161e;
+  font-size: 20px;
+}
+
+.advisory {
+  color: #b89b1d;
+  border-left: 3px solid #b89b1d;
+}
+
+.checklistText, .inactiveChecklistItem, .activeChecklistItem {
+  font-size: 17px;
+  font-weight: bold;
+  color: #1b93ff;
+}
+
+.activeChecklistItem {
+  color: #2e7d32;
+}
+.settingsContainer {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 1040;
+  height: 810px;
+  background-position: right;
+  background-size: 80%;
+  background-repeat: no-repeat;
+}

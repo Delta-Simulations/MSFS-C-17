@@ -1,0 +1,323 @@
+<Gauge Name="LCP - Light Control Panel" Version="C-17" Author="Herbert Pralle">
+  <Image Name="LCP_Backgrnd.bmp"/>
+  <Element>
+    <Visible>(A:Circuit general panel on, bool)</Visible>
+    <Element>
+      <Position X="0" Y="0"/>
+      <Select>
+        <Value>(L:OVH light,bool)</Value>
+        <Case Value="1">
+          <Image Name="LCP_light.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+  </Element>
+  <!--==== LEFT ====-->
+  <Element>
+    <Element>
+      <Position X="74" Y="64"/>
+      <Image Name="LCP_Knob.bmp">
+        <Axis X="25" Y="25"/>
+      </Image>
+      <Rotate>
+        <Value>(A:Light cabin, bool)</Value>
+        <Nonlinearity>
+          <Item Value="0" Degrees="0"/>
+          <Item Value="1" Degrees="120"/>
+        </Nonlinearity>
+        <Delay DegreesPerSecond="360"/>
+      </Rotate>
+    </Element>
+    <Element>
+      <Position X="180" Y="64"/>
+      <Image Name="LCP_Knob.bmp">
+        <Axis X="25" Y="25"/>
+      </Image>
+      <Rotate>
+        <Value>(L:LCP storm,bool)</Value>
+        <Nonlinearity>
+          <Item Value="0" Degrees="0"/>
+          <Item Value="1" Degrees="120"/>
+        </Nonlinearity>
+        <Delay DegreesPerSecond="360"/>
+      </Rotate>
+    </Element>
+    <Element>
+      <Position X="282" Y="64"/>
+      <Image Name="LCP_Knob.bmp">
+        <Axis X="25" Y="25"/>
+      </Image>
+      <Rotate>
+        <Value>(L:OVH light,bool)</Value>
+        <Nonlinearity>
+          <Item Value="0" Degrees="0"/>
+          <Item Value="1" Degrees="120"/>
+        </Nonlinearity>
+        <Delay DegreesPerSecond="360"/>
+      </Rotate>
+    </Element>
+    <Element>
+      <Position X="384" Y="64"/>
+      <Image Name="LCP_Knob.bmp">
+        <Axis X="25" Y="25"/>
+      </Image>
+      <Rotate>
+        <Value>3 (L:OVH dim,enum) -</Value>
+        <Nonlinearity>
+          <Item Value="0" Degrees="0"/>
+          <Item Value="1" Degrees="80"/>
+          <Item Value="2" Degrees="160"/>
+          <Item Value="3" Degrees="240"/>
+        </Nonlinearity>
+        <Delay DegreesPerSecond="180"/>
+      </Rotate>
+    </Element>
+    <Element>
+      <Position X="404" Y="144"/>
+      <Image Name="LCP_Knob.bmp">
+        <Axis X="25" Y="25"/>
+      </Image>
+      <Rotate>
+        <Value>(L:wiperl,bool)</Value>
+        <Nonlinearity>
+          <Item Value="0" Degrees="0"/>
+          <Item Value="1" Degrees="120"/>
+        </Nonlinearity>
+        <Delay DegreesPerSecond="360"/>
+      </Rotate>
+    </Element>
+  </Element>
+  <!--==== CENTER ====-->
+  <Element>
+    <Element>
+      <Position X="490" Y="66"/>
+      <Select>
+        <Value>(A:Light landing,bool)</Value>
+        <Case Value="0">
+          <Image Name="LCP_sw_off.bmp"/>
+        </Case>
+        <Case Value="1">
+          <Image Name="LCP_sw_on.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="570" Y="66"/>
+      <Select>
+        <Value>(A:Light landing,bool)</Value>
+        <Case Value="0">
+          <Image Name="LCP_sw_off.bmp"/>
+        </Case>
+        <Case Value="1">
+          <Image Name="LCP_sw_on.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="734" Y="66"/>
+      <Select>
+        <Value>(A:Light taxi,bool)</Value>
+        <Case Value="0">
+          <Image Name="LCP_sw_off.bmp"/>
+        </Case>
+        <Case Value="1">
+          <Image Name="LCP_sw_on.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="814" Y="66"/>
+      <Select>
+        <Value>(A:Light taxi,bool)</Value>
+        <Case Value="0">
+          <Image Name="LCP_sw_off.bmp"/>
+        </Case>
+        <Case Value="1">
+          <Image Name="LCP_sw_on.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+  </Element>
+  <Element>
+    <Visible>(A:Circuit general panel on, bool)</Visible>
+    <Element>
+      <Position X="490" Y="66"/>
+      <Select>
+        <Value>(A:Light landing,bool)</Value>
+        <Case Value="1">
+          <Image Name="LCP_sw_lt.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="570" Y="66"/>
+      <Select>
+        <Value>(A:Light landing,bool)</Value>
+        <Case Value="1">
+          <Image Name="LCP_sw_lt.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="734" Y="66"/>
+      <Select>
+        <Value>(A:Light taxi,bool)</Value>
+        <Case Value="1">
+          <Image Name="LCP_sw_lt.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="814" Y="66"/>
+      <Select>
+        <Value>(A:Light taxi,bool)</Value>
+        <Case Value="1">
+          <Image Name="LCP_sw_lt.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+  </Element>
+  <!--==== RIGHT ====-->
+  <Element>
+    <Element>
+      <Position X="1006" Y="64"/>
+      <Image Name="LCP_Knob.bmp">
+        <Axis X="25" Y="25"/>
+      </Image>
+      <Rotate>
+        <Value>(A:Light nav,bool)</Value>
+        <Nonlinearity>
+          <Item Value="0" Degrees="0"/>
+          <Item Value="1" Degrees="120"/>
+        </Nonlinearity>
+        <Delay DegreesPerSecond="360"/>
+      </Rotate>
+    </Element>
+    <Element>
+      <Position X="1108" Y="64"/>
+      <Image Name="LCP_Knob.bmp">
+        <Axis X="25" Y="25"/>
+      </Image>
+      <Rotate>
+        <Value>(A:Light strobe,bool)</Value>
+        <Nonlinearity>
+          <Item Value="0" Degrees="0"/>
+          <Item Value="1" Degrees="120"/>
+        </Nonlinearity>
+        <Delay DegreesPerSecond="360"/>
+      </Rotate>
+    </Element>
+    <Element>
+      <Position X="1210" Y="64"/>
+      <Image Name="LCP_Knob.bmp">
+        <Axis X="25" Y="25"/>
+      </Image>
+      <Rotate>
+        <Value>(A:Light beacon,bool)</Value>
+        <Nonlinearity>
+          <Item Value="0" Degrees="0"/>
+          <Item Value="1" Degrees="120"/>
+        </Nonlinearity>
+        <Delay DegreesPerSecond="360"/>
+      </Rotate>
+    </Element>
+    <Element>
+      <Position X="1312" Y="64"/>
+      <Image Name="LCP_Knob.bmp">
+        <Axis X="25" Y="25"/>
+      </Image>
+      <Rotate>
+        <Value>(A:Light recognition,bool)</Value>
+        <Nonlinearity>
+          <Item Value="0" Degrees="0"/>
+          <Item Value="1" Degrees="120"/>
+        </Nonlinearity>
+        <Delay DegreesPerSecond="360"/>
+      </Rotate>
+    </Element>
+    <Element>
+      <Position X="990" Y="144"/>
+      <Image Name="LCP_Knob.bmp">
+        <Axis X="25" Y="25"/>
+      </Image>
+      <Rotate>
+        <Value>(L:wiperr,bool)</Value>
+        <Nonlinearity>
+          <Item Value="0" Degrees="0"/>
+          <Item Value="1" Degrees="120"/>
+        </Nonlinearity>
+        <Delay DegreesPerSecond="360"/>
+      </Rotate>
+    </Element>
+  </Element>
+  <Mouse>
+    <Area Left="44" Top="34" Width="60" Height="60">
+      <Cursor Type="Hand"/>
+      <Click Event="TOGGLE_CABIN_LIGHTS"/>
+      <Tooltip>%Panel Lights %((A:Light panel,bool))%{if} (ON)%{else} (OFF)%</Tooltip>
+    </Area>
+    <Area Left="252" Top="34" Width="60" Height="60">
+      <Cursor Type="Hand"/>
+      <Click>(L:OVH light,bool) ! (>L:OVH light,bool)</Click>
+      <Tooltip>%Overhead Panel Illumination %((L:OVH light,bool))%{if} (ON)%{else} (OFF)%</Tooltip>
+    </Area>
+    <Area Left="354" Top="34" Width="60" Height="60">
+      <Area Left="30">
+        <Cursor Type="UpArrow"/>
+        <Click Repeat="Yes">(L:OVH dim,enum) 1 - 0 max (>L:OVH dim,enum)</Click>
+      </Area>
+      <Area Right="30">
+        <Cursor Type="DownArrow"/>
+        <Click Repeat="Yes">(L:OVH dim,enum) 1 + 3 min (>L:OVH dim,enum)</Click>
+      </Area>
+      <Tooltip>Dim Digits</Tooltip>
+    </Area>
+    <Area Left="374" Top="114" Width="60" Height="60">
+      <Cursor Type="Hand"/>
+      <Click>(L:wiperl,bool) ! (>L:wiperl,bool)</Click>
+      <Tooltip>%Wiper %((L:wiperl,bool))%{if} (ON)%{else} (OFF)%</Tooltip>
+    </Area>
+    <!--==== CENTER ====-->
+    <Area Left="514" Top="66" Width="136" Height="60">
+      <Cursor Type="Hand"/>
+      <Click Event="LANDING_LIGHTS_TOGGLE"/>
+      <Tooltip>%Landing Lights %((A:Light landing,bool))%{if} (ON)%{else} (OFF)%</Tooltip>
+    </Area>
+    <Area Left="734" Top="66" Width="136" Height="60">
+      <Cursor Type="Hand"/>
+      <Click Event="TOGGLE_TAXI_LIGHTS"/>
+      <Tooltip>%Taxi Lights %((A:Light taxi,bool))%{if} (ON)%{else} (OFF)%</Tooltip>
+    </Area>
+    <Area Left="666" Top="112" Width="50" Height="50">
+      <Cursor Type="Hand"/>
+      <Click Repeat="Yes">10006 (>K:PANEL_ID_CLOSE)</Click>
+      <Tooltip>Electric Panel</Tooltip>
+    </Area>
+    <!--==== RIGHT ====-->
+    <Area Left="990" Top="114" Width="60" Height="60">
+      <Cursor Type="Hand"/>
+      <Click>(L:wiperr,bool) ! (>L:wiperr,bool)</Click>
+      <Tooltip>%Wiper %((L:wiperr,bool))%{if} (ON)%{else} (OFF)%</Tooltip>
+    </Area>
+    <Area Left="976" Top="34" Width="60" Height="60">
+      <Cursor Type="Hand"/>
+      <Click>(>K:TOGGLE_NAV_LIGHTS)</Click>
+      <Tooltip>%Navigation Lights %((A:Light nav,bool))%{if} (ON)%{else} (OFF)%</Tooltip>
+    </Area>
+    <Area Left="1078" Top="34" Width="60" Height="60">
+      <Cursor Type="Hand"/>
+      <Click>(>K:STROBES_TOGGLE)</Click>
+      <Tooltip>%Strobe Lights %((A:Light strobe,bool))%{if} (ON)%{else} (OFF)%</Tooltip>
+    </Area>
+    <Area Left="1180" Top="34" Width="60" Height="60">
+      <Cursor Type="Hand"/>
+      <Click>(>K:TOGGLE_BEACON_LIGHTS)</Click>
+      <Tooltip>%Beacon Lights %((A:Light beacon,bool))%{if} (ON)%{else} (OFF)%</Tooltip>
+    </Area>
+    <Area Left="1282" Top="34" Width="60" Height="60">
+      <Cursor Type="Hand"/>
+      <Click>(>K:TOGGLE_RECOGNITION_LIGHTS)</Click>
+      <Tooltip>%Recognition Lights %((A:Light recognition,bool))%{if} (ON)%{else} (OFF)%</Tooltip>
+    </Area>
+  </Mouse>
+</Gauge>

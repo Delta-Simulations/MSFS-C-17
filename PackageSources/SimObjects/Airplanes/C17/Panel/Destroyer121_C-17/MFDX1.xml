@@ -1,0 +1,3005 @@
+<Gauge Name="MFDX1 - ALL SCREENS" Version="C-17" Author="Herbert Pralle">
+  <Image Name="MFDX1_backgrnd.bmp"/>
+  <Macro Name="INI">0 (>L:MFDX1 mode,enum) 6 (>L:MFDX1 MAP Zoom,enum) (A:Fuel total quantity weight,pounds) (>L:Fuel actual quantity,pounds)</Macro>
+  <Macro Name="TMO">(L:thrust max,bool) 0 == if{ (P:Local time,seconds) (>L:thrust max time,seconds) 1 (>L:thrust max,bool) }</Macro>
+  <Macro Name="TMU">0 (>L:thrust max time,seconds) 0 (>L:thrust max,bool)</Macro>
+  <Element>
+    <Select>
+      <Value>(L:MFDX1,bool) 0 == if{ @INI 1 (>L:MFDX1,bool) }</Value>
+    </Select>
+  </Element>
+  <Element>
+    <Select>
+      <Value>(A:Turb Eng1 corrected N1,percent) (A:Turb Eng2 corrected N1,percent) max (A:Turb Eng3 corrected N1,percent) max (A:Turb Eng4 corrected N1,percent) max 99.5 > (L:thrust max,bool) 0 == &amp;&amp; if{ @TMO } (A:Turb Eng1 corrected N1,percent) (A:Turb Eng2 corrected N1,percent) max (A:Turb Eng3 corrected N1,percent) max (A:Turb Eng4 corrected N1,percent) 90 &lt; (L:thrust max,bool) 1 == &amp;&amp; if{ @TMU }</Value>
+    </Select>
+  </Element>
+  <!--==== BUTTONS ====-->
+  <Element>
+    <Element>
+      <Position X="0" Y="0"/>
+      <Select>
+        <Value>(A:Circuit general panel on, bool) (L:MFDX1 on,bool) ! &amp;&amp;</Value>
+        <Case Value="0">
+          <Image Name="MFDX1_buttons.bmp" Luminous="0"/>
+        </Case>
+        <Case Value="1">
+          <Image Name="MFDX1_buttons.bmp" Luminous="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="14" Y="296"/>
+      <Select>
+        <Value>(L:MFDX1 on,bool)</Value>
+        <Case Value="0">
+          <Image Name="MFDX1_ON.bmp" Luminous="0"/>
+        </Case>
+        <Case Value="1">
+          <Image Name="MFDX1_OFF.bmp" Luminous="0"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="98" Y="295"/>
+      <Select>
+        <Value>(L:MFDX1 b1,bool)</Value>
+        <Case Value="1">
+          <Image Name="MFDX1_button1_in.bmp" Luminous="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="127" Y="295"/>
+      <Select>
+        <Value>(L:MFDX1 b2,bool)</Value>
+        <Case Value="1">
+          <Image Name="MFDX1_button2_in.bmp" Luminous="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="156" Y="295"/>
+      <Select>
+        <Value>(L:MFDX1 b3,bool)</Value>
+        <Case Value="1">
+          <Image Name="MFDX1_button3_in.bmp" Luminous="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="185" Y="295"/>
+      <Select>
+        <Value>(L:MFDX1 b4,bool)</Value>
+        <Case Value="1">
+          <Image Name="MFDX1_button4_in.bmp" Luminous="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="214" Y="295"/>
+      <Select>
+        <Value>(L:MFDX1 b5,bool)</Value>
+        <Case Value="1">
+          <Image Name="MFDX1_button5_in.bmp" Luminous="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="300" Y="296"/>
+      <Select>
+        <Value>(L:MFDX1 b8,enum)</Value>
+        <Case Value="1">
+          <Image Name="MFDX1_button8_up.bmp" Luminous="1"/>
+        </Case>
+        <Case Value="2">
+          <Image Name="MFDX1_button8_dn.bmp" Luminous="1"/>
+        </Case>
+      </Select>
+    </Element>
+  </Element>
+  <!--==== SCREENS ====-->
+  <Element>
+    <Visible>(A:Circuit general panel on, bool) (L:MFDX1 on,bool) ! &amp;&amp;</Visible>
+    <!--==== 0 PFD ====-->
+    <Element>
+      <Visible>(L:MFDX1 mode,enum) 0 ==</Visible>
+      <Element>
+        <Position X="0" Y="0"/>
+        <Image Name="MFDX1_PFD_screen.bmp" Bright="1"/>
+      </Element>
+      <!--ATTITUDE-->
+      <Element>
+        <Position X="0" Y="0"/>
+        <MaskImage Name="MFDX1_ATT_mask.bmp" Bright="1">
+          <Axis X="160" Y="130"/>
+        </MaskImage>
+        <Image Name="MFDX1_ATT.bmp" Bright="1">
+          <Axis X="82" Y="400"/>
+        </Image>
+        <Shift>
+          <Value Minimum="-80" Maximum="80">(A:Attitude indicator pitch degrees,degrees) /-/</Value>
+          <Scale Y="4"/>
+          <Failures>
+            <GAUGE_GYRO_HEADING Action="Freeze"/>
+          </Failures>
+        </Shift>
+        <Rotate>
+          <Value>(A:Attitude indicator bank degrees,radians)</Value>
+          <Failures>
+            <GAUGE_GYRO_HEADING Action="Freeze"/>
+          </Failures>
+        </Rotate>
+      </Element>
+      <Element>
+        <Position X="160" Y="130"/>
+        <Polygon LineWidth="1.5" Color="#FFFFFF" FillColor="#000000" Bright="yes">
+          <Point X="0" Y="0"/>
+          <Point X="-4" Y="8"/>
+          <Point X="-4" Y="11"/>
+          <Point X="5" Y="11"/>
+          <Point X="5" Y="8"/>
+          <Point X="1" Y="0"/>
+          <Pivot X="1.5" Y="71"/>
+        </Polygon>
+        <Rotate>
+          <Value>(A:Attitude indicator bank degrees,radians)</Value>
+          <Failures>
+            <GAUGE_GYRO_HEADING Action="Freeze"/>
+          </Failures>
+        </Rotate>
+      </Element>
+      <Element>
+        <Position X="160" Y="130"/>
+        <Polygon LineWidth="1.5" Color="#FFFFFF" FillColor="#000000" Bright="yes">
+          <Point X="-4" Y="9"/>
+          <Point X="-4" Y="11"/>
+          <Point X="5" Y="11"/>
+          <Point X="5" Y="9"/>
+          <Pivot X="1.5" Y="70"/>
+        </Polygon>
+        <Rotate>
+          <Value>(A:Attitude indicator bank degrees,radians)</Value>
+          <Failures>
+            <GAUGE_GYRO_HEADING Action="Freeze"/>
+          </Failures>
+        </Rotate>
+        <Shift>
+          <Value Minimum="-1" Maximum="1">(A:Turn coordinator ball,position)</Value>
+          <Scale X="20"/>
+          <Delay PixelsPerSecond="40"/>
+        </Shift>
+      </Element>
+      <!--FPV-->
+      <Element>
+        <Visible>(A:Airspeed select indicated or true,knots) 60 ></Visible>
+        <Position X="160" Y="130"/>
+        <Element>
+          <Circle Radius="8" LineWidth="2" Color="#CCCCCC" FillColor="#000000" Bright="Yes">
+            <Pivot X="9" Y="8"/>
+          </Circle>
+        </Element>
+        <Element>
+          <Image Name="MFDX1_FPV.bmp" Bright="1">
+            <Axis X="10" Y="9"/>
+          </Image>
+        </Element>
+        <Shift>
+          <Value Minimum="-45" Maximum="45">(A:GPS GROUND TRUE TRACK,radians) (A:gps ground true heading,radians) - sin 60 *</Value>
+          <Scale X="1"/>
+        </Shift>
+        <Shift>
+          <Value Minimum="-13" Maximum="13">(A:Vertical speed,feet per minute) (A:Ground Velocity, knots) 100 * / atg rddg</Value>
+          <Scale Y="-4"/>
+        </Shift>
+      </Element>
+      <!--HEADING-->
+      <Element>
+        <Visible>(A:Avionics master switch,bool)</Visible>
+        <Position X="93" Y="249"/>
+        <MaskImage Name="MFDX1_HDG_mask.bmp" Bright="0">
+          <Axis X="66" Y="6"/>
+        </MaskImage>
+        <Image Name="MFDX1_HDG_strip.bmp" Bright="1">
+          <Nonlinearity>
+            <Item Value="360" X="1178" Y="0"/>
+            <Item Value="0" X="98" Y="0"/>
+          </Nonlinearity>
+        </Image>
+        <Shift>
+          <Value>(A:Plane heading degrees gyro,degrees)</Value>
+          <Failures>
+            <GAUGE_GYRO_HEADING Action="Freeze"/>
+          </Failures>
+        </Shift>
+      </Element>
+      <Element>
+        <Position X="160" Y="249"/>
+        <Image Name="MFDX1_HDG_bug.bmp" Bright="1">
+          <Axis X="7" Y="-4"/>
+        </Image>
+        <Shift>
+          <Value Minimum="-24" Maximum="24">(A:Autopilot heading lock dir,degrees) (A:Plane heading degrees gyro,degrees) - -180 &lt; if{ (A:Autopilot heading lock dir,degrees) (A:Plane heading degrees gyro,degrees) - 360 + } els{ (A:Autopilot heading lock dir,degrees) (A:Plane heading degrees gyro,degrees) - 180 > if{ (A:Autopilot heading lock dir,degrees) (A:Plane heading degrees gyro,degrees) - 360 - } els{ (A:Autopilot heading lock dir,degrees) (A:Plane heading degrees gyro,degrees) - } }</Value>
+          <Scale X="3"/>
+          <Failures>
+            <GAUGE_GYRO_HEADING Action="Freeze"/>
+          </Failures>
+        </Shift>
+      </Element>
+      <Element>
+        <Position X="160" Y="249"/>
+        <Image Name="MFDX1_CRS_bug.bmp" Bright="1">
+          <Axis X="4" Y="0"/>
+        </Image>
+        <Shift>
+          <Value Minimum="-24" Maximum="24">(A:NAV1 OBS,degrees) (A:Plane heading degrees gyro,degrees) - -180 &lt; if{ (A:NAV1 OBS,degrees) (A:Plane heading degrees gyro,degrees) - 360 + } els{ (A:NAV1 OBS,degrees) (A:Plane heading degrees gyro,degrees) - 180 > if{ (A:NAV1 OBS,degrees) (A:Plane heading degrees gyro,degrees) - 360 - } els{ (A:NAV1 OBS,degrees) (A:Plane heading degrees gyro,degrees) - } }</Value>
+          <Scale X="3"/>
+          <Failures>
+            <GAUGE_GYRO_HEADING Action="Freeze"/>
+          </Failures>
+        </Shift>
+      </Element>
+      <!--SPEED-->
+      <Element>
+        <Position X="38" Y="63"/>
+        <MaskImage Name="MFDX1_KNT_mask.bmp">
+          <Axis X="0" Y="67"/>
+        </MaskImage>
+        <Image Name="MFDX1_KNT_strip.bmp" Bright="1">
+          <Nonlinearity>
+            <Item Value="0" X="0" Y="11"/>
+            <Item Value="900" X="0" Y="1361"/>
+          </Nonlinearity>
+        </Image>
+        <Shift>
+          <Value Minimum="0" Maximum="980">(A:Airspeed select indicated or true,knots)</Value>
+          <Failures>
+            <SYSTEM_PITOT_STATIC Action="0"/>
+            <GAUGE_AIRSPEED Action="Freeze"/>
+          </Failures>
+        </Shift>
+      </Element>
+      <Element>
+        <Position X="33" Y="124"/>
+        <FormattedText X="10" Y="16" Font="Arial Black" FontSize="16" LineSpacing="16" Adjust="Right" Color="#00FF00" Bright="Yes">
+          <String>%((A:Airspeed select indicated or true,knots) 999 min 100 / flr )%!1d!</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="43" Y="124"/>
+        <FormattedText X="10" Y="16" Font="Arial Black" FontSize="16" LineSpacing="16" Adjust="Right" Color="#00FF00" Bright="Yes">
+          <String>%((A:Airspeed select indicated or true,knots) 999 min 100 % 10 / flr )%!1d!</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="52" Y="115"/>
+        <MaskImage Name="MFDX1_KNT_mask2.bmp">
+          <Axis X="0" Y="11"/>
+        </MaskImage>
+        <FormattedText X="10" Y="200" Font="Arial Black" FontSize="16" LineSpacing="14" Adjust="Center" Color="#00FF00" Bright="Yes">
+          <String>% 8 %\n% 9 %\n% 0 %\n% 1 %\n% 2 %\n% 3 %\n% 4 %\n% 5 %\n% 6 %\n% 7 %\n% 8 %\n% 9 %\n% 0 %\n% 1 %\n% 2 %</String>
+          <Nonlinearity>
+            <Item Value="0" X="0" Y="28"/>
+            <Item Value="10" X="0" Y="168"/>
+          </Nonlinearity>
+        </FormattedText>
+        <Shift>
+          <Value>(A:Airspeed select indicated or true,knots) 10 %</Value>
+          <Failures>
+            <SYSTEM_PITOT_STATIC Action="0"/>
+            <GAUGE_AIRSPEED Action="Freeze"/>
+          </Failures>
+        </Shift>
+      </Element>
+      <Element>
+        <Position X="28" Y="208"/>
+        <FormattedText X="20" Y="14" Font="Arial" FontSize="14" LineSpacing="14" Adjust="Left" Color="#00FF00" Bright="Yes">
+          <String>GS</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="51" Y="208"/>
+        <FormattedText X="34" Y="14" Font="Arial" FontSize="14" LineSpacing="14" Adjust="Right" Color="#00FF00" Bright="Yes">
+          <String>%((A:PARTIAL PANEL AIRSPEED,bool))%{if} - -%{else}%((A:Ground Velocity, knots))%!3d!</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="28" Y="222"/>
+        <FormattedText X="20" Y="14" Font="Arial" FontSize="14" LineSpacing="14" Adjust="Left" Color="%((A:Overspeed warning, bool) if{ 0x0000FF } els{ 0x00FF00 })" Bright="Yes">
+          <String>M</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="51" Y="222"/>
+        <FormattedText X="34" Y="14" Font="Arial" FontSize="14" LineSpacing="14" Adjust="Right" Color="%((A:Overspeed warning, bool) if{ 0x0000FF } els{ 0x00FF00 })" Bright="Yes">
+          <String>%((A:PARTIAL PANEL AIRSPEED,bool))%{if} - -%{else}%((A:Airspeed mach, machs) 0 max 9.99 min)%!1.2f!</String>
+        </FormattedText>
+      </Element>
+      <!--ALTITUDE-->
+      <Element>
+        <Position X="235" Y="63"/>
+        <MaskImage Name="MFDX1_ALT_mask.bmp">
+          <Axis X="0" Y="67"/>
+        </MaskImage>
+        <Image Name="MFDX1_ALT_strip.bmp" Bright="1">
+          <Nonlinearity>
+            <Item Value="0" X="0" Y="3700"/>
+            <Item Value="30000" X="0" Y="1900"/>
+            <Item Value="60000" X="0" Y="100"/>
+          </Nonlinearity>
+        </Image>
+        <Shift>
+          <Value Minimum="-1000" Maximum="60000">(A:Indicated Altitude,feet)</Value>
+          <Failures>
+            <SYSTEM_PITOT_STATIC Action="0"/>
+            <GAUGE_AIRSPEED Action="Freeze"/>
+          </Failures>
+        </Shift>
+      </Element>
+      <Element>
+        <Position X="245" Y="124"/>
+        <FormattedText X="20" Y="16" Font="Arial Black" FontSize="16" LineSpacing="16" Adjust="Right" Color="#00FF00" Bright="Yes">
+          <String>%((A:Indicated Altitude,feet) 1000 / flr)%!2d!</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="265" Y="125"/>
+        <FormattedText X="8" Y="16" Font="Arial" FontSize="14" LineSpacing="14" Adjust="Center" Color="#00FF00" Bright="Yes">
+          <String>%((A:Indicated Altitude,feet) 1000 % 100 / flr)%!1d!</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="274" Y="115"/>
+        <MaskImage Name="MFDX1_ALT_mask2.bmp">
+          <Axis X="0" Y="8"/>
+        </MaskImage>
+        <FormattedText X="17" Y="200" Font="Arial" FontSize="14" LineSpacing="14" Adjust="Center" Color="#00FF00" Bright="Yes">
+          <String>% 20 %\n% 10 %\n% 00 %\n% 90 %\n% 80 %\n% 70 %\n% 60 %\n% 50 %\n% 40 %\n% 30 %\n% 20 %\n% 10 %\n% 00 %\n% 90 %\n% 80 %</String>
+          <Nonlinearity>
+            <Item Value="0" X="0" Y="168"/>
+            <Item Value="100" X="0" Y="28"/>
+          </Nonlinearity>
+        </FormattedText>
+        <Shift>
+          <Value>(A:Indicated Altitude,feet) 100 %</Value>
+          <Failures>
+            <GAUGE_ALTIMETER Action="Freeze"/>
+          </Failures>
+        </Shift>
+      </Element>
+      <Element>
+        <Position X="227" Y="208"/>
+        <FormattedText X="20" Y="14" Font="Arial" FontSize="14" LineSpacing="14" Adjust="Left" Color="%((A:Radio Height,feet) 2000 &lt; if{ 0x00FFFF } els{ 0x00FF00 })" Bright="Yes">
+          <String>RA</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="250" Y="208"/>
+        <FormattedText X="42" Y="14" Font="Arial" FontSize="14" LineSpacing="14" Adjust="Right" Color="%((A:Radio Height,feet) 2000 &lt; if{ 0x00FFFF } els{ 0x00FF00 })" Bright="Yes">
+          <String>%((A:PARTIAL PANEL ALTIMETER,bool))%{if} - - -%{else}%((A:Radio Height,feet) 7 - 0 max)%!5d!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="227" Y="222"/>
+        <FormattedText X="20" Y="14" Font="Arial" FontSize="14" LineSpacing="14" Adjust="Left" Color="#00FF00" Bright="Yes">
+          <String>VV</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="250" Y="222"/>
+        <FormattedText X="42" Y="14" Font="Arial" FontSize="14" LineSpacing="14" Adjust="Right" Color="#00FF00" Bright="Yes">
+          <String>%((A:PARTIAL PANEL VERTICAL VELOCITY,bool))%{if} - - -%{else}%((A:Vertical speed,feet per minute) 20 / int 20 *)%!4d!</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="246" Y="240"/>
+        <FormattedText X="46" Y="14" Font="Arial" FontSize="14" LineSpacing="14" Adjust="Right" Color="%((A:G FORCE,G Force) abs 2 > if{ 0x0000FF } els{ 0x00FF00 })" Bright="Yes">
+          <String>%((A:G FORCE, G Force))%!1.2f!% G%</String>
+        </FormattedText>
+      </Element>
+      <!--NAV INFO-->
+      <Element>
+        <Position X="92" Y="208"/>
+        <FormattedText X="46" Y="14" Font="Arial" FontSize="14" LineSpacing="14" Adjust="Left" Color="#00FFFF" Bright="Yes">
+          <String>V 1</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="92" Y="222"/>
+        <FormattedText X="46" Y="14" Font="Arial" FontSize="14" LineSpacing="14" Adjust="Left" Color="#00FFFF" Bright="Yes">
+          <String>%D %((A:NAV1 DME,nmiles) 99.9 >)%{if}%((A:NAV1 DME,nmiles))%!3d!%{else}%((A:NAV1 DME,nmiles) 0 >)%{if}%((A:NAV1 DME,nmiles))%!2.1f!%{else}% - - -%{end}%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="92" Y="236"/>
+        <FormattedText X="46" Y="14" Font="Arial" FontSize="14" LineSpacing="14" Adjust="Left" Color="#00FFFF" Bright="Yes">
+          <String>%((A:NAV1 DME,nmiles) 0 >)%{if}%((A:NAV1 ident, string))%!s!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="185" Y="219"/>
+        <FormattedText X="33" Y="14" Font="Arial Black" FontSize="14" LineSpacing="14" Adjust="Center" Color="#FF00FF" Bright="Yes">
+          <String>%((A:GPS drives nav1, bool))%{if}GPS %</String>
+        </FormattedText>
+      </Element>
+      <!--LOC AND GS-->
+      <Element>
+        <Visible>(A:HSI GSI needle valid, bool)</Visible>
+        <Position X="222" Y="99"/>
+        <Image Name="MFDX1_GS.bmp" Bright="1"/>
+      </Element>
+      <Element>
+        <Visible>(A:HSI GSI needle valid, bool)</Visible>
+        <Position X="219" Y="124"/>
+        <Polygon LineWidth="2" Color="#FF00FF" FillColor="#FF00FF" Bright="yes">
+          <Point X="6" Y="0"/>
+          <Point X="0" Y="4"/>
+          <Point X="6" Y="8"/>
+          <Point X="12" Y="4"/>
+          <Pivot X="0" Y="0"/>
+        </Polygon>
+        <Shift>
+          <Value Minimum="-120" Maximum="120">(A:HSI GSI needle, number)</Value>
+          <Scale Y="0.3"/>
+        </Shift>
+      </Element>
+      <Element>
+        <Visible>(A:HSI has localizer, bool)</Visible>
+        <Position X="127" Y="207"/>
+        <Image Name="MFDX1_LOC.bmp" Bright="1"/>
+      </Element>
+      <Element>
+        <Visible>(A:HSI has localizer, bool)</Visible>
+        <Position X="155" Y="206"/>
+        <Polygon LineWidth="2" Color="#FF00FF" FillColor="#FF00FF" Bright="yes">
+          <Point X="4" Y="0"/>
+          <Point X="0" Y="6"/>
+          <Point X="4" Y="12"/>
+          <Point X="8" Y="6"/>
+          <Pivot X="1" Y="0"/>
+        </Polygon>
+        <Shift>
+          <Value Minimum="-120" Maximum="120">(A:HSI CDI needle, number)</Value>
+          <Scale X="0.3"/>
+        </Shift>
+      </Element>
+      <!--O M I -->
+      <Element>
+        <Position X="151" Y="220"/>
+        <Visible>(A:Circuit general panel on, bool)</Visible>
+        <Element>
+          <Element>
+            <Position X="0" Y="0"/>
+            <Select>
+              <Value>(A:Inner Marker,bool)</Value>
+              <Case Value="1">
+                <Image Name="MFDX1_O.bmp" Bright="1"/>
+              </Case>
+            </Select>
+          </Element>
+          <Element>
+            <Position X="0" Y="32"/>
+            <Select>
+              <Value>(A:Middle Marker,bool)</Value>
+              <Case Value="1">
+                <Image Name="MFDX1_M.bmp" Bright="1"/>
+              </Case>
+            </Select>
+          </Element>
+          <Element>
+            <Position X="0" Y="64"/>
+            <Select>
+              <Value>(A:Outer Marker,bool)</Value>
+              <Case Value="1">
+                <Image Name="MFDX1_I.bmp" Bright="1"/>
+              </Case>
+            </Select>
+          </Element>
+        </Element>
+      </Element>
+      <!--AUTOPILOT VALUES-->
+      <Element>
+        <Visible>(A:Autopilot airspeed hold, bool)</Visible>
+        <Position X="75" Y="129"/>
+        <Polyline LineWidth="3" Color="#00FFFF" Bright="Yes">
+          <Point X="6" Y="0"/>
+          <Point X="0" Y="6"/>
+          <Point X="6" Y="12"/>
+          <Pivot X="0" Y="6"/>
+        </Polyline>
+        <Shift>
+          <Value Minimum="-40" Maximum="40">(A:Airspeed select indicated or true,knots) (A:Autopilot airspeed hold var,knots) -</Value>
+          <Scale Y="-1.5"/>
+        </Shift>
+      </Element>
+      <Element>
+        <Visible>(A:Airspeed select indicated or true,knots) (A:Autopilot airspeed hold var,knots) - abs 40 > (A:Autopilot airspeed hold, bool) &amp;&amp;</Visible>
+        <Position X="70" Y="129"/>
+        <Polyline LineWidth="3" Color="#00FFFF" Bright="Yes">
+          <Point X="6" Y="0"/>
+          <Point X="0" Y="6"/>
+          <Point X="6" Y="12"/>
+          <Pivot X="0" Y="6"/>
+        </Polyline>
+        <Shift>
+          <Value Minimum="-40" Maximum="40">(A:Airspeed select indicated or true,knots) (A:Autopilot airspeed hold var,knots) -</Value>
+          <Scale Y="-1.5"/>
+        </Shift>
+      </Element>
+      <Element>
+        <Visible>(A:Autopilot altitude lock,bool)</Visible>
+        <Position X="230" Y="129"/>
+        <Polyline LineWidth="3" Color="#00FFFF" Bright="Yes">
+          <Point X="0" Y="0"/>
+          <Point X="6" Y="6"/>
+          <Point X="0" Y="12"/>
+          <Pivot X="0" Y="6"/>
+        </Polyline>
+        <Shift>
+          <Value Minimum="-1000" Maximum="1000">(A:Indicated Altitude,feet) (A:Autopilot altitude lock var, feet) -</Value>
+          <Scale Y="0.06"/>
+        </Shift>
+      </Element>
+      <Element>
+        <Visible>(A:Indicated Altitude,feet) (A:Autopilot altitude lock var, feet) - abs 1000 > (A:Autopilot altitude lock,bool) &amp;&amp;</Visible>
+        <Position X="235" Y="129"/>
+        <Polyline LineWidth="3" Color="#00FFFF" Bright="Yes">
+          <Point X="0" Y="0"/>
+          <Point X="6" Y="6"/>
+          <Point X="0" Y="12"/>
+          <Pivot X="0" Y="6"/>
+        </Polyline>
+        <Shift>
+          <Value Minimum="-1000" Maximum="1000">(A:Indicated Altitude,feet) (A:Autopilot altitude lock var, feet) -</Value>
+          <Scale Y="0.06"/>
+        </Shift>
+      </Element>
+      <Element>
+        <Visible>(A:Autopilot airspeed hold, bool)</Visible>
+        <Element>
+          <Position X="28" Y="43"/>
+          <Rectangle Height="2" Width="48" LineWidth="1" Color="#00FF00" FillColor="#000000" Bright="Yes"/>
+        </Element>
+        <Element>
+          <Position X="29" Y="28"/>
+          <FormattedText X="20" Y="12" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Left" Color="#00FF00" Bright="Yes">
+            <String>KN</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="49" Y="28"/>
+          <FormattedText X="26" Y="12" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Right" Color="#00FF00" Bright="Yes">
+            <String>%((A:Autopilot airspeed hold var,knots))%!03d!%</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="29" Y="45"/>
+          <FormattedText X="20" Y="12" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Left" Color="#00FF00" Bright="Yes">
+            <String>A/T</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="49" Y="45"/>
+          <FormattedText X="26" Y="12" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Right" Color="#00FF00" Bright="Yes">
+            <String>%((A:GENERAL ENG1 THROTTLE LEVER POSITION,percent) (A:GENERAL ENG2 THROTTLE LEVER POSITION,percent) + (A:GENERAL ENG3 THROTTLE LEVER POSITION,percent) + (A:GENERAL ENG4 THROTTLE LEVER POSITION,percent) + (A:Number of engines,number) /)%!3d!%</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Autopilot mach hold, bool)</Visible>
+        <Element>
+          <Position X="28" Y="43"/>
+          <Rectangle Height="2" Width="48" LineWidth="1" Color="#00FF00" FillColor="#000000" Bright="Yes"/>
+        </Element>
+        <Element>
+          <Position X="29" Y="28"/>
+          <FormattedText X="20" Y="12" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Left" Color="#00FF00" Bright="Yes">
+            <String>M</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="45" Y="28"/>
+          <FormattedText X="30" Y="12" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Right" Color="#00FF00" Bright="Yes">
+            <String>%((A:Autopilot mach hold var, mach))%!1.2f!%</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="29" Y="45"/>
+          <FormattedText X="20" Y="12" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Left" Color="#00FF00" Bright="Yes">
+            <String>A/T</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="49" Y="45"/>
+          <FormattedText X="26" Y="12" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Right" Color="#00FF00" Bright="Yes">
+            <String>%((A:GENERAL ENG1 THROTTLE LEVER POSITION,percent) (A:GENERAL ENG2 THROTTLE LEVER POSITION,percent) + (A:GENERAL ENG3 THROTTLE LEVER POSITION,percent) + (A:GENERAL ENG4 THROTTLE LEVER POSITION,percent) + (A:Number of engines,number) /)%!3d!%</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Autopilot altitude lock,bool)</Visible>
+        <Element>
+          <Position X="243" Y="43"/>
+          <Rectangle Height="2" Width="48" LineWidth="1" Color="#00FF00" FillColor="#000000" Bright="Yes"/>
+        </Element>
+        <Element>
+          <Position X="244" Y="28"/>
+          <FormattedText X="46" Y="12" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Center" Color="#00FF00" Bright="Yes">
+            <String>ALT</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="244" Y="45"/>
+          <FormattedText X="46" Y="12" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Right" Color="#00FF00" Bright="Yes">
+            <String>%((A:Autopilot altitude lock var, feet))%!5d!</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Autopilot heading lock,bool)</Visible>
+        <Element>
+          <Position X="28" Y="260"/>
+          <Rectangle Height="2" Width="35" LineWidth="1" Color="#00FF00" FillColor="#000000" Bright="Yes"/>
+        </Element>
+        <Element>
+          <Position X="29" Y="244"/>
+          <FormattedText X="33" Y="12" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Center" Color="#00FF00" Bright="Yes">
+            <String>HDG</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="29" Y="262"/>
+          <FormattedText X="33" Y="12" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Center" Color="#00FF00" Bright="Yes">
+            <String>%((A:Autopilot heading lock dir, degrees))%!03d!</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Autopilot Nav1 lock,bool)</Visible>
+        <Element>
+          <Position X="28" Y="260"/>
+          <Rectangle Height="2" Width="35" LineWidth="1" Color="#00FF00" FillColor="#000000" Bright="Yes"/>
+        </Element>
+        <Element>
+          <Position X="29" Y="244"/>
+          <FormattedText X="28" Y="12" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Center" Color="#00FF00" Bright="Yes">
+            <String>CRS</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="29" Y="262"/>
+          <FormattedText X="33" Y="12" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Center" Color="#00FF00" Bright="Yes">
+            <String>%((A:NAV1 OBS, degrees))%!03d!</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <!--AUTOPILOT MODES-->
+      <Element>
+        <Visible>(A:Autopilot airspeed hold, bool)</Visible>
+        <Element>
+          <Position X="81" Y="28"/>
+          <FormattedText X="28" Y="12" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Center" Color="#00FFFF" Bright="Yes">
+            <String>IAS</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Autopilot mach hold, bool)</Visible>
+        <Element>
+          <Position X="81" Y="28"/>
+          <FormattedText X="28" Y="12" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Center" Color="#00FFFF" Bright="Yes">
+            <String>MCH</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Autopilot wing leveler, bool) (A:Autopilot Attitude hold,bool) ! &amp;&amp;</Visible>
+        <Element>
+          <Position X="208" Y="28"/>
+          <FormattedText X="28" Y="12" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Center" Color="#00FFFF" Bright="Yes">
+            <String>LVL</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Autopilot attitude hold, bool)</Visible>
+        <Element>
+          <Position X="208" Y="28"/>
+          <FormattedText X="28" Y="12" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Center" Color="#00FFFF" Bright="Yes">
+            <String>ATT</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Autopilot approach hold,bool) (A:Autopilot backcourse hold,bool) ! &amp;&amp;</Visible>
+        <Element>
+          <Position X="64" Y="262"/>
+          <FormattedText X="28" Y="12" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Center" Color="#00FFFF" Bright="Yes">
+            <String>APR</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Autopilot backcourse hold,bool)</Visible>
+        <Element>
+          <Position X="64" Y="262"/>
+          <FormattedText X="28" Y="12" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Center" Color="#00FFFF" Bright="Yes">
+            <String>B/C</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <!--FLIGHT DIRECTOR-->
+      <Element>
+        <Visible>(A:AUTOPILOT FLIGHT DIRECTOR ACTIVE,bool)</Visible>
+        <Element>
+          <Position X="160" Y="130"/>
+          <Rectangle Height="3" Width="80" LineWidth="1" Color="#FF00FF" FillColor="#FF00FF" Bright="Yes">
+            <Pivot X="40" Y="0"/>
+          </Rectangle>
+          <Shift>
+            <Value Minimum="-50" Maximum="50">(A:Autopilot flight director pitch, degrees) (A:Attitude indicator pitch degrees, degrees) -</Value>
+            <Scale Y="1"/>
+          </Shift>
+        </Element>
+        <Element>
+          <Position X="160" Y="130"/>
+          <Rectangle Height="80" Width="3" LineWidth="1" Color="#FF00FF" FillColor="#FF00FF" Bright="Yes">
+            <Pivot X="1" Y="40"/>
+          </Rectangle>
+          <Shift>
+            <Value Minimum="-45" Maximum="45">(A:Autopilot flight director bank, degrees) (A:Attitude indicator bank degrees, degrees) -</Value>
+            <Scale X="-1"/>
+          </Shift>
+        </Element>
+        <Element>
+          <Position X="249" Y="259"/>
+          <Rectangle Height="15" Width="32" LineWidth="2" Color="#FF00FF" FillColor="#000000" Bright="Yes"/>
+        </Element>
+        <Element>
+          <Position X="250" Y="262"/>
+          <FormattedText X="30" Y="12" Font="Arial Black" FontSize="12" LineSpacing="12" Adjust="Center" Color="#FF00FF" Bright="Yes">
+            <String>FD</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <!--MESSAGES-->
+      <Element>
+        <Visible>(A:Overspeed warning, bool)</Visible>
+        <Element>
+          <Position X="109" Y="74"/>
+          <FormattedText X="100" Y="18" Font="Arial Black" FontSize="16" LineSpacing="16" Adjust="Center" Color="#FF3333" Bright="Yes">
+            <String>OVERSPEED</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Stall warning, bool)</Visible>
+        <Element>
+          <Position X="109" Y="91"/>
+          <FormattedText X="100" Y="18" Font="Arial Black" FontSize="16" LineSpacing="16" Adjust="Center" Color="#FF3333" Bright="Yes">
+            <String>STALL</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Radio Height,feet) 10000 > if{ 0 } els{ (A:Vertical speed,feet per minute) (A:Radio Height,feet) 2.28 * 1200 + /-/ &lt; }</Visible>
+        <Element>
+          <Position X="109" Y="108"/>
+          <FormattedText X="100" Y="18" Font="Arial Black" FontSize="16" LineSpacing="16" Adjust="Center" Color="#FF3333" Bright="Yes">
+            <String>SINKRATE</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Gear handle position,percent) 0 == (A:Radio Height,feet) 1007 &lt; &amp;&amp;</Visible>
+        <Element>
+          <Position X="109" Y="139"/>
+          <FormattedText X="100" Y="18" Font="Arial Black" FontSize="16" LineSpacing="16" Adjust="Center" Color="#FF3333" Bright="Yes">
+            <String>TERRAIN</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <!--WING-->
+      <Element>
+        <Position X="143" Y="127"/>
+        <Image Name="MFDX1_WING.bmp" Bright="1"/>
+      </Element>
+    </Element>
+    <!--==== 1 ND ====-->
+    <Element>
+      <Visible>(L:MFDX1 mode,enum) 1 ==</Visible>
+      <Element>
+        <Position X="0" Y="0"/>
+        <Image Name="MFDX1_ND_screen.bmp" Bright="1"/>
+      </Element>
+      <Element>
+        <Visible>(A:Avionics master switch,bool)</Visible>
+        <Element>
+          <!--ROSE-->
+          <Element>
+            <Position X="160" Y="155"/>
+            <Image Name="MFDX1_Rose.bmp" Bright="1">
+              <Axis X="100" Y="100"/>
+            </Image>
+            <Rotate>
+              <Value>(A:Plane heading degrees gyro,radians) /-/</Value>
+              <Failures>
+                <GAUGE_GYRO_HEADING Action="Freeze"/>
+              </Failures>
+            </Rotate>
+          </Element>
+          <!--HDG CRS BUG-->
+          <Element>
+            <Position X="160" Y="155"/>
+            <Image Name="MFDX1_HDG_bug.bmp" Bright="1">
+              <Axis X="6" Y="109"/>
+            </Image>
+            <Rotate>
+              <Value>(A:Autopilot heading lock dir,radians) (A:Plane heading degrees gyro,radians) -</Value>
+              <Failures>
+                <GAUGE_GYRO_HEADING Action="Freeze"/>
+              </Failures>
+            </Rotate>
+          </Element>
+          <Element>
+            <Position X="160" Y="155"/>
+            <Image Name="MFDX1_CRS_bug.bmp" Bright="1">
+              <Axis X="4" Y="109"/>
+            </Image>
+            <Rotate>
+              <Value>(A:NAV1 OBS,radians) (A:Plane heading degrees gyro,radians) -</Value>
+              <Failures>
+                <GAUGE_GYRO_HEADING Action="Freeze"/>
+              </Failures>
+            </Rotate>
+          </Element>
+          <!--NAV2 NEEDLE-->
+          <Element>
+            <Visible>(A:NAV2 signal, number) abs 10 ></Visible>
+            <Element>
+              <Position X="160" Y="155"/>
+              <Rectangle Height="196" Width="2" LineWidth="1" Color="#E6B903" FillColor="#E6B903" Bright="Yes">
+                <Pivot X="1" Y="98"/>
+              </Rectangle>
+              <Rotate>
+                <Value>(A:NAV2 Radial,radians) (A:Plane heading degrees gyro,radians) - pi +</Value>
+                <Failures>
+                  <GAUGE_GYRO_HEADING Action="Freeze"/>
+                  <GAUGE_NAVIGATION_VOR2 Action="Freeze"/>
+                </Failures>
+              </Rotate>
+            </Element>
+            <Element>
+              <Position X="160" Y="155"/>
+              <Polyline LineWidth="2" Color="#E6B903" Bright="Yes">
+                <Point X="-4" Y="4"/>
+                <Point X="0" Y="0"/>
+                <Point X="1" Y="0"/>
+                <Point X="5" Y="4"/>
+                <Pivot X="1" Y="92"/>
+              </Polyline>
+              <Rotate>
+                <Value>(A:NAV2 Radial,radians) (A:Plane heading degrees gyro,radians) - pi +</Value>
+                <Failures>
+                  <GAUGE_GYRO_HEADING Action="Freeze"/>
+                  <GAUGE_NAVIGATION_VOR2 Action="Freeze"/>
+                </Failures>
+              </Rotate>
+            </Element>
+          </Element>
+          <!--INNER CARD-->
+          <Element>
+            <Position X="160" Y="155"/>
+            <Image Name="MFDX1_Inner_card.bmp" Bright="1">
+              <Axis X="66" Y="66"/>
+            </Image>
+            <Rotate>
+              <Value>(A:NAV1 OBS,radians) (A:Plane heading degrees gyro,radians) -</Value>
+              <Failures>
+                <GAUGE_GYRO_HEADING Action="Freeze"/>
+                <GAUGE_NAVIGATION_VOR1 Action="Freeze"/>
+              </Failures>
+            </Rotate>
+          </Element>
+          <!--ADF NEEDLE-->
+          <Element>
+            <Visible>(L:CNCP adf mode,bool) 1 == (A:ADF signal:2, number) 10 > &amp;&amp;</Visible>
+            <Element>
+              <Position X="160" Y="155"/>
+              <Polygon LineWidth="1.5" Color="#0099CC" FillColor="#000000" Bright="yes">
+                <Point X="8" Y="0"/>
+                <Point X="8" Y="33"/>
+                <Point X="0" Y="50"/>
+                <Point X="12" Y="50"/>
+                <Point X="12" Y="150"/>
+                <Point X="8" Y="150"/>
+                <Point X="8" Y="195"/>
+                <Point X="9" Y="195"/>
+                <Point X="9" Y="150"/>
+                <Point X="5" Y="150"/>
+                <Point X="5" Y="50"/>
+                <Point X="17" Y="50"/>
+                <Point X="9" Y="33"/>
+                <Point X="9" Y="0"/>
+                <Pivot X="9" Y="98"/>
+              </Polygon>
+              <Rotate>
+                <Value>(A:ADF Radial:2,radians)</Value>
+                <Failures>
+                  <GAUGE_GYRO_HEADING Action="Freeze"/>
+                  <GAUGE_ADF Action="Freeze"/>
+                </Failures>
+              </Rotate>
+            </Element>
+          </Element>
+          <Element>
+            <Visible>(L:CNCP adf mode,bool) 0 == (A:ADF signal:1, number) 10 > &amp;&amp;</Visible>
+            <Element>
+              <Position X="160" Y="155"/>
+              <Polygon LineWidth="1.5" Color="#0099CC" FillColor="#000000" Bright="yes">
+                <Point X="8" Y="0"/>
+                <Point X="8" Y="33"/>
+                <Point X="0" Y="50"/>
+                <Point X="12" Y="50"/>
+                <Point X="12" Y="150"/>
+                <Point X="8" Y="150"/>
+                <Point X="8" Y="195"/>
+                <Point X="9" Y="195"/>
+                <Point X="9" Y="150"/>
+                <Point X="5" Y="150"/>
+                <Point X="5" Y="50"/>
+                <Point X="17" Y="50"/>
+                <Point X="9" Y="33"/>
+                <Point X="9" Y="0"/>
+                <Pivot X="9" Y="98"/>
+              </Polygon>
+              <Rotate>
+                <Value>(A:ADF Radial:1,radians)</Value>
+                <Failures>
+                  <GAUGE_GYRO_HEADING Action="Freeze"/>
+                  <GAUGE_ADF Action="Freeze"/>
+                </Failures>
+              </Rotate>
+            </Element>
+          </Element>
+          <!--NAV 1 NEEDLE-->
+          <Element>
+            <Visible>(A:NAV1 signal, number) abs 10 > (A:GPS drives nav1, bool) ! &amp;&amp;</Visible>
+            <Element>
+              <Position X="160" Y="155"/>
+              <Rectangle Height="68" Width="2" LineWidth="1" Color="#FFFFFF" FillColor="#FFFFFF" Bright="Yes">
+                <Pivot X="1" Y="98"/>
+              </Rectangle>
+              <Rotate>
+                <Value>(A:NAV1 OBS,radians) (A:Plane heading degrees gyro,radians) -</Value>
+                <Failures>
+                  <GAUGE_GYRO_HEADING Action="Freeze"/>
+                  <GAUGE_NAVIGATION_VOR1 Action="Freeze"/>
+                </Failures>
+              </Rotate>
+            </Element>
+            <Element>
+              <Position X="160" Y="155"/>
+              <Polygon LineWidth="1" Color="#FFFFFF" FillColor="#FFFFFF" Bright="yes">
+                <Point X="5" Y="0"/>
+                <Point X="0" Y="10"/>
+                <Point X="11" Y="10"/>
+                <Point X="6" Y="0"/>
+                <Pivot X="7" Y="59"/>
+              </Polygon>
+              <Rotate>
+                <Value>(A:NAV1 OBS,radians) (A:Plane heading degrees gyro,radians) -</Value>
+                <Failures>
+                  <GAUGE_GYRO_HEADING Action="Freeze"/>
+                  <GAUGE_NAVIGATION_VOR2 Action="Freeze"/>
+                </Failures>
+              </Rotate>
+            </Element>
+            <Element>
+              <Position X="160" Y="155"/>
+              <Rectangle Height="68" Width="2" LineWidth="1" Color="#FFFFFF" FillColor="#FFFFFF" Bright="Yes">
+                <Pivot X="1" Y="-30"/>
+              </Rectangle>
+              <Rotate>
+                <Value>(A:NAV1 OBS,radians) (A:Plane heading degrees gyro,radians) -</Value>
+                <Failures>
+                  <GAUGE_GYRO_HEADING Action="Freeze"/>
+                  <GAUGE_NAVIGATION_VOR1 Action="Freeze"/>
+                </Failures>
+              </Rotate>
+            </Element>
+            <Element>
+              <Visible>(A:HSI has localizer, bool) 0 != &amp;&amp;</Visible>
+              <Position X="160" Y="155"/>
+              <Rectangle Height="56" Width="2" LineWidth="1" Color="#FF00FF" FillColor="#000000" Bright="Yes">
+                <Pivot X="1" Y="28"/>
+              </Rectangle>
+              <Shift>
+                <Value>(A:HSI CDI needle valid, bool) if{ (A:HSI CDI needle, number) } els{ 0 }</Value>
+                <Scale X="0.5"/>
+              </Shift>
+              <Rotate>
+                <Value>(A:NAV1 OBS,radians) (A:Plane heading degrees gyro,radians) -</Value>
+                <Failures>
+                  <GAUGE_GYRO_HEADING Action="Freeze"/>
+                  <GAUGE_NAVIGATION_VOR1 Action="Freeze"/>
+                </Failures>
+              </Rotate>
+            </Element>
+            <Element>
+              <Visible>(A:HSI has localizer, bool) 0 == &amp;&amp;</Visible>
+              <Position X="160" Y="155"/>
+              <Rectangle Height="56" Width="2" LineWidth="1" Color="#FFFFFF" FillColor="#FFFFFF" Bright="Yes">
+                <Pivot X="1" Y="28"/>
+              </Rectangle>
+              <Shift>
+                <Value>(A:HSI CDI needle valid, bool) if{ (A:HSI CDI needle, number) } els{ 0 }</Value>
+                <Scale X="0.5"/>
+              </Shift>
+              <Rotate>
+                <Value>(A:NAV1 OBS,radians) (A:Plane heading degrees gyro,radians) -</Value>
+              </Rotate>
+              <Failures>
+                <GAUGE_GYRO_HEADING Action="Freeze"/>
+                <GAUGE_NAVIGATION_VOR1 Action="Freeze"/>
+              </Failures>
+            </Element>
+          </Element>
+          <!--GPS NEEDLE-->
+          <Element>
+            <Visible>(A:GPS drives nav1, bool)</Visible>
+            <Element>
+              <Position X="160" Y="155"/>
+              <Rectangle Height="68" Width="2" LineWidth="1" Color="#FF00FF" FillColor="#FF00FF" Bright="Yes">
+                <Pivot X="1" Y="98"/>
+              </Rectangle>
+              <Rotate>
+                <Value>(A:GPS WP BEARING, radians) (A:Plane heading degrees gyro,radians) -</Value>
+                <Failures>
+                  <GAUGE_GYRO_HEADING Action="Freeze"/>
+                  <GAUGE_NAVIGATION_VOR1 Action="Freeze"/>
+                </Failures>
+              </Rotate>
+            </Element>
+            <Element>
+              <Position X="160" Y="155"/>
+              <Polygon LineWidth="1" Color="#FF00FF" FillColor="#FF00FF" Bright="yes">
+                <Point X="5" Y="0"/>
+                <Point X="0" Y="10"/>
+                <Point X="11" Y="10"/>
+                <Point X="6" Y="0"/>
+                <Pivot X="7" Y="59"/>
+              </Polygon>
+              <Rotate>
+                <Value>(A:GPS WP BEARING, radians) (A:Plane heading degrees gyro,radians) -</Value>
+                <Failures>
+                  <GAUGE_GYRO_HEADING Action="Freeze"/>
+                  <GAUGE_NAVIGATION_VOR2 Action="Freeze"/>
+                </Failures>
+              </Rotate>
+            </Element>
+            <Element>
+              <Position X="160" Y="155"/>
+              <Rectangle Height="68" Width="2" LineWidth="1" Color="#FF00FF" FillColor="#FF00FF" Bright="Yes">
+                <Pivot X="1" Y="-30"/>
+              </Rectangle>
+              <Rotate>
+                <Value>(A:GPS WP BEARING, radians) (A:Plane heading degrees gyro,radians) -</Value>
+                <Failures>
+                  <GAUGE_GYRO_HEADING Action="Freeze"/>
+                  <GAUGE_NAVIGATION_VOR1 Action="Freeze"/>
+                </Failures>
+              </Rotate>
+            </Element>
+            <Element>
+              <Position X="160" Y="155"/>
+              <Rectangle Height="56" Width="2" LineWidth="1" Color="#FF00FF" FillColor="#000000" Bright="Yes">
+                <Pivot X="1" Y="28"/>
+              </Rectangle>
+              <Shift>
+                <Value Minimum="-15" Maximum="15">(A:GPS WP CROSS TRK, nmiles)</Value>
+                <Scale X="4"/>
+              </Shift>
+              <Rotate>
+                <Value>(A:GPS WP BEARING, radians) (A:Plane heading degrees gyro,radians) -</Value>
+                <Failures>
+                  <GAUGE_GYRO_HEADING Action="Freeze"/>
+                  <GAUGE_NAVIGATION_VOR1 Action="Freeze"/>
+                </Failures>
+              </Rotate>
+            </Element>
+          </Element>
+          <!--LOC GS-->
+          <Element>
+            <Visible>(A:HSI GSI needle valid, bool)</Visible>
+            <Position X="276" Y="124"/>
+            <Image Name="MFDX1_GS.bmp" Bright="1"/>
+          </Element>
+          <Element>
+            <Visible>(A:HSI GSI needle valid, bool)</Visible>
+            <Position X="273" Y="149"/>
+            <Polygon LineWidth="2" Color="#FF00FF" FillColor="#FF00FF" Bright="yes">
+              <Point X="6" Y="0"/>
+              <Point X="0" Y="4"/>
+              <Point X="6" Y="8"/>
+              <Point X="12" Y="4"/>
+              <Pivot X="0" Y="0"/>
+            </Polygon>
+            <Shift>
+              <Value Minimum="-120" Maximum="120">(A:HSI GSI needle, number)</Value>
+              <Scale Y="0.3"/>
+            </Shift>
+          </Element>
+          <Element>
+            <Visible>(A:HSI has localizer, bool)</Visible>
+            <Position X="129" Y="265"/>
+            <Image Name="MFDX1_LOC.bmp" Bright="1"/>
+          </Element>
+          <Element>
+            <Visible>(A:HSI has localizer, bool)</Visible>
+            <Position X="157" Y="264"/>
+            <Polygon LineWidth="2" Color="#FF00FF" FillColor="#FF00FF" Bright="yes">
+              <Point X="4" Y="0"/>
+              <Point X="0" Y="6"/>
+              <Point X="4" Y="12"/>
+              <Point X="8" Y="6"/>
+              <Pivot X="1" Y="0"/>
+            </Polygon>
+            <Shift>
+              <Value Minimum="-120" Maximum="120">(A:HSI CDI needle, number)</Value>
+              <Scale X="0.3"/>
+            </Shift>
+          </Element>
+          <!--TEXT-->
+          <Element>
+            <Element>
+              <Position X="138" Y="30"/>
+              <FormattedText X="44" Y="18" Font="Arial Black" FontSize="16" LineSpacing="16" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+                <String>%((A:PARTIAL PANEL HEADING,bool))%{if} --%{else}%(360 (A:Plane heading degrees gyro, degrees) dnor near d 0 == ?)%!03d!</String>
+              </FormattedText>
+            </Element>
+            <Element>
+              <Position X="246" Y="28"/>
+              <FormattedText X="38" Y="14" Font="Arial" FontSize="14" LineSpacing="14" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+                <String>%((A:NAV1 OBS,degrees))%!03d!%</String>
+              </FormattedText>
+            </Element>
+            <Element>
+              <Position X="246" Y="42"/>
+              <FormattedText X="38" Y="14" Font="Arial" FontSize="11" LineSpacing="14" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+                <String>CRS</String>
+              </FormattedText>
+            </Element>
+            <Element>
+              <Position X="36" Y="28"/>
+              <FormattedText X="38" Y="14" Font="Arial" FontSize="14" LineSpacing="14" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+                <String>%((A:NAV1 signal,number) abs 10 >)%{if}%((A:NAV1 DME,nmiles) 100 >=)%{if}%((A:NAV1 DME,nmiles))%!d!%{else}%((A:NAV1 DME,nmiles) abs)%!2.1f!%</String>
+              </FormattedText>
+            </Element>
+            <Element>
+              <Position X="32" Y="42"/>
+              <FormattedText X="38" Y="14" Font="Arial" FontSize="11" LineSpacing="14" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+                <String>DIST</String>
+              </FormattedText>
+            </Element>
+            <Element>
+              <Position X="32" Y="58"/>
+              <FormattedText X="50" Y="28" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Left" Color="#CCCCCC" Bright="Yes">
+                <String>%((A:NAV1 signal, number) abs 10 >)%{if}%((A:Nav1 ident, string))%!s!%{else}% --- %{end}%\n%V1 %</String>
+              </FormattedText>
+            </Element>
+            <Element>
+              <Position X="32" Y="86"/>
+              <Visible>(A:NAV1 signal, number) abs 10 > (A:GPS drives nav1, bool) ! &amp;&amp;</Visible>
+              <FormattedText X="44" Y="14" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Left" Color="#00FFFF" Bright="Yes">
+                <String>%((A:HSI TF flags, enum) 1 ==)%{if}%TO %{else}%FROM %</String>
+              </FormattedText>
+            </Element>
+            <Element>
+              <Position X="238" Y="58"/>
+              <FormattedText X="50" Y="42" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Right" Color="#FF00FF" Bright="Yes">
+                <String>%((A:GPS drives nav1, bool))%{if} %{else}%\n%((A:HSI CDI needle valid, bool) (A:HSI GSI needle valid, bool) &amp;&amp;)%{if}% APR%\n%((A:NAV1 LOCALIZER,degrees) (A:NAV1 MAGVAR,degrees) + dnor d near)%!03d!%</String>
+              </FormattedText>
+            </Element>
+            <Element>
+              <Position X="32" Y="228"/>
+              <FormattedText X="50" Y="28" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Left" Color="#0099FF" Bright="Yes">
+                <String>%((L:CNCP adf mode,bool) 1 == (A:ADF signal:2, number) 10 > &amp;&amp;)%{if}%ADF%\n%((A:ADF ident:2, string))%!s!%{else}%((L:CNCP adf mode,bool) 0 == (A:ADF signal:1, number) 10 > &amp;&amp;)%{if}%ADF%\n%((A:ADF ident:1, string))%!s!%</String>
+              </FormattedText>
+            </Element>
+            <Element>
+              <Position X="32" Y="256"/>
+              <FormattedText X="70" Y="14" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Left" Color="#CCCCCC" Bright="Yes">
+                <String>%GS %((A:GPS GROUND SPEED,knots))%!d!%</String>
+              </FormattedText>
+            </Element>
+            <Element>
+              <Position X="238" Y="228"/>
+              <FormattedText X="50" Y="42" Font="Arial" FontSize="12" LineSpacing="14" Adjust="Right" Color="#FFCC00" Bright="Yes">
+                <String>%((A:NAV2 signal, number) abs 10 >)% V2%\n%D %((A:NAV2 dme,nmiles) s0 0 >=)%{if}%(l0 100 >=)%{if}%(l0)%!d!%{else}%(l0)%!0.1f!%\n%((A:NAV2 ident,string))%!s!%</String>
+              </FormattedText>
+            </Element>
+            <!--GPS-->
+            <Element>
+              <Visible>(A:GPS drives nav1, bool)</Visible>
+              <Element>
+                <Position X="200" Y="28"/>
+                <FormattedText X="38" Y="14" Font="Arial Black" FontSize="14" LineSpacing="14" Adjust="Center" Color="#FF00FF" Bright="Yes">
+                  <String>GPS</String>
+                </FormattedText>
+              </Element>
+              <Element>
+                <Position X="185" Y="42"/>
+                <FormattedText X="70" Y="14" Font="Arial" FontSize="14" LineSpacing="14" Adjust="Center" Color="#FF00FF" Bright="Yes">
+                  <String>%((A:GPS WP DISTANCE,nmiles) 100 &lt;)%{if}%((A:GPS WP DISTANCE,nmiles))%!3.1f!%{else}%((A:GPS WP DISTANCE,nmiles))%!d!%{end}% nm%</String>
+                </FormattedText>
+              </Element>
+            </Element>
+          </Element>
+        </Element>
+      </Element>
+    </Element>
+    <!--==== 2 MAP ====-->
+    <Element>
+      <Visible>(L:MFDX1 mode,enum) 2 ==</Visible>
+      <Element>
+        <Position X="0" Y="0"/>
+        <Image Name="MFDX1_MAP_screen.bmp" Bright="1"/>
+      </Element>
+      <Element Name="MapView Pages">
+        <Position X="29" Y="28"/>
+        <CustomDraw Name="fs9gps:map" X="262" Y="248" LayerTerrain="Yes" LayerBorders="No" LayerFlightPlan="No" FlightPlanLineWidth="3" ActiveColorLayerFlightPlan="0x7010B0" PastColorLayerFlightPlan="0xF0F0F0" ColorLayerFlightPlan="0xF0F0F0" Bright="Yes" CenterX="131">
+          <CenterY>200</CenterY>
+          <Zoom>(L:MFDX1 MAP Zoom,enum) 1 + 2000 *</Zoom>
+          <Latitude>(A:GPS POSITION LAT, Radians)</Latitude>
+          <Longitude>(A:GPS POSITION LON, Radians)</Longitude>
+          <Heading>(A:GPS GROUND TRUE TRACK, Radians)</Heading>
+          <DetailLayerTerrain>(L:MFDX1 MAP mode,enum) 2 &lt; if{ 1 } els{ 2 }</DetailLayerTerrain>
+          <LayerAirports>(L:MFDX1 MAP mode,enum) 0 == (L:MFDX1 MAP mode,enum) 2 == || if{ 1 } els{ 0 }</LayerAirports>
+          <ObjectDetailLayerAirports>0 0 0 0 0 0 0x5 0x5 0x7 0x7 0x1F 0x1F 0x1F 0x1F 0x4F 0x4F 0x4F 0x4F 0x4F 0x4F 0x4F 0x4F 0x4F 0x4F 24 (L:MFDX1 MAP Zoom,enum) case</ObjectDetailLayerAirports>
+          <TextDetailLayerAirports>0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 24 (L:MFD15 MAP Zoom,enum) case</TextDetailLayerAirports>
+        </CustomDraw>
+      </Element>
+      <!--ROSE-->
+      <Element>
+        <Position X="160" Y="158"/>
+        <CustomDraw Name="fs9gps:rose" X="250" Y="120" CenterX="125" CenterY="185" Radius="160" LineWidth="2" Font="Arial" FontSize="16" BigFontSize="18" Bright="Yes">
+          <Color>(L:MFDX1 MAP mode,enum) 1 > if{ 0x703030 } els{ 0xF0D0D0 }</Color>
+          <BackgroundColor>(L:MFDX1 MAP mode,enum) 1 > if{ 0 } els{ 0x080808 }</BackgroundColor>
+          <Heading>(A:GPS GROUND TRUE HEADING, Radians)</Heading>
+          <Pivot X="125" Y="120"/>
+        </CustomDraw>
+      </Element>
+      <!--CROSSHAIR-->
+      <Element>
+        <Visible>(L:MFDX1 MAP mode,enum) 1 == (L:MFDX1 MAP mode,enum) 3 == ||</Visible>
+        <Element>
+          <Position X="160" Y="226"/>
+          <Rectangle Height="2" Width="30" LineWidth="1" Color="#CC00CC" FillColor="#CC00CC" Bright="Yes">
+            <Pivot X="15" Y="1"/>
+          </Rectangle>
+        </Element>
+        <Element>
+          <Position X="160" Y="226"/>
+          <Rectangle Height="30" Width="2" LineWidth="1" Color="#CC00CC" FillColor="#CC00CC" Bright="Yes">
+            <Pivot X="1" Y="15"/>
+          </Rectangle>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(L:MFDX1 MAP mode,enum) 0 == (L:MFDX1 MAP mode,enum) 2 == ||</Visible>
+        <Element>
+          <Position X="160" Y="226"/>
+          <Image Name="MFDX1_MAP_AIcon.bmp" Bright="1">
+            <Axis X="17" Y="11"/>
+          </Image>
+        </Element>
+      </Element>
+      <!--HDG-->
+      <Element>
+        <Position X="134" Y="28"/>
+        <Image Name="MFDX1_MAP_HDG.bmp" Bright="1"/>
+      </Element>
+      <Element>
+        <Position X="136" Y="34"/>
+        <FormattedText X="44" Y="18" Font="Arial Black" FontSize="16" LineSpacing="16" Adjust="Center" Color="#FFFFFF" Bright="Yes">
+          <String>%((A:PARTIAL PANEL HEADING,bool))%{if} --%{else}%(360 (A:Plane heading degrees gyro, degrees) dnor near d 0 == ?)%!03d!</String>
+        </FormattedText>
+      </Element>
+      <!--INFOS-->
+      <Element>
+        <Visible>(L:MFDX1 MAP mode,enum) 2 &lt;</Visible>
+        <Element>
+          <Position X="29" Y="29"/>
+          <Rectangle Height="26" Width="65" LineWidth="1" Color="#050505" FillColor="#050505" Bright="Yes"/>
+        </Element>
+        <Element>
+          <Position X="30" Y="29"/>
+          <FormattedText X="65" Y="26" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Center" Color="#D0F0F0" Bright="Yes">
+            <String>%RANGE %\n%((L:MFDX1 MAP Zoom,enum) 2 * 2 +)%!d!% nm%</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="29" Y="249"/>
+          <Rectangle Height="26" Width="105" LineWidth="1" Color="#050505" FillColor="#050505" Bright="Yes"/>
+        </Element>
+        <Element>
+          <Position X="218" Y="249"/>
+          <Rectangle Height="26" Width="73" LineWidth="1" Color="#050505" FillColor="#050505" Bright="Yes"/>
+        </Element>
+        <Element>
+          <Position X="30" Y="249"/>
+          <FormattedText X="27" Y="26" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Left" Color="#D0F0F0" Bright="Yes">
+            <String>%LAT%\n%LON%</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="57" Y="249"/>
+          <FormattedText X="80" Y="26" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#D0F0F0" Bright="Yes">
+            <String>%((A:GPS POSITION LAT,degrees) 0 >)%{if} N%{else}% S%{end}%((A:GPS POSITION LAT,degrees) abs flr)%!d!%&#176; %((A:GPS POSITION LAT,degrees) abs 10000 * 10000 % 100 / 0.6 *)%!2.2f%' %\n%((A:GPS POSITION LON,degrees) 0 >)%{if} E%{else}% W%{end}%((A:GPS POSITION LON,degrees) abs flr)%!d!%&#176; %((A:GPS POSITION LON,degrees) abs 10000 * 10000 % 100 / 0.6 *)%!2.2f%' %</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="220" Y="249"/>
+          <FormattedText X="21" Y="26" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Left" Color="#D0F0F0" Bright="Yes">
+            <String>%ALT%\n%GS%</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="230" Y="249"/>
+          <FormattedText X="50" Y="26" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#D0F0F0" Bright="Yes">
+            <String>%((A:GPS POSITION ALT,feet))%!d%\n%((A:GPS GROUND SPEED,knots))%!d!%</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(L:MFDX1 MAP mode,enum) 1 ></Visible>
+        <Element>
+          <Position X="29" Y="29"/>
+          <Rectangle Height="26" Width="65" LineWidth="1" Color="#D0F0F0" FillColor="#D0F0F0" Bright="Yes"/>
+        </Element>
+        <Element>
+          <Position X="30" Y="29"/>
+          <FormattedText X="65" Y="26" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Center" Color="#303070" Bright="Yes">
+            <String>%RANGE %\n%((L:MFDX1 MAP Zoom,enum) 2 * 2 +)%!d!% nm%</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="29" Y="249"/>
+          <Rectangle Height="26" Width="105" LineWidth="1" Color="#D0F0F0" FillColor="#D0F0F0" Bright="Yes"/>
+        </Element>
+        <Element>
+          <Position X="218" Y="249"/>
+          <Rectangle Height="26" Width="73" LineWidth="1" Color="#D0F0F0" FillColor="#D0F0F0" Bright="Yes"/>
+        </Element>
+        <Element>
+          <Position X="30" Y="249"/>
+          <FormattedText X="27" Y="26" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Left" Color="#303070" Bright="Yes">
+            <String>%LAT%\n%LON%</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="57" Y="249"/>
+          <FormattedText X="80" Y="26" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#303070" Bright="Yes">
+            <String>%((A:GPS POSITION LAT,degrees) 0 >)%{if} N%{else}% S%{end}%((A:GPS POSITION LAT,degrees) abs flr)%!d!%&#176; %((A:GPS POSITION LAT,degrees) abs 10000 * 10000 % 100 / 0.6 *)%!2.2f%' %\n%((A:GPS POSITION LON,degrees) 0 >)%{if} E%{else}% W%{end}%((A:GPS POSITION LON,degrees) abs flr)%!d!%&#176; %((A:GPS POSITION LON,degrees) abs 10000 * 10000 % 100 / 0.6 *)%!2.2f%' %</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="220" Y="249"/>
+          <FormattedText X="24" Y="26" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Left" Color="#303070" Bright="Yes">
+            <String>%ALT%\n%GS%</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="230" Y="249"/>
+          <FormattedText X="58" Y="26" Font="Arial" FontSize="12" LineSpacing="13" Adjust="Right" Color="#303070" Bright="Yes">
+            <String>%((A:GPS POSITION ALT,feet))%!d%\n%((A:GPS GROUND SPEED,knots))%!d!%</String>
+          </FormattedText>
+        </Element>
+      </Element>
+    </Element>
+    <!--==== 3 ENG1 ====-->
+    <Element>
+      <Visible>(L:MFDX1 mode,enum) 3 ==</Visible>
+      <Element>
+        <Position X="0" Y="0"/>
+        <Image Name="MFDX1_ENG1_screen.bmp" Bright="1"/>
+      </Element>
+      <!--EPR BARS-->
+      <Element>
+        <Position X="73" Y="108"/>
+        <MaskImage Name="MFDX1_EPR_mask.bmp" Bright="1">
+          <Axis X="0" Y="125"/>
+        </MaskImage>
+        <Image Name="MFDX1_EPR_Bar.bmp" Bright="1">
+          <Nonlinearity>
+            <Item Value="0" X="0" Y="-1"/>
+            <Item Value="0.9" X="0" Y="0"/>
+            <Item Value="1" X="0" Y="9"/>
+            <Item Value="1.7" X="0" Y="120"/>
+          </Nonlinearity>
+        </Image>
+        <Shift>
+          <Value Minimum="0" Maximum="1.7">(A:Turb Eng1 N1, percent) 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * +</Value>
+        </Shift>
+      </Element>
+      <Element>
+        <Position X="119" Y="108"/>
+        <MaskImage Name="MFDX1_EPR_mask.bmp">
+          <Axis X="0" Y="125"/>
+        </MaskImage>
+        <Image Name="MFDX1_EPR_Bar.bmp" Bright="1">
+          <Nonlinearity>
+            <Item Value="0" X="0" Y="-1"/>
+            <Item Value="0.9" X="0" Y="0"/>
+            <Item Value="1" X="0" Y="9"/>
+            <Item Value="1.7" X="0" Y="120"/>
+          </Nonlinearity>
+        </Image>
+        <Shift>
+          <Value Minimum="0" Maximum="1.7">(A:Turb Eng2 N1, percent) 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * +</Value>
+        </Shift>
+      </Element>
+      <Element>
+        <Position X="191" Y="108"/>
+        <MaskImage Name="MFDX1_EPR_mask.bmp">
+          <Axis X="0" Y="125"/>
+        </MaskImage>
+        <Image Name="MFDX1_EPR_Bar.bmp" Bright="1">
+          <Nonlinearity>
+            <Item Value="0" X="0" Y="-1"/>
+            <Item Value="0.9" X="0" Y="0"/>
+            <Item Value="1" X="0" Y="9"/>
+            <Item Value="1.7" X="0" Y="120"/>
+          </Nonlinearity>
+        </Image>
+        <Shift>
+          <Value Minimum="0" Maximum="1.7">(A:Turb Eng3 N1, percent) 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * +</Value>
+        </Shift>
+      </Element>
+      <Element>
+        <Position X="237" Y="108"/>
+        <MaskImage Name="MFDX1_EPR_mask.bmp">
+          <Axis X="0" Y="125"/>
+        </MaskImage>
+        <Image Name="MFDX1_EPR_Bar.bmp" Bright="1">
+          <Nonlinearity>
+            <Item Value="0" X="0" Y="-1"/>
+            <Item Value="0.9" X="0" Y="0"/>
+            <Item Value="1" X="0" Y="9"/>
+            <Item Value="1.7" X="0" Y="120"/>
+          </Nonlinearity>
+        </Image>
+        <Shift>
+          <Value Minimum="0" Maximum="1.7">(A:Turb Eng4 N1, percent) 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * +</Value>
+        </Shift>
+      </Element>
+      <!--EPR RATING FROM STNDENG-->
+      <Element>
+        <Visible>(L:STDBENG mode,enum) 1 ></Visible>
+        <Element>
+          <Position X="50" Y="382"/>
+          <Rectangle Height="2" Width="220" LineWidth="1" Color="#00FFFF" FillColor="#00FFFF" Bright="Yes"/>
+          <Shift>
+            <Value Minimum="1" Maximum="1.70">(L:STDBENG mode,enum) 2 == if{ (L:AP N1 rating display,number) } els{ (L:STDBENG mode,enum) 2 > if{ (L:AP N1 rating,number) 30 max 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * + } }</Value>
+            <Scale Y="-158"/>
+          </Shift>
+        </Element>
+        <Element>
+          <Position X="40" Y="378"/>
+          <FormattedText X="8" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Left" Color="#00FFFF" Bright="Yes">
+            <String>R</String>
+          </FormattedText>
+          <Shift>
+            <Value Minimum="1" Maximum="1.70">(L:STDBENG mode,enum) 2 == if{ (L:AP N1 rating display,number) } els{ (L:STDBENG mode,enum) 2 > if{ (L:AP N1 rating,number) 30 max 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * + } }</Value>
+            <Scale Y="-158"/>
+          </Shift>
+        </Element>
+      </Element>
+      <!--THROTTLES-->
+      <Element>
+        <Visible>(L:STDBENG mode,enum) 2 &lt;</Visible>
+        <Element>
+          <Position X="68" Y="230"/>
+          <Polyline LineWidth="3" Color="#00FFFF" Bright="Yes">
+            <Point X="0" Y="0"/>
+            <Point X="4" Y="4"/>
+            <Point X="0" Y="8"/>
+            <Pivot X="4" Y="4"/>
+          </Polyline>
+          <Shift>
+            <Value Minimum="0" Maximum="100">(A:GENERAL ENG1 THROTTLE LEVER POSITION,percent) abs</Value>
+            <Scale Y="-1.20"/>
+          </Shift>
+          <Delay PixelsPerSecond="60"/>
+        </Element>
+        <Element>
+          <Position X="114" Y="230"/>
+          <Polyline LineWidth="3" Color="#00FFFF" Bright="Yes">
+            <Point X="0" Y="0"/>
+            <Point X="4" Y="4"/>
+            <Point X="0" Y="8"/>
+            <Pivot X="4" Y="4"/>
+          </Polyline>
+          <Shift>
+            <Value Minimum="0" Maximum="100">(A:GENERAL ENG2 THROTTLE LEVER POSITION,percent) abs</Value>
+            <Scale Y="-1.20"/>
+          </Shift>
+          <Delay PixelsPerSecond="60"/>
+        </Element>
+        <Element>
+          <Position X="203" Y="230"/>
+          <Polyline LineWidth="3" Color="#00FFFF" Bright="Yes">
+            <Point X="4" Y="0"/>
+            <Point X="0" Y="4"/>
+            <Point X="4" Y="8"/>
+            <Pivot X="0" Y="4"/>
+          </Polyline>
+          <Shift>
+            <Value Minimum="0" Maximum="100">(A:GENERAL ENG3 THROTTLE LEVER POSITION,percent) abs</Value>
+            <Scale Y="-1.20"/>
+          </Shift>
+          <Delay PixelsPerSecond="60"/>
+        </Element>
+        <Element>
+          <Position X="249" Y="230"/>
+          <Polyline LineWidth="3" Color="#00FFFF" Bright="Yes">
+            <Point X="4" Y="0"/>
+            <Point X="0" Y="4"/>
+            <Point X="4" Y="8"/>
+            <Pivot X="0" Y="4"/>
+          </Polyline>
+          <Shift>
+            <Value Minimum="0" Maximum="100">(A:GENERAL ENG4 THROTTLE LEVER POSITION,percent) abs</Value>
+            <Scale Y="-1.20"/>
+          </Shift>
+          <Delay PixelsPerSecond="60"/>
+        </Element>
+      </Element>
+      <!--REVERSE THRUST SYMBOLS-->
+      <Element>
+        <Position X="45" Y="40"/>
+        <Select>
+          <Value>(A:general eng1 throttle lever position,percent) 0 &lt;</Value>
+          <Case Value="1">
+            <Image Name="MFDX1_ENG_REV.bmp" Bright="1"/>
+          </Case>
+        </Select>
+      </Element>
+      <Element>
+        <Position X="96" Y="40"/>
+        <Select>
+          <Value>(A:general eng2 throttle lever position,percent) 0 &lt;</Value>
+          <Case Value="1">
+            <Image Name="MFDX1_ENG_REV.bmp" Bright="1"/>
+          </Case>
+        </Select>
+      </Element>
+      <Element>
+        <Position X="202" Y="40"/>
+        <Select>
+          <Value>(A:general eng3 throttle lever position,percent) 0 &lt;</Value>
+          <Case Value="1">
+            <Image Name="MFDX1_ENG_REV.bmp" Bright="1"/>
+          </Case>
+        </Select>
+      </Element>
+      <Element>
+        <Position X="253" Y="40"/>
+        <Select>
+          <Value>(A:general eng4 throttle lever position,percent) 0 &lt;</Value>
+          <Case Value="1">
+            <Image Name="MFDX1_ENG_REV.bmp" Bright="1"/>
+          </Case>
+        </Select>
+      </Element>
+      <!--STATIC TEXT-->
+      <Element>
+        <Position X="140" Y="48"/>
+        <FormattedText X="40" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+          <String>FF PPH</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="139" Y="241"/>
+        <FormattedText X="42" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+          <String>EPR</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="139" Y="255"/>
+        <FormattedText X="42" Y="22" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+          <String>% N1 %\n% % RPM %</String>
+        </FormattedText>
+      </Element>
+      <!--DYNAMIC TEXT-->
+      <Element>
+        <Position X="130" Y="64"/>
+        <FormattedText X="60" Y="15" Font="Arial" FontSize="14" LineSpacing="14" Adjust="Center" Color="#00FF00" Bright="Yes">
+          <String>%((A:Turb Eng1 Fuel Flow PPH, pound per hour) (A:Turb Eng2 Fuel Flow PPH, pound per hour) + (A:Turb Eng3 Fuel Flow PPH, pound per hour) + (A:Turb Eng4 Fuel Flow PPH, pound per hour) + 100 / int 100 *)%!5d!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="70" Y="27"/>
+        <FormattedText X="180" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#00FFFF" Bright="Yes">
+          <String>%((L:thrust max,bool) 1 ==)%{if}%MAX THR TIME OVER %((P:Local time,seconds) (L:thrust max time,seconds) - 60 / 60 % flr)%!02d!% : %((P:Local time,seconds) (L:thrust max time,seconds) - 60 % 59 min)%!02d!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="30" Y="67"/>
+        <FormattedText X="70" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Left" Color="#00FFFF" Bright="Yes">
+          <String>%RATING %((L:STDBENG mode,enum) 3 &lt;)%{if}%((L:AP N1 rating display,number) 1 max)%!1.2f!%{else}%((L:AP N1 rating,number) 23 max 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * +)%!1.2f!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="95" Y="67"/>
+        <FormattedText X="26" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Right" Color="#00FFFF" Bright="Yes">
+          <String>%((L:AFCSCP speed hold,bool))%{if}%A/T%{else}%((L:STDBENG mode,enum) 1 >)%{if}%EPR%{else}%MAN%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Visible>(A:General eng1 exhaust gas temperature, celsius) (A:General eng2 exhaust gas temperature, celsius) max (A:General eng3 exhaust gas temperature, celsius) max (A:General eng4 exhaust gas temperature, celsius) max 655 &lt;</Visible>
+        <Position X="200" Y="67"/>
+        <FormattedText X="90" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Left" Color="#00FF00" Bright="Yes">
+          <String>%MAX EGT %((A:General eng1 exhaust gas temperature, celsius) (A:General eng2 exhaust gas temperature, celsius) max (A:General eng3 exhaust gas temperature, celsius) max (A:General eng1 exhaust gas temperature, celsius) max)%!3d!% &#176;C%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Visible>(A:General eng1 exhaust gas temperature, celsius) (A:General eng2 exhaust gas temperature, celsius) max (A:General eng3 exhaust gas temperature, celsius) max (A:General eng4 exhaust gas temperature, celsius) max 655 ></Visible>
+        <Position X="200" Y="67"/>
+        <FormattedText X="90" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Left" Color="#FF0000" Bright="Yes">
+          <String>%MAX EGT %((A:General eng1 exhaust gas temperature, celsius) (A:General eng2 exhaust gas temperature, celsius) max (A:General eng3 exhaust gas temperature, celsius) max (A:General eng1 exhaust gas temperature, celsius) max)%!3d!% &#176;C%</String>
+        </FormattedText>
+      </Element>
+      <!--EPR-->
+      <Element>
+        <Position X="59" Y="242"/>
+        <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#00FF00" Bright="Yes">
+          <String>%((A:Turb Eng1 N1, percent) 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * + 1 max)%!1.2f!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="106" Y="242"/>
+        <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#00FF00" Bright="Yes">
+          <String>%((A:Turb Eng2 N1, percent) 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * + 1 max)%!1.2f!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="182" Y="242"/>
+        <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#00FF00" Bright="Yes">
+          <String>%((A:Turb Eng3 N1, percent) 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * + 1 max)%!1.2f!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="229" Y="242"/>
+        <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#00FF00" Bright="Yes">
+          <String>%((A:Turb Eng4 N1, percent) 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * + 1 max)%!1.2f!%</String>
+        </FormattedText>
+      </Element>
+      <!--N1-->
+      <Element>
+        <Visible>(A:Turb Eng1 corrected N2, percent) 0.1 ></Visible>
+        <Element>
+          <Position X="59" Y="260"/>
+          <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="%((A:Turb Eng1 corrected N1, percent) 15 &lt; if{ 0x00FFFF } els{ (A:Turb Eng1 corrected N1, percent) 99 > if{ 0x0000FF } els{ 0x00FF00 } })" Bright="Yes">
+            <String>%((A:Turb Eng1 corrected N1, percent))%!3.1f!%</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Turb Eng2 corrected N2, percent) 0.1 ></Visible>
+        <Element>
+          <Position X="106" Y="260"/>
+          <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="%((A:Turb Eng2 corrected N1, percent) 15 &lt; if{ 0x00FFFF } els{ (A:Turb Eng1 corrected N1, percent) 99 > if{ 0x0000FF } els{ 0x00FF00 } })" Bright="Yes">
+            <String>%((A:Turb Eng2 corrected N1, percent))%!3.1f!%</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Turb Eng3 corrected N2, percent) 0.1 ></Visible>
+        <Element>
+          <Position X="182" Y="260"/>
+          <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="%((A:Turb Eng3 corrected N1, percent) 15 &lt; if{ 0x00FFFF } els{ (A:Turb Eng1 corrected N1, percent) 99 > if{ 0x0000FF } els{ 0x00FF00 } })" Bright="Yes">
+            <String>%((A:Turb Eng3 corrected N1, percent))%!3.1f!%</String>
+          </FormattedText>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Turb Eng4 corrected N2, percent) 0.1 ></Visible>
+        <Element>
+          <Position X="229" Y="260"/>
+          <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="%((A:Turb Eng4 corrected N1, percent) 15 &lt; if{ 0x00FFFF } els{ (A:Turb Eng1 corrected N1, percent) 99 > if{ 0x0000FF } els{ 0x00FF00 } })" Bright="Yes">
+            <String>%((A:Turb Eng4 corrected N1, percent))%!3.1f!%</String>
+          </FormattedText>
+        </Element>
+      </Element>
+    </Element>
+    <!--==== 4 ENG2 ====-->
+    <Element>
+      <Visible>(L:MFDX1 mode,enum) 4 ==</Visible>
+      <Element>
+        <Position X="0" Y="0"/>
+        <Image Name="MFDX1_ENG2_screen.bmp" Bright="1"/>
+      </Element>
+      <!--REV THRUST SYMBOLS-->
+      <Element>
+        <Position X="45" Y="40"/>
+        <Select>
+          <Value>(A:general eng1 throttle lever position,percent) 0 &lt;</Value>
+          <Case Value="1">
+            <Image Name="MFDX1_ENG_REV.bmp" Bright="1"/>
+          </Case>
+        </Select>
+      </Element>
+      <Element>
+        <Position X="96" Y="40"/>
+        <Select>
+          <Value>(A:general eng2 throttle lever position,percent) 0 &lt;</Value>
+          <Case Value="1">
+            <Image Name="MFDX1_ENG_REV.bmp" Bright="1"/>
+          </Case>
+        </Select>
+      </Element>
+      <Element>
+        <Position X="202" Y="40"/>
+        <Select>
+          <Value>(A:general eng3 throttle lever position,percent) 0 &lt;</Value>
+          <Case Value="1">
+            <Image Name="MFDX1_ENG_REV.bmp" Bright="1"/>
+          </Case>
+        </Select>
+      </Element>
+      <Element>
+        <Position X="253" Y="40"/>
+        <Select>
+          <Value>(A:general eng4 throttle lever position,percent) 0 &lt;</Value>
+          <Case Value="1">
+            <Image Name="MFDX1_ENG_REV.bmp" Bright="1"/>
+          </Case>
+        </Select>
+      </Element>
+      <!--STATIC TEXT-->
+      <Element>
+        <Position X="145" Y="83"/>
+        <FormattedText X="30" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+          <String>EPR</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="145" Y="106"/>
+        <FormattedText X="30" Y="33" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+          <String>%N1%\n% % %\n%RPM%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="145" Y="156"/>
+        <FormattedText X="30" Y="33" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+          <String>%N2%\n% % %\n%RPM%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="145" Y="211"/>
+        <FormattedText X="30" Y="22" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+          <String>%EGT%\n%&#176;C%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="145" Y="251"/>
+        <FormattedText X="30" Y="22" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+          <String>%FF%\n%PPH%</String>
+        </FormattedText>
+      </Element>
+      <!--DYNAMIC TEXT-->
+      <Element>
+        <Position X="70" Y="27"/>
+        <FormattedText X="180" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#00FFFF" Bright="Yes">
+          <String>%((L:thrust max,bool) 1 ==)%{if}%MAX THR TIME REM %(300 (P:Local time,seconds) (L:thrust max time,seconds) - - 60 / flr)%!02d!% : %(300 (P:Local time,seconds) (L:thrust max time,seconds) - - 60 % 59 min)%!02d!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="30" Y="67"/>
+        <FormattedText X="70" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Left" Color="#00FFFF" Bright="Yes">
+          <String>%RATING %((L:STDBENG mode,enum) 3 &lt;)%{if}%((L:AP N1 rating display,number) 1 max)%!1.2f!%{else}%((L:AP N1 rating,number) 23 max 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * +)%!1.2f!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="95" Y="67"/>
+        <FormattedText X="26" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Right" Color="#00FFFF" Bright="Yes">
+          <String>%((L:AFCSCP speed hold,bool))%{if}%A/T%{else}%((L:STDBENG mode,enum) 1 >)%{if}%EPR%{else}%MAN%</String>
+        </FormattedText>
+      </Element>
+      <!--EPR-->
+      <Element>
+        <Position X="48" Y="83"/>
+        <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#00FF00" Bright="Yes">
+          <String>%((A:Turb Eng1 N1, percent) 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * + 1 max)%!1.2f!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="99" Y="83"/>
+        <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#00FF00" Bright="Yes">
+          <String>%((A:Turb Eng2 N1, percent) 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * + 1 max)%!1.2f!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="199" Y="83"/>
+        <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#00FF00" Bright="Yes">
+          <String>%((A:Turb Eng3 N1, percent) 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * + 1 max)%!1.2f!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="250" Y="83"/>
+        <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#00FF00" Bright="Yes">
+          <String>%((A:Turb Eng4 N1, percent) 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * + 1 max)%!1.2f!%</String>
+        </FormattedText>
+      </Element>
+      <!--N1 N2 Eng1 to 4-->
+      <Element>
+        <Visible>(A:Turb Eng1 corrected N2, percent) 0.1 ></Visible>
+        <Element>
+          <Position X="48" Y="133"/>
+          <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="%((A:Turb Eng1 corrected N1, percent) 15 &lt; if{ 0x00FFFF } els{ (A:Turb Eng1 corrected N1, percent) 99 > if{ 0x0000FF } els{ 0x00FF00 } })" Bright="Yes">
+            <String>%((A:Turb Eng1 corrected N1, percent))%!3.1f!%</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="63" Y="124"/>
+          <Rectangle Height="24" Width="2" LineWidth="1" Color="#000000" FillColor="%((A:Turb Eng1 corrected N1, percent) 15 &lt; if{ 0x00FFFF } els{ (A:Turb Eng1 corrected N1, percent) 99 > if{ 0x0000FF } els{ 0x00FF00 } })" Bright="Yes">
+            <Pivot X="1" Y="0"/>
+          </Rectangle>
+          <Rotate>
+            <Value Minimum="0" Maximum="110">(A:Turb Eng1 corrected N1, percent)</Value>
+            <Nonlinearity>
+              <Item Value="0" Degrees="60"/>
+              <Item Value="15" Degrees="90"/>
+              <Item Value="100.5" Degrees="185"/>
+              <Item Value="110" Degrees="220"/>
+            </Nonlinearity>
+          </Rotate>
+        </Element>
+        <Element>
+          <Position X="48" Y="183"/>
+          <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="%((A:Turb Eng1 corrected N1, percent) 15 &lt; if{ 0x00FFFF } els{ (A:Turb Eng1 corrected N1, percent) 99 > if{ 0x0000FF } els{ 0x00FF00 } })" Bright="Yes">
+            <String>%((A:Turb Eng1 corrected N2, percent))%!3.1f!%</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="63" Y="173"/>
+          <Rectangle Height="24" Width="2" LineWidth="1" Color="#000000" FillColor="%((A:Turb Eng1 corrected N1, percent) 15 &lt; if{ 0x00FFFF } els{ (A:Turb Eng1 corrected N1, percent) 99 > if{ 0x0000FF } els{ 0x00FF00 } })" Bright="Yes">
+            <Pivot X="1" Y="0"/>
+          </Rectangle>
+          <Rotate>
+            <Value Minimum="0" Maximum="110">(A:Turb Eng1 corrected N2, percent)</Value>
+            <Nonlinearity>
+              <Item Value="0" Degrees="60"/>
+              <Item Value="54" Degrees="90"/>
+              <Item Value="100" Degrees="185"/>
+              <Item Value="110" Degrees="220"/>
+            </Nonlinearity>
+          </Rotate>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Turb Eng2 corrected N2, percent) 0.1 ></Visible>
+        <Element>
+          <Position X="99" Y="133"/>
+          <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="%((A:Turb Eng2 corrected N1, percent) 15 &lt; if{ 0x00FFFF } els{ (A:Turb Eng1 corrected N1, percent) 99 > if{ 0x0000FF } els{ 0x00FF00 } })" Bright="Yes">
+            <String>%((A:Turb Eng2 corrected N1, percent))%!3.1f!%</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="114" Y="124"/>
+          <Rectangle Height="24" Width="2" LineWidth="1" Color="#000000" FillColor="%((A:Turb Eng2 corrected N1, percent) 15 &lt; if{ 0x00FFFF } els{ (A:Turb Eng1 corrected N1, percent) 99 > if{ 0x0000FF } els{ 0x00FF00 } })" Bright="Yes">
+            <Pivot X="1" Y="0"/>
+          </Rectangle>
+          <Rotate>
+            <Value Minimum="0" Maximum="110">(A:Turb Eng2 corrected N1, percent)</Value>
+            <Nonlinearity>
+              <Item Value="0" Degrees="60"/>
+              <Item Value="15" Degrees="90"/>
+              <Item Value="100.5" Degrees="185"/>
+              <Item Value="110" Degrees="220"/>
+            </Nonlinearity>
+          </Rotate>
+        </Element>
+        <Element>
+          <Position X="99" Y="183"/>
+          <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="%((A:Turb Eng2 corrected N1, percent) 15 &lt; if{ 0x00FFFF } els{ (A:Turb Eng1 corrected N1, percent) 99 > if{ 0x0000FF } els{ 0x00FF00 } })" Bright="Yes">
+            <String>%((A:Turb Eng2 corrected N2, percent))%!3.1f!%</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="114" Y="173"/>
+          <Rectangle Height="24" Width="2" LineWidth="1" Color="#000000" FillColor="%((A:Turb Eng2 corrected N1, percent) 15 &lt; if{ 0x00FFFF } els{ (A:Turb Eng1 corrected N1, percent) 99 > if{ 0x0000FF } els{ 0x00FF00 } })" Bright="Yes">
+            <Pivot X="1" Y="0"/>
+          </Rectangle>
+          <Rotate>
+            <Value Minimum="0" Maximum="110">(A:Turb Eng2 corrected N2, percent)</Value>
+            <Nonlinearity>
+              <Item Value="0" Degrees="60"/>
+              <Item Value="54" Degrees="90"/>
+              <Item Value="100" Degrees="185"/>
+              <Item Value="110" Degrees="220"/>
+            </Nonlinearity>
+          </Rotate>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Turb Eng3 corrected N2, percent) 0.1 ></Visible>
+        <Element>
+          <Position X="199" Y="133"/>
+          <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="%((A:Turb Eng3 corrected N1, percent) 15 &lt; if{ 0x00FFFF } els{ (A:Turb Eng1 corrected N1, percent) 99 > if{ 0x0000FF } els{ 0x00FF00 } })" Bright="Yes">
+            <String>%((A:Turb Eng3 corrected N1, percent))%!3.1f!%</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="214" Y="124"/>
+          <Rectangle Height="24" Width="2" LineWidth="1" Color="#000000" FillColor="%((A:Turb Eng3 corrected N1, percent) 15 &lt; if{ 0x00FFFF } els{ (A:Turb Eng1 corrected N1, percent) 99 > if{ 0x0000FF } els{ 0x00FF00 } })" Bright="Yes">
+            <Pivot X="1" Y="0"/>
+          </Rectangle>
+          <Rotate>
+            <Value Minimum="0" Maximum="110">(A:Turb Eng3 corrected N1, percent)</Value>
+            <Nonlinearity>
+              <Item Value="0" Degrees="60"/>
+              <Item Value="15" Degrees="90"/>
+              <Item Value="100.5" Degrees="185"/>
+              <Item Value="110" Degrees="220"/>
+            </Nonlinearity>
+          </Rotate>
+        </Element>
+        <Element>
+          <Position X="199" Y="183"/>
+          <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="%((A:Turb Eng3 corrected N1, percent) 15 &lt; if{ 0x00FFFF } els{ (A:Turb Eng1 corrected N1, percent) 99 > if{ 0x0000FF } els{ 0x00FF00 } })" Bright="Yes">
+            <String>%((A:Turb Eng3 corrected N2, percent))%!3.1f!%</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="214" Y="173"/>
+          <Rectangle Height="24" Width="2" LineWidth="1" Color="#000000" FillColor="%((A:Turb Eng3 corrected N1, percent) 15 &lt; if{ 0x00FFFF } els{ (A:Turb Eng1 corrected N1, percent) 99 > if{ 0x0000FF } els{ 0x00FF00 } })" Bright="Yes">
+            <Pivot X="1" Y="0"/>
+          </Rectangle>
+          <Rotate>
+            <Value Minimum="0" Maximum="110">(A:Turb Eng3 corrected N2, percent)</Value>
+            <Nonlinearity>
+              <Item Value="0" Degrees="60"/>
+              <Item Value="54" Degrees="90"/>
+              <Item Value="100" Degrees="185"/>
+              <Item Value="110" Degrees="220"/>
+            </Nonlinearity>
+          </Rotate>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Turb Eng4 corrected N2, percent) 0.1 ></Visible>
+        <Element>
+          <Position X="250" Y="133"/>
+          <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="%((A:Turb Eng4 corrected N1, percent) 15 &lt; if{ 0x00FFFF } els{ (A:Turb Eng1 corrected N1, percent) 99 > if{ 0x0000FF } els{ 0x00FF00 } })" Bright="Yes">
+            <String>%((A:Turb Eng4 corrected N1, percent))%!3.1f!%</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="265" Y="124"/>
+          <Rectangle Height="24" Width="2" LineWidth="1" Color="#000000" FillColor="%((A:Turb Eng4 corrected N1, percent) 15 &lt; if{ 0x00FFFF } els{ (A:Turb Eng1 corrected N1, percent) 99 > if{ 0x0000FF } els{ 0x00FF00 } })" Bright="Yes">
+            <Pivot X="1" Y="0"/>
+          </Rectangle>
+          <Rotate>
+            <Value Minimum="0" Maximum="110">(A:Turb Eng4 corrected N1, percent)</Value>
+            <Nonlinearity>
+              <Item Value="0" Degrees="60"/>
+              <Item Value="15" Degrees="90"/>
+              <Item Value="100.5" Degrees="185"/>
+              <Item Value="110" Degrees="220"/>
+            </Nonlinearity>
+          </Rotate>
+        </Element>
+        <Element>
+          <Position X="250" Y="183"/>
+          <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="%((A:Turb Eng4 corrected N1, percent) 15 &lt; if{ 0x00FFFF } els{ (A:Turb Eng1 corrected N1, percent) 99 > if{ 0x0000FF } els{ 0x00FF00 } })" Bright="Yes">
+            <String>%((A:Turb Eng4 corrected N2, percent))%!3.1f!%</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="265" Y="173"/>
+          <Rectangle Height="24" Width="2" LineWidth="1" Color="#000000" FillColor="%((A:Turb Eng4 corrected N1, percent) 15 &lt; if{ 0x00FFFF } els{ (A:Turb Eng1 corrected N1, percent) 99 > if{ 0x0000FF } els{ 0x00FF00 } })" Bright="Yes">
+            <Pivot X="1" Y="0"/>
+          </Rectangle>
+          <Rotate>
+            <Value Minimum="0" Maximum="110">(A:Turb Eng4 corrected N2, percent)</Value>
+            <Nonlinearity>
+              <Item Value="0" Degrees="60"/>
+              <Item Value="54" Degrees="90"/>
+              <Item Value="100" Degrees="185"/>
+              <Item Value="110" Degrees="220"/>
+            </Nonlinearity>
+          </Rotate>
+        </Element>
+      </Element>
+      <!--EGT-->
+      <Element>
+        <Position X="48" Y="233"/>
+        <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="%((A:General eng1 exhaust gas temperature, celsius) 655 > if{ 0x0000FF } els{ 0x00FF00 })" Bright="Yes">
+          <String>%((A:General eng1 exhaust gas temperature, celsius))%!3d!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="99" Y="233"/>
+        <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="%((A:General eng2 exhaust gas temperature, celsius) 655 > if{ 0x0000FF } els{ 0x00FF00 })" Bright="Yes">
+          <String>%((A:General eng2 exhaust gas temperature, celsius))%!3d!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="199" Y="233"/>
+        <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="%((A:General eng3 exhaust gas temperature, celsius) 655 > if{ 0x0000FF } els{ 0x00FF00 })" Bright="Yes">
+          <String>%((A:General eng3 exhaust gas temperature, celsius))%!3d!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="250" Y="233"/>
+        <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="%((A:General eng4 exhaust gas temperature, celsius) 655 > if{ 0x0000FF } els{ 0x00FF00 })" Bright="Yes">
+          <String>%((A:General eng4 exhaust gas temperature, celsius))%!3d!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="63" Y="223"/>
+        <Rectangle Height="24" Width="2" LineWidth="1" Color="#000000" FillColor="%((A:General eng1 exhaust gas temperature, celsius) 655 > if{ 0x0000FF } els{ 0x00FF00 })" Bright="Yes">
+          <Pivot X="1" Y="0"/>
+        </Rectangle>
+        <Rotate>
+          <Value Minimum="0" Maximum="720">(A:General eng1 exhaust gas temperature, celsius)</Value>
+          <Nonlinearity>
+            <Item Value="0" Degrees="60"/>
+            <Item Value="245" Degrees="90"/>
+            <Item Value="655" Degrees="185"/>
+            <Item Value="720" Degrees="220"/>
+          </Nonlinearity>
+        </Rotate>
+      </Element>
+      <Element>
+        <Position X="114" Y="223"/>
+        <Rectangle Height="24" Width="2" LineWidth="1" Color="#000000" FillColor="%((A:General eng2 exhaust gas temperature, celsius) 655 > if{ 0x0000FF } els{ 0x00FF00 })" Bright="Yes">
+          <Pivot X="1" Y="0"/>
+        </Rectangle>
+        <Rotate>
+          <Value Minimum="0" Maximum="720">(A:General eng2 exhaust gas temperature, celsius)</Value>
+          <Nonlinearity>
+            <Item Value="0" Degrees="60"/>
+            <Item Value="245" Degrees="90"/>
+            <Item Value="655" Degrees="185"/>
+            <Item Value="720" Degrees="220"/>
+          </Nonlinearity>
+        </Rotate>
+      </Element>
+      <Element>
+        <Position X="214" Y="223"/>
+        <Rectangle Height="24" Width="2" LineWidth="1" Color="#000000" FillColor="%((A:General eng3 exhaust gas temperature, celsius) 655 > if{ 0x0000FF } els{ 0x00FF00 })" Bright="Yes">
+          <Pivot X="1" Y="0"/>
+        </Rectangle>
+        <Rotate>
+          <Value Minimum="0" Maximum="700">(A:General eng3 exhaust gas temperature, celsius)</Value>
+          <Nonlinearity>
+            <Item Value="0" Degrees="60"/>
+            <Item Value="245" Degrees="90"/>
+            <Item Value="655" Degrees="185"/>
+            <Item Value="720" Degrees="220"/>
+          </Nonlinearity>
+        </Rotate>
+      </Element>
+      <Element>
+        <Position X="265" Y="223"/>
+        <Rectangle Height="24" Width="2" LineWidth="1" Color="#000000" FillColor="%((A:General eng4 exhaust gas temperature, celsius) 655 > if{ 0x0000FF } els{ 0x00FF00 })" Bright="Yes">
+          <Pivot X="1" Y="0"/>
+        </Rectangle>
+        <Rotate>
+          <Value Minimum="0" Maximum="720">(A:General eng4 exhaust gas temperature, celsius)</Value>
+          <Nonlinearity>
+            <Item Value="0" Degrees="60"/>
+            <Item Value="245" Degrees="90"/>
+            <Item Value="655" Degrees="185"/>
+            <Item Value="720" Degrees="220"/>
+          </Nonlinearity>
+        </Rotate>
+      </Element>
+      <!--FF-->
+      <Element>
+        <Position X="38" Y="259"/>
+        <FormattedText X="42" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Right" Color="#00FF00" Bright="Yes">
+          <String>%((A:Turb Eng1 Fuel Flow PPH, pound per hour) 10 / flr 10 *)%!5d!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="89" Y="259"/>
+        <FormattedText X="42" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Right" Color="#00FF00" Bright="Yes">
+          <String>%((A:Turb Eng2 Fuel Flow PPH, pound per hour) 10 / flr 10 *)%!5d!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="189" Y="259"/>
+        <FormattedText X="42" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Right" Color="#00FF00" Bright="Yes">
+          <String>%((A:Turb Eng3 Fuel Flow PPH, pound per hour) 10 / flr 10 *)%!5d!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="240" Y="259"/>
+        <FormattedText X="42" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Right" Color="#00FF00" Bright="Yes">
+          <String>%((A:Turb Eng4 Fuel Flow PPH, pound per hour) 10 / flr 10 *)%!5d!%</String>
+        </FormattedText>
+      </Element>
+    </Element>
+    <!--==== 5 ENG3 ====-->
+    <Element>
+      <Visible>(L:MFDX1 mode,enum) 5 ==</Visible>
+      <Element>
+        <Position X="0" Y="0"/>
+        <Image Name="MFDX1_ENG3_screen.bmp" Bright="1"/>
+      </Element>
+      <!--STATIC TEXT-->
+      <Element>
+        <Position X="115" Y="42"/>
+        <FormattedText X="90" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+          <String>ENGINE OIL</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="140" Y="88"/>
+        <FormattedText X="40" Y="22" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+          <String>%PRESS%\n%PSI%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="140" Y="148"/>
+        <FormattedText X="40" Y="22" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+          <String>%TEMP%\n%&#176;C%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="140" Y="208"/>
+        <FormattedText X="40" Y="22" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+          <String>%QTI%\n%QTS%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="140" Y="250"/>
+        <FormattedText X="40" Y="22" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+          <String>%USED%\n%FUEL%</String>
+        </FormattedText>
+      </Element>
+      <!--PRESS-->
+      <Element>
+        <Visible>(A:Turb Eng1 corrected N2, percent) 0.1 ></Visible>
+        <Element>
+          <Position X="48" Y="93"/>
+          <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="%((A:General Eng1 oil pressure, PSI) 70 &lt; if{ 0x0000FF } els{ 0x00FF00 })" Bright="Yes">
+            <String>%((A:General Eng1 oil pressure, PSI))%!d!%</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="63" Y="86"/>
+          <Rectangle Height="24" Width="2" LineWidth="1" Color="#000000" FillColor="%((A:General Eng1 oil pressure, PSI) 70 &lt; if{ 0x0000FF } els{ 0x00FF00 })" Bright="Yes">
+            <Pivot X="1" Y="0"/>
+          </Rectangle>
+          <Rotate>
+            <Value Minimum="0" Maximum="250">(A:General Eng1 oil pressure, PSI)</Value>
+            <Nonlinearity>
+              <Item Value="0" Degrees="60"/>
+              <Item Value="70" Degrees="90"/>
+              <Item Value="250" Degrees="220"/>
+            </Nonlinearity>
+          </Rotate>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Turb Eng2 corrected N2, percent) 0.1 ></Visible>
+        <Element>
+          <Position X="99" Y="93"/>
+          <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="%((A:General Eng2 oil pressure, PSI) 70 &lt; if{ 0x0000FF } els{ 0x00FF00 })" Bright="Yes">
+            <String>%((A:General Eng2 oil pressure, PSI))%!d!%</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="114" Y="86"/>
+          <Rectangle Height="24" Width="2" LineWidth="1" Color="#000000" FillColor="%((A:General Eng2 oil pressure, PSI) 70 &lt; if{ 0x0000FF } els{ 0x00FF00 })" Bright="Yes">
+            <Pivot X="1" Y="0"/>
+          </Rectangle>
+          <Rotate>
+            <Value Minimum="0" Maximum="250">(A:General Eng2 oil pressure, PSI)</Value>
+            <Nonlinearity>
+              <Item Value="0" Degrees="60"/>
+              <Item Value="70" Degrees="90"/>
+              <Item Value="250" Degrees="220"/>
+            </Nonlinearity>
+          </Rotate>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Turb Eng3 corrected N2, percent) 0.1 ></Visible>
+        <Element>
+          <Position X="199" Y="93"/>
+          <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="%((A:General Eng3 oil pressure, PSI) 70 &lt; if{ 0x0000FF } els{ 0x00FF00 })" Bright="Yes">
+            <String>%((A:General Eng3 oil pressure, PSI))%!d!%</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="214" Y="86"/>
+          <Rectangle Height="24" Width="2" LineWidth="1" Color="#000000" FillColor="%((A:General Eng3 oil pressure, PSI) 70 &lt; if{ 0x0000FF } els{ 0x00FF00 })" Bright="Yes">
+            <Pivot X="1" Y="0"/>
+          </Rectangle>
+          <Rotate>
+            <Value Minimum="0" Maximum="250">(A:General Eng3 oil pressure, PSI)</Value>
+            <Nonlinearity>
+              <Item Value="0" Degrees="60"/>
+              <Item Value="70" Degrees="90"/>
+              <Item Value="250" Degrees="220"/>
+            </Nonlinearity>
+          </Rotate>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Turb Eng4 corrected N2, percent) 0.1 ></Visible>
+        <Element>
+          <Position X="250" Y="93"/>
+          <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="%((A:General Eng4 oil pressure, PSI) 70 &lt; if{ 0x0000FF } els{ 0x00FF00 })" Bright="Yes">
+            <String>%((A:General Eng4 oil pressure, PSI))%!d!%</String>
+          </FormattedText>
+        </Element>
+        <Element>
+          <Position X="265" Y="86"/>
+          <Rectangle Height="24" Width="2" LineWidth="1" Color="#000000" FillColor="%((A:General Eng4 oil pressure, PSI) 70 &lt; if{ 0x0000FF } els{ 0x00FF00 })" Bright="Yes">
+            <Pivot X="1" Y="0"/>
+          </Rectangle>
+          <Rotate>
+            <Value Minimum="0" Maximum="250">(A:General Eng4 oil pressure, PSI)</Value>
+            <Nonlinearity>
+              <Item Value="0" Degrees="60"/>
+              <Item Value="70" Degrees="90"/>
+              <Item Value="250" Degrees="220"/>
+            </Nonlinearity>
+          </Rotate>
+        </Element>
+      </Element>
+      <!--TEMP-->
+      <Element>
+        <Position X="48" Y="153"/>
+        <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="%((A:General Eng1 oil temperature,Celsius) 177 > if{ 0x0000FF } els{ (A:General Eng1 oil temperature, Celsius) 39 &lt; (A:General Eng1 oil temperature,Celsius) 163 > || if{ 0x00FFFF } els{ 0x00FF00 } })" Bright="Yes">
+          <String>%((A:General Eng1 oil Temperature, Celsius))%!d!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="99" Y="153"/>
+        <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="%((A:General Eng2 oil temperature,Celsius) 177 > if{ 0x0000FF } els{ (A:General Eng2 oil temperature, Celsius) 39 &lt; (A:General Eng2 oil temperature,Celsius) 163 > || if{ 0x00FFFF } els{ 0x00FF00 } })" Bright="Yes">
+          <String>%((A:General Eng2 oil Temperature, Celsius))%!d!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="199" Y="153"/>
+        <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="%((A:General Eng3 oil temperature,Celsius) 177 > if{ 0x0000FF } els{ (A:General Eng3 oil temperature, Celsius) 39 &lt; (A:General Eng3 oil temperature,Celsius) 163 > || if{ 0x00FFFF } els{ 0x00FF00 } })" Bright="Yes">
+          <String>%((A:General Eng3 oil Temperature, Celsius))%!d!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="250" Y="153"/>
+        <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="%((A:General Eng4 oil temperature,Celsius) 177 > if{ 0x0000FF } els{ (A:General Eng4 oil temperature, Celsius) 39 &lt; (A:General Eng4 oil temperature,Celsius) 163 > || if{ 0x00FFFF } els{ 0x00FF00 } })" Bright="Yes">
+          <String>%((A:General Eng4 oil Temperature, Celsius))%!d!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="63" Y="145"/>
+        <Rectangle Height="24" Width="2" LineWidth="1" Color="#000000" FillColor="%((A:General Eng1 oil temperature,Celsius) 177 > if{ 0x0000FF } els{ (A:General Eng1 oil temperature, Celsius) 39 &lt; (A:General Eng1 oil temperature,Celsius) 163 > || if{ 0x00FFFF } els{ 0x00FF00 } })" Bright="Yes">
+          <Pivot X="1" Y="0"/>
+        </Rectangle>
+        <Rotate>
+          <Value Minimum="0" Maximum="200">(A:General Eng1 oil Temperature, Celsius)</Value>
+          <Nonlinearity>
+            <Item Value="0" Degrees="60"/>
+            <Item Value="39" Degrees="90"/>
+            <Item Value="165" Degrees="190"/>
+            <Item Value="177" Degrees="217"/>
+            <Item Value="200" Degrees="230"/>
+          </Nonlinearity>
+        </Rotate>
+      </Element>
+      <Element>
+        <Position X="114" Y="145"/>
+        <Rectangle Height="24" Width="2" LineWidth="1" Color="#000000" FillColor="%((A:General Eng2 oil temperature,Celsius) 177 > if{ 0x0000FF } els{ (A:General Eng2 oil temperature, Celsius) 39 &lt; (A:General Eng2 oil temperature,Celsius) 163 > || if{ 0x00FFFF } els{ 0x00FF00 } })" Bright="Yes">
+          <Pivot X="1" Y="0"/>
+        </Rectangle>
+        <Rotate>
+          <Value Minimum="0" Maximum="200">(A:General Eng2 oil Temperature, Celsius)</Value>
+          <Nonlinearity>
+            <Item Value="0" Degrees="60"/>
+            <Item Value="39" Degrees="90"/>
+            <Item Value="165" Degrees="190"/>
+            <Item Value="177" Degrees="217"/>
+            <Item Value="200" Degrees="230"/>
+          </Nonlinearity>
+        </Rotate>
+      </Element>
+      <Element>
+        <Position X="214" Y="145"/>
+        <Rectangle Height="24" Width="2" LineWidth="1" Color="#000000" FillColor="%((A:General Eng3 oil temperature,Celsius) 177 > if{ 0x0000FF } els{ (A:General Eng3 oil temperature, Celsius) 39 &lt; (A:General Eng3 oil temperature,Celsius) 163 > || if{ 0x00FFFF } els{ 0x00FF00 } })" Bright="Yes">
+          <Pivot X="1" Y="0"/>
+        </Rectangle>
+        <Rotate>
+          <Value Minimum="0" Maximum="200">(A:General Eng3 oil Temperature, Celsius)</Value>
+          <Nonlinearity>
+            <Item Value="0" Degrees="60"/>
+            <Item Value="39" Degrees="90"/>
+            <Item Value="165" Degrees="190"/>
+            <Item Value="177" Degrees="217"/>
+            <Item Value="200" Degrees="230"/>
+          </Nonlinearity>
+        </Rotate>
+      </Element>
+      <Element>
+        <Position X="265" Y="145"/>
+        <Rectangle Height="24" Width="2" LineWidth="1" Color="#000000" FillColor="%((A:General Eng4 oil temperature,Celsius) 177 > if{ 0x0000FF } els{ (A:General Eng4 oil temperature, Celsius) 39 &lt; (A:General Eng4 oil temperature,Celsius) 163 > || if{ 0x00FFFF } els{ 0x00FF00 } })" Bright="Yes">
+          <Pivot X="1" Y="0"/>
+        </Rectangle>
+        <Rotate>
+          <Value Minimum="0" Maximum="200">(A:General Eng4 oil Temperature, Celsius)</Value>
+          <Nonlinearity>
+            <Item Value="0" Degrees="60"/>
+            <Item Value="39" Degrees="90"/>
+            <Item Value="165" Degrees="190"/>
+            <Item Value="177" Degrees="217"/>
+            <Item Value="200" Degrees="230"/>
+          </Nonlinearity>
+        </Rotate>
+      </Element>
+      <!--QUANTITY-->
+      <Element>
+        <Position X="48" Y="213"/>
+        <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="%((A:general eng1 oil leaked percent, percent) 83 > if{ 0x00FFFF } els{ 0x00FF00 })" Bright="Yes">
+          <String>%((A:general eng1 oil leaked percent, percent) -0.23 * 23 +)%!d!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="99" Y="213"/>
+        <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="%((A:general eng2 oil leaked percent, percent) 83 > if{ 0x00FFFF } els{ 0x00FF00 })" Bright="Yes">
+          <String>%(23 (general eng2 oil leaked percent, percent) 0.23 * -)%!d!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="199" Y="213"/>
+        <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="%((A:general eng3 oil leaked percent, percent) 83 > if{ 0x00FFFF } els{ 0x00FF00 })" Bright="Yes">
+          <String>%(23 (general eng3 oil leaked percent, percent) 0.23 * -)%!d!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="250" Y="213"/>
+        <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="%((A:general eng3 oil leaked percent, percent) 83 > if{ 0x00FFFF } els{ 0x00FF00 })" Bright="Yes">
+          <String>%(23 (general eng4 oil leaked percent, percent) 0.23 * -)%!d!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="63" Y="205"/>
+        <Rectangle Height="24" Width="2" LineWidth="1" Color="#000000" FillColor="#00FF00" Bright="Yes">
+          <Pivot X="1" Y="0"/>
+        </Rectangle>
+        <Rotate>
+          <Value Minimum="0" Maximum="25">(A:general eng1 oil leaked percent, percent) -0.23 * 23 +</Value>
+          <Nonlinearity>
+            <Item Value="0" Degrees="60"/>
+            <Item Value="4" Degrees="90"/>
+            <Item Value="23" Degrees="210"/>
+          </Nonlinearity>
+        </Rotate>
+      </Element>
+      <Element>
+        <Position X="114" Y="205"/>
+        <Rectangle Height="24" Width="2" LineWidth="1" Color="#000000" FillColor="#00FF00" Bright="Yes">
+          <Pivot X="1" Y="0"/>
+        </Rectangle>
+        <Rotate>
+          <Value Minimum="0" Maximum="25">(A:general eng2 oil leaked percent, percent) -0.23 * 23 +</Value>
+          <Nonlinearity>
+            <Item Value="0" Degrees="60"/>
+            <Item Value="4" Degrees="90"/>
+            <Item Value="23" Degrees="210"/>
+          </Nonlinearity>
+        </Rotate>
+      </Element>
+      <Element>
+        <Position X="214" Y="205"/>
+        <Rectangle Height="24" Width="2" LineWidth="1" Color="#000000" FillColor="#00FF00" Bright="Yes">
+          <Pivot X="1" Y="0"/>
+        </Rectangle>
+        <Rotate>
+          <Value Minimum="0" Maximum="25">(A:general eng3 oil leaked percent, percent) -0.23 * 23 +</Value>
+          <Nonlinearity>
+            <Item Value="0" Degrees="60"/>
+            <Item Value="4" Degrees="90"/>
+            <Item Value="23" Degrees="210"/>
+          </Nonlinearity>
+        </Rotate>
+      </Element>
+      <Element>
+        <Position X="265" Y="205"/>
+        <Rectangle Height="24" Width="2" LineWidth="1" Color="#000000" FillColor="#00FF00" Bright="Yes">
+          <Pivot X="1" Y="0"/>
+        </Rectangle>
+        <Rotate>
+          <Value Minimum="0" Maximum="25">(A:general eng4 oil leaked percent, percent) -0.23 * 23 +</Value>
+          <Nonlinearity>
+            <Item Value="0" Degrees="60"/>
+            <Item Value="4" Degrees="90"/>
+            <Item Value="23" Degrees="210"/>
+          </Nonlinearity>
+        </Rotate>
+      </Element>
+      <!--FUEL-->
+      <Element>
+        <Position X="38" Y="256"/>
+        <FormattedText X="42" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#00FF00" Bright="Yes">
+          <String>%((L:Fuel actual quantity,pounds) (A:Fuel total quantity weight,pounds) - 40 / flr 10 * 0 max)%!5d!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="89" Y="256"/>
+        <FormattedText X="42" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#00FF00" Bright="Yes">
+          <String>%((L:Fuel actual quantity,pounds) (A:Fuel total quantity weight,pounds) - 40 / flr 10 * 0 max)%!5d!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="189" Y="256"/>
+        <FormattedText X="42" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#00FF00" Bright="Yes">
+          <String>%((L:Fuel actual quantity,pounds) (A:Fuel total quantity weight,pounds) - 40 / flr 10 * 0 max)%!5d!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="240" Y="256"/>
+        <FormattedText X="42" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#00FF00" Bright="Yes">
+          <String>%((L:Fuel actual quantity,pounds) (A:Fuel total quantity weight,pounds) - 40 / flr 10 * 0 max)%!5d!%</String>
+        </FormattedText>
+      </Element>
+    </Element>
+    <!--==== 6 CFG ====-->
+    <Element>
+      <Visible>(L:MFDX1 mode,enum) 6 ==</Visible>
+      <Element>
+        <Position X="0" Y="0"/>
+        <Image Name="MFDX1_CFG_screen.bmp" Bright="1"/>
+      </Element>
+      <!--STATIC TEXT-->
+      <Element>
+        <Position X="130" Y="28"/>
+        <FormattedText X="60" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+          <String>RUD TRIM</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="118" Y="42"/>
+        <FormattedText X="16" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+          <String>NL</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="186" Y="42"/>
+        <FormattedText X="16" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+          <String>NR</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="225" Y="35"/>
+        <FormattedText X="16" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+          <String>NU</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="234" Y="58"/>
+        <FormattedText X="32" Y="22" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+          <String>%STAB%\n%TRIM%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="225" Y="94"/>
+        <FormattedText X="16" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+          <String>ND</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="264" Y="82"/>
+        <FormattedText X="32" Y="22" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+          <String>%AIL%\n%TRIM%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="264" Y="109"/>
+        <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+          <String>RWD</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="264" Y="165"/>
+        <FormattedText X="32" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+          <String>LWD</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="43" Y="231"/>
+        <FormattedText X="84" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+          <String>HYDR PRESS PSI</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="180" Y="231"/>
+        <FormattedText X="84" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+          <String>BRAKE PRESS %</String>
+        </FormattedText>
+      </Element>
+      <!--TRIM POINTER-->
+      <Element>
+        <Position X="160" Y="46"/>
+        <Polyline LineWidth="3" Color="#33CC33" Bright="Yes">
+          <Point X="-5" Y="-5"/>
+          <Point X="0" Y="0"/>
+          <Point X="1" Y="0"/>
+          <Point X="6" Y="-5"/>
+          <Pivot X="1" Y="0"/>
+        </Polyline>
+        <Shift>
+          <Value Minimum="-10" Maximum="10">(A:Rudder Trim,degrees)</Value>
+          <Scale X="2"/>
+        </Shift>
+      </Element>
+      <Element>
+        <Position X="223" Y="81"/>
+        <Polyline LineWidth="3" Color="#33CC33" Bright="Yes">
+          <Point X="5" Y="-5"/>
+          <Point X="0" Y="0"/>
+          <Point X="0" Y="1"/>
+          <Point X="5" Y="6"/>
+          <Pivot X="0" Y="1"/>
+        </Polyline>
+        <Shift>
+          <Value Minimum="-5" Maximum="15">(A:Elevator Trim position,degrees)</Value>
+          <Scale Y="-2"/>
+        </Shift>
+      </Element>
+      <Element>
+        <Position X="281" Y="143"/>
+        <Polyline LineWidth="3" Color="#33CC33" Bright="Yes">
+          <Point X="5" Y="-5"/>
+          <Point X="0" Y="0"/>
+          <Point X="0" Y="1"/>
+          <Point X="5" Y="6"/>
+          <Pivot X="0" Y="1"/>
+        </Polyline>
+        <Shift>
+          <Value Minimum="-10" Maximum="10">(A:Aileron Trim,degrees)</Value>
+          <Scale Y="-2"/>
+        </Shift>
+      </Element>
+      <!--ELEVATOR RUDDER AILERON-->
+      <Element>
+        <Visible>(A:ELEVATOR DEFLECTION PCT,percent) 1 ></Visible>
+        <Element>
+          <Position X="131" Y="65"/>
+          <MaskImage Name="MFDX1_Elevator_t_mask.bmp" Bright="1">
+            <Axis X="2" Y="9"/>
+          </MaskImage>
+          <Rectangle Height="10" Width="17" LineWidth="1" Color="#33CC33" FillColor="#33CC33" Bright="Yes"/>
+          <Shift>
+            <Value Minimum="-100" Maximum="100">(A:ELEVATOR DEFLECTION PCT,percent)</Value>
+            <Scale Y="-0.1"/>
+          </Shift>
+        </Element>
+        <Element>
+          <Position X="168" Y="65"/>
+          <MaskImage Name="MFDX1_Elevator_t_mask.bmp" Bright="1">
+            <Axis X="2" Y="9"/>
+          </MaskImage>
+          <Rectangle Height="10" Width="17" LineWidth="1" Color="#33CC33" FillColor="#33CC33" Bright="Yes"/>
+          <Shift>
+            <Value Minimum="-100" Maximum="100">(A:ELEVATOR DEFLECTION PCT,percent)</Value>
+            <Scale Y="-0.1"/>
+          </Shift>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:ELEVATOR DEFLECTION PCT,percent) -1 &lt;</Visible>
+        <Element>
+          <Position X="131" Y="78"/>
+          <MaskImage Name="MFDX1_Elevator_b_mask.bmp" Bright="1">
+            <Axis X="2" Y="-9"/>
+          </MaskImage>
+          <Rectangle Height="10" Width="17" LineWidth="1" Color="#33CC33" FillColor="#33CC33" Bright="Yes"/>
+          <Shift>
+            <Value Minimum="-100" Maximum="100">(A:ELEVATOR DEFLECTION PCT,percent)</Value>
+            <Scale Y="-0.1"/>
+          </Shift>
+        </Element>
+        <Element>
+          <Position X="168" Y="78"/>
+          <MaskImage Name="MFDX1_Elevator_b_mask.bmp" Bright="1">
+            <Axis X="2" Y="-9"/>
+          </MaskImage>
+          <Rectangle Height="10" Width="17" LineWidth="1" Color="#33CC33" FillColor="#33CC33" Bright="Yes"/>
+          <Shift>
+            <Value Minimum="-100" Maximum="100">(A:ELEVATOR DEFLECTION PCT,percent)</Value>
+            <Scale Y="-0.1"/>
+          </Shift>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:AILERON LEFT DEFLECTION PCT,percent) -1 &lt;</Visible>
+        <Element>
+          <Position X="71" Y="133"/>
+          <MaskImage Name="MFDX1_Aileron_t_mask.bmp" Bright="1">
+            <Axis X="2" Y="9"/>
+          </MaskImage>
+          <Rectangle Height="10" Width="23" LineWidth="1" Color="#33CC33" FillColor="#33CC33" Bright="Yes"/>
+          <Shift>
+            <Value Minimum="-100" Maximum="100">(A:AILERON LEFT DEFLECTION PCT,percent)</Value>
+            <Scale Y="0.1"/>
+          </Shift>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:AILERON LEFT DEFLECTION PCT,percent) 1 ></Visible>
+        <Element>
+          <Position X="71" Y="146"/>
+          <MaskImage Name="MFDX1_Aileron_b_mask.bmp" Bright="1">
+            <Axis X="2" Y="-9"/>
+          </MaskImage>
+          <Rectangle Height="10" Width="23" LineWidth="1" Color="#33CC33" FillColor="#33CC33" Bright="Yes"/>
+          <Shift>
+            <Value Minimum="-100" Maximum="100">(A:AILERON LEFT DEFLECTION PCT,percent)</Value>
+            <Scale Y="0.1"/>
+          </Shift>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:AILERON RIGHT DEFLECTION PCT,percent) 1 ></Visible>
+        <Element>
+          <Position X="222" Y="133"/>
+          <MaskImage Name="MFDX1_Aileron_t_mask.bmp" Bright="1">
+            <Axis X="2" Y="9"/>
+          </MaskImage>
+          <Rectangle Height="10" Width="23" LineWidth="1" Color="#33CC33" FillColor="#33CC33" Bright="Yes"/>
+          <Shift>
+            <Value Minimum="-100" Maximum="100">(A:AILERON RIGHT DEFLECTION PCT,percent)</Value>
+            <Scale Y="-0.1"/>
+          </Shift>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:AILERON RIGHT DEFLECTION PCT,percent) -1 &lt;</Visible>
+        <Element>
+          <Position X="222" Y="146"/>
+          <MaskImage Name="MFDX1_Aileron_b_mask.bmp" Bright="1">
+            <Axis X="2" Y="-9"/>
+          </MaskImage>
+          <Rectangle Height="10" Width="23" LineWidth="1" Color="#33CC33" FillColor="#33CC33" Bright="Yes"/>
+          <Shift>
+            <Value Minimum="-100" Maximum="100">(A:AILERON RIGHT DEFLECTION PCT,percent)</Value>
+            <Scale Y="-0.1"/>
+          </Shift>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:RUDDER DEFLECTION PCT,percent) -2 &lt;</Visible>
+        <Element>
+          <Position X="148" Y="92"/>
+          <MaskImage Name="MFDX1_Rudder_l_mask.bmp" Bright="1">
+            <Axis X="9" Y="2"/>
+          </MaskImage>
+          <Rectangle Height="31" Width="10" LineWidth="1" Color="#33CC33" FillColor="#33CC33" Bright="Yes"/>
+          <Shift>
+            <Value Minimum="-100" Maximum="100">(A:RUDDER DEFLECTION PCT,percent)</Value>
+            <Scale X="0.1"/>
+          </Shift>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:RUDDER DEFLECTION PCT,percent) 2 ></Visible>
+        <Element>
+          <Position X="162" Y="92"/>
+          <MaskImage Name="MFDX1_Rudder_r_mask.bmp" Bright="1">
+            <Axis X="-9" Y="2"/>
+          </MaskImage>
+          <Rectangle Height="31" Width="10" LineWidth="1" Color="#33CC33" FillColor="#33CC33" Bright="Yes"/>
+          <Shift>
+            <Value Minimum="-100" Maximum="100">(A:RUDDER DEFLECTION PCT,percent)</Value>
+            <Scale X="0.1"/>
+          </Shift>
+        </Element>
+      </Element>
+      <!--FLAPS SPOILERS SLATS-->
+      <Element>
+        <Visible>(A:Spoilers left position,percent) 5 ></Visible>
+        <Element>
+          <Position X="101" Y="133"/>
+          <MaskImage Name="MFDX1_Spoiler_mask.bmp" Bright="1">
+            <Axis X="2" Y="9"/>
+          </MaskImage>
+          <Rectangle Height="10" Width="41" LineWidth="1" Color="#33CC33" FillColor="#33CC33" Bright="Yes"/>
+          <Shift>
+            <Value Minimum="-100" Maximum="100">(A:Spoilers left position,percent)</Value>
+            <Scale Y="-0.1"/>
+          </Shift>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:Spoilers right position,percent) 5 ></Visible>
+        <Element>
+          <Position X="174" Y="133"/>
+          <MaskImage Name="MFDX1_Spoiler_mask.bmp" Bright="1">
+            <Axis X="2" Y="9"/>
+          </MaskImage>
+          <Rectangle Height="10" Width="41" LineWidth="1" Color="#33CC33" FillColor="#33CC33" Bright="Yes"/>
+          <Shift>
+            <Value Minimum="-100" Maximum="100">(A:Spoilers right position,percent)</Value>
+            <Scale Y="-0.1"/>
+          </Shift>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:TRAILING EDGE FLAPS LEFT PERCENT,percent) 2 ></Visible>
+        <Element>
+          <Position X="104" Y="146"/>
+          <MaskImage Name="MFDX1_Flaps_mask.bmp" Bright="1">
+            <Axis X="2" Y="-8"/>
+          </MaskImage>
+          <Rectangle Height="9" Width="32" LineWidth="1" Color="#33CC33" FillColor="#33CC33" Bright="Yes"/>
+          <Shift>
+            <Value Minimum="-100" Maximum="100">(A:TRAILING EDGE FLAPS LEFT PERCENT,percent)</Value>
+            <Scale Y="0.08"/>
+          </Shift>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:TRAILING EDGE FLAPS RIGHT PERCENT,percent) 2 ></Visible>
+        <Element>
+          <Position X="180" Y="146"/>
+          <MaskImage Name="MFDX1_Flaps_mask.bmp" Bright="1">
+            <Axis X="2" Y="-8"/>
+          </MaskImage>
+          <Rectangle Height="9" Width="32" LineWidth="1" Color="#33CC33" FillColor="#33CC33" Bright="Yes"/>
+          <Shift>
+            <Value Minimum="-100" Maximum="100">(A:TRAILING EDGE FLAPS RIGHT PERCENT,percent)</Value>
+            <Scale Y="0.08"/>
+          </Shift>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:LEADING EDGE FLAPS LEFT PERCENT,percent) 2 ></Visible>
+        <Element>
+          <Position X="73" Y="200"/>
+          <MaskImage Name="MFDX1_Slats_mask.bmp" Bright="1">
+            <Axis X="0" Y="-8"/>
+          </MaskImage>
+          <Rectangle Height="9" Width="66" LineWidth="1" Color="#33CC33" FillColor="#33CC33" Bright="Yes"/>
+          <Shift>
+            <Value Minimum="-100" Maximum="100">(A:LEADING EDGE FLAPS LEFT PERCENT,percent)</Value>
+            <Scale Y="0.09"/>
+          </Shift>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:LEADING EDGE FLAPS RIGHT PERCENT,percent) 2 ></Visible>
+        <Element>
+          <Position X="181" Y="200"/>
+          <MaskImage Name="MFDX1_Slats_mask.bmp" Bright="1">
+            <Axis X="0" Y="-8"/>
+          </MaskImage>
+          <Rectangle Height="9" Width="66" LineWidth="1" Color="#33CC33" FillColor="#33CC33" Bright="Yes"/>
+          <Shift>
+            <Value Minimum="-100" Maximum="100">(A:LEADING EDGE FLAPS RIGHT PERCENT,percent)</Value>
+            <Scale Y="0.09"/>
+          </Shift>
+        </Element>
+      </Element>
+      <!--GEAR-->
+      <Element>
+        <Visible>(A:GEAR CENTER POSITION,percent) 2 ></Visible>
+        <Element>
+          <Position X="155" Y="226"/>
+          <Rectangle Height="11" Width="7" LineWidth="2" Color="#FF0000" FillColor="#FF0000" Bright="Yes"/>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:GEAR CENTER POSITION,percent) 98 ></Visible>
+        <Element>
+          <Position X="155" Y="226"/>
+          <Rectangle Height="11" Width="7" LineWidth="2" Color="#33CC33" FillColor="#33CC33" Bright="Yes"/>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:GEAR LEFT POSITION,percent) 2 ></Visible>
+        <Element>
+          <Position X="145" Y="246"/>
+          <Rectangle Height="11" Width="7" LineWidth="2" Color="#FF0000" FillColor="#FF0000" Bright="Yes"/>
+        </Element>
+        <Element>
+          <Position X="145" Y="262"/>
+          <Rectangle Height="11" Width="7" LineWidth="2" Color="#FF0000" FillColor="#FF0000" Bright="Yes"/>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:GEAR LEFT POSITION,percent) 98 ></Visible>
+        <Element>
+          <Position X="145" Y="246"/>
+          <Rectangle Height="11" Width="7" LineWidth="2" Color="#33CC33" FillColor="#33CC33" Bright="Yes"/>
+        </Element>
+        <Element>
+          <Position X="145" Y="262"/>
+          <Rectangle Height="11" Width="7" LineWidth="2" Color="#33CC33" FillColor="#33CC33" Bright="Yes"/>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:GEAR RIGHT POSITION,percent) 2 ></Visible>
+        <Element>
+          <Position X="166" Y="246"/>
+          <Rectangle Height="11" Width="7" LineWidth="2" Color="#FF0000" FillColor="#FF0000" Bright="Yes"/>
+        </Element>
+        <Element>
+          <Position X="166" Y="262"/>
+          <Rectangle Height="11" Width="7" LineWidth="2" Color="#FF0000" FillColor="#FF0000" Bright="Yes"/>
+        </Element>
+      </Element>
+      <Element>
+        <Visible>(A:GEAR RIGHT POSITION,percent) 98 ></Visible>
+        <Element>
+          <Position X="166" Y="246"/>
+          <Rectangle Height="11" Width="7" LineWidth="2" Color="#33CC33" FillColor="#33CC33" Bright="Yes"/>
+        </Element>
+        <Element>
+          <Position X="166" Y="262"/>
+          <Rectangle Height="11" Width="7" LineWidth="2" Color="#33CC33" FillColor="#33CC33" Bright="Yes"/>
+        </Element>
+      </Element>
+      <!--DYNAMIC TEXT-->
+      <Element>
+        <Position X="110" Y="174"/>
+        <FormattedText X="100" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+          <String>%((A:FLAPS HANDLE INDEX,number) 0 ==)%{if}%FLAPS 0/RET%{else}%((A:FLAPS HANDLE INDEX,number) 1 ==)%{if}%FLAPS 0/EXT%{else}%((A:FLAPS HANDLE INDEX,number) 2 ==)%{if}%FLAPS 1/2%{else}%((A:FLAPS HANDLE INDEX,number) 3 ==)%{if}%FLAPS 1/2%{else}%((A:FLAPS HANDLE INDEX,number) 4 ==)%{if}%FLAPS 3/4%{else}%((A:FLAPS HANDLE INDEX,number) 5 ==)%{if}%FLAPS 3/4%{else}%FLAPS FULL%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="95" Y="187"/>
+        <FormattedText X="85" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Right" Color="#CCCCCC" Bright="Yes">
+          <String>%((A:FLAPS HANDLE INDEX,number) 1 >)%{if}%FLAPS INDEX%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="185" Y="187"/>
+        <FormattedText X="30" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Left" Color="#CCCCCC" Bright="Yes">
+          <String>%((A:FLAPS HANDLE INDEX,number) 1 >)%{if}%(100 (L:Flaps Index,number) 10 * -)%!d!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="141" Y="199"/>
+        <FormattedText X="38" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+          <String>%((A:LEADING EDGE FLAPS LEFT PERCENT,percent) (A:LEADING EDGE FLAPS RIGHT PERCENT,percent) + 4 >)%{if}%SLATS%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="110" Y="211"/>
+        <FormattedText X="100" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#CCCCCC" Bright="Yes">
+          <String>%((A:GEAR HANDLE POSITION,percent) 0 >)%{if}%((A:GEAR HANDLE POSITION,percent) 50 &lt;)%{if}% GEAR UP%{else}%GEAR DOWN%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="45" Y="248"/>
+        <FormattedText X="70" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Right" Color="#CCCCCC" Bright="Yes">
+          <String>%HYD %((A:Eng hydraulic pressure:1,psi))%!d!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="45" Y="261"/>
+        <FormattedText X="70" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Right" Color="#CCCCCC" Bright="Yes">
+          <String>%GEAR %((A:GEAR HYDRAULIC PRESSURE,psi))%!d!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="190" Y="248"/>
+        <FormattedText X="30" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Left" Color="#CCCCCC" Bright="Yes">
+          <String>%((A:Brake parking position,bool) !)%{if}%((A:Brake left position,percent) 1 >)%{if}%L %((A:Brake left position,percent))%!d!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="226" Y="248"/>
+        <FormattedText X="30" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Right" Color="#CCCCCC" Bright="Yes">
+          <String>%((A:Brake parking position,bool) !)%{if}%((A:Brake right position,percent) 1 >)%{if}%R %((A:Brake right position,percent))%!d!%</String>
+        </FormattedText>
+      </Element>
+      <Element>
+        <Position X="180" Y="261"/>
+        <FormattedText X="84" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#00FFFF" Bright="Yes">
+          <String>%((A:Brake parking position,bool))%{if}%PARK BRAKE%</String>
+        </FormattedText>
+      </Element>
+    </Element>
+    <!--==== 7 FMS1 ====-->
+    <Element>
+      <Visible>(L:MFDX1 mode,enum) 7 ==</Visible>
+      <Element>
+        <Position X="0" Y="0"/>
+        <Image Name="MFDX1_FMS1_screen.bmp" Bright="1"/>
+      </Element>
+    </Element>
+    <!--==== 8 FMS2 ====-->
+    <Element>
+      <Visible>(L:MFDX1 mode,enum) 8 ==</Visible>
+      <Element>
+        <Position X="0" Y="0"/>
+        <Image Name="MFDX1_FMS2_screen.bmp" Bright="1"/>
+      </Element>
+    </Element>
+  </Element>
+  <!--==== DIMM ====-->
+  <Element>
+    <Position X="0" Y="0"/>
+    <Select>
+      <Value>(L:MFDX dim,enum)</Value>
+      <Case Value="1">
+        <Image Name="MFDX_dim1.bmp" Alpha="Yes"/>
+      </Case>
+      <Case Value="2">
+        <Image Name="MFDX_dim2.bmp" Alpha="Yes"/>
+      </Case>
+      <Case Value="3">
+        <Image Name="MFDX_dim3.bmp" Alpha="Yes"/>
+      </Case>
+    </Select>
+  </Element>
+  <Element>
+    <Position X="0" Y="0"/>
+    <Visible>(P:TIME OF DAY,enum) (A:Light Panel,bool) + 3 &lt;</Visible>
+    <Image Name="MFDX1_rfl.bmp" Alpha="Yes"/>
+  </Element>
+  <Mouse>
+    <Area>
+      <Visible>(L:MFDX1 mode,enum) 2 ==</Visible>
+      <Area Left="24" Top="28" Width="30" Height="26">
+        <Cursor Type="Hand"/>
+        <Click Repeat="No">(L:MFDX1 MAP Zoom,enum) 24 &lt; if{ (L:MFDX1 MAP Zoom,enum) 1 + (>L:MFDX1 MAP Zoom,enum) }</Click>
+        <Tooltip>Click To Zoom Out</Tooltip>
+      </Area>
+      <Area Left="60" Top="28" Width="30" Height="26">
+        <Cursor Type="Hand"/>
+        <Click Repeat="No">(L:MFDX1 MAP Zoom,enum) 0 > if{ (L:MFDX1 MAP Zoom,enum) 1 - (>L:MFDX1 MAP Zoom,enum) }</Click>
+        <Tooltip>Click To Zoom In</Tooltip>
+      </Area>
+    </Area>
+    <Macro Name="ON">6 (>L:MFDX1 MAP Zoom,enum) 0 (>L:MFDX1 mode,enum)</Macro>
+    <Area Left="7" Top="290" Width="30" Height="30">
+      <Cursor Type="Hand"/>
+      <Click Repeat="No">(L:MFDX1 on,bool) ! (>L:MFDX1 on,bool) @ON</Click>
+    </Area>
+    <Macro Name="Button1">0 (>L:MFDX1 mode,enum)</Macro>
+    <Area Left="99" Top="294" Width="21" Height="20">
+      <Cursor Type="Hand"/>
+      <Click Kind="LeftSingle+Leave" Repeat="No">(M:Event) 'LeftSingle' scmp 0 == if{ 1 (>L:MFDX1 b1,bool) } (M:Event) 'Leave' scmp 0 == if{ 0 (>L:MFDX1 b1,bool) @Button1 }</Click>
+    </Area>
+    <Macro Name="Button2">(L:MFDX1 mode,enum) 1 == if{ 7 (>L:MFDX1 mode,enum) } els{ (L:MFDX1 mode,enum) 7 == if{ 8 (>L:MFDX1 mode,enum) } els{ 1 (>L:MFDX1 mode,enum) } }</Macro>
+    <Area Left="126" Top="294" Width="21" Height="20">
+      <Cursor Type="Hand"/>
+      <Click Kind="LeftSingle+Leave" Repeat="No">(M:Event) 'LeftSingle' scmp 0 == if{ 1 (>L:MFDX1 b2,bool) } (M:Event) 'Leave' scmp 0 == if{ 0 (>L:MFDX1 b2,bool) @Button2 }</Click>
+    </Area>
+    <Macro Name="Button3">(L:MFDX1 mode,enum) 2 == if{ (L:MFDX1 MAP mode,enum) 3 == if{ 0 (>L:MFDX1 MAP mode,enum) } els{ (L:MFDX1 MAP mode,enum) 1 + (>L:MFDX1 MAP mode,enum) } } els{ 2 (>L:MFDX1 mode,enum) }</Macro>
+    <Area Left="155" Top="294" Width="21" Height="20">
+      <Cursor Type="Hand"/>
+      <Click Kind="LeftSingle+Leave" Repeat="No">(M:Event) 'LeftSingle' scmp 0 == if{ 1 (>L:MFDX1 b3,bool) } (M:Event) 'Leave' scmp 0 == if{ 0 (>L:MFDX1 b3,bool) @Button3 }</Click>
+    </Area>
+    <Macro Name="Button4">(L:MFDX1 mode,enum) 3 == if{ 4 (>L:MFDX1 mode,enum) } els{ (L:MFDX1 mode,enum) 4 == if{ 5 (>L:MFDX1 mode,enum) } els{ 3 (>L:MFDX1 mode,enum) } }</Macro>
+    <Area Left="184" Top="294" Width="21" Height="20">
+      <Cursor Type="Hand"/>
+      <Click Kind="LeftSingle+Leave" Repeat="No">(M:Event) 'LeftSingle' scmp 0 == if{ 1 (>L:MFDX1 b4,bool) } (M:Event) 'Leave' scmp 0 == if{ 0 (>L:MFDX1 b4,bool) @Button4 }</Click>
+    </Area>
+    <Macro Name="Button5">6 (>L:MFDX1 mode,enum)</Macro>
+    <Area Left="213" Top="294" Width="21" Height="20">
+      <Cursor Type="Hand"/>
+      <Click Kind="LeftSingle+Leave" Repeat="No">(M:Event) 'LeftSingle' scmp 0 == if{ 1 (>L:MFDX1 b5,bool) } (M:Event) 'Leave' scmp 0 == if{ 0 (>L:MFDX1 b5,bool) @Button5 }</Click>
+    </Area>
+    <Macro Name="Button8up">(L:MFDX dim,enum) 1 - 0 max (>L:MFDX dim,enum)</Macro>
+    <Area Left="298" Top="295" Width="13" Height="9">
+      <Cursor Type="UpArrow"/>
+      <Click Kind="LeftSingle+Leave" Repeat="No">(M:Event) 'LeftSingle' scmp 0 == if{ 1 (>L:MFDX1 b8,bool) @Button8up } (M:Event) 'Leave' scmp 0 == if{ 0 (>L:MFDX1 b8,bool) }</Click>
+    </Area>
+    <Macro Name="Button8dn">(L:MFDX dim,enum) 1 + 3 min (>L:MFDX dim,enum)</Macro>
+    <Area Left="298" Top="304" Width="13" Height="10">
+      <Cursor Type="DownArrow"/>
+      <Click Kind="LeftSingle+Leave" Repeat="No">(M:Event) 'LeftSingle' scmp 0 == if{ 2 (>L:MFDX1 b8,bool) @Button8dn } (M:Event) 'Leave' scmp 0 == if{ 0 (>L:MFDX1 b8,bool) }</Click>
+    </Area>
+  </Mouse>
+</Gauge>

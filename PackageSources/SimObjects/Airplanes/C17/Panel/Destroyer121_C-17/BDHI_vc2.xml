@@ -1,0 +1,108 @@
+<Gauge Name="BDHI" Version="C-17vc2" Author="Herbert Pralle">
+  <Element>
+    <Position X="0" Y="0"/>
+    <Image Name="BDHI_Card_vc2.bmp" Luminous="1"/>
+  </Element>
+  <Element>
+    <Position X="136" Y="111"/>
+    <Image Name="BDHI_Rose.bmp" Luminous="1">
+      <Axis X="100" Y="100"/>
+    </Image>
+    <Rotate>
+      <Value>(A:Plane heading degrees gyro,radians) /-/</Value>
+      <Failures>
+        <SYSTEM_ELECTRICAL_PANELS Action="Freeze"/>
+        <GAUGE_GYRO_HEADING Action="Freeze"/>
+      </Failures>
+    </Rotate>
+  </Element>
+  <!--==== NEEDLE 2 ====-->
+  <Element>
+    <Position X="114" Y="90"/>
+    <Image Name="BDHI_needle_base.bmp" Luminous="1"/>
+  </Element>
+  <Element>
+    <Position X="136" Y="111"/>
+    <Image Name="BDHI_needle2.bmp" Luminous="1">
+      <Axis X="14" Y="92"/>
+    </Image>
+    <Rotate>
+      <Value>(L:BDHI select2,bool) 0 == if{ (A:NAV2 signal,number) abs 10 > if{ (A:NAV2 Radial,radians) (A:Plane heading degrees gyro,radians) - pi + } els{ 1.57 } } (L:BDHI select2,bool) 1 == if{ (L:CNCP adf mode,bool) 0 == if{ (A:ADF signal:1,number) 10 > if{ (A:ADF Radial:1,radians) } els{ 1.57 } } els{ (A:ADF signal:2,number) 10 > if{ (A:ADF Radial:2,radians) } els{ 1.57 } } }</Value>
+      <Failures>
+        <SYSTEM_ELECTRICAL_PANELS Action="1:57"/>
+        <SYSTEM_ELECTRICAL_AVIONICS Action="1:57"/>
+        <GAUGE_GYRO_HEADING Action="Freeze"/>
+      </Failures>
+      <Delay DegreesPerSecond="180"/>
+    </Rotate>
+  </Element>
+  <!--==== NEEDLE 1 ====-->
+  <Element>
+    <Position X="136" Y="111"/>
+    <Image Name="BDHI_needle1.bmp" Luminous="1">
+      <Axis X="10" Y="94"/>
+    </Image>
+    <Rotate>
+      <Value>(L:BDHI select1,bool) 0 == if{ (A:NAV1 signal,number) abs 10 > if{ (A:NAV1 Radial,radians) (A:Plane heading degrees gyro,radians) - pi + } els{ 1.57 } } (L:BDHI select1,bool) 1 == if{ (L:CNCP adf mode,bool) 0 == if{ (A:ADF signal:1,number) 10 > if{ (A:ADF Radial:1,radians) } els{ 1.57 } } els{ (A:ADF signal:2,number) 10 > if{ (A:ADF Radial:2,radians) } els{ 1.57 } } }</Value>
+      <Failures>
+        <SYSTEM_ELECTRICAL_PANELS Action="1:57"/>
+        <SYSTEM_ELECTRICAL_AVIONICS Action="1:57"/>
+        <GAUGE_GYRO_HEADING Action="Freeze"/>
+      </Failures>
+      <Delay DegreesPerSecond="180"/>
+    </Rotate>
+  </Element>
+  <!--==== FLAGS ====-->
+  <Element>
+    <Position X="132" Y="0"/>
+    <Image Name="BDHI_Pointer.bmp" Luminous="1"/>
+  </Element>
+  <Element>
+    <Visible>(A:Partial panel heading,bool)</Visible>
+    <Position X="141" Y="8"/>
+    <Image Name="BDHI_flag.bmp" Luminous="1">
+      <Nonlinearity>
+        <Item Value="0" X="0" Y="0"/>
+        <Item Value="1" X="7" Y="0"/>
+        <Item Value="2" X="14" Y="0"/>
+      </Nonlinearity>
+    </Image>
+  </Element>
+  <Element>
+    <Visible>(L:BDHI select1,bool) 0 == if{ (A:NAV1 signal,number) abs 10 &lt; } (L:BDHI select1,bool) 1 == if{ (L:CNCP adf mode,bool) 0 == if{ (A:ADF signal:1,number) 10 &lt; } els{ (A:ADF signal:2,number) 10 &lt; } }</Visible>
+    <Position X="23" Y="24"/>
+    <Image Name="BDHI_flag1.bmp" Luminous="1">
+      <Nonlinearity>
+        <Item Value="0" X="0" Y="0"/>
+        <Item Value="1" X="7" Y="0"/>
+        <Item Value="2" X="14" Y="0"/>
+      </Nonlinearity>
+    </Image>
+  </Element>
+  <Element>
+    <Visible>(L:BDHI select2,enum) 0 == if{ (A:NAV2 signal,number) abs 10 &lt; } els{ (L:CNCP ADF mode,bool) 0 == if{ (A:ADF signal:1, number) 10 &lt; } els{ (A:ADF signal:2,number) 10 &lt; } }</Visible>
+    <Position X="222" Y="24"/>
+    <Image Name="BDHI_flag2.bmp" Luminous="1">
+      <Nonlinearity>
+        <Item Value="0" X="0" Y="0"/>
+        <Item Value="1" X="7" Y="0"/>
+        <Item Value="2" X="14" Y="0"/>
+      </Nonlinearity>
+    </Image>
+  </Element>
+ <!--==== MARKER ====-->
+  <Element>
+    <Position X="136" Y="111"/>
+    <Image Name="BDHI_marker.bmp" Luminous="1">
+      <Axis X="10" Y="102"/>
+    </Image>
+    <Rotate>
+      <Value>(L:BDHI dir,number) (A:Plane heading degrees gyro,degrees) -</Value>
+      <Nonlinearity>
+        <Item Value="0" Degrees="0"/>
+        <Item Value="180" Degrees="180"/>
+      </Nonlinearity>
+    </Rotate>
+  </Element>
+  
+</Gauge>

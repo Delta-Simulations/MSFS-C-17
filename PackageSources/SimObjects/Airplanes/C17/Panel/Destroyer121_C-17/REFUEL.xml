@@ -1,0 +1,18 @@
+<Gauge Name="REFUEL" Version="C-17" Author="Herbert Pralle">
+  <Macro Name="delay">10</Macro>
+  <Element>
+    <Select>
+      <Value>(L:FSP refuel,bool) 1 == (G:Var1) 0 == &amp;&amp; if{ (P:Local Time,seconds) (>G:Var1) (>K:ADD_FUEL_QUANTITY) }</Value>
+    </Select>
+  </Element>
+  <Element>
+    <Select>
+      <Value>(L:FSP refuel,bool) 1 == (P:Local Time,seconds) (G:Var1) - @delay > &amp;&amp; if{ (P:Local Time,seconds) (>G:Var1) (>K:ADD_FUEL_QUANTITY) }</Value>
+    </Select>
+  </Element>
+  <Element>
+    <Select>
+      <Value>(L:FSP refuel,bool) 1 == (A:FUEL TOTAL QUANTITY,gallons) (A:FUEL TOTAL CAPACITY, gallons) / 0.95 > if{ 0 (>L:FSP refuel,bool) 0 (>G:Var1) }</Value>
+    </Select>
+  </Element>
+</Gauge>

@@ -1,0 +1,20 @@
+<Gauge Name="AP N1" Version="C-17" Author="Herbert Pralle">
+  <!--SELECT OPERATION MODE 0 TO 2-->
+  <Element>
+    <Select>
+      <Value>(L:AP N1 ON,bool) ! if{ 0 (>L:AP N1 mode,enum) } els{ (L:AP N1 PRESET,number) (A:Turb Eng1 N1, percent) - abs s0 l0 2 &lt; if{ 0 (>L:AP N1 mode,enum) } els{ l0 4.5 &lt; if{ 1 (>L:AP N1 mode,enum) } els{ 2 (>L:AP N1 mode,enum) } } }</Value>
+    </Select>
+  </Element>
+  <!--MODE 1 - TP FINE ADJUST-->
+  <Element>
+    <Select>
+      <Value>(L:AP N1 mode,enum) 1 == if{ (L:AP N1 PRESET,number) (A:Turb Eng1 N1, percent) - s1 l1 3 > if{ (A:General Eng1 Throttle Lever Position,percent) 0.05 + 163.8 * 16383 min 0 max (>K:THROTTLE_SET) } els{ l1 -3 &lt; if{ (A:General Eng1 Throttle Lever Position,percent) 0.05 - 163.8 * 16383 min 0 max (>K:THROTTLE_SET) } } }</Value>
+    </Select>
+  </Element>
+  <!--MODE 2 - TP SET IN STEPS OF 2-->
+  <Element>
+    <Select>
+      <Value>(L:AP N1 mode,enum) 2 == if{ (L:AP N1 PRESET,number) 1.25 * 31 - (A:General Eng1 Throttle Lever Position,percent) - 1 > if{ (A:General Eng1 Throttle Lever Position,percent) 1 + 163.8 * 16383 min 0 max (>K:THROTTLE_SET) } (L:AP N1 PRESET,number) 1.25 * 31 - (A:General Eng1 Throttle Lever Position,percent) - -1 &lt; if{ (A:General Eng1 Throttle Lever Position,percent) 1 - 163.8 * 16383 min 0 max (>K:THROTTLE_SET) } }</Value>
+    </Select>
+  </Element>
+</Gauge>

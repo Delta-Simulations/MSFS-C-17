@@ -1,0 +1,286 @@
+<Gauge Name="AICP - Anti Ice Controll Panel" Version="C-17" Author="Herbert Pralle">
+  <Image Name="AICP_Backgrnd.bmp" Bright="(A:Light nav,bool)"/>
+  <Element>
+    <Visible>(A:Circuit general panel on, bool)</Visible>
+    <Element>
+      <Position X="0" Y="0"/>
+      <Select>
+        <Value>(L:OVH light,bool)</Value>
+        <Case Value="1">
+          <Image Name="AICP_light.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+  </Element>
+  <!--==== KNOBS AND BUTTONS ====-->
+  <Element>
+    <Element>
+      <Position X="34" Y="96"/>
+      <Select>
+        <Value>(L:AICP LWS,bool)</Value>
+        <Case Value="0">
+          <Image Name="AICP_knob_r.bmp" Bright="0"/>
+        </Case>
+        <Case Value="1">
+          <Image Name="AICP_knob_l.bmp" Bright="0"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="178" Y="96"/>
+      <Select>
+        <Value>(L:AICP RWS,bool)</Value>
+        <Case Value="0">
+          <Image Name="AICP_knob_r.bmp" Bright="0"/>
+        </Case>
+        <Case Value="1">
+          <Image Name="AICP_knob_l.bmp" Bright="0"/>
+        </Case>
+      </Select>
+    </Element>
+    <!--WS FOG AND WING DEICE-->
+    <Element>
+      <Position X="124" Y="42"/>
+      <Select>
+        <Value>(L:AICP fog,bool)</Value>
+        <Case Value="0">
+          <Image Name="AICP_fog.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="124" Y="152"/>
+      <Select>
+        <Value>(A:STRUCTURAL DEICE SWITCH,bool)</Value>
+        <Case Value="1">
+          <Image Name="AICP_wing.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+    <!--ENG DEICE-->
+    <Element>
+      <Position X="26" Y="270"/>
+      <Select>
+        <Value>(A:General eng1 anti ice position,bool)</Value>
+        <Case Value="1">
+          <Image Name="AICP_ENG.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="64" Y="270"/>
+      <Select>
+        <Value>(A:General eng2 anti ice position,bool)</Value>
+        <Case Value="1">
+          <Image Name="AICP_ENG.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="102" Y="270"/>
+      <Select>
+        <Value>(A:General eng3 anti ice position,bool)</Value>
+        <Case Value="1">
+          <Image Name="AICP_ENG.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="140" Y="270"/>
+      <Select>
+        <Value>(A:General eng4 anti ice position,bool)</Value>
+        <Case Value="1">
+          <Image Name="AICP_ENG.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+    <!--PITOT-->
+    <Element>
+      <Position X="178" Y="270"/>
+      <Select>
+        <Value>(A:Pitot heat,bool)</Value>
+        <Case Value="1">
+          <Image Name="AICP_probe.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="216" Y="270"/>
+      <Select>
+        <Value>(A:Pitot heat,bool)</Value>
+        <Case Value="1">
+          <Image Name="AICP_probe.bmp"/>
+        </Case>
+      </Select>
+    </Element>
+  </Element>
+  <!--==== LIGHTS ====-->
+  <Element>
+    <!--WS FOG AND WING DEICE-->
+    <Visible>(A:Circuit general panel on, bool)</Visible>
+    <Element>
+      <Position X="126" Y="44"/>
+      <Select>
+        <Value>(L:AICP fog,bool)</Value>
+        <Case Value="0">
+          <Image Name="AICP_fog_off.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="126" Y="154"/>
+      <Select>
+        <Value>(A:STRUCTURAL DEICE SWITCH,bool)</Value>
+        <Case Value="1">
+          <Image Name="AICP_wing_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <!--ENG DEICE-->
+    <Element>
+      <Position X="28" Y="272"/>
+      <Select>
+        <Value>(A:General eng1 anti ice position,bool)</Value>
+        <Case Value="1">
+          <Image Name="AICP_ENG_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="66" Y="272"/>
+      <Select>
+        <Value>(A:General eng2 anti ice position,bool)</Value>
+        <Case Value="1">
+          <Image Name="AICP_ENG_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="104" Y="272"/>
+      <Select>
+        <Value>(A:General eng3 anti ice position,bool)</Value>
+        <Case Value="1">
+          <Image Name="AICP_ENG_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="142" Y="272"/>
+      <Select>
+        <Value>(A:General eng4 anti ice position,bool)</Value>
+        <Case Value="1">
+          <Image Name="AICP_ENG_on.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="28" Y="287"/>
+      <Select>
+        <Value>(A:General eng1 anti ice position,bool) (A:Turb Eng1 N1, percent) 20 &lt; &amp;&amp;</Value>
+        <Case Value="1">
+          <Image Name="AICP_disag.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="66" Y="287"/>
+      <Select>
+        <Value>(A:General eng2 anti ice position,bool) (A:Turb Eng2 N1, percent) 20 &lt; &amp;&amp;</Value>
+        <Case Value="1">
+          <Image Name="AICP_disag.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="104" Y="287"/>
+      <Select>
+        <Value>(A:General eng3 anti ice position,bool) (A:Turb Eng3 N1, percent) 20 &lt; &amp;&amp;</Value>
+        <Case Value="1">
+          <Image Name="AICP_disag.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="142" Y="287"/>
+      <Select>
+        <Value>(A:General eng4 anti ice position,bool) (A:Turb Eng4 N1, percent) 20 &lt; &amp;&amp;</Value>
+        <Case Value="1">
+          <Image Name="AICP_disag.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <!--PITOT-->
+    <Element>
+      <Position X="180" Y="272"/>
+      <Select>
+        <Value>(A:Pitot heat,bool) !</Value>
+        <Case Value="1">
+          <Image Name="AICP_probe_off.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="218" Y="272"/>
+      <Select>
+        <Value>(A:Pitot heat,bool) !</Value>
+        <Case Value="1">
+          <Image Name="AICP_probe_off.bmp" Bright="1"/>
+        </Case>
+      </Select>
+    </Element>
+  </Element>
+  <Mouse>
+    <Area Left="34" Top="96" Width="64" Height="64">
+      <Cursor Type="Hand"/>
+      <Tooltip>Windshield Deice (non functional)</Tooltip>
+      <Click>(L:AICP LWS,bool) ! (>L:AICP LWS,bool)</Click>
+    </Area>
+    <Area Left="178" Top="96" Width="64" Height="64">
+      <Cursor Type="Hand"/>
+      <Tooltip>Windshield Deice (non functional)</Tooltip>
+      <Click>(L:AICP RWS,bool) ! (>L:AICP RWS,bool)</Click>
+    </Area>
+    <Area Left="120" Top="38" Width="40" Height="40">
+      <Cursor Type="Hand"/>
+      <Tooltip>Windshield Defog - non functional</Tooltip>
+      <Click>(L:AICP fog,bool) ! (>L:AICP fog,bool)</Click>
+    </Area>
+    <Area Left="120" Top="148" Width="40" Height="40">
+      <Cursor Type="Hand"/>
+      <Tooltip>Structural Deice</Tooltip>
+      <Click Event="TOGGLE_STRUCTURAL_DEICE"/>
+    </Area>
+    <!--==== DEICE ====-->
+    <Area Left="24" Top="266" Width="38" Height="44">
+      <Cursor Type="Hand"/>
+      <Click Event="ANTI_ICE_TOGGLE_ENG1"/>
+      <Tooltip>%Engine 1 Deice %((A:General eng1 anti ice position,bool))%{if} (ON)%{else} (OFF)%</Tooltip>
+    </Area>
+    <Area Left="62" Top="266" Width="38" Height="44">
+      <Cursor Type="Hand"/>
+      <Click Event="ANTI_ICE_TOGGLE_ENG2"/>
+      <Tooltip>%Engine 2 Deice %((A:General eng2 anti ice position,bool))%{if} (ON)%{else} (OFF)%</Tooltip>
+    </Area>
+    <Area Left="100" Top="266" Width="38" Height="44">
+      <Cursor Type="Hand"/>
+      <Click Event="ANTI_ICE_TOGGLE_ENG3"/>
+      <Tooltip>%Engine 3 Deice %((A:General eng3 anti ice position,bool))%{if} (ON)%{else} (OFF)%</Tooltip>
+    </Area>
+    <Area Left="138" Top="266" Width="38" Height="44">
+      <Cursor Type="Hand"/>
+      <Click Event="ANTI_ICE_TOGGLE_ENG4"/>
+      <Tooltip>%Engine 4 Deice %((A:General eng4 anti ice position,bool))%{if} (ON)%{else} (OFF)%</Tooltip>
+    </Area>
+    <!--==== PROBE ====-->
+    <Area Left="176" Top="266" Width="38" Height="44">
+      <Cursor Type="Hand"/>
+      <Click Event="PITOT_HEAT_TOGGLE"/>
+      <Tooltip>%Pitot Heat %((A:Pitot heat,bool))%{if} (ON)%{else} (OFF)%</Tooltip>
+    </Area>
+    <Area Left="214" Top="266" Width="38" Height="44">
+      <Cursor Type="Hand"/>
+      <Click Event="PITOT_HEAT_TOGGLE"/>
+      <Tooltip>%Pitot Heat %((A:Pitot heat,bool))%{if} (ON)%{else} (OFF)%</Tooltip>
+    </Area>
+  </Mouse>
+</Gauge>

@@ -1,0 +1,8 @@
+<Gauge Name="ATC Icon" Version="1.0">
+    <Image Name="icon_atc.bmp" Luminous="0"/>
+    <Mouse>
+        <Help ID="HELPID_GAUGE_TOGGLE_ATC_WINDOW" />
+        <Cursor Type="Hand" />
+        <Click Event="ATC" />
+    </Mouse>
+</Gauge>

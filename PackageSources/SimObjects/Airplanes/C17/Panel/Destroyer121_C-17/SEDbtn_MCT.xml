@@ -1,0 +1,27 @@
+<Gauge Name="Standby Engine Display Button MCT" Version="C-17vc" Author="Herbert Pralle">
+  <Image Name="SEDbtn_MCT.bmp"/>
+
+  <Macro Name="TempComp">(L:AP N1 rating,number) (A:Ambient Temperature,Celsius) 27 - 0.122 * 0 max - (>L:AP N1 rating,number)</Macro>
+
+  <Element>
+    <Select>
+      <Value>(L:STDBENG mode,number) 2 > if{ (A:Ambient Temperature,Celsius) (G:Var1) - abs 2 > if{ (A:Ambient Temperature,Celsius) (>G:Var1) @TempComp } }</Value>
+    </Select>
+  </Element>
+
+  <Element>
+ 	<Select>
+		<Value>(L:STDBENG button,enum) 2 == if{ 10 (>L:SED_btn_MCT,enum) } els{ 0 (>L:SED_btn_MCT,enum) }</Value>
+ 	</Select>
+   </Element>
+
+   <Macro Name="MODEMCT">93 (A:Ambient Temperature,Celsius) 27 - 0.122 * 0 max - (>L:AP N1 rating,number) (A:Ambient Temperature,Celsius) (>G:Var1)</Macro>   
+   
+  <Mouse>
+        <Cursor Type="Hand"/>
+      <Tooltip>Thrust Rating : Maximum Continuous Thrust</Tooltip>
+      <Click>2 (>L:STDBENG button,enum) (L:STDBENG mode,enum) 1 > 
+		if{ 4 (>L:STDBENG mode,enum) @MODEMCT }</Click>
+  </Mouse>
+
+</Gauge>

@@ -1,0 +1,52 @@
+<Gauge Name="Speed Brake Position Indicator" Version="C-17" Author="Virtavia">
+  <Element>
+    <Image Name="SPDBRK_bg.bmp" Luminous="1"/>
+  </Element>
+
+  <Element>
+    <Position X="56" Y="56"/>
+    <Image Name="SPDBRK_ndl.bmp" Luminous="1" PointsTo="North">
+      <Axis X="16" Y="46"/>
+    </Image>
+    <Rotate>
+      <Value Minimum="0" Maximum="100">(A:SPOILERS LEFT POSITION,percent)</Value>
+      <Nonlinearity>
+	<Item Value="0" X="33" Y="8"/>
+	<Item Value="25" X="72" Y="10"/>
+	<Item Value="50" X="99" Y="35"/>
+	<Item Value="75" X="99" Y="77"/>
+	<Item Value="100" X="72" Y="101"/>
+          </Nonlinearity>
+    </Rotate>
+  </Element>
+
+  <Element>
+    <Position X="0" Y="0"/>
+    <Visible>(P:TIME OF DAY,enum) (A:Light Panel,bool) + 3 &lt;</Visible>
+    <Image Name="SPDBRK_rfl.bmp" Alpha="Yes"/>
+  </Element>
+
+  <Mouse>
+      <Tooltip>Speed Brake Position</Tooltip>
+    	<Area Left="27" Top="7" Width="20" Height="20">
+        <Cursor Type="Hand"/>
+        <Click>0 (>K:SPOILERS_SET)</Click>
+      </Area>
+   <Area Left="58" Top="11" Width="20" Height="20">
+        <Cursor Type="Hand"/>
+        <Click>4095 (>K:SPOILERS_SET)</Click>
+      </Area>
+	<Area Left="79" Top="30" Width="20" Height="20">
+        <Cursor Type="Hand"/>
+        <Click>8190 (>K:SPOILERS_SET)</Click>
+      </Area>
+	<Area Left="79" Top="62" Width="20" Height="20">
+        <Cursor Type="Hand"/>
+        <Click>12285 (>K:SPOILERS_SET)</Click>
+      </Area>
+	<Area Left="58" Top="82" Width="20" Height="20">
+        <Cursor Type="Hand"/>
+        <Click>16380 (>K:SPOILERS_SET)</Click>
+      </Area>
+  </Mouse>
+</Gauge>

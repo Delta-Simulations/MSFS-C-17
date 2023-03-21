@@ -1,0 +1,42 @@
+<Gauge Name="COM radio Display - Virtavia C-17 FSX" Version="1.0">
+   <Image Name="COMradio_Off.bmp"/>
+
+	 	<Element>
+			<Visible>(A:ELECTRICAL MASTER BATTERY,bool) (A:TURB ENG1 N1,Percent) 20 &gt; (A:TURB ENG2 N1,Percent) 20 &gt; (A:TURB ENG3 N1,Percent) 20 &gt; (A:TURB ENG4 N1,Percent) 20 &gt; || || || || (L:AS365_com1_power,bool) 1 == &amp; </Visible>
+			<Element>
+				 <Image Name="COMradio.bmp"/>
+				
+				<Element>
+					<Position X="18" Y="13"/>
+					<FormattedText X="203" Y="27" Font="Quartz" FontSize="22" Adjust="Left" VerticalAdjust="Center" Color="#00EE00" Bright="Yes">
+						<String>%COM 1 ACT: %((A:COM1 ACTIVE FREQUENCY,Mhz))%!3.2f!</String>
+					</FormattedText>
+				</Element>
+				
+				<Element>
+					<Position X="18" Y="44"/>
+					<FormattedText X="203" Y="27" Font="Quartz" FontSize="22" Adjust="Left" VerticalAdjust="Center" Color="#00EE00" Bright="Yes">
+						<String>%COM 1 STY: %((A:COM1 STANDBY FREQUENCY,Mhz))%!3.2f!</String>
+					</FormattedText>
+				</Element>
+
+				<Element>
+					<Position X="18" Y="74"/>
+					<FormattedText X="203" Y="27" Font="Quartz" FontSize="22" Adjust="Left" VerticalAdjust="Center" Color="#00EE00" Bright="Yes">
+						<String>%COM 2 ACT: %((A:COM2 ACTIVE FREQUENCY,Mhz))%!3.2f!</String>
+					</FormattedText>
+				</Element>
+				
+				<Element>
+					<Position X="18" Y="103"/>
+					<FormattedText X="203" Y="27" Font="Quartz" FontSize="22" Adjust="Left" VerticalAdjust="Center" Color="#00EE00" Bright="Yes">
+						<String>%COM 2 STY: %((A:COM2 STANDBY FREQUENCY,Mhz))%!3.2f!</String>
+					</FormattedText>
+				</Element>
+				
+			</Element>
+		</Element>
+	
+</Gauge>
+
+

@@ -1,0 +1,127 @@
+<Gauge Name="C17 INITIALIZATION STATES" Version="1.0">
+  <Comment>
+  *************************************************
+  FOR DELTA SIMULATIONS C-17
+  *************************************************
+  C17_Init:
+  0: Cruise/On
+  1: Landing/Ground ON
+  2: Ground/Cold and Dark
+  3: Hangar/Fully Off
+
+
+  </Comment>
+  
+<Element>
+<Select>
+<Value>
+<!-- (L:C17_ColdandDark,bool) 1 ==
+if{
+0  (&gt;A:LIGHT POTENTIOMETER:6, percent)
+0  (&gt;A:LIGHT POTENTIOMETER:8, percent)
+10  (&gt;A:LIGHT POTENTIOMETER:11, percent)
+10  (&gt;A:LIGHT POTENTIOMETER:12, percent)
+10  (&gt;A:LIGHT POTENTIOMETER:13, percent)
+0  (&gt;A:LIGHT POTENTIOMETER:14, percent)
+0  (&gt;A:LIGHT POTENTIOMETER:15, percent)
+1  (>L:C17_CPIT_ILLUM_MODE, enum)
+0 (>L:C17_LDG_C_EXTEND,bool)
+0 (>L:C17_LDG_L_EXTEND,bool)
+0 (>L:C17_HUD_DISABLE,bool)
+30 (>L:C17_HUD_BRIGHTNESS,percent)
+0 (>L:C17_PEDESTAL_PNL_BACKLIGHT,percent)
+0 (>L:C17_OH_PNL_BACKLIGHT,percent)
+0 (>L:C17_PILOT_PNL_BACKLIGHT,percent)
+0 (>L:C17_COPILOT_PNL_BACKLIGHT,percent)
+0 (>L:C17_PEDESTAL_PNL_BACKLIGHT,percent)
+0 (>L:C17_AFCS_PNL_BACKLIGHT,percent)
+10 (>L:OH_DISP_BACKLIGHT,percent)
+10 (>L:C17_AFCS_DISP_BACKLIGHT,percent)
+}
+
+(L:C17_Started_ON,bool) 1 ==
+if{
+0  (&gt;A:LIGHT POTENTIOMETER:6, percent)
+0  (&gt;A:LIGHT POTENTIOMETER:8, percent)
+10  (&gt;A:LIGHT POTENTIOMETER:11, percent)
+10  (&gt;A:LIGHT POTENTIOMETER:12, percent)
+10  (&gt;A:LIGHT POTENTIOMETER:13, percent)
+0  (&gt;A:LIGHT POTENTIOMETER:14, percent)
+0  (&gt;A:LIGHT POTENTIOMETER:15, percent)
+1  (>L:C17_CPIT_ILLUM_MODE, enum)
+2  (>L:C17_ANTICOLL_MODE, enum)
+0 (>L:C17_LDG_C_EXTEND,bool)
+0 (>L:C17_LDG_L_EXTEND,bool)
+0 (>L:C17_LDG_R_EXTEND,bool)
+0 (>L:C17_HUD_DISABLE,bool)
+50 (>L:C17_HUD_BRIGHTNESS,percent)
+20 (>L:C17_PEDESTAL_PNL_BACKLIGHT,percent)
+20 (>L:C17_OH_PNL_BACKLIGHT,percent)
+20 (>L:C17_PILOT_PNL_BACKLIGHT,percent)
+20 (>L:C17_COPILOT_PNL_BACKLIGHT,percent)
+20 (>L:C17_PEDESTAL_PNL_BACKLIGHT,percent)
+20 (>L:C17_AFCS_PNL_BACKLIGHT,percent)
+30 (>L:OH_DISP_BACKLIGHT,percent)
+30 (>L:C17_AFCS_DISP_BACKLIGHT,percent)
+}
+(L:C17_CFG_Landing,bool) 1 ==
+if{
+0  (&gt;A:LIGHT POTENTIOMETER:6, percent)
+0  (&gt;A:LIGHT POTENTIOMETER:8, percent)
+10  (&gt;A:LIGHT POTENTIOMETER:11, percent)
+10  (&gt;A:LIGHT POTENTIOMETER:12, percent)
+10  (&gt;A:LIGHT POTENTIOMETER:13, percent)
+0  (&gt;A:LIGHT POTENTIOMETER:14, percent)
+0  (&gt;A:LIGHT POTENTIOMETER:15, percent)
+1  (>L:C17_CPIT_ILLUM_MODE, enum)
+2  (>L:C17_ANTICOLL_MODE, enum)
+
+1 (>L:C17_LDG_C_EXTEND,bool)
+1 (>L:C17_LDG_L_EXTEND,bool)
+1 (>L:C17_LDG_R_EXTEND,bool)
+
+2 (>L:C17_LIGHTS_R_LDG, enum)
+2 (>L:C17_LIGHTS_L_LDG, enum)
+1 (>L:C17_LIGHTS_L_LDG_WING, BOOL)
+1 (>L:C17_LIGHTS_R_LDG_WING, BOOL)
+
+0 (>L:C17_HUD_DISABLE,bool)
+50 (>L:C17_HUD_BRIGHTNESS,percent)
+20 (>L:C17_PEDESTAL_PNL_BACKLIGHT,percent)
+20 (>L:C17_OH_PNL_BACKLIGHT,percent)
+20 (>L:C17_PILOT_PNL_BACKLIGHT,percent)
+20 (>L:C17_COPILOT_PNL_BACKLIGHT,percent)
+20 (>L:C17_PEDESTAL_PNL_BACKLIGHT,percent)
+20 (>L:C17_AFCS_PNL_BACKLIGHT,percent)
+30 (>L:OH_DISP_BACKLIGHT,percent)
+30 (>L:C17_AFCS_DISP_BACKLIGHT,percent)
+} -->
+
+</Value>
+</Select>
+</Element>
+
+<Element>
+<Select>
+<Value>
+<!-- (L:C17_ColdandDark,bool) !
+if{
+1 (>L:C17_ColdandDark,bool)
+}
+
+(L:C17_Started_ON,bool) !
+if{
+1 (>L:C17_Started_ON,bool)
+}
+
+(L:C17_CFG_Landing,bool) !
+if{
+1 (>L:C17_CFG_Landing,bool)
+} -->
+</Value>
+</Select>
+</Element>
+  
+  
+  
+</Gauge>

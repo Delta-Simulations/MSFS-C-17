@@ -1,0 +1,83 @@
+<Gauge Name="Gear Indicator" Version="C-17">
+ <Element>
+  	<Visible>(A:ELECTRICAL MASTER BATTERY,bool) (A:TURB ENG1 N1,Percent) 20 &gt; (A:TURB ENG2 N1,Percent) 20 &gt; (A:TURB ENG3 N1,Percent) 20 &gt; (A:TURB ENG4 N1,Percent) 20 &gt; || || || ||</Visible>
+
+   <Element>
+      <Position X="0" Y="0"/>
+      <Select>
+         <Value>(A:Gear center position,percent) near 100 == (L:Test_GearLamps, bool) |</Value>
+         <Failures>
+            <SYSTEM_ELECTRICAL_PANELS Action="0"/>
+         </Failures>
+         <Case Value="1">
+            <Image Name="Gear_C_dn.bmp" Bright="Yes"/>
+         </Case>
+      </Select>
+   </Element>
+   <Element>
+      <Position X="0" Y="0"/>
+      <Select>
+         <Value>(A:Gear left position,percent) near 100 == (L:Test_GearLamps, bool) |</Value>
+         <Failures>
+            <SYSTEM_ELECTRICAL_PANELS Action="0"/>
+         </Failures>
+         <Case Value="1">
+            <Image Name="Gear_L_dn.bmp" Bright="Yes"/>
+         </Case>
+      </Select>
+   </Element>
+   <Element>
+      <Position X="0" Y="0"/>
+      <Select>
+         <Value>(A:Gear right position,percent) near 100 == (L:Test_GearLamps, bool) |</Value>
+         <Failures>
+            <SYSTEM_ELECTRICAL_PANELS Action="0"/>
+         </Failures>
+         <Case Value="1">
+            <Image Name="Gear_R_dn.bmp" Bright="Yes"/>
+         </Case>
+      </Select>
+   </Element>
+<Element>
+      <Position X="0" Y="0"/>
+      <Select>
+         <Value>(A:gear center position,percent) d (G:Var1) - r (&gt;G:Var1) 0 != 4 * (G:Var2) max -- 0 max d (&gt;G:Var2) 0 != (L:Test_GearLamps, bool) |</Value>
+         <Failures>
+            <SYSTEM_ELECTRICAL_PANELS Action="0"/>
+         </Failures>
+         <Case Value="1">
+            <Image Name="Gear_C_trn.bmp" Bright="Yes"/>
+         </Case>
+      </Select>
+   </Element>
+   <Element>
+      <Position X="0" Y="0"/>
+      <Select>
+          <Value>(A:gear left position,percent) d (G:Var1) - r (&gt;G:Var1) 0 != 4 * (G:Var2) max -- 0 max d (&gt;G:Var2) 0 != (L:Test_GearLamps, bool) |</Value>
+         <Failures>
+            <SYSTEM_ELECTRICAL_PANELS Action="0"/>
+         </Failures>
+         <Case Value="1">
+            <Image Name="Gear_L_trn.bmp" Bright="Yes"/>
+         </Case>
+      </Select>
+   </Element>
+   <Element>
+      <Position X="0" Y="0"/>
+      <Select>
+         <Value>(A:gear right position,percent) d (G:Var1) - r (&gt;G:Var1) 0 != 4 * (G:Var2) max -- 0 max d (&gt;G:Var2) 0 != (L:Test_GearLamps, bool) |</Value>
+         <Failures>
+            <SYSTEM_ELECTRICAL_PANELS Action="0"/>
+         </Failures>
+         <Case Value="1">
+            <Image Name="Gear_R_trn.bmp" Bright="Yes"/>
+         </Case>
+      </Select>
+   </Element>
+
+</Element>
+
+  <Mouse>
+       <Tooltip ID="TOOLTIPTEXT_GEAR_LIGHT"/>
+     </Mouse>
+</Gauge>

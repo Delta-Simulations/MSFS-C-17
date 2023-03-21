@@ -1,0 +1,261 @@
+<Gauge Name="Standby Engine Display" Version="C-17" Author="Herbert Pralle">
+  <Image Name="STDBENG_backgrnd.bmp"/>
+  <Macro Name="TempComp">(L:AP N1 rating,number) (A:Ambient Temperature,Celsius) 27 - 0.122 * 0 max - (>L:AP N1 rating,number)</Macro>
+  <Element>
+    <Select>
+      <Value>(L:STDBENG mode,number) 2 > if{ (A:Ambient Temperature,Celsius) (G:Var1) - abs 2 > if{ (A:Ambient Temperature,Celsius) (>G:Var1) @TempComp } }</Value>
+    </Select>
+  </Element>
+  <!--==== KNOBS ====-->
+  <Element>
+    <Position X="68" Y="55"/>
+    <Image Name="STDBENG_knob.bmp" Luminous="0">
+      <Axis X="15" Y="15"/>
+    </Image>
+    <Rotate>
+      <Value>(L:STDBENG knob,number)</Value>
+      <Nonlinearity>
+        <Item Value="0" Degrees="0"/>
+        <Item Value="5" Degrees="180"/>
+      </Nonlinearity>
+    </Rotate>
+  </Element>
+  <Element>
+    <Position X="68" Y="150"/>
+    <Image Name="STDBENG_knob.bmp" Luminous="0">
+      <Axis X="15" Y="15"/>
+    </Image>
+    <Rotate>
+      <Value>(L:STDBENG mode,enum) 2 min</Value>
+      <Nonlinearity>
+        <Item Value="0" Degrees="0"/>
+        <Item Value="2" Degrees="90"/>
+      </Nonlinearity>
+    </Rotate>
+  </Element>
+  <!--==== BUTTONS ====-->
+  <Element>
+    <Element>
+      <Position X="408" Y="18"/>
+      <Image Name="STDBENG_buttons.bmp" Luminous="0"/>
+    </Element>
+    <Element>
+      <Position X="408" Y="18"/>
+      <Select>
+        <Value>(L:STDBENG button,enum)</Value>
+        <Case Value="4">
+          <Image Name="STDBENG_b4.bmp" Luminous="0"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="408" Y="48"/>
+      <Select>
+        <Value>(L:STDBENG button,enum)</Value>
+        <Case Value="3">
+          <Image Name="STDBENG_b3.bmp" Luminous="0"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="408" Y="78"/>
+      <Select>
+        <Value>(L:STDBENG button,enum)</Value>
+        <Case Value="2">
+          <Image Name="STDBENG_b2.bmp" Luminous="0"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="408" Y="108"/>
+      <Select>
+        <Value>(L:STDBENG button,enum)</Value>
+        <Case Value="1">
+          <Image Name="STDBENG_b1.bmp" Luminous="0"/>
+        </Case>
+      </Select>
+    </Element>
+    <Element>
+      <Position X="409" Y="138"/>
+      <Select>
+        <Value>(L:STDBENG button,enum)</Value>
+        <Case Value="0">
+          <Image Name="STDBENG_b0.bmp" Luminous="0"/>
+        </Case>
+      </Select>
+    </Element>
+  </Element>
+  <!--==== DISPLAY ====-->
+  <Element>
+    <Visible>(A:Circuit general panel on, bool) (L:STDBENG mode,enum) 0 > &amp;&amp;</Visible>
+    <Element>
+      <Position X="0" Y="0"/>
+      <Image Name="STDBENG_screen.bmp" Bright="1"/>
+    </Element>
+    <Element>
+      <Position X="178" Y="40"/>
+      <FormattedText X="54" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((L:STDBENG mode,enum) 3 &lt;)%{if}%((L:AP N1 rating display,number) 1 max)%!1.2f!%{else}%((L:AP N1 rating,number) 23 max 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * +)%!1.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Visible>(L:STDBENG mode,enum) 1 ></Visible>
+      <Element>
+        <Position X="330" Y="40"/>
+        <FormattedText X="54" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+          <String>%((L:STDBENG mode,enum) 3 &lt;)%{if}%MAN%{else}%((L:STDBENG mode,enum) 3 ==)%{if}%INT%{else}%((L:STDBENG mode,enum) 4 ==)%{if}%MCT%{else}%((L:STDBENG mode,enum) 5 ==)%{if}%DRT%{else}%((L:STDBENG mode,enum) 6 ==)%{if}%MAX%</String>
+        </FormattedText>
+      </Element>
+    </Element>
+    <!--EPR (N1) OR N2-->
+    <Element>
+      <Position X="130" Y="70"/>
+      <FormattedText X="54" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((L:STDBENG mode,enum) 1 ==)%{if}%((A:Turb Eng1 corrected N2, percent))%!3d!%{else}%((A:Turb Eng1 N1, percent) 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * + 0 max 1.65 min)%!1.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="188" Y="70"/>
+      <FormattedText X="54" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((L:STDBENG mode,enum) 1 ==)%{if}%((A:Turb Eng2 corrected N2, percent))%!3d!%{else}%((A:Turb Eng2 N1, percent) 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * + 0 max 1.65 min)%!1.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="276" Y="70"/>
+      <FormattedText X="54" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((L:STDBENG mode,enum) 1 ==)%{if}%((A:Turb Eng3 corrected N2, percent))%!3d!%{else}%((A:Turb Eng3 N1, percent) 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * + 0 max 1.65 min)%!1.2f!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="334" Y="70"/>
+      <FormattedText X="54" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((L:STDBENG mode,enum) 1 ==)%{if}%((A:Turb Eng4 corrected N2, percent))%!3d!%{else}%((A:Turb Eng4 N1, percent) 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * + 0 max 1.65 min)%!1.2f!%</String>
+      </FormattedText>
+    </Element>
+    <!--EGT-->
+    <Element>
+      <Position X="130" Y="98"/>
+      <FormattedText X="54" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((A:General eng1 exhaust gas temperature, celsius))%!3d!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="188" Y="98"/>
+      <FormattedText X="54" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((A:General eng2 exhaust gas temperature, celsius))%!3d!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="276" Y="98"/>
+      <FormattedText X="54" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((A:General eng3 exhaust gas temperature, celsius))%!3d!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="334" Y="98"/>
+      <FormattedText X="54" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((A:General eng4 exhaust gas temperature, celsius))%!3d!%</String>
+      </FormattedText>
+    </Element>
+    <!--N1-->
+    <Element>
+      <Position X="130" Y="126"/>
+      <FormattedText X="54" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((A:Turb Eng1 corrected N1, percent))%!3d!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="188" Y="126"/>
+      <FormattedText X="54" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((A:Turb Eng2 corrected N1, percent))%!3d!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="276" Y="126"/>
+      <FormattedText X="54" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((A:Turb Eng3 corrected N1, percent))%!3d!%</String>
+      </FormattedText>
+    </Element>
+    <Element>
+      <Position X="334" Y="126"/>
+      <FormattedText X="54" Y="24" Font="QUARTZ" FontSize="28" LineSpacing="28" Adjust="Right" Color="#BDBDDF" Bright="Yes">
+        <String>%((A:Turb Eng4 corrected N1, percent))%!3d!%</String>
+      </FormattedText>
+    </Element>
+  </Element>
+  <!--==== DIMM ====-->
+  <Element>
+    <Position X="0" Y="0"/>
+    <Select>
+      <Value>(L:digit dim,enum)</Value>
+      <Case Value="1">
+        <Image Name="STDBENG_dim1.bmp" Alpha="Yes"/>
+      </Case>
+      <Case Value="2">
+        <Image Name="STDBENG_dim2.bmp" Alpha="Yes"/>
+      </Case>
+      <Case Value="3">
+        <Image Name="STDBENG_dim3.bmp" Alpha="Yes"/>
+      </Case>
+    </Select>
+  </Element>
+  <Element>
+    <Position X="0" Y="0"/>
+    <Visible>(P:TIME OF DAY,enum) (A:Light Panel,bool) + 3 &lt;</Visible>
+    <Image Name="STDBENG_rfl.bmp" Alpha="Yes"/>
+  </Element>
+  <Macro Name="MODEMAX">100.5 (A:Ambient Temperature,Celsius) 27 - 0.122 * 0 max - (>L:AP N1 rating,number) (A:Ambient Temperature,Celsius) (>G:Var1)</Macro>
+  <Macro Name="MODEINT">98 (A:Ambient Temperature,Celsius) 27 - 0.122 * 0 max - (>L:AP N1 rating,number) (A:Ambient Temperature,Celsius) (>G:Var1)</Macro>
+  <Macro Name="MODEMCT">93 (A:Ambient Temperature,Celsius) 27 - 0.122 * 0 max - (>L:AP N1 rating,number) (A:Ambient Temperature,Celsius) (>G:Var1)</Macro>
+  <Macro Name="MODEDRT">95.5 (A:Ambient Temperature,Celsius) 27 - 0.122 * 0 max - (>L:AP N1 rating,number) (A:Ambient Temperature,Celsius) (>G:Var1)</Macro>
+  <Macro Name="MODEMAN">(L:AP N1 rating display,number) (A:Indicated Altitude,feet) 0.00000515 * - 0.86 - 0.00607 / (>L:AP N1 rating,number)</Macro>
+  <Mouse>
+    <!--==== BUTTONS ====-->
+    <Area Left="408" Top="18" Width="42" Height="28">
+      <Cursor Type="Hand"/>
+      <Tooltip>MAX Mode</Tooltip>
+      <Click>4 (>L:STDBENG button,enum) (L:STDBENG mode,enum) 1 > if{ 6 (>L:STDBENG mode,enum) @MODEMAX }</Click>
+    </Area>
+    <Area Left="408" Top="48" Width="42" Height="28">
+      <Cursor Type="Hand"/>
+      <Tooltip>INT Mode</Tooltip>
+      <Click>3 (>L:STDBENG button,enum) (L:STDBENG mode,enum) 1 > if{ 3 (>L:STDBENG mode,enum) @MODEINT }</Click>
+    </Area>
+    <Area Left="408" Top="78" Width="42" Height="28">
+      <Cursor Type="Hand"/>
+      <Tooltip>MCT Mode</Tooltip>
+      <Click>2 (>L:STDBENG button,enum) (L:STDBENG mode,enum) 1 > if{ 4 (>L:STDBENG mode,enum) @MODEMCT }</Click>
+    </Area>
+    <Area Left="408" Top="108" Width="42" Height="28">
+      <Cursor Type="Hand"/>
+      <Tooltip>DRT Mode</Tooltip>
+      <Click>1 (>L:STDBENG button,enum) (L:STDBENG mode,enum) 1 > if{ 5 (>L:STDBENG mode,enum) @MODEDRT }</Click>
+    </Area>
+    <Area Left="408" Top="138" Width="42" Height="28">
+      <Cursor Type="Hand"/>
+      <Tooltip>MAN Mode</Tooltip>
+      <Click>0 (>L:STDBENG button,enum) (L:STDBENG mode,enum) 1 > if{ 2 (>L:STDBENG mode,enum) @MODEMAN }</Click>
+    </Area>
+    <!--==== KNOBS ====-->
+    <Area Left="40" Top="28" Width="56" Height="56">
+      <Area Right="14">
+        <Cursor Type="DownArrow"/>
+        <Click Repeat="Yes">(L:STDBENG knob,number) 1 &lt; if{ 10 (>L:STDBENG knob,number) } els{ (L:STDBENG knob,number) 1 - (>L:STDBENG knob,number) } } (L:STDBENG mode,enum) 1 == (L:STDBENG mode,enum) 2 == || if{ (L:AP N1 rating display,number) 0.01 - 1 max (>L:AP N1 rating display,number) @MODEMAN }</Click>
+      </Area>
+      <Area Left="14">
+        <Cursor Type="UpArrow"/>
+        <Click Repeat="Yes">(L:STDBENG knob,number) 9 > if{ 0 (>L:STDBENG knob,number) } els{ (L:STDBENG knob,number) 1 + (>L:STDBENG knob,number) } } (L:STDBENG mode,enum) 1 == (L:STDBENG mode,enum) 2 == || if{ (L:AP N1 rating display,number) 0.01 + 1 max 1.47 (A:Indicated Altitude,feet) 0.00000515 * + min (>L:AP N1 rating display,number) @MODEMAN }</Click>
+      </Area>
+    </Area>
+    <Area Left="40" Top="120" Width="56" Height="56">
+      <Area Right="14">
+        <Cursor Type="DownArrow"/>
+        <Click Repeat="Yes">(L:STDBENG mode,enum) 1 == if{ 0 (>L:STDBENG mode,enum) } (L:STDBENG mode,enum) 1 > if{ 1 (>L:STDBENG mode,enum) 0 (>L:STDBENG button,enum) 0 (>L:AP N1 mode,enum) (A:AUTOPILOT THROTTLE ARM,bool) ! if{ 1 (>K:AUTO_THROTTLE_ARM) } }</Click>
+      </Area>
+      <Area Left="14">
+        <Cursor Type="UpArrow"/>
+        <Click Repeat="Yes">(L:STDBENG mode,enum) 1 == if{ 2 (>L:STDBENG mode,enum) 30 (L:AP N1 rating,number) max (>L:AP N1 rating,number) (A:AUTOPILOT THROTTLE ARM,bool) if{ 1 (>K:AUTO_THROTTLE_ARM) } } (L:STDBENG mode,enum) 0 == if{ 1 (>L:STDBENG mode,enum) }</Click>
+      </Area>
+    </Area>
+  </Mouse>
+</Gauge>

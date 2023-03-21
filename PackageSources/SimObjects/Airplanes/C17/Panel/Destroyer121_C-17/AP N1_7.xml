@@ -1,0 +1,45 @@
+<Gauge Name="AP N1" Version="C-17" Author="Herbert Pralle">
+  <Macro Name="INI">1 (>L:STDBENG mode,enum) (A:AUTOPILOT THROTTLE ARM,bool) ! if{ 1 (>K:AUTO_THROTTLE_ARM)</Macro>
+  <Macro Name="LimitDone">1.3</Macro>
+  <Macro Name="LimitPreset">4.5</Macro>
+  <Macro Name="TPSF">0.05</Macro>
+  <Macro Name="TPSL">1</Macro>
+  <Macro Name="UpperEdge">21</Macro>
+  <Macro Name="LowerEdge">30</Macro>
+  <!--INI-->
+  <Element>
+    <Select>
+      <Value>(L:AP N1 ini,bool) 0 == if{ @INI 1 (>L:AP N1 ini,bool) }</Value>
+    </Select>
+  </Element>
+  <!--FLIGHT IDLE-->
+  <Element>
+    <Select>
+      <Value>(L:STDBENG mode,enum) 1 > (A:sim on ground,bool) 0 == &amp;&amp; if{ (A:General Eng1 Throttle Lever Position,percent) 15 &lt; if{ 2500 (>K:THROTTLE_SET) } }</Value>
+    </Select>
+  </Element>
+  <!--SELECT OPERATION MODE 0 TO 3-->
+  <Element>
+    <Select>
+      <Value>(L:STDBENG mode,enum) 1 > if{ (L:AP N1 rating,number) (A:Turb Eng1 N1, percent) - s0 l0 abs @LimitDone &lt;= if{ 0 (>L:AP N1 mode,enum) } els{ l0 abs @LimitPreset &lt;= if{ 1 (>L:AP N1 mode,enum) } els{ l0 4.5 > if{ 3 (>L:AP N1 mode,enum) } els{ l0 @LimitPreset /-/ &lt; if{ 2 (>L:AP N1 mode,enum) } } } } }</Value>
+    </Select>
+  </Element>
+  <!--MODE 1 - TP FINE ADJUST TPSF-->
+  <Element>
+    <Select>
+      <Value>(L:AP N1 mode,enum) 1 == if{ (L:AP N1 rating,number) (A:Turb Eng1 N1,percent) - s1 l1 @LimitDone > if{ (A:General Eng1 Throttle Lever Position,percent) @TPSF + 163.8 * 16383 min 0 max (>K:THROTTLE_SET) } els{ l1 @LimitDone /-/ &lt; if{ (A:General Eng1 Throttle Lever Position,percent) @TPSF - 163.8 * 16383 min 0 max (>K:THROTTLE_SET) } } }</Value>
+    </Select>
+  </Element>
+  <!--MODE 2 - TP PRESET - TP DECR IN STEPS OF TPSL muss noch!-->
+  <Element>
+    <Select>
+      <Value>(L:AP N1 mode,enum) 2 == if{ (A:General Eng1 Throttle Lever Position,percent) s2 (L:AP N1 rating,number) 1.144 * @LowerEdge - l2 - -1 &lt; if{ l2 @TPSL - 163.8 * 16383 min 0 max (>K:THROTTLE_SET) } }</Value>
+    </Select>
+  </Element>
+  <!--MODE 3 - TP PRESET - TP  INCR IN STEPS OF  TPSL muss noch!-->
+  <Element>
+    <Select>
+      <Value>(L:AP N1 mode,enum) 3 == if{ (A:General Eng1 Throttle Lever Position,percent) s3 (L:AP N1 rating,number) 1.144 * @UpperEdge - l3 - 1 > if{ l3 @TPSL + 163.8 * 16383 min 0 max (>K:THROTTLE_SET) } }</Value>
+    </Select>
+  </Element>
+</Gauge>
