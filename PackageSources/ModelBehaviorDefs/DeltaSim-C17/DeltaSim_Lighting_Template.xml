@@ -1,5 +1,5 @@
 <ModelBehaviors>
-    <!-- CREATED FOR DELTA SIMULATIONS AIRCRAFT- PERMISSION REQUIRED FOR DIRECT USE###################################### -->
+    <!-- CREATED FOR DELTA SIMULATION AIRCRAFT###################################### -->
     <Include ModelBehaviorFile="Asobo\Common.xml"/> 
     <Include ModelBehaviorFile="Asobo\Airliner\AirlinerCommon.xml"/>
     <Include ModelBehaviorFile="Asobo\Airliner\Boeing.xml"/>
@@ -14,17 +14,16 @@
         <OFFSET>0</OFFSET>
         <ELEC_INDEX>65</ELEC_INDEX>
         <TRUECODE>0</TRUECODE>
-
+        <TESTCODE>(L:C17_WACAP_Test, bool) 1 == or</TESTCODE>
         <ANIM_LAG>0</ANIM_LAG>			
     </DefaultTemplateParameters>
-
     <Component ID="#NODE_ID#" Node="#NODE_ID#">
         <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
             <NODE_ID>#NODE_ID#</NODE_ID>
 
             <EMISSIVE_CODE>
             #TRUECODE#
-            (L:C17_WACAP_Test, bool) 1 == or
+            #TESTCODE#
             (A:CIRCUIT ON:#ELEC_INDEX#,bool) 1 == and
             
             if{

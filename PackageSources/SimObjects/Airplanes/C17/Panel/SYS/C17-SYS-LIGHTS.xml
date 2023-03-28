@@ -95,11 +95,35 @@ if{
 (L:C17_CPIT_ILLUM_MODE, enum) 0 != and
 if{ 
   5 (>K:CABIN_LIGHTS_ON)
-  100 (&gt;K:LIGHT_POTENTIOMETER_16_SET)
 } els{
   5 (>K:CABIN_LIGHTS_OFF)
-  0 (&gt;K:LIGHT_POTENTIOMETER_16_SET)
 }
+
+(L:C17_LIGHTS_AISLE, bool) 1 ==
+if{ 
+  8 (>K:CABIN_LIGHTS_ON)
+} els{
+  8 (>K:CABIN_LIGHTS_OFF)
+}
+(L:C17_LIGHTS_CREWFLOOD, bool) 1 ==
+if{ 
+  9 (>K:CABIN_LIGHTS_ON)
+} els{
+  9 (>K:CABIN_LIGHTS_OFF)
+}
+(L:C17_LIGHTS_STAIRS, bool) 1 ==
+if{ 
+  10 (>K:CABIN_LIGHTS_ON)
+} els{
+  10 (>K:CABIN_LIGHTS_OFF)
+}
+(L:C17_CGEAR_INSP, bool) 1 ==
+if{ 
+  3 (>K:WING_LIGHTS_ON)
+} els{
+  3 (>K:WING_LIGHTS_OFF)
+}
+
 
 
 
@@ -167,7 +191,6 @@ if{
 <!-- TRAIL FORMATION -->
 (A:LIGHT POTENTIOMETER:9, percent) 0 > (A:LIGHT NAV:2, bool) 0 == and if{ 2 (&gt;K:TOGGLE_NAV_LIGHTS) }
 (A:LIGHT POTENTIOMETER:9, percent) 0 == (A:LIGHT NAV:2, bool) 1 == and if{ 2 (&gt;K:TOGGLE_NAV_LIGHTS) }
-
 <!-- TRAIL FORMATION -->
 (A:LIGHT POTENTIOMETER:9, percent) 0 > (A:LIGHT NAV:3, bool) 0 == and if{ 3 (&gt;K:TOGGLE_NAV_LIGHTS) }
 (A:LIGHT POTENTIOMETER:9, percent) 0 == (A:LIGHT NAV:3, bool) 1 == and if{ 3 (&gt;K:TOGGLE_NAV_LIGHTS) }

@@ -641,9 +641,7 @@
 	<Animation>
 	  <Parameter>
 		<Code>
-			(A:GEAR CENTER STEER ANGLE, grads) 0 &gt; 
-			if{ (A:GEAR CENTER STEER ANGLE, grads) 0.5 * } 
-			els{ (A:GEAR CENTER STEER ANGLE, grads) 0.5 * 200 + }
+			(A:GEAR CENTER STEER ANGLE, degrees) 0.45 * 100 +
 		  </Code>
 	  </Parameter>
 	</Animation>

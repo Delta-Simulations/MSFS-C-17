@@ -121,6 +121,29 @@
       <ANIM_LAG>300</ANIM_LAG>
     </UseTemplate>
   </Component>
+  <Component ID="Switch_UARRSI_Emerg_Handle" Node="Switch_UARRSI_Emerg_Handle">
+    <UseTemplate Name="ASOBO_GT_Interaction_DraggingAxis_Code">
+        <UP_CODE>
+            (L:C17_UARRSI_Slipway, number) 0.05 - 0 max (>L:C17_UARRSI_Slipway, number) 
+        </UP_CODE>
+        <DOWN_CODE>
+            (L:C17_UARRSI_Slipway, number) 0.05 + 1 min (>L:C17_UARRSI_Slipway, number)
+        </DOWN_CODE>
+        <AXIS>Y</AXIS>
+        <DRAG_AXIS_SCALE>300</DRAG_AXIS_SCALE>
+        <TOOLTIPID>EMERG UARRSI CNTRL</TOOLTIPID>
+    </UseTemplate>
+    <UseTemplate Name="ASOBO_GT_Anim_Code">
+      <PART_ID>Switch_UARRSI_Emerg_Handle</PART_ID>
+      <ANIM_NAME>Switch_UARRSI_Emerg_Handle</ANIM_NAME>
+      <NODE_ID>Switch_UARRSI_Emerg_Handle</NODE_ID>
+      <ANIM_CODE>
+        (L:C17_UARRSI_Slipway, number) 100 *
+      </ANIM_CODE>
+      <ANIM_LAG>300</ANIM_LAG>
+    </UseTemplate>
+  </Component>
+
 </Component>
 
 <Component ID="INTERIOR_LIGHTING" >
@@ -341,11 +364,43 @@
   <CCW_ANIMTIP>Floor Flood</CCW_ANIMTIP>
 </UseTemplate>
 
+
+
+<UseTemplate Name="LVAR_Switch_Template">
+  <SIMVAR>C17_LIGHTS_STAIRS</SIMVAR>
+  <NODE_ID>Switch_Stairway_FLOOD</NODE_ID>
+  <TOOLTIPID>Staircase Flood</TOOLTIPID>
+</UseTemplate>
+
 <UseTemplate Name="LVAR_Switch_Template">
   <SIMVAR>C17_LIGHTS_EPC</SIMVAR>
   <NODE_ID>Switch_CPIT_EPC_FLOOD</NODE_ID>
-  <TOOLTIPID>BREAKER LGT</TOOLTIPID>
+  <TOOLTIPID>Breaker Flood</TOOLTIPID>
 </UseTemplate>
+<UseTemplate Name="LVAR_Switch_Template">
+  <SIMVAR>C17_LIGHTS_AISLE</SIMVAR>
+  <NODE_ID>Switch_Loadmaster_Aisle_FLOOD</NODE_ID>
+  <TOOLTIPID>Aisle Flood</TOOLTIPID>
+</UseTemplate>
+<UseTemplate Name="LVAR_Switch_Template">
+  <SIMVAR>C17_CGEAR_INSP</SIMVAR>
+  <NODE_ID>Switch_C_Gear_Insp</NODE_ID>
+  <TOOLTIPID>Gear Inspection Flood</TOOLTIPID>
+</UseTemplate>
+
+<UseTemplate Name="LVAR_Switch_Template">
+  <SIMVAR>C17_CGEAR_INSP</SIMVAR>
+  <NODE_ID>Switch_C_Gear_Insp</NODE_ID>
+  <TOOLTIPID>Gear Inspection Flood</TOOLTIPID>
+</UseTemplate>
+
+<UseTemplate Name="LVAR_Switch_Template">
+  <SIMVAR>C17_LIGHTS_CREWFLOOD</SIMVAR>
+  <NODE_ID>Switch_CrewRest_FLOOD</NODE_ID>
+  <TOOLTIPID>Crew Rest Flood</TOOLTIPID>
+</UseTemplate>
+
+
 <Component ID="CargoDoorSwitch" Node="PUSH_AUTOPILOT_AP1.008">
   <UseTemplate Name="DELTASIM_Momentary_Cargo">
     <NODE_ID>PUSH_AUTOPILOT_AP1.008</NODE_ID>
@@ -431,7 +486,7 @@
     (L:C17_ANTICOLL_MODE, enum) -- 0 max (&gt;L:C17_ANTICOLL_MODE, enum)
   </ANTICLOCKWISE_CODE>
   <CW_ANIMTIP>ANTICOLL MODE</CW_ANIMTIP>
-  <ANIMTIP_1>ANTICOLL MODE</ANIMTIP_1>
+  <CCW_ANIMTIP>ANTICOLL MODE</CCW_ANIMTIP>
 </UseTemplate>
 <UseTemplate Name="DELTASIM_Finite_Knob_Template">
   <NODE_ID>Knob_Nav_light</NODE_ID>
@@ -623,7 +678,47 @@
     <TRUECODE>0</TRUECODE>
   </UseTemplate>
 
+<!-- FRONT PANEL KORRY -->
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_WARNING_INOP</NODE_ID>
+    <TRUECODE>0</TRUECODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_WARNING_GROUND_PROX</NODE_ID>
+    <TRUECODE>
+      (L:C17_TERRAIN_FLYUP,BOOL) 1 ==
+    </TRUECODE>
+    <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !</INTENSITY>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_WARNING_THRUST_LOSS</NODE_ID>
+    <TRUECODE></TRUECODE>
+    <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !</INTENSITY>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_WARNING_WACS_FAIL</NODE_ID>
+    <TRUECODE></TRUECODE>
+    <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !</INTENSITY>
+  </UseTemplate>
 
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_WARNING_GEAR_ALERT</NODE_ID>
+    <TRUECODE>(L:C17_EXTEND_GEAR,BOOL, bool) 1 ==</TRUECODE>
+    <TESTCODE>(L:C17_GEAR_ANNUN_TEST, bool) 1 == or</TESTCODE>
+    <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !</INTENSITY>
+  </UseTemplate>
+
+  <UseTemplate Name="GENERIC_Toggle_Switch_Template">
+    <ANIM>(L:C17_GEAR_ANNUN_TEST, bool) 100 *</ANIM>
+    <NODE_ID>BUTTON_GEAR_ANNUN_TEST</NODE_ID>
+    <TOOLTIPID>TEST GEAR ALERTS</TOOLTIPID>
+    <INTERACT_CODE>
+      1 (&gt;L:C17_GEAR_ANNUN_TEST, bool)
+    </INTERACT_CODE>
+    <POST_CODE>
+      (M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:C17_GEAR_ANNUN_TEST, bool) }
+    </POST_CODE>
+  </UseTemplate>
 
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>Korry_UARRSI_POS</NODE_ID>
@@ -640,7 +735,7 @@
   </UseTemplate>
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>KORRY_APU_AVAIL</NODE_ID>
-    <TRUECODE>(A:APU PCT RPM, percent) 90 &gt;</TRUECODE>
+    <TRUECODE>(A:APU PCT RPM, percent) 95 &gt;</TRUECODE>
   </UseTemplate>
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>KORRY_APU_IN_USE</NODE_ID>
@@ -686,8 +781,6 @@
     <NODE_ID>ENG4_STARTER_LGT</NODE_ID>
     <TRUECODE>(A:GENERAL ENG STARTER:4, bool) 1 ==</TRUECODE>
   </UseTemplate>
-
-
   <Component ID="EFB_BRIGHTNESS" Node="EFB_DISPLAY">
     <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
       <NODE_ID>EFB_DISPLAY</NODE_ID>
@@ -698,7 +791,47 @@
 
 <!-- FUEL SYSTEM -->
 <Component ID="FuelSystem" >
+  <UseTemplate Name="DELTASIM_Dummy_Switch_Template">
+    <NODE_ID>LocketEasterEgg</NODE_ID>
+    <TOOLTIPID></TOOLTIPID>
+    <ANIM_LAG>50</ANIM_LAG>	
+  </UseTemplate>
 
+  <UseTemplate Name="DELTASIM_Dummy_Switch_Template">
+    <NODE_ID>Switch_Locker_Handle</NODE_ID>
+    <TOOLTIPID>EQUIPMENT LOCKER</TOOLTIPID>
+    <ANIM_LAG>50</ANIM_LAG>	
+  </UseTemplate>
+  <UseTemplate Name="DELTASIM_Dummy_Switch_Template">
+    <NODE_ID>Switch_Cubby_Handle</NODE_ID>
+    <TOOLTIPID>EQUIPMENT CUBBY</TOOLTIPID>
+    <ANIM_LAG>50</ANIM_LAG>	
+  </UseTemplate>
+  <UseTemplate Name="DELTASIM_Dummy_Switch_Template">
+    <NODE_ID>Switch_Cubby_Handle</NODE_ID>
+    <TOOLTIPID>STORAGE CUBBY</TOOLTIPID>
+    <ANIM_LAG>50</ANIM_LAG>	
+  </UseTemplate>
+  <UseTemplate Name="DELTASIM_Dummy_Switch_Template">
+    <NODE_ID>Switch_Roof_Escape_Handle</NODE_ID>
+    <TOOLTIPID>ROOF ESCAPE ACCESS</TOOLTIPID>
+    <ANIM_LAG>50</ANIM_LAG>	
+  </UseTemplate>
+  <UseTemplate Name="DELTASIM_Dummy_Switch_Template">
+    <NODE_ID>Switch_Emerg_Uarssi_Handle</NODE_ID>
+    <TOOLTIPID>EMERG UARRSI HANDLE ACCESS</TOOLTIPID>
+    <ANIM_LAG>50</ANIM_LAG>	
+  </UseTemplate>
+
+  <UseTemplate Name="GENERIC_Toggle_Switch_Template">
+    <ANIM>(L:C17_UARRSI_Slipway, bool) 100 *</ANIM>
+    <NODE_ID>BUTTON_AR_R_MASTER</NODE_ID>
+    <TOOLTIPID>%((L:C17_UARRSI_Slipway, bool))%{if}A/R SLIPWAY OPEN%{else}A/R SLIPWAY CLOSED%{end}</TOOLTIPID>
+    <INTERACT_CODE>
+      (L:C17_UARRSI_Slipway, bool) ! (&gt;L:C17_UARRSI_Slipway, bool)
+      <!-- (O:GenButton, bool) ! (&gt;O:GenButton, bool) -->
+    </INTERACT_CODE>
+  </UseTemplate>
   <UseTemplate Name="GENERIC_Toggle_Switch_Template">
     <ANIM>(L:C17_UARRSI_Slipway, bool) 100 *</ANIM>
     <NODE_ID>BUTTON_AR_L_MASTER</NODE_ID>
@@ -707,14 +840,7 @@
       (L:C17_UARRSI_Slipway, bool) ! (&gt;L:C17_UARRSI_Slipway, bool)
     </INTERACT_CODE>
   </UseTemplate>
-  <UseTemplate Name="GENERIC_Toggle_Switch_Template">
-    <ANIM>(L:C17_UARRSI_Slipway, bool) 100 *</ANIM>
-    <NODE_ID>BUTTON_AR_R_MASTER</NODE_ID>
-    <TOOLTIPID>%((L:C17_UARRSI_Slipway, bool))%{if}A/R SLIPWAY OPEN%{else}A/R SLIPWAY CLOSED%{end}</TOOLTIPID>
-    <INTERACT_CODE>
-      (L:C17_UARRSI_Slipway, bool) ! (&gt;L:C17_UARRSI_Slipway, bool)
-    </INTERACT_CODE>
-  </UseTemplate>
+
   <UseTemplate Name="GENERIC_Toggle_Switch_Template">
     <ANIM>(L:C17_WACAP_Test, bool) 100 *</ANIM>
     <NODE_ID>BUTTON_WAP_ANNUN_TEST</NODE_ID>
@@ -849,7 +975,7 @@
 		<MouseRect>
 			<MOUSEFLAGS>LeftSingle+LeftRelease+Wheel</MOUSEFLAGS>
 				<Cursor>Hand</Cursor>
-				<TOOLTIPID>APU START</TOOLTIPID>
+				<TOOLTIPID>APU START(Scroll for OFF)</TOOLTIPID>
 				<CallbackCode>
 					<Code>
             (M:Event) 'LeftSingle' scmp 0 ==
@@ -867,6 +993,48 @@
       <ANIM_LENGTH>100</ANIM_LENGTH>
   </UseTemplate>
 	</Component>	
+
+	<Component ID="SWITCH_APU_ALERT_START" Node="SWITCH_APU_ALERT_START">
+		<MouseRect>
+			<MOUSEFLAGS>LeftSingle+LeftRelease</MOUSEFLAGS>
+				<Cursor>Hand</Cursor>
+				<TOOLTIPID>APU ALERT STARTER</TOOLTIPID>
+				<CallbackCode>
+					<Code>
+            (L:C17_APU_START_MODE, bool) 1 ==
+            (L:C17_APUSTARTER, bool) 0 != and
+            if{
+            (M:Event) 'LeftSingle' scmp 0 ==
+            if{
+               1 (>O:StartSwitchPOS, bool) 
+            }
+            (M:Event) 'LeftRelease' scmp 0 ==
+            if{
+               0 (>O:StartSwitchPOS, bool) 
+            }
+          }
+          (O:StartSwitchPOS, bool) 1 ==
+          if{ 2 (>L:C17_APUSTARTER, enum) }
+          els{ 1 (>L:C17_APUSTARTER, enum) }
+					</Code>
+				</CallbackCode>
+		</MouseRect>	
+    <UseTemplate Name="ASOBO_GT_Anim_Code">
+      <ANIM_NAME>SWITCH_APU_ALERT_START</ANIM_NAME>
+      <ANIM_CODE>
+        (O:StartSwitchPOS, bool) 100 *
+      </ANIM_CODE>
+      <ANIM_LENGTH>100</ANIM_LENGTH>
+  </UseTemplate>
+	</Component>
+  <UseTemplate Name="GENERIC_Toggle_Switch_Template">
+    <ANIM>(L:C17_APU_START_MODE, bool) 100 *</ANIM>
+    <NODE_ID>SWITCH_APU_START_MODE</NODE_ID>
+    <TOOLTIPID>APU START MODE</TOOLTIPID>
+    <INTERACT_CODE>
+      (L:C17_APU_START_MODE, bool) ! (&gt;L:C17_APU_START_MODE, bool)
+    </INTERACT_CODE>
+  </UseTemplate>
 
   <UseTemplate Name="ASOBO_ELECTRICAL_Switch_APU_Bleed_Template">
     <NODE_ID>BUTTON_APU_BLEED_AIR</NODE_ID>
@@ -1143,10 +1311,9 @@
             <ANIM_NAME>landing_gear_lever</ANIM_NAME>
             <NODE_ID>Gear_Handle</NODE_ID>
             <ALWAYS_USE_ANIM_LAG>True</ALWAYS_USE_ANIM_LAG>
+            <NO_GEARUP_ON_GROUND>True</NO_GEARUP_ON_GROUND>
           </UseTemplate>
         </Component>
-
-
 				<UseTemplate Name="ASOBO_AUTOPILOT_Push_Vertical_Navigation_Template">
 					<NODE_ID>btn_autopilot_vnav</NODE_ID>
 					<ANIM_NAME>autopilot_push_vnav</ANIM_NAME>
@@ -2568,39 +2735,6 @@
         </CallbackCode>
 -->
 
-<Animation name="GEARTEST" guid="048eae9c-ea49-426c-ae10-a2bca3ba3de2" length="1" type="Sim" typeParam2="GEARTEST" typeParam="AutoPlay" />
-    <PartInfo>
-    <Name>GEARTEST</Name>
-    <Materials> <Emissive> <Parameter>
-    <Code>
-        (L:switch_lights_test,bool) 1 == if{ 1 } els{ 
-     } els{ 0 }
-    </Code> 
-    </Parameter> </Emissive> </Materials>
-    </PartInfo>
-    
-    <Animation name="Landing_Gear_Switch_Light_Test" guid="20ddb795-16ff-486c-afe5-f716f997b367" length="1" type="Sim" typeParam2="Landing_Gear_Switch_Light_Test" typeParam="AutoPlay" />
-    <PartInfo>
-      <Name>Landing_Gear_Switch_Light_Test</Name>
-      <AnimLength>20</AnimLength>
-      <Animation> 
-          <Parameter>
-       <Code>
-        (L:switch_lights_test, bool) 10 *
-               </Code>
-      <Lag>40</Lag>
-          </Parameter>
-      </Animation>
-      <MouseRect>
-        <Cursor>Hand</Cursor>
-        <TooltipText>Test gear lamps</TooltipText>
-        <MouseFlags>LeftRelease+LeftSingle</MouseFlags>
-        <CallbackCode>
-          (M:Event) 'LeftSingle' scmp 0 == if{ 1 (&gt;L:switch_lights_test, bool) }
-          (M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:switch_lights_test, bool) }
-        </CallbackCode>
-      </MouseRect>
-  </PartInfo>
 
 <Animation name="DCLT" guid="3758332b-a3b0-4758-b0c4-2105d17c41f4" length="50" type="Sim" typeParam2="DCLT" typeParam="AutoPlay" />
   <PartInfo>

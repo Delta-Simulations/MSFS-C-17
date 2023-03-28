@@ -210,6 +210,9 @@
 	<Sound WwiseData="true" WwiseEvent="Terrain_FlyUP"  Derived="true"  LocalVar="C17_TERRAIN_FLYUP" Units="BOOL" Index="0" NodeName="Plane.093">
 		<Range LowerBound="1" />
 	</Sound>
+	<Sound WwiseData="true" WwiseEvent="Too_Low_Gear"  Derived="true"  LocalVar="C17_EXTEND_GEAR" Units="BOOL" Index="0" NodeName="Plane.093">
+		<Range LowerBound="1" />
+	</Sound>
 
 
 

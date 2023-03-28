@@ -11,6 +11,14 @@
 		<CanBeReferenced>true</CanBeReferenced>
 	</Flags>
 	<AssetGroups>
+		<AssetGroup Name="C-17">
+			<Type>SimObject</Type>
+			<Flags>
+				<FSXCompatibility>false</FSXCompatibility>
+			</Flags>
+			<AssetDir>PackageSources\SimObjects\Airplanes\C17\</AssetDir>
+			<OutputDir>SimObjects\Airplanes\C17\</OutputDir>
+		</AssetGroup>
 		<AssetGroup Name="ContentInfo">
 			<Type>Copy</Type>
 			<Flags>
@@ -50,14 +58,6 @@
 			</Flags>
 			<AssetDir>PackageSources\VisualEffectLibs\DeltaSim\EffectsC17\</AssetDir>
 			<OutputDir>VisualEffectLibs\DeltaSim\EffectsC17\</OutputDir>
-		</AssetGroup>
-		<AssetGroup Name="c-17">
-			<Type>SimObject</Type>
-			<Flags>
-				<FSXCompatibility>false</FSXCompatibility>
-			</Flags>
-			<AssetDir>PackageSources\SimObjects\Airplanes\C17\</AssetDir>
-			<OutputDir>SimObjects\Airplanes\C17\</OutputDir>
 		</AssetGroup>
 		<AssetGroup Name="html_ui">
 			<Type>Copy</Type>

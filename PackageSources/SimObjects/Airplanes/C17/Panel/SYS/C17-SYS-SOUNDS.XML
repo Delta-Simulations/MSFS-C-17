@@ -11,14 +11,11 @@
     </Select>
   </Element>
 
-
-
-
   <!-- ARM CALLOUTS-->
 <Element>
   <Select>
       <Value>
-    (A:ELECTRICAL MASTER BATTERY, bool) 1 ==
+    (A:CIRCUIT ON:65,bool) 1 ==
     (A:SIM ON GROUND,bool) 0 == and
     if{ 1 ( &gt;L:C17_AURAL_ACTIVE,bool) }
     els{ 0 ( &gt;L:C17_AURAL_ACTIVE,bool) }
@@ -31,7 +28,7 @@
 <Element>
   <Select>
         <Value>        
-          (A:ELECTRICAL MASTER BATTERY, bool) 1 ==
+          (A:CIRCUIT ON:65,bool) 1 ==
           (L:C17_MISSILE_DETECTED,bool) 1 == and
           if{ 1 (&gt;L:C17_MissileLaunch,bool) }
           els{ 0 (&gt;L:C17_MissileLaunch,bool) }					
@@ -43,7 +40,7 @@
 <Element>
   <Select>
         <Value>        
-          (A:ELECTRICAL MASTER BATTERY, bool) 1 ==
+          (A:CIRCUIT ON:65,bool) 1 ==
           (L:C17_APUDOOR_OPEN,bool) 1 == and
           (A:TURB ENG THROTTLE COMMANDED N1:2,percent) 70 &gt; and
           if{ 1 (&gt;L:C17_ALERT_APU_DOOR,bool) }
@@ -56,7 +53,7 @@
 <Element>
   <Select>
         <Value>        
-          (A:ELECTRICAL MASTER BATTERY, bool) 1 ==
+          (A:CIRCUIT ON:65,bool) 1 ==
           (A:SIM ON GROUND,bool) 1 == and
           (A:TURB ENG THROTTLE COMMANDED N1:2,percent) 70 &gt; and
           (A:TRAILING EDGE FLAPS RIGHT PERCENT,percent) 30 &lt; and
@@ -70,7 +67,7 @@
 <Element>
   <Select>
         <Value>        
-          (A:ELECTRICAL MASTER BATTERY, bool) 1 ==
+          (A:CIRCUIT ON:65,bool) 1 ==
           (A:SIM ON GROUND,bool) 1 == and
           (A:TURB ENG THROTTLE COMMANDED N1:2,percent) 70 &gt; and
           (A:BRAKE PARKING POSITION,bool) 1 == and
@@ -84,7 +81,7 @@
 <Element>
   <Select>
         <Value>        
-          (A:ELECTRICAL MASTER BATTERY, bool) 1 ==
+          (A:CIRCUIT ON:65,bool) 1 ==
           (A:SIM ON GROUND,bool) 1 == and
           (A:TURB ENG THROTTLE COMMANDED N1:2,percent) 70 &gt; and
           (A:SPOILERS HANDLE POSITION,bool) 1 == and
@@ -125,8 +122,8 @@
   <Select>
         <Value>        
           (L:C17_AURAL_ACTIVE,bool) 1 ==
-          (A:TRAILING EDGE FLAPS RIGHT PERCENT,percent) 40 &gt; and
-          (A:GEAR HANDLE POSITION,bool) 1 == and
+          (A:FLAPS HANDLE PERCENT,percent) 40 &gt; and
+          (A:GEAR HANDLE POSITION,percent) 90 &gt; and
           if{ 1 ( &gt;L:C17_IN_LANDING_CFG,bool) }
           els{ 0 ( &gt;L:C17_IN_LANDING_CFG,bool) }					
         </Value>
@@ -153,7 +150,7 @@
         <Value>        
           (L:C17_AURAL_ACTIVE, bool) 1 ==
           (A:TRAILING EDGE FLAPS RIGHT PERCENT,percent) 0 == and
-          (A:GEAR HANDLE POSITION,bool) 1 == and
+          (A:GEAR HANDLE POSITION,percent) 1 == and
           (L:C17_RADALT,feet) 500 &lt; and	
           (A:VERTICAL SPEED,feet per minute) -100 &lt; and
           if{ 1 ( &gt;L:C17_RETRACT_FLAPS,BOOL) }
@@ -162,17 +159,28 @@
   </Select>
 </Element>
 
-<!--		GEAR NOT DOWN		-->	
+<!--		GEAR NOT DOWN	(A:CIRCUIT ON:65,bool)	-->	
 <Element>
   <Select>
-        <Value>        
-          (L:C17_AURAL_ACTIVE, bool) 1 ==
-          (A:TRAILING EDGE FLAPS RIGHT PERCENT,percent) 60 &gt; and
-          (A:VERTICAL SPEED,feet per minute) -100 &lt; and
-          (A:GEAR HANDLE POSITION,bool) 0 == and
-          (L:C17_RADALT,feet) 250 &lt; and	
-          if{ 1 ( &gt;L:C17_EXTEND_GEAR,BOOL) }
-          els{ 0 ( &gt;L:C17_EXTEND_GEAR,BOOL) }					
+        <Value>
+
+<!-- (L:C17_AURAL_ACTIVE, bool) 1 ==
+(A:FLAPS HANDLE PERCENT,percent) 40 &gt; and
+(A:VERTICAL SPEED,feet per minute) -100 &lt; and
+(A:GEAR HANDLE POSITION,percent) 0.9 &gt; and
+(L:C17_RADALT,feet) 1000 &lt; and
+if{
+    1 (&gt;L:C17_EXTEND_GEAR,BOOL) 
+} els if{
+  (L:C17_GEAR_ANNUN_TEST, bool) 1 ==
+} els{
+  0 (&gt;L:C17_EXTEND_GEAR,BOOL) 
+  } -->
+(A:CIRCUIT ON:65,bool) 1 ==
+(L:C17_GEAR_ANNUN_TEST, bool) 1 == and
+if{1 (&gt;L:C17_EXTEND_GEAR,BOOL)}
+els{  0 (&gt;L:C17_EXTEND_GEAR,BOOL) }
+
         </Value>
   </Select>
 </Element>
@@ -203,9 +211,6 @@
     </Select>
   </Element>
 
-
-
-
 <!--		STICK SHAKER AND STALL		-->	
 <Element>
     <Select>
@@ -216,7 +221,7 @@
       if{ 1 ( &gt;L:C17_STICK_SHAKER,bool) }
       els{ 0 ( &gt;L:C17_STICK_SHAKER,bool) }
 
-      (A:ELECTRICAL MASTER BATTERY, bool) 1 ==
+      (A:CIRCUIT ON:65,bool) 1 ==
       (L:C17_STALL_TEST,bool) 1 == and
       if{ 1 ( &gt;L:C17_STICK_SHAKER,bool) }
       els{ 0 ( &gt;L:C17_STICK_SHAKER,bool) }

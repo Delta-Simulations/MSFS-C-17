@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSimVar } from '../../Hooks/simVars';
 
 export const Ap_Disp = (props) => {
@@ -10,8 +10,8 @@ export const Ap_Disp = (props) => {
     var [AP_HDG] = useSimVar('A:Autopilot heading lock dir', 'degrees');
     AP_HDG = Math.floor(AP_HDG)
 
-    var [AP_VS] = useSimVar('A:Autopilot vertical hold var', 'ft/min');
-    AP_VS = Math.round(AP_VS);
+    let [AP_VertSpd] = useSimVar('AUTOPILOT VERTICAL HOLD VAR', 'feet per minute');
+    useEffect(() => console.log(AP_VertSpd), [AP_VertSpd])
 
     const [AP_API] = useSimVar('L:C17_API', 'enum');
     var [AFCS_Color] = useSimVar('L:C17_CPIT_ILLUM_MODE', 'bool');
@@ -98,7 +98,7 @@ export const Ap_Disp = (props) => {
 
             <text x={320} y={555} fontSize={40} fill={(AFCS_Color) ? 'white' : '#00EE00'} className='FrontPNL' textAnchor="end">{AP_HDG}</text>
 
-            <text x={470} y={555} fontSize={40} fill={(AFCS_Color) ? 'white' : '#00EE00'} className='FrontPNL' textAnchor="end">{AP_VS}</text>
+            <text x={470} y={555} fontSize={40} fill={(AFCS_Color) ? 'white' : '#00EE00'} className='FrontPNL' textAnchor="end">{AP_VertSpd}</text>
 
             <text x={618} y={555} fontSize={40} fill={(AFCS_Color) ? 'white' : '#00EE00'} className='FrontPNL' textAnchor="end">{AP_ALT}</text>
 

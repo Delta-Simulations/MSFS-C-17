@@ -8945,8 +8945,8 @@
 	  const [AP_SPD] = useSimVar('A:Autopilot airspeed hold var', 'knots');
 	  var [AP_HDG] = useSimVar('A:Autopilot heading lock dir', 'degrees');
 	  AP_HDG = Math.floor(AP_HDG);
-	  var [AP_VS] = useSimVar('A:Autopilot vertical hold var', 'ft/min');
-	  AP_VS = Math.round(AP_VS);
+	  let [AP_VertSpd] = useSimVar('AUTOPILOT VERTICAL HOLD VAR', 'feet per minute');
+	  react.useEffect(() => console.log(AP_VertSpd), [AP_VertSpd]);
 	  const [AP_API] = useSimVar('L:C17_API', 'enum');
 	  var [AFCS_Color] = useSimVar('L:C17_CPIT_ILLUM_MODE', 'bool');
 	  var [Tot_Fuel] = useSimVar('A:FUEL TOTAL QUANTITY WEIGHT', 'pounds');
@@ -9240,7 +9240,7 @@
 	      fill: AFCS_Color ? 'white' : '#00EE00',
 	      className: "FrontPNL",
 	      textAnchor: "end",
-	      children: AP_VS
+	      children: AP_VertSpd
 	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
 	      x: 618,
 	      y: 555,
