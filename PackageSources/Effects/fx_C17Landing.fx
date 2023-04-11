@@ -5,6 +5,8 @@ Radius=-1
 Priority=0
 
 [Properties]
+VirtualCockpit=0
+Cockpit=0
 
 [Emitter.0]
 Lifetime=0.50, 0.50
@@ -51,8 +53,8 @@ Face=1, 1, 1
 Blend Mode=2
 Texture=fx_0.png
 Bounce=0.0
-Color Start=254, 255, 238, 1
-Color End=254, 255, 238, 1
+Color Start=255, 250, 201, 1
+Color End=255, 250, 201, 1
 Jitter Distance=0.0
 Jitter Time=0.0
 uv1=0.0, 0.0
@@ -66,7 +68,7 @@ Size=0.1
 Range=1500
 Intensity=110.0
 Softness=0.0
-SpotInner=50
-SpotOuter=60
+SpotInner=30
+SpotOuter=40
 Volumetric=1
 ScatDir=0.0

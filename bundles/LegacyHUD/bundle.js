@@ -9127,19 +9127,19 @@
 	};
 
 	const Altitude = () => {
-	  var [IndicatedSpeed] = useSimVar('AIRSPEED INDICATED', 'knots');
+	  let [IndicatedSpeed] = useSimVar('AIRSPEED INDICATED', 'knots');
 	  IndicatedSpeed = Math.floor(IndicatedSpeed * 100) / 100;
-	  var [HDG] = useSimVar('Plane heading degrees gyro', 'degrees');
+	  let [HDG] = useSimVar('Plane heading degrees gyro', 'degrees');
 	  HDG = Math.floor(HDG * 100) / 100;
-	  const [DCLT] = useSimVar('L:C17_DCLT', 'bool');
-	  var [RADalt] = useSimVar('A:PLANE ALT ABOVE GROUND', 'feet');
+	  let [DCLT] = useSimVar('L:C17_DCLT', 'bool');
+	  let [RADalt] = useSimVar('A:PLANE ALT ABOVE GROUND', 'feet');
 	  RADalt = Math.floor(RADalt * 100) / 100;
-	  var [INDalt] = useSimVar('A:INDICATED ALTITUDE', 'feet');
+	  let [INDalt] = useSimVar('A:INDICATED ALTITUDE', 'feet');
 	  INDalt = Math.floor(INDalt * 100) / 100;
-	  var [UseRAalt] = useSimVar('L:C17_UseRAalt', 'bool');
-	  let IndicatedALT = 1;
+	  let [UseRAalt] = useSimVar('L:C17_HUD_RaBa', 'bool');
+	  let IndicatedALT;
 
-	  if (UseRAalt == 1) {
+	  if (UseRAalt === 1) {
 	    IndicatedALT = RADalt;
 	  } else {
 	    IndicatedALT = INDalt;

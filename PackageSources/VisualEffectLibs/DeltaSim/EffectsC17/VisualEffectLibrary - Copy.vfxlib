@@ -1,0 +1,7 @@
+<VisualEffectLibrary Version="1.0.0">
+	<VisualEffect File="Heat Effect Near"/>
+	<VisualEffect File="Heat Effect Far"/>
+	<VisualEffect File="Afterburner Glow"/>
+	<VisualEffect File="Flares"/>
+</VisualEffectLibrary>
+

@@ -149,9 +149,12 @@ FoldingWingsState=0, 0
 AuxPowerUnitSwitch=False
 
 [Electrical.0]
-bus.6=bus.4:0
+alternator.1=False
+alternator.2=False
+alternator.3=False
+alternator.4=False
 alternator.5=False
-alternator.6=False
+
 
 [Gauges.0]
 KollsmanSetting=29.921342849731445313
@@ -248,6 +251,7 @@ C17_PEDESTAL_PNL_BACKLIGHT=10
 C17_AFCS_PNL_BACKLIGHT=10
 C17_OH_DISP_BACKLIGHT=1
 C17_AFCS_DISP_BACKLIGHT=1
-
 C17_CargoDoor_POS=100
 C17_Crew_Enterance=1
+C17_EFB_Brightness=40
+C17_ANTICOLL_MODE=1

@@ -150,7 +150,7 @@
         <UseTemplate Name="ASOBO_GT_MouseRect">
             <CURSOR>Hand</CURSOR>
             <TOOLTIPID>#TOOLTIPID#</TOOLTIPID>
-            <MOUSEFLAGS_DEFAULT_IM>LeftSingle+LeftRelease</MOUSEFLAGS_DEFAULT_IM>
+            <MOUSEFLAGS_DEFAULT_IM>LeftSingle+LeftRelease+RightSingle+MoveRepeat</MOUSEFLAGS_DEFAULT_IM>
             <CALLBACKCODE_DEFAULT_IM>
                 #PRE_CODE#
                 (M:Event) 'LeftSingle' scmi 0 == if{
@@ -161,6 +161,52 @@
         </UseTemplate>
     </Component>
 </Template>
+
+
+<Template Name="DELTASIM_PushButton_Template">
+    <DefaultTemplateParameters>
+        <ANIM_LENGTH>100</ANIM_LENGTH>
+        <POSTCODE></POSTCODE>
+		<ANIM_LAG>400</ANIM_LAG>			
+        <SINGLECODE>(O:PushGeneric, bool) if{ #VARCHANGE# (&gt; #VARIABLE# ) }</SINGLECODE>
+    </DefaultTemplateParameters>
+<!-- <Component ID="#NODE_ID#" Node="#NODE_ID#">
+    <UseTemplate Name="ASOBO_GT_Anim_Code">
+        <ANIM_NAME>#NODE_ID#</ANIM_NAME>
+        <ANIM_CODE>(O:PushGeneric, bool) 100 *</ANIM_CODE>
+        <ANIM_LENGTH>#ANIM_LENGTH#</ANIM_LENGTH>
+    </UseTemplate>
+    <UseTemplate Name="ASOBO_GT_MouseRect">
+        <CURSOR>Hand</CURSOR>
+        <TOOLTIPID>#TOOLTIPID#</TOOLTIPID>
+        <MOUSEFLAGS_DEFAULT_IM>LeftSingle+LeftRelease</MOUSEFLAGS_DEFAULT_IM>
+        <CALLBACKCODE_DEFAULT_IM>
+            #PRE_CODE#
+            (M:Event) 'LeftSingle' scmi 0 == if{
+                1 (&gt;O:PushGeneric, bool)
+                #SINGLECODE#
+            }
+            (M:Event) 'LeftRelease' scmi 0 == if{
+                0 (&gt;O:PushGeneric, bool)
+            }
+            #POSTCODE#
+        </CALLBACKCODE_DEFAULT_IM>
+    </UseTemplate>
+</Component> -->
+<Component ID="#NODE_ID#" Node="#NODE_ID#">
+    <UseTemplate Name="ASOBO_GT_Push_Button">
+        <ANIM_NAME>#NODE_ID#</ANIM_NAME>
+        <TOOLTIPID>#TOOLTIPID#</TOOLTIPID>
+        <LEFT_SINGLE_CODE>
+            #LEFT_SINGLE_CODE#
+        </LEFT_SINGLE_CODE>
+      </UseTemplate>
+</Component>
+
+</Template>
+
+
+
 <Template Name="DELTASIM_Dummy_Switch_Template">
     <DefaultTemplateParameters>
         <ANIM_LENGTH>100</ANIM_LENGTH>

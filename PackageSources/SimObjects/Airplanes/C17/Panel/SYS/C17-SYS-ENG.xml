@@ -4,8 +4,6 @@
 		FOR DELTA SIMULATIONS C-17
 		*************************************************
 	</Comment>
-
-
 <Element>
 	<Select>
 			<Value>
@@ -32,12 +30,58 @@
 				(A:APU PCT RPM, percent) 7 &gt; 
 				if{
 					1 (&gt;L:C17_APUDOOR_OPEN, bool)
-				}else{
+				} els{
 					0 (&gt;L:C17_APUDOOR_OPEN, bool)
 				}
 			</Value>
 	</Select>
 </Element>
+<Comment>
+	*************************************************
+	Thrust settings:
+	0-4
+	MAN, Derated, Max Continuous, Intermidate, Maximum
+	*************************************************
+</Comment>
+<Element>
+	<Select>
+			<Value>
+
+				(L:C17_THR_MODE, enum) 0 ==
+				if{
+					(L:C17_EPR_MAN_SEL,number) (&gt;L:C17_ENG_SET_EPR,number)
+					(L:C17_EPR_MAN_SEL,number) 1.7 / 100 * (&gt;A:AUTOPILOT THROTTLE MAX THRUST,percent)
+				}
+				(L:C17_THR_MODE, enum) 1 ==
+				if{
+					1.35 (&gt;L:C17_ENG_SET_EPR,number)
+					79 (&gt;A:AUTOPILOT THROTTLE MAX THRUST,percent)
+				}
+				(L:C17_THR_MODE, enum) 2 ==
+				if{
+					1.5 (&gt;L:C17_ENG_SET_EPR,number)
+					88 (&gt;A:AUTOPILOT THROTTLE MAX THRUST,percent)
+				}
+
+				(L:C17_THR_MODE, enum) 3 ==
+				if{
+					1.6 (&gt;L:C17_ENG_SET_EPR,number)
+					94 (&gt;A:AUTOPILOT THROTTLE MAX THRUST,percent)
+				}
+
+				(L:C17_THR_MODE, enum) 4 ==
+				if{
+					1.7 (&gt;L:C17_ENG_SET_EPR,number)
+					100 (&gt;A:AUTOPILOT THROTTLE MAX THRUST,percent)
+				}
+
+				(L:C17_ENG_SET_EPR,number) (&gt;L:AP N1 rating display,number)
+				<!-- (L:C17_ENG_SET_EPR,number) 1.7 / 100 * (&gt;A:AUTOPILOT THROTTLE MAX THRUST,percent) -->
+
+			</Value>
+	</Select>
+</Element>
+
 
 
 </Gauge>

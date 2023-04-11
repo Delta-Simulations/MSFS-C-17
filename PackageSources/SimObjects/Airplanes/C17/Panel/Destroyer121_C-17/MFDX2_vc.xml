@@ -1468,12 +1468,12 @@
       </Element>
       <!--EPR RATING FROM STNDENG-->
       <Element>
-        <Visible>(L:STDBENG mode,enum) 1 ></Visible>
+        <Visible>(L:C17_SED_MODE,enum) 1 ></Visible>
         <Element>
           <Position X="50" Y="382"/>
           <Rectangle Height="2" Width="220" LineWidth="1" Color="#00FFFF" FillColor="#00FFFF" Bright="Yes"/>
           <Shift>
-            <Value Minimum="1" Maximum="1.70">(L:STDBENG mode,enum) 2 == if{ (L:AP N1 rating display,number) } els{ (L:STDBENG mode,enum) 2 > if{ (L:AP N1 rating,number) 30 max 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * + } }</Value>
+            <Value Minimum="1" Maximum="1.70">(L:C17_SED_MODE,enum) 2 == if{ (L:AP N1 rating display,number) } els{ (L:C17_SED_MODE,enum) 2 > if{ (L:AP N1 rating,number) 30 max 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * + } }</Value>
             <Scale Y="-158"/>
           </Shift>
         </Element>
@@ -1483,14 +1483,14 @@
             <String>R</String>
           </FormattedText>
           <Shift>
-            <Value Minimum="1" Maximum="1.70">(L:STDBENG mode,enum) 2 == if{ (L:AP N1 rating display,number) } els{ (L:STDBENG mode,enum) 2 > if{ (L:AP N1 rating,number) 30 max 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * + } }</Value>
+            <Value Minimum="1" Maximum="1.70">(L:C17_SED_MODE,enum) 2 == if{ (L:AP N1 rating display,number) } els{ (L:C17_SED_MODE,enum) 2 > if{ (L:AP N1 rating,number) 30 max 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * + } }</Value>
             <Scale Y="-158"/>
           </Shift>
         </Element>
       </Element>
       <!--THROTTLES-->
       <Element>
-        <Visible>(L:STDBENG mode,enum) 2 &lt;</Visible>
+        <Visible>(L:C17_SED_MODE,enum) 2 &lt;</Visible>
         <Element>
           <Position X="68" Y="230"/>
           <Polyline LineWidth="3" Color="#00FFFF" Bright="Yes">
@@ -1620,13 +1620,13 @@
       <Element>
         <Position X="30" Y="67"/>
         <FormattedText X="70" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Left" Color="#00FFFF" Bright="Yes">
-          <String>%RATING %((L:STDBENG mode,enum) 3 &lt;)%{if}%((L:AP N1 rating display,number) 1 max)%!1.2f!%{else}%((L:AP N1 rating,number) 23 max 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * +)%!1.2f!%</String>
+          <String>%RATING %((L:C17_SED_MODE,enum) 3 &lt;)%{if}%((L:AP N1 rating display,number) 1 max)%!1.2f!%{else}%((L:AP N1 rating,number) 23 max 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * +)%!1.2f!%</String>
         </FormattedText>
       </Element>
       <Element>
         <Position X="95" Y="67"/>
         <FormattedText X="26" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Right" Color="#00FFFF" Bright="Yes">
-          <String>%((L:AFCSCP speed hold,bool))%{if}%A/T%{else}%((L:STDBENG mode,enum) 1 >)%{if}%EPR%{else}%MAN%</String>
+          <String>%((L:AFCSCP speed hold,bool))%{if}%A/T%{else}%((L:C17_SED_MODE,enum) 1 >)%{if}%EPR%{else}%MAN%</String>
         </FormattedText>
       </Element>
       <Element>
@@ -1791,13 +1791,13 @@
       <Element>
         <Position X="30" Y="67"/>
         <FormattedText X="70" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Left" Color="#00FFFF" Bright="Yes">
-          <String>%RATING %((L:STDBENG mode,enum) 3 &lt;)%{if}%((L:AP N1 rating display,number) 1 max)%!1.2f!%{else}%((L:AP N1 rating,number) 23 max 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * +)%!1.2f!%</String>
+          <String>%RATING %((L:C17_SED_MODE,enum) 3 &lt;)%{if}%((L:AP N1 rating display,number) 1 max)%!1.2f!%{else}%((L:AP N1 rating,number) 23 max 0.00607 * 0.86 + (A:Indicated Altitude,feet) 0.00000515 * +)%!1.2f!%</String>
         </FormattedText>
       </Element>
       <Element>
         <Position X="95" Y="67"/>
         <FormattedText X="26" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Right" Color="#00FFFF" Bright="Yes">
-          <String>%((L:AFCSCP speed hold,bool))%{if}%A/T%{else}%((L:STDBENG mode,enum) 1 >)%{if}%EPR%{else}%MAN%</String>
+          <String>%((L:AFCSCP speed hold,bool))%{if}%A/T%{else}%((L:C17_SED_MODE,enum) 1 >)%{if}%EPR%{else}%MAN%</String>
         </FormattedText>
       </Element>
       <!--EPR-->

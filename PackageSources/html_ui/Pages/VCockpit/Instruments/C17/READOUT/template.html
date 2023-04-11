@@ -8945,8 +8945,8 @@
 	  const [AP_SPD] = useSimVar('A:Autopilot airspeed hold var', 'knots');
 	  var [AP_HDG] = useSimVar('A:Autopilot heading lock dir', 'degrees');
 	  AP_HDG = Math.floor(AP_HDG);
-	  let [AP_VertSpd] = useSimVar('AUTOPILOT VERTICAL HOLD VAR', 'feet per minute');
-	  react.useEffect(() => console.log(AP_VertSpd), [AP_VertSpd]);
+	  let [AP_VertSpd] = useSimVar('AUTOPILOT VERTICAL HOLD VAR', 'feet per minute'); // useEffect(() => console.log(AP_VertSpd), [AP_VertSpd])
+
 	  const [AP_API] = useSimVar('L:C17_API', 'enum');
 	  var [AFCS_Color] = useSimVar('L:C17_CPIT_ILLUM_MODE', 'bool');
 	  var [Tot_Fuel] = useSimVar('A:FUEL TOTAL QUANTITY WEIGHT', 'pounds');
@@ -9329,11 +9329,119 @@
 	  });
 	};
 
-	const RadioDisp = props => {
-	  useSimVar('L:C17_WACAP_Test', 'bool');
-	  const [HUD_OVERLAY] = useSimVar('L:HUD_OVERLAY', 'bool');
-	  const [KHz_tune] = useSimVar('L:C17_KHz_Tune', 'bool');
-	  const [SQL_active] = useSimVar('L:C17_SQL_active', 'bool');
+	const RadioDisp = () => {
+	  let [HUD_OVERLAY] = useSimVar('L:C17_HUDDEBUG', 'bool');
+	  let [KHz_tune] = useSimVar('L:C17_KHz_Tune', 'bool');
+	  let [SQL_active] = useSimVar('L:C17_SQL_active', 'bool');
+	  let [GRD_active] = useSimVar('L:C17_GRD_active', 'bool');
+	  let [Active_COM] = useSimVar('L:C17_Nav_System_Active', 'enum');
+	  let [NAV_Secured] = useSimVar('L:C17_Nav_System_Secured', 'enum');
+	  let [COM1_Active_Freq] = useSimVar('A:COM ACTIVE FREQUENCY:1', 'Megahertz');
+	  let [COM2_Active_Freq] = useSimVar('A:COM ACTIVE FREQUENCY:2', 'Megahertz');
+	  let [COM1_Stby_Freq] = useSimVar('A:COM STANDBY FREQUENCY:1', 'Megahertz');
+	  let [COM2_Stby_Freq] = useSimVar('A:COM STANDBY FREQUENCY:2', 'Megahertz');
+	  let [NAV1_Active_Freq] = useSimVar('A:NAV ACTIVE FREQUENCY:1', 'Megahertz');
+	  let [NAV2_Active_Freq] = useSimVar('A:NAV ACTIVE FREQUENCY:2', 'Megahertz');
+	  let [NAV1_Stby_Freq] = useSimVar('A:NAV STANDBY FREQUENCY:1', 'Megahertz');
+	  let [NAV2_Stby_Freq] = useSimVar('A:NAV STANDBY FREQUENCY:2', 'Megahertz');
+	  let [Tacan_Active_Freq] = useSimVar('A:TACAN ACTIVE CHANNEL:1', 'number');
+	  let [Tacan_Active_Mode] = useSimVar('A:TACAN ACTIVE MODE:1', 'Bool');
+	  let [Tacan_Stby_Freq] = useSimVar('A:TACAN STANDBY CHANNEL:1', 'number');
+	  let [Tacan_Stby_Mode] = useSimVar('A:TACAN STANDBY MODE:1', 'Bool');
+	  let [ADF_Active_Freq] = useSimVar('A:ADF ACTIVE FREQUENCY:1', 'Megahertz');
+	  let [ADF_Stby_Freq] = useSimVar('A:ADF STANDBY FREQUENCY:1', 'Megahertz');
+	  let DispActiveFreq = "----";
+	  let DispStbyFreq = "-INOP-";
+	  let DispMode;
+
+	  switch (Active_COM) {
+	    case 1:
+	      DispMode = "COM1";
+	      DispActiveFreq = (Math.round(COM1_Active_Freq * 1000) / 1000).toFixed(3);
+	      DispStbyFreq = (Math.round(COM1_Stby_Freq * 1000) / 1000).toFixed(3);
+	      break;
+
+	    case 2:
+	      DispMode = "COM2";
+	      DispActiveFreq = (Math.round(COM2_Active_Freq * 1000) / 1000).toFixed(3);
+	      DispStbyFreq = (Math.round(COM2_Stby_Freq * 1000) / 1000).toFixed(3);
+	      break;
+
+	    case 3:
+	      DispMode = "UHF";
+	      break;
+
+	    case 4:
+	      DispMode = "VHF";
+	      break;
+
+	    case 5:
+	      DispMode = "HF1";
+	      break;
+
+	    case 6:
+	      DispMode = "HF2";
+	      break;
+
+	    case 7:
+	      DispMode = "NAV1";
+	      DispActiveFreq = (Math.round(NAV1_Active_Freq * 1000) / 1000).toFixed(3);
+	      DispStbyFreq = (Math.round(NAV1_Stby_Freq * 1000) / 1000).toFixed(3);
+	      break;
+
+	    case 8:
+	      DispMode = "NAV2";
+	      DispActiveFreq = (Math.round(NAV2_Active_Freq * 1000) / 1000).toFixed(3);
+	      DispStbyFreq = (Math.round(NAV2_Stby_Freq * 1000) / 1000).toFixed(3);
+	      break;
+
+	    case 9:
+	      DispMode = "TAC";
+	      DispActiveFreq = "".concat(Tacan_Active_Freq).concat(Tacan_Active_Mode ? "Y" : "X");
+	      DispStbyFreq = "".concat(Tacan_Stby_Freq).concat(Tacan_Stby_Mode ? "Y" : "X");
+	      break;
+
+	    case 10:
+	      DispMode = "LF-ADF";
+	      DispActiveFreq = "".concat(ADF_Active_Freq);
+	      DispStbyFreq = "".concat(ADF_Stby_Freq);
+	      break;
+
+	    case 11:
+	      DispMode = "IFF";
+	      break;
+
+	    default:
+	      DispMode = "";
+	      DispActiveFreq = "";
+	      DispStbyFreq = "";
+	      break;
+	  }
+
+	  let SecureComms;
+
+	  switch (NAV_Secured) {
+	    case 1:
+	      SecureComms = "SC-";
+	      break;
+
+	    case 2:
+	      SecureComms = "SC-P";
+	      break;
+
+	    case 3:
+	      SecureComms = "SC-R";
+	      break;
+
+	    case 4:
+	      SecureComms = "SC-T";
+	      break;
+
+	    default:
+	      SecureComms = "";
+	      break;
+	  }
+
 	  return /*#__PURE__*/jsxRuntime.jsxs("g", {
 	    children: [/*#__PURE__*/jsxRuntime.jsx("image", {
 	      visibility: HUD_OVERLAY ? 'visible' : 'hidden',
@@ -9431,31 +9539,82 @@
 	      textAnchor: "start",
 	      children: "STBY"
 	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
-	      x: 15,
-	      y: 1016,
+	      x: 76,
+	      y: 963,
 	      fontSize: 19,
 	      fill: "#00EE00",
 	      className: "Radio",
 	      textAnchor: "start",
+	      children: "IDENT"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      x: 197,
+	      y: 963,
+	      fontSize: 19,
+	      fill: "#00EE00",
+	      className: "Radio",
+	      textAnchor: "start",
+	      children: "TEMPEST"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      x: 73,
+	      y: 830,
+	      fontSize: 34,
+	      fill: "rgb(245, 255, 137)",
+	      className: "Radio",
+	      textAnchor: "start",
+	      children: DispMode
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      x: 193,
+	      y: 830,
+	      fontSize: 34,
+	      fill: "rgb(245, 255, 137)",
+	      className: "Radio",
+	      textAnchor: "start",
+	      children: SecureComms
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      x: Active_COM === 9 ? 260 : 146,
+	      y: 932,
+	      fontSize: 34,
+	      fill: "rgb(245, 255, 137)",
+	      className: "Radio",
+	      textAnchor: Active_COM === 9 ? 'end' : 'start',
+	      children: DispActiveFreq
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      x: Active_COM === 9 ? 110 : 52,
+	      y: 925,
+	      fontSize: 22,
+	      fill: "rgb(245, 255, 137)",
+	      className: "Radio",
+	      textAnchor: Active_COM === 9 ? 'end' : 'start',
+	      children: DispStbyFreq
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      visibility: Active_COM <= 6 && 0 < Active_COM ? 'visible' : 'hidden',
+	      x: 36,
+	      y: 1016,
+	      fontSize: 19,
+	      fill: "#00EE00",
+	      className: "Radio",
+	      textAnchor: "Middle",
 	      children: "MODE"
 	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
-	      x: 65,
+	      visibility: Active_COM === 1 || Active_COM === 2 ? 'visible' : 'hidden',
+	      x: 89,
 	      y: 1016,
 	      fontSize: 19,
 	      fill: "#00EE00",
 	      className: "Radio",
-	      textAnchor: "start",
+	      textAnchor: "Middle",
 	      children: "ECCM"
 	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
-	      x: 120,
+	      visibility: Active_COM === 1 || Active_COM === 2 ? 'visible' : 'hidden',
+	      x: 142,
 	      y: 1016,
 	      fontSize: 18,
 	      fill: "#00EE00",
 	      className: "Radio",
-	      textAnchor: "start",
+	      textAnchor: "Middle",
 	      children: "8.33"
 	    }), /*#__PURE__*/jsxRuntime.jsx("rect", {
-	      visibility: KHz_tune ? 'visible' : 'hidden',
+	      visibility: (Active_COM === 1 || Active_COM === 2) && KHz_tune ? 'visible' : 'hidden',
 	      x: 119.1,
 	      y: 1000,
 	      width: 45,
@@ -9464,15 +9623,16 @@
 	      fill: "none",
 	      "stroke-width": "2.5"
 	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
-	      x: 179,
+	      visibility: Active_COM <= 6 && 0 < Active_COM ? 'visible' : 'hidden',
+	      x: 196,
 	      y: 1016,
 	      fontSize: 19,
 	      fill: "#00EE00",
 	      className: "Radio",
-	      textAnchor: "start",
+	      textAnchor: "Middle",
 	      children: "SQL"
 	    }), /*#__PURE__*/jsxRuntime.jsx("rect", {
-	      visibility: SQL_active ? 'visible' : 'hidden',
+	      visibility: Active_COM <= 6 && 0 < Active_COM && SQL_active ? 'visible' : 'hidden',
 	      x: 178,
 	      y: 1000,
 	      width: 37,
@@ -9480,6 +9640,427 @@
 	      stroke: "#00EE00",
 	      fill: "none",
 	      "stroke-width": "2.5"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      visibility: Active_COM <= 6 && 0 < Active_COM ? 'visible' : 'hidden',
+	      x: 303,
+	      y: 1016,
+	      fontSize: 19,
+	      fill: "#00EE00",
+	      className: "Radio",
+	      textAnchor: "Middle",
+	      children: "GRD"
+	    }), /*#__PURE__*/jsxRuntime.jsx("rect", {
+	      visibility: Active_COM <= 6 && 0 < Active_COM && GRD_active ? 'visible' : 'hidden',
+	      x: 284.5,
+	      y: 1000,
+	      width: 37,
+	      height: 19,
+	      stroke: "#00EE00",
+	      fill: "none",
+	      "stroke-width": "2.5"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      visibility: Active_COM === 3 ? 'visible' : 'hidden',
+	      x: 89,
+	      y: 1016,
+	      fontSize: 18,
+	      fill: "#00EE00",
+	      className: "Radio",
+	      textAnchor: "Middle",
+	      children: "DF"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      visibility: Active_COM === 5 || Active_COM === 6 ? 'visible' : 'hidden',
+	      x: 85,
+	      y: 1016,
+	      fontSize: 18,
+	      fill: "#00EE00",
+	      className: "Radio",
+	      textAnchor: "Middle",
+	      children: "MUTE"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      visibility: Active_COM === 5 || Active_COM === 6 ? 'visible' : 'hidden',
+	      x: 143,
+	      y: 1016,
+	      fontSize: 18,
+	      fill: "#00EE00",
+	      className: "Radio",
+	      textAnchor: "Middle",
+	      children: "SILENT"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      visibility: Active_COM === 7 || Active_COM === 8 ? 'visible' : 'hidden',
+	      x: 36,
+	      y: 1016,
+	      fontSize: 18,
+	      fill: "#00EE00",
+	      className: "Radio",
+	      textAnchor: "Middle",
+	      children: "V/L"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      visibility: Active_COM === 7 || Active_COM === 8 ? 'visible' : 'hidden',
+	      x: 89,
+	      y: 1016,
+	      fontSize: 19,
+	      fill: "#00EE00",
+	      className: "Radio",
+	      textAnchor: "Middle",
+	      children: "MLS"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      visibility: Active_COM === 10 ? 'visible' : 'hidden',
+	      x: 36,
+	      y: 1016,
+	      fontSize: 18,
+	      fill: "#00EE00",
+	      className: "Radio",
+	      textAnchor: "Middle",
+	      children: "ADF"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      visibility: Active_COM === 10 ? 'visible' : 'hidden',
+	      x: 89,
+	      y: 1016,
+	      fontSize: 19,
+	      fill: "#00EE00",
+	      className: "Radio",
+	      textAnchor: "Middle",
+	      children: "ANT"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      visibility: Active_COM === 11 ? 'visible' : 'hidden',
+	      x: 36,
+	      y: 1016,
+	      fontSize: 18,
+	      fill: "#00EE00",
+	      className: "Radio",
+	      textAnchor: "Middle",
+	      children: "S/N"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      visibility: Active_COM === 11 ? 'visible' : 'hidden',
+	      x: 89,
+	      y: 1016,
+	      fontSize: 19,
+	      fill: "#00EE00",
+	      className: "Radio",
+	      textAnchor: "Middle",
+	      children: "M3A"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      visibility: Active_COM === 11 ? 'visible' : 'hidden',
+	      x: 142,
+	      y: 1016,
+	      fontSize: 19,
+	      fill: "#00EE00",
+	      className: "Radio",
+	      textAnchor: "Middle",
+	      children: "M1"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      visibility: Active_COM === 11 ? 'visible' : 'hidden',
+	      x: 303,
+	      y: 1016,
+	      fontSize: 19,
+	      fill: "#00EE00",
+	      className: "Radio",
+	      textAnchor: "Middle",
+	      children: "EMER"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      x: 250,
+	      y: 1016,
+	      fontSize: 19,
+	      fill: "#00EE00",
+	      className: "Radio",
+	      textAnchor: "Middle"
+	    }), /*#__PURE__*/jsxRuntime.jsxs("g", {
+	      visibility: Active_COM === 9 ? 'visible' : 'hidden',
+	      children: [/*#__PURE__*/jsxRuntime.jsx("text", {
+	        x: 89,
+	        y: 1016,
+	        fontSize: 18,
+	        fill: "#00EE00",
+	        className: "Radio",
+	        textAnchor: "Middle",
+	        children: "REC"
+	      }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	        x: 142,
+	        y: 1016,
+	        fontSize: 18,
+	        fill: "#00EE00",
+	        className: "Radio",
+	        textAnchor: "Middle",
+	        children: "T/R"
+	      }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	        x: 196,
+	        y: 1016,
+	        fontSize: 18,
+	        fill: "#00EE00",
+	        className: "Radio",
+	        textAnchor: "Middle",
+	        children: "A/REC"
+	      }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	        x: 250,
+	        y: 1016,
+	        fontSize: 18,
+	        fill: "#00EE00",
+	        className: "Radio",
+	        textAnchor: "Middle",
+	        children: "AT/R"
+	      })]
+	    })]
+	  });
+	};
+
+	const StbyEngDisp = props => {
+	  let [AFCS_Color] = useSimVar('L:C17_CPIT_ILLUM_MODE', 'bool');
+	  let [DispMode] = useSimVar('L:C17_SED_MODE', 'enum');
+	  let [ModeSelect] = useSimVar('L:C17_THR_MODE', 'enum');
+	  let [RatingTHR] = useSimVar('L:C17_ENG_SET_EPR', 'number');
+	  RatingTHR = Math.floor(RatingTHR * 10) / 10;
+	  let [EPREng1] = useSimVar('A:Turb Eng1 N1', 'percent');
+	  let [N2Eng1] = useSimVar('A:Turb Eng1 corrected N2', 'percent');
+	  let [EGTEng1] = useSimVar('A:General Eng1 exhaust gas temperature', 'celsius');
+	  let [N1Eng1] = useSimVar('A:Turb Eng1 corrected N1', 'percent');
+	  useSimVar('A:Turb Eng2 N1', 'percent');
+	  useSimVar('A:Turb Eng2 corrected N2', 'percent');
+	  let [EGTEng2] = useSimVar('A:General Eng2 exhaust gas temperature', 'celsius');
+	  let [N1Eng2] = useSimVar('A:Turb Eng2 corrected N1', 'percent');
+	  useSimVar('A:Turb Eng3 N1', 'percent');
+	  useSimVar('A:Turb Eng3 corrected N2', 'percent');
+	  let [EGTEng3] = useSimVar('A:General Eng3 exhaust gas temperature', 'celsius');
+	  let [N1Eng3] = useSimVar('A:Turb Eng3 corrected N1', 'percent');
+	  let [EPREng4] = useSimVar('A:Turb Eng4 N1', 'percent');
+	  let [N2Eng4] = useSimVar('A:Turb Eng4 corrected N2', 'percent');
+	  let [EGTEng4] = useSimVar('A:General Eng4 exhaust gas temperature', 'celsius');
+	  let [N1Eng4] = useSimVar('A:Turb Eng4 corrected N1', 'percent');
+	  EPREng1 = Math.floor(EPREng1);
+	  N2Eng1 = Math.floor(N2Eng1);
+	  EGTEng1 = Math.floor(EGTEng1);
+	  N1Eng1 = Math.floor(N1Eng1);
+	  EGTEng2 = Math.floor(EGTEng2);
+	  N1Eng2 = Math.floor(N1Eng2);
+	  EGTEng3 = Math.floor(EGTEng3);
+	  N1Eng3 = Math.floor(N1Eng3);
+	  EPREng4 = Math.floor(EPREng4);
+	  N2Eng4 = Math.floor(N2Eng4);
+	  EGTEng4 = Math.floor(EGTEng4);
+	  N1Eng4 = Math.floor(N1Eng4);
+	  useSimVar('L:C17_HUDDEBUG', 'bool');
+	  let ThrustMode;
+
+	  switch (ModeSelect) {
+	    case 0:
+	      ThrustMode = "MAN";
+	      break;
+
+	    case 1:
+	      ThrustMode = "DRT";
+	      break;
+
+	    case 2:
+	      ThrustMode = "MCT";
+	      break;
+
+	    case 3:
+	      ThrustMode = "INT";
+	      break;
+
+	    case 4:
+	      ThrustMode = "MAX";
+	      break;
+
+	    default:
+	      ThrustMode = "---";
+	      break;
+	  }
+
+	  let ColorMode;
+
+	  if (AFCS_Color === 0) {
+	    ColorMode = '#00EE00';
+	  } else {
+	    ColorMode = '#F6F6F6';
+	  }
+
+	  return /*#__PURE__*/jsxRuntime.jsxs("g", {
+	    children: [/*#__PURE__*/jsxRuntime.jsx("rect", {
+	      x: 645,
+	      y: 805,
+	      width: 367,
+	      height: 211,
+	      visibility: AFCS_Color === 0 ? 'visible' : 'hidden',
+	      className: "OHDispBackrnd",
+	      fill: "none",
+	      "stroke-width": "2.5"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      x: 729,
+	      y: 848,
+	      fontSize: 19,
+	      fill: ColorMode,
+	      className: "EngCNTRL",
+	      textAnchor: "end",
+	      children: "RTG"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      x: 882,
+	      y: 848,
+	      fontSize: 19,
+	      fill: ColorMode,
+	      className: "EngCNTRL",
+	      textAnchor: "end",
+	      children: "MODE"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      x: 964,
+	      y: 848,
+	      fontSize: 40,
+	      fill: ColorMode,
+	      className: "FrontPNL",
+	      textAnchor: "end",
+	      children: ThrustMode
+	    }), /*#__PURE__*/jsxRuntime.jsxs("text", {
+	      x: 814,
+	      y: 848,
+	      fontSize: 40,
+	      fill: ColorMode,
+	      className: "FrontPNL",
+	      textAnchor: "end",
+	      children: [RatingTHR, "0"]
+	    }), /*#__PURE__*/jsxRuntime.jsx("line", {
+	      x1: "689",
+	      y1: "852",
+	      x2: "969",
+	      y2: "852",
+	      stroke: ColorMode,
+	      "stroke-width": "1.7"
+	    }), /*#__PURE__*/jsxRuntime.jsx("line", {
+	      x1: "829",
+	      y1: "821",
+	      x2: "829",
+	      y2: "852",
+	      stroke: ColorMode,
+	      "stroke-width": "1.1"
+	    }), /*#__PURE__*/jsxRuntime.jsxs("g", {
+	      visibility: DispMode ? 'visible' : 'hidden',
+	      children: [/*#__PURE__*/jsxRuntime.jsx("text", {
+	        x: 825,
+	        y: 873,
+	        fontSize: 19,
+	        fill: ColorMode,
+	        className: "EngCNTRL",
+	        textAnchor: "middle",
+	        children: "N2"
+	      }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	        x: 724,
+	        y: 896,
+	        fontSize: 40,
+	        fill: ColorMode,
+	        className: "FrontPNL",
+	        textAnchor: "end",
+	        children: DispMode === 1 ? N2Eng1 : EPREng1
+	      }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	        x: 724,
+	        y: 945,
+	        fontSize: 40,
+	        fill: ColorMode,
+	        className: "FrontPNL",
+	        textAnchor: "end",
+	        children: EGTEng1
+	      }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	        x: 724,
+	        y: 993,
+	        fontSize: 40,
+	        fill: ColorMode,
+	        className: "FrontPNL",
+	        textAnchor: "end",
+	        children: N1Eng1
+	      }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	        x: 796,
+	        y: 896,
+	        fontSize: 40,
+	        fill: ColorMode,
+	        className: "FrontPNL",
+	        textAnchor: "end",
+	        children: DispMode === 1 ? N2Eng4 : EPREng4
+	      }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	        x: 796,
+	        y: 945,
+	        fontSize: 40,
+	        fill: ColorMode,
+	        className: "FrontPNL",
+	        textAnchor: "end",
+	        children: EGTEng2
+	      }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	        x: 796,
+	        y: 993,
+	        fontSize: 40,
+	        fill: ColorMode,
+	        className: "FrontPNL",
+	        textAnchor: "end",
+	        children: N1Eng2
+	      }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	        x: 916,
+	        y: 896,
+	        fontSize: 40,
+	        fill: ColorMode,
+	        className: "FrontPNL",
+	        textAnchor: "end",
+	        children: DispMode === 1 ? N2Eng4 : EPREng4
+	      }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	        x: 916,
+	        y: 945,
+	        fontSize: 40,
+	        fill: ColorMode,
+	        className: "FrontPNL",
+	        textAnchor: "end",
+	        children: EGTEng3
+	      }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	        x: 916,
+	        y: 993,
+	        fontSize: 40,
+	        fill: ColorMode,
+	        className: "FrontPNL",
+	        textAnchor: "end",
+	        children: N1Eng3
+	      }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	        x: 988,
+	        y: 896,
+	        fontSize: 40,
+	        fill: ColorMode,
+	        className: "FrontPNL",
+	        textAnchor: "end",
+	        children: DispMode === 1 ? N2Eng4 : EPREng4
+	      }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	        x: 988,
+	        y: 945,
+	        fontSize: 40,
+	        fill: ColorMode,
+	        className: "FrontPNL",
+	        textAnchor: "end",
+	        children: EGTEng4
+	      }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	        x: 988,
+	        y: 993,
+	        fontSize: 40,
+	        fill: ColorMode,
+	        className: "FrontPNL",
+	        textAnchor: "end",
+	        children: N1Eng4
+	      }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	        x: 825,
+	        y: 896,
+	        fontSize: 19,
+	        fill: ColorMode,
+	        className: "EngCNTRL",
+	        textAnchor: "middle",
+	        children: "EPR"
+	      }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	        x: 825,
+	        y: 944,
+	        fontSize: 19,
+	        fill: ColorMode,
+	        className: "EngCNTRL",
+	        textAnchor: "middle",
+	        children: "EGT"
+	      }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	        x: 825,
+	        y: 994,
+	        fontSize: 19,
+	        fill: ColorMode,
+	        className: "EngCNTRL",
+	        textAnchor: "middle",
+	        children: "N1"
+	      })]
 	    })]
 	  });
 	};
@@ -9508,7 +10089,14 @@
 	        height: 1024,
 	        fill: "black"
 	      }), /*#__PURE__*/jsxRuntime.jsxs("g", {
-	        children: [/*#__PURE__*/jsxRuntime.jsx(Ap_Disp, {}), /*#__PURE__*/jsxRuntime.jsx(WACAP, {}), /*#__PURE__*/jsxRuntime.jsx(RadioDisp, {}), /*#__PURE__*/jsxRuntime.jsx("image", {
+	        children: [/*#__PURE__*/jsxRuntime.jsx("image", {
+	          visibility: HUD_OVERLAY ? 'visible' : 'hidden',
+	          x: 644,
+	          y: 803,
+	          xlinkHref: "/Images/stg.png",
+	          height: 220,
+	          opacity: 0.7
+	        }), /*#__PURE__*/jsxRuntime.jsx(Ap_Disp, {}), /*#__PURE__*/jsxRuntime.jsx(WACAP, {}), /*#__PURE__*/jsxRuntime.jsx(StbyEngDisp, {}), /*#__PURE__*/jsxRuntime.jsx(RadioDisp, {}), /*#__PURE__*/jsxRuntime.jsx("image", {
 	          visibility: HUD_OVERLAY ? 'visible' : 'hidden',
 	          x: 0,
 	          y: 0,
@@ -9536,7 +10124,7 @@
 }
 
 @font-face {
-  font-family: "mono";
+  font-family: "OCRB_Regular";
 
   src: url("/Fonts/mono.ttf") format("truetype");
 }
@@ -9545,6 +10133,16 @@
   font-family: "OCRB";
 
   src: url("/Fonts/OcrB2.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: EngCntrl;
+
+  src: url("/Fonts/BoeingFont.ttf");
+}
+
+.EngCNTRL {
+  font-family: "EngCntrl";
 }
 
 .Radio {

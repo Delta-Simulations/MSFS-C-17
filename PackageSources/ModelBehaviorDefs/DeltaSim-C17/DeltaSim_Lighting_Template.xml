@@ -11,11 +11,9 @@
 <Template Name="Korry_Emmis_DELTASIM">
     <DefaultTemplateParameters>
         <INTENSITY>1</INTENSITY>
-        <OFFSET>0</OFFSET>
         <ELEC_INDEX>65</ELEC_INDEX>
         <TRUECODE>0</TRUECODE>
-        <TESTCODE>(L:C17_WACAP_Test, bool) 1 == or</TESTCODE>
-        <ANIM_LAG>0</ANIM_LAG>			
+        <TESTCODE>(L:C17_WACAP_Test, bool) 1 == or</TESTCODE>		
     </DefaultTemplateParameters>
     <Component ID="#NODE_ID#" Node="#NODE_ID#">
         <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">

@@ -1,9 +1,0 @@
-{
-    "index": "./index.tsx",
-    "isInteractive": true,
-    "name": "EFB",
-    "dimensions": {
-        "width": 1040,
-        "height": 810
-    }
-}

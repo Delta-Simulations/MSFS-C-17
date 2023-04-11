@@ -24,8 +24,8 @@
 			<Flags>
 				<FSXCompatibility>false</FSXCompatibility>
 			</Flags>
-			<AssetDir>PackageSources\Documentation\</AssetDir>
-			<OutputDir>Documentation\</OutputDir>
+			<AssetDir>PackageDefinitions\DeltaSimulations-c17\ContentInfo\</AssetDir>
+			<OutputDir>ContentInfo\DeltaSimulations-c17\</OutputDir>
 		</AssetGroup>
 		<AssetGroup Name="Effects">
 			<Type>Copy</Type>

@@ -83,16 +83,30 @@
     <Sound WwiseData="true" WwiseEvent="APU_Idle" ConeHeading="270.0" NodeName="APU_Inlet" SimVar="APU PCT RPM" Units="PERCENT" Index="0" FadeOutType="2" FadeOutTime="0.5">
 		<WwiseRTPC SimVar="APU PCT RPM" Units="PERCENT" Index="0" RTPCName="SIMVAR_APU_PCT_RPM" />
 		<Range LowerBound="1.0" />
-	  </Sound>   
+	</Sound>   
 	  
-	  <Sound WwiseData="true" WwiseEvent="APU_Starter" ConeHeading="270.0" NodeName="APU_Inlet" ViewPoint="Outside" BreakOnStop="true" SimVar="APU PCT STARTER" Units="PERCENT" Index="0">
+	<Sound WwiseData="true" WwiseEvent="APU_Starter" ConeHeading="270.0" NodeName="APU_Inlet" ViewPoint="Outside" SimVar="APU PCT RPM" Units="PERCENT" Index="0" FadeOutType="2" FadeOutTime="0.5">
+		<WwiseRTPC SimVar="APU PCT RPM" Units="PERCENT" Index="0" RTPCName="SIMVAR_APU_PCT_RPM" />
 		<Range LowerBound="1.0" />
-	  </Sound>
-	  
+		<WwiseRTPC LocalVar="C17_APUSTARTER" Units="ENUM" Index="0" RTPCName="APU_SWITCH_POS"/>
+	</Sound>
+	<Sound WwiseData="true" WwiseEvent="APU_Shutdown" ConeHeading="270.0" NodeName="APU_Inlet" ViewPoint="Outside" SimVar="APU PCT RPM" Units="PERCENT" Index="0" FadeOutType="2" FadeOutTime="0.5">
+		<WwiseRTPC SimVar="APU PCT RPM" Units="PERCENT" Index="0" RTPCName="SIMVAR_APU_PCT_RPM" />
+		<Range LowerBound="1.0" />
+		<WwiseRTPC LocalVar="C17_APUSTARTER" Units="ENUM" Index="0" RTPCName="APU_SWITCH_POS"/>
+	</Sound>
 
-	<Sound WwiseEvent="Pacs" WwiseData="true" SimVar="ELECTRICAL AVIONICS BUS VOLTAGE" Units="volts" Index="0" NodeName="Plane.093" FadeOutType="2" FadeOutTime="0.5">
-		<Range LowerBound="1"/>
-		<WwiseRTPC SimVar="ELECTRICAL AVIONICS BUS VOLTAGE" Units="volts" Index="0" RTPCName="Avionics_Level" />
+	<Sound WwiseEvent="Cpit_Pacs" WwiseData="true" SimVar="ELECTRICAL BATTERY BUS VOLTAGE" Units="volts" ViewPoint="Inside" Index="0" NodeName="VENT" FadeOutType="2">
+		<WwiseRTPC SimVar="ELECTRICAL MASTER BATTERY" Units="bool" Index="1" RTPCName="Avionics_Level" />
+		<Range LowerBound="1.0" />
+	</Sound>
+	<Sound WwiseEvent="Cpit_Ticking_Cmpas" WwiseData="true" SimVar="ELECTRICAL BATTERY BUS VOLTAGE" Units="volts" ViewPoint="Inside" Index="0" NodeName="Standby Horizon">
+		<WwiseRTPC SimVar="ELECTRICAL MASTER BATTERY" Units="bool" Index="1" RTPCName="Avionics_Level" />
+		<Range LowerBound="1.0" />
+	</Sound>
+	<Sound WwiseEvent="Cpit_Ticking_Cmpas" WwiseData="true" SimVar="ELECTRICAL BATTERY BUS VOLTAGE" Units="volts" ViewPoint="Inside" Index="0" NodeName="Standby Horizon2">
+		<WwiseRTPC SimVar="ELECTRICAL MASTER BATTERY" Units="bool" Index="1" RTPCName="Avionics_Level" />
+		<Range LowerBound="1.0" />
 	</Sound>
 
 
@@ -104,6 +118,11 @@
 		   <Range LowerBound="1" />
 		 </Requires>
 	</Sound>
+
+	<Sound WwiseData="true" WwiseEvent="AT_warning" Derived="true" LocalVar="C17_AUTOTHROTTLE_OFF" Units="BOOL" Index="0" NodeName="Plane.093">
+		<Range LowerBound="1" />
+	</Sound>
+
 	<Sound WwiseData="true" WwiseEvent="GPWS_2500" Continuous="false" LocalVar="C17_GPWS_2500" Units="BOOL" Index="0" NodeName="Plane.093">
 		<Requires LocalVar="C17_GPWS_2500" Index="0" Units="BOOL">
 			<Range LowerBound="1" />
@@ -195,9 +214,6 @@
 	<Sound WwiseData="true" WwiseEvent="STALL_WARNING" Derived="true"  LocalVar="C17_STICK_SHAKER" Units="BOOL" Index="0" NodeName="Plane.093">
 		<Range LowerBound="1" />
 	</Sound>
-
-
-
 	<Sound WwiseData="true" WwiseEvent="Set_Takeoff_Brakes"  Derived="true" LocalVar="C17_SET_TAKEOFF_BRAKE" Units="BOOL" Index="0" NodeName="Plane.093">
 		<Range LowerBound="1" />
 	</Sound>
@@ -210,7 +226,7 @@
 	<Sound WwiseData="true" WwiseEvent="Terrain_FlyUP"  Derived="true"  LocalVar="C17_TERRAIN_FLYUP" Units="BOOL" Index="0" NodeName="Plane.093">
 		<Range LowerBound="1" />
 	</Sound>
-	<Sound WwiseData="true" WwiseEvent="Too_Low_Gear"  Derived="true"  LocalVar="C17_EXTEND_GEAR" Units="BOOL" Index="0" NodeName="Plane.093">
+	<Sound WwiseData="true" WwiseEvent="Gear_Annun"  Derived="true"  LocalVar="C17_EXTEND_GEAR" Units="BOOL" Index="0" NodeName="Plane.093">
 		<Range LowerBound="1" />
 	</Sound>
 
@@ -218,12 +234,9 @@
 
  <!--================= WIND CARGO BAY =================== -->
 
-
-
-
-	<Sound WwiseData="true" WwiseEvent="WindSoundCargo"  Derived="true"  LocalVar="DoorSwitch" Units="ENUM" Index="0" NodeName="Plane.093">
-		<WwiseRTPC SimVar="DoorSwitch" Units="ENUM" Index="0" RTPCName="CARGO_BAY_OPEN"/>
-		<Range LowerBound="0.9" UpperBound="1.1"/>
+	<Sound WwiseData="true" WwiseEvent="WindSoundCargo"  Derived="true"  LocalVar="C17_CargoDoor_POS" Units="ENUM" Index="0" NodeName="Ramp toe">
+		<WwiseRTPC LocalVar="C17_CargoDoor_POS" Units="ENUM" Index="0" RTPCName="CARGO_BAY_OPEN"/>
+		<Range LowerBound="10" UpperBound="90"/>
 	</Sound>
 
 

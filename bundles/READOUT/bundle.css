@@ -5,7 +5,7 @@
 }
 
 @font-face {
-  font-family: "mono";
+  font-family: "OCRB_Regular";
 
   src: url("/Fonts/mono.ttf") format("truetype");
 }
@@ -14,6 +14,16 @@
   font-family: "OCRB";
 
   src: url("/Fonts/OcrB2.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: EngCntrl;
+
+  src: url("/Fonts/BoeingFont.ttf");
+}
+
+.EngCNTRL {
+  font-family: "EngCntrl";
 }
 
 .Radio {

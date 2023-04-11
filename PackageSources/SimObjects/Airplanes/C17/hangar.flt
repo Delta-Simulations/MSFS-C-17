@@ -102,24 +102,24 @@ IgnitionSwitch=0
 Afterburner=0
 
 [FuelSystem.0]
-Valve.1=True
-Valve.2=True
-Valve.3=True
-Valve.4=True
+Valve.1=False
+Valve.2=False
+Valve.3=False
+Valve.4=False
 Valve.5=False
 Valve.6=False
 Valve.7=False
 Valve.8=False
-Valve.9=True
-Pump.1=True
-Pump.2=True
-Pump.3=True
-Pump.4=True
-Pump.5=True
-Pump.6=True
-Pump.7=True
-Pump.8=True
-Pump.9=True
+Valve.9=False
+Pump.1=False
+Pump.2=False
+Pump.3=False
+Pump.4=False
+Pump.5=False
+Pump.6=False
+Pump.7=False
+Pump.8=False
+Pump.9=False
 
 [Systems.0]
 BatterySwitch=False
@@ -163,13 +163,6 @@ WingLights=False
 CabinLights=False
 GlareshieldLights=False
 PedestalLights=False
-Potentiometer.25=0.5
-Potentiometer.26=0.5
-Potentiometer.27=0.5
-Potentiometer.28=0.5
-Potentiometer.29=0.5
-Potentiometer.30=0.5
-Potentiometer.50=0.5
 
 [AutoPilot.0]
 MasterSwitch=False

@@ -42,25 +42,6 @@
 			   </UseTemplate>
 		   </Component>
 
-		   
-		   <Component ID = "DragTrail_Left_FX">
-            <Parameters Type="Override">
-                <FX_GRAPH_PARAM_0>DT_Side, -1</FX_GRAPH_PARAM_0>
-            </Parameters>
-            <UseTemplate Name="ASOBO_FX_DRAGTRAIL">
-                <FX_CONTACT_POINT_ID>3</FX_CONTACT_POINT_ID>
-            </UseTemplate>
-        </Component>
-
-        <Component ID = "DragTrail_Right_FX">
-            <Parameters Type="Override">
-                <FX_GRAPH_PARAM_0>DT_Side, 1</FX_GRAPH_PARAM_0>
-            </Parameters>
-            <UseTemplate Name="ASOBO_FX_DRAGTRAIL">
-                <FX_CONTACT_POINT_ID>4</FX_CONTACT_POINT_ID>
-            </UseTemplate>
-        </Component>
-
 
 		<Component ID="HANDLING">
 			<UseTemplate Name="ASOBO_HANDLING_Elevator_Template">
@@ -290,28 +271,6 @@
 		
 	</Behaviors>
 
-	<Animation name="KC135 Move" guid="adf8e8b3-065d-4721-a178-e690b9a93df8" type="Sim" typeParam="AutoPlay" />
-	<PartInfo>
-	  <Name>KC135 Move</Name>
-	  <AnimLength>500</AnimLength>
-	  <Animation>
-		<Parameter>
-		  <Code>(E:ABSOLUTE TIME, second) 6 % 125 *</Code>
-		</Parameter>
-	  </Animation>
-	</PartInfo>
-
-	<Animation name="Boom_drop" guid="033aa907-d913-4426-ae46-0c240bcd7163" type="Sim" typeParam="AutoPlay" />
-	<PartInfo>
-	  <Name>Boom_drop</Name>
-	  <AnimLength>100</AnimLength>
-	  <Animation>
-		<Parameter>
-		  <Code>(L:C17_KC135_BoomPOS, enum)</Code>
-		  <Lag>10</Lag>
-		</Parameter>
-	  </Animation>
-	</PartInfo>
 
 
 	<Animation name="WIPER_MOVE" guid="b436ca33-9a63-44ea-855f-4bd6f3049b0f" type="Sim" typeParam="AutoPlay" />
@@ -321,8 +280,14 @@
         <Animation>
             <Parameter>
                  <Code>
-                  (L:C17_WIPER, bool) 1 == if{ 
-                  (E:ABSOLUTE TIME, second) 2 % 100 *
+
+				(L:C17_WIPER, enum) 50 == if{ 2 (&gt;O:WiperSpeed, enum) }
+				(L:C17_WIPER, enum) 100 == if{ 1 (&gt;O:WiperSpeed, enum) }
+
+				  (L:C17_WIPER, enum) 0 &gt;
+				  (A:CIRCUIT ON:65,bool) 1 == and
+				  if{ 
+                  (E:ABSOLUTE TIME, second) (O:WiperSpeed, enum) % (L:C17_WIPER, enum) *
                   } els{ 0 }
                  </Code>
         </Parameter>
@@ -379,15 +344,22 @@
 				<Lag>10</Lag>
             </Parameter>
         </Animation>
+    </PartInfo> 
+	
+	<Animation name="APU INLET DOOR" guid="ed10adc4-e2bd-485e-b68a-647402735b0c" type="Sim" typeParam="AutoPlay" />
+    <PartInfo>
+        <Name>APU INLET DOOR</Name>
+        <AnimLength>100</AnimLength>
+        <Animation>
+            <Parameter>
+				 <Code>
+					(L:C17_APUDOOR_OPEN, bool) 100 *
+                 </Code>
+				<Lag>8</Lag>
+            </Parameter>
+        </Animation>
     </PartInfo>   
 
-	<Animation name="INTLIGHT" guid="7793e9b4-53ea-43cd-9285-f58ea3e47cb4" length="1" type="Sim" typeParam="AutoPlay" />
-    <PartInfo>
-    <Name>INTLIGHT</Name>
-    <Materials> <Emissive> <Parameter>
-    <Code>(A:LIGHT POTENTIOMETER:20, percent) 100 /</Code> 
-    </Parameter> </Emissive> </Materials>
-    </PartInfo>
 
     <Animation name="Aidrop_main" guid="ff3a42f8-abc2-4d9c-bae6-86d217abf46b" type="Sim" typeParam="AutoPlay" />
     <PartInfo>
@@ -755,7 +727,9 @@
 	<AnimLength>100</AnimLength>
 	<Animation>
 		<Parameter>
-			<Code>(L:C17_UARRSI_Slipway, bool) 100 *</Code>
+			<Code>
+				(L:C17_UARRSI_Slipway, bool) 100 *
+			</Code>
 			<Lag>10</Lag>
 	</Parameter>
 	</Animation>

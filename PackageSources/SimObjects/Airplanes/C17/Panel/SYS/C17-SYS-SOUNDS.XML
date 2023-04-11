@@ -63,6 +63,20 @@
   </Select>
 </Element>
 
+
+<!--		AUTOTHROTTLE OFF		-->	
+<Element>
+  <Select>
+        <Value>        
+          (A:CIRCUIT ON:65,bool) 1 ==
+          (K:AUTO_THROTTLE_DISCONNECT,bool) 1 == and
+          if{ 1 (&gt;L:C17_AUTOTHROTTLE_OFF,bool) }
+          els{ 0 (&gt;L:C17_AUTOTHROTTLE_OFF,bool) }					
+        </Value>
+  </Select>
+</Element>
+
+
 <!--		TAKEOFF PARKING BRAKE SET		-->	
 <Element>
   <Select>
@@ -159,27 +173,15 @@
   </Select>
 </Element>
 
-<!--		GEAR NOT DOWN	(A:CIRCUIT ON:65,bool)	-->	
+<!--		GEAR NOT DOWN	-->	
 <Element>
   <Select>
         <Value>
 
-<!-- (L:C17_AURAL_ACTIVE, bool) 1 ==
-(A:FLAPS HANDLE PERCENT,percent) 40 &gt; and
-(A:VERTICAL SPEED,feet per minute) -100 &lt; and
-(A:GEAR HANDLE POSITION,percent) 0.9 &gt; and
-(L:C17_RADALT,feet) 1000 &lt; and
-if{
-    1 (&gt;L:C17_EXTEND_GEAR,BOOL) 
-} els if{
-  (L:C17_GEAR_ANNUN_TEST, bool) 1 ==
-} els{
-  0 (&gt;L:C17_EXTEND_GEAR,BOOL) 
-  } -->
-(A:CIRCUIT ON:65,bool) 1 ==
-(L:C17_GEAR_ANNUN_TEST, bool) 1 == and
-if{1 (&gt;L:C17_EXTEND_GEAR,BOOL)}
-els{  0 (&gt;L:C17_EXTEND_GEAR,BOOL) }
+          (A:CIRCUIT ON:65,bool) 1 ==
+          (L:C17_GEAR_ANNUN_TEST, bool) 1 == and
+          if{1 (&gt;L:C17_EXTEND_GEAR,BOOL) }
+          els{ 0 (&gt;L:C17_EXTEND_GEAR,BOOL) }
 
         </Value>
   </Select>
@@ -216,17 +218,10 @@ els{  0 (&gt;L:C17_EXTEND_GEAR,BOOL) }
     <Select>
         <Value>
       (A:STALL WARNING,bool) 1 ==
-      (L:C17_AURAL_ACTIVE,bool) 1 == and
-      
+      (L:C17_STALL_TEST,bool) 1 == or
+      (A:CIRCUIT ON:65,bool) 1 == and
       if{ 1 ( &gt;L:C17_STICK_SHAKER,bool) }
       els{ 0 ( &gt;L:C17_STICK_SHAKER,bool) }
-
-      (A:CIRCUIT ON:65,bool) 1 ==
-      (L:C17_STALL_TEST,bool) 1 == and
-      if{ 1 ( &gt;L:C17_STICK_SHAKER,bool) }
-      els{ 0 ( &gt;L:C17_STICK_SHAKER,bool) }
-
-
         </Value>
     </Select>
 </Element>	

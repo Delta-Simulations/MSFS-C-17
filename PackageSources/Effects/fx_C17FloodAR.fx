@@ -7,6 +7,8 @@ Radius=-1
 Spot=1
 Tower=1
 Map=1
+VirtualCockpit=0
+Cockpit=0
 
 [Emitter.0]
 Lifetime=0.50, 0.50
@@ -53,8 +55,8 @@ Face=1, 1, 1
 Blend Mode=2
 Texture=fx_0.png
 Bounce=0.0
-Color Start=254, 255, 238, 1
-Color End=254, 255, 238, 1
+Color Start=255, 250, 201, 1
+Color End=255, 250, 201, 1
 Jitter Distance=0.0
 Jitter Time=0.0
 uv1=0.0, 0.0

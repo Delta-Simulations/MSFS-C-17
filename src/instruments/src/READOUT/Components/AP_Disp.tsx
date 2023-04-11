@@ -11,7 +11,7 @@ export const Ap_Disp = (props) => {
     AP_HDG = Math.floor(AP_HDG)
 
     let [AP_VertSpd] = useSimVar('AUTOPILOT VERTICAL HOLD VAR', 'feet per minute');
-    useEffect(() => console.log(AP_VertSpd), [AP_VertSpd])
+    // useEffect(() => console.log(AP_VertSpd), [AP_VertSpd])
 
     const [AP_API] = useSimVar('L:C17_API', 'enum');
     var [AFCS_Color] = useSimVar('L:C17_CPIT_ILLUM_MODE', 'bool');

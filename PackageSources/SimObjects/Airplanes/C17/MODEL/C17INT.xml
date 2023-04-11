@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ModelInfo>
 	<LODS>
-		<LOD minSize="0" ModelFile="C17int.gltf"/>
+		<LOD minSize="150" ModelFile="C17int.gltf"/>
+    <LOD minSize="50" ModelFile="C17int.gltf"/>
+    <LOD minSize="20" ModelFile="C17int_LOD01.gltf"/>
 	</LODS>
 	<Behaviors>
 		<Include ModelBehaviorFile="Asobo\Common.xml"/> <!-- ###################################### -->
@@ -14,25 +16,6 @@
     <Include Path="DeltaSim-C17\DeltaSim_Lighting_Template.xml"/>
 
   <Component ID="Other" >
-        <Component ID="CRS" Node="CRS_Knob1">
-          <UseTemplate Name="ASOBO_GT_Knob_Infinite_Push">
-            <NODE_ID>CRS_Knob1</NODE_ID>
-            <PART_ID>CRS_Knob1</PART_ID>
-            <ANIM_NAME_KNOB>CRS_KnobTurn1</ANIM_NAME_KNOB>
-            <CLOCKWISE_CODE>(L:NAV_ACTIVE, Bool) if{ (&gt;K:VOR2_OBI_INC) } els{ (&gt;K:VOR1_OBI_INC) }</CLOCKWISE_CODE>
-            <ANTICLOCKWISE_CODE>(L:NAV_ACTIVE, Bool) if{ (&gt;K:VOR2_OBI_DEC) } els{ (&gt;K:VOR1_OBI_DEC) }</ANTICLOCKWISE_CODE>
-            <INVERT_ANIM>true</INVERT_ANIM>
-            <LEFT_SINGLE_CODE>(A:NAV HAS DME:2, Bool) (A:NAV HAS DME:1, Bool) ! &amp; if{ (A:HEADING INDICATOR, degrees) (&gt;K:VOR2_SET) } els{ (A:HEADING INDICATOR, degrees) (&gt;K:VOR1_SET) }</LEFT_SINGLE_CODE>
-            <ANIMTIP_0>TT:COCKPIT.TOOLTIPS.AUTOPILOT_PANEL_CRS1_KNOB_LEFT</ANIMTIP_0>
-            <ANIMTIP_0_ON_CURSOR>TurnLeft</ANIMTIP_0_ON_CURSOR>
-            <ANIMTIP_1>TT:COCKPIT.TOOLTIPS.AUTOPILOT_PANEL_CRS1_KNOB_RIGHT</ANIMTIP_1>
-            <ANIMTIP_1_ON_CURSOR>TurnRight</ANIMTIP_1_ON_CURSOR>
-            <ANIMTIP_2>TT:COCKPIT.TOOLTIPS.AUTOPILOT_PANEL_CRS1_KNOB_PUSH</ANIMTIP_2>
-            <ANIMTIP_2_ON_CURSOR>Hand</ANIMTIP_2_ON_CURSOR>
-            <THRESHOLD_X_INPUT>0.05</THRESHOLD_X_INPUT>
-            <THRESHOLD_X_MOUSE>0.015</THRESHOLD_X_MOUSE>
-          </UseTemplate>
-        </Component>
 
         <Component ID="SideVisorL" Node="Visor_pivot.002">
           <UseTemplate Name="ASOBO_GT_Interaction_DraggingAxis_Code">
@@ -124,10 +107,12 @@
   <Component ID="Switch_UARRSI_Emerg_Handle" Node="Switch_UARRSI_Emerg_Handle">
     <UseTemplate Name="ASOBO_GT_Interaction_DraggingAxis_Code">
         <UP_CODE>
+            (O:C17_UARRSI_Slipway, number) 5 - 0 max (>O:C17_UARRSI_Slipway, number) 
             (L:C17_UARRSI_Slipway, number) 0.05 - 0 max (>L:C17_UARRSI_Slipway, number) 
         </UP_CODE>
         <DOWN_CODE>
             (L:C17_UARRSI_Slipway, number) 0.05 + 1 min (>L:C17_UARRSI_Slipway, number)
+            (O:C17_UARRSI_Slipway, number) 5 + 100 min (>O:C17_UARRSI_Slipway, number)
         </DOWN_CODE>
         <AXIS>Y</AXIS>
         <DRAG_AXIS_SCALE>300</DRAG_AXIS_SCALE>
@@ -138,13 +123,276 @@
       <ANIM_NAME>Switch_UARRSI_Emerg_Handle</ANIM_NAME>
       <NODE_ID>Switch_UARRSI_Emerg_Handle</NODE_ID>
       <ANIM_CODE>
-        (L:C17_UARRSI_Slipway, number) 100 *
+        (O:C17_UARRSI_Slipway, number)
       </ANIM_CODE>
       <ANIM_LAG>300</ANIM_LAG>
     </UseTemplate>
   </Component>
 
 </Component>
+<Component ID="FRONT_PANEL" >
+  <UseTemplate Name="GENERIC_Toggle_Switch_Template">
+    <ANIM>(L:C17_GEAR_ANNUN_TEST, bool) 100 *</ANIM>
+    <NODE_ID>BUTTON_GEAR_ANNUN_TEST</NODE_ID>
+    <TOOLTIPID>TEST GEAR ALERTS</TOOLTIPID>
+    <INTERACT_CODE>
+      1 (&gt;L:C17_GEAR_ANNUN_TEST, bool)
+    </INTERACT_CODE>
+    <POST_CODE>
+      (M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:C17_GEAR_ANNUN_TEST, bool) }
+    </POST_CODE>
+  </UseTemplate>
+
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>BUTTON_SED_MODE_MAX</NODE_ID>
+    <TOOLTIPID>THR MAXIMUM</TOOLTIPID>
+    <LEFT_SINGLE_CODE>4 (&gt;L:C17_THR_MODE,enum)</LEFT_SINGLE_CODE>
+  </UseTemplate>
+
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>BUTTON_SED_MODE_INIT</NODE_ID>
+    <TOOLTIPID>THR INTERMEDIATE</TOOLTIPID>
+    <LEFT_SINGLE_CODE>3 (&gt;L:C17_THR_MODE,enum)</LEFT_SINGLE_CODE>
+  </UseTemplate>
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>BUTTON_SED_MODE_MCT</NODE_ID>
+    <TOOLTIPID>THR MAX CONTINUOUS</TOOLTIPID>
+    <LEFT_SINGLE_CODE>2 (&gt;L:C17_THR_MODE,enum)</LEFT_SINGLE_CODE>
+  </UseTemplate>
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>BUTTON_SED_MODE_DRT</NODE_ID>
+    <TOOLTIPID>THR DERATED</TOOLTIPID>
+    <LEFT_SINGLE_CODE>1 (&gt;L:C17_THR_MODE,enum)</LEFT_SINGLE_CODE>
+  </UseTemplate>
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>BUTTON_SED_MODE_MAN</NODE_ID>
+    <TOOLTIPID>THR MANUAL</TOOLTIPID>
+    <LEFT_SINGLE_CODE>0 (&gt;L:C17_THR_MODE,enum)</LEFT_SINGLE_CODE>
+  </UseTemplate>
+
+    <UseTemplate Name="DELTASIM_Finite_Knob_Template">
+      <NODE_ID>KNOB_SEL_EPR_N2</NODE_ID>
+      <ANIM_CODE>(L:C17_SED_MODE) 50 *</ANIM_CODE>
+      <CLOCKWISE_CODE>
+        (L:C17_SED_MODE) 1 + 2 min (&gt;L:C17_SED_MODE)
+      </CLOCKWISE_CODE>
+      <ANTICLOCKWISE_CODE>
+        (L:C17_SED_MODE) 1 - 0 max (&gt;L:C17_SED_MODE)
+      </ANTICLOCKWISE_CODE>
+      <CW_ANIMTIP>DISPLAY MODE</CW_ANIMTIP>
+      <CCW_ANIMTIP>DISPLAY MODE</CCW_ANIMTIP>
+    </UseTemplate>
+
+    <UseTemplate Name="DELTASIM_Finite_Knob_Template">
+      <NODE_ID>KNOB_SEL_EPR_MAN</NODE_ID>
+      <ANIM_CODE>(L:C17_EPR_MAN_SEL) 58 *</ANIM_CODE>
+      <CLOCKWISE_CODE>
+        (L:C17_EPR_MAN_SEL,number) 0.05 + 1.7 min (&gt;L:C17_EPR_MAN_SEL,number)
+      </CLOCKWISE_CODE>
+      <ANTICLOCKWISE_CODE>
+        (L:C17_EPR_MAN_SEL,number) 0.05 - 1.0 max (&gt;L:C17_EPR_MAN_SEL,number)
+      </ANTICLOCKWISE_CODE>
+      <CW_ANIMTIP>MAN EPR</CW_ANIMTIP>
+      <CCW_ANIMTIP>MAN EPR</CCW_ANIMTIP>
+    </UseTemplate>
+
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>PushButton_Radio_Com</NODE_ID>
+    <TOOLTIPID>COM</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+      (L:C17_Nav_System_Active,enum) ++ (&gt;L:C17_Nav_System_Active,enum)
+      (L:C17_Nav_System_Active,enum) 2 &gt; if{ 1 (&gt;L:C17_Nav_System_Active,enum) }
+      (L:C17_Nav_System_Active,enum) 2 == if{ 1 (&gt;K:COM2_RECEIVE_SELECT) 0 (&gt;K:COM1_RECEIVE_SELECT) }els{ 1 (&gt;K:COM1_RECEIVE_SELECT) 0 (&gt;K:COM2_RECEIVE_SELECT)}
+    </LEFT_SINGLE_CODE>
+  </UseTemplate>
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>PushButton_Radio_Nav</NODE_ID>
+    <TOOLTIPID>NAV</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+      (L:C17_Nav_System_Active,enum) ++ (&gt;L:C17_Nav_System_Active,enum)
+      (L:C17_Nav_System_Active,enum) 8 &gt; 
+      (L:C17_Nav_System_Active,enum) 7 &lt; ||
+      if{ 7 (&gt;L:C17_Nav_System_Active,enum) }
+    </LEFT_SINGLE_CODE>
+  </UseTemplate>
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>PushButton_Radio_UHF</NODE_ID>
+    <TOOLTIPID>UHF</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+      3 (&gt;L:C17_Nav_System_Active,enum)
+    </LEFT_SINGLE_CODE>
+  </UseTemplate>
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>PushButton_Radio_VHF</NODE_ID>
+    <TOOLTIPID>VHF</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+      4 (&gt;L:C17_Nav_System_Active,enum)
+    </LEFT_SINGLE_CODE>
+  </UseTemplate>
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>PushButton_Radio_IFF</NODE_ID>
+    <TOOLTIPID>IFF</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+      11 (&gt;L:C17_Nav_System_Active,enum)
+    </LEFT_SINGLE_CODE>
+  </UseTemplate>
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>PushButton_Radio_HF</NODE_ID>
+    <TOOLTIPID>HF</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+      (L:C17_Nav_System_Active,enum) ++ (&gt;L:C17_Nav_System_Active,enum)
+      (L:C17_Nav_System_Active,enum) 6 &gt; 
+      (L:C17_Nav_System_Active,enum) 5 &lt; ||
+      if{ 5 (&gt;L:C17_Nav_System_Active,enum) }
+    </LEFT_SINGLE_CODE>
+  </UseTemplate>
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>PushButton_Radio_TAC</NODE_ID>
+    <TOOLTIPID>TAC</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+      9 (&gt;L:C17_Nav_System_Active,enum)
+    </LEFT_SINGLE_CODE>
+  </UseTemplate>
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>PushButton_Radio_ADF</NODE_ID>
+    <TOOLTIPID>ADF</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+      10 (&gt;L:C17_Nav_System_Active,enum)
+    </LEFT_SINGLE_CODE>
+  </UseTemplate>
+
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>PushButton_Radio_MSK_3</NODE_ID>
+    <TOOLTIPID>MSK 3</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+      (L:C17_Nav_System_Active,enum) 1 ==
+      (L:C17_Nav_System_Active,enum) 2 == 
+      or if{ (L:C17_KHz_Tune, bool) ! (&gt;L:C17_KHz_Tune, bool) }
+    </LEFT_SINGLE_CODE>
+  </UseTemplate>
+
+
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+      <NODE_ID>PushButton_Radio_Xfer</NODE_ID>
+      <TOOLTIPID>SWAP</TOOLTIPID>
+      <LEFT_SINGLE_CODE>
+          (L:C17_Nav_System_Active,enum) 1 == if{ 1 (&gt;K:COM1_RADIO_SWAP) }
+          (L:C17_Nav_System_Active,enum) 2 == if{ 1 (&gt;K:COM2_RADIO_SWAP) }
+          (L:C17_Nav_System_Active,enum) 7 == if{ 1 (&gt;K:NAV1_RADIO_SWAP) }
+          (L:C17_Nav_System_Active,enum) 8 == if{ 1 (&gt;K:NAV2_RADIO_SWAP) }
+          (L:C17_Nav_System_Active,enum) 9 == if{ 1 (K:TACAN1_SWAP) ! (&gt;K:TACAN1_SWAP)}
+    </LEFT_SINGLE_CODE>
+  </UseTemplate>
+
+
+
+    <Component ID="Knob_Freq_Outer" Node="Knob_Freq_Outer">
+      <UseTemplate Name="ASOBO_GT_Knob_Infinite">
+        <ANIM_NAME>Knob_Freq_Outer</ANIM_NAME>					   
+        <CLOCKWISE_CODE>  
+          (L:C17_Nav_System_Active, enum) 1 == if{ (&gt;K:COM_RADIO_WHOLE_INC) } 
+          (L:C17_Nav_System_Active, enum) 2 == if{ (&gt;K:COM2_RADIO_WHOLE_INC) }
+          (L:C17_Nav_System_Active, enum) 7 == if{ (&gt;K:NAV1_RADIO_WHOLE_INC) } 
+          (L:C17_Nav_System_Active, enum) 8 == if{ (&gt;K:NAV2_RADIO_WHOLE_INC) }
+        </CLOCKWISE_CODE>
+        <ANTICLOCKWISE_CODE>
+          (L:C17_Nav_System_Active, enum) 1 == if{ (&gt;K:COM_RADIO_WHOLE_DEC) } 
+          (L:C17_Nav_System_Active, enum) 2 == if{ (&gt;K:COM2_RADIO_WHOLE_DEC) }
+          (L:C17_Nav_System_Active, enum) 7 == if{ (&gt;K:NAV1_RADIO_WHOLE_DEC) } 
+          (L:C17_Nav_System_Active, enum) 8 == if{ (&gt;K:NAV2_RADIO_WHOLE_DEC) }
+        </ANTICLOCKWISE_CODE>
+        <ANIMTIP_0>NAV MHZ</ANIMTIP_0>
+        <ANIMTIP_1>NAV MHZ</ANIMTIP_1>
+      </UseTemplate>
+    </Component>
+    <Component ID="Knob_Freq_Inner" Node="Knob_Freq_Inner">
+      <UseTemplate Name="ASOBO_GT_Knob_Infinite">
+        <ANIM_NAME>Knob_Freq_Inner</ANIM_NAME>					   
+        <CLOCKWISE_CODE>  
+            (L:C17_Nav_System_Active, enum) 1 == (L:C17_KHz_Tune, bool) 1 == and if{ (A:COM STANDBY FREQUENCY:1, Hz) 8330 + (&gt;K:COM_STBY_RADIO_SET_HZ) } 
+            (L:C17_Nav_System_Active, enum) 1 == (L:C17_KHz_Tune, bool) 0 == and if{ (&gt;K:COM_RADIO_FRACT_INC_CARRY) } 
+            (L:C17_Nav_System_Active, enum) 2 == (L:C17_KHz_Tune, bool) 1 == and if{ (A:COM STANDBY FREQUENCY:2, Hz) 8330 + (&gt;K:COM2_STBY_RADIO_SET_HZ) } 
+            (L:C17_Nav_System_Active, enum) 2 == (L:C17_KHz_Tune, bool) 0 == and if{ (&gt;K:COM2_RADIO_FRACT_INC_CARRY) }
+            (L:C17_Nav_System_Active, enum) 7 == if{ (&gt;K:NAV1_RADIO_FRACT_INC_CARRY) } 
+            (L:C17_Nav_System_Active, enum) 8 == if{ (&gt;K:NAV2_RADIO_FRACT_INC_CARRY) }
+            (L:C17_Nav_System_Active, enum) 10 == if{ (&gt;K:ADF_1_INC) }
+        </CLOCKWISE_CODE>
+        <ANTICLOCKWISE_CODE>
+          (L:C17_Nav_System_Active, enum) 1 == (L:C17_KHz_Tune, bool) 1 == and if{ (A:COM STANDBY FREQUENCY:1, Hz) 8330 - (&gt;K:COM_STBY_RADIO_SET_HZ) } 
+          (L:C17_Nav_System_Active, enum) 1 == (L:C17_KHz_Tune, bool) 0 == and if{ (&gt;K:COM_RADIO_FRACT_DEC_CARRY) } 
+          (L:C17_Nav_System_Active, enum) 2 == (L:C17_KHz_Tune, bool) 1 == and if{ (A:COM STANDBY FREQUENCY:2, Hz) 8330 - (&gt;K:COM2_STBY_RADIO_SET_HZ) } 
+          (L:C17_Nav_System_Active, enum) 2 == (L:C17_KHz_Tune, bool) 0 == and if{ (&gt;K:COM2_RADIO_FRACT_DEC_CARRY) } 
+          (L:C17_Nav_System_Active, enum) 7 == if{ (&gt;K:NAV1_RADIO_FRACT_DEC_CARRY) } 
+          (L:C17_Nav_System_Active, enum) 8 == if{ (&gt;K:NAV2_RADIO_FRACT_DEC_CARRY) }
+          (L:C17_Nav_System_Active, enum) 10 == if{ (&gt;K:ADF_1_DEC) }
+        </ANTICLOCKWISE_CODE>
+        <ANIMTIP_0>NAV KHZ</ANIMTIP_0>
+        <ANIMTIP_1>NAV KHZ</ANIMTIP_1>
+      </UseTemplate>
+    </Component>
+
+    <Component ID="Knob_CRS_Outer" Node="Knob_CRS_Outer">
+      <UseTemplate Name="ASOBO_GT_Knob_Infinite">
+        <ANIM_NAME>Knob_CRS_Outer</ANIM_NAME>
+        <CLOCKWISE_CODE>
+          (L:C17_Nav_System_Active, enum) 7 == if{ (&gt;K:VOR1_OBI_FAST_INC) }
+          (L:C17_Nav_System_Active, enum) 8 == if{ (&gt;K:VOR2_OBI_FAST_INC) }
+          (L:C17_Nav_System_Active, enum) 9 == if{ (A:TACAN STANDBY CHANNEL:1,number) ++ (&gt;K:TACAN1_STANDBY_CHANNEL_SET) }
+
+          (L:C17_Nav_System_Active, enum) 10 == if{ (&gt;K:ADF_1_INC) }
+        </CLOCKWISE_CODE>
+        <ANTICLOCKWISE_CODE>
+          (L:C17_Nav_System_Active, enum) 7 == if{ (&gt;K:VOR1_OBI_FAST_DEC) } 
+          (L:C17_Nav_System_Active, enum) 8 == if{ (&gt;K:VOR2_OBI_FAST_DEC) }
+          (L:C17_Nav_System_Active, enum) 9 == if{ (A:TACAN STANDBY CHANNEL:1,number) -- (&gt;K:TACAN1_STANDBY_CHANNEL_SET) }
+
+          (L:C17_Nav_System_Active, enum) 10 == if{ (&gt;K:ADF_1_DEC) }
+        </ANTICLOCKWISE_CODE>
+        <ANIMTIP_0>ADJ LARGE</ANIMTIP_0>
+        <ANIMTIP_1>ADJ LARGE</ANIMTIP_1>
+      </UseTemplate>
+    </Component>
+    <Component ID="Knob_CRS_Inner" Node="Knob_CRS_Inner">
+      <UseTemplate Name="ASOBO_GT_Knob_Infinite">
+        <NODE_ID>Knob_CRS_Inner</NODE_ID>
+        <ANIM_NAME>Knob_CRS_Inner</ANIM_NAME>
+        <CLOCKWISE_CODE>
+          (L:C17_Nav_System_Active, enum) 7 == if{ (&gt;K:VOR1_OBI_INC) } 
+          (L:C17_Nav_System_Active, enum) 8 == if{ (&gt;K:VOR2_OBI_INC) }
+          (L:C17_Nav_System_Active, enum) 9 == if{ 1 (&gt;K:TACAN1_STANDBY_MODE_SET) }
+        </CLOCKWISE_CODE>
+        <ANTICLOCKWISE_CODE>
+          (L:C17_Nav_System_Active, enum) 1 == if{ (&gt;K:VOR1_OBI_DEC) } 
+          (L:C17_Nav_System_Active, enum) 8 == if{ (&gt;K:VOR2_OBI_DEC) }
+          (L:C17_Nav_System_Active, enum) 9 == if{ 0 (&gt;K:TACAN1_STANDBY_MODE_SET) }
+        </ANTICLOCKWISE_CODE>
+        <ANIMTIP_0>ADJ SMALL</ANIMTIP_0>
+        <ANIMTIP_1>ADJ SMALL</ANIMTIP_1>
+      </UseTemplate>
+    </Component>
+
+   
+
+</Component>
+
+
+
+<Component ID="GAUGES_FRONTPNL" >
+ 
+    <Component ID="Knob_Altimeter_Set" Node="Knob_Altimeter_Set">
+        <UseTemplate Name="ASOBO_GT_Knob_Infinite">
+            <ANIM_NAME>Knob_Altimeter_Set</ANIM_NAME>
+            <CLOCKWISE_CODE>
+              (A:KOHLSMAN SETTING HG, mbar) 1055 &lt; if{ (&gt;K:KOHLSMAN_INC) }
+            </CLOCKWISE_CODE>
+            <ANTICLOCKWISE_CODE>
+              (A:KOHLSMAN SETTING HG, mbar) 960 &gt; if{ (&gt;K:KOHLSMAN_DEC) }
+            </ANTICLOCKWISE_CODE>
+        </UseTemplate>
+    </Component>
+
+</Component>
+
 
 <Component ID="INTERIOR_LIGHTING" >
 
@@ -165,34 +413,30 @@
   <CODE_POS_2></CODE_POS_2>
 </UseTemplate>
 </Component>
-
-
 <UseTemplate Name="DELTASIM_Finite_Knob_Template">
   <NODE_ID>Knob_Wiper_PWR</NODE_ID>
-  <ANIM_CODE>(L:C17_WIPER, percent)</ANIM_CODE>
+  <ANIM_CODE>(L:C17_WIPER, enum)</ANIM_CODE>
   <CLOCKWISE_CODE>
-    (L:C17_WIPER, enum) 1 + 2 min (&gt;L:C17_WIPER, enum)
+    (L:C17_WIPER, enum) 50 + 100 min (&gt;L:C17_WIPER, enum)
   </CLOCKWISE_CODE>
   <ANTICLOCKWISE_CODE>
-    (L:C17_WIPER, enum) 1 - 0 max (&gt;L:C17_WIPER, enum)
+    (L:C17_WIPER, enum) 50 - 0 max (&gt;L:C17_WIPER, enum)
   </ANTICLOCKWISE_CODE>
   <CW_ANIMTIP>WIPER CNTRL</CW_ANIMTIP>
   <CCW_ANIMTIP>WIPER CNTRL</CCW_ANIMTIP>
 </UseTemplate>
 <UseTemplate Name="DELTASIM_Finite_Knob_Template">
   <NODE_ID>Knob_Wiper_2_PWR</NODE_ID>
-  <ANIM_CODE>(L:C17_WIPER, percent)</ANIM_CODE>
+  <ANIM_CODE>(L:C17_WIPER, enum)</ANIM_CODE>
   <CLOCKWISE_CODE>
-    (L:C17_WIPER, enum) 1 + 2 min (&gt;L:C17_WIPER, enum)
+    (L:C17_WIPER, enum) 50 + 100 min (&gt;L:C17_WIPER, enum)
   </CLOCKWISE_CODE>
   <ANTICLOCKWISE_CODE>
-    (L:C17_WIPER, enum) 1 - 0 max (&gt;L:C17_WIPER, enum)
+    (L:C17_WIPER, enum) 50 - 0 max (&gt;L:C17_WIPER, enum)
   </ANTICLOCKWISE_CODE>
   <CW_ANIMTIP>WIPER CNTRL</CW_ANIMTIP>
   <CCW_ANIMTIP>WIPER CNTRL</CCW_ANIMTIP>
 </UseTemplate>
-
-
 <UseTemplate Name="DELTASIM_Finite_Knob_Template">
   <NODE_ID>Knob_Center_PNL_PWR</NODE_ID>
   <ANIM_CODE>(L:C17_AFCS_PNL_BACKLIGHT, percent)</ANIM_CODE>
@@ -277,7 +521,6 @@
   <CW_ANIMTIP>PILOT PNL BACKLIGHT</CW_ANIMTIP>
   <CCW_ANIMTIP>PILOT PNL BACKLIGHT</CCW_ANIMTIP>
 </UseTemplate>
-
 <UseTemplate Name="DELTASIM_Finite_Knob_Template">
   <NODE_ID>Knob_Center_PNL_FLOOD_LT</NODE_ID>
   <ANIM_CODE>(A:LIGHT POTENTIOMETER:11, percent)</ANIM_CODE>
@@ -350,7 +593,6 @@
   <CW_ANIMTIP>Overhead Flood</CW_ANIMTIP>
   <CCW_ANIMTIP>Overhead Flood</CCW_ANIMTIP>
 </UseTemplate>
-
 <UseTemplate Name="DELTASIM_Finite_Knob_Template">
   <NODE_ID>Knob_FLOOR_LGT_PWR</NODE_ID>
   <ANIM_CODE>(A:LIGHT POTENTIOMETER:18, percent)</ANIM_CODE>
@@ -363,15 +605,11 @@
   <CW_ANIMTIP>Floor Flood</CW_ANIMTIP>
   <CCW_ANIMTIP>Floor Flood</CCW_ANIMTIP>
 </UseTemplate>
-
-
-
 <UseTemplate Name="LVAR_Switch_Template">
   <SIMVAR>C17_LIGHTS_STAIRS</SIMVAR>
   <NODE_ID>Switch_Stairway_FLOOD</NODE_ID>
   <TOOLTIPID>Staircase Flood</TOOLTIPID>
 </UseTemplate>
-
 <UseTemplate Name="LVAR_Switch_Template">
   <SIMVAR>C17_LIGHTS_EPC</SIMVAR>
   <NODE_ID>Switch_CPIT_EPC_FLOOD</NODE_ID>
@@ -387,20 +625,16 @@
   <NODE_ID>Switch_C_Gear_Insp</NODE_ID>
   <TOOLTIPID>Gear Inspection Flood</TOOLTIPID>
 </UseTemplate>
-
 <UseTemplate Name="LVAR_Switch_Template">
   <SIMVAR>C17_CGEAR_INSP</SIMVAR>
   <NODE_ID>Switch_C_Gear_Insp</NODE_ID>
   <TOOLTIPID>Gear Inspection Flood</TOOLTIPID>
 </UseTemplate>
-
 <UseTemplate Name="LVAR_Switch_Template">
   <SIMVAR>C17_LIGHTS_CREWFLOOD</SIMVAR>
   <NODE_ID>Switch_CrewRest_FLOOD</NODE_ID>
   <TOOLTIPID>Crew Rest Flood</TOOLTIPID>
 </UseTemplate>
-
-
 <Component ID="CargoDoorSwitch" Node="PUSH_AUTOPILOT_AP1.008">
   <UseTemplate Name="DELTASIM_Momentary_Cargo">
     <NODE_ID>PUSH_AUTOPILOT_AP1.008</NODE_ID>
@@ -703,8 +937,33 @@
 
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>KORRY_WARNING_GEAR_ALERT</NODE_ID>
-    <TRUECODE>(L:C17_EXTEND_GEAR,BOOL, bool) 1 ==</TRUECODE>
+    <TRUECODE>(L:C17_EXTEND_GEAR, bool) 1 ==</TRUECODE>
     <TESTCODE>(L:C17_GEAR_ANNUN_TEST, bool) 1 == or</TESTCODE>
+    <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !</INTENSITY>
+  </UseTemplate>
+
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>Korry_FireAlertEng1</NODE_ID>
+    <TRUECODE> (L:C17_ENG1FIRE, bool) 1 == </TRUECODE>
+    <TESTCODE>(L:C17_FIRE_ANNUN_TEST, bool) 1 == or</TESTCODE>
+    <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !</INTENSITY>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>Korry_FireAlertEng2</NODE_ID>
+    <TRUECODE> (L:C17_ENG2FIRE, bool) 1 == </TRUECODE>
+    <TESTCODE>(L:C17_FIRE_ANNUN_TEST, bool) 1 == or</TESTCODE>
+    <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !</INTENSITY>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>Korry_FireAlertEng3</NODE_ID>
+    <TRUECODE> (L:C17_ENG3FIRE, bool) 1 == </TRUECODE>
+    <TESTCODE>(L:C17_FIRE_ANNUN_TEST, bool) 1 == or</TESTCODE>
+    <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !</INTENSITY>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>Korry_FireAlertEng4</NODE_ID>
+    <TRUECODE> (L:C17_ENG4FIRE, bool) 1 == </TRUECODE>
+    <TESTCODE>(L:C17_FIRE_ANNUN_TEST, bool) 1 == or</TESTCODE>
     <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !</INTENSITY>
   </UseTemplate>
 
@@ -719,6 +978,7 @@
       (M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:C17_GEAR_ANNUN_TEST, bool) }
     </POST_CODE>
   </UseTemplate>
+
 
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>Korry_UARRSI_POS</NODE_ID>
@@ -796,7 +1056,6 @@
     <TOOLTIPID></TOOLTIPID>
     <ANIM_LAG>50</ANIM_LAG>	
   </UseTemplate>
-
   <UseTemplate Name="DELTASIM_Dummy_Switch_Template">
     <NODE_ID>Switch_Locker_Handle</NODE_ID>
     <TOOLTIPID>EQUIPMENT LOCKER</TOOLTIPID>
@@ -968,7 +1227,6 @@
 
 
 </Component>
-  
 <Component ID="ElectricalSystem" > 
 
 	<Component ID="SWITCH_STARTER_APU" Node="SWITCH_STARTER_APU">
@@ -1106,7 +1364,6 @@
   </UseTemplate>
 
 </Component>
-
 <Component ID="Hydraulics_Panel">
   <Component ID="Switches">
     <DefaultTemplateParameters>
@@ -1142,7 +1399,6 @@
 
   </Component>
 </Component>
-
 <Component ID="Yoke_Controls">
       <UseTemplate Name="ASOBO_GT_Update">
         <!-- REV THRUST ABILITY -->
@@ -1177,7 +1433,6 @@
 
 
 </Component>
-
 <Component ID="Pedestal_Fwd">
 
   <UseTemplate Name="ASOBO_ENGINE_Switch_TOGA_Template">
@@ -1233,19 +1488,13 @@
             <TOOLTIPID>TT:COCKPIT.TOOLTIPS.RIGHT_THROTTLE_CONTROL</TOOLTIPID>
         </UseTemplate>
 </Component>
-
-<Component ID="AntiIce_Panel">
-
-      <UseTemplate Name="ASOBO_AUTOPILOT_Knob_Bank_Limit_Template">
-        <NODE_ID>knob_autopilot_hdg_bank_limit</NODE_ID>
-        <ANIM_NAME>knob_autopilot_hdg_bank_limit</ANIM_NAME>
-        <SETTINGS_COUNT>5</SETTINGS_COUNT>
-        <COUNT>5</COUNT>
-      </UseTemplate>
-</Component>
-
 <Component ID="Autopilot_PNL">
-
+  <UseTemplate Name="ASOBO_AUTOPILOT_Knob_Bank_Limit_Template">
+    <NODE_ID>knob_autopilot_hdg_bank_limit</NODE_ID>
+    <ANIM_NAME>knob_autopilot_hdg_bank_limit</ANIM_NAME>
+    <SETTINGS_COUNT>5</SETTINGS_COUNT>
+    <COUNT>5</COUNT>
+  </UseTemplate>
           <Component ID="Autopilot_Heading_Set" Node="HDG_KNOB">
             <UseTemplate Name="ASOBO_GT_Knob_Infinite_Push">
               <NODE_ID>HDG_KNOB</NODE_ID>
@@ -1325,15 +1574,6 @@
 					<ANIM_NAME>autopilot_wheel_vert_speed</ANIM_NAME>
 					<UP_DEC_DN_INC>True</UP_DEC_DN_INC>
 				</UseTemplate>
-        <!--UseTemplate Name="ASOBO_AUTOPILOT_Push_VerticalSpeed_Template">
-					<NODE_ID>btn_autopilot_vs</NODE_ID>
-					<ANIM_NAME>autopilot_push_vs</ANIM_NAME>
-					<EMISSIVE_NODE_ID>btn_autopilot_vs_seq1</EMISSIVE_NODE_ID>
-					<ACTIVE_NODE_ID>btn_autopilot_vs_seq2</ACTIVE_NODE_ID>
-					<AUTOPILOT_PUSH_BUTTON_ON>autopilot_largepush_button_on</AUTOPILOT_PUSH_BUTTON_ON>
-					<AUTOPILOT_PUSH_BUTTON_OFF>autopilot_largepush_button_off</AUTOPILOT_PUSH_BUTTON_OFF>		
-					<TYPE>B747</TYPE>
-				</UseTemplate-->
         <UseTemplate Name="ASOBO_AUTOPILOT_Knob_Altitude_Template">
           <NODE_ID>knob_autopilot_alt</NODE_ID>
           <ANIM_NAME_KNOB>autopilot_knob_alt</ANIM_NAME_KNOB>
@@ -1930,23 +2170,25 @@
 	  <Animation>
 		<Parameter>
 		  <Code>
+      (A:CIRCUIT ON:65,bool) 1 ==
+      if{
 			(A:ATTITUDE INDICATOR PITCH DEGREES, degree) 180 +
+      }els{150}
 		  </Code>
 		</Parameter>
 	  </Animation>
 	</PartInfo>
-<Animation name="attitude_indicator_bank"      guid="5eedd8e5-2f3f-4299-854b-9a86ac3e2851" type="Sim" typeParam="AutoPlay" />
+<Animation name="Gauge_Indc_Airspeed"      guid="5eedd8e5-2f3f-4299-854b-9a86ac3e2851" type="Sim" typeParam="AutoPlay" />
   <PartInfo>
-    <Name>attitude_indicator_bank</Name>
-    <AnimLength>360</AnimLength>
+    <Name>Gauge_Indc_Airspeed</Name>
+    <AnimLength>100</AnimLength>
     <Animation>
       <Parameter>
-        <Code>(A:ATTITUDE INDICATOR BANK DEGREES, degree) dnor</Code>
+        <Code>
+          (A:AIRSPEED INDICATED, knots) 10 /
+        </Code>
       </Parameter>
     </Animation>
-    <MouseRect>
-      <TooltipID>TOOLTIPTEXT_BACKUP_ATTITUDE_INDICATOR_BANK_PITCH</TooltipID>
-    </MouseRect>
   </PartInfo>
 <!-- RMI -->
 <Animation name="RMI_INTERIOR" guid="8afbb568-df16-4605-ac5e-4585f6270637" length="360" type="Sim" typeParam2="RMI_INTERIOR" typeParam="AutoPlay" />

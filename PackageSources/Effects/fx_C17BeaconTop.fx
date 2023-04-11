@@ -8,7 +8,7 @@ Priority=0
 
 [Emitter.0]
 Lifetime=0.0, 0.0
-Delay=0.45, 0.45
+Delay=1, 1
 Bounce=0.0
 Light=1
 No Interpolate=1
@@ -28,7 +28,7 @@ Y Offset=0.0, 0.0
 Z Offset=0.0, 0.0
 
 [Particle.0]
-Lifetime=0.1, 0.1
+Lifetime=0.7, 0.7
 Type=19
 X Scale=0.15, 0.15
 Y Scale=0.15, 0.15
