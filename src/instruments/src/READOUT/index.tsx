@@ -1,13 +1,14 @@
 import React, {FC} from 'react';
 import { render } from '../Hooks/index';
 import { useSimVar } from '../Hooks/simVars';
-import { Ap_Disp } from './Components/Ap_Disp';
 import './style.scss';
 import { VertSpeed } from './Components/VSpeed';
 import { Clock } from './Components/Clock';
 import { WACAP } from './Components/WACAP';
 import { RadioDisp } from './Components/RadioDisp';
 import { StbyEngDisp } from './Components/StbyEngDisp';
+import { AURALS } from './Components/AURALS';
+import { Ap_Disp } from './Components/AP_Disp';
 
 interface ElectricityProps {
     circuit: string | number;
@@ -33,7 +34,7 @@ const AP = () => {
                 <g>   
                                       
                     <image visibility={HUD_OVERLAY ? 'visible' : 'hidden'} x={644} y={803} xlinkHref="/Images/stg.png" height={220} opacity={0.7}/>
-                    
+                    {/* <AURALS /> */}
                     <Ap_Disp />
                     <WACAP />
                     <StbyEngDisp />

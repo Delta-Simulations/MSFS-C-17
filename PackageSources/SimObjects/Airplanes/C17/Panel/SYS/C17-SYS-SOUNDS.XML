@@ -11,20 +11,84 @@
     </Select>
   </Element>
 
+
   <!-- ARM CALLOUTS-->
 <Element>
   <Select>
       <Value>
     (A:CIRCUIT ON:65,bool) 1 ==
     (A:SIM ON GROUND,bool) 0 == and
-    if{ 1 ( &gt;L:C17_AURAL_ACTIVE,bool) }
-    els{ 0 ( &gt;L:C17_AURAL_ACTIVE,bool) }
+    if{ 1 (&gt;L:C17_AURAL_ACTIVE,bool) }
+    els{ 0 (&gt;L:C17_AURAL_ACTIVE,bool) }
       </Value>
   </Select>
 </Element>	
  
-<!--		MISSILE WARNING		-->	
+  <!-- SINKING ON TOGA-->
+<Element>
+  <Select>
+      <Value>
+  (L:C17_AURAL_ACTIVE,bool) 1 ==
+  (A:ACCELERATION BODY Y, Feet per second squared)  0 &lt; and
+  (A:AUTOPILOT TAKEOFF POWER ACTIVE, bool) 1 == and
+    if{ 1 (&gt;L:C17_ALERT_TOGA_Sinking,bool) }
+    els{ 0 (&gt;L:C17_ALERT_TOGA_Sinking,bool) }
+      </Value>
+  </Select>
+</Element>
 
+  <!-- PCH AUTHORITY-->
+<Element>
+  <Select>
+      <Value>
+  (A:CIRCUIT ON:65,bool) 1 ==
+  (A:YOKE Y POSITION, percent) abs 50 &gt; and
+  (A:ELEVATOR TRIM PCT, percent) abs 50 &gt; and
+    if{ 1 (&gt;L:C17_PCH_AUTHORITY,bool) }
+    els{ 0 (&gt;L:C17_PCH_AUTHORITY,bool) }
+      </Value>
+  </Select>
+</Element>
+
+  <!-- AP ALTITUDE APPROACH-->
+<Element>
+  <Select>
+      <Value>
+   (L:C17_AURAL_ACTIVE,bool) 1 ==
+   (A:INDICATED ALTITUDE,feet) (A:Autopilot altitude lock var,feet) - abs 1001 &lt;
+   (A:INDICATED ALTITUDE,feet) (A:Autopilot altitude lock var,feet) - abs 999 &gt; and
+   (A:INDICATED ALTITUDE,feet) (A:Autopilot altitude lock var,feet) - abs 251 &lt;
+   (A:INDICATED ALTITUDE,feet) (A:Autopilot altitude lock var,feet) - abs 249 &gt; and or and
+   (A:INDICATED ALTITUDE,feet) (A:Autopilot altitude lock var,feet) - 0 &lt;
+   (A:VERTICAL SPEED,feet per minute) 0 &gt; and 
+   (A:INDICATED ALTITUDE,feet) (A:Autopilot altitude lock var,feet) - 0 &gt;
+   (A:VERTICAL SPEED,feet per minute) 0 &lt; and or and
+    if{ 1 (&gt;L:C17_AP_ALT_APPROACH,bool) }
+    els{ 0 (&gt;L:C17_AP_ALT_APPROACH,bool) }
+    
+      </Value>
+  </Select>
+</Element>
+  <!-- AP ALTITUDE DEVIATION FRM-->
+<Element>
+  <Select>
+      <Value>
+   (L:C17_AURAL_ACTIVE,bool) 1 ==
+   (L:C17_AP_ALERT_SILENCE,bool) 0 == and
+   (A:INDICATED ALTITUDE,feet) (A:Autopilot altitude lock var,feet) - abs 251 &lt;
+   (A:INDICATED ALTITUDE,feet) (A:Autopilot altitude lock var,feet) - abs 249 &gt; and and
+   (A:INDICATED ALTITUDE,feet) (A:Autopilot altitude lock var,feet) - 0 &lt;
+   (A:VERTICAL SPEED,feet per minute) 0 &lt; and 
+   (A:INDICATED ALTITUDE,feet) (A:Autopilot altitude lock var,feet) - 0 &gt;
+   (A:VERTICAL SPEED,feet per minute) 0 &gt; and or and
+    if{ 1 (&gt;L:C17_AP_ALT_DEVIATE,bool) }
+    els{ 0 (&gt;L:C17_AP_ALT_DEVIATE,bool) }
+      </Value>
+  </Select>
+</Element>	
+
+
+<!--		MISSILE WARNING		-->	
 <Element>
   <Select>
         <Value>        
@@ -69,7 +133,7 @@
   <Select>
         <Value>        
           (A:CIRCUIT ON:65,bool) 1 ==
-          (K:AUTO_THROTTLE_DISCONNECT,bool) 1 == and
+          (K:AUTO_THROTTLE_DISCONNECT) 1 == and
           if{ 1 (&gt;L:C17_AUTOTHROTTLE_OFF,bool) }
           els{ 0 (&gt;L:C17_AUTOTHROTTLE_OFF,bool) }					
         </Value>
@@ -126,7 +190,7 @@
           (A:TRAILING EDGE FLAPS RIGHT PERCENT,bool) 1 == and
           (A:AIRSPEED INDICATED, Knots) 280 &gt; and
           if{ 1 (&gt;L:C17_FLAP_OVERSPEED,bool) }
-          els{ 0 ( &gt;L:C17_FLAP_OVERSPEED,bool) }					
+          els{ 0 (&gt;L:C17_FLAP_OVERSPEED,bool) }					
         </Value>
   </Select>
 </Element>
@@ -138,8 +202,8 @@
           (L:C17_AURAL_ACTIVE,bool) 1 ==
           (A:FLAPS HANDLE PERCENT,percent) 40 &gt; and
           (A:GEAR HANDLE POSITION,percent) 90 &gt; and
-          if{ 1 ( &gt;L:C17_IN_LANDING_CFG,bool) }
-          els{ 0 ( &gt;L:C17_IN_LANDING_CFG,bool) }					
+          if{ 1 (&gt;L:C17_IN_LANDING_CFG,bool) }
+          els{ 0 (&gt;L:C17_IN_LANDING_CFG,bool) }					
         </Value>
   </Select>
 </Element>
@@ -152,8 +216,8 @@
           (L:C17_IN_LANDING_CFG, bool) 0 == and
           (A:VERTICAL SPEED,feet per minute) -1000 &lt; and
           (L:C17_RADALT,feet) 400 &lt; and	
-          if{ 1 ( &gt;L:C17_TERRAIN_FLYUP,BOOL) }
-          els{ 0 ( &gt;L:C17_TERRAIN_FLYUP,BOOL) }					
+          if{ 1 (&gt;L:C17_TERRAIN_FLYUP,BOOL) }
+          els{ 0 (&gt;L:C17_TERRAIN_FLYUP,BOOL) }					
         </Value>
   </Select>
 </Element>
@@ -167,8 +231,8 @@
           (A:GEAR HANDLE POSITION,percent) 1 == and
           (L:C17_RADALT,feet) 500 &lt; and	
           (A:VERTICAL SPEED,feet per minute) -100 &lt; and
-          if{ 1 ( &gt;L:C17_RETRACT_FLAPS,BOOL) }
-          els{ 0 ( &gt;L:C17_RETRACT_FLAPS,BOOL) }					
+          if{ 1 (&gt;L:C17_RETRACT_FLAPS,BOOL) }
+          els{ 0 (&gt;L:C17_RETRACT_FLAPS,BOOL) }					
         </Value>
   </Select>
 </Element>
@@ -177,12 +241,26 @@
 <Element>
   <Select>
         <Value>
-
           (A:CIRCUIT ON:65,bool) 1 ==
           (L:C17_GEAR_ANNUN_TEST, bool) 1 == and
           if{1 (&gt;L:C17_EXTEND_GEAR,BOOL) }
           els{ 0 (&gt;L:C17_EXTEND_GEAR,BOOL) }
+        </Value>
+  </Select>
+</Element>
 
+<!--		GEAR UNSAFE POS	-->	
+<Element>
+  <Select>
+        <Value>
+          (A:GEAR LEFT POSITION, percent) 0 &gt;
+          (A:GEAR LEFT POSITION, percent) 100 &lt; and
+          (A:GEAR CENTER POSITION, percent) 0 &gt;
+          (A:GEAR CENTER POSITION, percent) 100 &lt; and
+          (A:GEAR RIGHT POSITION, percent) 0 &gt;
+          (A:GEAR RIGHT POSITION, percent) 100 &lt; and
+          if{1 (&gt;L:C17_WARN_GEAR_POS,BOOL) }
+          els{ 0 (&gt;L:C17_WARN_GEAR_POS,BOOL) }
         </Value>
   </Select>
 </Element>
@@ -195,8 +273,8 @@
           (L:C17_TERRAIN_FLYUP, BOOL) 0 == and
           (A:VERTICAL SPEED,feet per minute) -5000 &lt; and
           (L:C17_RADALT,feet) 10000 &lt; and	
-          if{ 1 ( &gt;L:C17_SINKRATE,bool) }
-          els{ 0 ( &gt;L:C17_SINKRATE,bool) }					
+          if{ 1 (&gt;L:C17_SINKRATE,bool) }
+          els{ 0 (&gt;L:C17_SINKRATE,bool) }					
         </Value>
   </Select>
 </Element>
@@ -207,8 +285,8 @@
           <Value>        
             (L:C17_AURAL_ACTIVE,bool) 1 ==
             (A:AIRSPEED INDICATED, Knots) 370 &gt; and
-            if{ 1 ( &gt;L:C17_OVERSPEED,bool) }
-            els{ 0 ( &gt;L:C17_OVERSPEED,bool) }					
+            if{ 1 (&gt;L:C17_OVERSPEED,bool) }
+            els{ 0 (&gt;L:C17_OVERSPEED,bool) }					
           </Value>
     </Select>
   </Element>
@@ -220,8 +298,8 @@
       (A:STALL WARNING,bool) 1 ==
       (L:C17_STALL_TEST,bool) 1 == or
       (A:CIRCUIT ON:65,bool) 1 == and
-      if{ 1 ( &gt;L:C17_STICK_SHAKER,bool) }
-      els{ 0 ( &gt;L:C17_STICK_SHAKER,bool) }
+      if{ 1 (&gt;L:C17_STICK_SHAKER,bool) }
+      els{ 0 (&gt;L:C17_STICK_SHAKER,bool) }
         </Value>
     </Select>
 </Element>	
@@ -232,8 +310,8 @@
         <Value>
       (L:C17_IN_LANDING_CFG, bool) 1 ==
       (A:VERTICAL SPEED,feet per minute) 0 &lt; and
-      if{ 1 ( &gt;L:C17_GPWS_ACTIVE,bool) }
-      els{ 0 ( &gt;L:C17_GPWS_ACTIVE,bool) }
+      if{ 1 (&gt;L:C17_GPWS_ACTIVE,bool) }
+      els{ 0 (&gt;L:C17_GPWS_ACTIVE,bool) }
         </Value>
     </Select>
 </Element>	
@@ -245,8 +323,8 @@
       (L:C17_GPWS_ACTIVE, bool) 1 ==
       (L:C17_RADALT,feet) 2497 &gt; and
       (L:C17_RADALT,feet) 2503 &lt; and	
-      if{ 1 ( &gt;L:C17_GPWS_2500,bool) }
-      els{ 0 ( &gt;L:C17_GPWS_2500,bool) }		
+      if{ 1 (&gt;L:C17_GPWS_2500,bool) }
+      els{ 0 (&gt;L:C17_GPWS_2500,bool) }		
         </Value>
   </Select>
 </Element>
@@ -259,8 +337,8 @@
       (L:C17_GPWS_ACTIVE, bool) 1 ==
       (L:C17_RADALT,feet) 997 &gt; and
       (L:C17_RADALT,feet) 1003 &lt; and	
-      if{ 1 ( &gt;L:C17_GPWS_1000,bool) }
-      els{ 0 ( &gt;L:C17_GPWS_1000,bool) }		
+      if{ 1 (&gt;L:C17_GPWS_1000,bool) }
+      els{ 0 (&gt;L:C17_GPWS_1000,bool) }		
         </Value>
   </Select>
 </Element>
@@ -272,8 +350,8 @@
         (L:C17_GPWS_ACTIVE, bool) 1 ==
         (L:C17_RADALT,feet) 497 &gt; and
         (L:C17_RADALT,feet) 503 &lt; and	
-        if{ 1 ( &gt;L:C17_GPWS_500,bool) }
-        els{ 0 ( &gt;L:C17_GPWS_500,bool) }		
+        if{ 1 (&gt;L:C17_GPWS_500,bool) }
+        els{ 0 (&gt;L:C17_GPWS_500,bool) }		
           </Value>
     </Select>
 </Element>
@@ -284,8 +362,8 @@
           (L:C17_GPWS_ACTIVE, bool) 1 ==
           (L:C17_RADALT,feet) 397 &gt; and
           (L:C17_RADALT,feet) 403 &lt; and	
-          if{ 1 ( &gt;L:C17_GPWS_400,bool) }
-          els{ 0 ( &gt;L:C17_GPWS_400,bool) }					
+          if{ 1 (&gt;L:C17_GPWS_400,bool) }
+          els{ 0 (&gt;L:C17_GPWS_400,bool) }					
         </Value>
   </Select>
 </Element>
@@ -296,8 +374,8 @@
           (L:C17_GPWS_ACTIVE, bool) 1 ==
           (L:C17_RADALT,feet) 297 &gt; and
           (L:C17_RADALT,feet) 303 &lt; and	
-          if{ 1 ( &gt;L:C17_GPWS_300,bool) }
-          els{ 0 ( &gt;L:C17_GPWS_300,bool) }					
+          if{ 1 (&gt;L:C17_GPWS_300,bool) }
+          els{ 0 (&gt;L:C17_GPWS_300,bool) }					
         </Value>
   </Select>
 </Element>
@@ -308,8 +386,8 @@
           (L:C17_GPWS_ACTIVE, bool) 1 ==
           (L:C17_RADALT,feet) 197 &gt; and
           (L:C17_RADALT,feet) 203 &lt; and	
-          if{ 1 ( &gt;L:C17_GPWS_200,bool) }
-          els{ 0 ( &gt;L:C17_GPWS_200,bool) }					
+          if{ 1 (&gt;L:C17_GPWS_200,bool) }
+          els{ 0 (&gt;L:C17_GPWS_200,bool) }					
         </Value>
   </Select>
 </Element>
@@ -320,8 +398,8 @@
             (L:C17_GPWS_ACTIVE, bool) 1 ==
             (L:C17_RADALT,feet) 97 &gt; and
             (L:C17_RADALT,feet) 103 &lt; and	
-            if{ 1 ( &gt;L:C17_GPWS_100,bool) }
-            els{ 0 ( &gt;L:C17_GPWS_100,bool) }					
+            if{ 1 (&gt;L:C17_GPWS_100,bool) }
+            els{ 0 (&gt;L:C17_GPWS_100,bool) }					
           </Value>
     </Select>
 </Element>
@@ -332,8 +410,8 @@
             (L:C17_GPWS_ACTIVE, bool) 1 ==
             (L:C17_RADALT,feet) 47 &gt; and
             (L:C17_RADALT,feet) 53 &lt; and	
-            if{ 1 ( &gt;L:C17_GPWS_50,bool) }
-            els{ 0 ( &gt;L:C17_GPWS_50,bool) }					
+            if{ 1 (&gt;L:C17_GPWS_50,bool) }
+            els{ 0 (&gt;L:C17_GPWS_50,bool) }					
           </Value>
     </Select>
 </Element>
@@ -346,8 +424,8 @@
  
           (L:C17_RADALT,feet) 37 &gt; and
           (L:C17_RADALT,feet) 43 &lt; and	
-          if{ 1 ( &gt;L:C17_GPWS_40,bool) }
-          els{ 0 ( &gt;L:C17_GPWS_40,bool) }					
+          if{ 1 (&gt;L:C17_GPWS_40,bool) }
+          els{ 0 (&gt;L:C17_GPWS_40,bool) }					
         </Value>
   </Select>
 </Element>
@@ -360,8 +438,8 @@
         
           (L:C17_RADALT,feet) 27 &gt; and
           (L:C17_RADALT,feet) 33 &lt; and	
-          if{ 1 ( &gt;L:C17_GPWS_30,bool) }
-          els{ 0 ( &gt;L:C17_GPWS_30,bool) }					
+          if{ 1 (&gt;L:C17_GPWS_30,bool) }
+          els{ 0 (&gt;L:C17_GPWS_30,bool) }					
         </Value>
   </Select>
 </Element>
@@ -374,8 +452,8 @@
       
           (L:C17_RADALT,feet) 17 &gt; and
           (L:C17_RADALT,feet) 23 &lt; and	
-          if{ 1 ( &gt;L:C17_GPWS_20,bool) }
-          els{ 0 ( &gt;L:C17_GPWS_20,bool) }					
+          if{ 1 (&gt;L:C17_GPWS_20,bool) }
+          els{ 0 (&gt;L:C17_GPWS_20,bool) }					
         </Value>
   </Select>
 </Element>
@@ -388,8 +466,8 @@
     
           (L:C17_RADALT,feet) 7 &gt; and
           (L:C17_RADALT,feet) 13 &lt; and	
-          if{ 1 ( &gt;L:C17_GPWS_10,bool) }
-          els{ 0 ( &gt;L:C17_GPWS_10,bool) }					
+          if{ 1 (&gt;L:C17_GPWS_10,bool) }
+          els{ 0 (&gt;L:C17_GPWS_10,bool) }					
         </Value>
   </Select>
 </Element>

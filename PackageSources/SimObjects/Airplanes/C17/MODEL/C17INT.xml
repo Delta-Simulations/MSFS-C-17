@@ -262,6 +262,18 @@
   </UseTemplate>
 
   <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>PushButton_Radio_MSK_1</NODE_ID>
+    <TOOLTIPID>MSK 1</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+    </LEFT_SINGLE_CODE>
+  </UseTemplate>
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>PushButton_Radio_MSK_2</NODE_ID>
+    <TOOLTIPID>MSK 2</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+    </LEFT_SINGLE_CODE>
+  </UseTemplate>
+  <UseTemplate Name="DELTASIM_PushButton_Template">
     <NODE_ID>PushButton_Radio_MSK_3</NODE_ID>
     <TOOLTIPID>MSK 3</TOOLTIPID>
     <LEFT_SINGLE_CODE>
@@ -270,7 +282,24 @@
       or if{ (L:C17_KHz_Tune, bool) ! (&gt;L:C17_KHz_Tune, bool) }
     </LEFT_SINGLE_CODE>
   </UseTemplate>
-
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>PushButton_Radio_MSK_4</NODE_ID>
+    <TOOLTIPID>MSK 4</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+    </LEFT_SINGLE_CODE>
+  </UseTemplate>
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>PushButton_Radio_MSK_5</NODE_ID>
+    <TOOLTIPID>MSK 5</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+    </LEFT_SINGLE_CODE>
+  </UseTemplate>
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>PushButton_Radio_MSK_6</NODE_ID>
+    <TOOLTIPID>MSK 6</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+    </LEFT_SINGLE_CODE>
+  </UseTemplate>
 
   <UseTemplate Name="DELTASIM_PushButton_Template">
       <NODE_ID>PushButton_Radio_Xfer</NODE_ID>
@@ -280,11 +309,70 @@
           (L:C17_Nav_System_Active,enum) 2 == if{ 1 (&gt;K:COM2_RADIO_SWAP) }
           (L:C17_Nav_System_Active,enum) 7 == if{ 1 (&gt;K:NAV1_RADIO_SWAP) }
           (L:C17_Nav_System_Active,enum) 8 == if{ 1 (&gt;K:NAV2_RADIO_SWAP) }
-          (L:C17_Nav_System_Active,enum) 9 == if{ 1 (K:TACAN1_SWAP) ! (&gt;K:TACAN1_SWAP)}
+          (L:C17_Nav_System_Active,enum) 9 == if{ 1 (&gt;K:TACAN1_SWAP) }
     </LEFT_SINGLE_CODE>
   </UseTemplate>
 
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>PushButton_Radio_Ident</NODE_ID>
+    <TOOLTIPID>IDENT</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+      1 (&gt;K:XPNDR_IDENT_ON)
+    </LEFT_SINGLE_CODE>
+</UseTemplate>
 
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>EFB_PWR</NODE_ID>
+    <TOOLTIPID>PWR</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+      (L:C17_EFB_PWR) ! (&gt;L:C17_EFB_PWR)
+    </LEFT_SINGLE_CODE>
+</UseTemplate>
+
+
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>PushButton_IAS_MACH</NODE_ID>
+  <TOOLTIPID>IAS/MCH</TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+    (L:C17_MACHIAS,bool) ! (&gt;L:C17_MACHIAS,bool)
+</LEFT_SINGLE_CODE>
+</UseTemplate>
+<Component ID="Knob_SPD_SEL" Node="Knob_SPD_SEL">
+  <UseTemplate Name="ASOBO_GT_Knob_Infinite">
+    <ANIM_NAME>Knob_SPD_SEL</ANIM_NAME>					   
+    <CLOCKWISE_CODE>  
+      (L:C17_MACHIAS, bool) 1 == if{ (&gt;K:AP_MACH_VAR_INC) } 
+      (L:C17_MACHIAS, bool) 0 == if{ (&gt;K:AP_SPD_VAR_INC) }
+    </CLOCKWISE_CODE>
+    <ANTICLOCKWISE_CODE>
+      (L:C17_MACHIAS, bool) 1 == if{ (&gt;K:AP_MACH_VAR_INC) } 
+      (L:C17_MACHIAS, bool) 0 == if{ (&gt;K:AP_SPD_VAR_DEC) }
+    </ANTICLOCKWISE_CODE>
+    <ANIMTIP_0>SPD SEL</ANIMTIP_0>
+    <ANIMTIP_1>SPD SEL</ANIMTIP_1>
+  </UseTemplate>
+</Component>
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>PushButton_IAS_MACH</NODE_ID>
+  <TOOLTIPID>IAS/MCH</TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+    (L:C17_MACHIAS,bool) ! (&gt;L:C17_MACHIAS,bool)
+</LEFT_SINGLE_CODE>
+</UseTemplate>
+
+<Component ID="Knob_API_SEL" Node="Knob_API_SEL">
+  <UseTemplate Name="ASOBO_GT_Knob_Infinite">
+    <ANIM_NAME>Knob_API_SEL</ANIM_NAME>					
+    <CLOCKWISE_CODE>  
+      (L:C17_API, enum) 0.1 + 10 min (&gt;L:C17_API, enum)
+    </CLOCKWISE_CODE>
+    <ANTICLOCKWISE_CODE>
+      (L:C17_API, enum) 0.1 - 0 max (&gt;L:C17_API, enum) 
+    </ANTICLOCKWISE_CODE>
+    <ANIMTIP_0>API SEL</ANIMTIP_0>
+    <ANIMTIP_1>API SEL</ANIMTIP_1>
+  </UseTemplate>
+</Component>
 
     <Component ID="Knob_Freq_Outer" Node="Knob_Freq_Outer">
       <UseTemplate Name="ASOBO_GT_Knob_Infinite">
@@ -294,12 +382,14 @@
           (L:C17_Nav_System_Active, enum) 2 == if{ (&gt;K:COM2_RADIO_WHOLE_INC) }
           (L:C17_Nav_System_Active, enum) 7 == if{ (&gt;K:NAV1_RADIO_WHOLE_INC) } 
           (L:C17_Nav_System_Active, enum) 8 == if{ (&gt;K:NAV2_RADIO_WHOLE_INC) }
+          (L:C17_Nav_System_Active, enum) 11 == if{  100 + (&gt;K:XPNDR_SET) }
         </CLOCKWISE_CODE>
         <ANTICLOCKWISE_CODE>
           (L:C17_Nav_System_Active, enum) 1 == if{ (&gt;K:COM_RADIO_WHOLE_DEC) } 
           (L:C17_Nav_System_Active, enum) 2 == if{ (&gt;K:COM2_RADIO_WHOLE_DEC) }
           (L:C17_Nav_System_Active, enum) 7 == if{ (&gt;K:NAV1_RADIO_WHOLE_DEC) } 
           (L:C17_Nav_System_Active, enum) 8 == if{ (&gt;K:NAV2_RADIO_WHOLE_DEC) }
+          (L:C17_Nav_System_Active, enum) 11 == if{  100 - (&gt;K:XPNDR_SET) } 
         </ANTICLOCKWISE_CODE>
         <ANIMTIP_0>NAV MHZ</ANIMTIP_0>
         <ANIMTIP_1>NAV MHZ</ANIMTIP_1>
@@ -316,6 +406,7 @@
             (L:C17_Nav_System_Active, enum) 7 == if{ (&gt;K:NAV1_RADIO_FRACT_INC_CARRY) } 
             (L:C17_Nav_System_Active, enum) 8 == if{ (&gt;K:NAV2_RADIO_FRACT_INC_CARRY) }
             (L:C17_Nav_System_Active, enum) 10 == if{ (&gt;K:ADF_1_INC) }
+            (L:C17_Nav_System_Active, enum) 11 == if{ (&gt;K:XPNDR_INC_CARRY) } 
         </CLOCKWISE_CODE>
         <ANTICLOCKWISE_CODE>
           (L:C17_Nav_System_Active, enum) 1 == (L:C17_KHz_Tune, bool) 1 == and if{ (A:COM STANDBY FREQUENCY:1, Hz) 8330 - (&gt;K:COM_STBY_RADIO_SET_HZ) } 
@@ -325,12 +416,12 @@
           (L:C17_Nav_System_Active, enum) 7 == if{ (&gt;K:NAV1_RADIO_FRACT_DEC_CARRY) } 
           (L:C17_Nav_System_Active, enum) 8 == if{ (&gt;K:NAV2_RADIO_FRACT_DEC_CARRY) }
           (L:C17_Nav_System_Active, enum) 10 == if{ (&gt;K:ADF_1_DEC) }
+          (L:C17_Nav_System_Active, enum) 11 == if{ (&gt;K:XPNDR_DEC_CARRY) } 
         </ANTICLOCKWISE_CODE>
         <ANIMTIP_0>NAV KHZ</ANIMTIP_0>
         <ANIMTIP_1>NAV KHZ</ANIMTIP_1>
       </UseTemplate>
     </Component>
-
     <Component ID="Knob_CRS_Outer" Node="Knob_CRS_Outer">
       <UseTemplate Name="ASOBO_GT_Knob_Infinite">
         <ANIM_NAME>Knob_CRS_Outer</ANIM_NAME>
@@ -369,13 +460,9 @@
         <ANIMTIP_0>ADJ SMALL</ANIMTIP_0>
         <ANIMTIP_1>ADJ SMALL</ANIMTIP_1>
       </UseTemplate>
-    </Component>
-
-   
+    </Component>  
 
 </Component>
-
-
 
 <Component ID="GAUGES_FRONTPNL" >
  
@@ -392,7 +479,6 @@
     </Component>
 
 </Component>
-
 
 <Component ID="INTERIOR_LIGHTING" >
 
@@ -935,12 +1021,7 @@
     <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !</INTENSITY>
   </UseTemplate>
 
-  <UseTemplate Name="Korry_Emmis_DELTASIM">
-    <NODE_ID>KORRY_WARNING_GEAR_ALERT</NODE_ID>
-    <TRUECODE>(L:C17_EXTEND_GEAR, bool) 1 ==</TRUECODE>
-    <TESTCODE>(L:C17_GEAR_ANNUN_TEST, bool) 1 == or</TESTCODE>
-    <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !</INTENSITY>
-  </UseTemplate>
+
 
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>Korry_FireAlertEng1</NODE_ID>
@@ -978,7 +1059,57 @@
       (M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:C17_GEAR_ANNUN_TEST, bool) }
     </POST_CODE>
   </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_WARNING_GEAR_ALERT</NODE_ID>
+    <TRUECODE>
+      (L:C17_EXTEND_GEAR, bool) 1 ==
+      (L:C17_WARN_GEAR_POS, bool) 1 == or
+      (L:C17_TERRAIN_FLYUP,BOOL) 1 == or
+    </TRUECODE>
+    <TESTCODE>(L:C17_GEAR_ANNUN_TEST, bool) 1 == or</TESTCODE>
+  </UseTemplate>
 
+
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_GEAR_L_UNSAFE</NODE_ID>
+    <TRUECODE>
+      (A:GEAR LEFT POSITION, percent) 0 &gt;
+      (A:GEAR LEFT POSITION, percent) 100 &lt; and
+    </TRUECODE>
+    <TESTCODE>(L:C17_GEAR_ANNUN_TEST, bool) 1 == or</TESTCODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_GEAR_C_UNSAFE</NODE_ID>
+    <TRUECODE>
+      (A:GEAR CENTER POSITION, percent) 0 &gt;
+      (A:GEAR CENTER POSITION, percent) 100 &lt; and
+    </TRUECODE>
+    <TESTCODE>(L:C17_GEAR_ANNUN_TEST, bool) 1 == or</TESTCODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_GEAR_R_UNSAFE</NODE_ID>
+    <TRUECODE>
+      (A:GEAR RIGHT POSITION, percent) 0 &gt;
+      (A:GEAR RIGHT POSITION, percent) 100 &lt; and
+    </TRUECODE>
+    <TESTCODE>(L:C17_GEAR_ANNUN_TEST, bool) 1 == or</TESTCODE>
+  </UseTemplate>
+
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_GEAR_C_LOCKED</NODE_ID>
+    <TRUECODE>(A:GEAR CENTER POSITION, percent) 99 &gt;</TRUECODE>
+    <TESTCODE>(L:C17_GEAR_ANNUN_TEST, bool) 1 == or</TESTCODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_GEAR_R_LOCKED</NODE_ID>
+    <TRUECODE>(A:GEAR RIGHT POSITION, percent) 99 &gt;</TRUECODE>
+    <TESTCODE>(L:C17_GEAR_ANNUN_TEST, bool) 1 == or</TESTCODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_GEAR_L_LOCKED</NODE_ID>
+    <TRUECODE>(A:GEAR LEFT POSITION, percent) 99 &gt;</TRUECODE>
+    <TESTCODE>(L:C17_GEAR_ANNUN_TEST, bool) 1 == or</TESTCODE>
+  </UseTemplate>
 
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>Korry_UARRSI_POS</NODE_ID>
@@ -1404,12 +1535,7 @@
         <!-- REV THRUST ABILITY -->
         <FREQUENCY>80</FREQUENCY>
         <UPDATE_CODE>
-          (L:REV_THRUST, bool) ! if{
-            0 (A:GENERAL ENG THROTTLE LEVER POSITION:1, percent) 160 min -100 max (&gt;A:GENERAL ENG THROTTLE LEVER POSITION:1, percent)
-            0 (A:GENERAL ENG THROTTLE LEVER POSITION:2, percent) 160 min -100 max (&gt;A:GENERAL ENG THROTTLE LEVER POSITION:2, percent)
-            0 (A:GENERAL ENG THROTTLE LEVER POSITION:3, percent) 160 min -100 max (&gt;A:GENERAL ENG THROTTLE LEVER POSITION:3, percent)
-            0 (A:GENERAL ENG THROTTLE LEVER POSITION:4, percent) 160 min -100 max (&gt;A:GENERAL ENG THROTTLE LEVER POSITION:4, percent)
-          } els{
+          (L:C17_REV_THRUST, bool) 1 == if{
             -0.1 (&gt;A:GENERAL ENG THROTTLE LEVER POSITION:1, percent)
             -40 (&gt;A:GENERAL ENG THROTTLE LEVER POSITION:2, percent)
             -40 (&gt;A:GENERAL ENG THROTTLE LEVER POSITION:3, percent)
@@ -1430,8 +1556,6 @@
 				<ID>2</ID>
 				<NODE_ID>HANDLING_Yoke_2_Hider_Yoke</NODE_ID>
 			</UseTemplate>
-
-
 </Component>
 <Component ID="Pedestal_Fwd">
 
@@ -1495,11 +1619,11 @@
     <SETTINGS_COUNT>5</SETTINGS_COUNT>
     <COUNT>5</COUNT>
   </UseTemplate>
-          <Component ID="Autopilot_Heading_Set" Node="HDG_KNOB">
+          <Component ID="Knob_HDG_SEL" Node="Knob_HDG_SEL">
             <UseTemplate Name="ASOBO_GT_Knob_Infinite_Push">
-              <NODE_ID>HDG_KNOB</NODE_ID>
-              <PART_ID>HDG_KNOB</PART_ID>
-              <ANIM_NAME_KNOB>HEADING_KNOB</ANIM_NAME_KNOB>
+              <NODE_ID>Knob_HDG_SEL</NODE_ID>
+              <PART_ID>Knob_HDG_SEL</PART_ID>
+              <ANIM_NAME_KNOB>Knob_HDG_SEL</ANIM_NAME_KNOB>
           <CLOCKWISE_CODE_DEFAULT_IM>
             (&gt;K:HEADING_BUG_INC)
           </CLOCKWISE_CODE_DEFAULT_IM>
@@ -1571,7 +1695,7 @@
 				</UseTemplate>
 				<UseTemplate Name="ASOBO_AUTOPILOT_Knob_VerticalSpeed_Template">
 					<NODE_ID>wheel_autopilot_vert_speed</NODE_ID>
-					<ANIM_NAME>autopilot_wheel_vert_speed</ANIM_NAME>
+					<ANIM_NAME>wheel_autopilot_vert_speed</ANIM_NAME>
 					<UP_DEC_DN_INC>True</UP_DEC_DN_INC>
 				</UseTemplate>
         <UseTemplate Name="ASOBO_AUTOPILOT_Knob_Altitude_Template">
@@ -1651,8 +1775,6 @@
 					<TT_ICON>MOVE_Y</TT_ICON>
 				</UseTemplate>
 </Component>
-
-
 </Behaviors>
 
 <!--============================================================= CUSTOM ANIMS  ===================================================================================================================== -->
@@ -1867,52 +1989,6 @@
         </CallbackCode>
   </MouseRect>
 </PartInfo>
-  <!--Animation name="HEADING KNOB" guid="692593ea-e119-4ce5-9ed3-3d6b96307972" length="200" type="Sim" typeParam2="HEADING KNOB" typeParam="AutoPlay" />
-  <PartInfo>
-    <Name>HEADING KNOB</Name>
-    <AnimLength>200</AnimLength>
-    <Animation>
-      <Parameter>
-        <Code>(A:Autopilot heading lock dir,degrees) 1.8 / </Code>
-      </Parameter>
-    </Animation>
-    <MouseRect>
-      <Cursor>Hand</Cursor>
-      <TooltipText>Set heading</TooltipText>
-      <MouseFlags>MoveRepeat+WheelDown+WheelUp+LeftSingle+RightSingle</MouseFlags>
-      <CallbackCode>
-          (M:Event) 'WheelUp'     scmi 0 == if{ (&gt;K:HEADING_BUG_INC) }
-            (M:Event) 'WheelDown'   scmi 0 == if{ (&gt;K:HEADING_BUG_DEC) }
-          (M:Event) 'LeftSingle'  scmi 0 == if{ (&gt;K:HEADING_BUG_INC) }
-          (M:Event) 'RightSingle' scmi 0 == if{ (&gt;K:HEADING_BUG_DEC) }
-      </CallbackCode>
-      </MouseRect>
-    </PartInfo!-->
-    <Animation name="ALTITDE CNTRL" guid="6aac883d-ae13-45fe-89ba-a59a452ac5df" length="200" type="Sim" typeParam2="ALTITDE CNTRL" typeParam="AutoPlay" />
-    <PartInfo>
-      <Name>ALTITDE CNTRL</Name>
-      <AnimLength>200</AnimLength>
-      <Animation>
-        <Parameter>
-          <Code>(A:AUTOPILOT AIRSPEED HOLD VAR, knots)</Code>
-        </Parameter>
-      </Animation>
-      <MouseRect>
-        <Cursor>Hand</Cursor>
-        <TooltipText>Set speed</TooltipText>
-        <MouseFlags>MoveRepeat+WheelDown+WheelUp+LeftSingle+RightSingle</MouseFlags>
-        <CallbackCode>
-        (M:Event) 'WheelUp' scmi 0 == (L:Mach-IAS select, bool) 1 ==  &amp;&amp; if{ (&gt;K:AP_MACH_VAR_INC) }
-      (M:Event) 'WheelUp' scmi 0 == (L:Mach-IAS select, bool) 0 == &amp;&amp; if{ (&gt;K:AP_SPD_VAR_INC) }
-       (M:Event) 'WheelDown' scmi 0 == (L:Mach-IAS select, bool) 1 == &amp;&amp; if{ (&gt;K:AP_MACH_VAR_DEC) }
-      (M:Event) 'WheelDown' scmi 0 == (L:Mach-IAS select, bool) 0 == &amp;&amp; if{ (&gt;K:AP_SPD_VAR_DEC) }
-      (M:Event) 'RightSingle' scmi 0 == (L:Mach-IAS select, bool) 1 ==  &amp;&amp; if{ (&gt;K:AP_MACH_VAR_INC) }
-      (M:Event) 'RightSingle' scmi 0 == (L:Mach-IAS select, bool) 0 == &amp;&amp; if{ (&gt;K:AP_SPD_VAR_INC) }
-       (M:Event) 'LeftSingle' scmi 0 == (L:Mach-IAS select, bool) 1 == &amp;&amp; if{ (&gt;K:AP_MACH_VAR_DEC) }
-      (M:Event) 'LeftSingle' scmi 0 == (L:Mach-IAS select, bool) 0 == &amp;&amp; if{ (&gt;K:AP_SPD_VAR_DEC) }
-             </CallbackCode>
-      </MouseRect>
-    </PartInfo>
     <Animation name="AIRSPEED HOLD" guid="17f31278-a130-4107-8e0e-fd368f270a02" length="25" type="Sim" typeParam2="AIRSPEED HOLD" typeParam="AutoPlay" />
     <PartInfo>
       <Name>AIRSPEED HOLD</Name>
@@ -1934,6 +2010,7 @@
         <CallbackCode>(&gt;K:AP_PANEL_SPEED_HOLD)</CallbackCode>
       </MouseRect>
     </PartInfo>
+    
   <Animation name="custom_anim_AUTOPILOT_ALTITUDE_LOCK_VAR_34" guid="b418705a-200c-4ae8-8d8b-0797dad75adb" length="100" type="Sim" typeParam2="custom_anim_AUTOPILOT_ALTITUDE_LOCK_VAR_34" typeParam="AutoPlay" />
   <PartInfo>
     <Name>custom_anim_AUTOPILOT_ALTITUDE_LOCK_VAR_34</Name>
@@ -1991,7 +2068,6 @@
 					</CallbackCode>
     </MouseRect>
   </PartInfo>
-
   <Animation name="btn_autopilot_lnav" guid="f9bdb4f8-eeae-4c7e-b33d-957b815a82b7" length="25" type="Sim" typeParam2="btn_autopilot_lnav" typeParam="AutoPlay" />
   <PartInfo>
     <Name>btn_autopilot_lnav</Name>
@@ -2010,60 +2086,6 @@
 					</CallbackCode>
     </MouseRect>
   </PartInfo>
-
-
-  <Animation name="custom_anim_Autopilot_heading_lock_dir_65" guid="dee79079-4ba5-4c7a-a299-6c9335440721" length="200" type="Sim" typeParam2="custom_anim_Autopilot_heading_lock_dir_65" typeParam="AutoPlay" />
-  <PartInfo>
-    <Name>custom_anim_Autopilot_heading_lock_dir_65</Name>
-    <AnimLength>200</AnimLength>
-    <Animation>
-      <Parameter>
-        <Code>(L:C17_API, enum) 200 * </Code>
-      </Parameter>
-    </Animation>
-      <MouseRect>
-        <Cursor>Hand</Cursor>
-        <TooltipText>Set API</TooltipText>
-        <MouseFlags>MoveRepeat+WheelDown+WheelUp+LeftSingle+RightSingle</MouseFlags>
-        <CallbackCode>
-          (M:Event) 'LeftSingle'  scmp 0 == if{ (L:C17_API, enum) ++ 10 min (&gt;L:C17_API, enum) }
-          (M:Event) 'RightSingle' scmp 0 == if{ (L:C17_API, enum) -- 0 max (&gt;L:C17_AP, enum) }
-          (M:Event) 'WheelUp'     scmp 0 == if{ (L:C17_API, enum) ++ 10 min (&gt;L:C17_API, enum) }
-          (M:Event) 'WheelDown'   scmp 0 == if{ (L:C17_API, enum) -- 0 max (&gt;L:C17_API, enum) }
-        </CallbackCode>
-      </MouseRect>
-    </PartInfo>
-    <Animation name="custom_anim_Autopilot_yaw_damper" guid="256fd266-53c3-497c-baf2-918be697291d" length="25" type="Sim" typeParam2="custom_anim_Autopilot_yaw_damper" typeParam="AutoPlay" />
-    <PartInfo>
-      <Name>custom_anim_Autopilot_yaw_damper</Name>
-      <AnimLength>25</AnimLength>
-      <Animation>
-        <Parameter>
-          <Code>(A:Autopilot yaw damper, bool) 25 * </Code>
-          <Lag>100</Lag>
-        </Parameter>
-      </Animation>
-        <MouseRect>
-          <Cursor>Hand</Cursor>
-          <TooltipText>%Yaw damper %((A:Autopilot yaw damper, bool))%{if}%ON%{else}%OFF%</TooltipText>
-          <CallbackCode>
-            (K:YAW_DAMPER_TOGGLE,bool) ! (&gt;K:YAW_DAMPER_TOGGLE,bool)
-              </CallbackCode>
-        </MouseRect>
-      </PartInfo>
-
-
-  <!--UseTemplate Name="ASOBO_AUTOPILOT_Push_Navigation_Template">
-    <NODE_ID>btn_autopilot_lnav</NODE_ID>
-    <ANIM_NAME>btn_autopilot_lnav</ANIM_NAME>
-    <ACTIVE_NODE_ID>btn_autopilot_lnav</ACTIVE_NODE_ID>
-    <AUTOPILOT_PUSH_BUTTON_ON>autopilot_largepush_button_on</AUTOPILOT_PUSH_BUTTON_ON>
-    <AUTOPILOT_PUSH_BUTTON_OFF>autopilot_largepush_button_off</AUTOPILOT_PUSH_BUTTON_OFF>
-    <TOOLTIPID>%((A:AUTOPILOT NAV1 LOCK, bool))%{if}TT:COCKPIT.TOOLTIPS.AUTOPILOT_PANEL_LNAV_ON%{else}TT:COCKPIT.TOOLTIPS.AUTOPILOT_PANEL_LNAV_OFF%{end}</TOOLTIPID>
-    <TYPE>B747</TYPE>
-  </UseTemplate-->
-
-
 
   <Animation name="switch_auto_throttle" guid="0edac8f4-c549-4f98-8750-f88cf001cd83" typeParam2="switch_auto_throttle" length="50" type="Sim" typeParam="AutoPlay" />
   <Animation name="switch_flight_director" guid="d712ab7c-8620-44c3-b4cc-c66f1dc449e6" typeParam2="switch_flight_director" length="25" type="Sim" typeParam="AutoPlay" />
@@ -2145,8 +2167,6 @@
 
 
 
-<!-- +++++++++++++++++++++++ENGINE++++++++++++++++++++++++-->
-
 <Animation name="LOWER_rudder_pedals" 		guid="5bafcf33-98af-4adc-9580-26f1b7c0fa7a" length="100" type="Sim" typeParam2="LOWER_rudder_pedals" typeParam="AutoPlay" />
 	<PartInfo>
 		<Name>LOWER_rudder_pedals</Name>
@@ -2163,7 +2183,7 @@
 		</Animation>
 	</PartInfo>
   <!-- ======================GAUGES==================================-->
-<Animation name="attitude_indicator_pitch"      guid="e3cc9a12-e9d7-4fdd-a970-1a6137510732"     length="360" type="Sim" typeParam2="attitude_indicator_pitch" typeParam="AutoPlay" />
+<Animation name="attitude_indicator_pitch"      guid="e3cc9a12-e9d7-4fdd-a970-1a6137510732" type="Sim" typeParam="AutoPlay" />
 	<PartInfo>
 	  <Name>attitude_indicator_pitch</Name>
 	  <AnimLength>360</AnimLength>
@@ -2173,7 +2193,7 @@
       (A:CIRCUIT ON:65,bool) 1 ==
       if{
 			(A:ATTITUDE INDICATOR PITCH DEGREES, degree) 180 +
-      }els{150}
+      }els {150}
 		  </Code>
 		</Parameter>
 	  </Animation>
@@ -2390,7 +2410,7 @@
 	</MouseRect>
   </PartInfo>
   
-  <Animation name="PARA DOORR" guid="151fc768-add1-4ee5-bbd0-649918ef0ea8" length="100" type="Sim" typeparam2="PARA DOORR" typeparam="AutoPlay" />
+  <Animation name="PARA DOORR" guid="484aa8cf-fbf2-4b66-96ff-f2b98a4bbfd1" length="100" type="Sim" typeparam2="PARA DOORR" typeparam="AutoPlay" />
   <PartInfo>
 	  <Name>PARA DOORR</Name>
 	  <AnimLength>100</AnimLength>
@@ -2407,6 +2427,34 @@
 	</CallbackCode>
 	</MouseRect>
   </PartInfo>
+
+
+
+<Animation name="Cargo_Pallet" guid="12b5768b-0b28-4413-95bb-4647c6b5d848" length="1" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+    <Name>Cargo_Pallet</Name>
+    <Visibility>
+        <Parameter>
+            <Code>
+				(A:Payload Station Weight:3, pounds) 15000 &gt;
+				 if{ 1 } els{ 0 }
+			</Code>
+        </Parameter>
+    </Visibility>
+</PartInfo>
+<Animation name="Cargo_ISU" guid="a3601ac9-bb5f-43f7-9845-d89c3ce217d2" length="1" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+    <Name>Cargo_ISU</Name>
+    <Visibility>
+        <Parameter>
+            <Code>
+				(A:Payload Station Weight:3, pounds) 33000 &gt;
+				 if{ 1 } els{ 0 }
+			</Code>
+        </Parameter>
+    </Visibility>
+</PartInfo>
+
 
 <Animation name="Ramp_main" guid="ad635157-f30f-4c38-9853-3baa5a26b216" type="Sim" typeparam="AutoPlay" />
 <PartInfo>
@@ -2472,7 +2520,7 @@
         </Animation>
         <MouseRect>
             <Cursor>Hand</Cursor>
-            <TooltipText>HANDREST</TooltipText>
+            <TooltipText></TooltipText>
              <CallbackCode>
                 	(L:HANDREST1,bool) ! 	(&gt;L:HANDREST1,bool)
              </CallbackCode>
@@ -2739,36 +2787,6 @@
     </CallbackJumpDragging>
   </MouseRect>
 </PartInfo>
-<!--PartInfo>
-  <Name>lever_speed_brake</Name>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <HelpID>HELPID_GAUGE_SPEED_BRAKE</HelpID>
-    <TooltipID>TOOLTIPTEXT_SPEED_BRAKE</TooltipID>
-    <MouseFlags>LeftSingle+LeftDrag+Wheel</MouseFlags>
-    <CallbackDragging>
-      <Variable>SPOILERS HANDLE POSITION</Variable>
-      <Units>percent</Units>
-      <Scale>163.84</Scale>
-      <YScale>163.84</YScale>
-      <MinValue>0</MinValue>
-      <MaxValue>16384</MaxValue>
-      <EventID>SPOILERS_SET</EventID>
-    </CallbackDragging>
-  </MouseRect>
-  <AnimLength>50</AnimLength>
-  <Animation>
-    <Parameter>
-      <Sim>
-        <Variable>SPOILERS HANDLE POSITION</Variable>
-        <Units>percent</Units>
-        <Scale>1</Scale>
-        <Bias>0</Bias>
-      </Sim>
-      <Lag>200</Lag>
-    </Parameter>
-  </Animation>
-</PartInfo-->
 
 <PartInfo>
   <Name>lever_speed_brake</Name>

@@ -18467,8 +18467,8 @@
 	var Stack$1 = Stack;
 
 	const Airctaft = () => {
-	  const [rearDoorL, setRearDoorL] = useSimVar('L:PARA DOORL', 'bool');
-	  const [rearDoorR, setRearDoorR] = useSimVar('L:PARA DOORR', 'bool');
+	  useSimVar('L:PARA DOORL', 'bool');
+	  useSimVar('L:PARA DOORR', 'bool');
 	  const [CargoDoor, setCargoDoor] = useSimVar('L:C17_CargoDoor_POS', 'enum');
 	  const [ARSlipway, setARSlipway] = useSimVar('L:C17_UARRSI_Slipway', 'bool');
 	  const [EnteranceDoor, setEnteranceDoor] = useSimVar('L:C17_Crew_Enterance', 'bool'); // const Position = [
@@ -18497,7 +18497,7 @@
 	        position: 'absolute',
 	        width: 1040,
 	        height: 810,
-	        backgroundImage: 'url(/images/C17_Ortho_top.png)',
+	        backgroundImage: 'url(/Images/C17_Home.png)',
 	        backgroundPosition: 'right',
 	        backgroundSize: '80%',
 	        backgroundRepeat: 'no-repeat',
@@ -18544,7 +18544,7 @@
 	      }), /*#__PURE__*/jsxRuntime.jsx(Box$1, {
 	        sx: {
 	          position: 'absolute',
-	          width: 90,
+	          width: 110,
 	          height: 35,
 	          backgroundColor: '16161E',
 	          borderRadius: 1,
@@ -18564,57 +18564,7 @@
 	          size: "small",
 	          variant: "contained",
 	          color: EnteranceDoor ? 'error' : 'success',
-	          children: "Side door"
-	        })
-	      }), /*#__PURE__*/jsxRuntime.jsx(Box$1, {
-	        sx: {
-	          position: 'absolute',
-	          width: 79,
-	          height: 52,
-	          backgroundColor: '16161E',
-	          borderRadius: 1,
-	          left: 740,
-	          top: 280,
-	          boxShadow: '0px 0px 7px rgba(0, 0, 0, 0.699)',
-	          color: '#1B93FF',
-	          justifyContent: 'center',
-	          display: 'flex',
-	          flexDirection: 'column',
-	          textAlign: 'center',
-	          alignItems: 'center',
-	          fontSize: 14
-	        },
-	        children: /*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	          onClick: () => setRearDoorR(!rearDoorR),
-	          color: rearDoorR ? 'error' : 'success',
-	          size: "small",
-	          variant: "contained",
-	          children: "Para Door R"
-	        })
-	      }), /*#__PURE__*/jsxRuntime.jsx(Box$1, {
-	        sx: {
-	          position: 'absolute',
-	          width: 79,
-	          height: 52,
-	          backgroundColor: '16161E',
-	          borderRadius: 1,
-	          left: 740,
-	          top: 480,
-	          boxShadow: '0px 0px 7px rgba(0, 0, 0, 0.699)',
-	          color: '#1B93FF',
-	          justifyContent: 'center',
-	          display: 'flex',
-	          flexDirection: 'column',
-	          textAlign: 'center',
-	          alignItems: 'center',
-	          fontSize: 14
-	        },
-	        children: /*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	          onClick: () => setRearDoorL(!rearDoorL),
-	          color: rearDoorL ? 'error' : 'success',
-	          size: "small",
-	          variant: "contained",
-	          children: "para Door L"
+	          children: "crew door"
 	        })
 	      }), /*#__PURE__*/jsxRuntime.jsxs(Box$1, {
 	        sx: {
@@ -25380,7 +25330,7 @@
 	const C17EFB = () => {
 	  return /*#__PURE__*/jsxRuntime.jsx(MemoryRouter, {
 	    children: /*#__PURE__*/jsxRuntime.jsx(EfbPower, {
-	      localVar: "EFB_MOVE",
+	      localVar: "C17_EFB_PWR",
 	      children: /*#__PURE__*/jsxRuntime.jsxs("div", {
 	        className: "EFBContainer",
 	        children: [/*#__PURE__*/jsxRuntime.jsxs(Routes, {

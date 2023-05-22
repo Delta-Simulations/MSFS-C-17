@@ -45,7 +45,7 @@ export const Airctaft = () => {
 					position: 'absolute',
 					width: 1040,
 					height: 810,
-					backgroundImage: 'url(/images/C17_Ortho_top.png)',
+					backgroundImage: 'url(/Images/C17_Home.png)',
 					backgroundPosition: 'right',
 					backgroundSize: '80%',
 					backgroundRepeat: 'no-repeat',
@@ -94,7 +94,7 @@ export const Airctaft = () => {
 				<Box
 					sx={{
 						position: 'absolute',
-						width: 90,
+						width: 110,
 						height: 35,
 						backgroundColor: '16161E',
 						borderRadius: 1,
@@ -116,10 +116,10 @@ export const Airctaft = () => {
 						variant="contained"
 						color={EnteranceDoor ? 'error' : 'success'}
 					>
-						Side door
+						crew door
 					</Button>
 				</Box>
-				<Box
+				{/* <Box
 					sx={{
 						position: 'absolute',
 						width: 79,
@@ -174,7 +174,7 @@ export const Airctaft = () => {
 					>
 						para Door L
 					</Button>
-				</Box>
+				</Box> */}
 
 
 			<Box

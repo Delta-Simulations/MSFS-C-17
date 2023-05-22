@@ -3,82 +3,90 @@ import { useSimVar } from '../../Hooks/simVars';
 
 export const Ap_Disp = (props) => {
 
-    var [AP_ALT] = useSimVar('A:Autopilot altitude lock var', 'feet');
-    AP_ALT = Math.floor(AP_ALT / 5) * 5;
+    let [IAS_SPD] = useSimVar('A:Autopilot airspeed hold var','knots');
+    let [MACH_SPD] = useSimVar('A:AUTOPILOT MACH HOLD VAR','number');
+    let [AT_MODE] = useSimVar('L:C17_MACHIAS','bool');
+    let [AT_CMMD_MODE] = useSimVar('L:C17_THRPCH','bool');
+    const Disp_AT_CMMD = AT_CMMD_MODE ? 'PCH' : 'THR';
 
-    const [AP_SPD] = useSimVar('A:Autopilot airspeed hold var','knots');
-    var [AP_HDG] = useSimVar('A:Autopilot heading lock dir', 'degrees');
-    AP_HDG = Math.floor(AP_HDG)
+    IAS_SPD = Math.round(IAS_SPD)
+    MACH_SPD = Math.round(MACH_SPD*100)/100
+    MACH_SPD = MACH_SPD.toFixed(2);
+    let AP_SPD = AT_MODE ? MACH_SPD : IAS_SPD;
+    let [AP_HDG] = useSimVar('A:Autopilot heading lock dir', 'degrees');
+    AP_HDG = Math.round(AP_HDG)
 
-    let [AP_VertSpd] = useSimVar('AUTOPILOT VERTICAL HOLD VAR', 'feet per minute');
-    // useEffect(() => console.log(AP_VertSpd), [AP_VertSpd])
-
-    const [AP_API] = useSimVar('L:C17_API', 'enum');
-    var [AFCS_Color] = useSimVar('L:C17_CPIT_ILLUM_MODE', 'bool');
-
-    var [Tot_Fuel] = useSimVar('A:FUEL TOTAL QUANTITY WEIGHT', 'pounds');
-    Tot_Fuel = Math.floor(Tot_Fuel / 5) * 5;
-    var [Fuel_1] = useSimVar('A:FUELSYSTEM TANK WEIGHT:1', 'pounds');
-    var [Fuel_2] = useSimVar('A:FUELSYSTEM TANK WEIGHT:2', 'pounds');
-    Fuel_1 = Math.floor(Fuel_1 / 5) * 5;
-    Fuel_2 = Math.floor(Fuel_2 / 5) * 5;
-    var [Fuel_3] = useSimVar('A:FUELSYSTEM TANK WEIGHT:3', 'pounds');
-    var [Fuel_4] = useSimVar('A:FUELSYSTEM TANK WEIGHT:4', 'pounds');
-    Fuel_3 = Math.floor(Fuel_3 / 5) * 5;
-    Fuel_4 = Math.floor(Fuel_4 / 5) * 5;
-
-    var [APU_PCT] = useSimVar('A:APU PCT RPM', 'percent');
+    
+    let [AP_API] = useSimVar('L:C17_API', 'enum');
+    AP_API = Math.round(AP_API*10)/10
+    let [AFCS_Color] = useSimVar('L:C17_CPIT_ILLUM_MODE', 'bool');
+    let [Tot_Fuel] = useSimVar('A:FUEL TOTAL QUANTITY WEIGHT', 'pounds');
+    Tot_Fuel = Math.round(Tot_Fuel / 5) * 5;
+    let [Fuel_1] = useSimVar('A:FUELSYSTEM TANK WEIGHT:1', 'pounds');
+    let [Fuel_2] = useSimVar('A:FUELSYSTEM TANK WEIGHT:2', 'pounds');
+    Fuel_1 = Math.round(Fuel_1 / 5) * 5;
+    Fuel_2 = Math.round(Fuel_2 / 5) * 5;
+    let [Fuel_3] = useSimVar('A:FUELSYSTEM TANK WEIGHT:3', 'pounds');
+    let [Fuel_4] = useSimVar('A:FUELSYSTEM TANK WEIGHT:4', 'pounds');
+    Fuel_3 = Math.round(Fuel_3 / 5) * 5;
+    Fuel_4 = Math.round(Fuel_4 / 5) * 5;
+    let [APU_PCT] = useSimVar('A:APU PCT RPM', 'percent');
     APU_PCT = Math.round(APU_PCT);
     let APU_EGT: number = APU_PCT * 4
+    // const [BLEED_ENG1] = useSimVar('A:TURB ENG BLEED AIR:1', 'psi');
+    // const [BLEED_ENG2] = useSimVar('A:TURB ENG BLEED AIR:2', 'psi');
+    // let BLEED_LEFTWING: number = Math.round(BLEED_ENG1+BLEED_ENG2);
+    // const [BLEED_ENG3] = useSimVar('A:TURB ENG BLEED AIR:3', 'psi');
+    // const [BLEED_ENG4] = useSimVar('A:TURB ENG BLEED AIR:4', 'psi');
+    // const [BLEED_APU] = useSimVar('A:APU BLEED PRESSURE RECEIVED BY ENGINE', 'psi');
+    // let BLEED_RIGHTWING: number = Math.round(BLEED_ENG3+BLEED_ENG4+BLEED_APU);
 
-    const [BLEED_ENG1] = useSimVar('A:TURB ENG BLEED AIR:1', 'psi');
-    const [BLEED_ENG2] = useSimVar('A:TURB ENG BLEED AIR:2', 'psi');
-    let BLEED_LEFTWING: number = Math.round(BLEED_ENG1+BLEED_ENG2);
-    const [BLEED_ENG3] = useSimVar('A:TURB ENG BLEED AIR:3', 'psi');
-    const [BLEED_ENG4] = useSimVar('A:TURB ENG BLEED AIR:4', 'psi');
-    const [BLEED_APU] = useSimVar('A:APU BLEED PRESSURE RECEIVED BY ENGINE', 'psi');
-    let BLEED_RIGHTWING: number = Math.round(BLEED_ENG3+BLEED_ENG4+BLEED_APU);
+    // var [HYDPRESS_ENG1] = useSimVar('ENG HYDRAULIC PRESSURE:1', 'psf');
+    // HYDPRESS_ENG1 = Math.round(HYDPRESS_ENG1/50)*50;
+    // var [HYDPRESS_ENG2] = useSimVar('ENG HYDRAULIC PRESSURE:2', 'psf');
+    // HYDPRESS_ENG2 = Math.round(HYDPRESS_ENG2/50)*50;
+    // var [HYDPRESS_ENG3] = useSimVar('ENG HYDRAULIC PRESSURE:3', 'psf');
+    // HYDPRESS_ENG3 = Math.round(HYDPRESS_ENG3/50)*50;
+    // var [HYDPRESS_ENG4] = useSimVar('ENG HYDRAULIC PRESSURE:4', 'psf');
+    // HYDPRESS_ENG4 = Math.round(HYDPRESS_ENG4/50)*50;
 
-    var [HYDPRESS_ENG1] = useSimVar('ENG HYDRAULIC PRESSURE:1', 'psf');
-    HYDPRESS_ENG1 = Math.floor(HYDPRESS_ENG1/50)*50;
-    var [HYDPRESS_ENG2] = useSimVar('ENG HYDRAULIC PRESSURE:2', 'psf');
-    HYDPRESS_ENG2 = Math.floor(HYDPRESS_ENG2/50)*50;
-    var [HYDPRESS_ENG3] = useSimVar('ENG HYDRAULIC PRESSURE:3', 'psf');
-    HYDPRESS_ENG3 = Math.floor(HYDPRESS_ENG3/50)*50;
-    var [HYDPRESS_ENG4] = useSimVar('ENG HYDRAULIC PRESSURE:4', 'psf');
-    HYDPRESS_ENG4 = Math.floor(HYDPRESS_ENG4/50)*50;
+    let [AP_ALT] = useSimVar('A:Autopilot altitude lock var', 'feet');
+    AP_ALT = Math.round(AP_ALT / 5) * 5;
+    const formattedAlt = AP_ALT.toFixed(0); // format as string
+    const AP_ALT_THOU = formattedAlt < 10000 ? formattedAlt.slice(0, 1) : formattedAlt.slice(0, 2); // get first 1 or 2 digits
+    const AP_ALT_HUND = formattedAlt.slice(-3); // get last 3 digits
+
+    let [AP_VertSpd] = useSimVar('AUTOPILOT VERTICAL HOLD VAR', 'feet per minute');
+    const AP_VS_SIGN = AP_VertSpd !== 0 ? (AP_VertSpd < 0 ? '-' : '+') : '';
+    AP_VertSpd = Math.abs(Math.round(AP_VertSpd / 5) * 5);
+    const formattedVS = AP_VertSpd.toFixed(0); // format as string
+    const AP_VS_THOU = formattedVS < 10000 ? formattedVS.slice(0, 1) : formattedVS.slice(0, 2); // get first 1 or 2 digits
+    const AP_VS_HUND = formattedVS.slice(-3); // get last 3 digits
+
+
 
     return(
         <g>
             <rect  x={0} y={0} width={1020} height={(AFCS_Color) ? 500 : 580} className='OHDispBackrnd' fill="none" stroke-width="2.5"/>
-
             <rect  x={45} y={670} width={250} height={90} visibility={(AFCS_Color) ? 'hidden' : 'visible'} className='OHDispBackrnd' fill="none" stroke-width="2.5"/>
-
-
             <text x={205} y={48} fontSize={32} fill='#00EE00' className='OHPNL' textAnchor="end">---</text>
             <text x={485} y={48} fontSize={32} fill='#00EE00' className='OHPNL' textAnchor="end">---</text>
-
             <text x={319} y={115} fontSize={31} fill='#00EE00' className='OHPNL' textAnchor="end">---</text>
             <text x={406} y={115} fontSize={31} fill='#00EE00' className='OHPNL' textAnchor="end">---</text>
-
             <text x={366} y={181} fontSize={31} fill='#00EE00' className='OHPNL' textAnchor="end">---</text>
             <text x={261} y={181} fontSize={31} fill='#00EE00' className='OHPNL' textAnchor="end">---</text>
             <text x={467} y={181} fontSize={31} fill='#00EE00' className='OHPNL' textAnchor="end">---</text>
-
             <text x={366} y={235} fontSize={31} fill='#00EE00' className='OHPNL' textAnchor="end">---</text>
             <text x={261} y={235} fontSize={31} fill='#00EE00' className='OHPNL' textAnchor="end">---</text>
             <text x={467} y={235} fontSize={31} fill='#00EE00' className='OHPNL' textAnchor="end">---</text>
-
             <text x={152} y={302} fontSize={31} fill='#00EE00' className='OHPNL' textAnchor="end">---</text>
             <text x={225} y={302} fontSize={31} fill='#00EE00' className='OHPNL' textAnchor="end">---</text>
             <text x={320} y={302} fontSize={31} fill='#00EE00' className='OHPNL' textAnchor="end">---</text>
             <text x={395} y={302} fontSize={31} fill='#00EE00' className='OHPNL' textAnchor="end">---</text>
             <text x={504} y={300} fontSize={31} fill='#00EE00' className='OHPNL' textAnchor="end">---</text>
             <text x={577} y={300} fontSize={31} fill='#00EE00' className='OHPNL' textAnchor="end">---</text>
-
             <text x={678} y={299} fontSize={31} fill='#00EE00' className='OHPNL' textAnchor="end">---</text>
             <text x={746} y={299} fontSize={31} fill='#00EE00' className='OHPNL' textAnchor="end">---</text>
-
             <text x={325} y={425} fontSize={31} fill='#00EE00' className='OHPNL' textAnchor="end">----</text>
             <text x={410} y={425} fontSize={31} fill='#00EE00' className='OHPNL' textAnchor="end">----</text>
             <text x={532} y={425} fontSize={31} fill='#00EE00' className='OHPNL' textAnchor="end">----</text>
@@ -93,14 +101,25 @@ export const Ap_Disp = (props) => {
             <text x={637} y={482} fontSize={35} className='OHPNL' textAnchor="end">{Fuel_4}</text>
 
 
-            <text x={45} y={555} fontSize={40} fill={(AFCS_Color) ? 'white' : '#00EE00'} className='FrontPNL' textAnchor="end">{AP_API}</text>
-            <text x={180} y={555} fontSize={40} fill={(AFCS_Color) ? 'white' : '#00EE00'} className='FrontPNL' textAnchor="end">{AP_SPD}</text>
+            <text x={64} y={555} fontSize={38} fill={(AFCS_Color) ? 'white' : '#00EE00'} className='FrontPNL' textAnchor="end">{AP_API}</text>
+            <text x={212} y={555} fontSize={40} fill={(AFCS_Color) ? 'white' : '#00EE00'} className='FrontPNL' textAnchor="end">{AP_SPD}{Disp_AT_CMMD}</text>
 
-            <text x={320} y={555} fontSize={40} fill={(AFCS_Color) ? 'white' : '#00EE00'} className='FrontPNL' textAnchor="end">{AP_HDG}</text>
+            <text x={329} y={555} fontSize={40} fill={(AFCS_Color) ? 'white' : '#00EE00'} className='FrontPNL' textAnchor="end">{AP_HDG}M</text>
 
-            <text x={470} y={555} fontSize={40} fill={(AFCS_Color) ? 'white' : '#00EE00'} className='FrontPNL' textAnchor="end">{AP_VertSpd}</text>
+            <text visibility={AP_VertSpd<10000 ? 'visible' : 'hidden'} x={406} y={553} fontSize={30} fill={(AFCS_Color) ? 'white' : '#00EE00'} className='FrontPNL' textAnchor="end">{AP_VS_SIGN}</text>
 
-            <text x={618} y={555} fontSize={40} fill={(AFCS_Color) ? 'white' : '#00EE00'} className='FrontPNL' textAnchor="end">{AP_ALT}</text>
+            <text visibility={AP_VertSpd<1000 ? 'visible' : 'hidden'} x={446} y={552} fontSize={27} fill={(AFCS_Color) ? 'white' : '#00EE00'} className='FrontPNL' textAnchor="end">-</text>
+            <text visibility={AP_VertSpd<1000 ? 'visible' : 'hidden'} x={446} y={563} fontSize={27} fill={(AFCS_Color) ? 'white' : '#00EE00'} className='FrontPNL' textAnchor="end">-</text>
+            <text visibility={AP_VertSpd<10000 ? 'visible' : 'hidden'} x={426} y={552} fontSize={27} fill={(AFCS_Color) ? 'white' : '#00EE00'} className='FrontPNL' textAnchor="end">-</text>
+            <text visibility={AP_VertSpd<10000 ? 'visible' : 'hidden'} x={426} y={563} fontSize={27} fill={(AFCS_Color) ? 'white' : '#00EE00'} className='FrontPNL' textAnchor="end">-</text>
+            <text x={448} y={555} fontSize={40} fill={(AFCS_Color) ? 'white' : '#00EE00'} className='FrontPNL' textAnchor="end">{AP_VertSpd < 999 ? '' : AP_VS_THOU}</text>
+            <text x={488} y={546} fontSize={27} fill={(AFCS_Color) ? 'white' : '#00EE00'} className='FrontPNL' textAnchor="end">{AP_VS_HUND}</text>
+
+
+            <text x={578} y={555} fontSize={40} fill={(AFCS_Color) ? 'white' : '#00EE00'} className='FrontPNL' textAnchor="end">{AP_ALT < 999 ? '' : AP_ALT_THOU}</text>
+            <text x={618} y={546} fontSize={27} fill={(AFCS_Color) ? 'white' : '#00EE00'} className='FrontPNL' textAnchor="end">{AP_ALT_HUND}</text>
+            <text visibility={AP_ALT<10000 ? 'visible' : 'hidden'} x={556} y={552} fontSize={27} fill={(AFCS_Color) ? 'white' : '#00EE00'} className='FrontPNL' textAnchor="end">-</text>
+            <text visibility={AP_ALT<10000 ? 'visible' : 'hidden'} x={556} y={563} fontSize={27} fill={(AFCS_Color) ? 'white' : '#00EE00'} className='FrontPNL' textAnchor="end">-</text>
 
             <text x={265} y={735} fontSize={65} fill={(AFCS_Color) ? 'white' : '#00EE00'} className='FrontPNL' textAnchor="end">{Tot_Fuel}</text>
 

@@ -96,21 +96,24 @@
 		<WwiseRTPC LocalVar="C17_APUSTARTER" Units="ENUM" Index="0" RTPCName="APU_SWITCH_POS"/>
 	</Sound>
 
-	<Sound WwiseEvent="Cpit_Pacs" WwiseData="true" SimVar="ELECTRICAL BATTERY BUS VOLTAGE" Units="volts" ViewPoint="Inside" Index="0" NodeName="VENT" FadeOutType="2">
-		<WwiseRTPC SimVar="ELECTRICAL MASTER BATTERY" Units="bool" Index="1" RTPCName="Avionics_Level" />
+	<Sound WwiseEvent="Cpit_Pacs" WwiseData="true" SimVar="ELECTRICAL MAIN BUS VOLTAGE" Units="volts" ViewPoint="Inside" Index="0" NodeName="VENT" FadeOutType="2">
+		<WwiseRTPC SimVar="ELECTRICAL MAIN BUS VOLTAGE" Units="bool" Index="1" RTPCName="Avionics_Level" />
 		<Range LowerBound="1.0" />
 	</Sound>
-	<Sound WwiseEvent="Cpit_Ticking_Cmpas" WwiseData="true" SimVar="ELECTRICAL BATTERY BUS VOLTAGE" Units="volts" ViewPoint="Inside" Index="0" NodeName="Standby Horizon">
-		<WwiseRTPC SimVar="ELECTRICAL MASTER BATTERY" Units="bool" Index="1" RTPCName="Avionics_Level" />
+	<Sound WwiseEvent="Cpit_Ticking_Cmpas" WwiseData="true" SimVar="ELECTRICAL MAIN BUS VOLTAGE" Units="volts" ViewPoint="Inside" Index="0" NodeName="Standby Horizon">
+		<WwiseRTPC SimVar="ELECTRICAL MAIN BUS VOLTAGE" Units="bool" Index="1" RTPCName="Avionics_Level" />
 		<Range LowerBound="1.0" />
 	</Sound>
-	<Sound WwiseEvent="Cpit_Ticking_Cmpas" WwiseData="true" SimVar="ELECTRICAL BATTERY BUS VOLTAGE" Units="volts" ViewPoint="Inside" Index="0" NodeName="Standby Horizon2">
-		<WwiseRTPC SimVar="ELECTRICAL MASTER BATTERY" Units="bool" Index="1" RTPCName="Avionics_Level" />
+
+	<Sound WwiseEvent="Cpit_Ticking_Cmpas" WwiseData="true" SimVar="ELECTRICAL MAIN BUS VOLTAGE" Units="volts" ViewPoint="Inside" Index="0" NodeName="Standby Horizon2">
+		<WwiseRTPC SimVar="ELECTRICAL MAIN BUS VOLTAGE" Units="bool" Index="1" RTPCName="Avionics_Level" />
 		<Range LowerBound="1.0" />
 	</Sound>
 
 
-	<Sound WwiseData="true" WwiseEvent="AP_Warning" Continuous="false" SimVar="AUTOPILOT MASTER" Units="BOOL" Index="0" NodeName="Plane.093">
+
+
+	<Sound WwiseData="true" WwiseEvent="AP_warning" Continuous="true" SimVar="AUTOPILOT MASTER" Units="BOOL" Index="0" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
 		<Requires SimVar="AUTOPILOT MASTER" Index="0" Units="BOOL">
 		   <Range UpperBound="0" />
 		</Requires>
@@ -118,120 +121,111 @@
 		   <Range LowerBound="1" />
 		 </Requires>
 	</Sound>
-
-	<Sound WwiseData="true" WwiseEvent="AT_warning" Derived="true" LocalVar="C17_AUTOTHROTTLE_OFF" Units="BOOL" Index="0" NodeName="Plane.093">
-		<Range LowerBound="1" />
-	</Sound>
-
-	<Sound WwiseData="true" WwiseEvent="GPWS_2500" Continuous="false" LocalVar="C17_GPWS_2500" Units="BOOL" Index="0" NodeName="Plane.093">
-		<Requires LocalVar="C17_GPWS_2500" Index="0" Units="BOOL">
-			<Range LowerBound="1" />
-		</Requires>
-	</Sound> 
-	<Sound WwiseData="true" WwiseEvent="GPWS_1000" Continuous="false" LocalVar="C17_GPWS_1000" Units="BOOL" Index="0" NodeName="Plane.093">
-		<Requires LocalVar="C17_GPWS_1000" Index="0" Units="BOOL">
-			<Range LowerBound="1" />
-		</Requires>
-	</Sound> 
-	<Sound WwiseData="true" WwiseEvent="GPWS_500" Continuous="false" LocalVar="C17_GPWS_500" Units="BOOL" Index="0" NodeName="Plane.093">
-		<Requires LocalVar="C17_GPWS_500" Index="0" Units="BOOL">
-		   <Range LowerBound="1" />
-		</Requires>
-	</Sound>
-	<Sound WwiseData="true" WwiseEvent="GPWS_400" Continuous="false" LocalVar="C17_GPWS_400" Units="BOOL" Index="0" NodeName="Plane.093">
-		<Requires LocalVar="C17_GPWS_400" Index="0" Units="BOOL">
-		   <Range LowerBound="1" />
-		</Requires>
-	</Sound>
-	<Sound WwiseData="true" WwiseEvent="GPWS_300" Continuous="false" LocalVar="C17_GPWS_300" Units="BOOL" Index="0" NodeName="Plane.093">
-		<Requires LocalVar="C17_GPWS_300" Index="0" Units="BOOL">
-		   <Range LowerBound="1" />
-		</Requires>
-	</Sound>
-	<Sound WwiseData="true" WwiseEvent="GPWS_200" Continuous="false" LocalVar="C17_GPWS_200" Units="BOOL" Index="0" NodeName="Plane.093">
-		<Requires LocalVar="C17_GPWS_200" Index="0" Units="BOOL">
-		   <Range LowerBound="1" />
-		</Requires>
-	</Sound>
-	<Sound WwiseData="true" WwiseEvent="GPWS_100" Continuous="false" LocalVar="C17_GPWS_100" Units="BOOL" Index="0" NodeName="Plane.093">
-		<Requires LocalVar="C17_GPWS_100" Index="0" Units="BOOL">
-		   <Range LowerBound="1" />
-		</Requires>
-	</Sound>
-	<Sound WwiseData="true" WwiseEvent="GPWS_50" Continuous="false" LocalVar="C17_GPWS_50" Units="BOOL" Index="0" NodeName="Plane.093">
-		<Requires LocalVar="C17_GPWS_50" Index="0" Units="BOOL">
-			<Range LowerBound="1" />
-		</Requires>
-	</Sound> 
-	<Sound WwiseData="true" WwiseEvent="GPWS_40" Continuous="false" LocalVar="C17_GPWS_40" Units="BOOL" Index="0" NodeName="Plane.093">
-		<Requires LocalVar="C17_GPWS_40" Index="0" Units="BOOL">
-			<Range LowerBound="1" />
-		</Requires>
-	</Sound> 
-	<Sound WwiseData="true" WwiseEvent="GPWS_30" Continuous="false" LocalVar="C17_GPWS_30" Units="BOOL" Index="0" NodeName="Plane.093">
-		<Requires LocalVar="C17_GPWS_30" Index="0" Units="BOOL">
-			<Range LowerBound="1" />
-		</Requires>
-	</Sound> 
-	<Sound WwiseData="true" WwiseEvent="GPWS_20" Continuous="false" LocalVar="C17_GPWS_20" Units="BOOL" Index="0" NodeName="Plane.093">
-		<Requires LocalVar="C17_GPWS_20" Index="0" Units="BOOL">
-			<Range LowerBound="1" />
-		</Requires>
-	</Sound> 
-	<Sound WwiseData="true" WwiseEvent="GPWS_10" Continuous="false" LocalVar="C17_GPWS_10" Units="BOOL" Index="0" NodeName="Plane.093">
-		<Requires LocalVar="C17_GPWS_10" Index="0" Units="BOOL">
-			<Range LowerBound="1" />
-		</Requires>
-	</Sound> 
-
-	<Sound WwiseData="true" WwiseEvent="Warning_MissileLaunch" Continuous="false" LocalVar="C17_MissileLaunch" Units="BOOL" Index="0" NodeName="Plane.093">
-		<Requires LocalVar="C17_MissileLaunch" Index="0" Units="BOOL">
-			<Range LowerBound="1" />
-		</Requires>
-	</Sound> 
-
-	<Sound WwiseData="true" WwiseEvent="APU_Door" Continuous="false" LocalVar="C17_ALERT_APU_DOOR" Units="BOOL" Index="0" NodeName="Plane.093">
-		<Requires LocalVar="C17_ALERT_APU_DOOR" Index="0" Units="BOOL">
-			<Range LowerBound="1" />
-		</Requires>
-	</Sound> 
-
-	<Sound WwiseData="true" WwiseEvent="Overspeed" Derived="true" LocalVar="C17_OVERSPEED" Units="BOOL" Index="0" NodeName="Plane.093">
-		<Range LowerBound="1" />
-	</Sound>
-	<Sound WwiseData="true" WwiseEvent="Gear_Overspeed" Derived="true" LocalVar="C17_GEAR_OVERSPEED" Units="BOOL" Index="0" NodeName="Plane.093">
-		<Range LowerBound="1" />
-
-	</Sound>
-	<Sound WwiseData="true" WwiseEvent="Flap_Overspeed" Derived="true" LocalVar="C17_FLAP_OVERSPEED" Units="BOOL" Index="0" NodeName="Plane.093">
-		<Range LowerBound="1" />
-
-	</Sound>
-	<Sound WwiseData="true" WwiseEvent="SinkRate" Derived="true" LocalVar="C17_SINKRATE" Units="BOOL" Index="0" NodeName="Plane.093">
-		<Range LowerBound="1" />
-	</Sound>
-
-	<Sound WwiseData="true" WwiseEvent="STALL_WARNING" Derived="true"  LocalVar="C17_STICK_SHAKER" Units="BOOL" Index="0" NodeName="Plane.093">
-		<Range LowerBound="1" />
-	</Sound>
-	<Sound WwiseData="true" WwiseEvent="Set_Takeoff_Brakes"  Derived="true" LocalVar="C17_SET_TAKEOFF_BRAKE" Units="BOOL" Index="0" NodeName="Plane.093">
-		<Range LowerBound="1" />
-	</Sound>
-	<Sound WwiseData="true" WwiseEvent="Set_Takeoff_Flaps" Derived="true" LocalVar="C17_SET_TAKEOFF_FLAPS" Units="BOOL" Index="0" NodeName="Plane.093">
-		<Range LowerBound="1" />
-	</Sound>
-	<Sound WwiseData="true" WwiseEvent="Retract_Takeoff_Spoilers"  Derived="true"  LocalVar="C17_SET_TAKEOFF_SPOILERS" Units="BOOL" Index="0" NodeName="Plane.093">
-		<Range LowerBound="1" />
-	</Sound>
-	<Sound WwiseData="true" WwiseEvent="Terrain_FlyUP"  Derived="true"  LocalVar="C17_TERRAIN_FLYUP" Units="BOOL" Index="0" NodeName="Plane.093">
-		<Range LowerBound="1" />
-	</Sound>
-	<Sound WwiseData="true" WwiseEvent="Gear_Annun"  Derived="true"  LocalVar="C17_EXTEND_GEAR" Units="BOOL" Index="0" NodeName="Plane.093">
-		<Range LowerBound="1" />
-	</Sound>
+	
+    <Sound WwiseData="true" WwiseEvent="AT_warning" LocalVar="C17_AT_warning" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
 
 
-
+    <Sound WwiseData="true" WwiseEvent="GPWS_2500" LocalVar="C17_GPWS_2500" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+    <Sound WwiseData="true" WwiseEvent="GPWS_1000" LocalVar="C17_GPWS_1000" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="GPWS_500" LocalVar="C17_GPWS_500" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="GPWS_400" LocalVar="C17_GPWS_400" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="GPWS_300" LocalVar="C17_GPWS_300" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="GPWS_200" LocalVar="C17_GPWS_200" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="GPWS_100" LocalVar="C17_GPWS_100" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="GPWS_50" LocalVar="C17_GPWS_50" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="GPWS_40" LocalVar="C17_GPWS_40" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="GPWS_30" LocalVar="C17_GPWS_30" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="GPWS_20" LocalVar="C17_GPWS_20" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="GPWS_10" LocalVar="C17_GPWS_10" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="Warning_MissileLaunch" LocalVar="C17_MissileLaunch" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="APU_Door" LocalVar="C17_ALERT_APU_DOOR" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="Overspeed" LocalVar="C17_OVERSPEED" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="Gear_Overspeed" LocalVar="C17_GEAR_OVERSPEED" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="Flap_Overspeed" LocalVar="C17_FLAP_OVERSPEED" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="SinkRate" LocalVar="C17_SINKRATE" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="STALL_WARNING" LocalVar="C17_STICK_SHAKER" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="Set_Takeoff_Brakes" LocalVar="C17_SET_TAKEOFF_BRAKE" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="Set_Takeoff_Flaps" LocalVar="C17_SET_TAKEOFF_FLAPS" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="Retract_Takeoff_Spoilers" LocalVar="C17_SET_TAKEOFF_SPOILERS" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="Terrain_FlyUP" LocalVar="C17_TERRAIN_FLYUP" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="Gear_Annun" LocalVar="C17_EXTEND_GEAR" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="AP_Alt_deviate" LocalVar="C17_AP_ALT_DEVIATE" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="AP_Alt_approach" LocalVar="C17_AP_ALT_APPROACH" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="Stab_Motion" LocalVar="C17_STAB_MOTION" Continuous="true" NodeName="Plane.093" BreakOnStop="false" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="Pitch_Authority" LocalVar="C17_PCH_AUTHORITY" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="TCAS_Test_ok" LocalVar="C17_TCAS_Test" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="Fuel_Pressure" LocalVar="C17_ALERT_FUEL_PRESS" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="Master_caution" LocalVar="C17_ALERT_MASTER_CAUTION" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="Takeoff_Sinking" LocalVar="C17_ALERT_TOGA_Sinking" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="Wacs_fail" LocalVar="C17_Wacs_Failed" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
  <!--================= WIND CARGO BAY =================== -->
 
 	<Sound WwiseData="true" WwiseEvent="WindSoundCargo"  Derived="true"  LocalVar="C17_CargoDoor_POS" Units="ENUM" Index="0" NodeName="Ramp toe">

@@ -13,7 +13,7 @@ export const RadioDisp = () => {
     let [COM2_Active_Freq] = useSimVar('A:COM ACTIVE FREQUENCY:2', 'Megahertz');
     let [COM1_Stby_Freq] = useSimVar('A:COM STANDBY FREQUENCY:1', 'Megahertz');
     let [COM2_Stby_Freq] = useSimVar('A:COM STANDBY FREQUENCY:2', 'Megahertz')
-    
+
     let [NAV1_Active_Freq] = useSimVar('A:NAV ACTIVE FREQUENCY:1', 'Megahertz');
     let [NAV2_Active_Freq] = useSimVar('A:NAV ACTIVE FREQUENCY:2', 'Megahertz');
     let [NAV1_Stby_Freq] = useSimVar('A:NAV STANDBY FREQUENCY:1', 'Megahertz');
@@ -26,6 +26,10 @@ export const RadioDisp = () => {
 
     let [ADF_Active_Freq] = useSimVar('A:ADF ACTIVE FREQUENCY:1', 'Megahertz');
     let [ADF_Stby_Freq] = useSimVar('A:ADF STANDBY FREQUENCY:1', 'Megahertz');
+
+    let [Ident_Active] = useSimVar('A:TRANSPONDER IDENT:1', 'bool');
+    let [Ident_Code] = useSimVar('A:TRANSPONDER CODE:1', 'enum');
+
    
     let DispActiveFreq : string = "----";
     let DispStbyFreq : string = "-INOP-" ;
@@ -75,6 +79,8 @@ export const RadioDisp = () => {
         break;
     case 11:
         DispMode = "IFF";
+        DispActiveFreq = `${Ident_Code}`;
+        DispStbyFreq = ``;
         break;
       default:
         DispMode = "";
@@ -120,8 +126,10 @@ export const RadioDisp = () => {
             <text x={81} y={902} fontSize={19} fill='#00EE00' className='Radio' textAnchor="start">STBY</text>
 
 
-            <text x={76} y={963} fontSize={19} fill='#00EE00' className='Radio' textAnchor="start">IDENT</text>
+            <text visibility={Ident_Active == 1  ? 'visible' : 'hidden'} x={76} y={963} fontSize={19} fill='#00EE00' className='Radio' textAnchor="start">IDENT</text>
             <text x={197} y={963} fontSize={19} fill='#00EE00' className='Radio' textAnchor="start">TEMPEST</text>
+
+            <text x={138} y={963} fontSize={19} fill='#00EE00' className='Radio' textAnchor="start">{Ident_Code}</text>
 
 
             <text x={73} y={830} fontSize={34} fill='rgb(245, 255, 137)' className='Radio' textAnchor="start">{DispMode}</text>

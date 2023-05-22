@@ -281,13 +281,13 @@
             <Parameter>
                  <Code>
 
-				(L:C17_WIPER, enum) 50 == if{ 2 (&gt;O:WiperSpeed, enum) }
-				(L:C17_WIPER, enum) 100 == if{ 1 (&gt;O:WiperSpeed, enum) }
+				(L:C17_WIPER, enum) 50 == if{ 2 (&gt;L:C17_WiperSpd, enum) }
+				(L:C17_WIPER, enum) 100 == if{ 1 (&gt;L:C17_WiperSpd, enum) }
 
 				  (L:C17_WIPER, enum) 0 &gt;
 				  (A:CIRCUIT ON:65,bool) 1 == and
 				  if{ 
-                  (E:ABSOLUTE TIME, second) (O:WiperSpeed, enum) % (L:C17_WIPER, enum) *
+                  (E:ABSOLUTE TIME, second) (L:C17_WiperSpd, enum) % (L:C17_WIPER, enum) *
                   } els{ 0 }
                  </Code>
         </Parameter>

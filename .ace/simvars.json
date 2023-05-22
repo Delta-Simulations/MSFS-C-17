@@ -1,3 +1,37 @@
 {
-    "elements": []
+    "elements": [
+        {
+            "__uuid": "045815c0-9ddf-4096-ab89-c7aae6751eea",
+            "title": "xpnd ident active",
+            "varPrefix": "A",
+            "varName": "TRANSPONDER IDENT",
+            "varUnit": "bool",
+            "style": {
+                "type": 3
+            }
+        },
+        {
+            "__uuid": "65dba07a-0d45-4249-8fb9-77ceca100c6a",
+            "title": "nvg mode",
+            "varPrefix": "L",
+            "varName": "C17_THRPCH",
+            "varUnit": "bool",
+            "style": {
+                "type": 3
+            }
+        },
+        {
+            "__uuid": "43fa2e90-b885-4aae-8d8b-588097056fc8",
+            "title": "VS",
+            "varPrefix": "A",
+            "varName": "AUTOPILOT VERTICAL HOLD VAR",
+            "varUnit": "feet per minute",
+            "style": {
+                "type": 2,
+                "min": -10000,
+                "max": 10000,
+                "step": 1
+            }
+        }
+    ]
 }

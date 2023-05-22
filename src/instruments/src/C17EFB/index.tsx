@@ -27,7 +27,7 @@ import { Settings } from './Components/settings/settings';
 const C17EFB = () => {
 	return (
 		<MemoryRouter>
-			<EfbPower localVar="EFB_MOVE">
+			<EfbPower localVar="C17_EFB_PWR">
 				<div className="EFBContainer">
 					<Routes>
 						<Route path="/" element={<Home />} />
