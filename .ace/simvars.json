@@ -2,35 +2,32 @@
     "elements": [
         {
             "__uuid": "045815c0-9ddf-4096-ab89-c7aae6751eea",
-            "title": "xpnd ident active",
+            "title": "park break",
             "varPrefix": "A",
-            "varName": "TRANSPONDER IDENT",
+            "varName": "Brake parking position",
             "varUnit": "bool",
             "style": {
                 "type": 3
             }
         },
         {
-            "__uuid": "65dba07a-0d45-4249-8fb9-77ceca100c6a",
+            "__uuid": "b1a9be92-a6ec-46ed-8264-7e1b844cd999",
             "title": "nvg mode",
-            "varPrefix": "L",
-            "varName": "C17_THRPCH",
+            "varPrefix": "A",
+            "varName": "Spoilers right position",
             "varUnit": "bool",
             "style": {
                 "type": 3
             }
         },
         {
-            "__uuid": "43fa2e90-b885-4aae-8d8b-588097056fc8",
-            "title": "VS",
-            "varPrefix": "A",
-            "varName": "AUTOPILOT VERTICAL HOLD VAR",
-            "varUnit": "feet per minute",
+            "__uuid": "8298f3e8-0a84-4c36-aa63-c9109c5f9bb5",
+            "title": "ldng",
+            "varPrefix": "L",
+            "varName": "C17_WACAP_Test",
+            "varUnit": "bool",
             "style": {
-                "type": 2,
-                "min": -10000,
-                "max": 10000,
-                "step": 1
+                "type": 3
             }
         }
     ]

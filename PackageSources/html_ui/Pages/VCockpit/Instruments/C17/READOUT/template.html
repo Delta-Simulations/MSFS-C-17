@@ -8940,74 +8940,77 @@
 	};
 
 	const WACAP = props => {
-	  var [WACAP_Test] = useSimVar('L:C17_WACAP_Test', 'bool');
-	  var [Park_brake] = useSimVar('A:Brake parking position', 'bool');
+	  const [WACAP_Test] = useSimVar('L:C17_WACAP_Test', 'bool');
+	  const [Park_brake] = useSimVar('A:Brake parking position', 'bool');
 	  const [Speed_brake] = useSimVar('A:Spoilers right position', 'bool');
 	  const [Landing_light] = useSimVar('A:Light landing', 'bool');
 	  const [Taxi_light] = useSimVar('A:Light taxi', 'bool');
-	  var [Fuel_quantity] = useSimVar('A:FUEL TOTAL QUANTITY', 'gallons');
-	  Fuel_quantity = Math.round(Fuel_quantity);
+	  const [Fuel_quantity] = useSimVar('A:FUEL TOTAL QUANTITY', 'gallons');
 	  const [Cargo_door] = useSimVar('L:DoorSwitch', 'enum');
+	  const [cautionMessages, setCautionMessages] = react.useState([]);
+	  react.useEffect(() => {
+	    const messages = [{
+	      id: 1,
+	      message: 'PARK BRAKE',
+	      condition: WACAP_Test || Park_brake
+	    }, {
+	      id: 2,
+	      message: 'LANDING LIGHT',
+	      condition: WACAP_Test || Landing_light
+	    }, {
+	      id: 3,
+	      message: 'TAXI LIGHT',
+	      condition: WACAP_Test || Taxi_light
+	    }, {
+	      id: 4,
+	      message: 'FUEL LOW',
+	      condition: WACAP_Test || Fuel_quantity <= 12310
+	    }, {
+	      id: 5,
+	      message: 'SPOILERS',
+	      condition: WACAP_Test || Speed_brake
+	    }, {
+	      id: 6,
+	      message: 'RAMP OPEN',
+	      condition: WACAP_Test || Cargo_door
+	    } // Add more caution messages here...
+	    ];
+	    setCautionMessages(messages);
+	  }, [WACAP_Test, Park_brake, Speed_brake, Landing_light, Taxi_light, Fuel_quantity, Cargo_door]);
+	  const maxMessages = 14;
+	  const visibleMessages = cautionMessages.filter(message => message.condition);
+	  const displayedMessages = visibleMessages.slice(0, maxMessages);
+	  const remainingMessages = Math.max(0, visibleMessages.length - maxMessages);
 	  return /*#__PURE__*/jsxRuntime.jsxs("g", {
-	    children: [/*#__PURE__*/jsxRuntime.jsx("text", {
+	    children: [displayedMessages.map((message, index) => /*#__PURE__*/jsxRuntime.jsx("text", {
 	      x: 670,
-	      y: 615,
+	      y: 615 + index * 23,
 	      fontSize: 30,
-	      visibility: WACAP_Test || Park_brake ? 'visible' : 'hidden',
 	      fill: "#FF0000",
 	      className: "WAPanel",
 	      textAnchor: "middle",
-	      children: "PARK BRAKE"
-	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
-	      x: 670,
-	      y: 638,
-	      fontSize: 30,
-	      visibility: WACAP_Test || Landing_light ? 'visible' : 'hidden',
-	      fill: "#FF0000",
-	      className: "WAPanel",
-	      textAnchor: "middle",
-	      children: "LANDING LIGHT"
-	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
-	      x: 670,
-	      y: 661,
-	      fontSize: 30,
-	      visibility: WACAP_Test || Taxi_light ? 'visible' : 'hidden',
-	      fill: "#FF0000",
-	      className: "WAPanel",
-	      textAnchor: "middle",
-	      children: "TAXI LIGHT"
-	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
-	      x: 670,
-	      y: 684,
-	      fontSize: 30,
-	      visibility: WACAP_Test || Fuel_quantity <= 12310 ? 'visible' : 'hidden',
-	      fill: "#FF0000",
-	      className: "WAPanel",
-	      textAnchor: "middle",
-	      children: "FUEL LOW"
-	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
-	      x: 670,
-	      y: 707,
-	      fontSize: 30,
-	      visibility: WACAP_Test || Speed_brake ? 'visible' : 'hidden',
-	      fill: "#FF0000",
-	      className: "WAPanel",
-	      textAnchor: "middle",
-	      children: "SPOILERS"
-	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
-	      x: 670,
-	      y: 730,
-	      fontSize: 30,
-	      visibility: WACAP_Test || Cargo_door ? 'visible' : 'hidden',
-	      fill: "#CCFF33",
-	      className: "WAPanel",
-	      textAnchor: "middle",
-	      children: "RAMP OPEN"
+	      children: message.message
+	    }, message.id)), remainingMessages > 0 && /*#__PURE__*/jsxRuntime.jsxs("g", {
+	      className: "scroll-symbols",
+	      children: [/*#__PURE__*/jsxRuntime.jsx("text", {
+	        x: 650,
+	        y: 615 + maxMessages * 23,
+	        fontSize: 16,
+	        fill: "#FF0000",
+	        children: "\u2191"
+	      }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	        x: 650,
+	        y: 638 + maxMessages * 23,
+	        fontSize: 16,
+	        fill: "#FF0000",
+	        children: "\u2193"
+	      })]
 	    })]
 	  });
 	};
 
 	const RadioDisp = () => {
+	  let [WACAP_Test] = useSimVar('L:C17_WACAP_Test', 'bool');
 	  let [HUD_OVERLAY] = useSimVar('L:C17_HUDDEBUG', 'bool');
 	  let [KHz_tune] = useSimVar('L:C17_KHz_Tune', 'bool');
 	  let [SQL_active] = useSimVar('L:C17_SQL_active', 'bool');
@@ -9268,7 +9271,7 @@
 	      fill: "rgb(245, 255, 137)",
 	      className: "Radio",
 	      textAnchor: Active_COM === 9 ? 'end' : 'start',
-	      children: DispActiveFreq
+	      children: WACAP_Test ? '888.888' : DispActiveFreq
 	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
 	      x: Active_COM === 9 ? 110 : 52,
 	      y: 925,
@@ -9276,7 +9279,7 @@
 	      fill: "rgb(245, 255, 137)",
 	      className: "Radio",
 	      textAnchor: Active_COM === 9 ? 'end' : 'start',
-	      children: DispStbyFreq
+	      children: WACAP_Test ? '888.888' : DispStbyFreq
 	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
 	      visibility: Active_COM <= 6 && 0 < Active_COM ? 'visible' : 'hidden',
 	      x: 36,
@@ -10303,6 +10306,21 @@
 
 .YllwRect {
   stroke: #f5ff89;
+}
+
+.caution-zone {
+  /* Define the position and size of the caution zone */
+  position: relative;
+  width: 300px;
+  height: 200px;
+  /* Add any other desired styles */
+}
+
+.message {
+  /* Define the font and size of the caution messages */
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  /* Add any other desired styles */
 }
     </style>
 </script>

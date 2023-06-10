@@ -65,3 +65,18 @@
 .YllwRect {
   stroke: #f5ff89;
 }
+
+.caution-zone {
+  /* Define the position and size of the caution zone */
+  position: relative;
+  width: 300px;
+  height: 200px;
+  /* Add any other desired styles */
+}
+
+.message {
+  /* Define the font and size of the caution messages */
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  /* Add any other desired styles */
+}

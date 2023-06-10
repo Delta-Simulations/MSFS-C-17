@@ -10,7 +10,6 @@
     font-family: "OCRB";
     src: url("/Fonts/OcrB2.ttf") format("truetype");
 }
-
 @font-face {
     font-family: EngCntrl;
     src: url("/Fonts/BoeingFont.ttf");
@@ -50,3 +49,18 @@
 .YllwRect {
     stroke: rgb(245, 255, 137)
 }
+// CSS file (e.g., cautionZone.css)
+.caution-zone {
+    /* Define the position and size of the caution zone */
+    position: relative;
+    width: 300px;
+    height: 200px;
+    /* Add any other desired styles */
+  }
+  
+  .message {
+    /* Define the font and size of the caution messages */
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    /* Add any other desired styles */
+  }

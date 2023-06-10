@@ -2,7 +2,7 @@ import React from 'react';
 import { useSimVar } from '../../Hooks/simVars';
 
 export const RadioDisp = () => {
-
+    let [WACAP_Test] = useSimVar('L:C17_WACAP_Test', 'bool');
     let [HUD_OVERLAY] = useSimVar('L:C17_HUDDEBUG', 'bool');
     let [KHz_tune] = useSimVar('L:C17_KHz_Tune', 'bool');
     let [SQL_active] = useSimVar('L:C17_SQL_active', 'bool');
@@ -29,6 +29,7 @@ export const RadioDisp = () => {
 
     let [Ident_Active] = useSimVar('A:TRANSPONDER IDENT:1', 'bool');
     let [Ident_Code] = useSimVar('A:TRANSPONDER CODE:1', 'enum');
+    
 
    
     let DispActiveFreq : string = "----";
@@ -134,8 +135,8 @@ export const RadioDisp = () => {
 
             <text x={73} y={830} fontSize={34} fill='rgb(245, 255, 137)' className='Radio' textAnchor="start">{DispMode}</text>
             <text x={193} y={830} fontSize={34} fill='rgb(245, 255, 137)' className='Radio' textAnchor="start">{SecureComms}</text>
-            <text x={ Active_COM === 9 ? 260 : 146} y={932} fontSize={34} fill='rgb(245, 255, 137)' className='Radio' textAnchor={ Active_COM === 9 ? 'end' : 'start'}>{DispActiveFreq}</text>
-            <text x={ Active_COM === 9 ? 110 : 52} y={925} fontSize={22} fill='rgb(245, 255, 137)' className='Radio' textAnchor={ Active_COM === 9 ? 'end' : 'start'}>{DispStbyFreq}</text>
+            <text x={ Active_COM === 9 ? 260 : 146} y={932} fontSize={34} fill='rgb(245, 255, 137)' className='Radio' textAnchor={ Active_COM === 9 ? 'end' : 'start'}>{WACAP_Test ? '888.888' : DispActiveFreq}</text>
+            <text x={ Active_COM === 9 ? 110 : 52} y={925} fontSize={22} fill='rgb(245, 255, 137)' className='Radio' textAnchor={ Active_COM === 9 ? 'end' : 'start'}>{WACAP_Test ? '888.888' : DispStbyFreq}</text>
 
 
             <text visibility={Active_COM <= 6 && 0 <Active_COM ? 'visible' : 'hidden'} x={36} y={1016} fontSize={19} fill='#00EE00' className='Radio' textAnchor="Middle">MODE</text>

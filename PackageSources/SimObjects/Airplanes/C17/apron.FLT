@@ -211,7 +211,7 @@ BackCourseHold=False
 YawDamper=False
 ToGa=False
 AutoThrottleArm=False
-GPSdrivesNAV1=False
+GPSdrivesNAV1=True
 IsUsedForLesson=False
 ForceDisplayUI=False
 

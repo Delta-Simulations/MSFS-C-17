@@ -1,37 +1,67 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSimVar } from '../../Hooks/simVars';
 
+interface CautionMessage {
+  id: number;
+  message: string;
+  condition: boolean;
+}
+
 export const WACAP = (props) => {
+  const [WACAP_Test] = useSimVar('L:C17_WACAP_Test', 'bool');
+  const [Park_brake] = useSimVar('A:Brake parking position', 'bool');
+  const [Speed_brake] = useSimVar('A:Spoilers right position', 'bool');
+  const [Landing_light] = useSimVar('A:Light landing', 'bool');
+  const [Taxi_light] = useSimVar('A:Light taxi', 'bool');
+  const [Fuel_quantity] = useSimVar('A:FUEL TOTAL QUANTITY', 'gallons');
+  const [Cargo_door] = useSimVar('L:DoorSwitch', 'enum');
+  const [cautionMessages, setCautionMessages] = useState<CautionMessage[]>([]);
 
-    var [WACAP_Test] = useSimVar('L:C17_WACAP_Test', 'bool');
+  useEffect(() => {
+    const messages: CautionMessage[] = [
+      { id: 1, message: 'PARK BRAKE', condition: WACAP_Test || Park_brake },
+      { id: 2, message: 'LANDING LIGHT', condition: WACAP_Test || Landing_light },
+      { id: 3, message: 'TAXI LIGHT', condition: WACAP_Test || Taxi_light },
+      { id: 4, message: 'FUEL LOW', condition: WACAP_Test || Fuel_quantity <= 12310 },
+      { id: 5, message: 'SPOILERS', condition: WACAP_Test || Speed_brake },
+      { id: 6, message: 'RAMP OPEN', condition: WACAP_Test || Cargo_door },
+      // Add more caution messages here...
+    ];
 
-    var [Park_brake] = useSimVar('A:Brake parking position','bool');
+    setCautionMessages(messages);
+  }, [WACAP_Test, Park_brake, Speed_brake, Landing_light, Taxi_light, Fuel_quantity, Cargo_door]);
 
-    const [Speed_brake] = useSimVar('A:Spoilers right position','bool');
+  const maxMessages = 14;
+  const visibleMessages = cautionMessages.filter((message) => message.condition);
+  const displayedMessages = visibleMessages.slice(0, maxMessages);
+  const remainingMessages = Math.max(0, visibleMessages.length - maxMessages);
 
-    const [Landing_light] = useSimVar('A:Light landing','bool');
-
-    const [Taxi_light] = useSimVar('A:Light taxi','bool');
-
-    var [Fuel_quantity] = useSimVar('A:FUEL TOTAL QUANTITY','gallons');
-    Fuel_quantity= Math.round(Fuel_quantity)
-
-    const [Cargo_door] = useSimVar('L:DoorSwitch','enum');
-
-   
-
-    return(
-        <g>
-            {/* CENTER */}
-            < text x={670} y={615} fontSize={30} visibility={(WACAP_Test||Park_brake) ? 'visible' : 'hidden'} fill='#FF0000' className='WAPanel' textAnchor="middle">PARK BRAKE</text>
-            < text x={670} y={638} fontSize={30} visibility={(WACAP_Test||Landing_light) ? 'visible' : 'hidden'} fill='#FF0000' className='WAPanel' textAnchor="middle">LANDING LIGHT</text>
-            < text x={670} y={661} fontSize={30} visibility={(WACAP_Test||Taxi_light) ? 'visible' : 'hidden'} fill='#FF0000' className='WAPanel' textAnchor="middle">TAXI LIGHT</text>
-            < text x={670} y={684} fontSize={30} visibility={(WACAP_Test||Fuel_quantity<=12310)? 'visible' : 'hidden'} fill='#FF0000' className='WAPanel' textAnchor="middle">FUEL LOW</text>
-            < text x={670} y={707} fontSize={30} visibility={(WACAP_Test||Speed_brake) ? 'visible' : 'hidden'} fill='#FF0000' className='WAPanel' textAnchor="middle">SPOILERS</text>
-
-            < text x={670} y={730} fontSize={30} visibility={(WACAP_Test||Cargo_door) ? 'visible' : 'hidden'} fill='#CCFF33' className='WAPanel' textAnchor="middle">RAMP OPEN</text>
-
-
+  return (
+    <g>
+      {/* CENTER */}
+      {displayedMessages.map((message, index) => (
+        <text
+          key={message.id}
+          x={670}
+          y={615 + index * 23}
+          fontSize={30}
+          fill="#FF0000"
+          className="WAPanel"
+          textAnchor="middle"
+        >
+          {message.message}
+        </text>
+      ))}
+      {remainingMessages > 0 && (
+        <g className="scroll-symbols">
+          <text x={650} y={615 + maxMessages * 23} fontSize={16} fill="#FF0000">
+            ↑
+          </text>
+          <text x={650} y={638 + maxMessages * 23} fontSize={16} fill="#FF0000">
+            ↓
+          </text>
         </g>
-    )
+      )}
+    </g>
+  );
 };

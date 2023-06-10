@@ -89,6 +89,8 @@ if{
 if{ 
   1 (>K:STROBES_ON)
   100 (&gt;K:LIGHT_POTENTIOMETER_4_SET)
+  2 (>K:BEACON_LIGHTS_ON)
+  1 (>K:BEACON_LIGHTS_ON)
 }
 
 (L:C17_LIGHTS_EPC, bool) 1 ==

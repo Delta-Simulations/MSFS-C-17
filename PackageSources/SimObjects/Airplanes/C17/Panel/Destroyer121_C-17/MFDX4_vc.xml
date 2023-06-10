@@ -103,7 +103,7 @@
       </Element>
       <!--HEADING-->
       <Element>
-        <Visible>(A:Avionics master switch,bool)</Visible>
+        <Visible>(L:C17_IRU4,bool)</Visible>
         <Position X="93" Y="249"/>
         <MaskImage Name="MFDX1_HDG_mask.bmp" Bright="0">
           <Axis X="66" Y="6"/>
@@ -721,7 +721,7 @@
         <Image Name="MFDX1_ND_screen.bmp" Bright="1"/>
       </Element>
       <Element>
-        <Visible>(A:Avionics master switch,bool)</Visible>
+        <Visible>(L:C17_IRU4,bool)</Visible>
         <Element>
           <!--ROSE-->
           <Element>

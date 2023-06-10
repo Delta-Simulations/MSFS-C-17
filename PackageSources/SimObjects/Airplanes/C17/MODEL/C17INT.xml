@@ -184,6 +184,54 @@
     </UseTemplate>
 
     <UseTemplate Name="DELTASIM_Finite_Knob_Template">
+      <NODE_ID>Knob_IRU1</NODE_ID>
+      <ANIM_CODE>(L:C17_IRU1) 100 *</ANIM_CODE>
+      <CLOCKWISE_CODE>
+        1 (&gt;L:C17_IRU1)
+      </CLOCKWISE_CODE>
+      <ANTICLOCKWISE_CODE>
+         0 (&gt;L:C17_IRU1)
+      </ANTICLOCKWISE_CODE>
+      <CW_ANIMTIP>IRU 1</CW_ANIMTIP>
+      <CCW_ANIMTIP>IRU 1</CCW_ANIMTIP>
+    </UseTemplate>
+    <UseTemplate Name="DELTASIM_Finite_Knob_Template">
+      <NODE_ID>Knob_IRU2</NODE_ID>
+      <ANIM_CODE>(L:C17_IRU2) 100 *</ANIM_CODE>
+      <CLOCKWISE_CODE>
+        1 (&gt;L:C17_IRU2)
+      </CLOCKWISE_CODE>
+      <ANTICLOCKWISE_CODE>
+         0 (&gt;L:C17_IRU2)
+      </ANTICLOCKWISE_CODE>
+      <CW_ANIMTIP>IRU 2</CW_ANIMTIP>
+      <CCW_ANIMTIP>IRU 2</CCW_ANIMTIP>
+    </UseTemplate>
+    <UseTemplate Name="DELTASIM_Finite_Knob_Template">
+      <NODE_ID>Knob_IRU3</NODE_ID>
+      <ANIM_CODE>(L:C17_IRU3) 100 *</ANIM_CODE>
+      <CLOCKWISE_CODE>
+        1 (&gt;L:C17_IRU3)
+      </CLOCKWISE_CODE>
+      <ANTICLOCKWISE_CODE>
+         0 (&gt;L:C17_IRU3)
+      </ANTICLOCKWISE_CODE>
+      <CW_ANIMTIP>IRU 3</CW_ANIMTIP>
+      <CCW_ANIMTIP>IRU 3</CCW_ANIMTIP>
+    </UseTemplate>
+    <UseTemplate Name="DELTASIM_Finite_Knob_Template">
+      <NODE_ID>Knob_IRU4</NODE_ID>
+      <ANIM_CODE>(L:C17_IRU4) 100 *</ANIM_CODE>
+      <CLOCKWISE_CODE>
+        1 (&gt;L:C17_IRU4)
+      </CLOCKWISE_CODE>
+      <ANTICLOCKWISE_CODE>
+         0 (&gt;L:C17_IRU4)
+      </ANTICLOCKWISE_CODE>
+      <CW_ANIMTIP>IRU 4</CW_ANIMTIP>
+      <CCW_ANIMTIP>IRU 4</CCW_ANIMTIP>
+    </UseTemplate>
+    <UseTemplate Name="DELTASIM_Finite_Knob_Template">
       <NODE_ID>KNOB_SEL_EPR_MAN</NODE_ID>
       <ANIM_CODE>(L:C17_EPR_MAN_SEL) 58 *</ANIM_CODE>
       <CLOCKWISE_CODE>
@@ -329,6 +377,62 @@
     </LEFT_SINGLE_CODE>
 </UseTemplate>
 
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>BUTTON_ANTI_ICE_ENG1</NODE_ID>
+    <TOOLTIPID>ENG ANTI ICE</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+      (K:ANTI_ICE_TOGGLE_ENG1) ! (&gt;K:ANTI_ICE_TOGGLE_ENG1)
+    </LEFT_SINGLE_CODE>
+</UseTemplate>
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>BUTTON_ANTI_ICE_ENG2</NODE_ID>
+    <TOOLTIPID>ENG ANTI ICE</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+      (K:ANTI_ICE_TOGGLE_ENG2) ! (&gt;K:ANTI_ICE_TOGGLE_ENG2)
+    </LEFT_SINGLE_CODE>
+</UseTemplate>
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>BUTTON_ANTI_ICE_ENG3</NODE_ID>
+    <TOOLTIPID>ENG ANTI ICE</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+      (K:ANTI_ICE_TOGGLE_ENG3) ! (&gt;K:ANTI_ICE_TOGGLE_ENG3)
+    </LEFT_SINGLE_CODE>
+</UseTemplate>
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>BUTTON_ANTI_ICE_ENG4</NODE_ID>
+    <TOOLTIPID>ENG ANTI ICE</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+      (K:ANTI_ICE_TOGGLE_ENG4) ! (&gt;K:ANTI_ICE_TOGGLE_ENG4)
+    </LEFT_SINGLE_CODE>
+</UseTemplate>
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>BUTTON_ANTI_ICE_WING</NODE_ID>
+    <TOOLTIPID>WING ANTI ICE</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+      (K:TOGGLE_STRUCTURAL_DEICE) ! (&gt;K:TOGGLE_STRUCTURAL_DEICE)
+    </LEFT_SINGLE_CODE>
+</UseTemplate>
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>BUTTON_WS_DEFOG</NODE_ID>
+    <TOOLTIPID>W/S DEFOG</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+      (L:C17_WS_DEFOG) ! (&gt;L:C17_WS_DEFOG)
+    </LEFT_SINGLE_CODE>
+</UseTemplate>
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>BUTTON_PITOT_HT_COPT</NODE_ID>
+    <TOOLTIPID>CP PITOT</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+      (K:PITOT_HEAT_TOGGLE,bool) ! (&gt;K:PITOT_HEAT_TOGGLE,bool)
+    </LEFT_SINGLE_CODE>
+</UseTemplate>
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>BUTTON_PITOT_HT_PT</NODE_ID>
+    <TOOLTIPID>P PITOT</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+      (K:PITOT_HEAT_TOGGLE,bool) ! (&gt;K:PITOT_HEAT_TOGGLE,bool)
+    </LEFT_SINGLE_CODE>
+</UseTemplate>
 
 <UseTemplate Name="DELTASIM_PushButton_Template">
   <NODE_ID>PushButton_IAS_MACH</NODE_ID>
@@ -909,6 +1013,56 @@
 
 <Component ID="KORRY_LIGHTS" >
 
+<!-- ANTI ICE PANEL -->
+
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_ENG1_ANTI_ICE_DISAG</NODE_ID>
+    <TRUECODE>0</TRUECODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_ENG2_ANTI_ICE_DISAG</NODE_ID>
+    <TRUECODE>0</TRUECODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_ENG3_ANTI_ICE_DISAG</NODE_ID>
+    <TRUECODE>0</TRUECODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_ENG4_ANTI_ICE_DISAG</NODE_ID>
+    <TRUECODE>0</TRUECODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_ENG1_ANTI_ICE_ON</NODE_ID>
+    <TRUECODE>(A:ENG ANTI ICE:1, bool)</TRUECODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_ENG2_ANTI_ICE_ON</NODE_ID>
+    <TRUECODE>(A:ENG ANTI ICE:2, bool)</TRUECODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_ENG3_ANTI_ICE_ON</NODE_ID>
+    <TRUECODE>(A:ENG ANTI ICE:3, bool)</TRUECODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_ENG4_ANTI_ICE_ON</NODE_ID>
+    <TRUECODE>(A:ENG ANTI ICE:4, bool)</TRUECODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_P_PITOT_OFF</NODE_ID>
+    <TRUECODE>(A:Pitot heat,bool) !</TRUECODE>
+  </UseTemplate>
+    <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_CP_PITOT_OFF</NODE_ID>
+    <TRUECODE>(A:Pitot heat,bool) !</TRUECODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_WING_ANTI_ICE_ON</NODE_ID>
+    <TRUECODE>(A:STRUCTURAL DEICE SWITCH,bool)</TRUECODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_WS_DEFOG_OFF</NODE_ID>
+    <TRUECODE>(L:C17_WS_DEFOG,bool) ! </TRUECODE>
+  </UseTemplate>
 
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>KORRY_AR_READY</NODE_ID>
@@ -2249,184 +2403,6 @@
 
 <!-- =======================================ELECTRICAL==========================================-->
 
-
-<!-- =======================================ELECTRICAL==========================================-->
-<!-- =======================================ANTI ICE==========================================-->
-<Animation name="BTTN_ANTI_ICE_WING" guid="2b381aee-466c-4336-9376-3b17b1d6a759" typeParam2="BTTN_ANTI_ICE_WING" length="100" type="Sim" typeParam="AutoPlay" />
-<PartInfo>
-  <Name>BTTN_ANTI_ICE_WING</Name>
-  <AnimLength>50</AnimLength>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <HelpID>HELPID_GAUGE_DEICE_SWITCH</HelpID>
-    <TooltipID>TOOLTIPTEXT_DEICE_SWITCH</TooltipID>
-    <EventID>TOGGLE_STRUCTURAL_DEICE</EventID>
-  </MouseRect>
-  
-  <Animation>
-    <Parameter>
-      <Sim>
-        <Variable>STRUCTURAL DEICE SWITCH</Variable>
-        <Units>bool</Units>
-        <Scale>50</Scale>
-        <Bias>0</Bias>
-      </Sim>
-      <Lag>400</Lag>
-    </Parameter>
-  </Animation>
-</PartInfo>
-
-<Animation name="BTTN_ANTI_ICE_ENG1" guid="4a5b91b0-420a-49f0-985b-ca51c3e554e6" length="100" type="Sim" typeParam2="BTTN_ANTI_ICE_ENG1" typeParam="AutoPlay" />
-<PartInfo>
-  <Name>BTTN_ANTI_ICE_ENG1</Name>
-  <AnimLength>100</AnimLength>
-  <Animation>
-    <Parameter>
-      <Code>(A:ENG ANTI ICE:1, Bool) 100 *</Code>
-      <Lag>400</Lag>
-    </Parameter>
-  </Animation>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <TooltipText>%ANTI ICE ENG1 %((A:ENG ANTI ICE:1, Bool))%{if}%ON%{else}%OFF%</TooltipText>
-    <CallbackCode>
-      (K:ANTI_ICE_TOGGLE_ENG1) ! (&gt;K:ANTI_ICE_TOGGLE_ENG1)
-        </CallbackCode>
-  </MouseRect>
-</PartInfo>
-<Animation name="BTTN_ANTI_ICE_ENG2" guid="743f039a-e513-469b-b7d4-53fbf5aa47c5" length="100" type="Sim" typeParam2="BTTN_ANTI_ICE_ENG2" typeParam="AutoPlay" />
-<PartInfo>
-  <Name>BTTN_ANTI_ICE_ENG2</Name>
-  <AnimLength>100</AnimLength>
-  <Animation>
-    <Parameter>
-      <Code>(A:ENG ANTI ICE:2, Bool) 100 *</Code>
-      <Lag>400</Lag>
-    </Parameter>
-  </Animation>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <TooltipText>%ANTI ICE ENG2 %((A:ENG ANTI ICE:2, Bool))%{if}%ON%{else}%OFF%</TooltipText>
-    <CallbackCode>
-      (K:ANTI_ICE_TOGGLE_ENG2) ! (&gt;K:ANTI_ICE_TOGGLE_ENG2)
-        </CallbackCode>
-  </MouseRect>
-</PartInfo>
-<Animation name="BTTN_ANTI_ICE_ENG3" guid="781ee442-cd39-4fd8-9cb1-93955531f5c5" length="100" type="Sim" typeParam2="BTTN_ANTI_ICE_ENG3" typeParam="AutoPlay" />
-<PartInfo>
-  <Name>BTTN_ANTI_ICE_ENG3</Name>
-  <AnimLength>100</AnimLength>
-  <Animation>
-    <Parameter>
-      <Code>(A:ENG ANTI ICE:3, Bool) 100 *</Code>
-      <Lag>400</Lag>
-    </Parameter>
-  </Animation>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <TooltipText>%ANTI ICE ENG3 %((A:ENG ANTI ICE:3, Bool))%{if}%ON%{else}%OFF%</TooltipText>
-    <CallbackCode>
-      (K:ANTI_ICE_TOGGLE_ENG3) ! (&gt;K:ANTI_ICE_TOGGLE_ENG3)
-        </CallbackCode>
-  </MouseRect>
-</PartInfo>
-<Animation name="BTTN_ANTI_ICE_ENG4" guid="099edbb1-27a6-4d60-8915-79b8fee104db" length="100" type="Sim" typeParam2="BTTN_ANTI_ICE_ENG4" typeParam="AutoPlay" />
-<PartInfo>
-  <Name>BTTN_ANTI_ICE_ENG4</Name>
-  <AnimLength>100</AnimLength>
-  <Animation>
-    <Parameter>
-      <Code>(A:ENG ANTI ICE:4, Bool) 100 *</Code>
-      <Lag>400</Lag>
-    </Parameter>
-  </Animation>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <TooltipText>%ANTI ICE ENG4 %((A:ENG ANTI ICE:4, Bool))%{if}%ON%{else}%OFF%</TooltipText>
-    <CallbackCode>
-      (K:ANTI_ICE_TOGGLE_ENG4) ! (&gt;K:ANTI_ICE_TOGGLE_ENG4)
-        </CallbackCode>
-  </MouseRect>
-</PartInfo>
-
-
-<!-- =======================================ANTI ICE==========================================-->
-<Animation name="switch_fasten_belts" guid="624F6916-78A9-4ae7-87DA-604F4B75FD95" typeParam2="switch_fasten_belts" length="50" type="Sim" typeParam="AutoPlay" />
-<PartInfo>
-  <Name>switch_fasten_belts</Name>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <TooltipID>TOOLTIPTEXT_SEATBELTS_SWITCH</TooltipID>
-    <EventID>CABIN_SEATBELTS_ALERT_SWITCH_TOGGLE</EventID>
-  </MouseRect>
-  <AnimLength>50</AnimLength>
-  <Animation>
-    <Parameter>
-      <Code>
-        (A:CABIN SEATBELTS ALERT SWITCH,bool) 50 *
-    </Code>
-      <Lag>400</Lag>
-    </Parameter>
-  </Animation>
-</PartInfo>
-
-<Animation name="switch_no_smoking" guid="DC0CC1E7-C582-42f4-90A0-9C838ED8CECD" typeParam2="switch_no_smoking" length="50" type="Sim" typeParam="AutoPlay" />
-<PartInfo>
-  <Name>switch_no_smoking</Name>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <TooltipID>TOOLTIPTEXT_NOSMOKING_SWITCH</TooltipID>
-    <EventID>CABIN_NO_SMOKING_ALERT_SWITCH_TOGGLE</EventID>
-  </MouseRect>
-  <AnimLength>50</AnimLength>
-  <Animation>
-    <Parameter>
-      <Sim>
-        <Variable>CABIN NO SMOKING ALERT SWITCH</Variable>
-        <Units>bool</Units>
-        <Scale>50</Scale>
-        <Bias>0</Bias>
-      </Sim>
-      <Lag>400</Lag>
-    </Parameter>
-  </Animation>
-</PartInfo>
-
-  <Animation name="PARA DOORL" guid="795ad260-d165-4486-bc6b-84cd202e3693" length="100" type="Sim" typeparam2="PARA DOORL" typeparam="AutoPlay" />
-  <PartInfo>
-	  <Name>PARA DOORL</Name>
-	  <AnimLength>100</AnimLength>
-	  <Animation>
-		  <Parameter>
-			   <Code>(L:PARA DOORL, bool) 100 *</Code>
-			  <Lag>10</Lag>
-	  </Parameter>
-	  </Animation>
-	  <MouseRect>
-		<Cursor>Hand</Cursor>
-		<TooltipText>%((L:PARA DOORL, bool))%{if}PARA DOOR OPEN L%{else}PARA DOOR CLOSED L%{end}</TooltipText>
-		<CallbackCode>(L:PARA DOORL, bool) ! (>L:PARA DOORL, bool)
-	</CallbackCode>
-	</MouseRect>
-  </PartInfo>
-  
-  <Animation name="PARA DOORR" guid="484aa8cf-fbf2-4b66-96ff-f2b98a4bbfd1" length="100" type="Sim" typeparam2="PARA DOORR" typeparam="AutoPlay" />
-  <PartInfo>
-	  <Name>PARA DOORR</Name>
-	  <AnimLength>100</AnimLength>
-	  <Animation>
-		  <Parameter>
-			   <Code>(L:PARA DOORR, bool) 100 *</Code>
-			  <Lag>10</Lag>
-	  </Parameter>
-	  </Animation>
-	  <MouseRect>
-		<Cursor>Hand</Cursor>
-		<TooltipText>%((L:PARA DOORR, bool))%{if}PARA DOOR OPEN R%{else}PARA DOOR CLOSED R%{end}</TooltipText>
-		<CallbackCode>(L:PARA DOORR, bool) ! (>L:PARA DOORR, bool)
-	</CallbackCode>
-	</MouseRect>
-  </PartInfo>
 
 
 
