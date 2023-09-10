@@ -24,6 +24,8 @@ export const StbyEngDisp = (props) => {
     let [N2Eng4] = useSimVar('A:Turb Eng4 corrected N2', 'percent'); 
     let [EGTEng4] = useSimVar('A:General Eng4 exhaust gas temperature', 'celsius');
     let [N1Eng4] = useSimVar('A:Turb Eng4 corrected N1', 'percent'); 
+    let [FlapsIndex] = useSimVar('A:TRAILING EDGE FLAPS RIGHT PERCENT', 'percent'); 
+    FlapsIndex = Math.floor(FlapsIndex)
     EPREng1 = Math.floor(EPREng1)
     N2Eng1 = Math.floor(N2Eng1)
     EGTEng1 = Math.floor(EGTEng1)
@@ -79,6 +81,10 @@ export const StbyEngDisp = (props) => {
 
             <rect  x={645} y={805} width={367} height={211} visibility={AFCS_Color === 0 ? 'visible' : 'hidden'} className='OHDispBackrnd' fill="none" stroke-width="2.5"/>
 
+            <rect  x={545} y={872} width={95} height={55} visibility={AFCS_Color === 0 ? 'visible' : 'hidden'} className='OHDispBackrnd' fill="none" stroke-width="2.5"/>
+
+            <text x={627} y={915} fontSize={50} fill={ColorMode} className='FrontPNL' textAnchor="end">{FlapsIndex}</text>
+
             <text x={729} y={848} fontSize={19} fill={ColorMode} className='EngCNTRL' textAnchor="end">RTG</text>
             <text x={882} y={848} fontSize={19} fill={ColorMode} className='EngCNTRL' textAnchor="end">MODE</text>
             <text x={964} y={848} fontSize={40} fill={ColorMode} className='FrontPNL' textAnchor="end">{ThrustMode}</text>
@@ -92,10 +98,10 @@ export const StbyEngDisp = (props) => {
                 <text x={724} y={896} fontSize={40} fill={ColorMode} className='FrontPNL' textAnchor="end">{DispMode === 1 ? N2Eng1 : EPREng1}</text>
                 <text x={724} y={945} fontSize={40} fill={ColorMode} className='FrontPNL' textAnchor="end">{EGTEng1}</text>
                 <text x={724} y={993} fontSize={40} fill={ColorMode} className='FrontPNL' textAnchor="end">{N1Eng1}</text>
-                <text x={796} y={896} fontSize={40} fill={ColorMode} className='FrontPNL' textAnchor="end">{DispMode === 1 ? N2Eng4 : EPREng4}</text>
+                <text x={796} y={896} fontSize={40} fill={ColorMode} className='FrontPNL' textAnchor="end">{DispMode === 1 ? N2Eng2 : EPREng2}</text>
                 <text x={796} y={945} fontSize={40} fill={ColorMode} className='FrontPNL' textAnchor="end">{EGTEng2}</text>
                 <text x={796} y={993} fontSize={40} fill={ColorMode} className='FrontPNL' textAnchor="end">{N1Eng2}</text>
-                <text x={916} y={896} fontSize={40} fill={ColorMode} className='FrontPNL' textAnchor="end">{DispMode === 1 ? N2Eng4 : EPREng4}</text>
+                <text x={916} y={896} fontSize={40} fill={ColorMode} className='FrontPNL' textAnchor="end">{DispMode === 1 ? N2Eng3 : EPREng3}</text>
                 <text x={916} y={945} fontSize={40} fill={ColorMode} className='FrontPNL' textAnchor="end">{EGTEng3}</text>
                 <text x={916} y={993} fontSize={40} fill={ColorMode} className='FrontPNL' textAnchor="end">{N1Eng3}</text>
                 <text x={988} y={896} fontSize={40} fill={ColorMode} className='FrontPNL' textAnchor="end">{DispMode === 1 ? N2Eng4 : EPREng4}</text>

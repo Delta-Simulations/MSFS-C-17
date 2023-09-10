@@ -24,6 +24,18 @@
   </Select>
 </Element>	
  
+  <!-- AUTOTHROTTLE-->
+<!-- <Element>
+  <Select>
+      <Value>
+    (A:CIRCUIT ON:65,bool) 1 ==
+    (L:C17_AT_CNTRLHELD,bool) 1 == and
+    if{ 1 (&gt;L:C17_AT_warning,bool) }
+    els{ 0 (&gt;L:C17_AT_warning,bool) }
+      </Value>
+  </Select>
+</Element>	 -->
+
   <!-- SINKING ON TOGA-->
 <Element>
   <Select>

@@ -99,7 +99,9 @@
 		</Component>
 		<Component ID="ENGINE">
 			<DefaultTemplateParameters>
-				<STILL_NODE_ID_COUNT>2</STILL_NODE_ID_COUNT>
+				<STILL_NODE_ID_COUNT>1</STILL_NODE_ID_COUNT>
+				<MIN_RPM_FOR_SLOW>300</MIN_RPM_FOR_SLOW>
+				<MIN_RPM_FOR_BLUR>9000</MIN_RPM_FOR_BLUR>
 			</DefaultTemplateParameters>
 			<UseTemplate Name="ASOBO_ENGINE_Turbine_Template">
 				<ID>1</ID>
@@ -270,6 +272,52 @@
 		</Component>
 		
 	</Behaviors>
+
+<Animation name="GPU_Ext" guid="0f2a2809-6329-4aae-8679-76c9d2e8b182" length="100" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+    <Name>GPU_Ext</Name>
+    <Visibility>
+        <Parameter>
+            <Code>
+				(A:EXTERNAL POWER AVAILABLE, bool) 1 ==
+				(A:SIM ON GROUND,bool) 1 == and
+			</Code>
+        </Parameter>
+    </Visibility>
+</PartInfo>
+<Animation name="GPU_Door" guid="a047a456-2ad3-4c77-b695-1b3780cb11c5" length="100" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+    <Name>GPU_Door</Name>
+	<Animation>
+		<Parameter>
+			 <Code>
+				(A:EXTERNAL POWER AVAILABLE, bool) 1 ==
+				(A:SIM ON GROUND,bool) 1 == and
+				if{ 100 } els{ 0 }
+			 </Code>
+	</Parameter>
+	</Animation>
+</PartInfo>
+
+
+
+<Animation name="RBF_Tags" guid="2a0f86ef-2791-4029-bab3-3b85dee548de" length="1" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+    <Name>RBF_Tags</Name>
+    <Visibility>
+        <Parameter>
+            <Code>
+            (L:C17_RBF_TAGS, bool) 1 ==
+			(A:AIRSPEED INDICATED, knots) 0 == and
+            (A:Eng1 Combustion,bool) 0 == and
+            (A:Eng2 Combustion,bool) 0 == and
+            (A:Eng3 Combustion,bool) 0 == and
+            (A:Eng4 Combustion,bool) 0 == and
+			(A:SIM ON GROUND,bool) 1 == and
+			</Code>
+        </Parameter>
+    </Visibility>
+</PartInfo>
 
 
 

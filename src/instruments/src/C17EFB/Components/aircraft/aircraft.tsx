@@ -12,27 +12,12 @@ import { useSimVar } from '../../../Hooks/simVars';
 import './aircraft.scss';
 
 export const Airctaft = () => {
-	const [rearDoorL, setRearDoorL] = useSimVar('L:PARA DOORL', 'bool');
-	const [rearDoorR, setRearDoorR] = useSimVar('L:PARA DOORR', 'bool');
-	const [CargoDoor, setCargoDoor] = useSimVar('L:C17_CargoDoor_POS', 'enum');
-	const [ARSlipway, setARSlipway] = useSimVar('L:C17_UARRSI_Slipway', 'bool');
-	const [EnteranceDoor, setEnteranceDoor] = useSimVar('L:C17_Crew_Enterance', 'bool');
-
-
-    // const Position = [
-    //     {
-    //         value:0,
-    //         label:"Closed"
-    //     },
-    //     {
-    //         value:50,
-    //         label:'Airdrop'
-    //     },
-    //     {
-    //         value: 100,
-    //         label:'Ground'
-    //     }
-    // ]
+	let [removeTags, setremoveTags] = useSimVar('L:C17_RBF_TAGS', 'bool');
+	let [rearDoorL, setRearDoorL] = useSimVar('L:C17_PARA_L', 'bool');
+	let [rearDoorR, setRearDoorR] = useSimVar('L:C17_PARA_R', 'bool');
+	let [CargoDoor, setCargoDoor] = useSimVar('L:C17_CargoDoor_POS', 'enum');
+	let [ARSlipway, setARSlipway] = useSimVar('L:C17_UARRSI_Slipway', 'bool');
+	let [EnteranceDoor, setEnteranceDoor] = useSimVar('L:C17_Crew_Enterance', 'bool');
 
 	const handleChange = (event: Event, newValue: number | number[]) =>{
 		setCargoDoor(newValue as number)
@@ -59,10 +44,40 @@ export const Airctaft = () => {
 					fontSize: 14,
 				}}
 			>
+				
 				<h1 style={{ marginLeft: 15, color: '#1B93FF' }}>
 					Aircraft Customization
 				</h1>
-
+				<Box
+					sx={{
+						position: 'absolute',
+						width: 200,
+						height: 200,
+						backgroundColor: '16161E',
+						borderRadius: 4,
+						left: 15,
+						top: 520,
+						boxShadow: '0px 0px 7px rgba(0, 0, 0, 0.699)',
+						color: '#1B93FF',
+						justifyContent: 'center',
+						display: 'flex',
+						flexDirection: 'column',
+						textAlign: 'center',
+						alignItems: 'center',
+						fontSize: 14,
+					}}
+				>
+					<Container maxWidth="sm">
+					<Button
+						onClick={() => setremoveTags(!removeTags)}
+						size="small"
+						variant="contained"
+						color={removeTags ? 'error' : 'success'}
+					>
+						Cones & Covers
+					</Button>
+					</Container>
+				</Box>
 				<Box
 					sx={{
 						position: 'absolute',
@@ -205,7 +220,14 @@ export const Airctaft = () => {
 				height: 135,
 			}}
 			>
-			<Slider aria-labelledby="brightness" value={CargoDoor} onChange={handleChange} step={50}/> 
+			<Slider 
+			aria-labelledby="brightness" 
+			value={CargoDoor} 
+			onChange={handleChange} 
+			step={50}  
+			
+			
+			/> 
 					
 			</Box>			
 			</Box>

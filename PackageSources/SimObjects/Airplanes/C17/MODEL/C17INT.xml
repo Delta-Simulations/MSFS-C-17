@@ -434,49 +434,9 @@
     </LEFT_SINGLE_CODE>
 </UseTemplate>
 
-<UseTemplate Name="DELTASIM_PushButton_Template">
-  <NODE_ID>PushButton_IAS_MACH</NODE_ID>
-  <TOOLTIPID>IAS/MCH</TOOLTIPID>
-  <LEFT_SINGLE_CODE>
-    (L:C17_MACHIAS,bool) ! (&gt;L:C17_MACHIAS,bool)
-</LEFT_SINGLE_CODE>
-</UseTemplate>
-<Component ID="Knob_SPD_SEL" Node="Knob_SPD_SEL">
-  <UseTemplate Name="ASOBO_GT_Knob_Infinite">
-    <ANIM_NAME>Knob_SPD_SEL</ANIM_NAME>					   
-    <CLOCKWISE_CODE>  
-      (L:C17_MACHIAS, bool) 1 == if{ (&gt;K:AP_MACH_VAR_INC) } 
-      (L:C17_MACHIAS, bool) 0 == if{ (&gt;K:AP_SPD_VAR_INC) }
-    </CLOCKWISE_CODE>
-    <ANTICLOCKWISE_CODE>
-      (L:C17_MACHIAS, bool) 1 == if{ (&gt;K:AP_MACH_VAR_INC) } 
-      (L:C17_MACHIAS, bool) 0 == if{ (&gt;K:AP_SPD_VAR_DEC) }
-    </ANTICLOCKWISE_CODE>
-    <ANIMTIP_0>SPD SEL</ANIMTIP_0>
-    <ANIMTIP_1>SPD SEL</ANIMTIP_1>
-  </UseTemplate>
-</Component>
-<UseTemplate Name="DELTASIM_PushButton_Template">
-  <NODE_ID>PushButton_IAS_MACH</NODE_ID>
-  <TOOLTIPID>IAS/MCH</TOOLTIPID>
-  <LEFT_SINGLE_CODE>
-    (L:C17_MACHIAS,bool) ! (&gt;L:C17_MACHIAS,bool)
-</LEFT_SINGLE_CODE>
-</UseTemplate>
 
-<Component ID="Knob_API_SEL" Node="Knob_API_SEL">
-  <UseTemplate Name="ASOBO_GT_Knob_Infinite">
-    <ANIM_NAME>Knob_API_SEL</ANIM_NAME>					
-    <CLOCKWISE_CODE>  
-      (L:C17_API, enum) 0.1 + 10 min (&gt;L:C17_API, enum)
-    </CLOCKWISE_CODE>
-    <ANTICLOCKWISE_CODE>
-      (L:C17_API, enum) 0.1 - 0 max (&gt;L:C17_API, enum) 
-    </ANTICLOCKWISE_CODE>
-    <ANIMTIP_0>API SEL</ANIMTIP_0>
-    <ANIMTIP_1>API SEL</ANIMTIP_1>
-  </UseTemplate>
-</Component>
+
+
 
     <Component ID="Knob_Freq_Outer" Node="Knob_Freq_Outer">
       <UseTemplate Name="ASOBO_GT_Knob_Infinite">
@@ -1394,6 +1354,24 @@
     </INTERACT_CODE>
   </UseTemplate>
 
+  <UseTemplate Name="GENERIC_Toggle_Switch_Template">
+    <ANIM>(A:AUTOPILOT THROTTLE ARM, bool) 100 *</ANIM>
+    <NODE_ID>Switch_AT</NODE_ID>
+    <TOOLTIPID>AUTOTHROTTLE</TOOLTIPID>
+    <INTERACT_CODE>
+      (K:AUTO_THROTTLE_ARM) ! (&gt;K:AUTO_THROTTLE_ARM)
+    </INTERACT_CODE>
+  </UseTemplate>
+  <UseTemplate Name="GENERIC_Toggle_Switch_Template">
+    <ANIM>(A:AUTOPILOT MASTER, bool) 100 *</ANIM>
+    <NODE_ID>Switch_AP</NODE_ID>
+    <TOOLTIPID>AUTOPILOT</TOOLTIPID>
+    <INTERACT_CODE>
+      (K:AP_MASTER) ! (&gt;K:AP_MASTER)
+    </INTERACT_CODE>
+  </UseTemplate>
+
+
   <UseTemplate Name="AircraftVar_Switch_DELTASIM">
     <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
     <NODE_ID>BUTTON_ENG1_FWD_PUMP</NODE_ID>
@@ -1768,11 +1746,27 @@
 </Component>
 <Component ID="Autopilot_PNL">
   <UseTemplate Name="ASOBO_AUTOPILOT_Knob_Bank_Limit_Template">
-    <NODE_ID>knob_autopilot_hdg_bank_limit</NODE_ID>
-    <ANIM_NAME>knob_autopilot_hdg_bank_limit</ANIM_NAME>
+    <NODE_ID>Knob_HDG_MAX_BANK</NODE_ID>
+    <ANIM_NAME>Knob_HDG_MAX_BANK</ANIM_NAME>
     <SETTINGS_COUNT>5</SETTINGS_COUNT>
     <COUNT>5</COUNT>
   </UseTemplate>
+  
+  <Component ID="Knob_API_SEL" Node="Knob_API_SEL">
+    <UseTemplate Name="ASOBO_GT_Knob_Infinite">
+      <ANIM_NAME>Knob_API_SEL</ANIM_NAME>					
+      <CLOCKWISE_CODE>  
+        (L:C17_API, enum) 0.1 + 10 min (&gt;L:C17_API, enum)
+      </CLOCKWISE_CODE>
+      <ANTICLOCKWISE_CODE>
+        (L:C17_API, enum) 0.1 - 0 max (&gt;L:C17_API, enum) 
+      </ANTICLOCKWISE_CODE>
+      <ANIMTIP_0>API SEL</ANIMTIP_0>
+      <ANIMTIP_1>API SEL</ANIMTIP_1>
+    </UseTemplate>
+  </Component>
+
+
           <Component ID="Knob_HDG_SEL" Node="Knob_HDG_SEL">
             <UseTemplate Name="ASOBO_GT_Knob_Infinite_Push">
               <NODE_ID>Knob_HDG_SEL</NODE_ID>
@@ -1801,6 +1795,199 @@
               <THRESHOLD_X_MOUSE>0.015</THRESHOLD_X_MOUSE>
             </UseTemplate>
           </Component>
+          <Component ID="KNOB_ALT_SEL" Node="KNOB_ALT_SEL">
+            <UseTemplate Name="ASOBO_GT_Knob_Infinite_Push">
+              <NODE_ID>KNOB_ALT_SEL</NODE_ID>
+              <PART_ID>KNOB_ALT_SEL</PART_ID>
+              <ANIM_NAME_KNOB>KNOB_ALT_SEL</ANIM_NAME_KNOB>
+          <CLOCKWISE_CODE_DEFAULT_IM>
+            (&gt;K:AP_ALT_VAR_INC)
+          </CLOCKWISE_CODE_DEFAULT_IM>
+          <ANTICLOCKWISE_CODE_DEFAULT_IM>
+            (&gt;K:AP_ALT_VAR_DEC)
+          </ANTICLOCKWISE_CODE_DEFAULT_IM>
+          <CLOCKWISE_CODE_DRAG_IM>
+            (A:AUTOPILOT ALTITUDE LOCK VAR, feet) 1 + dnor (&gt;K:AP_ALT_VAR_SET_ENGLISH)
+          </CLOCKWISE_CODE_DRAG_IM>
+          <ANTICLOCKWISE_CODE_DRAG_IM>
+            (A:AUTOPILOT ALTITUDE LOCK VAR, feet) 1 - dnor (&gt;K:AP_ALT_VAR_SET_ENGLISH)
+          </ANTICLOCKWISE_CODE_DRAG_IM>
+          <LEFT_SINGLE_CODE>(A:INDICATED ALTITUDE, feet) (&gt;K:AP_ALT_VAR_SET_ENGLISH)</LEFT_SINGLE_CODE>
+          <ANIMTIP_0>DEC ALTITUDE</ANIMTIP_0>
+          <ANIMTIP_0_ON_CURSOR>TurnLeft</ANIMTIP_0_ON_CURSOR>
+          <ANIMTIP_1>INC ALTITUDE</ANIMTIP_1>
+          <ANIMTIP_1_ON_CURSOR>TurnRight</ANIMTIP_1_ON_CURSOR>
+          <ANIMTIP_3>SET CURRENT</ANIMTIP_3>
+          <ANIMTIP_3_ON_CURSOR>Hand</ANIMTIP_3_ON_CURSOR>
+          <THRESHOLD_X_INPUT>0.05</THRESHOLD_X_INPUT>
+              <THRESHOLD_X_MOUSE>0.015</THRESHOLD_X_MOUSE>
+            </UseTemplate>
+          </Component>
+
+          <UseTemplate Name="DELTASIM_PushButton_Template">
+            <NODE_ID>PushButton_IAS_MACH</NODE_ID>
+            <TOOLTIPID>IAS/MACH</TOOLTIPID>
+            <LEFT_SINGLE_CODE>
+              (L:C17_MACHIAS,bool) ! (&gt;L:C17_MACHIAS,bool)
+          </LEFT_SINGLE_CODE>
+          </UseTemplate>
+
+
+          <Component ID="Knob_SPD_SEL" Node="Knob_SPD_SEL">
+            <UseTemplate Name="ASOBO_GT_Knob_Infinite_Push">
+              <NODE_ID>Knob_SPD_SEL</NODE_ID>
+              <PART_ID>Knob_SPD_SEL</PART_ID>
+              <ANIM_NAME_KNOB>Knob_SPD_SEL</ANIM_NAME_KNOB>
+          <CLOCKWISE_CODE_DEFAULT_IM>
+            (L:C17_MACHIAS, bool) 1 == if{ (&gt;K:AP_MACH_VAR_INC) } 
+            (L:C17_MACHIAS, bool) 0 == if{ (&gt;K:AP_SPD_VAR_INC) }
+          </CLOCKWISE_CODE_DEFAULT_IM>
+          <ANTICLOCKWISE_CODE_DEFAULT_IM>
+            (L:C17_MACHIAS, bool) 1 == if{ (&gt;K:AP_MACH_VAR_INC) } 
+            (L:C17_MACHIAS, bool) 0 == if{ (&gt;K:AP_SPD_VAR_DEC) }
+          </ANTICLOCKWISE_CODE_DEFAULT_IM>
+          <CLOCKWISE_CODE_DRAG_IM>
+            (L:C17_MACHIAS, bool) 1 == if{ (A:AUTOPILOT MACH HOLD VAR, Number) 1 + dnor (&gt;K:AP_MACH_SET) } 
+            (L:C17_MACHIAS, bool) 0 == if{ (A:AUTOPILOT AIRSPEED HOLD VAR, knots) 1 + dnor (&gt;K:AP_SPD_VAR_SET) }
+          </CLOCKWISE_CODE_DRAG_IM>
+          <ANTICLOCKWISE_CODE_DRAG_IM>
+            (L:C17_MACHIAS, bool) 1 == if{ (A:AUTOPILOT MACH HOLD VAR, Number) 1 - dnor (&gt;K:AP_MACH_SET) } 
+            (L:C17_MACHIAS, bool) 0 == if{ (A:AUTOPILOT AIRSPEED HOLD VAR, knots) 1 - dnor (&gt;K:AP_SPD_VAR_SET) }
+          </ANTICLOCKWISE_CODE_DRAG_IM>
+          <LEFT_SINGLE_CODE>
+            (L:C17_MACHIAS, bool) 1 == if{ (A:AIRSPEED MACH, mach) (&gt;K:AP_MACH_SET) } 
+            (L:C17_MACHIAS, bool) 0 == if{ (A:AIRSPEED INDICATED, knots) (&gt;K:AP_SPD_VAR_SET) }
+          </LEFT_SINGLE_CODE>
+          <ANIMTIP_0>DEC SPD</ANIMTIP_0>
+          <ANIMTIP_0_ON_CURSOR>TurnLeft</ANIMTIP_0_ON_CURSOR>
+          <ANIMTIP_1>INC SPD</ANIMTIP_1>
+          <ANIMTIP_1_ON_CURSOR>TurnRight</ANIMTIP_1_ON_CURSOR>
+          <ANIMTIP_3>SET CURRENT</ANIMTIP_3>
+          <ANIMTIP_3_ON_CURSOR>Hand</ANIMTIP_3_ON_CURSOR>
+          <THRESHOLD_X_INPUT>0.05</THRESHOLD_X_INPUT>
+              <THRESHOLD_X_MOUSE>0.015</THRESHOLD_X_MOUSE>
+            </UseTemplate>
+          </Component>
+
+
+          <UseTemplate Name="DELTASIM_Finite_Knob_Template">
+            <NODE_ID>KNOB_SPOILER_ARM</NODE_ID>
+            <ANIM_CODE>(A:SPOILERS ARMED, bool) 100 * </ANIM_CODE>
+            <CLOCKWISE_CODE>
+              1 (&gt;K:SPOILERS_ARM_SET)
+            </CLOCKWISE_CODE>
+            <ANTICLOCKWISE_CODE>
+              0 (&gt;K:SPOILERS_ARM_SET)
+            </ANTICLOCKWISE_CODE>
+            <CW_ANIMTIP>SPOILER ARM</CW_ANIMTIP>
+            <CCW_ANIMTIP>SPOILER ARM</CCW_ANIMTIP>
+          </UseTemplate>
+        <UseTemplate Name="DELTASIM_PushButton_Template">
+            <NODE_ID>BUTTON_HDG_HOLD</NODE_ID>
+            <TOOLTIPID>HDG HOLD</TOOLTIPID>
+            <LEFT_SINGLE_CODE>
+              (K:AP_HDG_HOLD,bool) ! (&gt;K:AP_HDG_HOLD,bool)
+            </LEFT_SINGLE_CODE>
+        </UseTemplate>
+        <UseTemplate Name="DELTASIM_PushButton_Template">
+          <NODE_ID>BUTTON_FD</NODE_ID>
+          <TOOLTIPID>FLIGHT DIRECTOR</TOOLTIPID>
+          <LEFT_SINGLE_CODE>
+            (K:TOGGLE_FLIGHT_DIRECTOR) ! (&gt;K:TOGGLE_FLIGHT_DIRECTOR)
+          </LEFT_SINGLE_CODE>
+        </UseTemplate>
+
+        <UseTemplate Name="DELTASIM_PushButton_Template">
+          <NODE_ID>BUTTON_FD_2</NODE_ID>
+          <TOOLTIPID>FLIGHT DIRECTOR</TOOLTIPID>
+          <LEFT_SINGLE_CODE>
+            (K:TOGGLE_FLIGHT_DIRECTOR) ! (&gt;K:TOGGLE_FLIGHT_DIRECTOR)
+          </LEFT_SINGLE_CODE>
+        </UseTemplate>
+        <UseTemplate Name="DELTASIM_PushButton_Template">
+          <NODE_ID>BUTTON_HUD_CAGE</NODE_ID>
+          <TOOLTIPID>FPV CAGE</TOOLTIPID>
+          <LEFT_SINGLE_CODE>
+            (L:C17_HUD_Cage,bool) ! (&gt;L:C17_HUD_Cage,bool)
+          </LEFT_SINGLE_CODE>
+        </UseTemplate>
+        <UseTemplate Name="DELTASIM_PushButton_Template">
+          <NODE_ID>BUTTON_HUD_CAGE_2</NODE_ID>
+          <TOOLTIPID>FPV CAGE</TOOLTIPID>
+          <LEFT_SINGLE_CODE>
+            (L:C17_HUD_Cage,bool) ! (&gt;L:C17_HUD_Cage,bool)
+          </LEFT_SINGLE_CODE>
+        </UseTemplate>
+        <UseTemplate Name="DELTASIM_PushButton_Template">
+          <NODE_ID>BUTTON_RABA</NODE_ID>
+          <TOOLTIPID>HUD Radio/Baro Alt</TOOLTIPID>
+          <LEFT_SINGLE_CODE>
+            (L:C17_HUD_RaBa,bool) ! (&gt;L:C17_HUD_RaBa,bool)
+          </LEFT_SINGLE_CODE>
+        </UseTemplate>
+        <UseTemplate Name="DELTASIM_PushButton_Template">
+          <NODE_ID>BUTTON_RABA_2</NODE_ID>
+          <TOOLTIPID>HUD Radio/Baro Alt</TOOLTIPID>
+          <LEFT_SINGLE_CODE>
+            (L:C17_HUD_RaBa,bool) ! (&gt;L:C17_HUD_RaBa,bool)
+          </LEFT_SINGLE_CODE>
+        </UseTemplate>
+        <UseTemplate Name="DELTASIM_PushButton_Template">
+          <NODE_ID>BUTTON_DCLT</NODE_ID>
+          <TOOLTIPID>HUD Declutter</TOOLTIPID>
+          <LEFT_SINGLE_CODE>
+            (L:C17_DCLT,bool) ! (&gt;L:C17_DCLT,bool)
+          </LEFT_SINGLE_CODE>
+        </UseTemplate>
+        <UseTemplate Name="DELTASIM_PushButton_Template">
+          <NODE_ID>BUTTON_DCLT_2</NODE_ID>
+          <TOOLTIPID>HUD Declutter</TOOLTIPID>
+          <LEFT_SINGLE_CODE>
+            (L:C17_DCLT,bool) ! (&gt;L:C17_DCLT,bool)
+          </LEFT_SINGLE_CODE>
+        </UseTemplate>
+        <UseTemplate Name="DELTASIM_PushButton_Template">
+          <NODE_ID>BUTTON_SPD_HOLD</NODE_ID>
+          <TOOLTIPID>SPD HOLD</TOOLTIPID>
+          <LEFT_SINGLE_CODE>
+            (K:AP_PANEL_SPEED_HOLD) ! (&gt;K:AP_PANEL_SPEED_HOLD)          
+          </LEFT_SINGLE_CODE>
+        </UseTemplate>
+        <UseTemplate Name="DELTASIM_PushButton_Template">
+          <NODE_ID>BUTTON_LNAV</NODE_ID>
+          <TOOLTIPID>LNAV</TOOLTIPID>
+          <LEFT_SINGLE_CODE>
+            (K:AP_NAV1_HOLD) ! (&gt;K:AP_NAV1_HOLD)    
+          </LEFT_SINGLE_CODE>
+        </UseTemplate>
+        <UseTemplate Name="DELTASIM_PushButton_Template">
+          <NODE_ID>BUTTON_ALT_HOLD</NODE_ID>
+          <TOOLTIPID>ALT HOLD</TOOLTIPID>
+          <LEFT_SINGLE_CODE>
+            (K:AP_ALT_HOLD,bool) ! (&gt;K:AP_ALT_HOLD,bool)
+          </LEFT_SINGLE_CODE>
+        </UseTemplate>
+        <UseTemplate Name="DELTASIM_PushButton_Template">
+          <NODE_ID>BUTTON_TURB</NODE_ID>
+          <TOOLTIPID>V/S MODE</TOOLTIPID>
+          <LEFT_SINGLE_CODE>
+            (L:AP_VS_ACTIVE,bool) ! (&gt;L:AP_VS_ACTIVE,bool)
+          </LEFT_SINGLE_CODE>
+        </UseTemplate>
+        <UseTemplate Name="DELTASIM_PushButton_Template">
+          <NODE_ID>BUTTON_VNAV</NODE_ID>
+          <TOOLTIPID>VNAV</TOOLTIPID>
+          <LEFT_SINGLE_CODE>
+            (L:XMLVAR_VNAVButtonValue,bool) ! (&gt;L:XMLVAR_VNAVButtonValue,bool)
+          </LEFT_SINGLE_CODE>
+        </UseTemplate>
+        <UseTemplate Name="DELTASIM_PushButton_Template">
+          <NODE_ID>BUTTON_APPR</NODE_ID>
+          <TOOLTIPID>APPROACH</TOOLTIPID>
+          <LEFT_SINGLE_CODE>
+            (K:AP_APR_HOLD) ! (&gt;K:AP_APR_HOLD)
+          </LEFT_SINGLE_CODE>
+        </UseTemplate>
 
 				<UseTemplate Name="ASOBO_AUTOPILOT_Push_SpeedToggle_Template">
 					<NODE_ID>IAS_TOGGLE</NODE_ID>
@@ -1815,15 +2002,9 @@
 					<ANIM_NAME_PUSH>knob_autopilot_speed_push</ANIM_NAME_PUSH>
 					<TYPE>B747</TYPE>
 				</UseTemplate>
-				<UseTemplate Name="ASOBO_AUTOPILOT_Push_AutoThrottle_Template">
-					<NODE_ID>switch_autopilot_at_arm</NODE_ID>
-					<ANIM_NAME>autopilot_switch_at_arm</ANIM_NAME>
-					<TYPE>B747</TYPE>
-				</UseTemplate>
         <UseTemplate Name="ASOBO_AUTOPILOT_Push_Approach_Template">
 					<NODE_ID>autopilot_push_app</NODE_ID>
 					<ANIM_NAME>autopilot_push_app</ANIM_NAME>
-					<EMISSIVE_NODE_ID>autopilot_push_app.001</EMISSIVE_NODE_ID>
 					<ACTIVE_NODE_ID>autopilot_push_app.001</ACTIVE_NODE_ID>
 					<AUTOPILOT_PUSH_BUTTON_ON>autopilot_largepush_button_on</AUTOPILOT_PUSH_BUTTON_ON>
 					<AUTOPILOT_PUSH_BUTTON_OFF>autopilot_largepush_button_off</AUTOPILOT_PUSH_BUTTON_OFF>
@@ -1859,7 +2040,7 @@
           <TYPE>B747</TYPE>
         </UseTemplate>
 </Component>
-<!-- ENGINE STARTERS-->
+    <!-- ENGINE STARTERS-->
 <Component ID="Engines_Panel">
 				<UseTemplate Name="ASOBO_ENGINE_Switch_Starter_Template">
 					<NODE_ID>switch_generator_starter0</NODE_ID>
@@ -1928,6 +2109,11 @@
 					<ANIMTIP_1>TT:COCKPIT.TOOLTIPS.STARTER_4_SET_ON</ANIMTIP_1>
 					<TT_ICON>MOVE_Y</TT_ICON>
 				</UseTemplate>
+
+
+
+
+
 </Component>
 </Behaviors>
 
@@ -2005,30 +2191,9 @@
   
 
 <!--========================AUTOPILOT=============================-->
-<Animation name="switch_auto_throttle" guid="dbc9acc0-0542-4699-b117-e93494fceaef" length="50" type="Sim" typeParam2="switch_auto_throttle" typeParam="AutoPlay" />
 <Animation name="switch_flight_director" guid="dfab66dd-4abc-4d6e-a338-a4e2ec849add" length="50" type="Sim" typeParam2="switch_flight_director" typeParam="AutoPlay" />
 <Animation name="switch_autopilot_master" guid="87fc8726-f402-4d30-9fb5-8027f9b89d16" length="50" type="Sim" typeParam2="switch_autopilot_master" typeParam="AutoPlay" />
-<PartInfo>
-    <Name>switch_auto_throttle</Name>
-    <MouseRect>
-      <Cursor>Hand</Cursor>
-      <HelpID>HELPID_AUTOPILOT_AUTOTHROTTLE</HelpID>
-      <TooltipID>TOOLTIPTEXT_AUTOPILOT_AUTOTHROTTLE</TooltipID>
-      <EventID>AUTO_THROTTLE_ARM</EventID>
-    </MouseRect>
-    <AnimLength>50</AnimLength>
-    <Animation>
-      <Parameter>
-        <Sim>
-          <Variable>AUTOPILOT THROTTLE ARM</Variable>
-          <Units>bool</Units>
-          <Scale>50</Scale>
-          <Bias>0</Bias>
-        </Sim>
-        <Lag>400</Lag>
-      </Parameter>
-    </Animation>
-  </PartInfo>
+
   <PartInfo>
     <Name>switch_flight_director</Name>
     <MouseRect>
@@ -2222,102 +2387,9 @@
 					</CallbackCode>
     </MouseRect>
   </PartInfo>
-  <Animation name="btn_autopilot_lnav" guid="f9bdb4f8-eeae-4c7e-b33d-957b815a82b7" length="25" type="Sim" typeParam2="btn_autopilot_lnav" typeParam="AutoPlay" />
-  <PartInfo>
-    <Name>btn_autopilot_lnav</Name>
-    <AnimLength>25</AnimLength>
-    <Animation>
-      <Parameter>
-        <Code>(A:AUTOPILOT NAV1 LOCK, bool) 25 * </Code>
-        <Lag>100</Lag>
-      </Parameter>
-    </Animation>
-    <MouseRect>
-      <Cursor>Hand</Cursor>
-      <TooltipText>%LNAV %((A:AUTOPILOT NAV1 LOCK, bool))%{if}%ON%{else}%OFF%</TooltipText>
-      <CallbackCode>
-				(K:AP_NAV1_HOLD) ! (&gt;K:AP_NAV1_HOLD)
-					</CallbackCode>
-    </MouseRect>
-  </PartInfo>
 
-  <Animation name="switch_auto_throttle" guid="0edac8f4-c549-4f98-8750-f88cf001cd83" typeParam2="switch_auto_throttle" length="50" type="Sim" typeParam="AutoPlay" />
-  <Animation name="switch_flight_director" guid="d712ab7c-8620-44c3-b4cc-c66f1dc449e6" typeParam2="switch_flight_director" length="25" type="Sim" typeParam="AutoPlay" />
-  <Animation name="switch_autopilot_master" guid="dbc9acc0-0542-4699-b117-e93494fceaef" typeParam2="switch_autopilot_master" length="25" type="Sim" typeParam="AutoPlay" />
-  <PartInfo>
-    <Name>switch_auto_throttle</Name>
-    <MouseRect>
-      <Cursor>Hand</Cursor>
-      <HelpID>HELPID_AUTOPILOT_AUTOTHROTTLE</HelpID>
-      <TooltipID>TOOLTIPTEXT_AUTOPILOT_AUTOTHROTTLE</TooltipID>
-      <EventID>AUTO_THROTTLE_ARM</EventID>
-    </MouseRect>
-    <AnimLength>50</AnimLength>
-    <Animation>
-      <Parameter>
-        <Sim>
-          <Variable>AUTOPILOT THROTTLE ARM</Variable>
-          <Units>bool</Units>
-          <Scale>50</Scale>
-          <Bias>0</Bias>
-        </Sim>
-        <Lag>400</Lag>
-      </Parameter>
-    </Animation>
-  </PartInfo>
-  <PartInfo>
-    <Name>switch_flight_director</Name>
-    <MouseRect>
-      <Cursor>Hand</Cursor>
-      <HelpID>HELPID_AUTOPILOT_FLIGHT_DIRECTOR_SWITCH</HelpID>
-      <TooltipID>TOOLTIPTEXT_AUTOPILOT_FLIGHT_DIRECTOR_SWITCH</TooltipID>
-      <EventID>TOGGLE_FLIGHT_DIRECTOR</EventID>
-    </MouseRect>
-    <AnimLength>25</AnimLength>
-    <Animation>
-      <Parameter>
-        <Sim>
-          <Variable>AUTOPILOT FLIGHT DIRECTOR ACTIVE</Variable>
-          <Units>bool</Units>
-          <Scale>50</Scale>
-          <Bias>0</Bias>
-        </Sim>
-        <Lag>400</Lag>
-      </Parameter>
-    </Animation>
-  </PartInfo>
-  <PartInfo>
-    <Name>switch_autopilot_master</Name>
-    <MouseRect>
-      <Cursor>Hand</Cursor>
-      <HelpID>HELPID_AUTOPILOT_MASTER</HelpID>
-      <TooltipID>TOOLTIPTEXT_AUTOPILOT_MASTER</TooltipID>
-      <EventID>AP_MASTER</EventID>
-    </MouseRect>
-    <AnimLength>25</AnimLength>
-    <Animation>
-      <Parameter>
-        <Sim>
-          <Variable>AUTOPILOT MASTER</Variable>
-          <Units>bool</Units>
-          <Scale>50</Scale>
-          <Bias>0</Bias>
-        </Sim>
-        <Lag>400</Lag>
-      </Parameter>
-    </Animation>
-  </PartInfo>
-  <Animation name="custom_anim_Autopilot_altitude_lock_25" guid="79ac9efe-c483-48d3-aeeb-40e4f4335052" length="25" type="Sim" typeParam2="custom_anim_Autopilot_altitude_lock_25" typeParam="AutoPlay" />
-  <PartInfo>
-    <Name>custom_anim_Autopilot_altitude_lock_25</Name>
-    <AnimLength>25</AnimLength>
-    <Animation>
-      <Parameter>
-        <Code>(A:Autopilot altitude lock,feet) 25 * </Code>
-        <Lag>100</Lag>
-      </Parameter>
-    </Animation>
-  </PartInfo>
+
+
 
 
 
@@ -2400,8 +2472,6 @@
                 </Parameter>
             </Animation>
         </PartInfo>
-
-<!-- =======================================ELECTRICAL==========================================-->
 
 
 
@@ -2591,142 +2661,65 @@
 
 
 
-<Animation name="SED_MODE_MAX" guid="e1bd1fb4-52bd-4de8-9004-f6f4b657b98a" length="5" type="Sim" typeParam2="SED_MODE_MAX" typeParam="AutoPlay" />
-<Animation name="SED_MODE_INT" guid="aa45a74f-e02e-4571-9ccf-2d2e1d396303" length="5" type="Sim" typeParam2="SED_MODE_INT" typeParam="AutoPlay" />
-<Animation name="SED_MODE_MCT" guid="57888ed7-eb4d-4f96-ba8d-7212f76b7036" length="5" type="Sim" typeParam2="SED_MODE_MCT" typeParam="AutoPlay" />
-<Animation name="SED_MODE_DRT" guid="91180efb-7bcf-415c-bf4d-ebbee5e83823" length="5" type="Sim" typeParam2="SED_MODE_DRT" typeParam="AutoPlay" />
-<Animation name="SED_MODE_MAN" guid="4bbec65f-f8b1-4c72-982a-73d484546ded" length="5" type="Sim" typeParam2="SED_MODE_MAN" typeParam="AutoPlay" />
+<Animation name="REV_THRUST" guid="e1bd1fb4-52bd-4de8-9004-f6f4b657b98a" length="5" type="Sim" typeParam="AutoPlay" />
 <!-- REVERSE THRUST-->
 <PartInfo>
-  <Name>SED_MODE_MAX</Name>
+  <Name>REV_THRUST</Name>
   <AnimLength>5</AnimLength>
-  <Animation>
-      <Parameter>
-          <Code>
-            (L:REV_THRUST,bool) 1 == if{ 5 } els{ 0 }
-           </Code>
-          <Lag>5</Lag>
-      </Parameter>
-  </Animation>
   <MouseRect>
     <Cursor>Hand</Cursor>
-    <TooltipText>TOGGLE IN AIR REVERSE</TooltipText>
+    <TooltipText>IN AIR REVERSE</TooltipText>
      <CallbackCode>
-          (L:REV_THRUST,bool) ! 	(&gt;L:REV_THRUST)
+          (L:C17_REV_THRUST,bool) ! (&gt;L:C17_REV_THRUST)
      </CallbackCode>
 </MouseRect>
 </PartInfo>   
 
-<PartInfo>
-    <Name>SED_MODE_INT</Name>
-    <AnimLength>5</AnimLength>
-    <Animation>
-        <Parameter>
-			<Code>5</Code>
-			<Lag>20</Lag>
-		</Parameter>
-    </Animation>
-    <MouseRect>
-		<TooltipText>SED_MODE_INT</TooltipText>
-        <Cursor>Hand</Cursor><CallbackCode>(L:SED_MODE_INT, number) ! (&gt;L:SED_MODE_INT, number)</CallbackCode>
-    </MouseRect>
-</PartInfo>
-
-<PartInfo>
-    <Name>SED_MODE_MCT</Name>
-    <AnimLength>5</AnimLength>
-    <Animation>
-        <Parameter>
-			<Code>5</Code>
-			<Lag>20</Lag>
-		</Parameter>
-    </Animation>
-    <MouseRect>
-		<TooltipText>SED_MODE_MCT</TooltipText>
-        <Cursor>Hand</Cursor><CallbackCode>(L:SED_MODE_MCT, number) ! (&gt;L:SED_MODE_MCT, number)</CallbackCode>
-    </MouseRect>
-</PartInfo>
-
-<PartInfo>
-    <Name>SED_MODE_DRT</Name>
-    <AnimLength>5</AnimLength>
-    <Animation>
-        <Parameter>
-			<Code>5</Code>
-			<Lag>20</Lag>
-		</Parameter>
-    </Animation>
-    <MouseRect>
-		<TooltipText>SED_MODE_DRT</TooltipText>
-        <Cursor>Hand</Cursor><CallbackCode>(L:SED_MODE_DRT, number) ! (&gt;L:SED_MODE_DRT, number)</CallbackCode>
-    </MouseRect>
-</PartInfo>
-<PartInfo>
-    <Name>SED_MODE_MAN</Name>
-    <AnimLength>5</AnimLength>
-    <Animation>
-        <Parameter>
-			<Code>5</Code>
-			<Lag>20</Lag>
-		</Parameter>
-    </Animation>
-    <MouseRect>
-		<TooltipText>SED_MODE_MAN</TooltipText>
-        <Cursor>Hand</Cursor><CallbackCode>(L:SED_MODE_MAN, number) ! (&gt;L:SED_MODE_MAN, number)</CallbackCode>
-    </MouseRect>
-</PartInfo>
-
 <Animation name="trimtab_rudder" guid="b0b1a570-052f-493b-92d8-42a71b653ce8" type="Sim" typeParam="AutoPlay" />
-<AnimLength>100</AnimLength>
 <PartInfo>
   <Name>trimtab_rudder</Name>
+  <AnimLength>100</AnimLength>
   <Animation>
     <Parameter>
-      <Sim>
-        <Variable>RUDDER TRIM PCT</Variable>
-        <Units>percent</Units>
-      </Sim>
-    </Parameter>
-  </Animation>
+         <Code>
+       (A:RUDDER TRIM POSITION, degrees) 5 * 50 +
+         </Code> 
+</Parameter>
+</Animation>
 </PartInfo>
 <Animation name="trimtab_aileron" guid="e3747369-3e1e-4986-830c-2573847bcdb0" type="Sim" typeParam="AutoPlay" />
-<AnimLength>100</AnimLength>
 <PartInfo>
   <Name>trimtab_aileron</Name>
+  <AnimLength>100</AnimLength>
   <Animation>
     <Parameter>
-      <Sim>
-        <Variable>AILERON TRIM PCT</Variable>
-        <Units>percent</Units>
-      </Sim>
-    </Parameter>
-  </Animation>
+         <Code>
+       (A:AILERON TRIM POSITION, degrees) 5 * 50 +
+         </Code> 
+</Parameter>
+</Animation>
 </PartInfo>
-<Animation name="trimtab_elevator" guid="4df526cb-2c0f-4934-b69c-75089291ba42" type="Sim" typeParam="AutoPlay" />
-<AnimLength>100</AnimLength>
+<Animation name="trimtab_Stab" guid="4df526cb-2c0f-4934-b69c-75089291ba42" type="Sim" typeParam="AutoPlay" />
 <PartInfo>
-  <Name>trimtab_elevator</Name>
+  <Name>trimtab_Stab</Name>
+  <AnimLength>100</AnimLength>
   <Animation>
     <Parameter>
-      <Sim>
-        <Variable>ELEVATOR TRIM PCT</Variable>
-        <Units>percent</Units>
-      </Sim>
-    </Parameter>
-  </Animation>
+         <Code>
+       (A:ELEVATOR TRIM POSITION, degrees) 5 * 50 +
+         </Code> 
+</Parameter>
+</Animation>
 </PartInfo>
 <Animation name="Flaps_Index" guid="44c4e709-4d1a-40fc-80b6-9dc744add0e7" type="Sim" typeParam="AutoPlay" />
 <PartInfo>
   <Name>Flaps_Index</Name>
-  <AnimLength>100</AnimLength>
+  <AnimLength>45</AnimLength>
   <Animation>
     <Parameter>
-      <Sim>
-        <Variable>TRAILING EDGE FLAPS RIGHT PERCENT</Variable>
-        <Units>percent</Units>
-        <Scale>1</Scale>
-        <Bias>0</Bias>
-      </Sim>
+      <Code>
+        (A:TRAILING EDGE FLAPS RIGHT ANGLE, degrees)
+          </Code> 
     </Parameter>
   </Animation>
 </PartInfo>

@@ -29,6 +29,32 @@
             "style": {
                 "type": 3
             }
+        },
+        {
+            "__uuid": "0173b22c-6cc4-45be-b862-cdf306ae1892",
+            "title": "CPIT ILLUM",
+            "varPrefix": "L",
+            "varName": "C17_CPIT_ILLUM_MODE",
+            "varUnit": "enum",
+            "style": {
+                "type": 2,
+                "min": -1,
+                "max": 2,
+                "step": 1
+            }
+        },
+        {
+            "__uuid": "daaea3cc-7bf1-4e4f-9ae1-30b2ce0b8b15",
+            "title": "Flaps",
+            "varPrefix": "A",
+            "varName": "LEADING EDGE FLAPS RIGHT PERCENT",
+            "varUnit": "number",
+            "style": {
+                "type": 2,
+                "min": 0,
+                "max": 100,
+                "step": 0.1
+            }
         }
     ]
 }

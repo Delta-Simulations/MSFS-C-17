@@ -9507,24 +9507,30 @@
 	  let [N2Eng1] = useSimVar('A:Turb Eng1 corrected N2', 'percent');
 	  let [EGTEng1] = useSimVar('A:General Eng1 exhaust gas temperature', 'celsius');
 	  let [N1Eng1] = useSimVar('A:Turb Eng1 corrected N1', 'percent');
-	  useSimVar('A:Turb Eng2 N1', 'percent');
-	  useSimVar('A:Turb Eng2 corrected N2', 'percent');
+	  let [EPREng2] = useSimVar('A:Turb Eng2 N1', 'percent');
+	  let [N2Eng2] = useSimVar('A:Turb Eng2 corrected N2', 'percent');
 	  let [EGTEng2] = useSimVar('A:General Eng2 exhaust gas temperature', 'celsius');
 	  let [N1Eng2] = useSimVar('A:Turb Eng2 corrected N1', 'percent');
-	  useSimVar('A:Turb Eng3 N1', 'percent');
-	  useSimVar('A:Turb Eng3 corrected N2', 'percent');
+	  let [EPREng3] = useSimVar('A:Turb Eng3 N1', 'percent');
+	  let [N2Eng3] = useSimVar('A:Turb Eng3 corrected N2', 'percent');
 	  let [EGTEng3] = useSimVar('A:General Eng3 exhaust gas temperature', 'celsius');
 	  let [N1Eng3] = useSimVar('A:Turb Eng3 corrected N1', 'percent');
 	  let [EPREng4] = useSimVar('A:Turb Eng4 N1', 'percent');
 	  let [N2Eng4] = useSimVar('A:Turb Eng4 corrected N2', 'percent');
 	  let [EGTEng4] = useSimVar('A:General Eng4 exhaust gas temperature', 'celsius');
 	  let [N1Eng4] = useSimVar('A:Turb Eng4 corrected N1', 'percent');
+	  let [FlapsIndex] = useSimVar('A:TRAILING EDGE FLAPS RIGHT PERCENT', 'percent');
+	  FlapsIndex = Math.floor(FlapsIndex);
 	  EPREng1 = Math.floor(EPREng1);
 	  N2Eng1 = Math.floor(N2Eng1);
 	  EGTEng1 = Math.floor(EGTEng1);
 	  N1Eng1 = Math.floor(N1Eng1);
+	  EPREng2 = Math.floor(EPREng2);
+	  N2Eng2 = Math.floor(N2Eng2);
 	  EGTEng2 = Math.floor(EGTEng2);
 	  N1Eng2 = Math.floor(N1Eng2);
+	  EPREng3 = Math.floor(EPREng3);
+	  N2Eng3 = Math.floor(N2Eng3);
 	  EGTEng3 = Math.floor(EGTEng3);
 	  N1Eng3 = Math.floor(N1Eng3);
 	  EPREng4 = Math.floor(EPREng4);
@@ -9578,6 +9584,23 @@
 	      className: "OHDispBackrnd",
 	      fill: "none",
 	      "stroke-width": "2.5"
+	    }), /*#__PURE__*/jsxRuntime.jsx("rect", {
+	      x: 545,
+	      y: 872,
+	      width: 95,
+	      height: 55,
+	      visibility: AFCS_Color === 0 ? 'visible' : 'hidden',
+	      className: "OHDispBackrnd",
+	      fill: "none",
+	      "stroke-width": "2.5"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      x: 627,
+	      y: 915,
+	      fontSize: 50,
+	      fill: ColorMode,
+	      className: "FrontPNL",
+	      textAnchor: "end",
+	      children: FlapsIndex
 	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
 	      x: 729,
 	      y: 848,
@@ -9665,7 +9688,7 @@
 	        fill: ColorMode,
 	        className: "FrontPNL",
 	        textAnchor: "end",
-	        children: DispMode === 1 ? N2Eng4 : EPREng4
+	        children: DispMode === 1 ? N2Eng2 : EPREng2
 	      }), /*#__PURE__*/jsxRuntime.jsx("text", {
 	        x: 796,
 	        y: 945,
@@ -9689,7 +9712,7 @@
 	        fill: ColorMode,
 	        className: "FrontPNL",
 	        textAnchor: "end",
-	        children: DispMode === 1 ? N2Eng4 : EPREng4
+	        children: DispMode === 1 ? N2Eng3 : EPREng3
 	      }), /*#__PURE__*/jsxRuntime.jsx("text", {
 	        x: 916,
 	        y: 945,

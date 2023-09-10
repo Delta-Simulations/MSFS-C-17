@@ -136,8 +136,7 @@
         <POST_CODE></POST_CODE>
 		<ANIMREF_ID>0</ANIMREF_ID>
 		<ANIMTIP_0_ON_PERCENT>0.0</ANIMTIP_0_ON_PERCENT>
-		<ANIMTIP_1_ON_PERCENT>1.0</ANIMTIP_1_ON_PERCENT>
-		<ANIM_LAG>400</ANIM_LAG>				
+		<ANIMTIP_1_ON_PERCENT>1.0</ANIMTIP_1_ON_PERCENT>			
     </DefaultTemplateParameters>
 
     <Component ID="#NODE_ID#" Node="#NODE_ID#">
@@ -162,6 +161,32 @@
     </Component>
 </Template>
 
+<Template Name="GENERIC_Toggle_Switch_Template_V2">
+    <DefaultTemplateParameters>
+        <ANIM_LENGTH>100</ANIM_LENGTH>	
+    </DefaultTemplateParameters>
+
+    <Component ID="#NODE_ID#" Node="#NODE_ID#">
+        <UseTemplate Name="ASOBO_GT_Anim_Code">
+            <ANIM_NAME>#NODE_ID#</ANIM_NAME>
+            <ANIM_CODE>(O:ToggleGeneric, bool) #ANIM_LENGTH# *</ANIM_CODE>
+            <ANIM_LENGTH>#ANIM_LENGTH#</ANIM_LENGTH>
+        </UseTemplate>
+
+        <UseTemplate Name="ASOBO_GT_MouseRect">
+            <CURSOR>Hand</CURSOR>
+            <TOOLTIPID>#TOOLTIPID#</TOOLTIPID>
+            <MOUSEFLAGS_DEFAULT_IM>LeftSingle+LeftRelease+RightSingle+MoveRepeat</MOUSEFLAGS_DEFAULT_IM>
+            <CALLBACKCODE_DEFAULT_IM>
+                (M:Event) 'LeftSingle' scmi 0 == if{
+                    (O:ToggleGeneric, bool) ! (&gt;O:ToggleGeneric, bool)
+                    
+                    #INTERACT_CODE#
+                }
+            </CALLBACKCODE_DEFAULT_IM>
+        </UseTemplate>
+    </Component>
+</Template>
 
 <Template Name="DELTASIM_PushButton_Template">
     <DefaultTemplateParameters>

@@ -10067,7 +10067,7 @@
 	  return target;
 	}
 
-	const _excluded$l = ["onClick", "reloadDocument", "replace", "state", "target", "to"],
+	const _excluded$m = ["onClick", "reloadDocument", "replace", "state", "target", "to"],
 	      _excluded2$1 = ["aria-current", "caseSensitive", "className", "end", "style", "to"];
 
 	function isModifiedEvent(event) {
@@ -10087,7 +10087,7 @@
 	    target,
 	    to
 	  } = _ref3,
-	      rest = _objectWithoutPropertiesLoose$1(_ref3, _excluded$l);
+	      rest = _objectWithoutPropertiesLoose$1(_ref3, _excluded$m);
 
 	  let href = useHref(to);
 	  let internalOnClick = useLinkClickHandler(to, {
@@ -11627,11 +11627,11 @@
 	  };
 	}
 
-	const _excluded$k = ["aria-label", "aria-valuetext", "className", "component", "classes", "disableSwap", "disabled", "getAriaLabel", "getAriaValueText", "marks", "max", "min", "name", "onChange", "onChangeCommitted", "onMouseDown", "orientation", "scale", "step", "tabIndex", "track", "value", "valueLabelDisplay", "valueLabelFormat", "isRtl", "components", "componentsProps"];
+	const _excluded$l = ["aria-label", "aria-valuetext", "className", "component", "classes", "disableSwap", "disabled", "getAriaLabel", "getAriaValueText", "marks", "max", "min", "name", "onChange", "onChangeCommitted", "onMouseDown", "orientation", "scale", "step", "tabIndex", "track", "value", "valueLabelDisplay", "valueLabelFormat", "isRtl", "components", "componentsProps"];
 
 	const Identity = x => x;
 
-	const useUtilityClasses$7 = ownerState => {
+	const useUtilityClasses$8 = ownerState => {
 	  const {
 	    disabled,
 	    dragging,
@@ -11688,7 +11688,7 @@
 	    components = {},
 	    componentsProps = {}
 	  } = props,
-	        other = _objectWithoutPropertiesLoose(props, _excluded$k); // all props with defaults
+	        other = _objectWithoutPropertiesLoose(props, _excluded$l); // all props with defaults
 	  // consider extracting to hook an reusing the lint rule for the varints
 
 
@@ -11747,7 +11747,7 @@
 	  const Input = components.Input || 'input';
 	  const inputProps = appendOwnerState(Input, componentsProps.input, ownerState);
 	  const hiddenInputProps = getHiddenInputProps();
-	  const classes = useUtilityClasses$7(ownerState);
+	  const classes = useUtilityClasses$8(ownerState);
 	  return /*#__PURE__*/jsxRuntime.jsxs(Root, _extends$1({}, rootProps, getRootProps({
 	    onMouseDown
 	  }), {
@@ -14491,7 +14491,7 @@
 	styleFunctionSx.filterProps = ['sx'];
 	var defaultStyleFunctionSx = styleFunctionSx;
 
-	const _excluded$j = ["sx"];
+	const _excluded$k = ["sx"];
 
 	const splitProps = props => {
 	  const result = {
@@ -14512,7 +14512,7 @@
 	  const {
 	    sx: inSx
 	  } = props,
-	        other = _objectWithoutPropertiesLoose(props, _excluded$j);
+	        other = _objectWithoutPropertiesLoose(props, _excluded$k);
 
 	  const {
 	    systemProps,
@@ -14541,7 +14541,7 @@
 	  });
 	}
 
-	const _excluded$i = ["values", "unit", "step"]; // Sorted ASC by size. That's important.
+	const _excluded$j = ["values", "unit", "step"]; // Sorted ASC by size. That's important.
 
 	const sortBreakpointsValues = values => {
 	  const breakpointsAsArray = Object.keys(values).map(key => ({
@@ -14577,7 +14577,7 @@
 	    unit = 'px',
 	    step = 5
 	  } = breakpoints,
-	        other = _objectWithoutPropertiesLoose(breakpoints, _excluded$i);
+	        other = _objectWithoutPropertiesLoose(breakpoints, _excluded$j);
 
 	  const sortedValues = sortBreakpointsValues(values);
 	  const keys = Object.keys(sortedValues);
@@ -14665,7 +14665,7 @@
 	  return spacing;
 	}
 
-	const _excluded$h = ["breakpoints", "palette", "spacing", "shape"];
+	const _excluded$i = ["breakpoints", "palette", "spacing", "shape"];
 
 	function createTheme$2(options = {}, ...args) {
 	  const {
@@ -14674,7 +14674,7 @@
 	    spacing: spacingInput,
 	    shape: shapeInput = {}
 	  } = options,
-	        other = _objectWithoutPropertiesLoose(options, _excluded$h);
+	        other = _objectWithoutPropertiesLoose(options, _excluded$i);
 
 	  const breakpoints = createBreakpoints$1(breakpointsInput);
 	  const spacing = createSpacing$1(spacingInput);
@@ -14718,7 +14718,7 @@
 	  return useTheme$3(defaultTheme);
 	}
 
-	const _excluded$g = ["className", "component"];
+	const _excluded$h = ["className", "component"];
 	function createBox(options = {}) {
 	  const {
 	    defaultTheme,
@@ -14735,7 +14735,7 @@
 	      className,
 	      component = 'div'
 	    } = _extendSxProp,
-	          other = _objectWithoutPropertiesLoose(_extendSxProp, _excluded$g);
+	          other = _objectWithoutPropertiesLoose(_extendSxProp, _excluded$h);
 
 	    return /*#__PURE__*/jsxRuntime.jsx(BoxRoot, _extends$1({
 	      as: component,
@@ -14747,7 +14747,7 @@
 	  return Box;
 	}
 
-	const _excluded$f = ["variant"];
+	const _excluded$g = ["variant"];
 
 	function isEmpty$1(string) {
 	  return string.length === 0;
@@ -14763,7 +14763,7 @@
 	  const {
 	    variant
 	  } = props,
-	        other = _objectWithoutPropertiesLoose(props, _excluded$f);
+	        other = _objectWithoutPropertiesLoose(props, _excluded$g);
 
 	  let classKey = variant || '';
 	  Object.keys(other).sort().forEach(key => {
@@ -14776,7 +14776,7 @@
 	  return classKey;
 	}
 
-	const _excluded$e = ["name", "slot", "skipVariantsResolver", "skipSx", "overridesResolver"],
+	const _excluded$f = ["name", "slot", "skipVariantsResolver", "skipSx", "overridesResolver"],
 	      _excluded2 = ["theme"],
 	      _excluded3 = ["theme"];
 
@@ -14855,7 +14855,7 @@
 	      skipSx: inputSkipSx,
 	      overridesResolver
 	    } = inputOptions,
-	          options = _objectWithoutPropertiesLoose(inputOptions, _excluded$e); // if skipVariantsResolver option is defined, take the value, otherwise, true for root and false for other slots.
+	          options = _objectWithoutPropertiesLoose(inputOptions, _excluded$f); // if skipVariantsResolver option is defined, take the value, otherwise, true for root and false for other slots.
 
 
 	    const skipVariantsResolver = inputSkipVariantsResolver !== undefined ? inputSkipVariantsResolver : componentSlot && componentSlot !== 'Root' || false;
@@ -15394,7 +15394,7 @@
 	};
 	var green$3 = green$2;
 
-	const _excluded$d = ["mode", "contrastThreshold", "tonalOffset"];
+	const _excluded$e = ["mode", "contrastThreshold", "tonalOffset"];
 	const light$1 = {
 	  // The colors used to style the text.
 	  text: {
@@ -15578,7 +15578,7 @@
 	    contrastThreshold = 3,
 	    tonalOffset = 0.2
 	  } = palette,
-	        other = _objectWithoutPropertiesLoose(palette, _excluded$d);
+	        other = _objectWithoutPropertiesLoose(palette, _excluded$e);
 
 	  const primary = palette.primary || getDefaultPrimary(mode);
 	  const secondary = palette.secondary || getDefaultSecondary(mode);
@@ -15686,7 +15686,7 @@
 	  return paletteOutput;
 	}
 
-	const _excluded$c = ["fontFamily", "fontSize", "fontWeightLight", "fontWeightRegular", "fontWeightMedium", "fontWeightBold", "htmlFontSize", "allVariants", "pxToRem"];
+	const _excluded$d = ["fontFamily", "fontSize", "fontWeightLight", "fontWeightRegular", "fontWeightMedium", "fontWeightBold", "htmlFontSize", "allVariants", "pxToRem"];
 
 	function round$1(value) {
 	  return Math.round(value * 1e5) / 1e5;
@@ -15719,7 +15719,7 @@
 	    allVariants,
 	    pxToRem: pxToRem2
 	  } = _ref,
-	        other = _objectWithoutPropertiesLoose(_ref, _excluded$c);
+	        other = _objectWithoutPropertiesLoose(_ref, _excluded$d);
 
 	  const coef = fontSize / 14;
 
@@ -15777,7 +15777,7 @@
 	const shadows$2 = ['none', createShadow$1(0, 2, 1, -1, 0, 1, 1, 0, 0, 1, 3, 0), createShadow$1(0, 3, 1, -2, 0, 2, 2, 0, 0, 1, 5, 0), createShadow$1(0, 3, 3, -2, 0, 3, 4, 0, 0, 1, 8, 0), createShadow$1(0, 2, 4, -1, 0, 4, 5, 0, 0, 1, 10, 0), createShadow$1(0, 3, 5, -1, 0, 5, 8, 0, 0, 1, 14, 0), createShadow$1(0, 3, 5, -1, 0, 6, 10, 0, 0, 1, 18, 0), createShadow$1(0, 4, 5, -2, 0, 7, 10, 1, 0, 2, 16, 1), createShadow$1(0, 5, 5, -3, 0, 8, 10, 1, 0, 3, 14, 2), createShadow$1(0, 5, 6, -3, 0, 9, 12, 1, 0, 3, 16, 2), createShadow$1(0, 6, 6, -3, 0, 10, 14, 1, 0, 4, 18, 3), createShadow$1(0, 6, 7, -4, 0, 11, 15, 1, 0, 4, 20, 3), createShadow$1(0, 7, 8, -4, 0, 12, 17, 2, 0, 5, 22, 4), createShadow$1(0, 7, 8, -4, 0, 13, 19, 2, 0, 5, 24, 4), createShadow$1(0, 7, 9, -4, 0, 14, 21, 2, 0, 5, 26, 4), createShadow$1(0, 8, 9, -5, 0, 15, 22, 2, 0, 6, 28, 5), createShadow$1(0, 8, 10, -5, 0, 16, 24, 2, 0, 6, 30, 5), createShadow$1(0, 8, 11, -5, 0, 17, 26, 2, 0, 6, 32, 5), createShadow$1(0, 9, 11, -5, 0, 18, 28, 2, 0, 7, 34, 6), createShadow$1(0, 9, 12, -6, 0, 19, 29, 2, 0, 7, 36, 6), createShadow$1(0, 10, 13, -6, 0, 20, 31, 3, 0, 8, 38, 7), createShadow$1(0, 10, 13, -6, 0, 21, 33, 3, 0, 8, 40, 7), createShadow$1(0, 10, 14, -6, 0, 22, 35, 3, 0, 8, 42, 7), createShadow$1(0, 11, 14, -7, 0, 23, 36, 3, 0, 9, 44, 8), createShadow$1(0, 11, 15, -7, 0, 24, 38, 3, 0, 9, 46, 8)];
 	var shadows$3 = shadows$2;
 
-	const _excluded$b = ["duration", "easing", "delay"]; // Follow https://material.google.com/motion/duration-easing.html#duration-easing-natural-easing-curves
+	const _excluded$c = ["duration", "easing", "delay"]; // Follow https://material.google.com/motion/duration-easing.html#duration-easing-natural-easing-curves
 	// to learn the context in which each easing should be used.
 
 	const easing$1 = {
@@ -15832,7 +15832,7 @@
 	      easing: easingOption = mergedEasing.easeInOut,
 	      delay = 0
 	    } = options;
-	          _objectWithoutPropertiesLoose(options, _excluded$b);
+	          _objectWithoutPropertiesLoose(options, _excluded$c);
 
 	    return (Array.isArray(props) ? props : [props]).map(animatedProp => "".concat(animatedProp, " ").concat(typeof durationOption === 'string' ? durationOption : formatMs$1(durationOption), " ").concat(easingOption, " ").concat(typeof delay === 'string' ? delay : formatMs$1(delay))).join(',');
 	  };
@@ -15860,7 +15860,7 @@
 	};
 	var zIndex$3 = zIndex$2;
 
-	const _excluded$a = ["breakpoints", "mixins", "spacing", "palette", "transitions", "typography", "shape"];
+	const _excluded$b = ["breakpoints", "mixins", "spacing", "palette", "transitions", "typography", "shape"];
 
 	function createTheme$1(options = {}, ...args) {
 	  const {
@@ -15869,7 +15869,7 @@
 	    transitions: transitionsInput = {},
 	    typography: typographyInput = {}
 	  } = options,
-	        other = _objectWithoutPropertiesLoose(options, _excluded$a);
+	        other = _objectWithoutPropertiesLoose(options, _excluded$b);
 
 	  const palette = createPalette$1(paletteInput);
 	  const systemTheme = createTheme$2(options);
@@ -16266,7 +16266,7 @@
 	var touchRippleClasses$1 = touchRippleClasses;
 
 	var _templateObject, _templateObject2, _templateObject3, _templateObject4;
-	const _excluded$9 = ["center", "classes", "className"];
+	const _excluded$a = ["center", "classes", "className"];
 
 	let _ = t => t,
 	    _t,
@@ -16323,7 +16323,7 @@
 	    classes = {},
 	    className
 	  } = props,
-	        other = _objectWithoutPropertiesLoose(props, _excluded$9);
+	        other = _objectWithoutPropertiesLoose(props, _excluded$a);
 
 	  const [ripples, setRipples] = react.useState([]);
 	  const nextKey = react.useRef(0);
@@ -16513,9 +16513,9 @@
 	const buttonBaseClasses = generateUtilityClasses('MuiButtonBase', ['root', 'disabled', 'focusVisible']);
 	var buttonBaseClasses$1 = buttonBaseClasses;
 
-	const _excluded$8 = ["action", "centerRipple", "children", "className", "component", "disabled", "disableRipple", "disableTouchRipple", "focusRipple", "focusVisibleClassName", "LinkComponent", "onBlur", "onClick", "onContextMenu", "onDragLeave", "onFocus", "onFocusVisible", "onKeyDown", "onKeyUp", "onMouseDown", "onMouseLeave", "onMouseUp", "onTouchEnd", "onTouchMove", "onTouchStart", "tabIndex", "TouchRippleProps", "touchRippleRef", "type"];
+	const _excluded$9 = ["action", "centerRipple", "children", "className", "component", "disabled", "disableRipple", "disableTouchRipple", "focusRipple", "focusVisibleClassName", "LinkComponent", "onBlur", "onClick", "onContextMenu", "onDragLeave", "onFocus", "onFocusVisible", "onKeyDown", "onKeyUp", "onMouseDown", "onMouseLeave", "onMouseUp", "onTouchEnd", "onTouchMove", "onTouchStart", "tabIndex", "TouchRippleProps", "touchRippleRef", "type"];
 
-	const useUtilityClasses$6 = ownerState => {
+	const useUtilityClasses$7 = ownerState => {
 	  const {
 	    disabled,
 	    focusVisible,
@@ -16620,7 +16620,7 @@
 	    touchRippleRef,
 	    type
 	  } = props,
-	        other = _objectWithoutPropertiesLoose(props, _excluded$8);
+	        other = _objectWithoutPropertiesLoose(props, _excluded$9);
 
 	  const buttonRef = react.useRef(null);
 	  const rippleRef = react.useRef(null);
@@ -16808,7 +16808,7 @@
 	    focusVisible
 	  });
 
-	  const classes = useUtilityClasses$6(ownerState);
+	  const classes = useUtilityClasses$7(ownerState);
 	  return /*#__PURE__*/jsxRuntime.jsxs(ButtonBaseRoot, _extends$1({
 	    as: ComponentProp,
 	    className: clsx(classes.root, className),
@@ -16856,9 +16856,9 @@
 
 	var ButtonGroupContext$1 = ButtonGroupContext;
 
-	const _excluded$7 = ["children", "color", "component", "className", "disabled", "disableElevation", "disableFocusRipple", "endIcon", "focusVisibleClassName", "fullWidth", "size", "startIcon", "type", "variant"];
+	const _excluded$8 = ["children", "color", "component", "className", "disabled", "disableElevation", "disableFocusRipple", "endIcon", "focusVisibleClassName", "fullWidth", "size", "startIcon", "type", "variant"];
 
-	const useUtilityClasses$5 = ownerState => {
+	const useUtilityClasses$6 = ownerState => {
 	  const {
 	    color,
 	    disableElevation,
@@ -17086,7 +17086,7 @@
 	    type,
 	    variant = 'text'
 	  } = props,
-	        other = _objectWithoutPropertiesLoose(props, _excluded$7);
+	        other = _objectWithoutPropertiesLoose(props, _excluded$8);
 
 	  const ownerState = _extends$1({}, props, {
 	    color,
@@ -17100,7 +17100,7 @@
 	    variant
 	  });
 
-	  const classes = useUtilityClasses$5(ownerState);
+	  const classes = useUtilityClasses$6(ownerState);
 
 	  const startIcon = startIconProp && /*#__PURE__*/jsxRuntime.jsx(ButtonStartIcon, {
 	    className: classes.startIcon,
@@ -17250,9 +17250,9 @@
 	}
 	generateUtilityClasses('MuiSvgIcon', ['root', 'colorPrimary', 'colorSecondary', 'colorAction', 'colorError', 'colorDisabled', 'fontSizeInherit', 'fontSizeSmall', 'fontSizeMedium', 'fontSizeLarge']);
 
-	const _excluded$6 = ["children", "className", "color", "component", "fontSize", "htmlColor", "inheritViewBox", "titleAccess", "viewBox"];
+	const _excluded$7 = ["children", "className", "color", "component", "fontSize", "htmlColor", "inheritViewBox", "titleAccess", "viewBox"];
 
-	const useUtilityClasses$4 = ownerState => {
+	const useUtilityClasses$5 = ownerState => {
 	  const {
 	    color,
 	    fontSize,
@@ -17320,7 +17320,7 @@
 	    titleAccess,
 	    viewBox = '0 0 24 24'
 	  } = props,
-	        other = _objectWithoutPropertiesLoose(props, _excluded$6);
+	        other = _objectWithoutPropertiesLoose(props, _excluded$7);
 
 	  const ownerState = _extends$1({}, props, {
 	    color,
@@ -17337,7 +17337,7 @@
 	    more.viewBox = viewBox;
 	  }
 
-	  const classes = useUtilityClasses$4(ownerState);
+	  const classes = useUtilityClasses$5(ownerState);
 	  return /*#__PURE__*/jsxRuntime.jsxs(SvgIconRoot, _extends$1({
 	    as: component,
 	    className: clsx(classes.root, className),
@@ -17373,9 +17373,9 @@
 	}
 	generateUtilityClasses('MuiTypography', ['root', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle1', 'subtitle2', 'body1', 'body2', 'inherit', 'button', 'caption', 'overline', 'alignLeft', 'alignRight', 'alignCenter', 'alignJustify', 'noWrap', 'gutterBottom', 'paragraph']);
 
-	const _excluded$5 = ["align", "className", "component", "gutterBottom", "noWrap", "paragraph", "variant", "variantMapping"];
+	const _excluded$6 = ["align", "className", "component", "gutterBottom", "noWrap", "paragraph", "variant", "variantMapping"];
 
-	const useUtilityClasses$3 = ownerState => {
+	const useUtilityClasses$4 = ownerState => {
 	  const {
 	    align,
 	    gutterBottom,
@@ -17461,7 +17461,7 @@
 	    variant = 'body1',
 	    variantMapping = defaultVariantMapping$1
 	  } = props,
-	        other = _objectWithoutPropertiesLoose(props, _excluded$5);
+	        other = _objectWithoutPropertiesLoose(props, _excluded$6);
 
 	  const ownerState = _extends$1({}, props, {
 	    align,
@@ -17476,7 +17476,7 @@
 	  });
 
 	  const Component = component || (paragraph ? 'p' : variantMapping[variant] || defaultVariantMapping$1[variant]) || 'span';
-	  const classes = useUtilityClasses$3(ownerState);
+	  const classes = useUtilityClasses$4(ownerState);
 	  return /*#__PURE__*/jsxRuntime.jsx(TypographyRoot, _extends$1({
 	    as: Component,
 	    ref: ref,
@@ -17509,9 +17509,9 @@
 	}
 	generateUtilityClasses('PrivateSwitchBase', ['root', 'checked', 'disabled', 'input', 'edgeStart', 'edgeEnd']);
 
-	const _excluded$4 = ["autoFocus", "checked", "checkedIcon", "className", "defaultChecked", "disabled", "disableFocusRipple", "edge", "icon", "id", "inputProps", "inputRef", "name", "onBlur", "onChange", "onFocus", "readOnly", "required", "tabIndex", "type", "value"];
+	const _excluded$5 = ["autoFocus", "checked", "checkedIcon", "className", "defaultChecked", "disabled", "disableFocusRipple", "edge", "icon", "id", "inputProps", "inputRef", "name", "onBlur", "onChange", "onFocus", "readOnly", "required", "tabIndex", "type", "value"];
 
-	const useUtilityClasses$2 = ownerState => {
+	const useUtilityClasses$3 = ownerState => {
 	  const {
 	    classes,
 	    checked,
@@ -17575,7 +17575,7 @@
 	    type,
 	    value
 	  } = props,
-	        other = _objectWithoutPropertiesLoose(props, _excluded$4);
+	        other = _objectWithoutPropertiesLoose(props, _excluded$5);
 
 	  const [checked, setCheckedState] = useControlled({
 	    controlled: checkedProp,
@@ -17637,7 +17637,7 @@
 	    edge
 	  });
 
-	  const classes = useUtilityClasses$2(ownerState);
+	  const classes = useUtilityClasses$3(ownerState);
 	  return /*#__PURE__*/jsxRuntime.jsxs(SwitchBaseRoot, _extends$1({
 	    component: "span",
 	    className: clsx(classes.root, className),
@@ -17691,9 +17691,9 @@
 	const checkboxClasses = generateUtilityClasses('MuiCheckbox', ['root', 'checked', 'disabled', 'indeterminate', 'colorPrimary', 'colorSecondary']);
 	var checkboxClasses$1 = checkboxClasses;
 
-	const _excluded$3 = ["checkedIcon", "color", "icon", "indeterminate", "indeterminateIcon", "inputProps", "size"];
+	const _excluded$4 = ["checkedIcon", "color", "icon", "indeterminate", "indeterminateIcon", "inputProps", "size"];
 
-	const useUtilityClasses$1 = ownerState => {
+	const useUtilityClasses$2 = ownerState => {
 	  const {
 	    classes,
 	    indeterminate,
@@ -17761,7 +17761,7 @@
 	    inputProps,
 	    size = 'medium'
 	  } = props,
-	        other = _objectWithoutPropertiesLoose(props, _excluded$3);
+	        other = _objectWithoutPropertiesLoose(props, _excluded$4);
 
 	  const icon = indeterminate ? indeterminateIconProp : iconProp;
 	  const indeterminateIcon = indeterminate ? indeterminateIconProp : checkedIcon;
@@ -17772,7 +17772,7 @@
 	    size
 	  });
 
-	  const classes = useUtilityClasses$1(ownerState);
+	  const classes = useUtilityClasses$2(ownerState);
 	  return /*#__PURE__*/jsxRuntime.jsx(CheckboxRoot, _extends$1({
 	    type: "checkbox",
 	    inputProps: _extends$1({
@@ -17791,6 +17791,108 @@
 	  }));
 	});
 	var Checkbox$1 = Checkbox;
+
+	function getContainerUtilityClass(slot) {
+	  return generateUtilityClass('MuiContainer', slot);
+	}
+	generateUtilityClasses('MuiContainer', ['root', 'disableGutters', 'fixed', 'maxWidthXs', 'maxWidthSm', 'maxWidthMd', 'maxWidthLg', 'maxWidthXl']);
+
+	const _excluded$3 = ["className", "component", "disableGutters", "fixed", "maxWidth"];
+
+	const useUtilityClasses$1 = ownerState => {
+	  const {
+	    classes,
+	    fixed,
+	    disableGutters,
+	    maxWidth
+	  } = ownerState;
+	  const slots = {
+	    root: ['root', maxWidth && "maxWidth".concat(capitalize$1(String(maxWidth))), fixed && 'fixed', disableGutters && 'disableGutters']
+	  };
+	  return composeClasses(slots, getContainerUtilityClass, classes);
+	};
+
+	const ContainerRoot = styled$1('div', {
+	  name: 'MuiContainer',
+	  slot: 'Root',
+	  overridesResolver: (props, styles) => {
+	    const {
+	      ownerState
+	    } = props;
+	    return [styles.root, styles["maxWidth".concat(capitalize$1(String(ownerState.maxWidth)))], ownerState.fixed && styles.fixed, ownerState.disableGutters && styles.disableGutters];
+	  }
+	})(({
+	  theme,
+	  ownerState
+	}) => _extends$1({
+	  width: '100%',
+	  marginLeft: 'auto',
+	  boxSizing: 'border-box',
+	  marginRight: 'auto',
+	  display: 'block'
+	}, !ownerState.disableGutters && {
+	  paddingLeft: theme.spacing(2),
+	  paddingRight: theme.spacing(2),
+	  [theme.breakpoints.up('sm')]: {
+	    paddingLeft: theme.spacing(3),
+	    paddingRight: theme.spacing(3)
+	  }
+	}), ({
+	  theme,
+	  ownerState
+	}) => ownerState.fixed && Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
+	  const value = theme.breakpoints.values[breakpoint];
+
+	  if (value !== 0) {
+	    acc[theme.breakpoints.up(breakpoint)] = {
+	      maxWidth: "".concat(value).concat(theme.breakpoints.unit)
+	    };
+	  }
+
+	  return acc;
+	}, {}), ({
+	  theme,
+	  ownerState
+	}) => _extends$1({}, ownerState.maxWidth === 'xs' && {
+	  [theme.breakpoints.up('xs')]: {
+	    maxWidth: Math.max(theme.breakpoints.values.xs, 444)
+	  }
+	}, ownerState.maxWidth && ownerState.maxWidth !== 'xs' && {
+	  [theme.breakpoints.up(ownerState.maxWidth)]: {
+	    maxWidth: "".concat(theme.breakpoints.values[ownerState.maxWidth]).concat(theme.breakpoints.unit)
+	  }
+	}));
+	const Container = /*#__PURE__*/react.forwardRef(function Container(inProps, ref) {
+	  const props = useThemeProps({
+	    props: inProps,
+	    name: 'MuiContainer'
+	  });
+
+	  const {
+	    className,
+	    component = 'div',
+	    disableGutters = false,
+	    fixed = false,
+	    maxWidth = 'lg'
+	  } = props,
+	        other = _objectWithoutPropertiesLoose(props, _excluded$3);
+
+	  const ownerState = _extends$1({}, props, {
+	    component,
+	    disableGutters,
+	    fixed,
+	    maxWidth
+	  });
+
+	  const classes = useUtilityClasses$1(ownerState);
+	  return /*#__PURE__*/jsxRuntime.jsx(ContainerRoot, _extends$1({
+	    as: component,
+	    ownerState: ownerState,
+	    className: clsx(classes.root, className),
+	    ref: ref
+	  }, other));
+	});
+	var Container$1 = Container;
 
 	function getDividerUtilityClass(slot) {
 	  return generateUtilityClass('MuiDivider', slot);
@@ -18467,24 +18569,12 @@
 	var Stack$1 = Stack;
 
 	const Airctaft = () => {
-	  useSimVar('L:PARA DOORL', 'bool');
-	  useSimVar('L:PARA DOORR', 'bool');
-	  const [CargoDoor, setCargoDoor] = useSimVar('L:C17_CargoDoor_POS', 'enum');
-	  const [ARSlipway, setARSlipway] = useSimVar('L:C17_UARRSI_Slipway', 'bool');
-	  const [EnteranceDoor, setEnteranceDoor] = useSimVar('L:C17_Crew_Enterance', 'bool'); // const Position = [
-	  //     {
-	  //         value:0,
-	  //         label:"Closed"
-	  //     },
-	  //     {
-	  //         value:50,
-	  //         label:'Airdrop'
-	  //     },
-	  //     {
-	  //         value: 100,
-	  //         label:'Ground'
-	  //     }
-	  // ]
+	  let [removeTags, setremoveTags] = useSimVar('L:C17_RBF_TAGS', 'bool');
+	  useSimVar('L:C17_PARA_L', 'bool');
+	  useSimVar('L:C17_PARA_R', 'bool');
+	  let [CargoDoor, setCargoDoor] = useSimVar('L:C17_CargoDoor_POS', 'enum');
+	  let [ARSlipway, setARSlipway] = useSimVar('L:C17_UARRSI_Slipway', 'bool');
+	  let [EnteranceDoor, setEnteranceDoor] = useSimVar('L:C17_Crew_Enterance', 'bool');
 
 	  const handleChange = (event, newValue) => {
 	    setCargoDoor(newValue);
@@ -18516,6 +18606,34 @@
 	          color: '#1B93FF'
 	        },
 	        children: "Aircraft Customization"
+	      }), /*#__PURE__*/jsxRuntime.jsx(Box$1, {
+	        sx: {
+	          position: 'absolute',
+	          width: 200,
+	          height: 200,
+	          backgroundColor: '16161E',
+	          borderRadius: 4,
+	          left: 15,
+	          top: 520,
+	          boxShadow: '0px 0px 7px rgba(0, 0, 0, 0.699)',
+	          color: '#1B93FF',
+	          justifyContent: 'center',
+	          display: 'flex',
+	          flexDirection: 'column',
+	          textAlign: 'center',
+	          alignItems: 'center',
+	          fontSize: 14
+	        },
+	        children: /*#__PURE__*/jsxRuntime.jsx(Container$1, {
+	          maxWidth: "sm",
+	          children: /*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	            onClick: () => setremoveTags(!removeTags),
+	            size: "small",
+	            variant: "contained",
+	            color: removeTags ? 'error' : 'success',
+	            children: "Cones & Covers"
+	          })
+	        })
 	      }), /*#__PURE__*/jsxRuntime.jsx(Box$1, {
 	        sx: {
 	          position: 'absolute',
