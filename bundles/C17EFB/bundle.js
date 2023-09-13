@@ -23531,8 +23531,71 @@
 	  });
 	};
 
+	const GetImageFromPDF = props => {
+	  let page1Src = "/Images/FM/DeltaSim C17 FLIGHT MANUAL-".concat(String(props.page).padStart(2, '0'), ".png");
+	  let page2Src = "/Images/FM/DeltaSim C17 FLIGHT MANUAL-".concat(String(props.page + 1).padStart(2, '0'), ".png");
+	  return /*#__PURE__*/jsxRuntime.jsxs("div", {
+	    style: {
+	      paddingTop: '30px',
+	      display: 'flex'
+	    },
+	    children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+	      style: {
+	        flex: 1
+	      },
+	      children: /*#__PURE__*/jsxRuntime.jsx("img", {
+	        className: "".concat(props.invertColors ? 'invert' : ''),
+	        src: page1Src,
+	        alt: "Page ".concat(props.page),
+	        style: {
+	          maxWidth: '100%'
+	        }
+	      })
+	    }), /*#__PURE__*/jsxRuntime.jsx("div", {
+	      style: {
+	        flex: 1
+	      },
+	      children: /*#__PURE__*/jsxRuntime.jsx("img", {
+	        className: "".concat(props.invertColors ? 'invert' : ''),
+	        src: page2Src,
+	        alt: "Page ".concat(props.page + 1),
+	        style: {
+	          maxWidth: '100%'
+	        }
+	      })
+	    })]
+	  });
+	};
+
+	const Bookmarks = props => {
+	  const [bookmarkMenu, setBookmarkMenu] = react.useState(false);
+	  return /*#__PURE__*/jsxRuntime.jsxs("div", {
+	    style: {
+	      position: 'absolute',
+	      top: '30%'
+	    },
+	    children: [/*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	      children: "Bookmarks"
+	    }), /*#__PURE__*/jsxRuntime.jsx("div", {
+	      className: "dropdown ".concat(bookmarkMenu ? 'shown' : 'hidden'),
+	      children: /*#__PURE__*/jsxRuntime.jsx("ul", {
+	        children: props.pages.map((pages, index) => /*#__PURE__*/jsxRuntime.jsx("li", {
+	          onClick: () => props.navigateTo(pages),
+	          children: pages
+	        }, index))
+	      })
+	    })]
+	  });
+	};
+
 	const MANUAL = () => {
 	  const [currentPage, setCurrentPage] = react.useState(1);
+	  const [bookmarks, setBookmarks] = react.useState(() => {
+	    const saved = localStorage.getItem('bookmarks');
+	    const initalValue = JSON.parse(saved);
+	    return initalValue || [1];
+	  });
+	  const [invert, setInvert] = react.useState(false);
 	  const totalPages = 68; // Total number of images
 
 	  const navigateToPage = pageNumber => {
@@ -23541,57 +23604,74 @@
 	    }
 	  };
 
-	  const renderImages = () => {
-	    const page1Src = "/Images/FM/DeltaSim C17 FLIGHT MANUAL-".concat(String(currentPage).padStart(2, '0'), ".png");
-	    const page2Src = "/Images/FM/DeltaSim C17 FLIGHT MANUAL-".concat(String(currentPage + 1).padStart(2, '0'), ".png");
-	    return /*#__PURE__*/jsxRuntime.jsxs("div", {
-	      style: {
-	        display: 'flex'
-	      },
-	      children: [/*#__PURE__*/jsxRuntime.jsx("div", {
-	        style: {
-	          flex: 1
-	        },
-	        children: /*#__PURE__*/jsxRuntime.jsx("img", {
-	          src: page1Src,
-	          alt: "Page ".concat(currentPage),
-	          style: {
-	            maxWidth: '100%'
-	          }
-	        })
-	      }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	        style: {
-	          flex: 1
-	        },
-	        children: /*#__PURE__*/jsxRuntime.jsx("img", {
-	          src: page2Src,
-	          alt: "Page ".concat(currentPage + 1),
-	          style: {
-	            maxWidth: '100%'
-	          }
-	        })
-	      })]
-	    });
+	  const handleNextPage = () => {
+	    navigateToPage(currentPage + 2);
 	  };
 
+	  const handleInvert = () => {
+	    setInvert(!invert);
+	  };
+
+	  const handlePreviousPage = () => {
+	    navigateToPage(currentPage - 2);
+	  };
+
+	  const bookmarkPageAdd = page => {
+	    if (bookmarks.includes(page)) {
+	      console.log('already a bookmark');
+	      return;
+	    }
+
+	    let prev = bookmarks;
+	    prev.push(page);
+	    let sorted = prev.sort();
+	    setBookmarks(sorted);
+	  };
+
+	  const bookmarkPageRemove = page => {
+	    if (bookmarks.length == 0) {
+	      return;
+	    }
+
+	    let index = bookmarks.indexOf(page);
+	    let newArray = bookmarks.splice(index, 1);
+	    setBookmarks(newArray);
+	  };
+
+	  react.useEffect(() => {
+	    localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+	  }, [bookmarks]);
 	  return /*#__PURE__*/jsxRuntime.jsxs("div", {
 	    className: "PDFContainer",
-	    children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
-	      style: {
-	        display: 'flex',
-	        alignItems: 'center'
-	      },
-	      children: [/*#__PURE__*/jsxRuntime.jsx("button", {
-	        onClick: () => navigateToPage(currentPage - 2),
-	        children: "Previous"
-	      }), /*#__PURE__*/jsxRuntime.jsxs("span", {
-	        children: ["Page ", currentPage, " and ", currentPage + 1, " of ", totalPages]
-	      }), /*#__PURE__*/jsxRuntime.jsx("button", {
-	        onClick: () => navigateToPage(currentPage + 2),
-	        children: "Next"
-	      })]
-	    }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	      children: renderImages()
+	    children: [/*#__PURE__*/jsxRuntime.jsx(GetImageFromPDF, {
+	      invertColors: invert,
+	      page: currentPage
+	    }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	      size: "small",
+	      className: "previousPage",
+	      variant: "contained",
+	      onClick: handlePreviousPage,
+	      children: "<"
+	    }), /*#__PURE__*/jsxRuntime.jsxs("div", {
+	      className: "pageDisplay",
+	      children: ["Page ", currentPage, " and ", currentPage + 1, " of ", totalPages]
+	    }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	      size: "small",
+	      className: "nextPage",
+	      variant: "contained",
+	      onClick: handleNextPage,
+	      children: ">"
+	    }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	      className: "invertButton",
+	      variant: "contained",
+	      onClick: handleInvert,
+	      children: "Invert Colors"
+	    }), /*#__PURE__*/jsxRuntime.jsxs(Button$1, {
+	      onClick: () => bookmarks.includes(currentPage) ? bookmarkPageRemove(currentPage) : bookmarkPageAdd(currentPage),
+	      children: [bookmarks.includes(currentPage) ? 'Remove' : 'Add', " Bookmark"]
+	    }), /*#__PURE__*/jsxRuntime.jsx(Bookmarks, {
+	      navigateTo: navigateToPage,
+	      pages: bookmarks
 	    })]
 	  });
 	};

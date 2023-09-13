@@ -59,8 +59,7 @@ text {
   background-size: 80%;
   background-repeat: no-repeat;
 }
-
-.PDFContainer {
+.settingsContainer {
   position: absolute;
   left: 0px;
   top: 0px;
@@ -70,11 +69,56 @@ text {
   background-size: 80%;
   background-repeat: no-repeat;
 }
-.settingsContainer {
+.invert {
+  -webkit-filter: invert(1);
+  filter: invert(1);
+}
+
+.pageDisplay {
+  position: absolute;
+  bottom: 60px;
+  font-size: 25px;
+  left: 0px;
+  text-align: center;
+  width: 100%;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  user-select: none;
+  color: white;
+}
+
+.invertButton {
+  position: absolute;
+  bottom: -5px;
+  right: 10px;
+}
+
+.pageButton, .previousPage, .nextPage {
+  opacity: 0.3;
+  transition: ease-in-out 0.3s;
+}
+
+.pageButton:hover, .previousPage:hover, .nextPage:hover {
+  opacity: 1;
+  transition: ease-in-out 0.3s;
+}
+
+.nextPage {
+  bottom: 45%;
+  left: 86%;
+}
+
+.previousPage {
+  position: absolute;
+  bottom: 45%;
+  left: 10px;
+}
+
+.PDFContainer {
   position: absolute;
   left: 0px;
   top: 0px;
-  width: 1040;
+  width: 1040px;
   height: 810px;
   background-position: right;
   background-size: 80%;
