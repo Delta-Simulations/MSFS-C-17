@@ -279,8 +279,9 @@
     <Visibility>
         <Parameter>
             <Code>
-				(A:EXTERNAL POWER AVAILABLE, bool) 1 ==
+				(A:EXTERNAL POWER ON, bool) 1 ==
 				(A:SIM ON GROUND,bool) 1 == and
+				(A:AIRSPEED INDICATED, knots) 0 == and
 			</Code>
         </Parameter>
     </Visibility>
@@ -291,8 +292,9 @@
 	<Animation>
 		<Parameter>
 			 <Code>
-				(A:EXTERNAL POWER AVAILABLE, bool) 1 ==
+				(A:EXTERNAL POWER ON, bool) 1 ==
 				(A:SIM ON GROUND,bool) 1 == and
+				(A:AIRSPEED INDICATED, knots) 0 == and
 				if{ 100 } els{ 0 }
 			 </Code>
 	</Parameter>
@@ -751,8 +753,8 @@
 	  <AnimLength>100</AnimLength>
 	  <Animation>
 		  <Parameter>
-			   <Code>(L:PARA DOORL, bool) 100 *</Code>
-			  <Lag>10</Lag>
+			   <Code>(L:C17_PARA_L, percent) 100 *</Code>
+			  <Lag>30</Lag>
 	  </Parameter>
 	  </Animation>
   </PartInfo>
@@ -763,8 +765,8 @@
 	  <AnimLength>100</AnimLength>
 	  <Animation>
 		  <Parameter>
-			   <Code>(L:PARA DOORR, bool) 100 *</Code>
-			  <Lag>10</Lag>
+			   <Code>(L:C17_PARA_R, percent) 100 *</Code>
+			  <Lag>30</Lag>
 	  </Parameter>
 	  </Animation>
   </PartInfo>

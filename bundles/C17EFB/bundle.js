@@ -10067,7 +10067,7 @@
 	  return target;
 	}
 
-	const _excluded$m = ["onClick", "reloadDocument", "replace", "state", "target", "to"],
+	const _excluded$i = ["onClick", "reloadDocument", "replace", "state", "target", "to"],
 	      _excluded2$1 = ["aria-current", "caseSensitive", "className", "end", "style", "to"];
 
 	function isModifiedEvent(event) {
@@ -10087,7 +10087,7 @@
 	    target,
 	    to
 	  } = _ref3,
-	      rest = _objectWithoutPropertiesLoose$1(_ref3, _excluded$m);
+	      rest = _objectWithoutPropertiesLoose$1(_ref3, _excluded$i);
 
 	  let href = useHref(to);
 	  let internalOnClick = useLinkClickHandler(to, {
@@ -11627,11 +11627,11 @@
 	  };
 	}
 
-	const _excluded$l = ["aria-label", "aria-valuetext", "className", "component", "classes", "disableSwap", "disabled", "getAriaLabel", "getAriaValueText", "marks", "max", "min", "name", "onChange", "onChangeCommitted", "onMouseDown", "orientation", "scale", "step", "tabIndex", "track", "value", "valueLabelDisplay", "valueLabelFormat", "isRtl", "components", "componentsProps"];
+	const _excluded$h = ["aria-label", "aria-valuetext", "className", "component", "classes", "disableSwap", "disabled", "getAriaLabel", "getAriaValueText", "marks", "max", "min", "name", "onChange", "onChangeCommitted", "onMouseDown", "orientation", "scale", "step", "tabIndex", "track", "value", "valueLabelDisplay", "valueLabelFormat", "isRtl", "components", "componentsProps"];
 
 	const Identity = x => x;
 
-	const useUtilityClasses$8 = ownerState => {
+	const useUtilityClasses$4 = ownerState => {
 	  const {
 	    disabled,
 	    dragging,
@@ -11688,7 +11688,7 @@
 	    components = {},
 	    componentsProps = {}
 	  } = props,
-	        other = _objectWithoutPropertiesLoose(props, _excluded$l); // all props with defaults
+	        other = _objectWithoutPropertiesLoose(props, _excluded$h); // all props with defaults
 	  // consider extracting to hook an reusing the lint rule for the varints
 
 
@@ -11747,7 +11747,7 @@
 	  const Input = components.Input || 'input';
 	  const inputProps = appendOwnerState(Input, componentsProps.input, ownerState);
 	  const hiddenInputProps = getHiddenInputProps();
-	  const classes = useUtilityClasses$8(ownerState);
+	  const classes = useUtilityClasses$4(ownerState);
 	  return /*#__PURE__*/jsxRuntime.jsxs(Root, _extends$1({}, rootProps, getRootProps({
 	    onMouseDown
 	  }), {
@@ -14491,7 +14491,7 @@
 	styleFunctionSx.filterProps = ['sx'];
 	var defaultStyleFunctionSx = styleFunctionSx;
 
-	const _excluded$k = ["sx"];
+	const _excluded$g = ["sx"];
 
 	const splitProps = props => {
 	  const result = {
@@ -14512,7 +14512,7 @@
 	  const {
 	    sx: inSx
 	  } = props,
-	        other = _objectWithoutPropertiesLoose(props, _excluded$k);
+	        other = _objectWithoutPropertiesLoose(props, _excluded$g);
 
 	  const {
 	    systemProps,
@@ -14541,7 +14541,7 @@
 	  });
 	}
 
-	const _excluded$j = ["values", "unit", "step"]; // Sorted ASC by size. That's important.
+	const _excluded$f = ["values", "unit", "step"]; // Sorted ASC by size. That's important.
 
 	const sortBreakpointsValues = values => {
 	  const breakpointsAsArray = Object.keys(values).map(key => ({
@@ -14577,7 +14577,7 @@
 	    unit = 'px',
 	    step = 5
 	  } = breakpoints,
-	        other = _objectWithoutPropertiesLoose(breakpoints, _excluded$j);
+	        other = _objectWithoutPropertiesLoose(breakpoints, _excluded$f);
 
 	  const sortedValues = sortBreakpointsValues(values);
 	  const keys = Object.keys(sortedValues);
@@ -14665,7 +14665,7 @@
 	  return spacing;
 	}
 
-	const _excluded$i = ["breakpoints", "palette", "spacing", "shape"];
+	const _excluded$e = ["breakpoints", "palette", "spacing", "shape"];
 
 	function createTheme$2(options = {}, ...args) {
 	  const {
@@ -14674,7 +14674,7 @@
 	    spacing: spacingInput,
 	    shape: shapeInput = {}
 	  } = options,
-	        other = _objectWithoutPropertiesLoose(options, _excluded$i);
+	        other = _objectWithoutPropertiesLoose(options, _excluded$e);
 
 	  const breakpoints = createBreakpoints$1(breakpointsInput);
 	  const spacing = createSpacing$1(spacingInput);
@@ -14718,7 +14718,7 @@
 	  return useTheme$3(defaultTheme);
 	}
 
-	const _excluded$h = ["className", "component"];
+	const _excluded$d = ["className", "component"];
 	function createBox(options = {}) {
 	  const {
 	    defaultTheme,
@@ -14735,7 +14735,7 @@
 	      className,
 	      component = 'div'
 	    } = _extendSxProp,
-	          other = _objectWithoutPropertiesLoose(_extendSxProp, _excluded$h);
+	          other = _objectWithoutPropertiesLoose(_extendSxProp, _excluded$d);
 
 	    return /*#__PURE__*/jsxRuntime.jsx(BoxRoot, _extends$1({
 	      as: component,
@@ -14747,7 +14747,7 @@
 	  return Box;
 	}
 
-	const _excluded$g = ["variant"];
+	const _excluded$c = ["variant"];
 
 	function isEmpty$1(string) {
 	  return string.length === 0;
@@ -14763,7 +14763,7 @@
 	  const {
 	    variant
 	  } = props,
-	        other = _objectWithoutPropertiesLoose(props, _excluded$g);
+	        other = _objectWithoutPropertiesLoose(props, _excluded$c);
 
 	  let classKey = variant || '';
 	  Object.keys(other).sort().forEach(key => {
@@ -14776,7 +14776,7 @@
 	  return classKey;
 	}
 
-	const _excluded$f = ["name", "slot", "skipVariantsResolver", "skipSx", "overridesResolver"],
+	const _excluded$b = ["name", "slot", "skipVariantsResolver", "skipSx", "overridesResolver"],
 	      _excluded2 = ["theme"],
 	      _excluded3 = ["theme"];
 
@@ -14855,7 +14855,7 @@
 	      skipSx: inputSkipSx,
 	      overridesResolver
 	    } = inputOptions,
-	          options = _objectWithoutPropertiesLoose(inputOptions, _excluded$f); // if skipVariantsResolver option is defined, take the value, otherwise, true for root and false for other slots.
+	          options = _objectWithoutPropertiesLoose(inputOptions, _excluded$b); // if skipVariantsResolver option is defined, take the value, otherwise, true for root and false for other slots.
 
 
 	    const skipVariantsResolver = inputSkipVariantsResolver !== undefined ? inputSkipVariantsResolver : componentSlot && componentSlot !== 'Root' || false;
@@ -15394,7 +15394,7 @@
 	};
 	var green$3 = green$2;
 
-	const _excluded$e = ["mode", "contrastThreshold", "tonalOffset"];
+	const _excluded$a = ["mode", "contrastThreshold", "tonalOffset"];
 	const light$1 = {
 	  // The colors used to style the text.
 	  text: {
@@ -15578,7 +15578,7 @@
 	    contrastThreshold = 3,
 	    tonalOffset = 0.2
 	  } = palette,
-	        other = _objectWithoutPropertiesLoose(palette, _excluded$e);
+	        other = _objectWithoutPropertiesLoose(palette, _excluded$a);
 
 	  const primary = palette.primary || getDefaultPrimary(mode);
 	  const secondary = palette.secondary || getDefaultSecondary(mode);
@@ -15686,7 +15686,7 @@
 	  return paletteOutput;
 	}
 
-	const _excluded$d = ["fontFamily", "fontSize", "fontWeightLight", "fontWeightRegular", "fontWeightMedium", "fontWeightBold", "htmlFontSize", "allVariants", "pxToRem"];
+	const _excluded$9 = ["fontFamily", "fontSize", "fontWeightLight", "fontWeightRegular", "fontWeightMedium", "fontWeightBold", "htmlFontSize", "allVariants", "pxToRem"];
 
 	function round$1(value) {
 	  return Math.round(value * 1e5) / 1e5;
@@ -15719,7 +15719,7 @@
 	    allVariants,
 	    pxToRem: pxToRem2
 	  } = _ref,
-	        other = _objectWithoutPropertiesLoose(_ref, _excluded$d);
+	        other = _objectWithoutPropertiesLoose(_ref, _excluded$9);
 
 	  const coef = fontSize / 14;
 
@@ -15777,7 +15777,7 @@
 	const shadows$2 = ['none', createShadow$1(0, 2, 1, -1, 0, 1, 1, 0, 0, 1, 3, 0), createShadow$1(0, 3, 1, -2, 0, 2, 2, 0, 0, 1, 5, 0), createShadow$1(0, 3, 3, -2, 0, 3, 4, 0, 0, 1, 8, 0), createShadow$1(0, 2, 4, -1, 0, 4, 5, 0, 0, 1, 10, 0), createShadow$1(0, 3, 5, -1, 0, 5, 8, 0, 0, 1, 14, 0), createShadow$1(0, 3, 5, -1, 0, 6, 10, 0, 0, 1, 18, 0), createShadow$1(0, 4, 5, -2, 0, 7, 10, 1, 0, 2, 16, 1), createShadow$1(0, 5, 5, -3, 0, 8, 10, 1, 0, 3, 14, 2), createShadow$1(0, 5, 6, -3, 0, 9, 12, 1, 0, 3, 16, 2), createShadow$1(0, 6, 6, -3, 0, 10, 14, 1, 0, 4, 18, 3), createShadow$1(0, 6, 7, -4, 0, 11, 15, 1, 0, 4, 20, 3), createShadow$1(0, 7, 8, -4, 0, 12, 17, 2, 0, 5, 22, 4), createShadow$1(0, 7, 8, -4, 0, 13, 19, 2, 0, 5, 24, 4), createShadow$1(0, 7, 9, -4, 0, 14, 21, 2, 0, 5, 26, 4), createShadow$1(0, 8, 9, -5, 0, 15, 22, 2, 0, 6, 28, 5), createShadow$1(0, 8, 10, -5, 0, 16, 24, 2, 0, 6, 30, 5), createShadow$1(0, 8, 11, -5, 0, 17, 26, 2, 0, 6, 32, 5), createShadow$1(0, 9, 11, -5, 0, 18, 28, 2, 0, 7, 34, 6), createShadow$1(0, 9, 12, -6, 0, 19, 29, 2, 0, 7, 36, 6), createShadow$1(0, 10, 13, -6, 0, 20, 31, 3, 0, 8, 38, 7), createShadow$1(0, 10, 13, -6, 0, 21, 33, 3, 0, 8, 40, 7), createShadow$1(0, 10, 14, -6, 0, 22, 35, 3, 0, 8, 42, 7), createShadow$1(0, 11, 14, -7, 0, 23, 36, 3, 0, 9, 44, 8), createShadow$1(0, 11, 15, -7, 0, 24, 38, 3, 0, 9, 46, 8)];
 	var shadows$3 = shadows$2;
 
-	const _excluded$c = ["duration", "easing", "delay"]; // Follow https://material.google.com/motion/duration-easing.html#duration-easing-natural-easing-curves
+	const _excluded$8 = ["duration", "easing", "delay"]; // Follow https://material.google.com/motion/duration-easing.html#duration-easing-natural-easing-curves
 	// to learn the context in which each easing should be used.
 
 	const easing$1 = {
@@ -15832,7 +15832,7 @@
 	      easing: easingOption = mergedEasing.easeInOut,
 	      delay = 0
 	    } = options;
-	          _objectWithoutPropertiesLoose(options, _excluded$c);
+	          _objectWithoutPropertiesLoose(options, _excluded$8);
 
 	    return (Array.isArray(props) ? props : [props]).map(animatedProp => "".concat(animatedProp, " ").concat(typeof durationOption === 'string' ? durationOption : formatMs$1(durationOption), " ").concat(easingOption, " ").concat(typeof delay === 'string' ? delay : formatMs$1(delay))).join(',');
 	  };
@@ -15860,7 +15860,7 @@
 	};
 	var zIndex$3 = zIndex$2;
 
-	const _excluded$b = ["breakpoints", "mixins", "spacing", "palette", "transitions", "typography", "shape"];
+	const _excluded$7 = ["breakpoints", "mixins", "spacing", "palette", "transitions", "typography", "shape"];
 
 	function createTheme$1(options = {}, ...args) {
 	  const {
@@ -15869,7 +15869,7 @@
 	    transitions: transitionsInput = {},
 	    typography: typographyInput = {}
 	  } = options,
-	        other = _objectWithoutPropertiesLoose(options, _excluded$b);
+	        other = _objectWithoutPropertiesLoose(options, _excluded$7);
 
 	  const palette = createPalette$1(paletteInput);
 	  const systemTheme = createTheme$2(options);
@@ -16266,7 +16266,7 @@
 	var touchRippleClasses$1 = touchRippleClasses;
 
 	var _templateObject, _templateObject2, _templateObject3, _templateObject4;
-	const _excluded$a = ["center", "classes", "className"];
+	const _excluded$6 = ["center", "classes", "className"];
 
 	let _ = t => t,
 	    _t,
@@ -16323,7 +16323,7 @@
 	    classes = {},
 	    className
 	  } = props,
-	        other = _objectWithoutPropertiesLoose(props, _excluded$a);
+	        other = _objectWithoutPropertiesLoose(props, _excluded$6);
 
 	  const [ripples, setRipples] = react.useState([]);
 	  const nextKey = react.useRef(0);
@@ -16513,9 +16513,9 @@
 	const buttonBaseClasses = generateUtilityClasses('MuiButtonBase', ['root', 'disabled', 'focusVisible']);
 	var buttonBaseClasses$1 = buttonBaseClasses;
 
-	const _excluded$9 = ["action", "centerRipple", "children", "className", "component", "disabled", "disableRipple", "disableTouchRipple", "focusRipple", "focusVisibleClassName", "LinkComponent", "onBlur", "onClick", "onContextMenu", "onDragLeave", "onFocus", "onFocusVisible", "onKeyDown", "onKeyUp", "onMouseDown", "onMouseLeave", "onMouseUp", "onTouchEnd", "onTouchMove", "onTouchStart", "tabIndex", "TouchRippleProps", "touchRippleRef", "type"];
+	const _excluded$5 = ["action", "centerRipple", "children", "className", "component", "disabled", "disableRipple", "disableTouchRipple", "focusRipple", "focusVisibleClassName", "LinkComponent", "onBlur", "onClick", "onContextMenu", "onDragLeave", "onFocus", "onFocusVisible", "onKeyDown", "onKeyUp", "onMouseDown", "onMouseLeave", "onMouseUp", "onTouchEnd", "onTouchMove", "onTouchStart", "tabIndex", "TouchRippleProps", "touchRippleRef", "type"];
 
-	const useUtilityClasses$7 = ownerState => {
+	const useUtilityClasses$3 = ownerState => {
 	  const {
 	    disabled,
 	    focusVisible,
@@ -16620,7 +16620,7 @@
 	    touchRippleRef,
 	    type
 	  } = props,
-	        other = _objectWithoutPropertiesLoose(props, _excluded$9);
+	        other = _objectWithoutPropertiesLoose(props, _excluded$5);
 
 	  const buttonRef = react.useRef(null);
 	  const rippleRef = react.useRef(null);
@@ -16808,7 +16808,7 @@
 	    focusVisible
 	  });
 
-	  const classes = useUtilityClasses$7(ownerState);
+	  const classes = useUtilityClasses$3(ownerState);
 	  return /*#__PURE__*/jsxRuntime.jsxs(ButtonBaseRoot, _extends$1({
 	    as: ComponentProp,
 	    className: clsx(classes.root, className),
@@ -16856,9 +16856,9 @@
 
 	var ButtonGroupContext$1 = ButtonGroupContext;
 
-	const _excluded$8 = ["children", "color", "component", "className", "disabled", "disableElevation", "disableFocusRipple", "endIcon", "focusVisibleClassName", "fullWidth", "size", "startIcon", "type", "variant"];
+	const _excluded$4 = ["children", "color", "component", "className", "disabled", "disableElevation", "disableFocusRipple", "endIcon", "focusVisibleClassName", "fullWidth", "size", "startIcon", "type", "variant"];
 
-	const useUtilityClasses$6 = ownerState => {
+	const useUtilityClasses$2 = ownerState => {
 	  const {
 	    color,
 	    disableElevation,
@@ -17086,7 +17086,7 @@
 	    type,
 	    variant = 'text'
 	  } = props,
-	        other = _objectWithoutPropertiesLoose(props, _excluded$8);
+	        other = _objectWithoutPropertiesLoose(props, _excluded$4);
 
 	  const ownerState = _extends$1({}, props, {
 	    color,
@@ -17100,7 +17100,7 @@
 	    variant
 	  });
 
-	  const classes = useUtilityClasses$6(ownerState);
+	  const classes = useUtilityClasses$2(ownerState);
 
 	  const startIcon = startIconProp && /*#__PURE__*/jsxRuntime.jsx(ButtonStartIcon, {
 	    className: classes.startIcon,
@@ -17158,11 +17158,11 @@
 	        style: {
 	          textDecoration: 'none'
 	        },
-	        to: "/Checklist",
+	        to: "/PDF",
 	        className: isActive => 'BottomButton' + (isActive ? 'ButtomButtonActive' : ''),
 	        children: /*#__PURE__*/jsxRuntime.jsx(Button$1, {
 	          variant: "contained",
-	          children: "Checklist"
+	          children: "Manual"
 	        })
 	      }), /*#__PURE__*/jsxRuntime.jsx(NavLink, {
 	        style: {
@@ -17245,137 +17245,14 @@
 	  });
 	};
 
-	function getSvgIconUtilityClass(slot) {
-	  return generateUtilityClass('MuiSvgIcon', slot);
-	}
-	generateUtilityClasses('MuiSvgIcon', ['root', 'colorPrimary', 'colorSecondary', 'colorAction', 'colorError', 'colorDisabled', 'fontSizeInherit', 'fontSizeSmall', 'fontSizeMedium', 'fontSizeLarge']);
-
-	const _excluded$7 = ["children", "className", "color", "component", "fontSize", "htmlColor", "inheritViewBox", "titleAccess", "viewBox"];
-
-	const useUtilityClasses$5 = ownerState => {
-	  const {
-	    color,
-	    fontSize,
-	    classes
-	  } = ownerState;
-	  const slots = {
-	    root: ['root', color !== 'inherit' && "color".concat(capitalize$1(color)), "fontSize".concat(capitalize$1(fontSize))]
-	  };
-	  return composeClasses(slots, getSvgIconUtilityClass, classes);
-	};
-
-	const SvgIconRoot = styled$1('svg', {
-	  name: 'MuiSvgIcon',
-	  slot: 'Root',
-	  overridesResolver: (props, styles) => {
-	    const {
-	      ownerState
-	    } = props;
-	    return [styles.root, ownerState.color !== 'inherit' && styles["color".concat(capitalize$1(ownerState.color))], styles["fontSize".concat(capitalize$1(ownerState.fontSize))]];
-	  }
-	})(({
-	  theme,
-	  ownerState
-	}) => {
-	  var _theme$transitions, _theme$transitions$cr, _theme$transitions2, _theme$transitions2$d, _theme$typography, _theme$typography$pxT, _theme$typography2, _theme$typography2$px, _theme$typography3, _theme$typography3$px, _theme$palette$ownerS, _theme$palette, _theme$palette$ownerS2, _theme$palette2, _theme$palette2$actio, _theme$palette3, _theme$palette3$actio;
-
-	  return {
-	    userSelect: 'none',
-	    width: '1em',
-	    height: '1em',
-	    display: 'inline-block',
-	    fill: 'currentColor',
-	    flexShrink: 0,
-	    transition: (_theme$transitions = theme.transitions) == null ? void 0 : (_theme$transitions$cr = _theme$transitions.create) == null ? void 0 : _theme$transitions$cr.call(_theme$transitions, 'fill', {
-	      duration: (_theme$transitions2 = theme.transitions) == null ? void 0 : (_theme$transitions2$d = _theme$transitions2.duration) == null ? void 0 : _theme$transitions2$d.shorter
-	    }),
-	    fontSize: {
-	      inherit: 'inherit',
-	      small: ((_theme$typography = theme.typography) == null ? void 0 : (_theme$typography$pxT = _theme$typography.pxToRem) == null ? void 0 : _theme$typography$pxT.call(_theme$typography, 20)) || '1.25rem',
-	      medium: ((_theme$typography2 = theme.typography) == null ? void 0 : (_theme$typography2$px = _theme$typography2.pxToRem) == null ? void 0 : _theme$typography2$px.call(_theme$typography2, 24)) || '1.5rem',
-	      large: ((_theme$typography3 = theme.typography) == null ? void 0 : (_theme$typography3$px = _theme$typography3.pxToRem) == null ? void 0 : _theme$typography3$px.call(_theme$typography3, 35)) || '2.1875'
-	    }[ownerState.fontSize],
-	    // TODO v5 deprecate, v6 remove for sx
-	    color: (_theme$palette$ownerS = (_theme$palette = theme.palette) == null ? void 0 : (_theme$palette$ownerS2 = _theme$palette[ownerState.color]) == null ? void 0 : _theme$palette$ownerS2.main) != null ? _theme$palette$ownerS : {
-	      action: (_theme$palette2 = theme.palette) == null ? void 0 : (_theme$palette2$actio = _theme$palette2.action) == null ? void 0 : _theme$palette2$actio.active,
-	      disabled: (_theme$palette3 = theme.palette) == null ? void 0 : (_theme$palette3$actio = _theme$palette3.action) == null ? void 0 : _theme$palette3$actio.disabled,
-	      inherit: undefined
-	    }[ownerState.color]
-	  };
-	});
-	const SvgIcon = /*#__PURE__*/react.forwardRef(function SvgIcon(inProps, ref) {
-	  const props = useThemeProps({
-	    props: inProps,
-	    name: 'MuiSvgIcon'
-	  });
-
-	  const {
-	    children,
-	    className,
-	    color = 'inherit',
-	    component = 'svg',
-	    fontSize = 'medium',
-	    htmlColor,
-	    inheritViewBox = false,
-	    titleAccess,
-	    viewBox = '0 0 24 24'
-	  } = props,
-	        other = _objectWithoutPropertiesLoose(props, _excluded$7);
-
-	  const ownerState = _extends$1({}, props, {
-	    color,
-	    component,
-	    fontSize,
-	    instanceFontSize: inProps.fontSize,
-	    inheritViewBox,
-	    viewBox
-	  });
-
-	  const more = {};
-
-	  if (!inheritViewBox) {
-	    more.viewBox = viewBox;
-	  }
-
-	  const classes = useUtilityClasses$5(ownerState);
-	  return /*#__PURE__*/jsxRuntime.jsxs(SvgIconRoot, _extends$1({
-	    as: component,
-	    className: clsx(classes.root, className),
-	    ownerState: ownerState,
-	    focusable: "false",
-	    color: htmlColor,
-	    "aria-hidden": titleAccess ? undefined : true,
-	    role: titleAccess ? 'img' : undefined,
-	    ref: ref
-	  }, more, other, {
-	    children: [children, titleAccess ? /*#__PURE__*/jsxRuntime.jsx("title", {
-	      children: titleAccess
-	    }) : null]
-	  }));
-	});
-	SvgIcon.muiName = 'SvgIcon';
-	var SvgIcon$1 = SvgIcon;
-
-	function createSvgIcon(path, displayName) {
-	  const Component = (props, ref) => /*#__PURE__*/jsxRuntime.jsx(SvgIcon$1, _extends$1({
-	    "data-testid": "".concat(displayName, "Icon"),
-	    ref: ref
-	  }, props, {
-	    children: path
-	  }));
-
-	  Component.muiName = SvgIcon$1.muiName;
-	  return /*#__PURE__*/react.memo( /*#__PURE__*/react.forwardRef(Component));
-	}
-
 	function getTypographyUtilityClass(slot) {
 	  return generateUtilityClass('MuiTypography', slot);
 	}
 	generateUtilityClasses('MuiTypography', ['root', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle1', 'subtitle2', 'body1', 'body2', 'inherit', 'button', 'caption', 'overline', 'alignLeft', 'alignRight', 'alignCenter', 'alignJustify', 'noWrap', 'gutterBottom', 'paragraph']);
 
-	const _excluded$6 = ["align", "className", "component", "gutterBottom", "noWrap", "paragraph", "variant", "variantMapping"];
+	const _excluded$3 = ["align", "className", "component", "gutterBottom", "noWrap", "paragraph", "variant", "variantMapping"];
 
-	const useUtilityClasses$4 = ownerState => {
+	const useUtilityClasses$1 = ownerState => {
 	  const {
 	    align,
 	    gutterBottom,
@@ -17461,7 +17338,7 @@
 	    variant = 'body1',
 	    variantMapping = defaultVariantMapping$1
 	  } = props,
-	        other = _objectWithoutPropertiesLoose(props, _excluded$6);
+	        other = _objectWithoutPropertiesLoose(props, _excluded$3);
 
 	  const ownerState = _extends$1({}, props, {
 	    align,
@@ -17476,7 +17353,7 @@
 	  });
 
 	  const Component = component || (paragraph ? 'p' : variantMapping[variant] || defaultVariantMapping$1[variant]) || 'span';
-	  const classes = useUtilityClasses$4(ownerState);
+	  const classes = useUtilityClasses$1(ownerState);
 	  return /*#__PURE__*/jsxRuntime.jsx(TypographyRoot, _extends$1({
 	    as: Component,
 	    ref: ref,
@@ -17486,320 +17363,20 @@
 	});
 	var Typography$3 = Typography$2;
 
-	/**
-	 * @ignore - internal component.
-	 */
-
-	const FormControlContext = /*#__PURE__*/react.createContext();
-
-	var FormControlContext$1 = FormControlContext;
-
-	function useFormControl() {
-	  return react.useContext(FormControlContext$1);
-	}
-
 	const shouldSpreadAdditionalProps = Slot => {
 	  return !Slot || !isHostComponent(Slot);
 	};
 
 	var shouldSpreadAdditionalProps$1 = shouldSpreadAdditionalProps;
 
-	function getSwitchBaseUtilityClass(slot) {
-	  return generateUtilityClass('PrivateSwitchBase', slot);
-	}
-	generateUtilityClasses('PrivateSwitchBase', ['root', 'checked', 'disabled', 'input', 'edgeStart', 'edgeEnd']);
-
-	const _excluded$5 = ["autoFocus", "checked", "checkedIcon", "className", "defaultChecked", "disabled", "disableFocusRipple", "edge", "icon", "id", "inputProps", "inputRef", "name", "onBlur", "onChange", "onFocus", "readOnly", "required", "tabIndex", "type", "value"];
-
-	const useUtilityClasses$3 = ownerState => {
-	  const {
-	    classes,
-	    checked,
-	    disabled,
-	    edge
-	  } = ownerState;
-	  const slots = {
-	    root: ['root', checked && 'checked', disabled && 'disabled', edge && "edge".concat(capitalize$1(edge))],
-	    input: ['input']
-	  };
-	  return composeClasses(slots, getSwitchBaseUtilityClass, classes);
-	};
-
-	const SwitchBaseRoot = styled$1(ButtonBase$1)(({
-	  ownerState
-	}) => _extends$1({
-	  padding: 9,
-	  borderRadius: '50%'
-	}, ownerState.edge === 'start' && {
-	  marginLeft: ownerState.size === 'small' ? -3 : -12
-	}, ownerState.edge === 'end' && {
-	  marginRight: ownerState.size === 'small' ? -3 : -12
-	}));
-	const SwitchBaseInput = styled$1('input')({
-	  cursor: 'inherit',
-	  position: 'absolute',
-	  opacity: 0,
-	  width: '100%',
-	  height: '100%',
-	  top: 0,
-	  left: 0,
-	  margin: 0,
-	  padding: 0,
-	  zIndex: 1
-	});
-	/**
-	 * @ignore - internal component.
-	 */
-
-	const SwitchBase = /*#__PURE__*/react.forwardRef(function SwitchBase(props, ref) {
-	  const {
-	    autoFocus,
-	    checked: checkedProp,
-	    checkedIcon,
-	    className,
-	    defaultChecked,
-	    disabled: disabledProp,
-	    disableFocusRipple = false,
-	    edge = false,
-	    icon,
-	    id,
-	    inputProps,
-	    inputRef,
-	    name,
-	    onBlur,
-	    onChange,
-	    onFocus,
-	    readOnly,
-	    required,
-	    tabIndex,
-	    type,
-	    value
-	  } = props,
-	        other = _objectWithoutPropertiesLoose(props, _excluded$5);
-
-	  const [checked, setCheckedState] = useControlled({
-	    controlled: checkedProp,
-	    default: Boolean(defaultChecked),
-	    name: 'SwitchBase',
-	    state: 'checked'
-	  });
-	  const muiFormControl = useFormControl();
-
-	  const handleFocus = event => {
-	    if (onFocus) {
-	      onFocus(event);
-	    }
-
-	    if (muiFormControl && muiFormControl.onFocus) {
-	      muiFormControl.onFocus(event);
-	    }
-	  };
-
-	  const handleBlur = event => {
-	    if (onBlur) {
-	      onBlur(event);
-	    }
-
-	    if (muiFormControl && muiFormControl.onBlur) {
-	      muiFormControl.onBlur(event);
-	    }
-	  };
-
-	  const handleInputChange = event => {
-	    // Workaround for https://github.com/facebook/react/issues/9023
-	    if (event.nativeEvent.defaultPrevented) {
-	      return;
-	    }
-
-	    const newChecked = event.target.checked;
-	    setCheckedState(newChecked);
-
-	    if (onChange) {
-	      // TODO v6: remove the second argument.
-	      onChange(event, newChecked);
-	    }
-	  };
-
-	  let disabled = disabledProp;
-
-	  if (muiFormControl) {
-	    if (typeof disabled === 'undefined') {
-	      disabled = muiFormControl.disabled;
-	    }
-	  }
-
-	  const hasLabelFor = type === 'checkbox' || type === 'radio';
-
-	  const ownerState = _extends$1({}, props, {
-	    checked,
-	    disabled,
-	    disableFocusRipple,
-	    edge
-	  });
-
-	  const classes = useUtilityClasses$3(ownerState);
-	  return /*#__PURE__*/jsxRuntime.jsxs(SwitchBaseRoot, _extends$1({
-	    component: "span",
-	    className: clsx(classes.root, className),
-	    centerRipple: true,
-	    focusRipple: !disableFocusRipple,
-	    disabled: disabled,
-	    tabIndex: null,
-	    role: undefined,
-	    onFocus: handleFocus,
-	    onBlur: handleBlur,
-	    ownerState: ownerState,
-	    ref: ref
-	  }, other, {
-	    children: [/*#__PURE__*/jsxRuntime.jsx(SwitchBaseInput, _extends$1({
-	      autoFocus: autoFocus,
-	      checked: checkedProp,
-	      defaultChecked: defaultChecked,
-	      className: classes.input,
-	      disabled: disabled,
-	      id: hasLabelFor && id,
-	      name: name,
-	      onChange: handleInputChange,
-	      readOnly: readOnly,
-	      ref: inputRef,
-	      required: required,
-	      ownerState: ownerState,
-	      tabIndex: tabIndex,
-	      type: type
-	    }, type === 'checkbox' && value === undefined ? {} : {
-	      value
-	    }, inputProps)), checked ? checkedIcon : icon]
-	  }));
-	}); // NB: If changed, please update Checkbox, Switch and Radio
-	var SwitchBase$1 = SwitchBase;
-
-	var CheckBoxOutlineBlankIcon = createSvgIcon( /*#__PURE__*/jsxRuntime.jsx("path", {
-	  d: "M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
-	}), 'CheckBoxOutlineBlank');
-
-	var CheckBoxIcon = createSvgIcon( /*#__PURE__*/jsxRuntime.jsx("path", {
-	  d: "M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
-	}), 'CheckBox');
-
-	var IndeterminateCheckBoxIcon = createSvgIcon( /*#__PURE__*/jsxRuntime.jsx("path", {
-	  d: "M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2z"
-	}), 'IndeterminateCheckBox');
-
-	function getCheckboxUtilityClass(slot) {
-	  return generateUtilityClass('MuiCheckbox', slot);
-	}
-	const checkboxClasses = generateUtilityClasses('MuiCheckbox', ['root', 'checked', 'disabled', 'indeterminate', 'colorPrimary', 'colorSecondary']);
-	var checkboxClasses$1 = checkboxClasses;
-
-	const _excluded$4 = ["checkedIcon", "color", "icon", "indeterminate", "indeterminateIcon", "inputProps", "size"];
-
-	const useUtilityClasses$2 = ownerState => {
-	  const {
-	    classes,
-	    indeterminate,
-	    color
-	  } = ownerState;
-	  const slots = {
-	    root: ['root', indeterminate && 'indeterminate', "color".concat(capitalize$1(color))]
-	  };
-	  const composedClasses = composeClasses(slots, getCheckboxUtilityClass, classes);
-	  return _extends$1({}, classes, composedClasses);
-	};
-
-	const CheckboxRoot = styled$1(SwitchBase$1, {
-	  shouldForwardProp: prop => rootShouldForwardProp(prop) || prop === 'classes',
-	  name: 'MuiCheckbox',
-	  slot: 'Root',
-	  overridesResolver: (props, styles) => {
-	    const {
-	      ownerState
-	    } = props;
-	    return [styles.root, ownerState.indeterminate && styles.indeterminate, ownerState.color !== 'default' && styles["color".concat(capitalize$1(ownerState.color))]];
-	  }
-	})(({
-	  theme,
-	  ownerState
-	}) => _extends$1({
-	  color: theme.palette.text.secondary
-	}, !ownerState.disableRipple && {
-	  '&:hover': {
-	    backgroundColor: alpha(ownerState.color === 'default' ? theme.palette.action.active : theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
-	    // Reset on touch devices, it doesn't add specificity
-	    '@media (hover: none)': {
-	      backgroundColor: 'transparent'
-	    }
-	  }
-	}, ownerState.color !== 'default' && {
-	  ["&.".concat(checkboxClasses$1.checked, ", &.").concat(checkboxClasses$1.indeterminate)]: {
-	    color: theme.palette[ownerState.color].main
-	  },
-	  ["&.".concat(checkboxClasses$1.disabled)]: {
-	    color: theme.palette.action.disabled
-	  }
-	}));
-
-	const defaultCheckedIcon = /*#__PURE__*/jsxRuntime.jsx(CheckBoxIcon, {});
-
-	const defaultIcon = /*#__PURE__*/jsxRuntime.jsx(CheckBoxOutlineBlankIcon, {});
-
-	const defaultIndeterminateIcon = /*#__PURE__*/jsxRuntime.jsx(IndeterminateCheckBoxIcon, {});
-
-	const Checkbox = /*#__PURE__*/react.forwardRef(function Checkbox(inProps, ref) {
-	  var _icon$props$fontSize, _indeterminateIcon$pr;
-
-	  const props = useThemeProps({
-	    props: inProps,
-	    name: 'MuiCheckbox'
-	  });
-
-	  const {
-	    checkedIcon = defaultCheckedIcon,
-	    color = 'primary',
-	    icon: iconProp = defaultIcon,
-	    indeterminate = false,
-	    indeterminateIcon: indeterminateIconProp = defaultIndeterminateIcon,
-	    inputProps,
-	    size = 'medium'
-	  } = props,
-	        other = _objectWithoutPropertiesLoose(props, _excluded$4);
-
-	  const icon = indeterminate ? indeterminateIconProp : iconProp;
-	  const indeterminateIcon = indeterminate ? indeterminateIconProp : checkedIcon;
-
-	  const ownerState = _extends$1({}, props, {
-	    color,
-	    indeterminate,
-	    size
-	  });
-
-	  const classes = useUtilityClasses$2(ownerState);
-	  return /*#__PURE__*/jsxRuntime.jsx(CheckboxRoot, _extends$1({
-	    type: "checkbox",
-	    inputProps: _extends$1({
-	      'data-indeterminate': indeterminate
-	    }, inputProps),
-	    icon: /*#__PURE__*/react.cloneElement(icon, {
-	      fontSize: (_icon$props$fontSize = icon.props.fontSize) != null ? _icon$props$fontSize : size
-	    }),
-	    checkedIcon: /*#__PURE__*/react.cloneElement(indeterminateIcon, {
-	      fontSize: (_indeterminateIcon$pr = indeterminateIcon.props.fontSize) != null ? _indeterminateIcon$pr : size
-	    }),
-	    ownerState: ownerState,
-	    ref: ref
-	  }, other, {
-	    classes: classes
-	  }));
-	});
-	var Checkbox$1 = Checkbox;
-
 	function getContainerUtilityClass(slot) {
 	  return generateUtilityClass('MuiContainer', slot);
 	}
 	generateUtilityClasses('MuiContainer', ['root', 'disableGutters', 'fixed', 'maxWidthXs', 'maxWidthSm', 'maxWidthMd', 'maxWidthLg', 'maxWidthXl']);
 
-	const _excluded$3 = ["className", "component", "disableGutters", "fixed", "maxWidth"];
+	const _excluded$2 = ["className", "component", "disableGutters", "fixed", "maxWidth"];
 
-	const useUtilityClasses$1 = ownerState => {
+	const useUtilityClasses = ownerState => {
 	  const {
 	    classes,
 	    fixed,
@@ -17875,7 +17452,7 @@
 	    fixed = false,
 	    maxWidth = 'lg'
 	  } = props,
-	        other = _objectWithoutPropertiesLoose(props, _excluded$3);
+	        other = _objectWithoutPropertiesLoose(props, _excluded$2);
 
 	  const ownerState = _extends$1({}, props, {
 	    component,
@@ -17884,7 +17461,7 @@
 	    maxWidth
 	  });
 
-	  const classes = useUtilityClasses$1(ownerState);
+	  const classes = useUtilityClasses(ownerState);
 	  return /*#__PURE__*/jsxRuntime.jsx(ContainerRoot, _extends$1({
 	    as: component,
 	    ownerState: ownerState,
@@ -17893,187 +17470,6 @@
 	  }, other));
 	});
 	var Container$1 = Container;
-
-	function getDividerUtilityClass(slot) {
-	  return generateUtilityClass('MuiDivider', slot);
-	}
-	generateUtilityClasses('MuiDivider', ['root', 'absolute', 'fullWidth', 'inset', 'middle', 'flexItem', 'light', 'vertical', 'withChildren', 'withChildrenVertical', 'textAlignRight', 'textAlignLeft', 'wrapper', 'wrapperVertical']);
-
-	const _excluded$2 = ["absolute", "children", "className", "component", "flexItem", "light", "orientation", "role", "textAlign", "variant"];
-
-	const useUtilityClasses = ownerState => {
-	  const {
-	    absolute,
-	    children,
-	    classes,
-	    flexItem,
-	    light,
-	    orientation,
-	    textAlign,
-	    variant
-	  } = ownerState;
-	  const slots = {
-	    root: ['root', absolute && 'absolute', variant, light && 'light', orientation === 'vertical' && 'vertical', flexItem && 'flexItem', children && 'withChildren', children && orientation === 'vertical' && 'withChildrenVertical', textAlign === 'right' && orientation !== 'vertical' && 'textAlignRight', textAlign === 'left' && orientation !== 'vertical' && 'textAlignLeft'],
-	    wrapper: ['wrapper', orientation === 'vertical' && 'wrapperVertical']
-	  };
-	  return composeClasses(slots, getDividerUtilityClass, classes);
-	};
-
-	const DividerRoot = styled$1('div', {
-	  name: 'MuiDivider',
-	  slot: 'Root',
-	  overridesResolver: (props, styles) => {
-	    const {
-	      ownerState
-	    } = props;
-	    return [styles.root, ownerState.absolute && styles.absolute, styles[ownerState.variant], ownerState.light && styles.light, ownerState.orientation === 'vertical' && styles.vertical, ownerState.flexItem && styles.flexItem, ownerState.children && styles.withChildren, ownerState.children && ownerState.orientation === 'vertical' && styles.withChildrenVertical, ownerState.textAlign === 'right' && ownerState.orientation !== 'vertical' && styles.textAlignRight, ownerState.textAlign === 'left' && ownerState.orientation !== 'vertical' && styles.textAlignLeft];
-	  }
-	})(({
-	  theme,
-	  ownerState
-	}) => _extends$1({
-	  margin: 0,
-	  // Reset browser default style.
-	  flexShrink: 0,
-	  borderWidth: 0,
-	  borderStyle: 'solid',
-	  borderColor: theme.palette.divider,
-	  borderBottomWidth: 'thin'
-	}, ownerState.absolute && {
-	  position: 'absolute',
-	  bottom: 0,
-	  left: 0,
-	  width: '100%'
-	}, ownerState.light && {
-	  borderColor: alpha(theme.palette.divider, 0.08)
-	}, ownerState.variant === 'inset' && {
-	  marginLeft: 72
-	}, ownerState.variant === 'middle' && ownerState.orientation === 'horizontal' && {
-	  marginLeft: theme.spacing(2),
-	  marginRight: theme.spacing(2)
-	}, ownerState.variant === 'middle' && ownerState.orientation === 'vertical' && {
-	  marginTop: theme.spacing(1),
-	  marginBottom: theme.spacing(1)
-	}, ownerState.orientation === 'vertical' && {
-	  height: '100%',
-	  borderBottomWidth: 0,
-	  borderRightWidth: 'thin'
-	}, ownerState.flexItem && {
-	  alignSelf: 'stretch',
-	  height: 'auto'
-	}), ({
-	  theme,
-	  ownerState
-	}) => _extends$1({}, ownerState.children && {
-	  display: 'flex',
-	  whiteSpace: 'nowrap',
-	  textAlign: 'center',
-	  border: 0,
-	  '&::before, &::after': {
-	    position: 'relative',
-	    width: '100%',
-	    borderTop: "thin solid ".concat(theme.palette.divider),
-	    top: '50%',
-	    content: '""',
-	    transform: 'translateY(50%)'
-	  }
-	}), ({
-	  theme,
-	  ownerState
-	}) => _extends$1({}, ownerState.children && ownerState.orientation === 'vertical' && {
-	  flexDirection: 'column',
-	  '&::before, &::after': {
-	    height: '100%',
-	    top: '0%',
-	    left: '50%',
-	    borderTop: 0,
-	    borderLeft: "thin solid ".concat(theme.palette.divider),
-	    transform: 'translateX(0%)'
-	  }
-	}), ({
-	  ownerState
-	}) => _extends$1({}, ownerState.textAlign === 'right' && ownerState.orientation !== 'vertical' && {
-	  '&::before': {
-	    width: '90%'
-	  },
-	  '&::after': {
-	    width: '10%'
-	  }
-	}, ownerState.textAlign === 'left' && ownerState.orientation !== 'vertical' && {
-	  '&::before': {
-	    width: '10%'
-	  },
-	  '&::after': {
-	    width: '90%'
-	  }
-	}));
-	const DividerWrapper = styled$1('span', {
-	  name: 'MuiDivider',
-	  slot: 'Wrapper',
-	  overridesResolver: (props, styles) => {
-	    const {
-	      ownerState
-	    } = props;
-	    return [styles.wrapper, ownerState.orientation === 'vertical' && styles.wrapperVertical];
-	  }
-	})(({
-	  theme,
-	  ownerState
-	}) => _extends$1({
-	  display: 'inline-block',
-	  paddingLeft: "calc(".concat(theme.spacing(1), " * 1.2)"),
-	  paddingRight: "calc(".concat(theme.spacing(1), " * 1.2)")
-	}, ownerState.orientation === 'vertical' && {
-	  paddingTop: "calc(".concat(theme.spacing(1), " * 1.2)"),
-	  paddingBottom: "calc(".concat(theme.spacing(1), " * 1.2)")
-	}));
-	const Divider = /*#__PURE__*/react.forwardRef(function Divider(inProps, ref) {
-	  const props = useThemeProps({
-	    props: inProps,
-	    name: 'MuiDivider'
-	  });
-
-	  const {
-	    absolute = false,
-	    children,
-	    className,
-	    component = children ? 'div' : 'hr',
-	    flexItem = false,
-	    light = false,
-	    orientation = 'horizontal',
-	    role = component !== 'hr' ? 'separator' : undefined,
-	    textAlign = 'center',
-	    variant = 'fullWidth'
-	  } = props,
-	        other = _objectWithoutPropertiesLoose(props, _excluded$2);
-
-	  const ownerState = _extends$1({}, props, {
-	    absolute,
-	    component,
-	    flexItem,
-	    light,
-	    orientation,
-	    role,
-	    textAlign,
-	    variant
-	  });
-
-	  const classes = useUtilityClasses(ownerState);
-	  return /*#__PURE__*/jsxRuntime.jsx(DividerRoot, _extends$1({
-	    as: component,
-	    className: clsx(classes.root, className),
-	    role: role,
-	    ref: ref,
-	    ownerState: ownerState
-	  }, other, {
-	    children: children ? /*#__PURE__*/jsxRuntime.jsx(DividerWrapper, {
-	      className: classes.wrapper,
-	      ownerState: ownerState,
-	      children: children
-	    }) : null
-	  }));
-	});
-	var Divider$1 = Divider;
 
 	const _excluded$1 = ["component", "components", "componentsProps", "color", "size"];
 	const sliderClasses = _extends$1({}, sliderUnstyledClasses$1, generateUtilityClasses('MuiSlider', ['colorPrimary', 'colorSecondary', 'thumbColorPrimary', 'thumbColorSecondary', 'sizeSmall', 'thumbSizeSmall']));
@@ -18570,8 +17966,8 @@
 
 	const Airctaft = () => {
 	  let [removeTags, setremoveTags] = useSimVar('L:C17_RBF_TAGS', 'bool');
-	  useSimVar('L:C17_PARA_L', 'bool');
-	  useSimVar('L:C17_PARA_R', 'bool');
+	  let [rearDoorL, setRearDoorL] = useSimVar('L:C17_PARA_L', 'bool');
+	  let [rearDoorR, setRearDoorR] = useSimVar('L:C17_PARA_R', 'bool');
 	  let [CargoDoor, setCargoDoor] = useSimVar('L:C17_CargoDoor_POS', 'enum');
 	  let [ARSlipway, setARSlipway] = useSimVar('L:C17_UARRSI_Slipway', 'bool');
 	  let [EnteranceDoor, setEnteranceDoor] = useSimVar('L:C17_Crew_Enterance', 'bool');
@@ -18684,6 +18080,56 @@
 	          color: EnteranceDoor ? 'error' : 'success',
 	          children: "crew door"
 	        })
+	      }), /*#__PURE__*/jsxRuntime.jsx(Box$1, {
+	        sx: {
+	          position: 'absolute',
+	          width: 79,
+	          height: 52,
+	          backgroundColor: '16161E',
+	          borderRadius: 1,
+	          left: 740,
+	          top: 280,
+	          boxShadow: '0px 0px 7px rgba(0, 0, 0, 0.699)',
+	          color: '#1B93FF',
+	          justifyContent: 'center',
+	          display: 'flex',
+	          flexDirection: 'column',
+	          textAlign: 'center',
+	          alignItems: 'center',
+	          fontSize: 14
+	        },
+	        children: /*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	          onClick: () => setRearDoorR(!rearDoorR),
+	          color: rearDoorR ? 'error' : 'success',
+	          size: "small",
+	          variant: "contained",
+	          children: "Para Door R"
+	        })
+	      }), /*#__PURE__*/jsxRuntime.jsx(Box$1, {
+	        sx: {
+	          position: 'absolute',
+	          width: 79,
+	          height: 52,
+	          backgroundColor: '16161E',
+	          borderRadius: 1,
+	          left: 740,
+	          top: 480,
+	          boxShadow: '0px 0px 7px rgba(0, 0, 0, 0.699)',
+	          color: '#1B93FF',
+	          justifyContent: 'center',
+	          display: 'flex',
+	          flexDirection: 'column',
+	          textAlign: 'center',
+	          alignItems: 'center',
+	          fontSize: 14
+	        },
+	        children: /*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	          onClick: () => setRearDoorL(!rearDoorL),
+	          color: rearDoorL ? 'error' : 'success',
+	          size: "small",
+	          variant: "contained",
+	          children: "para Door L"
+	        })
 	      }), /*#__PURE__*/jsxRuntime.jsxs(Box$1, {
 	        sx: {
 	          position: 'absolute',
@@ -18723,1372 +18169,12 @@
 	  });
 	};
 
-	const Checklist = () => {
-	  return /*#__PURE__*/jsxRuntime.jsx("div", {
-	    className: "checklistContiner",
-	    children: /*#__PURE__*/jsxRuntime.jsxs(Box$1, {
-	      sx: {
-	        position: 'absolute',
-	        width: 1040,
-	        height: 810,
-	        top: 0,
-	        left: 0
-	      },
-	      children: [/*#__PURE__*/jsxRuntime.jsx("h1", {
-	        style: {
-	          marginTop: 25,
-	          marginLeft: 25,
-	          color: '#1B93FF'
-	        },
-	        children: "Checklist"
-	      }), /*#__PURE__*/jsxRuntime.jsx(Box$1, {
-	        sx: {
-	          marginLeft: 1,
-	          position: 'absolute',
-	          top: 20,
-	          right: 20,
-	          backgroundColor: '202330',
-	          width: 450,
-	          height: 70,
-	          display: 'flex',
-	          alignItems: 'center',
-	          justifyContent: 'center',
-	          borderRadius: 3,
-	          boxShadow: '0px 0px 7px rgba(0,0,0,.65)'
-	        },
-	        children: /*#__PURE__*/jsxRuntime.jsx(Box$1, {
-	          sx: {
-	            marginTop: 7,
-	            width: 400,
-	            height: 100
-	          },
-	          children: /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            spacing: 1,
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Link, {
-	              style: {
-	                textDecoration: 'none'
-	              },
-	              to: "/Checklist/Emergency",
-	              children: /*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	                size: "large",
-	                variant: "outlined",
-	                children: "Traditional"
-	              })
-	            }), /*#__PURE__*/jsxRuntime.jsx(Link, {
-	              style: {
-	                textDecoration: 'none'
-	              },
-	              to: "/Checklist/Emergency",
-	              children: /*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	                size: "large",
-	                variant: "outlined",
-	                color: "error",
-	                children: "Emergency"
-	              })
-	            }), /*#__PURE__*/jsxRuntime.jsx(Link, {
-	              style: {
-	                textDecoration: 'none'
-	              },
-	              to: "/Checklist/Emergency",
-	              children: /*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	                size: "large",
-	                variant: "outlined",
-	                children: "Special"
-	              })
-	            })]
-	          })
-	        })
-	      }), /*#__PURE__*/jsxRuntime.jsx(Outlet, {})]
-	    })
-	  });
-	};
-
-	const Traditional = () => {
-	  return /*#__PURE__*/jsxRuntime.jsxs("div", {
-	    className: "traditionalContainer",
-	    children: [/*#__PURE__*/jsxRuntime.jsx("h1", {
-	      style: {
-	        marginTop: 0,
-	        marginLeft: 15,
-	        color: '#1B93FF'
-	      },
-	      children: "Traditional"
-	    }), /*#__PURE__*/jsxRuntime.jsx(Box$1, {
-	      sx: {
-	        marginLeft: 1,
-	        position: 'absolute',
-	        top: 44,
-	        left: 1,
-	        backgroundColor: '202330',
-	        width: 180,
-	        height: 580,
-	        display: 'flex',
-	        alignItems: 'center',
-	        justifyContent: 'center',
-	        borderRadius: 3,
-	        boxShadow: '0px 0px 7px rgba(0,0,0,.65)'
-	      },
-	      children: /*#__PURE__*/jsxRuntime.jsx(Box$1, {
-	        sx: {
-	          marginTop: 7,
-	          width: 120,
-	          height: 570
-	        },
-	        children: /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	          direction: "column",
-	          spacing: 1,
-	          children: [/*#__PURE__*/jsxRuntime.jsx(Link, {
-	            style: {
-	              textAlign: 'center',
-	              textDecoration: 'none'
-	            },
-	            to: "",
-	            children: /*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	              size: "medium",
-	              color: "primary",
-	              variant: "outlined",
-	              children: "Before Start"
-	            })
-	          }), /*#__PURE__*/jsxRuntime.jsx(Link, {
-	            style: {
-	              textDecoration: 'none'
-	            },
-	            to: "",
-	            children: /*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	              size: "medium",
-	              color: "primary",
-	              variant: "outlined",
-	              children: "Cockpit Equipment Checks"
-	            })
-	          }), /*#__PURE__*/jsxRuntime.jsx(Link, {
-	            style: {
-	              textDecoration: 'none'
-	            },
-	            to: "",
-	            children: /*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	              size: "medium",
-	              color: "primary",
-	              variant: "outlined",
-	              children: "Engine Start"
-	            })
-	          }), /*#__PURE__*/jsxRuntime.jsx(Link, {
-	            style: {
-	              width: '100%',
-	              textDecoration: 'none'
-	            },
-	            to: "",
-	            children: /*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	              size: "medium",
-	              color: "primary",
-	              variant: "outlined",
-	              children: "Engine Runup"
-	            })
-	          }), /*#__PURE__*/jsxRuntime.jsx(Link, {
-	            style: {
-	              width: '100%',
-	              textAlign: 'center',
-	              textDecoration: 'none'
-	            },
-	            to: "",
-	            children: /*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	              size: "medium",
-	              color: "primary",
-	              variant: "outlined",
-	              children: "Before Taxi"
-	            })
-	          }), /*#__PURE__*/jsxRuntime.jsx(Link, {
-	            style: {
-	              textDecoration: 'none'
-	            },
-	            to: "",
-	            children: /*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	              size: "medium",
-	              color: "primary",
-	              variant: "outlined",
-	              children: "Before Takeoff"
-	            })
-	          }), /*#__PURE__*/jsxRuntime.jsx(Link, {
-	            style: {
-	              textDecoration: 'none'
-	            },
-	            to: "",
-	            children: /*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	              size: "medium",
-	              color: "primary",
-	              variant: "outlined",
-	              children: "Before Landing"
-	            })
-	          }), /*#__PURE__*/jsxRuntime.jsx(Link, {
-	            style: {
-	              textDecoration: 'none'
-	            },
-	            to: "",
-	            children: /*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	              size: "medium",
-	              color: "primary",
-	              variant: "outlined",
-	              children: "Shutdown"
-	            })
-	          })]
-	        })
-	      })
-	    }), /*#__PURE__*/jsxRuntime.jsx(Box$1, {
-	      sx: {
-	        marginLeft: 1,
-	        position: 'absolute',
-	        top: 70,
-	        left: 220,
-	        backgroundColor: '202330',
-	        width: 720,
-	        height: 520,
-	        display: 'flex',
-	        alignItems: 'center',
-	        justifyContent: 'center',
-	        borderRadius: 3,
-	        boxShadow: '0px 0px 7px rgba(0,0,0,.65)'
-	      },
-	      children: /*#__PURE__*/jsxRuntime.jsx(Outlet, {})
-	    })]
-	  });
-	};
-
-	const Emergency = () => {
-	  return /*#__PURE__*/jsxRuntime.jsx("div", {
-	    className: "emergencyContainer",
-	    children: /*#__PURE__*/jsxRuntime.jsx("h1", {
-	      style: {
-	        marginTop: 25,
-	        marginLeft: 400,
-	        color: '#1B93FF'
-	      },
-	      children: "Coming soon"
-	    })
-	  });
-	};
-
-	const BeforeStart = () => {
-	  const [cklItm1, setChlItm1] = useSimVar('L:CHECKLISTITEM1', 'bool');
-	  const [cklItm2, setChlItm2] = useSimVar('L:CHECKLISTITEM2', 'bool');
-	  const [cklItm3, setChlItm3] = useSimVar('L:CHECKLISTITEM3', 'bool');
-	  const [cklItm4, setChlItm4] = useSimVar('L:CHECKLISTITEM4', 'bool');
-	  const [cklItm5, setChlItm5] = useSimVar('L:CHECKLISTITEM5', 'bool');
-	  const [cklItm6, setChlItm6] = useSimVar('L:CHECKLISTITEM6', 'bool');
-	  const [cklItm7, setChlItm7] = useSimVar('L:CHECKLISTITEM7', 'bool');
-	  const [cklItm8, setChlItm8] = useSimVar('L:CHECKLISTITEM8', 'bool');
-	  const [cklItm9, setChlItm9] = useSimVar('L:CHECKLISTITEM9', 'bool');
-	  const [cklItm10, setChlItm10] = useSimVar('L:CHECKLISTITEM10', 'bool');
-	  const [cklItm11, setChlItm11] = useSimVar('L:CHECKLISTITEM11', 'bool');
-
-	  const handleChange1 = event => {
-	    setChlItm1(event.target.checked);
-	  };
-
-	  const handleChange2 = event => {
-	    setChlItm2(event.target.checked);
-	  };
-
-	  const handleChange3 = event => {
-	    setChlItm3(event.target.checked);
-	  };
-
-	  const handleChange4 = event => {
-	    setChlItm4(event.target.checked);
-	  };
-
-	  const handleChange5 = event => {
-	    setChlItm5(event.target.checked);
-	  };
-
-	  const handleChange6 = event => {
-	    setChlItm6(event.target.checked);
-	  };
-
-	  const handleChange7 = event => {
-	    setChlItm7(event.target.checked);
-	  };
-
-	  const handleChange8 = event => {
-	    setChlItm8(event.target.checked);
-	  };
-
-	  const handleChange9 = event => {
-	    setChlItm9(event.target.checked);
-	  };
-
-	  const handleChange10 = event => {
-	    setChlItm10(event.target.checked);
-	  };
-
-	  const handleChange11 = event => {
-	    setChlItm11(event.target.checked);
-	  };
-
-	  const markAll = () => {
-	    setChlItm1(true);
-	    setChlItm2(true);
-	    setChlItm3(true);
-	    setChlItm4(true);
-	    setChlItm5(true);
-	    setChlItm6(true);
-	    setChlItm7(true);
-	    setChlItm8(true);
-	    setChlItm9(true);
-	    setChlItm10(true);
-	    setChlItm11(true);
-	  };
-
-	  const unmarkAll = () => {
-	    setChlItm1(false);
-	    setChlItm2(false);
-	    setChlItm3(false);
-	    setChlItm4(false);
-	    setChlItm5(false);
-	    setChlItm6(false);
-	    setChlItm7(false);
-	    setChlItm8(false);
-	    setChlItm9(false);
-	    setChlItm10(false);
-	    setChlItm11(false);
-	  };
-
-	  return /*#__PURE__*/jsxRuntime.jsxs("g", {
-	    children: [/*#__PURE__*/jsxRuntime.jsx("div", {
-	      className: "checklistContents",
-	      children: /*#__PURE__*/jsxRuntime.jsx(Stack$1, {
-	        direction: "row",
-	        children: /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	          justifyContent: "center",
-	          divider: /*#__PURE__*/jsxRuntime.jsx(Divider$1, {
-	            orientation: "horizontal",
-	            flexItem: true
-	          }),
-	          spacing: 0.1,
-	          children: [/*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange1,
-	              checked: cklItm1,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              className: cklItm1 ? 'activeChecklistItem' : 'inactiveChecklistItem',
-	              children: "Parking Brake - Set"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange2,
-	              checked: cklItm2,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              className: cklItm2 ? 'activeChecklistItem' : 'inactiveChecklistItem',
-	              children: "ANTI COLLISION, POSITION LIGHTS - As required"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange3,
-	              checked: cklItm3,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              className: cklItm3 ? 'activeChecklistItem' : 'inactiveChecklistItem',
-	              children: "STBY INST - OFF"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange4,
-	              checked: cklItm4,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              className: cklItm4 ? 'activeChecklistItem' : 'inactiveChecklistItem',
-	              children: "BATT - ON"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange5,
-	              checked: cklItm5,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              className: cklItm5 ? 'activeChecklistItem' : 'inactiveChecklistItem',
-	              children: "EXT POW - As required"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange6,
-	              checked: cklItm6,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              className: cklItm6 ? 'activeChecklistItem' : 'inactiveChecklistItem',
-	              children: "NO.1 AND NO.2 GEN - ON"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange7,
-	              checked: cklItm7,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              className: cklItm7 ? 'activeChecklistItem' : 'inactiveChecklistItem',
-	              children: "APU CONT - OFF"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange8,
-	              checked: cklItm8,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              className: cklItm8 ? 'activeChecklistItem' : 'inactiveChecklistItem',
-	              children: "FUEL BOOST PUMP - OFF"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange9,
-	              checked: cklItm9,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              className: cklItm9 ? 'activeChecklistItem' : 'inactiveChecklistItem',
-	              children: "AIR SCE STRT - APU"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange10,
-	              checked: cklItm10,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              className: cklItm10 ? 'activeChecklistItem' : 'inactiveChecklistItem',
-	              children: "FUEL BOOST PUMP - OFF"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange11,
-	              checked: cklItm11,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              className: cklItm11 ? 'activeChecklistItem' : 'inactiveChecklistItem',
-	              children: "AIRLANDFS - OFF"
-	            })]
-	          })]
-	        })
-	      })
-	    }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	      className: "traditionalControls",
-	      children: /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	        spacing: 1,
-	        children: [/*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	          onClick: markAll,
-	          size: "large",
-	          color: "success",
-	          variant: "outlined",
-	          children: "Mark all"
-	        }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	          onClick: unmarkAll,
-	          size: "large",
-	          color: "error",
-	          variant: "outlined",
-	          children: "Unmark all"
-	        })]
-	      })
-	    })]
-	  });
-	};
-	const CockpitCheck = () => {
-	  const [cklItm1, setChlItm1] = useSimVar('L:CHECKLISTITEM12', 'bool');
-	  const [cklItm2, setChlItm2] = useSimVar('L:CHECKLISTITEM13', 'bool');
-	  const [cklItm3, setChlItm3] = useSimVar('L:CHECKLISTITEM14', 'bool');
-	  const [cklItm4, setChlItm4] = useSimVar('L:CHECKLISTITEM15', 'bool');
-	  const [cklItm5, setChlItm5] = useSimVar('L:CHECKLISTITEM16', 'bool');
-	  const [cklItm6, setChlItm6] = useSimVar('L:CHECKLISTITEM17', 'bool');
-
-	  const handleChange1 = event => {
-	    setChlItm1(event.target.checked);
-	  };
-
-	  const handleChange2 = event => {
-	    setChlItm2(event.target.checked);
-	  };
-
-	  const handleChange3 = event => {
-	    setChlItm3(event.target.checked);
-	  };
-
-	  const handleChange4 = event => {
-	    setChlItm4(event.target.checked);
-	  };
-
-	  const handleChange5 = event => {
-	    setChlItm5(event.target.checked);
-	  };
-
-	  const handleChange6 = event => {
-	    setChlItm6(event.target.checked);
-	  };
-
-	  const markAll = () => {
-	    setChlItm1(true);
-	    setChlItm2(true);
-	    setChlItm3(true);
-	    setChlItm4(true);
-	    setChlItm5(true);
-	    setChlItm6(true);
-	  };
-
-	  const unmarkAll = () => {
-	    setChlItm1(false);
-	    setChlItm2(false);
-	    setChlItm3(false);
-	    setChlItm4(false);
-	    setChlItm5(false);
-	    setChlItm6(false);
-	  };
-
-	  return /*#__PURE__*/jsxRuntime.jsxs("g", {
-	    children: [/*#__PURE__*/jsxRuntime.jsx("div", {
-	      className: "checklistContents",
-	      children: /*#__PURE__*/jsxRuntime.jsx(Stack$1, {
-	        direction: "row",
-	        style: {
-	          fontSize: 17,
-	          fontWeight: 'bold',
-	          color: '1B93FF'
-	        },
-	        children: /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	          justifyContent: "center",
-	          divider: /*#__PURE__*/jsxRuntime.jsx(Divider$1, {
-	            orientation: "horizontal",
-	            flexItem: true
-	          }),
-	          spacing: 0.1,
-	          children: [/*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange1,
-	              checked: cklItm1,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              style: {
-	                color: cklItm1 ? '2e7d32 ' : ''
-	              },
-	              children: "PANEL LIGHTING - As required"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange2,
-	              checked: cklItm2,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              style: {
-	                color: cklItm2 ? '2e7d32 ' : ''
-	              },
-	              children: "FUEL PUMP - APU BOOST"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange3,
-	              checked: cklItm3,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              style: {
-	                color: cklItm3 ? '2e7d32 ' : ''
-	              },
-	              children: "APU CONT - ON"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange4,
-	              checked: cklItm4,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              style: {
-	                color: cklItm4 ? '2e7d32 ' : ''
-	              },
-	              children: "GENERATORS APU - ON"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange5,
-	              checked: cklItm5,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              style: {
-	                color: cklItm5 ? '2e7d32 ' : ''
-	              },
-	              children: "STBY INST - ARM"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange6,
-	              checked: cklItm6,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              style: {
-	                color: cklItm6 ? '2e7d32 ' : ''
-	              },
-	              children: "FIRE TEST - HOLD for 5 seconds"
-	            })]
-	          })]
-	        })
-	      })
-	    }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	      className: "traditionalControls",
-	      children: /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	        spacing: 1,
-	        children: [/*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	          onClick: markAll,
-	          size: "large",
-	          color: "success",
-	          variant: "outlined",
-	          children: "Mark all"
-	        }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	          onClick: unmarkAll,
-	          size: "large",
-	          color: "error",
-	          variant: "outlined",
-	          children: "Unmark all"
-	        })]
-	      })
-	    })]
-	  });
-	};
-	const EngineStart = () => {
-	  const [cklItm1, setChlItm1] = useSimVar('L:CHECKLISTITEM18', 'bool');
-	  const [cklItm2, setChlItm2] = useSimVar('L:CHECKLISTITEM19', 'bool');
-	  const [cklItm3, setChlItm3] = useSimVar('L:CHECKLISTITEM20', 'bool');
-	  const [cklItm4, setChlItm4] = useSimVar('L:CHECKLISTITEM21', 'bool');
-	  const [cklItm5, setChlItm5] = useSimVar('L:CHECKLISTITEM22', 'bool');
-
-	  const handleChange1 = event => {
-	    setChlItm1(event.target.checked);
-	  };
-
-	  const handleChange2 = event => {
-	    setChlItm2(event.target.checked);
-	  };
-
-	  const handleChange3 = event => {
-	    setChlItm3(event.target.checked);
-	  };
-
-	  const handleChange4 = event => {
-	    setChlItm4(event.target.checked);
-	  };
-
-	  const handleChange5 = event => {
-	    setChlItm5(event.target.checked);
-	  };
-
-	  const markAll = () => {
-	    setChlItm1(true);
-	    setChlItm2(true);
-	    setChlItm3(true);
-	    setChlItm4(true);
-	    setChlItm5(true);
-	  };
-
-	  const unmarkAll = () => {
-	    setChlItm1(false);
-	    setChlItm2(false);
-	    setChlItm3(false);
-	    setChlItm4(false);
-	    setChlItm5(false);
-	  };
-
-	  return /*#__PURE__*/jsxRuntime.jsxs("g", {
-	    children: [/*#__PURE__*/jsxRuntime.jsx("div", {
-	      className: "checklistContents",
-	      children: /*#__PURE__*/jsxRuntime.jsx(Stack$1, {
-	        direction: "row",
-	        style: {
-	          fontSize: 17,
-	          fontWeight: 'bold',
-	          color: '1B93FF'
-	        },
-	        children: /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	          justifyContent: "center",
-	          divider: /*#__PURE__*/jsxRuntime.jsx(Divider$1, {
-	            orientation: "horizontal",
-	            flexItem: true
-	          }),
-	          spacing: 0.1,
-	          children: [/*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange1,
-	              checked: cklItm1,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              style: {
-	                color: cklItm1 ? '2e7d32 ' : ''
-	              },
-	              children: "BEACON LIGHTS - As required"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange2,
-	              checked: cklItm2,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              style: {
-	                color: cklItm2 ? '2e7d32 ' : ''
-	              },
-	              children: "ENG FUEL SYS - DIR"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange3,
-	              checked: cklItm3,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              style: {
-	                color: cklItm3 ? '2e7d32 ' : ''
-	              },
-	              children: "ENGINE IGNITION - ON"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange4,
-	              checked: cklItm4,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              style: {
-	                color: cklItm4 ? '2e7d32 ' : ''
-	              },
-	              children: "STARTER - ON"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange5,
-	              checked: cklItm5,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              style: {
-	                color: cklItm5 ? '2e7d32 ' : ''
-	              },
-	              children: "Eng PCL lever - IDLE"
-	            })]
-	          })]
-	        })
-	      })
-	    }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	      className: "traditionalControls",
-	      children: /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	        spacing: 1,
-	        children: [/*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	          onClick: markAll,
-	          size: "large",
-	          color: "success",
-	          variant: "outlined",
-	          children: "Mark all"
-	        }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	          onClick: unmarkAll,
-	          size: "large",
-	          color: "error",
-	          variant: "outlined",
-	          children: "Unmark all"
-	        })]
-	      })
-	    })]
-	  });
-	};
-	const EngineRunup = () => {
-	  const [cklItm1, setChlItm1] = useSimVar('L:CHECKLISTITEM23', 'bool');
-	  const [cklItm2, setChlItm2] = useSimVar('L:CHECKLISTITEM24', 'bool');
-	  const [cklItm3, setChlItm3] = useSimVar('L:CHECKLISTITEM25', 'bool');
-	  const [cklItm4, setChlItm4] = useSimVar('L:CHECKLISTITEM26', 'bool');
-	  const [cklItm5, setChlItm5] = useSimVar('L:CHECKLISTITEM27', 'bool');
-
-	  const handleChange1 = event => {
-	    setChlItm1(event.target.checked);
-	  };
-
-	  const handleChange2 = event => {
-	    setChlItm2(event.target.checked);
-	  };
-
-	  const handleChange3 = event => {
-	    setChlItm3(event.target.checked);
-	  };
-
-	  const handleChange4 = event => {
-	    setChlItm4(event.target.checked);
-	  };
-
-	  const handleChange5 = event => {
-	    setChlItm5(event.target.checked);
-	  };
-
-	  const markAll = () => {
-	    setChlItm1(true);
-	    setChlItm2(true);
-	    setChlItm3(true);
-	    setChlItm4(true);
-	    setChlItm5(true);
-	  };
-
-	  const unmarkAll = () => {
-	    setChlItm1(false);
-	    setChlItm2(false);
-	    setChlItm3(false);
-	    setChlItm4(false);
-	    setChlItm5(false);
-	  };
-
-	  return /*#__PURE__*/jsxRuntime.jsxs("g", {
-	    children: [/*#__PURE__*/jsxRuntime.jsx("div", {
-	      className: "checklistContents",
-	      children: /*#__PURE__*/jsxRuntime.jsx(Stack$1, {
-	        direction: "row",
-	        style: {
-	          fontSize: 17,
-	          fontWeight: 'bold',
-	          color: '1B93FF'
-	        },
-	        children: /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	          justifyContent: "center",
-	          divider: /*#__PURE__*/jsxRuntime.jsx(Divider$1, {
-	            orientation: "horizontal",
-	            flexItem: true
-	          }),
-	          spacing: 0.1,
-	          children: [/*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange1,
-	              checked: cklItm1,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              style: {
-	                color: cklItm1 ? '2e7d32 ' : ''
-	              },
-	              children: "PCL lever - FLY"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange2,
-	              checked: cklItm2,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              style: {
-	                color: cklItm2 ? '2e7d32 ' : ''
-	              },
-	              children: "FUEL BOOST PUMP - OFF"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange3,
-	              checked: cklItm3,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              style: {
-	                color: cklItm3 ? '2e7d32 ' : ''
-	              },
-	              children: "APU CONT - OFF"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange4,
-	              checked: cklItm4,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              style: {
-	                color: cklItm4 ? '2e7d32 ' : ''
-	              },
-	              children: "AIR SCE STRT - As required"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange5,
-	              checked: cklItm5,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              style: {
-	                color: cklItm5 ? '2e7d32 ' : ''
-	              },
-	              children: "AIRLANDFS - STARTED"
-	            })]
-	          })]
-	        })
-	      })
-	    }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	      className: "traditionalControls",
-	      children: /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	        spacing: 1,
-	        children: [/*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	          onClick: markAll,
-	          size: "large",
-	          color: "success",
-	          variant: "outlined",
-	          children: "Mark all"
-	        }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	          onClick: unmarkAll,
-	          size: "large",
-	          color: "error",
-	          variant: "outlined",
-	          children: "Unmark all"
-	        })]
-	      })
-	    }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	      className: "warning",
-	      children: "Make sure that AirlandFS is not running until after BOTH engines have stabilized and the PCL levers are in FLY"
-	    })]
-	  });
-	};
-	const BeforeTaxi = () => {
-	  const [cklItm1, setChlItm1] = useSimVar('L:CHECKLISTITEM28', 'bool');
-	  const [cklItm2, setChlItm2] = useSimVar('L:CHECKLISTITEM29', 'bool');
-	  const [cklItm3, setChlItm3] = useSimVar('L:CHECKLISTITEM30', 'bool');
-	  const [cklItm4, setChlItm4] = useSimVar('L:CHECKLISTITEM31', 'bool');
-	  const [cklItm5, setChlItm5] = useSimVar('L:CHECKLISTITEM32', 'bool');
-	  const [cklItm6, setChlItm6] = useSimVar('L:CHECKLISTITEM33', 'bool');
-
-	  const handleChange1 = event => {
-	    setChlItm1(event.target.checked);
-	  };
-
-	  const handleChange2 = event => {
-	    setChlItm2(event.target.checked);
-	  };
-
-	  const handleChange3 = event => {
-	    setChlItm3(event.target.checked);
-	  };
-
-	  const handleChange4 = event => {
-	    setChlItm4(event.target.checked);
-	  };
-
-	  const handleChange5 = event => {
-	    setChlItm5(event.target.checked);
-	  };
-
-	  const handleChange6 = event => {
-	    setChlItm6(event.target.checked);
-	  };
-
-	  const markAll = () => {
-	    setChlItm1(true);
-	    setChlItm2(true);
-	    setChlItm3(true);
-	    setChlItm4(true);
-	    setChlItm5(true);
-	    setChlItm6(true);
-	  };
-
-	  const unmarkAll = () => {
-	    setChlItm1(false);
-	    setChlItm2(false);
-	    setChlItm3(false);
-	    setChlItm4(false);
-	    setChlItm5(false);
-	    setChlItm6(false);
-	  };
-
-	  return /*#__PURE__*/jsxRuntime.jsxs("g", {
-	    children: [/*#__PURE__*/jsxRuntime.jsx("div", {
-	      className: "checklistContents",
-	      children: /*#__PURE__*/jsxRuntime.jsx(Stack$1, {
-	        direction: "row",
-	        style: {
-	          fontSize: 17,
-	          fontWeight: 'bold',
-	          color: '1B93FF'
-	        },
-	        children: /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	          justifyContent: "center",
-	          divider: /*#__PURE__*/jsxRuntime.jsx(Divider$1, {
-	            orientation: "horizontal",
-	            flexItem: true
-	          }),
-	          spacing: 0.1,
-	          children: [/*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange1,
-	              checked: cklItm1,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              style: {
-	                color: cklItm1 ? '2e7d32 ' : ''
-	              },
-	              children: "TAXI CLEARANCE - Issued"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange2,
-	              checked: cklItm2,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              style: {
-	                color: cklItm2 ? '2e7d32 ' : ''
-	              },
-	              children: "Doors - Secure"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange3,
-	              checked: cklItm3,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              style: {
-	                color: cklItm3 ? '2e7d32 ' : ''
-	              },
-	              children: "WIPERS, DEFOG BLOWER - As required"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange4,
-	              checked: cklItm4,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              style: {
-	                color: cklItm4 ? '2e7d32 ' : ''
-	              },
-	              children: "PARKING BRAKE - Release"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange5,
-	              checked: cklItm5,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              style: {
-	                color: cklItm5 ? '2e7d32 ' : ''
-	              },
-	              children: "NAVIGATION, TAXI, STROBE LIGHTS - As required"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange6,
-	              checked: cklItm6,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              style: {
-	                color: cklItm6 ? '2e7d32 ' : ''
-	              },
-	              children: "DE-ICE SYS - As required"
-	            })]
-	          })]
-	        })
-	      })
-	    }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	      className: "traditionalControls",
-	      children: /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	        spacing: 1,
-	        children: [/*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	          onClick: markAll,
-	          size: "large",
-	          color: "success",
-	          variant: "outlined",
-	          children: "Mark all"
-	        }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	          onClick: unmarkAll,
-	          size: "large",
-	          color: "error",
-	          variant: "outlined",
-	          children: "Unmark all"
-	        })]
-	      })
-	    })]
-	  });
-	};
-	const BeforeTakeoff = () => {
-	  const [cklItm1, setChlItm1] = useSimVar('L:CHECKLISTITEM34', 'bool');
-	  const [cklItm2, setChlItm2] = useSimVar('L:CHECKLISTITEM35', 'bool');
-	  const [cklItm3, setChlItm3] = useSimVar('L:CHECKLISTITEM36', 'bool');
-	  const [cklItm4, setChlItm4] = useSimVar('L:CHECKLISTITEM37', 'bool');
-	  const [cklItm5, setChlItm5] = useSimVar('L:CHECKLISTITEM38', 'bool');
-	  const [cklItm6, setChlItm6] = useSimVar('L:CHECKLISTITEM39', 'bool');
-
-	  const handleChange1 = event => {
-	    setChlItm1(event.target.checked);
-	  };
-
-	  const handleChange2 = event => {
-	    setChlItm2(event.target.checked);
-	  };
-
-	  const handleChange3 = event => {
-	    setChlItm3(event.target.checked);
-	  };
-
-	  const handleChange4 = event => {
-	    setChlItm4(event.target.checked);
-	  };
-
-	  const handleChange5 = event => {
-	    setChlItm5(event.target.checked);
-	  };
-
-	  const handleChange6 = event => {
-	    setChlItm6(event.target.checked);
-	  };
-
-	  const markAll = () => {
-	    setChlItm1(true);
-	    setChlItm2(true);
-	    setChlItm3(true);
-	    setChlItm4(true);
-	    setChlItm5(true);
-	    setChlItm6(true);
-	  };
-
-	  const unmarkAll = () => {
-	    setChlItm1(false);
-	    setChlItm2(false);
-	    setChlItm3(false);
-	    setChlItm4(false);
-	    setChlItm5(false);
-	    setChlItm6(false);
-	  };
-
-	  return /*#__PURE__*/jsxRuntime.jsxs("g", {
-	    children: [/*#__PURE__*/jsxRuntime.jsx("div", {
-	      className: "checklistContents",
-	      children: /*#__PURE__*/jsxRuntime.jsx(Stack$1, {
-	        direction: "row",
-	        style: {
-	          fontSize: 17,
-	          fontWeight: 'bold',
-	          color: '1B93FF'
-	        },
-	        children: /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	          justifyContent: "center",
-	          divider: /*#__PURE__*/jsxRuntime.jsx(Divider$1, {
-	            orientation: "horizontal",
-	            flexItem: true
-	          }),
-	          spacing: 0.1,
-	          children: [/*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange1,
-	              checked: cklItm1,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              style: {
-	                color: cklItm1 ? '2e7d32 ' : ''
-	              },
-	              children: "TAKEOFF CLEARANCE - Issued"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange2,
-	              checked: cklItm2,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              style: {
-	                color: cklItm2 ? '2e7d32 ' : ''
-	              },
-	              children: "Doors - Secure"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange3,
-	              checked: cklItm3,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              style: {
-	                color: cklItm3 ? '2e7d32 ' : ''
-	              },
-	              children: "SEARCH LIGHT - As required"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange4,
-	              checked: cklItm4,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              style: {
-	                color: cklItm4 ? '2e7d32 ' : ''
-	              },
-	              children: "Systems - Check"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange5,
-	              checked: cklItm5,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              style: {
-	                color: cklItm5 ? '2e7d32 ' : ''
-	              },
-	              children: "Avionics - As required"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange6,
-	              checked: cklItm6,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              style: {
-	                color: cklItm6 ? '2e7d32 ' : ''
-	              },
-	              children: "Crew, passengers, mission equipment - Secure"
-	            })]
-	          })]
-	        })
-	      })
-	    }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	      className: "traditionalControls",
-	      children: /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	        spacing: 1,
-	        children: [/*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	          onClick: markAll,
-	          size: "large",
-	          color: "success",
-	          variant: "outlined",
-	          children: "Mark all"
-	        }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	          onClick: unmarkAll,
-	          size: "large",
-	          color: "error",
-	          variant: "outlined",
-	          children: "Unmark all"
-	        })]
-	      })
-	    })]
-	  });
-	};
-	const BeforeLanding = () => {
-	  const [cklItm1, setChlItm1] = useSimVar('L:CHECKLISTITEM40', 'bool');
-	  const [cklItm2, setChlItm2] = useSimVar('L:CHECKLISTITEM41', 'bool');
-
-	  const handleChange1 = event => {
-	    setChlItm1(event.target.checked);
-	  };
-
-	  const handleChange2 = event => {
-	    setChlItm2(event.target.checked);
-	  };
-
-	  const markAll = () => {
-	    setChlItm1(true);
-	    setChlItm2(true);
-	  };
-
-	  const unmarkAll = () => {
-	    setChlItm1(false);
-	    setChlItm2(false);
-	  };
-
-	  return /*#__PURE__*/jsxRuntime.jsxs("g", {
-	    children: [/*#__PURE__*/jsxRuntime.jsx("div", {
-	      className: "checklistContents",
-	      children: /*#__PURE__*/jsxRuntime.jsx(Stack$1, {
-	        direction: "row",
-	        style: {
-	          fontSize: 17,
-	          fontWeight: 'bold',
-	          color: '1B93FF'
-	        },
-	        children: /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	          justifyContent: "center",
-	          divider: /*#__PURE__*/jsxRuntime.jsx(Divider$1, {
-	            orientation: "horizontal",
-	            flexItem: true
-	          }),
-	          spacing: 0.1,
-	          children: [/*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange1,
-	              checked: cklItm1,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              style: {
-	                color: cklItm1 ? '2e7d32 ' : ''
-	              },
-	              children: "TAKEOFF CLEARANCE - Issued"
-	            })]
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	            direction: "row",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Checkbox$1, {
-	              onChange: handleChange2,
-	              checked: cklItm2,
-	              color: "success"
-	            }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	              style: {
-	                color: cklItm2 ? '2e7d32 ' : ''
-	              },
-	              children: "Doors - Secure"
-	            })]
-	          })]
-	        })
-	      })
-	    }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	      className: "traditionalControls",
-	      children: /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
-	        spacing: 1,
-	        children: [/*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	          onClick: markAll,
-	          size: "large",
-	          color: "success",
-	          variant: "outlined",
-	          children: "Mark all"
-	        }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	          onClick: unmarkAll,
-	          size: "large",
-	          color: "error",
-	          variant: "outlined",
-	          children: "Unmark all"
-	        })]
-	      })
-	    }), /*#__PURE__*/jsxRuntime.jsx("div", {
-	      className: "advisory",
-	      children: "It is recommended to shut down AirlandFS BEFORE shutting down the engines"
-	    })]
-	  });
-	};
-	const Shutdown = () => {
-	  useSimVar('L:CHECKLISTITEM42', 'bool');
-	  useSimVar('L:CHECKLISTITEM43', 'bool');
-	  useSimVar('L:CHECKLISTITEM44', 'bool');
-	  useSimVar('L:CHECKLISTITEM45', 'bool');
-	  useSimVar('L:CHECKLISTITEM46', 'bool');
-	  useSimVar('L:CHECKLISTITEM47', 'bool');
-
-	  return /*#__PURE__*/jsxRuntime.jsx("div", {
-	    children: /*#__PURE__*/jsxRuntime.jsx("h1", {
-	      children: "Shutdown"
-	    })
-	  });
-	};
-
 	const Browser = () => {
 	  return /*#__PURE__*/jsxRuntime.jsx("iframe", {
-	    width: "1040",
-	    height: "750",
+	    width: "2080",
+	    height: "1620",
 	    src: "https://www.bing.com/",
-	    frameborder: "0"
+	    frameBorder: "0"
 	  });
 	};
 
@@ -25445,6 +23531,71 @@
 	  });
 	};
 
+	const MANUAL = () => {
+	  const [currentPage, setCurrentPage] = react.useState(1);
+	  const totalPages = 68; // Total number of images
+
+	  const navigateToPage = pageNumber => {
+	    if (pageNumber >= 1 && pageNumber <= totalPages) {
+	      setCurrentPage(pageNumber);
+	    }
+	  };
+
+	  const renderImages = () => {
+	    const page1Src = "/Images/FM/DeltaSim C17 FLIGHT MANUAL-".concat(String(currentPage).padStart(2, '0'), ".png");
+	    const page2Src = "/Images/FM/DeltaSim C17 FLIGHT MANUAL-".concat(String(currentPage + 1).padStart(2, '0'), ".png");
+	    return /*#__PURE__*/jsxRuntime.jsxs("div", {
+	      style: {
+	        display: 'flex'
+	      },
+	      children: [/*#__PURE__*/jsxRuntime.jsx("div", {
+	        style: {
+	          flex: 1
+	        },
+	        children: /*#__PURE__*/jsxRuntime.jsx("img", {
+	          src: page1Src,
+	          alt: "Page ".concat(currentPage),
+	          style: {
+	            maxWidth: '100%'
+	          }
+	        })
+	      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+	        style: {
+	          flex: 1
+	        },
+	        children: /*#__PURE__*/jsxRuntime.jsx("img", {
+	          src: page2Src,
+	          alt: "Page ".concat(currentPage + 1),
+	          style: {
+	            maxWidth: '100%'
+	          }
+	        })
+	      })]
+	    });
+	  };
+
+	  return /*#__PURE__*/jsxRuntime.jsxs("div", {
+	    className: "PDFContainer",
+	    children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+	      style: {
+	        display: 'flex',
+	        alignItems: 'center'
+	      },
+	      children: [/*#__PURE__*/jsxRuntime.jsx("button", {
+	        onClick: () => navigateToPage(currentPage - 2),
+	        children: "Previous"
+	      }), /*#__PURE__*/jsxRuntime.jsxs("span", {
+	        children: ["Page ", currentPage, " and ", currentPage + 1, " of ", totalPages]
+	      }), /*#__PURE__*/jsxRuntime.jsx("button", {
+	        onClick: () => navigateToPage(currentPage + 2),
+	        children: "Next"
+	      })]
+	    }), /*#__PURE__*/jsxRuntime.jsx("div", {
+	      children: renderImages()
+	    })]
+	  });
+	};
+
 	const C17EFB = () => {
 	  return /*#__PURE__*/jsxRuntime.jsx(MemoryRouter, {
 	    children: /*#__PURE__*/jsxRuntime.jsx(EfbPower, {
@@ -25455,47 +23606,15 @@
 	          children: [/*#__PURE__*/jsxRuntime.jsx(Route, {
 	            path: "/",
 	            element: /*#__PURE__*/jsxRuntime.jsx(Home, {})
-	          }), /*#__PURE__*/jsxRuntime.jsxs(Route, {
-	            path: "/checklist",
-	            element: /*#__PURE__*/jsxRuntime.jsx(Checklist, {}),
-	            children: [/*#__PURE__*/jsxRuntime.jsxs(Route, {
-	              path: "traditional",
-	              element: /*#__PURE__*/jsxRuntime.jsx(Traditional, {}),
-	              children: [/*#__PURE__*/jsxRuntime.jsx(Route, {
-	                path: "BeforeStart",
-	                element: /*#__PURE__*/jsxRuntime.jsx(BeforeStart, {})
-	              }), /*#__PURE__*/jsxRuntime.jsx(Route, {
-	                path: "CockpitCheck",
-	                element: /*#__PURE__*/jsxRuntime.jsx(CockpitCheck, {})
-	              }), /*#__PURE__*/jsxRuntime.jsx(Route, {
-	                path: "EngineStart",
-	                element: /*#__PURE__*/jsxRuntime.jsx(EngineStart, {})
-	              }), /*#__PURE__*/jsxRuntime.jsx(Route, {
-	                path: "EngineRunup",
-	                element: /*#__PURE__*/jsxRuntime.jsx(EngineRunup, {})
-	              }), /*#__PURE__*/jsxRuntime.jsx(Route, {
-	                path: "BeforeTaxi",
-	                element: /*#__PURE__*/jsxRuntime.jsx(BeforeTaxi, {})
-	              }), /*#__PURE__*/jsxRuntime.jsx(Route, {
-	                path: "BeforeTakeoff",
-	                element: /*#__PURE__*/jsxRuntime.jsx(BeforeTakeoff, {})
-	              }), /*#__PURE__*/jsxRuntime.jsx(Route, {
-	                path: "BeforeLanding",
-	                element: /*#__PURE__*/jsxRuntime.jsx(BeforeLanding, {})
-	              }), /*#__PURE__*/jsxRuntime.jsx(Route, {
-	                path: "Shutdown",
-	                element: /*#__PURE__*/jsxRuntime.jsx(Shutdown, {})
-	              })]
-	            }), /*#__PURE__*/jsxRuntime.jsx(Route, {
-	              path: "emergency",
-	              element: /*#__PURE__*/jsxRuntime.jsx(Emergency, {})
-	            })]
 	          }), /*#__PURE__*/jsxRuntime.jsx(Route, {
 	            path: "/Aircraft",
 	            element: /*#__PURE__*/jsxRuntime.jsx(Airctaft, {})
 	          }), /*#__PURE__*/jsxRuntime.jsx(Route, {
 	            path: "/Browser",
 	            element: /*#__PURE__*/jsxRuntime.jsx(Browser, {})
+	          }), /*#__PURE__*/jsxRuntime.jsx(Route, {
+	            path: "/PDF",
+	            element: /*#__PURE__*/jsxRuntime.jsx(MANUAL, {})
 	          }), /*#__PURE__*/jsxRuntime.jsx(Route, {
 	            path: "/Map",
 	            element: /*#__PURE__*/jsxRuntime.jsx(Map$1, {})

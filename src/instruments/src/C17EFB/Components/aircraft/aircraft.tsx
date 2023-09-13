@@ -134,7 +134,7 @@ export const Airctaft = () => {
 						crew door
 					</Button>
 				</Box>
-				{/* <Box
+				<Box
 					sx={{
 						position: 'absolute',
 						width: 79,
@@ -189,7 +189,7 @@ export const Airctaft = () => {
 					>
 						para Door L
 					</Button>
-				</Box> */}
+				</Box>
 
 
 			<Box

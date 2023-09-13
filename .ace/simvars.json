@@ -1,59 +1,13 @@
 {
     "elements": [
         {
-            "__uuid": "045815c0-9ddf-4096-ab89-c7aae6751eea",
-            "title": "park break",
+            "__uuid": "c694f3b0-549c-4e20-8eaf-61b19c952838",
+            "title": "BATT PWR",
             "varPrefix": "A",
-            "varName": "Brake parking position",
-            "varUnit": "bool",
-            "style": {
-                "type": 3
-            }
-        },
-        {
-            "__uuid": "b1a9be92-a6ec-46ed-8264-7e1b844cd999",
-            "title": "nvg mode",
-            "varPrefix": "A",
-            "varName": "Spoilers right position",
-            "varUnit": "bool",
-            "style": {
-                "type": 3
-            }
-        },
-        {
-            "__uuid": "8298f3e8-0a84-4c36-aa63-c9109c5f9bb5",
-            "title": "ldng",
-            "varPrefix": "L",
-            "varName": "C17_WACAP_Test",
-            "varUnit": "bool",
-            "style": {
-                "type": 3
-            }
-        },
-        {
-            "__uuid": "0173b22c-6cc4-45be-b862-cdf306ae1892",
-            "title": "CPIT ILLUM",
-            "varPrefix": "L",
-            "varName": "C17_CPIT_ILLUM_MODE",
-            "varUnit": "enum",
-            "style": {
-                "type": 2,
-                "min": -1,
-                "max": 2,
-                "step": 1
-            }
-        },
-        {
-            "__uuid": "daaea3cc-7bf1-4e4f-9ae1-30b2ce0b8b15",
-            "title": "Flaps",
-            "varPrefix": "A",
-            "varName": "LEADING EDGE FLAPS RIGHT PERCENT",
+            "varName": "CIRCUIT ON:81",
             "varUnit": "number",
             "style": {
-                "type": 2,
-                "min": 0,
-                "max": 100,
-                "step": 0.1
+                "type": 3
             }
         }
     ]

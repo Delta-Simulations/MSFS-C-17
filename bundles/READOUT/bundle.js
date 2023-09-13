@@ -8935,6 +8935,7 @@
 	  const [Taxi_light] = useSimVar('A:Light taxi', 'bool');
 	  const [Fuel_quantity] = useSimVar('A:FUEL TOTAL QUANTITY', 'gallons');
 	  const [Cargo_door] = useSimVar('L:DoorSwitch', 'enum');
+	  const [APU_FIRE_TEST] = useSimVar('L:C17_FIRE_ANNUN_TEST', 'enum');
 	  const [cautionMessages, setCautionMessages] = react.useState([]);
 	  react.useEffect(() => {
 	    const messages = [{
@@ -8961,10 +8962,14 @@
 	      id: 6,
 	      message: 'RAMP OPEN',
 	      condition: WACAP_Test || Cargo_door
+	    }, {
+	      id: 7,
+	      message: 'APU',
+	      condition: WACAP_Test || APU_FIRE_TEST
 	    } // Add more caution messages here...
 	    ];
 	    setCautionMessages(messages);
-	  }, [WACAP_Test, Park_brake, Speed_brake, Landing_light, Taxi_light, Fuel_quantity, Cargo_door]);
+	  }, [WACAP_Test, Park_brake, Speed_brake, Landing_light, Taxi_light, Fuel_quantity, Cargo_door, APU_FIRE_TEST]);
 	  const maxMessages = 14;
 	  const visibleMessages = cautionMessages.filter(message => message.condition);
 	  const displayedMessages = visibleMessages.slice(0, maxMessages);
@@ -9782,6 +9787,19 @@
 	  let AP_SPD = AT_MODE ? MACH_SPD : IAS_SPD;
 	  let [AP_HDG] = useSimVar('A:Autopilot heading lock dir', 'degrees');
 	  AP_HDG = Math.round(AP_HDG);
+	  let [Fuel_Disp_Mode] = useSimVar('L:C17_Fuel_Qty_Sel', 'bool');
+	  const [fuelDisplayMode, setFuelDisplayMode] = react.useState('normal'); // 'normal' or '8888'
+	  // Effect to update fuel display mode when C17_Fuel_Qty_Sel changes
+
+	  react.useEffect(() => {
+	    setFuelDisplayMode('8888'); // Reset the display mode to 'normal' after 5 seconds
+
+	    const timer = setTimeout(() => {
+	      setFuelDisplayMode('normal');
+	    }, 5000); // 5000 milliseconds = 5 seconds
+
+	    return () => clearTimeout(timer); // Clear the timer on component unmount or when C17_Fuel_Qty_Sel changes again
+	  }, [Fuel_Disp_Mode]);
 	  let [AP_API] = useSimVar('L:C17_API', 'enum');
 	  AP_API = Math.round(AP_API * 10) / 10;
 	  let [AFCS_Color] = useSimVar('L:C17_CPIT_ILLUM_MODE', 'bool');
@@ -10041,38 +10059,38 @@
 	      textAnchor: "end",
 	      children: APU_PCT
 	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
-	      x: 300,
+	      x: 305,
 	      y: 482,
 	      fontSize: 35,
 	      className: "OHPNL",
 	      textAnchor: "end",
-	      children: Fuel_1
+	      children: fuelDisplayMode === 'normal' ? Fuel_1 : '88888'
 	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
-	      x: 405,
+	      x: 410,
 	      y: 482,
 	      fontSize: 35,
 	      className: "OHPNL",
 	      textAnchor: "end",
-	      children: Fuel_2
+	      children: fuelDisplayMode === 'normal' ? Fuel_2 : '88888'
 	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
-	      x: 535,
+	      x: 540,
 	      y: 482,
 	      fontSize: 35,
 	      className: "OHPNL",
 	      textAnchor: "end",
-	      children: Fuel_3
+	      children: fuelDisplayMode === 'normal' ? Fuel_3 : '88888'
 	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
-	      x: 637,
+	      x: 642,
 	      y: 482,
 	      fontSize: 35,
 	      className: "OHPNL",
 	      textAnchor: "end",
-	      children: Fuel_4
+	      children: fuelDisplayMode === 'normal' ? Fuel_4 : '88888'
 	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
 	      x: 64,
 	      y: 555,
 	      fontSize: 38,
-	      fill: AFCS_Color ? 'white' : '#00EE00',
+	      fill: AFCS_Color ? '#C6C6C6' : '#00EE00',
 	      className: "FrontPNL",
 	      textAnchor: "end",
 	      children: AP_API
@@ -10080,7 +10098,7 @@
 	      x: 212,
 	      y: 555,
 	      fontSize: 40,
-	      fill: AFCS_Color ? 'white' : '#00EE00',
+	      fill: AFCS_Color ? '#C6C6C6' : '#00EE00',
 	      className: "FrontPNL",
 	      textAnchor: "end",
 	      children: [AP_SPD, Disp_AT_CMMD]
@@ -10088,7 +10106,7 @@
 	      x: 329,
 	      y: 555,
 	      fontSize: 40,
-	      fill: AFCS_Color ? 'white' : '#00EE00',
+	      fill: AFCS_Color ? '#C6C6C6' : '#00EE00',
 	      className: "FrontPNL",
 	      textAnchor: "end",
 	      children: [AP_HDG, "M"]
@@ -10097,7 +10115,7 @@
 	      x: 406,
 	      y: 553,
 	      fontSize: 30,
-	      fill: AFCS_Color ? 'white' : '#00EE00',
+	      fill: AFCS_Color ? '#C6C6C6' : '#00EE00',
 	      className: "FrontPNL",
 	      textAnchor: "end",
 	      children: AP_VS_SIGN
@@ -10106,7 +10124,7 @@
 	      x: 446,
 	      y: 552,
 	      fontSize: 27,
-	      fill: AFCS_Color ? 'white' : '#00EE00',
+	      fill: AFCS_Color ? '#C6C6C6' : '#00EE00',
 	      className: "FrontPNL",
 	      textAnchor: "end",
 	      children: "-"
@@ -10115,7 +10133,7 @@
 	      x: 446,
 	      y: 563,
 	      fontSize: 27,
-	      fill: AFCS_Color ? 'white' : '#00EE00',
+	      fill: AFCS_Color ? '#C6C6C6' : '#00EE00',
 	      className: "FrontPNL",
 	      textAnchor: "end",
 	      children: "-"
@@ -10124,7 +10142,7 @@
 	      x: 426,
 	      y: 552,
 	      fontSize: 27,
-	      fill: AFCS_Color ? 'white' : '#00EE00',
+	      fill: AFCS_Color ? '#C6C6C6' : '#00EE00',
 	      className: "FrontPNL",
 	      textAnchor: "end",
 	      children: "-"
@@ -10133,7 +10151,7 @@
 	      x: 426,
 	      y: 563,
 	      fontSize: 27,
-	      fill: AFCS_Color ? 'white' : '#00EE00',
+	      fill: AFCS_Color ? '#C6C6C6' : '#00EE00',
 	      className: "FrontPNL",
 	      textAnchor: "end",
 	      children: "-"
@@ -10141,7 +10159,7 @@
 	      x: 448,
 	      y: 555,
 	      fontSize: 40,
-	      fill: AFCS_Color ? 'white' : '#00EE00',
+	      fill: AFCS_Color ? '#C6C6C6' : '#00EE00',
 	      className: "FrontPNL",
 	      textAnchor: "end",
 	      children: AP_VertSpd < 999 ? '' : AP_VS_THOU
@@ -10149,7 +10167,7 @@
 	      x: 488,
 	      y: 546,
 	      fontSize: 27,
-	      fill: AFCS_Color ? 'white' : '#00EE00',
+	      fill: AFCS_Color ? '#C6C6C6' : '#00EE00',
 	      className: "FrontPNL",
 	      textAnchor: "end",
 	      children: AP_VS_HUND
@@ -10157,7 +10175,7 @@
 	      x: 578,
 	      y: 555,
 	      fontSize: 40,
-	      fill: AFCS_Color ? 'white' : '#00EE00',
+	      fill: AFCS_Color ? '#C6C6C6' : '#00EE00',
 	      className: "FrontPNL",
 	      textAnchor: "end",
 	      children: AP_ALT < 999 ? '' : AP_ALT_THOU
@@ -10165,7 +10183,7 @@
 	      x: 618,
 	      y: 546,
 	      fontSize: 27,
-	      fill: AFCS_Color ? 'white' : '#00EE00',
+	      fill: AFCS_Color ? '#C6C6C6' : '#00EE00',
 	      className: "FrontPNL",
 	      textAnchor: "end",
 	      children: AP_ALT_HUND
@@ -10174,7 +10192,7 @@
 	      x: 556,
 	      y: 552,
 	      fontSize: 27,
-	      fill: AFCS_Color ? 'white' : '#00EE00',
+	      fill: AFCS_Color ? '#C6C6C6' : '#00EE00',
 	      className: "FrontPNL",
 	      textAnchor: "end",
 	      children: "-"
@@ -10183,7 +10201,7 @@
 	      x: 556,
 	      y: 563,
 	      fontSize: 27,
-	      fill: AFCS_Color ? 'white' : '#00EE00',
+	      fill: AFCS_Color ? '#C6C6C6' : '#00EE00',
 	      className: "FrontPNL",
 	      textAnchor: "end",
 	      children: "-"
@@ -10191,7 +10209,7 @@
 	      x: 265,
 	      y: 735,
 	      fontSize: 65,
-	      fill: AFCS_Color ? 'white' : '#00EE00',
+	      fill: AFCS_Color ? '#C6C6C6' : '#00EE00',
 	      className: "FrontPNL",
 	      textAnchor: "end",
 	      children: Tot_Fuel

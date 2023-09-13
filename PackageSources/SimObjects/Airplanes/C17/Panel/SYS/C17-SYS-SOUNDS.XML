@@ -12,6 +12,7 @@
   </Element>
 
 
+
   <!-- ARM CALLOUTS-->
 <Element>
   <Select>
@@ -23,7 +24,63 @@
       </Value>
   </Select>
 </Element>	
- 
+
+   <!-- FIRE ALERTING TEST-->
+   <Element>
+    <Select>
+        <Value>
+      (A:CIRCUIT ON:65,bool) 1 ==
+      (L:C17_FIRE_ANNUN_TEST,bool) 1 == and
+      if{ 1 (&gt;L:C17_FIRE_TEST,bool) }
+      els{ 0 (&gt;L:C17_FIRE_TEST,bool) }
+        </Value>
+    </Select>
+  </Element>	
+
+    <!-- FIRE ENG 1-->
+    <Element>
+      <Select>
+          <Value>
+        (A:CIRCUIT ON:65,bool) 1 ==
+        (A:ENG ON FIRE:1,BOOL) 1 == and
+        if{ 1 (&gt;L:C17_FIRE_ENG1,bool) }
+        els{ 0 (&gt;L:C17_FIRE_ENG1,bool) }
+          </Value>
+      </Select>
+    </Element>	
+        <!-- FIRE ENG 2-->
+    <Element>
+      <Select>
+          <Value>
+        (A:CIRCUIT ON:65,bool) 1 ==
+        (A:ENG ON FIRE:2,BOOL) 1 == and
+        if{ 1 (&gt;L:C17_FIRE_ENG2,bool) }
+        els{ 0 (&gt;L:C17_FIRE_ENG2,bool) }
+          </Value>
+      </Select>
+    </Element>
+    <!-- FIRE ENG 3-->
+    <Element>
+      <Select>
+          <Value>
+        (A:CIRCUIT ON:65,bool) 1 ==
+        (A:ENG ON FIRE:3,BOOL) 1 == and
+        if{ 1 (&gt;L:C17_FIRE_ENG3,bool) }
+        els{ 0 (&gt;L:C17_FIRE_ENG3,bool) }
+          </Value>
+      </Select>
+    </Element>
+        <!-- FIRE ENG 4-->
+    <Element>
+      <Select>
+          <Value>
+        (A:CIRCUIT ON:65,bool) 1 ==
+        (A:ENG ON FIRE:4,BOOL) 1 == and
+        if{ 1 (&gt;L:C17_FIRE_ENG4,bool) }
+        els{ 0 (&gt;L:C17_FIRE_ENG4,bool) }
+          </Value>
+      </Select>
+    </Element>		
   <!-- AUTOTHROTTLE-->
 <!-- <Element>
   <Select>

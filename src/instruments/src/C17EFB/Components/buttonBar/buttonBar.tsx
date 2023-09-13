@@ -28,12 +28,12 @@ export const ButtonBar = () => {
 
 				<NavLink
 					style={{ textDecoration: 'none' }}
-					to="/Checklist"
+					to="/PDF"
 					className={(isActive) =>
 						'BottomButton' + (isActive ? 'ButtomButtonActive' : '')
 					}
 				>
-					<Button variant="contained">Checklist</Button>
+					<Button variant="contained">Manual</Button>
 				</NavLink>
 
 				<NavLink

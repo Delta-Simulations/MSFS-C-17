@@ -24,6 +24,7 @@ import {
 import { Browser } from './Components/browser/browser';
 import { EfbPower } from '../Common/circuit';
 import { Settings } from './Components/settings/settings';
+import { MANUAL } from './Components/PDF/PDF';
 const C17EFB = () => {
 	return (
 		<MemoryRouter>
@@ -31,33 +32,16 @@ const C17EFB = () => {
 				<div className="EFBContainer">
 					<Routes>
 						<Route path="/" element={<Home />} />
-						<Route path="/checklist" element={<Checklist />}>
-							<Route path="traditional" element={<Traditional />}>
-								<Route path="BeforeStart" element={<BeforeStart />} />
-								<Route path="CockpitCheck" element={<CockpitCheck />} />
-								<Route path="EngineStart" element={<EngineStart />} />
-								<Route path="EngineRunup" element={<EngineRunup />} />
-								<Route path="BeforeTaxi" element={<BeforeTaxi />} />
-								<Route
-									path="BeforeTakeoff"
-									element={<BeforeTakeoff />}
-								/>
-								<Route
-									path="BeforeLanding"
-									element={<BeforeLanding />}
-								/>
-								<Route path="Shutdown" element={<Shutdown />} />
-							</Route>
-							<Route path="emergency" element={<Emergency />} />
-						</Route>
+
 						<Route path="/Aircraft" element={<Airctaft />} />
 						<Route path="/Browser" element={<Browser />} />
+						<Route path="/PDF" element={<MANUAL />} />
 						<Route path="/Map" element={<Map />} />
 						<Route path="/Settings" element={<Settings />} />
 					</Routes>
 					<ButtonBar />
 				</div>
-			</EfbPower>
+				</EfbPower>
 		</MemoryRouter>
 	);
 };

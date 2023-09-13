@@ -129,19 +129,85 @@
     </UseTemplate>
   </Component>
 
+  <Component ID="PARA_DOORL" Node="PARA DOORL">
+    <UseTemplate Name="ASOBO_GT_Interaction_DraggingAxis_Code">
+        <UP_CODE>
+            (L:C17_PARA_L, percent) 0.005 + 1 min (>L:C17_PARA_L, percent)
+        </UP_CODE>
+        <DOWN_CODE>
+            (L:C17_PARA_L, percent) 0.005 - 0 max (>L:C17_PARA_L, percent)
+        </DOWN_CODE>
+        <AXIS>Y</AXIS>
+        <DRAG_AXIS_SCALE>1</DRAG_AXIS_SCALE>
+    </UseTemplate>
+  </Component>
+  <Component ID="PARA_DOORR" Node="PARA DOORR">
+    <UseTemplate Name="ASOBO_GT_Interaction_DraggingAxis_Code">
+        <UP_CODE>
+            (L:C17_PARA_R, percent) 0.005 + 1 min (>L:C17_PARA_R, percent)
+        </UP_CODE>
+        <DOWN_CODE>
+            (L:C17_PARA_R, percent) 0.005 - 0 max (>L:C17_PARA_R, percent)
+        </DOWN_CODE>
+        <AXIS>Y</AXIS>
+        <DRAG_AXIS_SCALE>1</DRAG_AXIS_SCALE>
+    </UseTemplate>
+  </Component>
+
 </Component>
 <Component ID="FRONT_PANEL" >
-  <UseTemplate Name="GENERIC_Toggle_Switch_Template">
-    <ANIM>(L:C17_GEAR_ANNUN_TEST, bool) 100 *</ANIM>
-    <NODE_ID>BUTTON_GEAR_ANNUN_TEST</NODE_ID>
-    <TOOLTIPID>TEST GEAR ALERTS</TOOLTIPID>
-    <INTERACT_CODE>
-      1 (&gt;L:C17_GEAR_ANNUN_TEST, bool)
-    </INTERACT_CODE>
-    <POST_CODE>
-      (M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:C17_GEAR_ANNUN_TEST, bool) }
-    </POST_CODE>
-  </UseTemplate>
+
+  <Component ID="Switch_Smoke_Sys" Node="Switch_Smoke_Sys">
+    <UseTemplate Name = "ASOBO_GT_Switch_3States">
+      <ANIM_NAME>Switch_Smoke_Sys</ANIM_NAME>
+      <NODE_ID>Switch_Smoke_Sys</NODE_ID>
+      <DEFAULT_POS>0</DEFAULT_POS>
+      <SWITCH_POSITION_TYPE>L</SWITCH_POSITION_TYPE>
+      <SWITCH_POSITION_VAR>C17_SMOKE_SYS</SWITCH_POSITION_VAR>
+      <SWITCH_DIRECTION>Vertical</SWITCH_DIRECTION>
+      <INVERT_ANIM>False</INVERT_ANIM>
+      <ANIMTIP_0>OFF</ANIMTIP_0>
+      <ANIMTIP_1>ARM</ANIMTIP_1>
+      <ANIMTIP_2>TEST</ANIMTIP_2>
+      <CODE_POS_0></CODE_POS_0>
+      <CODE_POS_1></CODE_POS_1>
+      <CODE_POS_2></CODE_POS_2>
+    </UseTemplate>
+    </Component>
+
+    <UseTemplate Name="GENERIC_Toggle_Switch_Template">
+      <ANIM>(L:C17_Emerg_LT, bool) 100 *</ANIM>
+      <NODE_ID>Switch_Emerg_LT</NODE_ID>
+      <TOOLTIPID>ARM LT</TOOLTIPID>
+      <INTERACT_CODE>
+        (L:C17_Emerg_LT, bool) ! (&gt;L:C17_Emerg_LT, bool)
+      </INTERACT_CODE>
+    </UseTemplate>
+
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>BUTTON_FIRE_TEST_A</NODE_ID>
+  <TOOLTIPID>TEST FIRE ALERTING SYS A</TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+    (L:C17_FIRE_ANNUN_TEST, bool) ! (&gt;L:C17_FIRE_ANNUN_TEST, bool)
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
+
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>PushButton_Fuel_Used</NODE_ID>
+  <TOOLTIPID>FUEL USED RESET</TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+    (A:Fuel total quantity weight,pounds) (&gt;L:Fuel actual quantity,pounds) 
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
+
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>BUTTON_FIRE_TEST_B</NODE_ID>
+  <TOOLTIPID>TEST FIRE ALERTING SYS B</TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+    (L:C17_FIRE_ANNUN_TEST, bool) ! (&gt;L:C17_FIRE_ANNUN_TEST, bool)
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
+
 
   <UseTemplate Name="DELTASIM_PushButton_Template">
     <NODE_ID>BUTTON_SED_MODE_MAX</NODE_ID>
@@ -181,6 +247,32 @@
       </ANTICLOCKWISE_CODE>
       <CW_ANIMTIP>DISPLAY MODE</CW_ANIMTIP>
       <CCW_ANIMTIP>DISPLAY MODE</CCW_ANIMTIP>
+    </UseTemplate>
+
+    <UseTemplate Name="DELTASIM_Finite_Knob_Template">
+      <NODE_ID>Knob_eng_ignition</NODE_ID>
+      <ANIM_CODE>(L:C17_ENG_IGN_MODE) 33 *</ANIM_CODE>
+      <CLOCKWISE_CODE>
+        (L:C17_ENG_IGN_MODE) 1 + 3 min (&gt;L:C17_ENG_IGN_MODE)
+      </CLOCKWISE_CODE>
+      <ANTICLOCKWISE_CODE>
+        (L:C17_ENG_IGN_MODE) 1 - 0 max (&gt;L:C17_ENG_IGN_MODE)
+      </ANTICLOCKWISE_CODE>
+      <CW_ANIMTIP>IGNITION MODE [INOP]</CW_ANIMTIP>
+      <CCW_ANIMTIP>IGNITION MODE [INOP]</CCW_ANIMTIP>
+    </UseTemplate>
+
+    <UseTemplate Name="DELTASIM_Finite_Knob_Template">
+      <NODE_ID>Knob_Fuel_Qty_Sel</NODE_ID>
+      <ANIM_CODE>(L:C17_Fuel_Qty_Sel) 50 *</ANIM_CODE>
+      <CLOCKWISE_CODE>
+        (L:C17_Fuel_Qty_Sel) 1 + 2 min (&gt;L:C17_Fuel_Qty_Sel)
+      </CLOCKWISE_CODE>
+      <ANTICLOCKWISE_CODE>
+        (L:C17_Fuel_Qty_Sel) 1 - 0 max (&gt;L:C17_Fuel_Qty_Sel)
+      </ANTICLOCKWISE_CODE>
+      <CW_ANIMTIP>DISP FUEL QTY SOURCE</CW_ANIMTIP>
+      <CCW_ANIMTIP>DISP FUEL QTY SOURCE</CCW_ANIMTIP>
     </UseTemplate>
 
     <UseTemplate Name="DELTASIM_Finite_Knob_Template">
@@ -1113,6 +1205,41 @@
   </UseTemplate>
 
 <!-- FRONT PANEL KORRY -->
+
+<UseTemplate Name="Korry_Emmis_DELTASIM">
+  <NODE_ID>Korry_FireAlertEng1</NODE_ID>
+  <TRUECODE>
+    (A:ENG ON FIRE:1,BOOL) 1 ==
+  </TRUECODE>
+  <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !</INTENSITY>
+  <TESTCODE>(L:C17_FIRE_ANNUN_TEST, bool) 1 == or</TESTCODE>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_DELTASIM">
+  <NODE_ID>Korry_FireAlertEng2</NODE_ID>
+  <TRUECODE>
+    (A:ENG ON FIRE:2,BOOL) 1 ==
+  </TRUECODE>
+  <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !</INTENSITY>
+  <TESTCODE>(L:C17_FIRE_ANNUN_TEST, bool) 1 == or</TESTCODE>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_DELTASIM">
+  <NODE_ID>Korry_FireAlertEng3</NODE_ID>
+  <TRUECODE>
+    (A:ENG ON FIRE:3,BOOL) 1 ==
+  </TRUECODE>
+  <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !</INTENSITY>
+  <TESTCODE>(L:C17_FIRE_ANNUN_TEST, bool) 1 == or</TESTCODE>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_DELTASIM">
+  <NODE_ID>Korry_FireAlertEng4</NODE_ID>
+  <TRUECODE>
+    (A:ENG ON FIRE:4,BOOL) 1 ==
+  </TRUECODE>
+  <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !</INTENSITY>
+  <TESTCODE>(L:C17_FIRE_ANNUN_TEST, bool) 1 == or</TESTCODE>
+</UseTemplate>
+
+
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>KORRY_WARNING_INOP</NODE_ID>
     <TRUECODE>0</TRUECODE>
@@ -1287,7 +1414,7 @@
     <TRUECODE>(A:GENERAL ENG STARTER:4, bool) 1 ==</TRUECODE>
   </UseTemplate>
   <Component ID="EFB_BRIGHTNESS" Node="EFB_DISPLAY">
-    <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+    <UseTemplate Name="ASOBO_GT_Material_Emissive_Code">
       <NODE_ID>EFB_DISPLAY</NODE_ID>
       <EMISSIVE_CODE>(L:C17_EFB_Brightness,enum) 0.1 * 0.05 +</EMISSIVE_CODE>
     </UseTemplate>
@@ -1807,10 +1934,10 @@
             (&gt;K:AP_ALT_VAR_DEC)
           </ANTICLOCKWISE_CODE_DEFAULT_IM>
           <CLOCKWISE_CODE_DRAG_IM>
-            (A:AUTOPILOT ALTITUDE LOCK VAR, feet) 1 + dnor (&gt;K:AP_ALT_VAR_SET_ENGLISH)
+            (&gt;K:AP_ALT_VAR_INC)
           </CLOCKWISE_CODE_DRAG_IM>
           <ANTICLOCKWISE_CODE_DRAG_IM>
-            (A:AUTOPILOT ALTITUDE LOCK VAR, feet) 1 - dnor (&gt;K:AP_ALT_VAR_SET_ENGLISH)
+            (&gt;K:AP_ALT_VAR_DEC)
           </ANTICLOCKWISE_CODE_DRAG_IM>
           <LEFT_SINGLE_CODE>(A:INDICATED ALTITUDE, feet) (&gt;K:AP_ALT_VAR_SET_ENGLISH)</LEFT_SINGLE_CODE>
           <ANIMTIP_0>DEC ALTITUDE</ANIMTIP_0>
@@ -2390,6 +2517,29 @@
 
 
 
+  <Animation name="PARA DOORL" guid="795ad260-d165-4486-bc6b-84cd202e3693" type="Sim" typeparam="AutoPlay" />
+  <PartInfo>
+	  <Name>PARA DOORL</Name>
+	  <AnimLength>100</AnimLength>
+	  <Animation>
+		  <Parameter>
+			   <Code>(L:C17_PARA_L, percent) 100 *</Code>
+			  <Lag>30</Lag>
+	  </Parameter>
+	  </Animation>
+  </PartInfo>
+  
+  <Animation name="PARA DOORR" guid="151fc768-add1-4ee5-bbd0-649918ef0ea8" type="Sim" typeparam="AutoPlay" />
+  <PartInfo>
+	  <Name>PARA DOORR</Name>
+	  <AnimLength>100</AnimLength>
+	  <Animation>
+		  <Parameter>
+			   <Code>(L:C17_PARA_R, percent) 100 *</Code>
+			  <Lag>30</Lag>
+	  </Parameter>
+	  </Animation>
+  </PartInfo>
 
 
 
@@ -2913,7 +3063,6 @@
        </CallbackCode>
   </MouseRect>
 </PartInfo>
-
 
 <Animation name="HUDEMIS" guid="d134cbff-c2db-4f4d-aa02-56234fda0f08" typeParam2="HUDEMIS" length="1" type="Sim" typeParam="AutoPlay" />
     <PartInfo>
@@ -3753,6 +3902,24 @@
   <TooltipText>MAP</TooltipText>
       <Cursor>Hand</Cursor><CallbackCode>(L:LMFD BOTTOM 6, number) ! (&gt;L:LMFD BOTTOM 6, number)</CallbackCode>
   </MouseRect>
+</PartInfo>
+
+<Animation name="RBF_Tags" guid="2a0f86ef-2791-4029-bab3-3b85dee548de" length="1" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+    <Name>RBF_Tags</Name>
+    <Visibility>
+        <Parameter>
+            <Code>
+            (L:C17_RBF_TAGS, bool) 1 ==
+			(A:AIRSPEED INDICATED, knots) 0 == and
+            (A:Eng1 Combustion,bool) 0 == and
+            (A:Eng2 Combustion,bool) 0 == and
+            (A:Eng3 Combustion,bool) 0 == and
+            (A:Eng4 Combustion,bool) 0 == and
+			(A:SIM ON GROUND,bool) 1 == and
+			</Code>
+        </Parameter>
+    </Visibility>
 </PartInfo>
 
 </ModelInfo>

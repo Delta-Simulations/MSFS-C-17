@@ -1,6 +1,6 @@
 <Gauge Name="MFDX3 - VC only" Version="C-17" Author="Herbert Pralle">
   <Image Name="MFDX1_backgrnd_vc.bmp"/>
-  <Macro Name="INI">4 (>L:MFDX3 mode,enum) 6 (>L:MFDX3 MAP Zoom,enum) (A:Fuel total quantity weight,pounds) (>L:Fuel actual quantity,pounds)</Macro>
+  <Macro Name="INI">4 (>L:MFDX3 mode,enum) 6 (>L:MFDX3 MAP Zoom,enum)</Macro>
   <Element>
     <Select>
       <Value>(L:MFDX3,bool) 0 == if{ @INI 1 (>L:MFDX3,bool) }</Value>

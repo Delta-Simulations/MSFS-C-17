@@ -3,10 +3,10 @@ import React from 'react';
 export const Browser = () => {
 	return (
 		<iframe
-			width="1040"
-			height="750"
+			width="2080"
+			height="1620"
 			src="https://www.bing.com/"
-			frameborder="0"
+			frameBorder="0"
 		></iframe>
 	);
 };
