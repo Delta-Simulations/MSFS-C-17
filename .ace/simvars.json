@@ -1,13 +1,68 @@
 {
     "elements": [
         {
-            "__uuid": "c694f3b0-549c-4e20-8eaf-61b19c952838",
-            "title": "BATT PWR",
+            "__uuid": "ebc66fd4-be46-4f06-b005-63e48100b8bd",
+            "title": "Altitude",
             "varPrefix": "A",
-            "varName": "CIRCUIT ON:81",
-            "varUnit": "number",
+            "varName": "INDICATED ALTITUDE",
+            "varUnit": "ft",
             "style": {
-                "type": 3
+                "type": 2,
+                "min": 0,
+                "max": 40000,
+                "step": 1
+            }
+        },
+        {
+            "__uuid": "5ae920ab-b487-4e75-ad39-9caacbaf5074",
+            "title": "Indicated Airspeed",
+            "varPrefix": "A",
+            "varName": "AIRSPEED INDICATED",
+            "varUnit": "kn",
+            "style": {
+                "type": 2,
+                "min": 0,
+                "max": 400,
+                "step": 1
+            }
+        },
+        {
+            "__uuid": "131638bc-dd12-414f-a7a4-5ea6d03a15a6",
+            "title": "True Heading",
+            "varPrefix": "A",
+            "varName": "PLANE HEADING DEGREES TRUE",
+            "varUnit": "deg",
+            "style": {
+                "type": 2,
+                "min": 0,
+                "max": 359,
+                "step": 1
+            }
+        },
+        {
+            "__uuid": "443013ce-b333-43fb-af37-f28c17a14aa7",
+            "title": "Pitch",
+            "varPrefix": "A",
+            "varName": "PLANE PITCH DEGREES",
+            "varUnit": "deg",
+            "style": {
+                "type": 2,
+                "min": -90,
+                "max": 90,
+                "step": 1
+            }
+        },
+        {
+            "__uuid": "8e332f07-1a1d-4099-9c33-5b4aaac1cc0f",
+            "title": "Bank",
+            "varPrefix": "A",
+            "varName": "PLANE BANK DEGREES",
+            "varUnit": "deg",
+            "style": {
+                "type": 2,
+                "min": -90,
+                "max": 90,
+                "step": 1
             }
         }
     ]
