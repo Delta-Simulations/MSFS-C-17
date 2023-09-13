@@ -86,6 +86,7 @@ export const MANUAL = () => {
 				Invert Colors
 			</Button>
 			<Button
+				className="addToBookmarks"
 				onClick={() =>
 					bookmarks.includes(currentPage)
 						? bookmarkPageRemove(currentPage)

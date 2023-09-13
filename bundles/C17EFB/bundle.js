@@ -23575,14 +23575,21 @@
 	      top: '30%'
 	    },
 	    children: [/*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	      onClick: () => setBookmarkMenu(!bookmarkMenu),
+	      variant: "contained",
+	      className: "bookmarkButton",
 	      children: "Bookmarks"
 	    }), /*#__PURE__*/jsxRuntime.jsx("div", {
 	      className: "dropdown ".concat(bookmarkMenu ? 'shown' : 'hidden'),
 	      children: /*#__PURE__*/jsxRuntime.jsx("ul", {
 	        children: props.pages.map((pages, index) => /*#__PURE__*/jsxRuntime.jsx("li", {
-	          onClick: () => props.navigateTo(pages),
-	          children: pages
-	        }, index))
+	          className: "bookmarkItem",
+	          children: /*#__PURE__*/jsxRuntime.jsxs("button", {
+	            className: "bookmarkItemButton",
+	            onClick: () => props.navigateTo(pages),
+	            children: ["Page:", pages]
+	          }, index)
+	        }))
 	      })
 	    })]
 	  });
@@ -23670,6 +23677,7 @@
 	      onClick: handleInvert,
 	      children: "Invert Colors"
 	    }), /*#__PURE__*/jsxRuntime.jsxs(Button$1, {
+	      className: "addToBookmarks",
 	      onClick: () => bookmarks.includes(currentPage) ? bookmarkPageRemove(currentPage) : bookmarkPageAdd(currentPage),
 	      children: [bookmarks.includes(currentPage) ? 'Remove' : 'Add', " Bookmark"]
 	    }), /*#__PURE__*/jsxRuntime.jsx(Bookmarks, {
