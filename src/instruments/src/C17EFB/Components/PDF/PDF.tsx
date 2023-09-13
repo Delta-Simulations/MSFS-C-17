@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import Button from '@mui/material/Button';
 import GetImageFromPDF from './getImageFromPDF';
 import './pdf.scss';
@@ -7,10 +7,11 @@ import Bookmarks from './bookmarks';
 
 export const MANUAL = () => {
 	const [currentPage, setCurrentPage] = useState(1);
+	const [_, forceReRender] = useReducer((x) => x + 1, 0);
 	const [bookmarks, setBookmarks] = useState(() => {
 		const saved = localStorage.getItem('bookmarks');
 		const initalValue = JSON.parse(saved);
-		return initalValue || [1];
+		return initalValue || [];
 	});
 	const [invert, setInvert] = useState(false);
 	const totalPages: number = 68; // Total number of images
@@ -37,16 +38,18 @@ export const MANUAL = () => {
 		}
 		let prev = bookmarks;
 		prev.push(page);
-		let sorted = prev.sort();
-		setBookmarks(sorted);
+		setBookmarks(prev);
+		forceReRender();
 	};
 	const bookmarkPageRemove = (page): void => {
 		if (bookmarks.length == 0) {
+			bookmarks.shift();
 			return;
 		}
-		let index = bookmarks.indexOf(page);
-		let newArray = bookmarks.splice(index, 1);
-		setBookmarks(newArray);
+		const index = bookmarks.indexOf(page);
+		bookmarks.splice(index, 1);
+		setBookmarks(bookmarks);
+		forceReRender();
 	};
 
 	useEffect(() => {

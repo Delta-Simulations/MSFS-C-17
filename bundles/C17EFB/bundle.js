@@ -23590,10 +23590,11 @@
 
 	const MANUAL = () => {
 	  const [currentPage, setCurrentPage] = react.useState(1);
+	  const [_, forceReRender] = react.useReducer(x => x + 1, 0);
 	  const [bookmarks, setBookmarks] = react.useState(() => {
 	    const saved = localStorage.getItem('bookmarks');
 	    const initalValue = JSON.parse(saved);
-	    return initalValue || [1];
+	    return initalValue || [];
 	  });
 	  const [invert, setInvert] = react.useState(false);
 	  const totalPages = 68; // Total number of images
@@ -23624,18 +23625,20 @@
 
 	    let prev = bookmarks;
 	    prev.push(page);
-	    let sorted = prev.sort();
-	    setBookmarks(sorted);
+	    setBookmarks(prev);
+	    forceReRender();
 	  };
 
 	  const bookmarkPageRemove = page => {
 	    if (bookmarks.length == 0) {
+	      bookmarks.shift();
 	      return;
 	    }
 
-	    let index = bookmarks.indexOf(page);
-	    let newArray = bookmarks.splice(index, 1);
-	    setBookmarks(newArray);
+	    const index = bookmarks.indexOf(page);
+	    bookmarks.splice(index, 1);
+	    setBookmarks(bookmarks);
+	    forceReRender();
 	  };
 
 	  react.useEffect(() => {
