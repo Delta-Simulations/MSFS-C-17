@@ -649,12 +649,13 @@
         <Parameter>
             <Code>
 				(A:Payload Station Weight:3, pounds) 20000 &gt;
-				(A:Payload Station Weight:3, pounds) 35400 &lt; &amp;&amp;
+				(A:Payload Station Weight:3, pounds) 35400 &lt; and
 				 if{ 1 } els{ 0 }
 			</Code>
         </Parameter>
     </Visibility>
 </PartInfo>
+
 
 <Animation name="c_wheel" guid="c5a5a7f1-d27f-47ec-acef-7d3c3ee88a64" length="200" type="Sim" typeParam="AutoPlay" />
 <PartInfo>

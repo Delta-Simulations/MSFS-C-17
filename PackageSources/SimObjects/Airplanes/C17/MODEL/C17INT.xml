@@ -2624,7 +2624,19 @@
         </PartInfo>
 
 
-
+<Animation name="Blackhawk_VIS" guid="843e0d1e-8590-43f1-a44b-1901aae0acf3" length="1" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+    <Name>Blackhawk_VIS</Name>
+    <AnimLength>1</AnimLength>
+    <Visibility>
+        <Parameter>
+            <Code>
+				(A:Payload Station Weight:3, pounds) 44000 &gt;
+				 if{ 1 } els{ 0 }
+			</Code>
+        </Parameter>
+    </Visibility>
+</PartInfo>
 
 <Animation name="Cargo_Pallet" guid="12b5768b-0b28-4413-95bb-4647c6b5d848" length="1" type="Sim" typeParam="AutoPlay" />
 <PartInfo>
@@ -2633,6 +2645,7 @@
         <Parameter>
             <Code>
 				(A:Payload Station Weight:3, pounds) 15000 &gt;
+        (A:Payload Station Weight:3, pounds) 44000 &lt; and
 				 if{ 1 } els{ 0 }
 			</Code>
         </Parameter>
@@ -2645,6 +2658,7 @@
         <Parameter>
             <Code>
 				(A:Payload Station Weight:3, pounds) 33000 &gt;
+        (A:Payload Station Weight:3, pounds) 44000 &lt; and
 				 if{ 1 } els{ 0 }
 			</Code>
         </Parameter>
