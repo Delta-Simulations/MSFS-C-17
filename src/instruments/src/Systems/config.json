@@ -1,0 +1,9 @@
+{
+    "index": "./index.tsx",
+    "isInteractive": false,
+    "name": "Systems",
+    "dimensions": {
+        "width": 500,
+        "height": 500
+    }
+}

@@ -60,14 +60,14 @@ Jitter Time=0.0
 uv1=0.0, 0.0
 uv2=1.0, 1.0
 NearEndFade= 5.0
-NearFade= 10.0
+NearFade= 5.0
 
 [LightAttributes.0]
 Type=spot
 Size=0.1
-Range=1500
+Range=2000
 Intensity=110.0
-Softness=0.0
+Softness=0.1
 SpotInner=30
 SpotOuter=40
 Volumetric=1

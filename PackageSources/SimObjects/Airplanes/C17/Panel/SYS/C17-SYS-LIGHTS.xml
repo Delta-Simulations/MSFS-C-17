@@ -11,6 +11,12 @@ Cockpit Lights
 <Element>
 <Select>
 <Value>
+<!-- PFD CONTROLS -->
+(L:C17_PFD1_BRT,enum) 0 == if{ 1 (&gt;L:MFDX1 on,bool) } els{ 0 (&gt;L:MFDX1 on,bool) }
+(L:C17_PFD2_BRT,enum) 0 == if{ 1 (&gt;L:MFDX2 on,bool) } els{ 0 (&gt;L:MFDX2 on,bool) }
+(L:C17_PFD3_BRT,enum) 0 == if{ 1 (&gt;L:MFDX3 on,bool) } els{ 0 (&gt;L:MFDX3 on,bool) }
+(L:C17_PFD4_BRT,enum) 0 == if{ 1 (&gt;L:MFDX4 on,bool) } els{ 0 (&gt;L:MFDX4 on,bool) }
+
 
 <!--  LANDING/TAXI ===============-->
 (L:C17_LIGHTS_R_LDG, enum) 0 ==
@@ -70,27 +76,31 @@ if{
 <!-- Beacon and strobe mode- Belly,top and bottom, all and strobes(WoW off) -->
 (L:C17_ANTICOLL_MODE, enum) 0 ==
 if{ 
-  1 (>K:STROBES_OFF)
-  1 (>K:BEACON_LIGHTS_OFF)
-  2 (>K:BEACON_LIGHTS_OFF)
+  1 (&gt;K:STROBES_OFF)
+  1 (&gt;K:BEACON_LIGHTS_OFF)
+  2 (&gt;K:BEACON_LIGHTS_OFF)
   0 (&gt;K:LIGHT_POTENTIOMETER_4_SET) 
 }
 (L:C17_ANTICOLL_MODE, enum) 1 ==
 if{
-  2 (>K:BEACON_LIGHTS_ON)
+  1 (&gt;K:STROBES_OFF)
+  1 (&gt;K:BEACON_LIGHTS_OFF)
+  2 (&gt;K:BEACON_LIGHTS_ON)
+  1 (&gt;K:STROBES_OFF)
 }
 (L:C17_ANTICOLL_MODE, enum) 2 ==
 if{ 
-  2 (>K:BEACON_LIGHTS_ON)
-  1 (>K:BEACON_LIGHTS_ON)
+  2 (&gt;K:BEACON_LIGHTS_ON)
+  1 (&gt;K:BEACON_LIGHTS_ON)
+  1 (&gt;K:STROBES_OFF)
 }
 (L:C17_ANTICOLL_MODE, enum) 3 ==
 (A:SIM ON GROUND,bool) 0 == and
 if{ 
-  1 (>K:STROBES_ON)
+  1 (&gt;K:STROBES_ON)
+  2 (&gt;K:BEACON_LIGHTS_ON)
+  1 (&gt;K:BEACON_LIGHTS_ON)
   100 (&gt;K:LIGHT_POTENTIOMETER_4_SET)
-  2 (>K:BEACON_LIGHTS_ON)
-  1 (>K:BEACON_LIGHTS_ON)
 }
 
 (L:C17_LIGHTS_EPC, bool) 1 ==

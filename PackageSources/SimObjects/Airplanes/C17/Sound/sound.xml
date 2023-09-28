@@ -96,21 +96,29 @@
 		<WwiseRTPC LocalVar="C17_APUSTARTER" Units="ENUM" Index="0" RTPCName="APU_SWITCH_POS"/>
 	</Sound>
 
-	<Sound WwiseEvent="Cpit_Pacs" WwiseData="true" SimVar="ELECTRICAL MAIN BUS VOLTAGE" Units="volts" ViewPoint="Inside" Index="0" NodeName="VENT" FadeOutType="2">
-		<WwiseRTPC SimVar="ELECTRICAL MAIN BUS VOLTAGE" Units="bool" Index="1" RTPCName="Avionics_Level" />
-		<Range LowerBound="1.0" />
-	</Sound>
-	<Sound WwiseEvent="Cpit_Ticking_Cmpas" WwiseData="true" SimVar="ELECTRICAL MAIN BUS VOLTAGE" Units="volts" ViewPoint="Inside" Index="0" NodeName="Standby Horizon">
-		<WwiseRTPC SimVar="ELECTRICAL MAIN BUS VOLTAGE" Units="bool" Index="1" RTPCName="Avionics_Level" />
-		<Range LowerBound="1.0" />
-	</Sound>
 
-	<Sound WwiseEvent="Cpit_Ticking_Cmpas" WwiseData="true" SimVar="ELECTRICAL MAIN BUS VOLTAGE" Units="volts" ViewPoint="Inside" Index="0" NodeName="Standby Horizon2">
-		<WwiseRTPC SimVar="ELECTRICAL MAIN BUS VOLTAGE" Units="bool" Index="1" RTPCName="Avionics_Level" />
-		<Range LowerBound="1.0" />
-	</Sound>
+    <Sound WwiseData="true" WwiseEvent="Cpit_Pacs" Continuous="true" LocalVar="C17_Cpit_Pacs" Units="Bool" Index="1" NodeName="Cube.031" ViewPoint="Inside" >
+        <WwiseRTPC SimVar="ELECTRICAL MAIN BUS VOLTAGE" Units="bool" Index="1" RTPCName="Avionics_Level" />
+        <Range LowerBound="1.0" />  
+    </Sound>
 
+    <Sound WwiseData="true" WwiseEvent="CargoDoorHyd" Continuous="true" LocalVar="C17_CargoDoor_Sound" Units="Bool" Index="1" NodeName="C-17_Globemaster_Lod1_obj.017" ViewPoint="Both">
+        <Range LowerBound="1.0" />  
+    </Sound>
+    
+    <Sound WwiseData="true" WwiseEvent="Cpit_Transformer" Continuous="true" LocalVar="C17_Cpit_Transformer" Units="Bool" Index="1" NodeName="C-17_Globemaster_Lod1_obj.026" ViewPoint="Inside">
+        <Range LowerBound="1.0" />  
+    </Sound>
 
+    <Sound WwiseData="true" WwiseEvent="Cpit_Ticking_Cmpas" LocalVar="C17_Cpit_Cmpas_Pwr" Continuous="true" NodeName="Sound_Altimeter_1" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+
+    <Sound WwiseData="true" WwiseEvent="Cpit_Ticking_Cmpas" LocalVar="C17_Cpit_Cmpas_Pwr" Continuous="true" NodeName="Sound_Altimeter_2" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+        <WwiseRTPC SimVar="ELECTRICAL MAIN BUS VOLTAGE" Units="bool" Index="1" RTPCName="Avionics_Level" />
+
+    </Sound>
 
 
 	<Sound WwiseData="true" WwiseEvent="AP_warning" Continuous="true" SimVar="AUTOPILOT MASTER" Units="BOOL" Index="0" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
@@ -217,29 +225,30 @@
 	<Sound WwiseData="true" WwiseEvent="Fuel_Pressure" LocalVar="C17_ALERT_FUEL_PRESS" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
         <Range LowerBound="1.0" />    
     </Sound>
-	<Sound WwiseData="true" WwiseEvent="Master_caution" LocalVar="C17_ALERT_MASTER_CAUTION" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+	<Sound WwiseData="true" WwiseEvent="Master_caution" LocalVar="C17_ALERT_MASTER_CAUTION" Continuous="false" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
         <Range LowerBound="1.0" />    
     </Sound>
 	<Sound WwiseData="true" WwiseEvent="Takeoff_Sinking" LocalVar="C17_ALERT_TOGA_Sinking" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
         <Range LowerBound="1.0" />    
     </Sound>
-	<Sound WwiseData="true" WwiseEvent="Wacs_fail" LocalVar="C17_Wacs_Failed" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
-        <Range LowerBound="1.0" />    
+    <Sound WwiseData="true" WwiseEvent="Wacs_fail" Continuous="true" LocalVar="C17_ALERT_Wacs_Fail" Units="Bool" Index="1" NodeName="Plane.093" ViewPoint="Inside">
+        <Range LowerBound="1.0" />  
     </Sound>
 
-	<Sound WwiseData="true" WwiseEvent="Fire_Test" LocalVar="C17_FIRE_TEST" Continuous="false" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+
+    <Sound WwiseData="true" WwiseEvent="Fire_Test" Continuous="true" LocalVar="C17_FIRE_TEST" Units="Bool" Index="1" NodeName="Plane.093" ViewPoint="Inside">
         <Range LowerBound="1.0" />    
     </Sound>
-	<Sound WwiseData="true" WwiseEvent="Fire_ENG1" LocalVar="C17_FIRE_ENG1" Continuous="false" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+	<Sound WwiseData="true" WwiseEvent="Fire_ENG1" Continuous="true" LocalVar="C17_FIRE_ENG1" Units="Bool" Index="1" NodeName="Plane.093" ViewPoint="Inside">
         <Range LowerBound="1.0" />    
     </Sound>
-	<Sound WwiseData="true" WwiseEvent="Fire_ENG2" LocalVar="C17_FIRE_ENG2" Continuous="false" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+	<Sound WwiseData="true" WwiseEvent="Fire_ENG2" Continuous="true" LocalVar="C17_FIRE_ENG2" Units="Bool" Index="1" NodeName="Plane.093" ViewPoint="Inside">
         <Range LowerBound="1.0" />    
     </Sound>
-	<Sound WwiseData="true" WwiseEvent="Fire_ENG3" LocalVar="C17_FIRE_ENG3" Continuous="false" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+	<Sound WwiseData="true" WwiseEvent="Fire_ENG3" Continuous="true" LocalVar="C17_FIRE_ENG3" Units="Bool" Index="1" NodeName="Plane.093" ViewPoint="Inside">
         <Range LowerBound="1.0" />    
     </Sound>
-	<Sound WwiseData="true" WwiseEvent="Fire_ENG4" LocalVar="C17_FIRE_ENG4" Continuous="false" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+	<Sound WwiseData="true" WwiseEvent="Fire_ENG4" Continuous="true" LocalVar="C17_FIRE_ENG4" Units="Bool" Index="1" NodeName="Plane.093" ViewPoint="Inside">
         <Range LowerBound="1.0" />    
     </Sound>
  <!--================= WIND CARGO BAY =================== -->

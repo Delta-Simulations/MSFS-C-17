@@ -280,6 +280,7 @@
         <Parameter>
             <Code>
 				(A:EXTERNAL POWER ON, bool) 1 ==
+				(A:EXTERNAL POWER AVAILABLE, bool) 1 == and
 				(A:SIM ON GROUND,bool) 1 == and
 				(A:AIRSPEED INDICATED, knots) 0 == and
 			</Code>
@@ -293,6 +294,7 @@
 		<Parameter>
 			 <Code>
 				(A:EXTERNAL POWER ON, bool) 1 ==
+				(A:EXTERNAL POWER AVAILABLE, bool) 1 == and
 				(A:SIM ON GROUND,bool) 1 == and
 				(A:AIRSPEED INDICATED, knots) 0 == and
 				if{ 100 } els{ 0 }

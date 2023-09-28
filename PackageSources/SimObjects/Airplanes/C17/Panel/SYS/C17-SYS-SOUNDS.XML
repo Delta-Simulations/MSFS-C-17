@@ -12,7 +12,6 @@
   </Element>
 
 
-
   <!-- ARM CALLOUTS-->
 <Element>
   <Select>
@@ -25,6 +24,42 @@
   </Select>
 </Element>	
 
+   <!-- C17_Cpit_Transformer-->
+   <Element>
+    <Select>
+        <Value>
+          (A:CIRCUIT ON:65,bool) 1 ==
+      if{ 1 (&gt;L:C17_Cpit_Transformer,bool) }
+      els{ 0 (&gt;L:C17_Cpit_Transformer,bool) }
+        </Value>
+    </Select>
+  </Element>	
+
+
+   <!-- Cockpit Cpas-->
+   <Element>
+    <Select>
+        <Value>
+      (A:ELECTRICAL MAIN BUS VOLTAGE, volts) 26 &gt;
+      if{ 1 (&gt;L:C17_Cpit_Pacs,bool) }
+      els{ 0 (&gt;L:C17_Cpit_Pacs,bool) }
+        </Value>
+    </Select>
+  </Element>	
+
+   <!-- Cockpit PACS-->
+   <Element>
+    <Select>
+        <Value>
+      (A:CIRCUIT ON:65,bool) 1 ==
+      (L:C17_Emer_Batt) 0 &gt; and
+      if{ 1 (&gt;L:C17_Cpit_Cmpas_Pwr,bool) }
+      els{ 0 (&gt;L:C17_Cpit_Cmpas_Pwr,bool) }
+        </Value>
+    </Select>
+  </Element>	
+
+
    <!-- FIRE ALERTING TEST-->
    <Element>
     <Select>
@@ -36,6 +71,18 @@
         </Value>
     </Select>
   </Element>	
+
+    <!-- FIRE APU-->
+    <Element>
+      <Select>
+          <Value>
+        (A:CIRCUIT ON:65,bool) 1 ==
+        (A:APU ON FIRE DETECTED,BOOL) 1 == and
+        if{ 1 (&gt;L:C17_FIRE_APU,bool) }
+        els{ 0 (&gt;L:C17_FIRE_APU,bool) }
+          </Value>
+      </Select>
+    </Element>	
 
     <!-- FIRE ENG 1-->
     <Element>

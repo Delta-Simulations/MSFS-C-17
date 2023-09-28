@@ -14,17 +14,16 @@ export const WACAP = (props) => {
   const [Landing_light] = useSimVar('A:Light landing', 'bool');
   const [Taxi_light] = useSimVar('A:Light taxi', 'bool');
   const [Fuel_quantity] = useSimVar('A:FUEL TOTAL QUANTITY', 'gallons');
-  const [Cargo_door] = useSimVar('L:DoorSwitch', 'enum');
+  const [Cargo_door] = useSimVar('L:C17_CargoDoor_POS', 'enum');
   const [APU_FIRE_TEST] = useSimVar('L:C17_FIRE_ANNUN_TEST', 'enum');
   const [cautionMessages, setCautionMessages] = useState<CautionMessage[]>([]);
 
   useEffect(() => {
     const messages: CautionMessage[] = [
-      { id: 1, message: 'PARK BRAKE', condition: WACAP_Test || Park_brake },
-      { id: 2, message: 'LANDING LIGHT', condition: WACAP_Test || Landing_light },
-      { id: 3, message: 'TAXI LIGHT', condition: WACAP_Test || Taxi_light },
-      { id: 4, message: 'FUEL LOW', condition: WACAP_Test || Fuel_quantity <= 12310 },
-      { id: 5, message: 'SPOILERS', condition: WACAP_Test || Speed_brake },
+      { id: 1, message: 'PARK BRAKE ON L, R', condition: WACAP_Test || Park_brake },
+      { id: 2, message: 'LANDING/TAXI LTS', condition: WACAP_Test || (Landing_light || Taxi_light) },
+      { id: 4, message: 'FUEL LOW', condition: WACAP_Test || Fuel_quantity <= 16000 },
+      { id: 5, message: 'SPEED BRAKES', condition: WACAP_Test || Speed_brake },
       { id: 6, message: 'RAMP OPEN', condition: WACAP_Test || Cargo_door },
       { id: 7, message: 'APU', condition: WACAP_Test || APU_FIRE_TEST },
       // Add more caution messages here...
@@ -45,9 +44,9 @@ export const WACAP = (props) => {
         <text
           key={message.id}
           x={670}
-          y={615 + index * 23}
-          fontSize={30}
-          fill="#FF0000"
+          y={609 + index * 13}
+          fontSize={15}
+          fill="#00EE00"
           className="WAPanel"
           textAnchor="middle"
         >
@@ -56,10 +55,10 @@ export const WACAP = (props) => {
       ))}
       {remainingMessages > 0 && (
         <g className="scroll-symbols">
-          <text x={650} y={615 + maxMessages * 23} fontSize={16} fill="#FF0000">
+          <text x={650} y={615 + maxMessages * 23} fontSize={16} fill="#00EE00">
             ↑
           </text>
-          <text x={650} y={638 + maxMessages * 23} fontSize={16} fill="#FF0000">
+          <text x={650} y={638 + maxMessages * 23} fontSize={16} fill="#00EE00">
             ↓
           </text>
         </g>

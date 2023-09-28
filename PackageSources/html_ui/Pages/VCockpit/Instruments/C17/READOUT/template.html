@@ -8946,29 +8946,25 @@
 	  const [Landing_light] = useSimVar('A:Light landing', 'bool');
 	  const [Taxi_light] = useSimVar('A:Light taxi', 'bool');
 	  const [Fuel_quantity] = useSimVar('A:FUEL TOTAL QUANTITY', 'gallons');
-	  const [Cargo_door] = useSimVar('L:DoorSwitch', 'enum');
+	  const [Cargo_door] = useSimVar('L:C17_CargoDoor_POS', 'enum');
 	  const [APU_FIRE_TEST] = useSimVar('L:C17_FIRE_ANNUN_TEST', 'enum');
 	  const [cautionMessages, setCautionMessages] = react.useState([]);
 	  react.useEffect(() => {
 	    const messages = [{
 	      id: 1,
-	      message: 'PARK BRAKE',
+	      message: 'PARK BRAKE ON L, R',
 	      condition: WACAP_Test || Park_brake
 	    }, {
 	      id: 2,
-	      message: 'LANDING LIGHT',
-	      condition: WACAP_Test || Landing_light
-	    }, {
-	      id: 3,
-	      message: 'TAXI LIGHT',
-	      condition: WACAP_Test || Taxi_light
+	      message: 'LANDING/TAXI LTS',
+	      condition: WACAP_Test || Landing_light || Taxi_light
 	    }, {
 	      id: 4,
 	      message: 'FUEL LOW',
-	      condition: WACAP_Test || Fuel_quantity <= 12310
+	      condition: WACAP_Test || Fuel_quantity <= 16000
 	    }, {
 	      id: 5,
-	      message: 'SPOILERS',
+	      message: 'SPEED BRAKES',
 	      condition: WACAP_Test || Speed_brake
 	    }, {
 	      id: 6,
@@ -8989,9 +8985,9 @@
 	  return /*#__PURE__*/jsxRuntime.jsxs("g", {
 	    children: [displayedMessages.map((message, index) => /*#__PURE__*/jsxRuntime.jsx("text", {
 	      x: 670,
-	      y: 615 + index * 23,
-	      fontSize: 30,
-	      fill: "#FF0000",
+	      y: 609 + index * 13,
+	      fontSize: 15,
+	      fill: "#00EE00",
 	      className: "WAPanel",
 	      textAnchor: "middle",
 	      children: message.message
@@ -9001,13 +8997,13 @@
 	        x: 650,
 	        y: 615 + maxMessages * 23,
 	        fontSize: 16,
-	        fill: "#FF0000",
+	        fill: "#00EE00",
 	        children: "\u2191"
 	      }), /*#__PURE__*/jsxRuntime.jsx("text", {
 	        x: 650,
 	        y: 638 + maxMessages * 23,
 	        fontSize: 16,
-	        fill: "#FF0000",
+	        fill: "#00EE00",
 	        children: "\u2193"
 	      })]
 	    })]
@@ -10229,6 +10225,113 @@
 	  });
 	};
 
+	const WACAP_Left = props => {
+	  let [WACAP_Test] = useSimVar('L:C17_WACAP_Test', 'bool');
+	  let [EnteranceDoor] = useSimVar('L:C17_Crew_Enterance', 'bool');
+	  let [IRU_1] = useSimVar('L:C17_IRU1', 'bool');
+	  let [IRU_2] = useSimVar('L:C17_IRU2', 'bool');
+	  useSimVar('L:C17_IRU3', 'bool');
+	  useSimVar('L:C17_IRU4', 'bool');
+	  const [cautionMessages, setCautionMessages] = react.useState([]);
+	  react.useEffect(() => {
+	    const messages = [{
+	      id: 1,
+	      message: 'ENTRY DOOR',
+	      condition: WACAP_Test || EnteranceDoor
+	    }, {
+	      id: 2,
+	      message: 'IRU INOP 1',
+	      condition: WACAP_Test || !IRU_1
+	    }, {
+	      id: 3,
+	      message: 'IRU INOP 2',
+	      condition: WACAP_Test || !IRU_2
+	    } // Add more caution messages here...
+	    ];
+	    setCautionMessages(messages);
+	  }, [WACAP_Test, EnteranceDoor, IRU_1, IRU_2]);
+	  const maxMessages = 14;
+	  const visibleMessages = cautionMessages.filter(message => message.condition);
+	  const displayedMessages = visibleMessages.slice(0, maxMessages);
+	  const remainingMessages = Math.max(0, visibleMessages.length - maxMessages);
+	  return /*#__PURE__*/jsxRuntime.jsxs("g", {
+	    children: [displayedMessages.map((message, index) => /*#__PURE__*/jsxRuntime.jsx("text", {
+	      x: 455,
+	      y: 609 + index * 13,
+	      fontSize: 15,
+	      fill: "#00EE00",
+	      className: "WAPanel",
+	      textAnchor: "middle",
+	      children: message.message
+	    }, message.id)), remainingMessages > 0 && /*#__PURE__*/jsxRuntime.jsxs("g", {
+	      className: "scroll-symbols",
+	      children: [/*#__PURE__*/jsxRuntime.jsx("text", {
+	        x: 650,
+	        y: 615 + maxMessages * 23,
+	        fontSize: 16,
+	        fill: "#00EE00",
+	        children: "\u2191"
+	      }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	        x: 650,
+	        y: 638 + maxMessages * 23,
+	        fontSize: 16,
+	        fill: "#00EE00",
+	        children: "\u2193"
+	      })]
+	    })]
+	  });
+	};
+
+	const WACAP_Right = props => {
+	  let [WACAP_Test] = useSimVar('L:C17_WACAP_Test', 'bool');
+	  let [IRU_3] = useSimVar('L:C17_IRU3', 'bool');
+	  let [IRU_4] = useSimVar('L:C17_IRU4', 'bool');
+	  const [cautionMessages, setCautionMessages] = react.useState([]);
+	  react.useEffect(() => {
+	    const messages = [{
+	      id: 1,
+	      message: 'IRU INOP 3',
+	      condition: WACAP_Test || !IRU_3
+	    }, {
+	      id: 2,
+	      message: 'IRU INOP 4',
+	      condition: WACAP_Test || !IRU_4
+	    } // Add more caution messages here...
+	    ];
+	    setCautionMessages(messages);
+	  }, [WACAP_Test, IRU_3, IRU_4]);
+	  const maxMessages = 14;
+	  const visibleMessages = cautionMessages.filter(message => message.condition);
+	  const displayedMessages = visibleMessages.slice(0, maxMessages);
+	  const remainingMessages = Math.max(0, visibleMessages.length - maxMessages);
+	  return /*#__PURE__*/jsxRuntime.jsxs("g", {
+	    children: [displayedMessages.map((message, index) => /*#__PURE__*/jsxRuntime.jsx("text", {
+	      x: 885,
+	      y: 609 + index * 13,
+	      fontSize: 15,
+	      fill: "#00EE00",
+	      className: "WAPanel",
+	      textAnchor: "middle",
+	      children: message.message
+	    }, message.id)), remainingMessages > 0 && /*#__PURE__*/jsxRuntime.jsxs("g", {
+	      className: "scroll-symbols",
+	      children: [/*#__PURE__*/jsxRuntime.jsx("text", {
+	        x: 650,
+	        y: 615 + maxMessages * 23,
+	        fontSize: 16,
+	        fill: "#00EE00",
+	        children: "\u2191"
+	      }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	        x: 650,
+	        y: 638 + maxMessages * 23,
+	        fontSize: 16,
+	        fill: "#00EE00",
+	        children: "\u2193"
+	      })]
+	    })]
+	  });
+	};
+
 	const Electricity = ({
 	  circuit,
 	  children
@@ -10260,7 +10363,7 @@
 	          xlinkHref: "/Images/stg.png",
 	          height: 220,
 	          opacity: 0.7
-	        }), /*#__PURE__*/jsxRuntime.jsx(Ap_Disp, {}), /*#__PURE__*/jsxRuntime.jsx(WACAP, {}), /*#__PURE__*/jsxRuntime.jsx(StbyEngDisp, {}), /*#__PURE__*/jsxRuntime.jsx(RadioDisp, {}), /*#__PURE__*/jsxRuntime.jsx("image", {
+	        }), /*#__PURE__*/jsxRuntime.jsx(Ap_Disp, {}), /*#__PURE__*/jsxRuntime.jsx(WACAP_Left, {}), /*#__PURE__*/jsxRuntime.jsx(WACAP_Right, {}), /*#__PURE__*/jsxRuntime.jsx(WACAP, {}), /*#__PURE__*/jsxRuntime.jsx(StbyEngDisp, {}), /*#__PURE__*/jsxRuntime.jsx(RadioDisp, {}), /*#__PURE__*/jsxRuntime.jsx("image", {
 	          visibility: HUD_OVERLAY ? 'visible' : 'hidden',
 	          x: 0,
 	          y: 0,
@@ -10300,6 +10403,12 @@
 }
 
 @font-face {
+  font-family: "WACAP";
+
+  src: url("/Fonts/erbos_draco_open_nbp.ttf") format("truetype");
+}
+
+@font-face {
   font-family: EngCntrl;
 
   src: url("/Fonts/BoeingFont.ttf");
@@ -10319,7 +10428,7 @@
 }
 
 .WAPanel {
-  font-family: "Digital";
+  font-family: "OCRB";
   letter-spacing: -1px;
 }
 
@@ -10359,7 +10468,7 @@
 
 .message {
   /* Define the font and size of the caution messages */
-  font-family: Arial, sans-serif;
+  font-family: "WACAP";
   font-size: 16px;
   /* Add any other desired styles */
 }

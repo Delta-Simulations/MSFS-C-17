@@ -9763,7 +9763,8 @@
 	  children
 	}) => {
 	  const [isOn] = useSimVar("L:".concat(localVar), 'bool');
-	  if (isOn) return null;else return /*#__PURE__*/jsxRuntime.jsx("div", {
+	  const [isMode] = useSimVar("L:C17_HUD_CNTRL", 'enum');
+	  if (isOn || isMode === 0) return null;else return /*#__PURE__*/jsxRuntime.jsx("div", {
 	    children: children
 	  });
 	};

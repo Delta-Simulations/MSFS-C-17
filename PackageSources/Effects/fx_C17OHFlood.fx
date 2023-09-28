@@ -52,8 +52,8 @@ Face=1, 1, 1
 [ParticleAttributes.0]
 Blend Mode=2
 Bounce=0.00
-Color Start=255, 251, 180, 10
-Color End=255, 251, 180, 10
+Color Start=255,169,79,10
+Color End=255,169,79,10
 Jitter Distance=0.00
 Jitter Time=0.00
 uv1=0.00, 0.00

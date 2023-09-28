@@ -157,6 +157,51 @@
 </Component>
 <Component ID="FRONT_PANEL" >
 
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>PushButton_Master_Caution</NODE_ID>
+    <TOOLTIPID>Master Caution Acknowledge</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+      0 (&gt;L:C17_ALERT_MASTER_CAUTION,bool)
+      0 (&gt;L:C17_ALERT_WACS_FAIL,bool)
+    </LEFT_SINGLE_CODE>
+  </UseTemplate>
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>PushButton_Master_Warning</NODE_ID>
+    <TOOLTIPID>Master Warning Acknowledge</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+      0 (&gt;L:C17_ALERT_MASTER_Warning,bool)
+    </LEFT_SINGLE_CODE>
+  </UseTemplate>
+
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_MASTER_CAUTION</NODE_ID>
+    <TRUECODE>
+      (L:C17_ALERT_MASTER_CAUTION,bool) 1 ==
+    </TRUECODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_MASTER_WARNING</NODE_ID>
+    <TRUECODE>0</TRUECODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_WARNING_GROUND_PROX</NODE_ID>
+    <TRUECODE>
+      (L:C17_TERRAIN_FLYUP,BOOL) 1 ==
+    </TRUECODE>
+    <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !</INTENSITY>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_WARNING_THRUST_LOSS</NODE_ID>
+    <TRUECODE></TRUECODE>
+    <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !</INTENSITY>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_WARNING_WACS_FAIL</NODE_ID>
+    <TRUECODE></TRUECODE>
+    <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !</INTENSITY>
+  </UseTemplate>
+
+
   <Component ID="Switch_Smoke_Sys" Node="Switch_Smoke_Sys">
     <UseTemplate Name = "ASOBO_GT_Switch_3States">
       <ANIM_NAME>Switch_Smoke_Sys</ANIM_NAME>
@@ -191,6 +236,13 @@
     (L:C17_FIRE_ANNUN_TEST, bool) ! (&gt;L:C17_FIRE_ANNUN_TEST, bool)
   </LEFT_SINGLE_CODE>
 </UseTemplate>
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>BUTTON_FIRE_TEST_B</NODE_ID>
+  <TOOLTIPID>TEST FIRE ALERTING SYS B</TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+    (L:C17_FIRE_ANNUN_TEST, bool) ! (&gt;L:C17_FIRE_ANNUN_TEST, bool)
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
 
 <UseTemplate Name="DELTASIM_PushButton_Template">
   <NODE_ID>PushButton_Fuel_Used</NODE_ID>
@@ -200,13 +252,107 @@
   </LEFT_SINGLE_CODE>
 </UseTemplate>
 
-<UseTemplate Name="DELTASIM_PushButton_Template">
-  <NODE_ID>BUTTON_FIRE_TEST_B</NODE_ID>
-  <TOOLTIPID>TEST FIRE ALERTING SYS B</TOOLTIPID>
-  <LEFT_SINGLE_CODE>
-    (L:C17_FIRE_ANNUN_TEST, bool) ! (&gt;L:C17_FIRE_ANNUN_TEST, bool)
-  </LEFT_SINGLE_CODE>
+<!-- HUD DISPLAY BRIGHTNESS -->
+<UseTemplate Name="DELTASIM_Finite_Knob_Template">
+  <NODE_ID>Knob_Hud_Master_Control</NODE_ID>
+  <ANIM_CODE>(L:C17_HUD_CNTRL) 33.3 *</ANIM_CODE>
+  <CLOCKWISE_CODE>
+    (L:C17_HUD_CNTRL) ++ 3 min (&gt;L:C17_HUD_CNTRL)
+  </CLOCKWISE_CODE>
+  <ANTICLOCKWISE_CODE>
+    (L:C17_HUD_CNTRL) -- 0 max (&gt;L:C17_HUD_CNTRL)
+  </ANTICLOCKWISE_CODE>
+  <CW_ANIMTIP>HUD MODE</CW_ANIMTIP>
+  <CCW_ANIMTIP>HUD MODE</CCW_ANIMTIP>
 </UseTemplate>
+<UseTemplate Name="DELTASIM_Finite_Knob_Template">
+  <NODE_ID>Knob_Hud_Brightness</NODE_ID>
+  <ANIM_CODE>(L:C17_HUD_BRIGHTNESS)</ANIM_CODE>
+  <CLOCKWISE_CODE>
+    (L:C17_HUD_BRIGHTNESS) 10 + 100 min (&gt;L:C17_HUD_BRIGHTNESS)
+  </CLOCKWISE_CODE>
+  <ANTICLOCKWISE_CODE>
+    (L:C17_HUD_BRIGHTNESS) 10 - 10 max (&gt;L:C17_HUD_BRIGHTNESS)
+  </ANTICLOCKWISE_CODE>
+  <CW_ANIMTIP>HUD BRT</CW_ANIMTIP>
+  <CCW_ANIMTIP>HUD BRT</CCW_ANIMTIP>
+</UseTemplate>
+
+
+
+<!-- PFD DISPLAY BRIGHTNESS -->
+<UseTemplate Name="DELTASIM_Finite_Knob_Template">
+  <NODE_ID>Knob_PFD_BRT_1</NODE_ID>
+  <ANIM_CODE>(L:C17_PFD1_BRT) 50 *</ANIM_CODE>
+  <CLOCKWISE_CODE>
+    (L:C17_PFD1_BRT) ++ 2 min (&gt;L:C17_PFD1_BRT)
+  </CLOCKWISE_CODE>
+  <ANTICLOCKWISE_CODE>
+    (L:C17_PFD1_BRT) -- 0 max (&gt;L:C17_PFD1_BRT)
+  </ANTICLOCKWISE_CODE>
+  <CW_ANIMTIP>DISP BRT</CW_ANIMTIP>
+  <CCW_ANIMTIP>DISP BRT</CCW_ANIMTIP>
+</UseTemplate>
+
+<UseTemplate Name="DELTASIM_Finite_Knob_Template">
+  <NODE_ID>Knob_PFD_BRT_2</NODE_ID>
+  <ANIM_CODE>(L:C17_PFD2_BRT) 50 *</ANIM_CODE>
+  <CLOCKWISE_CODE>
+    (L:C17_PFD2_BRT) ++ 2 min (&gt;L:C17_PFD2_BRT)
+  </CLOCKWISE_CODE>
+  <ANTICLOCKWISE_CODE>
+    (L:C17_PFD2_BRT) -- 0 max (&gt;L:C17_PFD2_BRT)
+  </ANTICLOCKWISE_CODE>
+  <CW_ANIMTIP>DISP BRT</CW_ANIMTIP>
+  <CCW_ANIMTIP>DISP BRT</CCW_ANIMTIP>
+</UseTemplate>
+<UseTemplate Name="DELTASIM_Finite_Knob_Template">
+  <NODE_ID>Knob_PFD_BRT_3</NODE_ID>
+  <ANIM_CODE>(L:C17_PFD3_BRT) 50 *</ANIM_CODE>
+  <CLOCKWISE_CODE>
+    (L:C17_PFD3_BRT) ++ 2 min (&gt;L:C17_PFD3_BRT)
+  </CLOCKWISE_CODE>
+  <ANTICLOCKWISE_CODE>
+    (L:C17_PFD3_BRT) -- 0 max (&gt;L:C17_PFD3_BRT)
+  </ANTICLOCKWISE_CODE>
+  <CW_ANIMTIP>DISP BRT</CW_ANIMTIP>
+  <CCW_ANIMTIP>DISP BRT</CCW_ANIMTIP>
+</UseTemplate>
+<UseTemplate Name="DELTASIM_Finite_Knob_Template">
+  <NODE_ID>Knob_PFD_BRT_4</NODE_ID>
+  <ANIM_CODE>(L:C17_PFD3_BRT) 50 *</ANIM_CODE>
+  <CLOCKWISE_CODE>
+    (L:C17_PFD4_BRT) ++ 2 min (&gt;L:C17_PFD4_BRT)
+  </CLOCKWISE_CODE>
+  <ANTICLOCKWISE_CODE>
+    (L:C17_PFD4_BRT) -- 0 max (&gt;L:C17_PFD4_BRT)
+  </ANTICLOCKWISE_CODE>
+  <CW_ANIMTIP>DISP BRT</CW_ANIMTIP>
+  <CCW_ANIMTIP>DISP BRT</CCW_ANIMTIP>
+</UseTemplate>
+<Component ID="PFD1" Node="PFD1">
+  <UseTemplate Name="ASOBO_GT_Material_Emissive_Code">
+<EMISSIVE_CODE>
+  (L:C17_PFD1_BRT,enum) (A:GLASSCOCKPIT AUTOMATIC BRIGHTNESS, number) * (L:C17_Cpit_Pacs,bool) *
+</EMISSIVE_CODE>
+</UseTemplate>
+</Component>
+<Component ID="PFD2" Node="PFD2">
+  <UseTemplate Name="ASOBO_GT_Material_Emissive_Code">
+<EMISSIVE_CODE>(L:C17_PFD2_BRT,enum) (A:GLASSCOCKPIT AUTOMATIC BRIGHTNESS, number) * (L:C17_Cpit_Pacs,bool) *</EMISSIVE_CODE>
+</UseTemplate>
+</Component>
+<Component ID="PFD3" Node="PFD3">
+  <UseTemplate Name="ASOBO_GT_Material_Emissive_Code">
+<EMISSIVE_CODE>(L:C17_PFD3_BRT,enum) (A:GLASSCOCKPIT AUTOMATIC BRIGHTNESS, number) * (L:C17_Cpit_Pacs,bool) *</EMISSIVE_CODE>
+</UseTemplate>
+</Component>
+<Component ID="PFD4" Node="PFD4">
+  <UseTemplate Name="ASOBO_GT_Material_Emissive_Code">
+<EMISSIVE_CODE>(L:C17_PFD4_BRT,enum) (A:GLASSCOCKPIT AUTOMATIC BRIGHTNESS, number) * (L:C17_Cpit_Pacs,bool) *</EMISSIVE_CODE>
+</UseTemplate>
+</Component>
+
 
 
   <UseTemplate Name="DELTASIM_PushButton_Template">
@@ -508,7 +654,7 @@
     <NODE_ID>BUTTON_WS_DEFOG</NODE_ID>
     <TOOLTIPID>W/S DEFOG</TOOLTIPID>
     <LEFT_SINGLE_CODE>
-      (L:C17_WS_DEFOG) ! (&gt;L:C17_WS_DEFOG)
+      (K:WINDSHIELD_DEICE_TOGGLE) ! (&gt;K:WINDSHIELD_DEICE_TOGGLE)
     </LEFT_SINGLE_CODE>
 </UseTemplate>
   <UseTemplate Name="DELTASIM_PushButton_Template">
@@ -964,6 +1110,25 @@
   <CW_ANIMTIP>ANTICOLL MODE</CW_ANIMTIP>
   <CCW_ANIMTIP>ANTICOLL MODE</CCW_ANIMTIP>
 </UseTemplate>
+
+
+      <UseTemplate name="ASOBO_GT_Anim_Code">
+        <PART_ID>LIGHT_LDG</PART_ID>
+        <ANIM_NAME>LDG_CFG</ANIM_NAME>
+        <ANIM_CODE>
+          (L:AIRCRAFT_LDG_POS)
+        </ANIM_CODE>
+        <ANIM_LENGTH>1</ANIM_LENGTH>
+      </UseTemplate>
+      <UseTemplate Name="ASOBO_GT_Interaction_LeftSingle_Code">
+        <TOOLTIPID>MASTER ARM</TOOLTIPID>
+        <IS_SWITCH>True</IS_SWITCH>
+        <LEFT_SINGLE_CODE>(L:MASTER_ARM) 0 == if{ 15 (&gt;L:MASTER_ARM) } els{ 0 (&gt;L:MASTER_ARM)
+          }
+        </LEFT_SINGLE_CODE>
+      </UseTemplate>
+
+
 <UseTemplate Name="DELTASIM_Finite_Knob_Template">
   <NODE_ID>Knob_Nav_light</NODE_ID>
   <ANIM_CODE>(A:LIGHT POTENTIOMETER:5, percent)</ANIM_CODE>
@@ -1065,7 +1230,29 @@
 
 <Component ID="KORRY_LIGHTS" >
 
-<!-- ANTI ICE PANEL -->
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_LOW_FUEL</NODE_ID>
+    <TRUECODE>
+      (A:FUEL TOTAL QUANTITY WEIGHT, pounds) 16000 &lt;
+    </TRUECODE>
+  </UseTemplate>
+
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_SLAT_EXTEND</NODE_ID>
+    <TRUECODE>
+      (A:LEADING EDGE FLAPS LEFT PERCENT, percent) 0 &gt;
+    </TRUECODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_SLAT_DISAG</NODE_ID>
+    <TRUECODE>
+      (A:LEADING EDGE FLAPS LEFT PERCENT, percent) 0 &gt;
+      (A:LEADING EDGE FLAPS LEFT PERCENT, percent) 8 &lt; and
+    </TRUECODE>
+  </UseTemplate>
+
+
+      <!-- ANTI ICE PANEL -->
 
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>KORRY_ENG1_ANTI_ICE_DISAG</NODE_ID>
@@ -1113,7 +1300,9 @@
   </UseTemplate>
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>KORRY_WS_DEFOG_OFF</NODE_ID>
-    <TRUECODE>(L:C17_WS_DEFOG,bool) ! </TRUECODE>
+    <TRUECODE>
+      (A:WINDSHIELD DEICE SWITCH,bool) !
+    </TRUECODE>
   </UseTemplate>
 
   <UseTemplate Name="Korry_Emmis_DELTASIM">
@@ -1121,7 +1310,7 @@
     <TRUECODE>(L:C17_UARRSI_Slipway, bool) 1 ==</TRUECODE>
     <INTENSITY>(L:C17_AR_Korry_Intensity, percent) 0.1 +</INTENSITY>
   </UseTemplate>
-  <!-- INOP FOR NOW -->
+      <!-- INOP FOR NOW -->
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>Korry_UARRSI_L_DISAG</NODE_ID>
     <TRUECODE>0</TRUECODE>
@@ -1170,7 +1359,101 @@
     <NODE_ID>KORRY_ELEC_INOP</NODE_ID>
     <TRUECODE>0</TRUECODE>
   </UseTemplate>
-<!-- ENG BOOST PUMPS -->
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_ELEC_BATT_BUS_OFF</NODE_ID>
+    <TRUECODE>
+      (A:ELECTRICAL MASTER BATTERY, BOOL) 0 ==
+    </TRUECODE>
+  </UseTemplate>
+
+
+      <!-- HYDRAULIC PANEL -->
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_HYD_DEFAULT</NODE_ID>
+    <TRUECODE>1</TRUECODE>
+  </UseTemplate>
+
+      <!-- BLEED AIR PANEL -->
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_ENVIR_ENG1_DISAG</NODE_ID>
+    <TRUECODE>0</TRUECODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_ENVIR_ENG2_DISAG</NODE_ID>
+    <TRUECODE>0</TRUECODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_ENVIR_ENG3_DISAG</NODE_ID>
+    <TRUECODE>0</TRUECODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_ENVIR_ENG4_DISAG</NODE_ID>
+    <TRUECODE>0</TRUECODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_ENVIR_APU_DISAG</NODE_ID>
+    <TRUECODE>0</TRUECODE>
+  </UseTemplate>
+
+      <!-- FIRE LOOP PANEL -->
+<UseTemplate Name="Korry_Emmis_DELTASIM">
+  <NODE_ID>KORRY_APU_FIRE</NODE_ID>
+  <TRUECODE>
+    (L:C17_FIRE_ANNUN_TEST, bool) 1 ==
+    (L:C17_FIRE_APU, bool) 1 == or
+  </TRUECODE>
+</UseTemplate>
+
+<UseTemplate Name="Korry_Emmis_DELTASIM">
+  <NODE_ID>KORRY_FIRE_LOOP_ENG1</NODE_ID>
+  <TRUECODE>
+    (L:C17_FIRE_ANNUN_TEST, bool) 1 ==
+    (L:C17_FIRE_ENG1, bool) 1 == or
+  </TRUECODE>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_DELTASIM">
+  <NODE_ID>KORRY_FIRE_LOOP_ENG2</NODE_ID>
+  <TRUECODE>
+    (L:C17_FIRE_ANNUN_TEST, bool) 1 ==
+    (L:C17_FIRE_ENG2, bool) 1 == or
+  </TRUECODE>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_DELTASIM">
+  <NODE_ID>KORRY_FIRE_LOOP_ENG3</NODE_ID>
+  <TRUECODE>
+    (L:C17_FIRE_ANNUN_TEST, bool) 1 ==
+    (L:C17_FIRE_ENG2, bool) 1 == or
+  </TRUECODE>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_DELTASIM">
+  <NODE_ID>KORRY_FIRE_LOOP_ENG4</NODE_ID>
+  <TRUECODE>
+    (L:C17_FIRE_ANNUN_TEST, bool) 1 ==
+    (L:C17_FIRE_ENG2, bool) 1 == or
+  </TRUECODE>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_DELTASIM">
+  <NODE_ID>KORRY_FIRE_LOOP_APU</NODE_ID>
+  <TRUECODE>
+    (L:C17_FIRE_ANNUN_TEST, bool) 1 ==
+    (L:C17_FIRE_APU, bool) 1 == or
+  </TRUECODE>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_DELTASIM">
+  <NODE_ID>KORRY_SMOKE_SYS</NODE_ID>
+  <TRUECODE>
+    (L:C17_SMOKE_SYS, bool) 2 ==
+  </TRUECODE>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_DELTASIM">
+  <NODE_ID>KORRY_BAILOUT_SYS_OFF</NODE_ID>
+  <TRUECODE>
+    (L:C17_Emerg_LT, bool)  ==
+  </TRUECODE>
+</UseTemplate>
+
+
+      <!-- ENG BOOST PUMPS -->
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>KORRY_ENG1_FWD_LOW</NODE_ID>
     <TRUECODE>0</TRUECODE>
@@ -1204,14 +1487,13 @@
     <TRUECODE>0</TRUECODE>
   </UseTemplate>
 
-<!-- FRONT PANEL KORRY -->
+      <!-- FRONT PANEL KORRY -->
 
 <UseTemplate Name="Korry_Emmis_DELTASIM">
   <NODE_ID>Korry_FireAlertEng1</NODE_ID>
   <TRUECODE>
     (A:ENG ON FIRE:1,BOOL) 1 ==
   </TRUECODE>
-  <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !</INTENSITY>
   <TESTCODE>(L:C17_FIRE_ANNUN_TEST, bool) 1 == or</TESTCODE>
 </UseTemplate>
 <UseTemplate Name="Korry_Emmis_DELTASIM">
@@ -1219,7 +1501,6 @@
   <TRUECODE>
     (A:ENG ON FIRE:2,BOOL) 1 ==
   </TRUECODE>
-  <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !</INTENSITY>
   <TESTCODE>(L:C17_FIRE_ANNUN_TEST, bool) 1 == or</TESTCODE>
 </UseTemplate>
 <UseTemplate Name="Korry_Emmis_DELTASIM">
@@ -1227,7 +1508,6 @@
   <TRUECODE>
     (A:ENG ON FIRE:3,BOOL) 1 ==
   </TRUECODE>
-  <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !</INTENSITY>
   <TESTCODE>(L:C17_FIRE_ANNUN_TEST, bool) 1 == or</TESTCODE>
 </UseTemplate>
 <UseTemplate Name="Korry_Emmis_DELTASIM">
@@ -1235,33 +1515,8 @@
   <TRUECODE>
     (A:ENG ON FIRE:4,BOOL) 1 ==
   </TRUECODE>
-  <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !</INTENSITY>
   <TESTCODE>(L:C17_FIRE_ANNUN_TEST, bool) 1 == or</TESTCODE>
 </UseTemplate>
-
-
-  <UseTemplate Name="Korry_Emmis_DELTASIM">
-    <NODE_ID>KORRY_WARNING_INOP</NODE_ID>
-    <TRUECODE>0</TRUECODE>
-  </UseTemplate>
-  <UseTemplate Name="Korry_Emmis_DELTASIM">
-    <NODE_ID>KORRY_WARNING_GROUND_PROX</NODE_ID>
-    <TRUECODE>
-      (L:C17_TERRAIN_FLYUP,BOOL) 1 ==
-    </TRUECODE>
-    <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !</INTENSITY>
-  </UseTemplate>
-  <UseTemplate Name="Korry_Emmis_DELTASIM">
-    <NODE_ID>KORRY_WARNING_THRUST_LOSS</NODE_ID>
-    <TRUECODE></TRUECODE>
-    <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !</INTENSITY>
-  </UseTemplate>
-  <UseTemplate Name="Korry_Emmis_DELTASIM">
-    <NODE_ID>KORRY_WARNING_WACS_FAIL</NODE_ID>
-    <TRUECODE></TRUECODE>
-    <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !</INTENSITY>
-  </UseTemplate>
-
 
 
   <UseTemplate Name="Korry_Emmis_DELTASIM">
@@ -1416,12 +1671,19 @@
   <Component ID="EFB_BRIGHTNESS" Node="EFB_DISPLAY">
     <UseTemplate Name="ASOBO_GT_Material_Emissive_Code">
       <NODE_ID>EFB_DISPLAY</NODE_ID>
-      <EMISSIVE_CODE>(L:C17_EFB_Brightness,enum) 0.1 * 0.05 +</EMISSIVE_CODE>
+      <EMISSIVE_CODE>
+        (L:C17_EFB_Brightness, enum) 0.1 *
+        (A:GLASSCOCKPIT AUTOMATIC BRIGHTNESS, number) * 0.05 +
+      </EMISSIVE_CODE>
     </UseTemplate>
   </Component>
+
+
+
+
 </Component>
 
-<!-- FUEL SYSTEM -->
+    <!-- FUEL SYSTEM -->
 <Component ID="FuelSystem" >
   <UseTemplate Name="DELTASIM_Dummy_Switch_Template">
     <NODE_ID>LocketEasterEgg</NODE_ID>
@@ -1460,7 +1722,7 @@
     <TOOLTIPID>%((L:C17_UARRSI_Slipway, bool))%{if}A/R SLIPWAY OPEN%{else}A/R SLIPWAY CLOSED%{end}</TOOLTIPID>
     <INTERACT_CODE>
       (L:C17_UARRSI_Slipway, bool) ! (&gt;L:C17_UARRSI_Slipway, bool)
-      <!-- (O:GenButton, bool) ! (&gt;O:GenButton, bool) -->
+          <!-- (O:GenButton, bool) ! (&gt;O:GenButton, bool) -->
     </INTERACT_CODE>
   </UseTemplate>
   <UseTemplate Name="GENERIC_Toggle_Switch_Template">
@@ -1480,6 +1742,15 @@
       (L:C17_WACAP_Test, bool) ! (&gt;L:C17_WACAP_Test, bool)
     </INTERACT_CODE>
   </UseTemplate>
+
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>BUTTON_WAP_BRT_DIM</NODE_ID>
+    <TOOLTIPID>WAP BRT/DIM</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+      (L:C17_WACAP_BRT) ! (&gt;L:C17_WACAP_BRT)
+    </LEFT_SINGLE_CODE>
+</UseTemplate>
+
 
   <UseTemplate Name="GENERIC_Toggle_Switch_Template">
     <ANIM>(A:AUTOPILOT THROTTLE ARM, bool) 100 *</ANIM>
@@ -1752,6 +2023,25 @@
     <TOOLTIPID>MASTER BATTERY</TOOLTIPID>
     <EVENT_SIMVAR>TOGGLE_MASTER_BATTERY</EVENT_SIMVAR>
   </UseTemplate>
+
+  <Component ID="Switch_Emer_Batt" Node="Switch_Emer_Batt">
+    <UseTemplate Name = "ASOBO_GT_Switch_3States">
+      <ANIM_NAME>Switch_Emer_Batt</ANIM_NAME>
+      <NODE_ID>Switch_Emer_Batt</NODE_ID>
+      <DEFAULT_POS>0</DEFAULT_POS>
+      <SWITCH_POSITION_TYPE>L</SWITCH_POSITION_TYPE>
+      <SWITCH_POSITION_VAR>C17_Emer_Batt</SWITCH_POSITION_VAR>
+      <SWITCH_DIRECTION>Vertical</SWITCH_DIRECTION>
+      <INVERT_ANIM>False</INVERT_ANIM>
+      <ANIMTIP_0>OFF</ANIMTIP_0>
+      <ANIMTIP_1>ARM</ANIMTIP_1>
+      <ANIMTIP_2>ON</ANIMTIP_2>
+      <CODE_POS_0></CODE_POS_0>
+      <CODE_POS_1></CODE_POS_1>
+      <CODE_POS_2></CODE_POS_2>
+    </UseTemplate>
+    </Component>
+
 
 </Component>
 <Component ID="Hydraulics_Panel">
@@ -2314,7 +2604,13 @@
 </Parameter> </Emissive> </Materials>
 </PartInfo>
 
-
+<Animation name="WAP_Disp" guid="c85e2c79-e349-4c55-9c07-bde9aa5b7e45" length="1" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+<Name>WAP_Disp</Name>
+<Materials> <Emissive> <Parameter>
+<Code>(L:C17_WACAP_BRT, bool) (A:CIRCUIT ON:65,bool) 3 * * 0.5 +</Code> 
+</Parameter> </Emissive> </Materials>
+</PartInfo>
   
 
 <!--========================AUTOPILOT=============================-->
@@ -2716,27 +3012,6 @@
 </PartInfo>
 
  
-    <Animation name="HANDREST" guid="e0277907-e375-4347-b198-90d49ef02c62" length="50" type="Sim" typeParam2="HANDREST" typeParam="AutoPlay" />
-    <PartInfo>
-        <Name>HANDREST</Name>
-        <AnimLength>50</AnimLength>
-        <Animation>
-            <Parameter>
-				 <Code>
-                 	(L:HANDREST1,bool) 1 == if{ 50 } els{ 0 }
-                 </Code>
-                 <Lag>60</Lag>
-            </Parameter>
-        </Animation>
-        <MouseRect>
-            <Cursor>Hand</Cursor>
-            <TooltipText></TooltipText>
-             <CallbackCode>
-                	(L:HANDREST1,bool) ! 	(&gt;L:HANDREST1,bool)
-             </CallbackCode>
-        </MouseRect>
-    </PartInfo>   
-
 <!-- A/R DOOR-->
 <Animation name="FEK.Test" guid="4557329e-bae1-420d-b4fe-cac8dfa67964" length="1" type="Sim" typeParam2="FEK.Test" typeParam="AutoPlay" />
     <PartInfo>
@@ -2971,7 +3246,6 @@
 <!-- ===========================================  HUD  CONTROLS ===============================================-->
 <Animation name="HUD" guid="26123f91-78ad-462b-82e1-2c3a63e33f68" type="Sim" typeParam="AutoPlay" />
 <Animation name="HUD_HIDE" guid="00d21182-febf-49a4-8205-01a259da901b" type="Sim"  typeParam="AutoPlay" />
-<Animation name="HUD1" guid="d10933c2-8271-4a7e-beac-920543d12c9f" type="Sim" typeParam="AutoPlay" />
     <PartInfo>
         <Name>HUD</Name>
         <AnimLength>20</AnimLength>
@@ -2992,38 +3266,6 @@
         </MouseRect>
     </PartInfo>
 
-    <PartInfo>
-      <Name>HUD1</Name>
-      <AnimLength>100</AnimLength>
-      <Animation>
-        <Parameter>
-          <Code>(L:C17_HUDMODE,enum) 33 * </Code>
-          <Lag>100</Lag>
-        </Parameter>
-      </Animation>
-      <MouseRect>
-        <Cursor>Hand</Cursor>
-        <TooltipText>HUD PWR SETTING (WHEEL)</TooltipText>
-        <MouseFlags>LeftSingle+RightSingle+LeftSingle+LeftDrag+Wheel</MouseFlags>
-        <CallbackCode>
-          (M:Event) 'WheelUp' scmp 0 ==
-          if{ (L:C17_HUDMODE, enum) ++ 3 min (&gt;L:C17_HUDMODE, enum) }
-          (M:Event) 'WheelDown' scmp 0 ==
-          if{ (L:C17_HUDMODE, enum) -- 0 max (&gt;L:C17_HUDMODE, enum) }
-          (M:Event) 'LeftSingle' scmp 0 ==  
-            if{ (L:C17_HUDMODE, enum) ++ 3 min (&gt;L:C17_HUDMODE, enum) }
-          (M:Event) 'RightSingle' scmp 0 ==  
-            if{ (L:C17_HUDMODE, enum) -- 0 max (&gt;L:C17_HUDMODE, enum) }
-
-         (L:C17_HUDMODE, enum) 0 == if{ 0 (&gt;L:HUD on,bool) }
-         (L:C17_HUDMODE, enum) 1 == if{ 3 (&gt;L:HUD dim, enum) 1 (&gt;L:HUD on,bool) }
-         (L:C17_HUDMODE, enum) 2 == (P:TIME OF DAY,enum) 1 == &amp;&amp; if{ 0 (&gt;L:HUD dim, enum) }
-          (L:C17_HUDMODE, enum) 2 == (P:TIME OF DAY,enum) 2 == &amp;&amp; if{ 1 (&gt;L:HUD dim, enum) }
-          (L:C17_HUDMODE, enum) 2 == (P:TIME OF DAY,enum) 3 == &amp;&amp; if{ 3 (&gt;L:HUD dim, enum) }
-         (L:C17_HUDMODE, enum) 3 == if{ 0 (&gt;L:HUD dim, enum) }
-        </CallbackCode>
-      </MouseRect>
-  </PartInfo>
 
 <PartInfo>
   <Name>HUD_HIDE</Name>
@@ -3037,53 +3279,19 @@
       </Parameter>
   </Animation>
 </PartInfo>
-<Animation name="HUD_RaBa" guid="5b206b30-6b86-43a8-b236-7c7224668fd2" type="Sim"  typeParam="AutoPlay" />
-<PartInfo>
-  <Name>HUD_RaBa</Name>
-  <AnimLength>100</AnimLength>
-  <Animation>
-    <Parameter>
-      <Code>
-        (L:C17_HUD_RaBa,bool) 100 *
-      </Code>
-    <Lag>40</Lag>
-    </Parameter>
-  </Animation>
-  <MouseRect>
-      <Cursor>Hand</Cursor>
-      <TooltipText>%((L:C17_HUD_RaBa, bool))%{if}(HUD) USE RADIO ALT%{else}(HUD) USE BARO ALT%{end}</TooltipText>
-       <CallbackCode>
-            (L:C17_HUD_RaBa,bool) ! 	(&gt;L:C17_HUD_RaBa,bool)
-       </CallbackCode>
-  </MouseRect>
-</PartInfo>
-<Animation name="HUD_Cage" guid="f780094f-6754-471d-ad5c-b714a461148c" type="Sim"  typeParam="AutoPlay" />
-<PartInfo>
-  <Name>HUD_Cage</Name>
-  <AnimLength>100</AnimLength>
-  <Animation>
-    <Parameter>
-      <Code>
-        (L:C17_HUD_Cage,bool) 100 *
-      </Code>
-    <Lag>40</Lag>
-    </Parameter>
-  </Animation>
-  <MouseRect>
-      <Cursor>Hand</Cursor>
-      <TooltipText>%((L:C17_HUD_Cage, bool))%{if}(HUD) CAGE FPV%{else}(HUD) UNCAGE FPV%{end}</TooltipText>
-       <CallbackCode>
-            (L:C17_HUD_Cage,bool) ! 	(&gt;L:C17_HUD_Cage,bool)
-       </CallbackCode>
-  </MouseRect>
-</PartInfo>
+
 
 <Animation name="HUDEMIS" guid="d134cbff-c2db-4f4d-aa02-56234fda0f08" typeParam2="HUDEMIS" length="1" type="Sim" typeParam="AutoPlay" />
     <PartInfo>
     <Name>HUDEMIS</Name>
     <AnimLength>1</AnimLength>
     <Materials> <Emissive> <Parameter>
-    <Code>(L:C17_HUD_BRIGHTNESS, percent) 0.5 *</Code> 
+    <Code>
+      (A:GLASSCOCKPIT AUTOMATIC BRIGHTNESS, number)
+      (L:C17_HUD_CNTRL) 0.5 * *
+      (L:C17_Cpit_Pacs,bool) *
+      (L:C17_HUD_BRIGHTNESS) *
+    </Code> 
     </Parameter> </Emissive> </Materials>
     <Visibility>
       <Parameter>
@@ -3095,365 +3303,9 @@
       </Parameter>
       </Visibility>
     </PartInfo>
-<Animation name="HUDBRIGHT" guid="ba458146-b900-4f42-a321-142f09193b96" type="Sim" typeParam="AutoPlay" />
-  <PartInfo>
-    <Name>HUDBRIGHT</Name>
-    <AnimLength>100</AnimLength>
-    <Animation>
-      <Parameter>
-        <Code>(L:C17_HUD_BRIGHTNESS, percent)</Code>
-      </Parameter>
-    </Animation>
-    <MouseRect>
-      <Cursor>Hand</Cursor>
-      <TooltipText>HUD BRIGHTNESS (WHEEL)</TooltipText>
-      <MouseFlags>LeftSingle+LeftDrag+Wheel</MouseFlags>
-      <CallbackCode>
-        (M:Event) 'WheelUp' scmp 0 ==
-         if{ (L:C17_HUD_BRIGHTNESS, percent) 10 + 100 min (&gt;L:C17_HUD_BRIGHTNESS) }
-         (M:Event) 'WheelDown' scmp 0 ==
-         if{ (L:C17_HUD_BRIGHTNESS, percent) 10 - 0 max (&gt;L:C17_HUD_BRIGHTNESS) }
-      </CallbackCode>
-    </MouseRect>
-  </PartInfo>
-<!-- LANDING GEAR TEST
-
-
-        <CallbackCode>
-            (M:Event) 'WheelDown' scmp 0 ==
-            if{ (L:HUDEMIS, enum) --><!--  0 max (>L:HUDEMIS, enum) }
-            (M:Event) 'WheelUp' scmp 0 ==
-            if{ (L:HUDEMIS, enum) ++  10 min (>L:HUDEMIS, enum) }
-        </CallbackCode>
--->
-
-
-<Animation name="DCLT" guid="3758332b-a3b0-4758-b0c4-2105d17c41f4" length="50" type="Sim" typeParam2="DCLT" typeParam="AutoPlay" />
-  <PartInfo>
-    <Name>DCLT</Name>
-    <AnimLength>50</AnimLength>
-    <Animation>
-      <Parameter>
-        <Code>(L:AFCSCP dclt, bool) 50 * </Code>
-        <Lag>50</Lag>
-      </Parameter>
-    </Animation>
-    <MouseRect>
-      <Cursor>Hand</Cursor>
-      <TooltipText>HUD declutter</TooltipText>
-      <MouseFlags>LeftRelease+LeftSingle</MouseFlags>
-      <CallbackCode>
-				(M:Event) 'LeftSingle' scmp 0 == if{ 1 (&gt;L:AFCSCP dclt,bool) 
-					(L:C17_DCLT,enum) 2 == 	if{ 0 (&gt;L:C17_DCLT,enum) } 
-					els{ (L:C17_DCLT,enum) 1 + (&gt;L:C17_DCLT,enum) } }
-				(M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:AFCSCP dclt,bool) }
-			</CallbackCode>
-    </MouseRect>
-  </PartInfo>
 
 
 
-  <Animation name="custom_anim_MFD1_BRT" guid="49ca3117-321c-4f9b-98b9-eb1b72088a3c" length="20" type="Sim" typeParam2="custom_anim_MFD1_BRT" typeParam="AutoPlay" />
-  <PartInfo>
-    <Name>custom_anim_MFD1_BRT</Name>
-    <AnimLength>20</AnimLength>
-    <Animation>
-      <Parameter>
-        <Code>(L:MFD1_BRT,enum) 10 * </Code>
-        <Lag>100</Lag>
-      </Parameter>
-    </Animation>
-    <MouseRect>
-      <Cursor>Hand</Cursor>
-      <TooltipText>Use left or right click</TooltipText>
-      <MouseFlags>LeftSingle+RightSingle+Wheel</MouseFlags>
-      <CallbackCode>
-
-        (M:Event) 'WheelUp' scmp 0 == if{ (L:MFD1_BRT,enum) ++ 2 min (&gt;L:MFD1_BRT,enum) }
-        (M:Event) 'WheelDown' scmp 0 ==  if{ (L:MFD1_BRT,enum) -- 0 max (&gt;L:MFD1_BRT,enum) }
-        (L:MFD1_BRT,enum) 1 == if{ 3 (&gt;L:MFDX dim,enum) } els{ 0 (&gt;L:MFDX dim,enum) }
-        (L:MFD1_BRT,enum) 2 == if{ 1 (&gt;L:MFDX1 on,bool) } els{ 0 (&gt;L:MFDX1 on,bool) }
-    </CallbackCode>
-    </MouseRect>
-  </PartInfo>
-
-
-    <Animation name="custom_anim_MFD2_BRT" guid="f6ff9df1-7423-405e-ae9e-3f156e9eb97e" length="20" type="Sim" typeParam2="custom_anim_MFD2_BRT" typeParam="AutoPlay" />
-    <PartInfo>
-      <Name>custom_anim_MFD2_BRT</Name>
-      <AnimLength>20</AnimLength>
-      <Animation>
-        <Parameter>
-          <Code>(L:MFD2_BRT,enum) 10 * </Code>
-          <Lag>100</Lag>
-        </Parameter>
-      </Animation>
-      <MouseRect>
-        <Cursor>Hand</Cursor>
-        <TooltipText>Use left or right click</TooltipText>
-        <MouseFlags>LeftSingle+RightSingle+Wheel</MouseFlags>
-        <CallbackCode>
-          (M:Event) 'WheelUp' scmp 0 == if{ (L:MFD2_BRT,enum) ++ 2 min (&gt;L:MFD2_BRT,enum) }
-          (M:Event) 'WheelDown' scmp 0 ==  if{ (L:MFD2_BRT,enum) -- 0 max (&gt;L:MFD2_BRT,enum) }
-          (L:MFD2_BRT,enum) 1 == if{ 3 (&gt;L:MFDX dim,enum) } els{ 0 (&gt;L:MFDX dim,enum) }
-          (L:MFD2_BRT,enum) 2 == if{ 1 (&gt;L:MFDX2 on,bool) } els{ 0 (&gt;L:MFDX2 on,bool) }
-      </CallbackCode>
-      </MouseRect>
-    </PartInfo>
-
-    <Animation name="custom_anim_MFD3_BRT" guid="308c47e4-c297-41d3-9b87-9672b6c02869" length="20" type="Sim" typeParam2="custom_anim_MFD3_BRT" typeParam="AutoPlay" />
-    <PartInfo>
-      <Name>custom_anim_MFD3_BRT</Name>
-      <AnimLength>20</AnimLength>
-      <Animation>
-        <Parameter>
-          <Code>(L:MFD3_BRT,enum) 10 * </Code>
-          <Lag>100</Lag>
-        </Parameter>
-      </Animation>
-      <MouseRect>
-        <Cursor>Hand</Cursor>
-        <TooltipText>Use left or right click</TooltipText>
-        <MouseFlags>LeftSingle+RightSingle+Wheel</MouseFlags>
-        <CallbackCode>
-          (M:Event) 'WheelUp' scmp 0 == if{ (L:MFD3_BRT,enum) ++ 2 min (&gt;L:MFD3_BRT,enum) }
-          (M:Event) 'WheelDown' scmp 0 ==  if{ (L:MFD3_BRT,enum) -- 0 max (&gt;L:MFD3_BRT,enum) }
-          (L:MFD3_BRT,enum) 1 == if{ 3 (&gt;L:MFDX dim,enum) } els{ 0 (&gt;L:MFDX dim,enum) }
-          (L:MFD3_BRT,enum) 2 == if{ 1 (&gt;L:MFDX3 on,bool) } els{ 0 (&gt;L:MFDX3 on,bool) }
-      </CallbackCode>
-      </MouseRect>
-    </PartInfo>
-    <Animation name="custom_anim_MFD4_BRT" guid="719a9013-feda-417b-aa44-a0f7853690d9" length="20" type="Sim" typeParam2="custom_anim_MFD4_BRT" typeParam="AutoPlay" />
-    <PartInfo>
-      <Name>custom_anim_MFD4_BRT</Name>
-      <AnimLength>20</AnimLength>
-      <Animation>
-        <Parameter>
-          <Code>(L:MFD4_BRT,enum) 10 * </Code>
-          <Lag>100</Lag>
-        </Parameter>
-      </Animation>
-    </PartInfo>
-    <MouseRect>
-      <Cursor>Hand</Cursor>
-      <TooltipText>Use left or right click</TooltipText>
-      <MouseFlags>LeftSingle+RightSingle+Wheel</MouseFlags>
-      <CallbackCode>
-				(M:Event) 'WheelUp' scmp 0 == if{ (L:MFD4_BRT,enum) ++ 2 min (&gt;L:MFD4_BRT,enum) }
-				(M:Event) 'WheelDown' scmp 0 ==  if{ (L:MFD4_BRT,enum) -- 0 max (&gt;L:MFD4_BRT,enum) }
-				(L:MFD4_BRT,enum) 1 == if{ 3 (&gt;L:MFDX dim,enum) } els{ 0 (&gt;L:MFDX dim,enum) }
-				(L:MFD4_BRT,enum) 2 == if{ 1 (&gt;L:MFDX4 on,bool) } els{ 0 (&gt;L:MFDX4 on,bool) }
-		</CallbackCode>
-    </MouseRect>
-
-  <Animation name="custom_anim_BRTns1" guid="1a3bce6f-2713-4f0c-8d83-6099ccf76653" length="10" type="Sim" typeParam2="custom_anim_BRTns1" typeParam="AutoPlay" />
-  <PartInfo>
-    <Name>custom_anim_BRTns1</Name>
-    <AnimLength>10</AnimLength>
-    <Animation>
-      <Parameter>
-        <Code>5 (L:BRTns1,enum) 5 * + </Code>
-        <Lag>100</Lag>
-      </Parameter>
-    </Animation>
-    <MouseRect>
-      <Cursor>Hand</Cursor>
-      <TooltipText>Not supported</TooltipText>
-      <MouseFlags>LeftRelease+RightRelease+LeftSingle+RightSingle</MouseFlags>
-      <CallbackCode>
-        
-				(M:Event) 'LeftSingle' scmp 0 == if{ -1 (&gt;L:BRTns1,enum) }
-				(M:Event) 'RightSingle' scmp 0 == if{ 1 (&gt;L:BRTns1,enum) }
-				(M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:BRTns1,enum) }
-				(M:Event) 'RightRelease' scmp 0 == if{ 0 (&gt;L:BRTns1,enum) }
-			</CallbackCode>
-    </MouseRect>
-  </PartInfo>
-  <Animation name="custom_anim_BRTns2" guid="20fe5e57-9697-4c7d-88c8-93be197aaa3e" length="10" type="Sim" typeParam2="custom_anim_BRTns2" typeParam="AutoPlay" />
-  <PartInfo>
-    <Name>custom_anim_BRTns2</Name>
-    <AnimLength>10</AnimLength>
-    <Animation>
-      <Parameter>
-        <Code>5 (L:BRTns2,enum) 5 * + </Code>
-        <Lag>100</Lag>
-      </Parameter>
-    </Animation>
-    <MouseRect>
-      <Cursor>Hand</Cursor>
-      <TooltipText>Not supported</TooltipText>
-      <MouseFlags>LeftRelease+RightRelease+LeftSingle+RightSingle</MouseFlags>
-      <CallbackCode>
-				(M:Event) 'LeftSingle' scmp 0 == if{ -1 (&gt;L:BRTns2,enum) }
-				(M:Event) 'RightSingle' scmp 0 == if{ 1 (&gt;L:BRTns2,enum) }
-				(M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:BRTns2,enum) }
-				(M:Event) 'RightRelease' scmp 0 == if{ 0 (&gt;L:BRTns2,enum) }
-			</CallbackCode>
-    </MouseRect>
-  </PartInfo>
-  <Animation name="custom_anim_BRTns3" guid="bd57dd54-112e-458c-90df-be1db4af099f" length="10" type="Sim" typeParam2="custom_anim_BRTns3" typeParam="AutoPlay" />
-  <PartInfo>
-    <Name>custom_anim_BRTns3</Name>
-    <AnimLength>10</AnimLength>
-    <Animation>
-      <Parameter>
-        <Code>5 (L:BRTns3,enum) 5 * + </Code>
-        <Lag>100</Lag>
-      </Parameter>
-    </Animation>
-    <MouseRect>
-      <Cursor>Hand</Cursor>
-      <TooltipText>Not supported</TooltipText>
-      <MouseFlags>LeftRelease+RightRelease+LeftSingle+RightSingle</MouseFlags>
-      <CallbackCode>
-				(M:Event) 'LeftSingle' scmp 0 == if{ -1 (&gt;L:BRTns3,enum) }
-				(M:Event) 'RightSingle' scmp 0 == if{ 1 (&gt;L:BRTns3,enum) }
-				(M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:BRTns3,enum) }
-				(M:Event) 'RightRelease' scmp 0 == if{ 0 (&gt;L:BRTns3,enum) }
-			</CallbackCode>
-    </MouseRect>
-  </PartInfo>
-  <Animation name="custom_anim_BRTns4" guid="28bd534c-616a-46de-b46a-d3dcc6ae4e3c" length="10" type="Sim" typeParam2="custom_anim_BRTns4" typeParam="AutoPlay" />
-  <PartInfo>
-    <Name>custom_anim_BRTns4_110</Name>
-    <AnimLength>10</AnimLength>
-    <Animation>
-      <Parameter>
-        <Code>5 (L:BRTns4,enum) 5 * + </Code>
-        <Lag>100</Lag>
-      </Parameter>
-    </Animation>
-    <MouseRect>
-      <Cursor>Hand</Cursor>
-      <TooltipText>Not supported</TooltipText>
-      <MouseFlags>LeftRelease+RightRelease+LeftSingle+RightSingle</MouseFlags>
-      <CallbackCode>
-				(M:Event) 'LeftSingle' scmp 0 == if{ -1 (&gt;L:BRTns4,enum) }
-				(M:Event) 'RightSingle' scmp 0 == if{ 1 (&gt;L:BRTns4,enum) }
-				(M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:BRTns4,enum) }
-				(M:Event) 'RightRelease' scmp 0 == if{ 0 (&gt;L:BRTns4,enum) }
-			</CallbackCode>
-    </MouseRect>
-  </PartInfo>
-
-
-<Animation name="custom_anim_BRT1" guid="9f2babb7-53e9-49d5-947a-1c8d065690fe" length="10" type="Sim" typeParam2="custom_anim_BRT1" typeParam="AutoPlay" />
-<PartInfo>
-  <Name>custom_anim_BRT1</Name>
-  <AnimLength>10</AnimLength>
-  <Animation>
-    <Parameter>
-      <Code>5 (L:BRT1,enum) 5 * + </Code>
-      <Lag>100</Lag>
-    </Parameter>
-  </Animation>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <TooltipText>Use left or right click</TooltipText>
-    <MouseFlags>LeftRelease+RightRelease+LeftSingle+RightSingle+Wheel</MouseFlags>
-    <CallbackCode>
-      (M:Event) 'WheelUp' scmp 0 == 
-        if{ -1 (&gt;L:BRT1,enum) (L:MFDX dim,enum) -- 0 max (&gt;L:MFDX dim,enum) }
-      (M:Event) 'WheelDown' scmp 0 == 
-        if{ 1 (&gt;L:BRT1,enum) (L:MFDX dim,enum) ++ 3 min (&gt;L:MFDX dim,enum) }
-                  (M:Event) 'WheelUp' scmp 0 ==
-
-      (M:Event) 'LeftSingle' scmp 0 == 
-        if{ -1 (&gt;L:BRT1,enum) (L:MFDX dim,enum) -- 0 max (&gt;L:MFDX dim,enum) }
-      (M:Event) 'RightSingle' scmp 0 == 
-        if{ 1 (&gt;L:BRT1,enum) (L:MFDX dim,enum) ++ 3 min (&gt;L:MFDX dim,enum) }
-      (M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:BRT1,enum) }
-      (M:Event) 'RightRelease' scmp 0 == if{ 0 (&gt;L:BRT1,enum) }
-    </CallbackCode>
-  </MouseRect>
-</PartInfo>
-<Animation name="custom_anim_BRT2" guid="4f01e595-b56e-4b7e-b986-574d243d6337" length="10" type="Sim" typeParam2="custom_anim_BRT2" typeParam="AutoPlay" />
-<PartInfo>
-  <Name>custom_anim_BRT2</Name>
-  <AnimLength>10</AnimLength>
-  <Animation>
-    <Parameter>
-      <Code>5 (L:BRT2,enum) 5 * + </Code>
-      <Lag>100</Lag>
-    </Parameter>
-  </Animation>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <TooltipText>Use left or right click</TooltipText>
-    <MouseFlags>LeftRelease+RightRelease+LeftSingle+RightSingle+Wheel</MouseFlags>
-    <CallbackCode>
-      (M:Event) 'WheelUp' scmp 0 == 
-      if{ -1 (&gt;L:BRT2,enum) (L:MFDX dim,enum) -- 0 max (&gt;L:MFDX dim,enum) }
-    (M:Event) 'WheelDown' scmp 0 == 
-      if{ 1 (&gt;L:BRT2,enum) (L:MFDX dim,enum) ++ 3 min (&gt;L:MFDX dim,enum) }
-
-      (M:Event) 'LeftSingle' scmp 0 == 
-        if{ -1 (&gt;L:BRT2,enum) (L:MFDX dim,enum) -- 0 max (&gt;L:MFDX dim,enum) }
-      (M:Event) 'RightSingle' scmp 0 == 
-        if{ 1 (&gt;L:BRT2,enum) (L:MFDX dim,enum) ++ 3 min (&gt;L:MFDX dim,enum) }
-      (M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:BRT2,enum) }
-      (M:Event) 'RightRelease' scmp 0 == if{ 0 (&gt;L:BRT2,enum) }
-    </CallbackCode>
-  </MouseRect>
-</PartInfo>
-<Animation name="custom_anim_BRT3_45" guid="00fdd8c1-621a-4101-ac24-2b392555a3f4" length="10" type="Sim" typeParam2="custom_anim_BRT3" typeParam="AutoPlay" />
-<PartInfo>
-  <Name>custom_anim_BRT3</Name>
-  <AnimLength>10</AnimLength>
-  <Animation>
-    <Parameter>
-      <Code>5 (L:BRT3,enum) 5 * + </Code>
-      <Lag>100</Lag>
-    </Parameter>
-  </Animation>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <TooltipText>Use left or right click</TooltipText>
-    <MouseFlags>LeftRelease+RightRelease+LeftSingle+RightSingle+Wheel</MouseFlags>
-    <CallbackCode>
-      (M:Event) 'WheelUp' scmp 0 == 
-      if{ -1 (&gt;L:BRT3,enum) (L:MFDX dim,enum) -- 0 max (&gt;L:MFDX dim,enum) }
-    (M:Event) 'WheelDown' scmp 0 == 
-      if{ 1 (&gt;L:BRT3,enum) (L:MFDX dim,enum) ++ 3 min (&gt;L:MFDX dim,enum) }
-      
-      (M:Event) 'LeftSingle' scmp 0 == 
-        if{ -1 (&gt;L:BRT3,enum) (L:MFDX dim,enum) -- 0 max (&gt;L:MFDX dim,enum) }
-      (M:Event) 'RightSingle' scmp 0 == 
-        if{ 1 (&gt;L:BRT3,enum) (L:MFDX dim,enum) ++ 3 min (&gt;L:MFDX dim,enum) }
-      (M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:BRT3,enum) }
-      (M:Event) 'RightRelease' scmp 0 == if{ 0 (&gt;L:BRT3,enum) }
-    </CallbackCode>
-  </MouseRect>
-</PartInfo>
-<Animation name="custom_anim_BRT4" guid="7b2fd56c-de72-4bae-96d6-48cc8bfece4a" length="10" type="Sim" typeParam2="custom_anim_BRT4" typeParam="AutoPlay" />
-<PartInfo>
-  <Name>custom_anim_BRT4</Name>
-  <AnimLength>10</AnimLength>
-  <Animation>
-    <Parameter>
-      <Code>5 (L:BRT4,enum) 5 * + </Code>
-      <Lag>100</Lag>
-    </Parameter>
-  </Animation>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <TooltipText>Use left or right click</TooltipText>
-    <MouseFlags>LeftRelease+RightRelease+LeftSingle+RightSingle+Wheel</MouseFlags>
-    <CallbackCode>
-      (M:Event) 'WheelUp' scmp 0 == 
-      if{ -1 (&gt;L:BRT4,enum) (L:MFDX dim,enum) -- 0 max (&gt;L:MFDX dim,enum) }
-    (M:Event) 'WheelDown' scmp 0 == 
-      if{ 1 (&gt;L:BRT4,enum) (L:MFDX dim,enum) ++ 3 min (&gt;L:MFDX dim,enum) }
-      
-      (M:Event) 'LeftSingle' scmp 0 == 
-        if{ -1 (&gt;L:BRT4,enum) (L:MFDX dim,enum) -- 0 max (&gt;L:MFDX dim,enum) }
-      (M:Event) 'RightSingle' scmp 0 == 
-        if{ 1 (&gt;L:BRT4,enum) (L:MFDX dim,enum) ++ 3 min (&gt;L:MFDX dim,enum) }
-      (M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:BRT4,enum) }
-      (M:Event) 'RightRelease' scmp 0 == if{ 0 (&gt;L:BRT4,enum) }
-    </CallbackCode>
-  </MouseRect>
-</PartInfo>
 
 
 <Animation name="LMFD BOTTOM 1" guid="4330c098-edc2-446c-bb30-bffba5068c14" length="5" type="Sim" typeParam2="LMFD BOTTOM 1" typeParam="AutoPlay" />

@@ -1,18 +1,18 @@
 [Library Effect]
 Lifetime=5
 Version=2.0
-Radius=1
+Radius=-1
 Priority=0
 
 [Properties]
 
 [Emitter.0]
 Lifetime=0.0, 0.0
-Delay=0,0
+Delay=0.35, 0.35
 Bounce=0.0
 Light=1
 No Interpolate=1
-Rate=0.9, 0.9
+Rate=0.7, 0.7
 X Emitter Velocity=0.0, 0.0
 Y Emitter Velocity=0.0, 0.0
 Z Emitter Velocity=0.0, 0.0
@@ -20,7 +20,7 @@ Drag=0.0, 0.0
 X Particle Velocity=0.0, 0.0
 Y Particle Velocity=0.0, 0.0
 Z Particle Velocity=0.0, 0.0
-X Rotation=0.0, 0.0
+X Rotation=90.0, 90.0
 Y Rotation=0.0, 0.0
 Z Rotation=0.0, 0.0
 X Offset=0.0, 0.0
@@ -59,14 +59,14 @@ uv1=0.0, 0.0
 uv2=1.0, 1.0
 NearEndFade= 1.0
 NearFade= 12.0
-MinProjSize=1
+MinProjSize=0.8
 
 [LightAttributes.0]
 Type=omni
 Size=1
-Range=20
-Intensity=5
-Softness=1
+Range=40
+Intensity=15
+Softness=0.5
 SpotInner=0.0
 SpotOuter=0.0
 Volumetric=0

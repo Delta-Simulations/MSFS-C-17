@@ -11,6 +11,11 @@
     src: url("/Fonts/OcrB2.ttf") format("truetype");
 }
 @font-face {
+    font-family: "WACAP";
+    src: url("/Fonts/erbos_draco_open_nbp.ttf") format("truetype");
+}
+
+@font-face {
     font-family: EngCntrl;
     src: url("/Fonts/BoeingFont.ttf");
 }  
@@ -25,7 +30,7 @@
     font-family: "Digital";
 }
 .WAPanel {
-    font-family: "Digital";
+    font-family: "OCRB";
     letter-spacing: -1px;
 }
 .UpperPNL {
@@ -60,7 +65,7 @@
   
   .message {
     /* Define the font and size of the caution messages */
-    font-family: Arial, sans-serif;
+    font-family:"WACAP";
     font-size: 16px;
     /* Add any other desired styles */
   }

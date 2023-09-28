@@ -26,7 +26,8 @@ interface HUDPowerProps {
 }
 export const HUDPower: FC<HUDPowerProps> = ({ localVar, children }) => {
 	const [isOn] = useSimVar(`L:${localVar}`, 'bool');
+	const [isMode] = useSimVar(`L:C17_HUD_CNTRL`, 'enum');
 
-	if (isOn) return null;
+	if (isOn || isMode === 0) return null;
 	else return <div>{children}</div>;
 };
