@@ -76,31 +76,33 @@ if{
 <!-- Beacon and strobe mode- Belly,top and bottom, all and strobes(WoW off) -->
 (L:C17_ANTICOLL_MODE, enum) 0 ==
 if{ 
-  1 (&gt;K:STROBES_OFF)
   1 (&gt;K:BEACON_LIGHTS_OFF)
   2 (&gt;K:BEACON_LIGHTS_OFF)
-  0 (&gt;K:LIGHT_POTENTIOMETER_4_SET) 
+  
 }
 (L:C17_ANTICOLL_MODE, enum) 1 ==
 if{
-  1 (&gt;K:STROBES_OFF)
   1 (&gt;K:BEACON_LIGHTS_OFF)
   2 (&gt;K:BEACON_LIGHTS_ON)
-  1 (&gt;K:STROBES_OFF)
 }
 (L:C17_ANTICOLL_MODE, enum) 2 ==
 if{ 
   2 (&gt;K:BEACON_LIGHTS_ON)
   1 (&gt;K:BEACON_LIGHTS_ON)
-  1 (&gt;K:STROBES_OFF)
 }
+
 (L:C17_ANTICOLL_MODE, enum) 3 ==
 (A:SIM ON GROUND,bool) 0 == and
 if{ 
   1 (&gt;K:STROBES_ON)
-  2 (&gt;K:BEACON_LIGHTS_ON)
-  1 (&gt;K:BEACON_LIGHTS_ON)
   100 (&gt;K:LIGHT_POTENTIOMETER_4_SET)
+}
+
+(A:SIM ON GROUND,bool) 1 ==
+(L:C17_ANTICOLL_MODE, enum) 3 !== or
+if{
+  1 (&gt;K:STROBES_OFF)
+  0 (&gt;K:LIGHT_POTENTIOMETER_4_SET) 
 }
 
 (L:C17_LIGHTS_EPC, bool) 1 ==
