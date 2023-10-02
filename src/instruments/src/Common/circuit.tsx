@@ -31,3 +31,11 @@ export const HUDPower: FC<HUDPowerProps> = ({ localVar, children }) => {
 	if (isOn || isMode === 0) return null;
 	else return <div>{children}</div>;
 };
+
+export const AuralPower: FC = ({ children }) => {
+	const [isMode] = useSimVar(`L:C17_WAP_Debug`, 'enum');
+
+	if (isMode === 1) return null;
+	else return <div>{children}</div>;
+};
+

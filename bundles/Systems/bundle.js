@@ -9061,18 +9061,29 @@
 	  });
 	};
 
+	const AuralPower = ({
+	  children
+	}) => {
+	  const [isMode] = useSimVar("L:C17_WAP_Debug", 'enum');
+	  if (isMode === 1) return null;else return /*#__PURE__*/jsxRuntime.jsx("div", {
+	    children: children
+	  });
+	};
+
 	const Systems = () => {
-	  return /*#__PURE__*/jsxRuntime.jsxs("svg", {
-	    viewBox: "0 0 500 500",
-	    children: [/*#__PURE__*/jsxRuntime.jsx("rect", {
-	      x: 0,
-	      y: 0,
-	      width: 500,
-	      height: 500,
-	      fill: "black"
-	    }), /*#__PURE__*/jsxRuntime.jsxs("g", {
-	      children: [/*#__PURE__*/jsxRuntime.jsx(AURALS, {}), /*#__PURE__*/jsxRuntime.jsx(MasterCaution, {})]
-	    })]
+	  return /*#__PURE__*/jsxRuntime.jsx(AuralPower, {
+	    children: /*#__PURE__*/jsxRuntime.jsxs("svg", {
+	      viewBox: "0 0 500 500",
+	      children: [/*#__PURE__*/jsxRuntime.jsx("rect", {
+	        x: 0,
+	        y: 0,
+	        width: 500,
+	        height: 500,
+	        fill: "black"
+	      }), /*#__PURE__*/jsxRuntime.jsxs("g", {
+	        children: [/*#__PURE__*/jsxRuntime.jsx(AURALS, {}), /*#__PURE__*/jsxRuntime.jsx(MasterCaution, {})]
+	      })]
+	    })
 	  });
 	};
 
