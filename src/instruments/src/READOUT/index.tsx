@@ -10,6 +10,7 @@ import { StbyEngDisp } from './Components/StbyEngDisp';
 import { Ap_Disp } from './Components/AP_Disp';
 import { WACAP_Left } from './Components/WACAP_Left';
 import { WACAP_Right } from './Components/WACAP_Right';
+import { WACAP_Warning } from './Components/WACAP_Warning';
 
 interface ElectricityProps {
     circuit: string | number;
@@ -39,6 +40,7 @@ const AP = () => {
                     <WACAP_Left />
                     <WACAP_Right />
                     <WACAP />
+                    <WACAP_Warning />
                     <StbyEngDisp />
                     <RadioDisp />
                     <image visibility={HUD_OVERLAY ? 'visible' : 'hidden'} x={0} y={0} xlinkHref="/Images/Dispbackround.png" height={1024} width={1024} opacity={0.7}/>

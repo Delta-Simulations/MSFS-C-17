@@ -8947,7 +8947,6 @@
 	  const [Taxi_light] = useSimVar('A:Light taxi', 'bool');
 	  const [Fuel_quantity] = useSimVar('A:FUEL TOTAL QUANTITY', 'gallons');
 	  const [Cargo_door] = useSimVar('L:C17_CargoDoor_POS', 'enum');
-	  const [APU_FIRE_TEST] = useSimVar('L:C17_FIRE_ANNUN_TEST', 'enum');
 	  const [cautionMessages, setCautionMessages] = react.useState([]);
 	  react.useEffect(() => {
 	    const messages = [{
@@ -8970,14 +8969,10 @@
 	      id: 6,
 	      message: 'RAMP OPEN',
 	      condition: WACAP_Test || Cargo_door
-	    }, {
-	      id: 7,
-	      message: 'APU',
-	      condition: WACAP_Test || APU_FIRE_TEST
 	    } // Add more caution messages here...
 	    ];
 	    setCautionMessages(messages);
-	  }, [WACAP_Test, Park_brake, Speed_brake, Landing_light, Taxi_light, Fuel_quantity, Cargo_door, APU_FIRE_TEST]);
+	  }, [WACAP_Test, Park_brake, Speed_brake, Landing_light, Taxi_light, Fuel_quantity, Cargo_door]);
 	  const maxMessages = 14;
 	  const visibleMessages = cautionMessages.filter(message => message.condition);
 	  const displayedMessages = visibleMessages.slice(0, maxMessages);
@@ -10230,30 +10225,97 @@
 	  let [EnteranceDoor] = useSimVar('L:C17_Crew_Enterance', 'bool');
 	  let [IRU_1] = useSimVar('L:C17_IRU1', 'bool');
 	  let [IRU_2] = useSimVar('L:C17_IRU2', 'bool');
-	  useSimVar('L:C17_IRU3', 'bool');
-	  useSimVar('L:C17_IRU4', 'bool');
+	  let [AntiIceEng1] = useSimVar('A:ENG ANTI ICE:1', 'bool');
+	  let [AntiIceEng2] = useSimVar('A:ENG ANTI ICE:2', 'bool');
+	  let [OilPressEng1] = useSimVar('A:General Eng1 oil pressure', 'PSI');
+	  let [OilPressEng2] = useSimVar('A:General Eng2 oil pressure', 'PSI');
+	  let [MAIN_PWR] = useSimVar('L:C17_Cpit_Pacs', 'BOOL');
+	  let [Para_L] = useSimVar('L:C17_PARA_L', 'BOOL');
+	  let [Pitot_L] = useSimVar('L:C17_P_PITOT', 'BOOL');
+	  let [Scroll_L] = useSimVar('L:C17_WACAP_VIEW_L', 'enum');
 	  const [cautionMessages, setCautionMessages] = react.useState([]);
 	  react.useEffect(() => {
 	    const messages = [{
 	      id: 1,
+	      message: 'IRU INOP 1',
+	      condition: !IRU_1 && IRU_2
+	    }, {
+	      id: 2,
+	      message: 'IRU INOP 2',
+	      condition: !IRU_2 && IRU_1
+	    }, {
+	      id: 3,
+	      message: 'IRU INOP 1,2',
+	      condition: WACAP_Test || !IRU_1 && !IRU_2
+	    }, {
+	      id: 4,
+	      message: 'ANTI ICE 1',
+	      condition: !AntiIceEng1 && AntiIceEng2
+	    }, {
+	      id: 5,
+	      message: 'ANTI ICE 2',
+	      condition: !AntiIceEng2 && AntiIceEng1
+	    }, {
+	      id: 6,
+	      message: 'ANTI ICE 1,2',
+	      condition: WACAP_Test || !AntiIceEng1 && !AntiIceEng2
+	    }, {
+	      id: 7,
+	      message: 'ENG OIL PRESS 1',
+	      condition: OilPressEng1 < 70 && OilPressEng2 > 70
+	    }, {
+	      id: 8,
+	      message: 'ENG OIL PRESS 2',
+	      condition: OilPressEng2 < 70 && OilPressEng1 > 70
+	    }, {
+	      id: 9,
+	      message: 'ENG OIL PRESS 1,2',
+	      condition: WACAP_Test || OilPressEng1 < 70 && OilPressEng2 < 70
+	    }, {
+	      id: 11,
+	      message: 'AURAL WARNING INOP',
+	      condition: WACAP_Test
+	    }, {
+	      id: 10,
 	      message: 'ENTRY DOOR',
 	      condition: WACAP_Test || EnteranceDoor
 	    }, {
-	      id: 2,
-	      message: 'IRU INOP 1',
-	      condition: WACAP_Test || !IRU_1
+	      id: 12,
+	      message: 'GPWS FAIL',
+	      condition: WACAP_Test || !MAIN_PWR
 	    }, {
-	      id: 3,
-	      message: 'IRU INOP 2',
-	      condition: WACAP_Test || !IRU_2
+	      id: 13,
+	      message: 'L TROOP DOOR',
+	      condition: WACAP_Test || Para_L
+	    }, {
+	      id: 14,
+	      message: 'A/R MODE INOP',
+	      condition: WACAP_Test || !MAIN_PWR
+	    }, {
+	      id: 15,
+	      message: 'RADAR ALT 1',
+	      condition: WACAP_Test || !MAIN_PWR
+	    }, {
+	      id: 16,
+	      message: 'PROBE HEATER',
+	      condition: WACAP_Test || !Pitot_L
+	    }, {
+	      id: 17,
+	      message: 'P/S 1A, 1B HEAD HTR',
+	      condition: WACAP_Test || !MAIN_PWR
 	    } // Add more caution messages here...
 	    ];
 	    setCautionMessages(messages);
-	  }, [WACAP_Test, EnteranceDoor, IRU_1, IRU_2]);
+	  }, [WACAP_Test, Pitot_L, MAIN_PWR, MAIN_PWR, MAIN_PWR, WACAP_Test, EnteranceDoor, IRU_1, IRU_2, AntiIceEng1, AntiIceEng2, OilPressEng1, OilPressEng2, Para_L]);
 	  const maxMessages = 14;
 	  const visibleMessages = cautionMessages.filter(message => message.condition);
-	  const displayedMessages = visibleMessages.slice(0, maxMessages);
-	  const remainingMessages = Math.max(0, visibleMessages.length - maxMessages);
+	  const remainingMessages = Math.max(0, visibleMessages.length - maxMessages); // Calculate the maximum value for Scroll_L
+
+	  const maxScroll = Math.max(0, remainingMessages); // Ensure that Scroll_L does not exceed maxScroll
+
+	  const clampedScroll_L = Math.min(Scroll_L, maxScroll); // Calculate the displayed messages based on clampedScroll_L
+
+	  const displayedMessages = visibleMessages.slice(clampedScroll_L, clampedScroll_L + maxMessages);
 	  return /*#__PURE__*/jsxRuntime.jsxs("g", {
 	    children: [displayedMessages.map((message, index) => /*#__PURE__*/jsxRuntime.jsx("text", {
 	      x: 455,
@@ -10265,15 +10327,16 @@
 	      children: message.message
 	    }, message.id)), remainingMessages > 0 && /*#__PURE__*/jsxRuntime.jsxs("g", {
 	      className: "scroll-symbols",
+	      transform: "translate(-290, 60) ",
 	      children: [/*#__PURE__*/jsxRuntime.jsx("text", {
 	        x: 650,
-	        y: 615 + maxMessages * 23,
+	        y: 615,
 	        fontSize: 16,
 	        fill: "#00EE00",
 	        children: "\u2191"
 	      }), /*#__PURE__*/jsxRuntime.jsx("text", {
 	        x: 650,
-	        y: 638 + maxMessages * 23,
+	        y: 638,
 	        fontSize: 16,
 	        fill: "#00EE00",
 	        children: "\u2193"
@@ -10286,24 +10349,95 @@
 	  let [WACAP_Test] = useSimVar('L:C17_WACAP_Test', 'bool');
 	  let [IRU_3] = useSimVar('L:C17_IRU3', 'bool');
 	  let [IRU_4] = useSimVar('L:C17_IRU4', 'bool');
+	  let [APU_ON] = useSimVar('A:APU PCT RPM', 'percent');
+	  let [AntiIceEng3] = useSimVar('A:ENG ANTI ICE:3', 'bool');
+	  let [AntiIceEng4] = useSimVar('A:ENG ANTI ICE:4', 'bool');
+	  let [OilPressEng3] = useSimVar('A:General Eng3 oil pressure', 'PSI');
+	  let [OilPressEng4] = useSimVar('A:General Eng4 oil pressure', 'PSI');
+	  let [Para_R] = useSimVar('L:C17_PARA_R', 'BOOL');
+	  let [MAIN_PWR] = useSimVar('L:C17_Cpit_Pacs', 'BOOL');
+	  let [Pitot_R] = useSimVar('L:C17_CP_PITOT', 'BOOL');
+	  let [Emer_Pwr] = useSimVar('L:C17_Emer_Batt', 'BOOL');
+	  let [Scroll_R] = useSimVar('L:C17_WACAP_VIEW_R', 'enum');
 	  const [cautionMessages, setCautionMessages] = react.useState([]);
 	  react.useEffect(() => {
 	    const messages = [{
 	      id: 1,
 	      message: 'IRU INOP 3',
-	      condition: WACAP_Test || !IRU_3
+	      condition: !IRU_3 && IRU_4
 	    }, {
 	      id: 2,
 	      message: 'IRU INOP 4',
-	      condition: WACAP_Test || !IRU_4
+	      condition: !IRU_4 && IRU_3
+	    }, {
+	      id: 3,
+	      message: 'IRU INOP 3,4',
+	      condition: WACAP_Test || !IRU_3 && !IRU_4
+	    }, {
+	      id: 4,
+	      message: 'APU',
+	      condition: WACAP_Test || APU_ON > 95
+	    }, {
+	      id: 5,
+	      message: 'ANTI ICE 3',
+	      condition: !AntiIceEng3 && AntiIceEng4
+	    }, {
+	      id: 6,
+	      message: 'ANTI ICE 4',
+	      condition: !AntiIceEng4 && AntiIceEng3
+	    }, {
+	      id: 7,
+	      message: 'ANTI ICE 3,4',
+	      condition: WACAP_Test || !AntiIceEng4 && !AntiIceEng3
+	    }, {
+	      id: 8,
+	      message: 'ENG OIL PRESS 3',
+	      condition: OilPressEng3 < 70 && OilPressEng4 > 70
+	    }, {
+	      id: 9,
+	      message: 'ENG OIL PRESS 4',
+	      condition: OilPressEng4 < 70 && OilPressEng3 > 70
+	    }, {
+	      id: 10,
+	      message: 'ENG OIL PRESS 3,4',
+	      condition: WACAP_Test || OilPressEng3 < 70 && OilPressEng4 < 70
+	    }, {
+	      id: 11,
+	      message: 'R TROOP DOOR',
+	      condition: WACAP_Test || Para_R
+	    }, {
+	      id: 12,
+	      message: 'AERO-I INOP',
+	      condition: WACAP_Test || !MAIN_PWR
+	    }, {
+	      id: 13,
+	      message: 'RADAR ALT 2',
+	      condition: WACAP_Test || !MAIN_PWR
+	    }, {
+	      id: 14,
+	      message: 'PROBE HEATER',
+	      condition: WACAP_Test || !Pitot_R
+	    }, {
+	      id: 15,
+	      message: 'EMERGENCY PWR',
+	      condition: WACAP_Test || !Emer_Pwr
+	    }, {
+	      id: 16,
+	      message: 'P/S 2A, 2B HEAD HTR',
+	      condition: WACAP_Test || !MAIN_PWR
 	    } // Add more caution messages here...
 	    ];
 	    setCautionMessages(messages);
-	  }, [WACAP_Test, IRU_3, IRU_4]);
+	  }, [WACAP_Test, Emer_Pwr, Pitot_R, WACAP_Test, IRU_3, IRU_4, APU_ON, AntiIceEng3, AntiIceEng4, Para_R, MAIN_PWR, MAIN_PWR]);
 	  const maxMessages = 14;
 	  const visibleMessages = cautionMessages.filter(message => message.condition);
-	  const displayedMessages = visibleMessages.slice(0, maxMessages);
-	  const remainingMessages = Math.max(0, visibleMessages.length - maxMessages);
+	  const remainingMessages = Math.max(0, visibleMessages.length - maxMessages); // Calculate the maximum value for Scroll_L
+
+	  const maxScroll = Math.max(0, remainingMessages); // Ensure that Scroll_L does not exceed maxScroll
+
+	  const clampedScroll_L = Math.min(Scroll_R, maxScroll); // Calculate the displayed messages based on clampedScroll_L
+
+	  const displayedMessages = visibleMessages.slice(clampedScroll_L, clampedScroll_L + maxMessages);
 	  return /*#__PURE__*/jsxRuntime.jsxs("g", {
 	    children: [displayedMessages.map((message, index) => /*#__PURE__*/jsxRuntime.jsx("text", {
 	      x: 885,
@@ -10315,20 +10449,75 @@
 	      children: message.message
 	    }, message.id)), remainingMessages > 0 && /*#__PURE__*/jsxRuntime.jsxs("g", {
 	      className: "scroll-symbols",
+	      transform: "translate(323, 60) ",
 	      children: [/*#__PURE__*/jsxRuntime.jsx("text", {
 	        x: 650,
-	        y: 615 + maxMessages * 23,
+	        y: 615,
 	        fontSize: 16,
 	        fill: "#00EE00",
 	        children: "\u2191"
 	      }), /*#__PURE__*/jsxRuntime.jsx("text", {
 	        x: 650,
-	        y: 638 + maxMessages * 23,
+	        y: 638,
 	        fontSize: 16,
 	        fill: "#00EE00",
-	        children: "\u2193"
+	        children: '↓'
 	      })]
 	    })]
+	  });
+	};
+
+	const WACAP_Warning = props => {
+	  const [WACAP_Test] = useSimVar('L:C17_WACAP_Test', 'bool');
+	  const [APU_FIRE] = useSimVar('L:C17_FIRE_TEST', 'enum');
+	  const [PCH_AUTHORITY] = useSimVar('L:C17_PCH_AUTHORITY', 'BOOL');
+	  const [cautionMessages, setCautionMessages] = react.useState([]);
+	  react.useEffect(() => {
+	    const messages = [{
+	      id: 1,
+	      message: 'APU FIRE',
+	      condition: WACAP_Test || APU_FIRE
+	    }, {
+	      id: 2,
+	      message: 'OBIGG MANIFOLD L,R',
+	      condition: WACAP_Test
+	    }, {
+	      id: 3,
+	      message: 'CABIN PRESS LOW',
+	      condition: WACAP_Test
+	    }, {
+	      id: 4,
+	      message: 'TRIM AIR MANIFOLD',
+	      condition: WACAP_Test
+	    }, {
+	      id: 5,
+	      message: 'PITCH AUTHORITY',
+	      condition: WACAP_Test || PCH_AUTHORITY
+	    } // Add more caution messages here...
+	    ];
+	    setCautionMessages(messages);
+	  }, [APU_FIRE, WACAP_Test, WACAP_Test, WACAP_Test, WACAP_Test, PCH_AUTHORITY]);
+	  const maxMessages = 5;
+	  const visibleMessages = cautionMessages.filter(message => message.condition);
+	  const displayedMessages = visibleMessages.slice(0, maxMessages);
+	  return /*#__PURE__*/jsxRuntime.jsx("g", {
+	    children: displayedMessages.map((message, index) => /*#__PURE__*/jsxRuntime.jsxs("text", {
+	      x: 670,
+	      y: 713 + index * 13,
+	      fontSize: 15,
+	      fill: "yellow",
+	      textAnchor: "middle",
+	      children: [/*#__PURE__*/jsxRuntime.jsx("tspan", {
+	        className: "scroll-symbols",
+	        children: "► "
+	      }), /*#__PURE__*/jsxRuntime.jsx("tspan", {
+	        className: "WAPanel",
+	        children: message.message
+	      }), /*#__PURE__*/jsxRuntime.jsx("tspan", {
+	        className: "scroll-symbols",
+	        children: " ◄"
+	      })]
+	    }, message.id))
 	  });
 	};
 
@@ -10363,7 +10552,7 @@
 	          xlinkHref: "/Images/stg.png",
 	          height: 220,
 	          opacity: 0.7
-	        }), /*#__PURE__*/jsxRuntime.jsx(Ap_Disp, {}), /*#__PURE__*/jsxRuntime.jsx(WACAP_Left, {}), /*#__PURE__*/jsxRuntime.jsx(WACAP_Right, {}), /*#__PURE__*/jsxRuntime.jsx(WACAP, {}), /*#__PURE__*/jsxRuntime.jsx(StbyEngDisp, {}), /*#__PURE__*/jsxRuntime.jsx(RadioDisp, {}), /*#__PURE__*/jsxRuntime.jsx("image", {
+	        }), /*#__PURE__*/jsxRuntime.jsx(Ap_Disp, {}), /*#__PURE__*/jsxRuntime.jsx(WACAP_Left, {}), /*#__PURE__*/jsxRuntime.jsx(WACAP_Right, {}), /*#__PURE__*/jsxRuntime.jsx(WACAP, {}), /*#__PURE__*/jsxRuntime.jsx(WACAP_Warning, {}), /*#__PURE__*/jsxRuntime.jsx(StbyEngDisp, {}), /*#__PURE__*/jsxRuntime.jsx(RadioDisp, {}), /*#__PURE__*/jsxRuntime.jsx("image", {
 	          visibility: HUD_OVERLAY ? 'visible' : 'hidden',
 	          x: 0,
 	          y: 0,

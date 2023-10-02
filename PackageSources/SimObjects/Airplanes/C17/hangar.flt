@@ -229,3 +229,5 @@ C17_Crew_Enterance=1
 C17_RBF_TAGS=1
 C17_Fuel_Qty_Sel=1
 C17_ENG_IGN_MODE=4
+C17_P_Stby_Att_Adjust=50
+C17_CP_Stby_Att_Adjust=50

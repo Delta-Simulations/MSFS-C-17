@@ -8928,8 +8928,6 @@
 	};
 
 	const AURALS = () => {
-	  let [ATEngaged] = useSimVar('A:AUTOPILOT THROTTLE ARM', 'bool');
-	  let [ATWarning, setATWarning] = useSimVar('L:C17_AT_warning', 'bool');
 	  let [WacsFail, setWacsFail] = useSimVar('L:C17_ALERT_Wacs_Fail', 'bool');
 	  let [Avionics_PWR] = useSimVar('A:CIRCUIT ON:65', 'bool');
 	  let [Cargo_door] = useSimVar('L:C17_CargoDoor_POS', 'enum');
@@ -8937,6 +8935,8 @@
 	  let [StabMotion, setStabMotion] = useSimVar('L:C17_STAB_MOTION', 'bool');
 	  let [Stab_Trim] = useSimVar('A:ELEVATOR TRIM PCT', 'degrees');
 	  let [SimOnGround] = useSimVar('A:SIM ON GROUND', 'bool');
+	  useSimVar('A:AUTOPILOT THROTTLE ARM', 'bool');
+	  let [ATWarning, setATWarning] = useSimVar('L:C17_AT_warning', 'bool');
 	  const prevStab_TrimRef = react.useRef(Stab_Trim); // Store the previous value of Stab_Trim
 
 	  react.useRef(true); // Use separate refs for each effect's initial render check
@@ -8945,30 +8945,8 @@
 	  const isInitialRenderAT = react.useRef(true);
 	  const isInitialRenderStab = react.useRef(true);
 	  const isInitialRenderWacs = react.useRef(true);
-	  const [timerActive, setTimerActive] = react.useState(false);
+	  react.useState(false);
 	  const [isStabMotionActive, setIsStabMotionActive] = react.useState(false);
-	  react.useEffect(() => {
-	    // Check if ATEngaged transitioned from 1 to 0
-	    if (!isInitialRenderAT.current && ATEngaged === false && timerActive === false) {
-	      // Set ATWarning to true
-	      setATWarning(true); // Start a 4-second timer to reset ATWarning
-
-	      const timerId = setTimeout(() => {
-	        setATWarning(false);
-	        setTimerActive(false);
-	      }, 4000); // 4000 milliseconds = 4 seconds
-	      // Set timerActive to true to prevent multiple timers
-
-	      setTimerActive(true); // Cleanup the timer if the component unmounts
-
-	      return () => {
-	        clearTimeout(timerId);
-	      };
-	    } else if (ATEngaged === true && timerActive === true) {
-	      // Reset the timer if ATEngaged changes back to 1 before the timer expires
-	      setTimerActive(false);
-	    }
-	  }, [ATEngaged, timerActive]);
 	  react.useEffect(() => {
 	    // Check if there's power and the aircraft is on the ground
 	    if (!isInitialRenderStab.current && Avionics_PWR && SimOnGround) {

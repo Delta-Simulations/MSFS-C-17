@@ -12,10 +12,10 @@ Cockpit Lights
 <Select>
 <Value>
 <!-- PFD CONTROLS -->
-(L:C17_PFD1_BRT,enum) 0 == if{ 1 (&gt;L:MFDX1 on,bool) } els{ 0 (&gt;L:MFDX1 on,bool) }
-(L:C17_PFD2_BRT,enum) 0 == if{ 1 (&gt;L:MFDX2 on,bool) } els{ 0 (&gt;L:MFDX2 on,bool) }
-(L:C17_PFD3_BRT,enum) 0 == if{ 1 (&gt;L:MFDX3 on,bool) } els{ 0 (&gt;L:MFDX3 on,bool) }
-(L:C17_PFD4_BRT,enum) 0 == if{ 1 (&gt;L:MFDX4 on,bool) } els{ 0 (&gt;L:MFDX4 on,bool) }
+(L:C17_PFD1_BRT,enum) 0 == (L:C17_Cpit_Pacs,bool) 0 == or if{ 1 (&gt;L:MFDX1 on,bool) } els{ 0 (&gt;L:MFDX1 on,bool) }
+(L:C17_PFD2_BRT,enum) 0 == (L:C17_Cpit_Pacs,bool) 0 == or if{ 1 (&gt;L:MFDX2 on,bool) } els{ 0 (&gt;L:MFDX2 on,bool) }
+(L:C17_PFD3_BRT,enum) 0 == (L:C17_Cpit_Pacs,bool) 0 == or if{ 1 (&gt;L:MFDX3 on,bool) } els{ 0 (&gt;L:MFDX3 on,bool) }
+(L:C17_PFD4_BRT,enum) 0 == (L:C17_Cpit_Pacs,bool) 0 == or if{ 1 (&gt;L:MFDX4 on,bool) } els{ 0 (&gt;L:MFDX4 on,bool) }
 
 
 <!--  LANDING/TAXI ===============-->
@@ -96,14 +96,11 @@ if{
 if{ 
   1 (&gt;K:STROBES_ON)
   100 (&gt;K:LIGHT_POTENTIOMETER_4_SET)
-}
-
-(A:SIM ON GROUND,bool) 1 ==
-(L:C17_ANTICOLL_MODE, enum) 3 !== or
-if{
+} els{
   1 (&gt;K:STROBES_OFF)
   0 (&gt;K:LIGHT_POTENTIOMETER_4_SET) 
 }
+
 
 (L:C17_LIGHTS_EPC, bool) 1 ==
 (L:C17_CPIT_ILLUM_MODE, enum) 0 != and

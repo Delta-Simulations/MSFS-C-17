@@ -2760,7 +2760,7 @@
       <Element>
         <Position X="110" Y="174"/>
         <FormattedText X="100" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#CCCCCC" Bright="Yes">
-          <String>%((A:FLAPS HANDLE INDEX,number) 0 ==)%{if}%FLAPS 0/RET%{else}%((A:FLAPS HANDLE INDEX,number) 1 ==)%{if}%FLAPS 0/EXT%{else}%((A:FLAPS HANDLE INDEX,number) 2 ==)%{if}%FLAPS 1/2%{else}%((A:FLAPS HANDLE INDEX,number) 3 ==)%{if}%FLAPS 1/2%{else}%((A:FLAPS HANDLE INDEX,number) 4 ==)%{if}%FLAPS 3/4%{else}%((A:FLAPS HANDLE INDEX,number) 5 ==)%{if}%FLAPS 3/4%{else}%FLAPS FULL%</String>
+          <String>%((A:FLAPS HANDLE INDEX,number) 0 ==)%{if}%FLAPS 0/RET%{else}%((A:FLAPS HANDLE INDEX,number) 1 ==)%{if}%FLAPS 0/EXT%{else}%((A:FLAPS HANDLE INDEX,number) 2 ==)%{if}%FLAPS 1/2%{else}%((A:FLAPS HANDLE INDEX,number) 3 ==)%{if}%FLAPS 1/2%{else}%((A:FLAPS HANDLE INDEX,number) 4 ==)%{if}%FLAPS 3/4%{else}%((A:FLAPS HANDLE INDEX,number) 5 ==)%{if}%FLAPS FULL%{else}%FLAPS FULL%</String>
         </FormattedText>
       </Element>
       <Element>

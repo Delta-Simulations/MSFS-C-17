@@ -31,7 +31,7 @@ export const Altitude = () => {
             <g>
 
             <g transform={`translate(0, 0) `}>
-                <polygon points='160,655 177,685 177,640 ' className='readouts' strokeWidth={3} fill='none'/>
+                <polygon points='160,655 177,671 177,640 ' className='readouts' strokeWidth={3} fill='none'/>
             </g>
 
                 <clipPath id='Alt' >

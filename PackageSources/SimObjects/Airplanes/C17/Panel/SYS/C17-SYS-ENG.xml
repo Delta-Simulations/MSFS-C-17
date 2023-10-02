@@ -9,6 +9,14 @@
 <Element>
 	<Select>
 			<Value>
+				(L:C17_P_PITOT, bool) 1 ==
+				(L:C17_CP_PITOT, bool) 1 == or
+				if{ 
+				 1 (&gt;K:PITOT_HEAT_SET,bool)
+				} els{
+				 0 (&gt;K:PITOT_HEAT_SET,bool)
+				}
+
 			(L:C17_APUSTARTER, enum) 0 !=
 			if{ 
 				9 (&gt;K:FUELSYSTEM_PUMP_ON,bool) 

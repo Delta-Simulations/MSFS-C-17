@@ -80,17 +80,17 @@
 
 <SimVarSounds>
 
-    <Sound WwiseData="true" WwiseEvent="APU_Idle" ConeHeading="270.0" NodeName="APU_Inlet" SimVar="APU PCT RPM" Units="PERCENT" Index="0" FadeOutType="2" FadeOutTime="0.5">
+    <Sound WwiseData="true" WwiseEvent="APU_Idle" ConeHeading="180" ViewPoint="Both" NodeName="APU_Inlet" SimVar="APU PCT RPM" Units="PERCENT" Index="0" FadeOutType="2" FadeOutTime="0.5">
 		<WwiseRTPC SimVar="APU PCT RPM" Units="PERCENT" Index="0" RTPCName="SIMVAR_APU_PCT_RPM" />
 		<Range LowerBound="1.0" />
 	</Sound>   
 	  
-	<Sound WwiseData="true" WwiseEvent="APU_Starter" ConeHeading="270.0" NodeName="APU_Inlet" ViewPoint="Outside" SimVar="APU PCT RPM" Units="PERCENT" Index="0" FadeOutType="2" FadeOutTime="0.5">
+	<Sound WwiseData="true" WwiseEvent="APU_Starter" ConeHeading="270.0" NodeName="APU_Inlet" ViewPoint="Both" SimVar="APU PCT RPM" Units="PERCENT" Index="0" FadeOutType="2" FadeOutTime="0.5">
 		<WwiseRTPC SimVar="APU PCT RPM" Units="PERCENT" Index="0" RTPCName="SIMVAR_APU_PCT_RPM" />
 		<Range LowerBound="1.0" />
 		<WwiseRTPC LocalVar="C17_APUSTARTER" Units="ENUM" Index="0" RTPCName="APU_SWITCH_POS"/>
 	</Sound>
-	<Sound WwiseData="true" WwiseEvent="APU_Shutdown" ConeHeading="270.0" NodeName="APU_Inlet" ViewPoint="Outside" SimVar="APU PCT RPM" Units="PERCENT" Index="0" FadeOutType="2" FadeOutTime="0.5">
+	<Sound WwiseData="true" WwiseEvent="APU_Shutdown" ConeHeading="270.0" NodeName="APU_Inlet" ViewPoint="Both" SimVar="APU PCT RPM" Units="PERCENT" Index="0" FadeOutType="2" FadeOutTime="0.5">
 		<WwiseRTPC SimVar="APU PCT RPM" Units="PERCENT" Index="0" RTPCName="SIMVAR_APU_PCT_RPM" />
 		<Range LowerBound="1.0" />
 		<WwiseRTPC LocalVar="C17_APUSTARTER" Units="ENUM" Index="0" RTPCName="APU_SWITCH_POS"/>
@@ -110,14 +110,19 @@
         <Range LowerBound="1.0" />  
     </Sound>
 
+    <Sound WwiseData="true" WwiseEvent="Cpit_Contactor" Continuous="false" LocalVar="C17_Cpit_Pacs" Units="Bool" Index="1" NodeName="Cube.031" ViewPoint="Inside" >
+        <Range LowerBound="1.0" />  
+    </Sound>
+
+    
     <Sound WwiseData="true" WwiseEvent="Cpit_Ticking_Cmpas" LocalVar="C17_Cpit_Cmpas_Pwr" Continuous="true" NodeName="Sound_Altimeter_1" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
         <Range LowerBound="1.0" />    
+        <WwiseRTPC SimVar="ELECTRICAL MAIN BUS VOLTAGE" Units="bool" Index="1" RTPCName="Avionics_Level" />
     </Sound>
 
     <Sound WwiseData="true" WwiseEvent="Cpit_Ticking_Cmpas" LocalVar="C17_Cpit_Cmpas_Pwr" Continuous="true" NodeName="Sound_Altimeter_2" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
         <Range LowerBound="1.0" />    
         <WwiseRTPC SimVar="ELECTRICAL MAIN BUS VOLTAGE" Units="bool" Index="1" RTPCName="Avionics_Level" />
-
     </Sound>
 
 
@@ -130,8 +135,12 @@
 		 </Requires>
 	</Sound>
 	
-    <Sound WwiseData="true" WwiseEvent="AT_warning" LocalVar="C17_AT_warning" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
-        <Range LowerBound="1.0" />    
+    <Sound WwiseData="true" WwiseEvent="AT_warning" Continuous="true" LocalVar="C17_AT_warning" Units="Bool" Index="1" NodeName="Plane.093" ViewPoint="Inside">
+        <Range LowerBound="1.0" />  
+    </Sound>
+
+    <Sound WwiseData="true" WwiseEvent="Bell_alert" Continuous="false" LocalVar="C17_Cpit_Pacs" Units="Bool" Index="1" NodeName="Cube.031" ViewPoint="Inside">
+        <Range LowerBound="1.0" />  
     </Sound>
 
 

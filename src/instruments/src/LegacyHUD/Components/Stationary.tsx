@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSimVar } from '../../Hooks/simVars';
+import '../style.scss';
 
 export const Stationary = () => {
     var [RADalt] = useSimVar('PLANE ALT ABOVE GROUND', 'feet')
@@ -53,6 +54,8 @@ export const Stationary = () => {
             <text x={485} y={428} fontSize={32} textAnchor="end">{IndicatedSpeed}</text>
             <text x={795} y={468} fontSize={32} textAnchor="end">{VS}</text>
             <text x={795} y={428} fontSize={32} textAnchor="end">{RADalt}</text>
+
+
 
             <text visibility={DCLT ? 'visible' : 'hidden'} x={125} y={318} fontSize={32} textAnchor="end">{IndicatedSpeed}</text>
 

@@ -1,6 +1,6 @@
 <Gauge Name="MFDX3 - VC only" Version="C-17" Author="Herbert Pralle">
   <Image Name="MFDX1_backgrnd_vc.bmp"/>
-  <Macro Name="INI">4 (>L:MFDX3 mode,enum) 6 (>L:MFDX3 MAP Zoom,enum)</Macro>
+  <Macro Name="INI">6 (>L:MFDX3 mode,enum) 6 (>L:MFDX3 MAP Zoom,enum)</Macro>
   <Element>
     <Select>
       <Value>(L:MFDX3,bool) 0 == if{ @INI 1 (>L:MFDX3,bool) }</Value>
@@ -2760,7 +2760,7 @@
       <Element>
         <Position X="110" Y="174"/>
         <FormattedText X="100" Y="11" Font="Arial" FontSize="11" LineSpacing="11" Adjust="Center" Color="#CCCCCC" Bright="Yes">
-          <String>%((A:FLAPS HANDLE INDEX,number) 0 ==)%{if}%FLAPS 0/RET%{else}%((A:FLAPS HANDLE INDEX,number) 1 ==)%{if}%FLAPS 0/EXT%{else}%((A:FLAPS HANDLE INDEX,number) 2 ==)%{if}%FLAPS 1/2%{else}%((A:FLAPS HANDLE INDEX,number) 3 ==)%{if}%FLAPS 1/2%{else}%((A:FLAPS HANDLE INDEX,number) 4 ==)%{if}%FLAPS 3/4%{else}%((A:FLAPS HANDLE INDEX,number) 5 ==)%{if}%FLAPS 3/4%{else}%FLAPS FULL%</String>
+          <String>%((A:FLAPS HANDLE INDEX,number) 0 ==)%{if}%FLAPS 0/RET%{else}%((A:FLAPS HANDLE INDEX,number) 1 ==)%{if}%FLAPS 0/EXT%{else}%((A:FLAPS HANDLE INDEX,number) 2 ==)%{if}%FLAPS 1/2%{else}%((A:FLAPS HANDLE INDEX,number) 3 ==)%{if}%FLAPS 1/2%{else}%((A:FLAPS HANDLE INDEX,number) 4 ==)%{if}%FLAPS 3/4%{else}%((A:FLAPS HANDLE INDEX,number) 5 ==)%{if}%FLAPS FULL%{else}%FLAPS FULL%</String>
         </FormattedText>
       </Element>
       <Element>

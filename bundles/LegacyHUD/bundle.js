@@ -9150,7 +9150,7 @@
 	      children: [/*#__PURE__*/jsxRuntime.jsx("g", {
 	        transform: "translate(0, 0) ",
 	        children: /*#__PURE__*/jsxRuntime.jsx("polygon", {
-	          points: "160,655 177,685 177,640 ",
+	          points: "160,655 177,671 177,640 ",
 	          className: "readouts",
 	          strokeWidth: 3,
 	          fill: "none"

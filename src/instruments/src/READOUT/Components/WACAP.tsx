@@ -15,7 +15,7 @@ export const WACAP = (props) => {
   const [Taxi_light] = useSimVar('A:Light taxi', 'bool');
   const [Fuel_quantity] = useSimVar('A:FUEL TOTAL QUANTITY', 'gallons');
   const [Cargo_door] = useSimVar('L:C17_CargoDoor_POS', 'enum');
-  const [APU_FIRE_TEST] = useSimVar('L:C17_FIRE_ANNUN_TEST', 'enum');
+  
   const [cautionMessages, setCautionMessages] = useState<CautionMessage[]>([]);
 
   useEffect(() => {
@@ -25,12 +25,12 @@ export const WACAP = (props) => {
       { id: 4, message: 'FUEL LOW', condition: WACAP_Test || Fuel_quantity <= 16000 },
       { id: 5, message: 'SPEED BRAKES', condition: WACAP_Test || Speed_brake },
       { id: 6, message: 'RAMP OPEN', condition: WACAP_Test || Cargo_door },
-      { id: 7, message: 'APU', condition: WACAP_Test || APU_FIRE_TEST },
+      
       // Add more caution messages here...
     ];
 
     setCautionMessages(messages);
-  }, [WACAP_Test, Park_brake, Speed_brake, Landing_light, Taxi_light, Fuel_quantity, Cargo_door, APU_FIRE_TEST]);
+  }, [WACAP_Test, Park_brake, Speed_brake, Landing_light, Taxi_light, Fuel_quantity, Cargo_door]);
 
   const maxMessages = 14;
   const visibleMessages = cautionMessages.filter((message) => message.condition);

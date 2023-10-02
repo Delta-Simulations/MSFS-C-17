@@ -1,36 +1,23 @@
 {
     "elements": [
         {
-            "__uuid": "d0ddc448-a12b-436c-b2af-fe3d0de7e303",
-            "title": "HUDELEC",
-            "varPrefix": "A",
-            "varName": "CIRCUIT ON:81",
-            "varUnit": "number",
-            "style": {
-                "type": 3
-            }
-        },
-        {
-            "__uuid": "158747cf-187d-43db-a74d-fabd2e1f857a",
-            "title": "HUD PILLAR",
+            "__uuid": "8e0f7412-4efe-4a5a-a189-62aa341c2cd2",
+            "title": "Autothrottle Warning",
             "varPrefix": "L",
-            "varName": "C17_HUD_DISABLE",
+            "varName": "C17_AT_warning",
             "varUnit": "bool",
             "style": {
                 "type": 3
             }
         },
         {
-            "__uuid": "550e6c74-2da2-4452-9319-da5ed9adff88",
-            "title": "HUD MODE",
-            "varPrefix": "L",
-            "varName": "C17_HUD_CNTRL",
-            "varUnit": "enum",
+            "__uuid": "a4481861-2380-4cf4-a033-f354c05047d0",
+            "title": "AT switch",
+            "varPrefix": "A",
+            "varName": "AUTOPILOT THROTTLE ARM",
+            "varUnit": "bool",
             "style": {
-                "type": 2,
-                "min": 0,
-                "max": 3,
-                "step": 1
+                "type": 3
             }
         }
     ]

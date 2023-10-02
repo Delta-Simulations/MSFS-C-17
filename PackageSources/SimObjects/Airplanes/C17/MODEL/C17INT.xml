@@ -197,7 +197,9 @@
   </UseTemplate>
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>KORRY_WARNING_WACS_FAIL</NODE_ID>
-    <TRUECODE></TRUECODE>
+    <TRUECODE>
+      (L:C17_ALERT_WACS_FAIL,BOOL) 1 ==
+    </TRUECODE>
     <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !</INTENSITY>
   </UseTemplate>
 
@@ -278,7 +280,38 @@
   <CCW_ANIMTIP>HUD BRT</CCW_ANIMTIP>
 </UseTemplate>
 
-
+<UseTemplate Name="DELTASIM_Finite_Knob_Template">
+  <NODE_ID>Knob_Stby_Att_Adjust_P</NODE_ID>
+  <ANIM_CODE>
+    (L:C17_P_Stby_Att_Adjust) 40 - 6.6 *
+  </ANIM_CODE>
+  <CLOCKWISE_CODE>
+    (L:C17_P_Stby_Att_Adjust) ++ 55 min (&gt;L:C17_P_Stby_Att_Adjust)
+    1 (&gt;K:ATTITUDE_CAGE_BUTTON)
+  </CLOCKWISE_CODE>
+  <ANTICLOCKWISE_CODE>
+    (L:C17_P_Stby_Att_Adjust) -- 40 max (&gt;L:C17_P_Stby_Att_Adjust)
+    1 (&gt;K:ATTITUDE_CAGE_BUTTON)
+  </ANTICLOCKWISE_CODE>
+  <CW_ANIMTIP>ADJUST ATTITUDE</CW_ANIMTIP>
+  <CCW_ANIMTIP>ADJUST ATTITUDE</CCW_ANIMTIP>
+</UseTemplate>
+<UseTemplate Name="DELTASIM_Finite_Knob_Template">
+  <NODE_ID>Knob_Stby_Att_Adjust_CP</NODE_ID>
+  <ANIM_CODE>
+    (L:C17_CP_Stby_Att_Adjust) 40 - 6.6 *
+  </ANIM_CODE>
+  <CLOCKWISE_CODE>
+    (L:C17_CP_Stby_Att_Adjust) ++ 55 min (&gt;L:C17_CP_Stby_Att_Adjust)
+    1 (&gt;K:ATTITUDE_CAGE_BUTTON)
+  </CLOCKWISE_CODE>
+  <ANTICLOCKWISE_CODE>
+    (L:C17_CP_Stby_Att_Adjust) -- 40 max (&gt;L:C17_CP_Stby_Att_Adjust)
+    1 (&gt;K:ATTITUDE_CAGE_BUTTON)
+  </ANTICLOCKWISE_CODE>
+  <CW_ANIMTIP>ADJUST ATTITUDE</CW_ANIMTIP>
+  <CCW_ANIMTIP>ADJUST ATTITUDE</CCW_ANIMTIP>
+</UseTemplate>
 
 <!-- PFD DISPLAY BRIGHTNESS -->
 <UseTemplate Name="DELTASIM_Finite_Knob_Template">
@@ -352,7 +385,145 @@
 <EMISSIVE_CODE>(L:C17_PFD4_BRT,enum) (A:GLASSCOCKPIT AUTOMATIC BRIGHTNESS, number) * (L:C17_Cpit_Pacs,bool) *</EMISSIVE_CODE>
 </UseTemplate>
 </Component>
+<!-- PFD CONTROLS -->
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>PushButton_PFD_1_1</NODE_ID>
+  <TOOLTIPID>PFD</TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+    0 (&gt;L:MFDX1 mode,enum)
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>PushButton_PFD_1_2</NODE_ID>
+  <TOOLTIPID>ND</TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+    1 (&gt;L:MFDX1 mode,enum)
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>PushButton_PFD_1_3</NODE_ID>
+  <TOOLTIPID></TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>PushButton_PFD_1_4</NODE_ID>
+  <TOOLTIPID>ENG</TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+    (L:MFDX1 mode,enum) 3 == if{ 4 (&gt;L:MFDX1 mode,enum) } els{ (L:MFDX1 mode,enum) 4 == if{ 5 (&gt;L:MFDX1 mode,enum) } els{ 3 (&gt;L:MFDX1 mode,enum) } }
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>PushButton_PFD_1_5</NODE_ID>
+  <TOOLTIPID>CFG</TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+    6 (&gt;L:MFDX1 mode,enum)
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
 
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>PushButton_PFD_2_1</NODE_ID>
+  <TOOLTIPID>PFD</TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+    0 (&gt;L:MFDX2 mode,enum)
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>PushButton_PFD_2_2</NODE_ID>
+  <TOOLTIPID>ND</TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+    1 (&gt;L:MFDX2 mode,enum)
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>PushButton_PFD_2_3</NODE_ID>
+  <TOOLTIPID></TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>PushButton_PFD_2_4</NODE_ID>
+  <TOOLTIPID>ENG</TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+    (L:MFDX2 mode,enum) 3 == if{ 4 (&gt;L:MFDX2 mode,enum) } els{ (L:MFDX2 mode,enum) 4 == if{ 5 (&gt;L:MFDX2 mode,enum) } els{ 3 (&gt;L:MFDX2 mode,enum) } }
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>PushButton_PFD_2_5</NODE_ID>
+  <TOOLTIPID>CFG</TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+    6 (&gt;L:MFDX2 mode,enum)
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>PushButton_PFD_3_1</NODE_ID>
+  <TOOLTIPID>PFD</TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+    0 (&gt;L:MFDX3 mode,enum)
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>PushButton_PFD_3_2</NODE_ID>
+  <TOOLTIPID>ND</TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+    1 (&gt;L:MFDX3 mode,enum)
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>PushButton_PFD_3_3</NODE_ID>
+  <TOOLTIPID></TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>PushButton_PFD_3_4</NODE_ID>
+  <TOOLTIPID>ENG</TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+    (L:MFDX3 mode,enum) 3 == if{ 4 (&gt;L:MFDX3 mode,enum) } els{ (L:MFDX3 mode,enum) 4 == if{ 5 (&gt;L:MFDX3 mode,enum) } els{ 3 (&gt;L:MFDX3 mode,enum) } }
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>PushButton_PFD_3_5</NODE_ID>
+  <TOOLTIPID>CFG</TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+    6 (&gt;L:MFDX3 mode,enum)
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
+
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>PushButton_PFD_4_1</NODE_ID>
+  <TOOLTIPID>PFD</TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+    0 (&gt;L:MFDX4 mode,enum)
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>PushButton_PFD_4_2</NODE_ID>
+  <TOOLTIPID>ND</TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+    1 (&gt;L:MFDX4 mode,enum)
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>PushButton_PFD_4_3</NODE_ID>
+  <TOOLTIPID></TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>PushButton_PFD_4_4</NODE_ID>
+  <TOOLTIPID>ENG</TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+    (L:MFDX4 mode,enum) 3 == if{ 4 (&gt;L:MFDX4 mode,enum) } els{ (L:MFDX4 mode,enum) 4 == if{ 5 (&gt;L:MFDX4 mode,enum) } els{ 3 (&gt;L:MFDX4 mode,enum) } }
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>PushButton_PFD_4_5</NODE_ID>
+  <TOOLTIPID>CFG</TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+    6 (&gt;L:MFDX4 mode,enum)
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
 
 
   <UseTemplate Name="DELTASIM_PushButton_Template">
@@ -661,14 +832,14 @@
     <NODE_ID>BUTTON_PITOT_HT_COPT</NODE_ID>
     <TOOLTIPID>CP PITOT</TOOLTIPID>
     <LEFT_SINGLE_CODE>
-      (K:PITOT_HEAT_TOGGLE,bool) ! (&gt;K:PITOT_HEAT_TOGGLE,bool)
+      (L:C17_cP_PITOT, bool) ! (&gt;L:C17_cP_PITOT, bool)
     </LEFT_SINGLE_CODE>
 </UseTemplate>
   <UseTemplate Name="DELTASIM_PushButton_Template">
     <NODE_ID>BUTTON_PITOT_HT_PT</NODE_ID>
     <TOOLTIPID>P PITOT</TOOLTIPID>
     <LEFT_SINGLE_CODE>
-      (K:PITOT_HEAT_TOGGLE,bool) ! (&gt;K:PITOT_HEAT_TOGGLE,bool)
+      (L:C17_P_PITOT, bool) ! (&gt;L:C17_P_PITOT, bool)
     </LEFT_SINGLE_CODE>
 </UseTemplate>
 
@@ -1288,11 +1459,11 @@
   </UseTemplate>
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>KORRY_P_PITOT_OFF</NODE_ID>
-    <TRUECODE>(A:Pitot heat,bool) !</TRUECODE>
+    <TRUECODE>(L:C17_P_PITOT, bool) !</TRUECODE>
   </UseTemplate>
     <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>KORRY_CP_PITOT_OFF</NODE_ID>
-    <TRUECODE>(A:Pitot heat,bool) !</TRUECODE>
+    <TRUECODE>(L:C17_CP_PITOT, bool) !</TRUECODE>
   </UseTemplate>
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>KORRY_WING_ANTI_ICE_ON</NODE_ID>
@@ -1750,6 +1921,34 @@
       (L:C17_WACAP_BRT) ! (&gt;L:C17_WACAP_BRT)
     </LEFT_SINGLE_CODE>
 </UseTemplate>
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>BUTTON_WAP_SCRLL_UP_L</NODE_ID>
+  <TOOLTIPID>MSG UP</TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+    (L:C17_WACAP_VIEW_L) -- 0 max (&gt;L:C17_WACAP_VIEW_L)
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>BUTTON_WAP_SCRLL_DWN_L</NODE_ID>
+  <TOOLTIPID>MSG DOWN</TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+    (L:C17_WACAP_VIEW_L) ++ (&gt;L:C17_WACAP_VIEW_L)
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>BUTTON_WAP_SCRLL_UP_R</NODE_ID>
+  <TOOLTIPID>MSG UP</TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+    (L:C17_WACAP_VIEW_R) -- 0 max (&gt;L:C17_WACAP_VIEW_R)
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>BUTTON_WAP_SCRLL_DWN_R</NODE_ID>
+  <TOOLTIPID>MSG DOWN</TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+    (L:C17_WACAP_VIEW_R) ++ (&gt;L:C17_WACAP_VIEW_R)
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
 
 
   <UseTemplate Name="GENERIC_Toggle_Switch_Template">
@@ -2026,7 +2225,9 @@
             }
           }
           (O:StartSwitchPOS, bool) 1 ==
-          if{ 2 (>L:C17_APUSTARTER, enum) }
+          if{ 2 (>L:C17_APUSTARTER, enum) 
+             1 (>K:MASTER_BATTERY_ON)
+          }
           els{ 1 (>L:C17_APUSTARTER, enum) }
 					</Code>
 				</CallbackCode>
@@ -2806,106 +3007,7 @@
         </CallbackCode>
   </MouseRect>
 </PartInfo>
-<Animation name="BTTN_AUTO_SPOILER" guid="cd801140-1abf-4b1f-a8df-8277c586e451" length="100" type="Sim" typeParam2="BTTN_AUTO_SPOILER" typeParam="AutoPlay" />
-<PartInfo>
-  <Name>BTTN_AUTO_SPOILER</Name>
-  <AnimLength>100</AnimLength>
-  <Animation>
-    <Parameter>
-      <Code>(A:SPOILERS ARMED, bool) 100 * </Code>
-      <Lag>200</Lag>
-    </Parameter>
-  </Animation>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <TooltipText>%SPOILERS %((A:SPOILERS ARMED, bool))%{if}%DISARM%{else}%ARM%</TooltipText>
-    <CallbackCode>
-      (K:SPOILERS_ARM_TOGGLE) ! (&gt;K:SPOILERS_ARM_TOGGLE)
-        </CallbackCode>
-  </MouseRect>
-</PartInfo>
-    <Animation name="AIRSPEED HOLD" guid="17f31278-a130-4107-8e0e-fd368f270a02" length="25" type="Sim" typeParam2="AIRSPEED HOLD" typeParam="AutoPlay" />
-    <PartInfo>
-      <Name>AIRSPEED HOLD</Name>
-      <AnimLength>25</AnimLength>
-      <Animation>
-        <Parameter>
-          <Sim>
-            <Variable>AUTOPILOT AIRSPEED HOLD</Variable>
-            <Units>bool</Units>
-            <Scale>50</Scale>
-            <Bias>0</Bias>
-          </Sim>
-          <Lag>400</Lag>
-        </Parameter>
-      </Animation>
-      <MouseRect>
-        <Cursor>Hand</Cursor>
-        <TooltipText>Airspeed hold</TooltipText>
-        <CallbackCode>(&gt;K:AP_PANEL_SPEED_HOLD)</CallbackCode>
-      </MouseRect>
-    </PartInfo>
-    
-  <Animation name="custom_anim_AUTOPILOT_ALTITUDE_LOCK_VAR_34" guid="b418705a-200c-4ae8-8d8b-0797dad75adb" length="100" type="Sim" typeParam2="custom_anim_AUTOPILOT_ALTITUDE_LOCK_VAR_34" typeParam="AutoPlay" />
-  <PartInfo>
-    <Name>custom_anim_AUTOPILOT_ALTITUDE_LOCK_VAR_34</Name>
-    <AnimLength>100</AnimLength>
-    <Animation>
-      <Parameter>
-        <Code>(A:AUTOPILOT ALTITUDE LOCK VAR, feet)</Code>
-      </Parameter>
-    </Animation>
-    <MouseRect>
-      <Cursor>Hand</Cursor>
-      <TooltipText>Set altitude</TooltipText>
-      <MouseFlags>MoveRepeat+WheelDown+WheelUp+LeftSingle+RightSingle</MouseFlags>
-      <CallbackCode>
-      (M:Event) 'WheelUp'     scmi 0 == if{ (&gt;K:AP_ALT_VAR_INC) }
-      (M:Event) 'WheelDown'   scmi 0 == if{ (&gt;K:AP_ALT_VAR_DEC) }
-      (M:Event) 'LeftSingle'  scmi 0 == if{ (&gt;K:AP_ALT_VAR_INC) }
-      (M:Event) 'RightSingle' scmi 0 == if{ (&gt;K:AP_ALT_VAR_DEC) }
-      </CallbackCode>
-    </MouseRect>
-  </PartInfo>
-    <Animation name="ALT HOLD" guid="79ac9efe-c483-48d3-aeeb-40e4f4335052" length="25" type="Sim" typeParam2="ALT HOLD" typeParam="AutoPlay" />
-    <PartInfo>
-      <Name>ALT HOLD</Name>
-      <AnimLength>25</AnimLength>
-      <Animation>
-        <Parameter>
-          <Code>(A:Autopilot altitude lock,bool) 25 * </Code>
-          <Lag>100</Lag>
-        </Parameter>
-      </Animation>
-    <MouseRect>
-      <Cursor>Hand</Cursor>
-      <TooltipText>%Altitude hold %((A:Autopilot altitude lock, bool))%{if}%ON%{else}%OFF%</TooltipText>
-      <CallbackCode>
-				(K:AP_ALT_HOLD,bool) ! (&gt;K:AP_ALT_HOLD,bool)
-					</CallbackCode>
-    </MouseRect>
-  </PartInfo>
-  <Animation name="ATTITUDE HOLD" guid="151d8a35-8d22-4854-8d96-eb8531f17c68" length="25" type="Sim" typeParam2="ATTITUDE HOLD" typeParam="AutoPlay" />
-  <PartInfo>
-    <Name>ATTITUDE HOLD</Name>
-    <AnimLength>25</AnimLength>
-    <Animation>
-      <Parameter>
-        <Code>(A:Autopilot attitude hold, bool) 25 * </Code>
-        <Lag>100</Lag>
-      </Parameter>
-    </Animation>
-    <MouseRect>
-      <Cursor>Hand</Cursor>
-      <TooltipText>%Attitude Hold %((A:Autopilot attitude hold, bool))%{if}%ON%{else}%OFF%</TooltipText>
-      <CallbackCode>
-				(K:AP_ATT_HOLD) ! (&gt;K:AP_ATT_HOLD)
-					</CallbackCode>
-    </MouseRect>
-  </PartInfo>
-
-
-
+ 
   <Animation name="PARA DOORL" guid="795ad260-d165-4486-bc6b-84cd202e3693" type="Sim" typeparam="AutoPlay" />
   <PartInfo>
 	  <Name>PARA DOORL</Name>
@@ -2932,7 +3034,7 @@
 
 
 
-<Animation name="LOWER_rudder_pedals" 		guid="5bafcf33-98af-4adc-9580-26f1b7c0fa7a" length="100" type="Sim" typeParam2="LOWER_rudder_pedals" typeParam="AutoPlay" />
+<Animation name="LOWER_rudder_pedals" 		guid="257fcb8b-6dda-46b8-93f7-2d1565a7848d" length="100" type="Sim" typeParam2="LOWER_rudder_pedals" typeParam="AutoPlay" />
 	<PartInfo>
 		<Name>LOWER_rudder_pedals</Name>
 		<AnimLength>100</AnimLength>
@@ -2948,30 +3050,68 @@
 		</Animation>
 	</PartInfo>
   <!-- ======================GAUGES==================================-->
-<Animation name="attitude_indicator_pitch"      guid="e3cc9a12-e9d7-4fdd-a970-1a6137510732" type="Sim" typeParam="AutoPlay" />
+
+  <Animation name="Attitide_Indicator_Flag" guid="56d844b9-bf67-4424-a1c6-894d872fe473" type="Sim" typeParam="AutoPlay" />
+	<PartInfo>
+	  <Name>Attitide_Indicator_Flag</Name>
+	  <AnimLength>100</AnimLength>
+	  <Animation>
+		<Parameter>
+		  <Code>
+      (L:C17_Cpit_Cmpas_Pwr,bool) 100 * 100 -
+		  </Code>
+		</Parameter>
+	  </Animation>
+	</PartInfo>
+
+  <Animation name="Stby_Att_Adjust_P" guid="32aa94c3-9b5a-41f9-a12e-82b251373ba1" type="Sim" typeParam="AutoPlay" />
+	<PartInfo>
+	  <Name>Stby_Att_Adjust_P</Name>
+	  <AnimLength>100</AnimLength>
+	  <Animation>
+		<Parameter>
+		  <Code>
+      (L:C17_P_Stby_Att_Adjust,enum)
+		  </Code>
+		</Parameter>
+	  </Animation>
+	</PartInfo>
+  <Animation name="Stby_Att_Adjust_CP" guid="f8f01e8e-0647-45a8-9ca5-2361f0bff8c0" type="Sim" typeParam="AutoPlay" />
+	<PartInfo>
+	  <Name>Stby_Att_Adjust_CP</Name>
+	  <AnimLength>100</AnimLength>
+	  <Animation>
+		<Parameter>
+		  <Code>
+      (L:C17_CP_Stby_Att_Adjust,enum)
+		  </Code>
+		</Parameter>
+	  </Animation>
+	</PartInfo>
+
+<Animation name="attitude_indicator_pitch" guid="f7d7df71-e51b-4924-9657-bd593fc3518c" type="Sim" typeParam="AutoPlay" />
 	<PartInfo>
 	  <Name>attitude_indicator_pitch</Name>
 	  <AnimLength>360</AnimLength>
 	  <Animation>
 		<Parameter>
 		  <Code>
-      (A:CIRCUIT ON:65,bool) 1 ==
-      if{
 			(A:ATTITUDE INDICATOR PITCH DEGREES, degree) 180 +
-      }els {150}
 		  </Code>
+      <Lag>50</Lag>
 		</Parameter>
 	  </Animation>
 	</PartInfo>
-<Animation name="Gauge_Indc_Airspeed"      guid="5eedd8e5-2f3f-4299-854b-9a86ac3e2851" type="Sim" typeParam="AutoPlay" />
+<Animation name="Gauge_Indc_Airspeed" guid="3fbd4429-a861-470c-9ad7-1942701599b7" type="Sim" typeParam="AutoPlay" />
   <PartInfo>
     <Name>Gauge_Indc_Airspeed</Name>
     <AnimLength>100</AnimLength>
     <Animation>
       <Parameter>
         <Code>
-          (A:AIRSPEED INDICATED, knots) 10 /
+            (A:AIRSPEED INDICATED, knots) 10 /
         </Code>
+        <Lag>50</Lag>
       </Parameter>
     </Animation>
   </PartInfo>
@@ -3105,14 +3245,6 @@
 </PartInfo>
 
  
-<!-- A/R DOOR-->
-<Animation name="FEK.Test" guid="4557329e-bae1-420d-b4fe-cac8dfa67964" length="1" type="Sim" typeParam2="FEK.Test" typeParam="AutoPlay" />
-    <PartInfo>
-    <Name>FEK.Test</Name>
-    <Materials> <Emissive> <Parameter>
-    <Code>(A:GENERAL ENG THROTTLE LEVER POSITION:1,percent) 100 /</Code>
-    </Parameter> </Emissive> </Materials>
-    </PartInfo>
 <!-- +++++++++++++++++++++=======LOWER PANEL++++++++++++++________________===================-->
 
 
@@ -3396,472 +3528,6 @@
       </Parameter>
       </Visibility>
     </PartInfo>
-
-
-
-
-
-<Animation name="LMFD BOTTOM 1" guid="4330c098-edc2-446c-bb30-bffba5068c14" length="5" type="Sim" typeParam2="LMFD BOTTOM 1" typeParam="AutoPlay" />
-<Animation name="LMFD BOTTOM 2" guid="ffb9da74-73a5-4746-9dfb-a60e1f2036ee" length="5" type="Sim" typeParam2="LMFD BOTTOM 2" typeParam="AutoPlay" />
-<Animation name="LMFD BOTTOM 3" guid="351c9062-bac5-47c1-8429-c4e78049ca7a" length="5" type="Sim" typeParam2="LMFD BOTTOM 3" typeParam="AutoPlay" />
-<Animation name="LMFD BOTTOM 4" guid="45230f95-2b4d-44fa-ad26-cf5515ab80f1" length="5" type="Sim" typeParam2="LMFD BOTTOM 4" typeParam="AutoPlay" />
-<Animation name="LMFD BOTTOM 5" guid="583a0a1d-1850-4aa3-87b1-76b872fde3b9" length="5" type="Sim" typeParam2="LMFD BOTTOM 5" typeParam="AutoPlay" />
-<Animation name="LMFD BOTTOM 6" guid="e19604a6-f4c6-46d6-87ec-44015340ba18" length="5" type="Sim" typeParam2="LMFD BOTTOM 6" typeParam="AutoPlay" />
-<PartInfo>
-    <Name>LMFD BOTTOM 1</Name>
-    <AnimLength>5</AnimLength>
-    <Animation>
-      <Parameter>
-        <Code>(L:MFDPFD2,enum) 100 * </Code>
-        <Lag>30</Lag>
-      </Parameter>
-    </Animation>
-    <MouseRect>
-      <Cursor>Hand</Cursor>
-      <MouseFlags>LeftRelease+LeftSingle</MouseFlags>
-      <CallbackCode>
-				(M:Event) 'LeftSingle' scmp 0 == if{ 1 (&gt;L:MFDPFD2,enum) 0 (&gt;L:MFDX2 mode,enum) }
-				(M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:MFDPFD2,enum) }
-			</CallbackCode>
-    </MouseRect>
-</PartInfo>
-<PartInfo>
-    <Name>LMFD BOTTOM 2</Name>
-    <AnimLength>5</AnimLength>
-    <Animation>
-      <Parameter>
-        <Code>(L:MFDND2,enum) 100 * </Code>
-        <Lag>30</Lag>
-      </Parameter>
-    </Animation>
-    <MouseRect>
-      <Cursor>Hand</Cursor>
-      <MouseFlags>LeftRelease+LeftSingle</MouseFlags>
-      <CallbackCode>
-				(M:Event) 'LeftSingle' scmp 0 == if{ 1 (&gt;L:MFDND2,enum) 1 (&gt;L:MFDX2 mode,enum) }
-				(M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:MFDND2,enum) }
-			</CallbackCode>
-    </MouseRect>
-</PartInfo>
-<PartInfo>
-    <Name>LMFD BOTTOM 3</Name>
-    <AnimLength>5</AnimLength>
-    <Animation>
-      <Parameter>
-        <Code>(L:MFDND2,enum) 100 * </Code>
-        <Lag>30</Lag>
-      </Parameter>
-    </Animation>
-    <MouseRect>
-      <Cursor>Hand</Cursor>
-      <TooltipText>Not supported</TooltipText>
-      <MouseFlags>LeftRelease+LeftSingle</MouseFlags>
-      <CallbackCode>
-				(M:Event) 'LeftSingle' scmp 0 == if{ 1 (&gt;L:MFDPPI2,enum) }
-				(M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:MFDPPI2,enum) }
-			</CallbackCode>
-    </MouseRect>
-</PartInfo>
-<PartInfo>
-    <Name>LMFD BOTTOM 4</Name>
-    <AnimLength>5</AnimLength>
-    <Animation>
-      <Parameter>
-        <Code>(L:MFDENG2,enum) 100 * </Code>
-        <Lag>30</Lag>
-      </Parameter>
-    </Animation>
-    <MouseRect>
-      <Cursor>Hand</Cursor>
-      <MouseFlags>LeftRelease+LeftSingle</MouseFlags>
-      <CallbackCode>
-				(M:Event) 'LeftSingle' scmp 0 == if{ 1 (&gt;L:MFDENG2,enum) (L:MFDX2 mode,enum) 3 == if{ 4 (&gt;L:MFDX2 mode,enum) } els{ (L:MFDX2 mode,enum) 4 == if{ 5 (&gt;L:MFDX2 mode,enum) } els{ 3 (&gt;L:MFDX2 mode,enum) } } }
-				(M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:MFDENG2,enum) }
-			</CallbackCode>
-    </MouseRect>
-</PartInfo>
-<PartInfo>
-    <Name>LMFD BOTTOM 5</Name>
-    <AnimLength>5</AnimLength>
-    <Animation>
-      <Parameter>
-        <Code>(L:MFDCFG1,enum) 100 * </Code>
-        <Lag>30</Lag>
-      </Parameter>
-    </Animation>
-    <MouseRect>
-      <Cursor>Hand</Cursor>
-      <MouseFlags>LeftRelease+LeftSingle</MouseFlags>
-      <CallbackCode>
-				(M:Event) 'LeftSingle' scmp 0 == if{ 1 (&gt;L:MFDCFG2,enum) 6 (&gt;L:MFDX2 mode,enum) }
-				(M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:MFDCFG2,enum) }
-			</CallbackCode>
-    </MouseRect>
-</PartInfo>
-<PartInfo>
-    <Name>LMFD BOTTOM 6</Name>
-    <AnimLength>5</AnimLength>
-    <Animation>
-        <Parameter>
-			<Code>5</Code>
-			<Lag>20</Lag>
-		</Parameter>
-    </Animation>
-    <MouseRect>
-		<TooltipText>LMFD BOTTOM 6</TooltipText>
-        <Cursor>Hand</Cursor><CallbackCode>(L:LMFD BOTTOM 6, number) ! (&gt;L:LMFD BOTTOM 6, number)</CallbackCode>
-    </MouseRect>
-</PartInfo>
-
-<Animation name="LPFD BOTTOM 1" guid="e529ba7e-7d18-4cc4-b63c-7d8dfc72f04a" length="5" type="Sim" typeParam2="LPFD BOTTOM 1" typeParam="AutoPlay" />
-<Animation name="LPFD BOTTOM 2" guid="f3f47423-67b2-4db7-b107-eda1539d2d84" length="5" type="Sim" typeParam2="LPFD BOTTOM 2" typeParam="AutoPlay" />
-<Animation name="LPFD BOTTOM 3" guid="31149991-69bb-467f-9017-3f2e467f2dff" length="5" type="Sim" typeParam2="LPFD BOTTOM 3" typeParam="AutoPlay" />
-<Animation name="LPFD BOTTOM 4" guid="7ccff46d-f5b6-46bf-9e54-a1c52a4caad5" length="5" type="Sim" typeParam2="LPFD BOTTOM 4" typeParam="AutoPlay" />
-<Animation name="LPFD BOTTOM 5" guid="22b9cb72-eb02-4b34-b3bf-48d40b54207a" length="5" type="Sim" typeParam2="LPFD BOTTOM 5" typeParam="AutoPlay" />
-<Animation name="LPFD BOTTOM 6" guid="6344a7d2-42f6-4ff9-a616-4dde83bdaffe" length="5" type="Sim" typeParam2="LPFD BOTTOM 6" typeParam="AutoPlay" />
-
-<PartInfo>
-  <Name>LPFD BOTTOM 1</Name>
-  <AnimLength>5</AnimLength>
-  <Animation>
-    <Parameter>
-      <Code>(L:MFDPFD1,enum) 100 * </Code>
-      <Lag>30</Lag>
-    </Parameter>
-  </Animation>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <MouseFlags>LeftRelease+LeftSingle</MouseFlags>
-    <CallbackCode>
-      (M:Event) 'LeftSingle' scmp 0 == if{ 1 (&gt;L:MFDPFD1,enum) 0 (&gt;L:MFDX1 mode,enum) }
-      (M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:MFDPFD1,enum) }
-    </CallbackCode>
-  </MouseRect>
-</PartInfo>
-
-<PartInfo>
-  <Name>LPFD BOTTOM 2</Name>
-  <AnimLength>5</AnimLength>
-  <Animation>
-    <Parameter>
-      <Code>(L:MFDND1,enum) 100 * </Code>
-      <Lag>30</Lag>
-    </Parameter>
-  </Animation>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <MouseFlags>LeftRelease+LeftSingle</MouseFlags>
-    <CallbackCode>
-      (M:Event) 'LeftSingle' scmp 0 == if{ 1 (&gt;L:MFDND1,enum) 1 (&gt;L:MFDX1 mode,enum) }
-      (M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:MFDND1,enum) }
-    </CallbackCode>
-  </MouseRect>
-</PartInfo>
-
-<PartInfo>
-  <Name>LPFD BOTTOM 3</Name>
-  <AnimLength>5</AnimLength>
-  <Animation>
-    <Parameter>
-      <Code>(L:MFDND1,enum) 100 * </Code>
-      <Lag>30</Lag>
-    </Parameter>
-  </Animation>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <TooltipText>Not supported</TooltipText>
-    <MouseFlags>LeftRelease+LeftSingle</MouseFlags>
-    <CallbackCode>
-      (M:Event) 'LeftSingle' scmp 0 == if{ 1 (&gt;L:MFDPPI1,enum) }
-      (M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:MFDPPI1,enum) }
-    </CallbackCode>
-  </MouseRect>
-</PartInfo>
-
-<PartInfo>
-  <Name>LPFD BOTTOM 4</Name>
-  <AnimLength>5</AnimLength>
-  <Animation>
-    <Parameter>
-      <Code>(L:MFDENG1,enum) 100 * </Code>
-      <Lag>30</Lag>
-    </Parameter>
-  </Animation>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <MouseFlags>LeftRelease+LeftSingle</MouseFlags>
-    <CallbackCode>
-      (M:Event) 'LeftSingle' scmp 0 == if{ 1 (&gt;L:MFDENG1,enum) (L:MFDX1 mode,enum) 3 == if{ 4 (&gt;L:MFDX1 mode,enum) } els{ (L:MFDX1 mode,enum) 4 == if{ 5 (&gt;L:MFDX1 mode,enum) } els{ 3 (&gt;L:MFDX1 mode,enum) } } }
-      (M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:MFDENG1,enum) }
-    </CallbackCode>
-  </MouseRect>
-</PartInfo>
-
-<PartInfo>
-  <Name>LPFD BOTTOM 5</Name>
-  <AnimLength>5</AnimLength>
-  <Animation>
-    <Parameter>
-      <Code>(L:MFDCFG1,enum) 100 * </Code>
-      <Lag>30</Lag>
-    </Parameter>
-  </Animation>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <MouseFlags>LeftRelease+LeftSingle</MouseFlags>
-    <CallbackCode>
-      (M:Event) 'LeftSingle' scmp 0 == if{ 1 (&gt;L:MFDCFG1,enum) 6 (&gt;L:MFDX1 mode,enum) }
-      (M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:MFDCFG1,enum) }
-    </CallbackCode>
-  </MouseRect>
-</PartInfo>
-<PartInfo>
-  <Name>LPFD BOTTOM 6</Name>
-  <AnimLength>5</AnimLength>
-  <Animation>
-      <Parameter>
-    <Code>5</Code>
-    <Lag>20</Lag>
-  </Parameter>
-  </Animation>
-  <MouseRect>
-  <TooltipText>LMFD BOTTOM 6</TooltipText>
-      <Cursor>Hand</Cursor><CallbackCode>(L:LMFD BOTTOM 6, number) ! (&gt;L:LMFD BOTTOM 6, number)</CallbackCode>
-  </MouseRect>
-</PartInfo>
-
-
-<Animation name="RMFD BOTTOM 1" guid="31fa9c97-6336-4bcb-a440-04e65641f29d" length="5" type="Sim" typeParam2="RMFD BOTTOM 1" typeParam="AutoPlay" />
-<Animation name="RMFD BOTTOM 2" guid="d26d9fef-054c-4d0b-8226-afd824e273ae" length="5" type="Sim" typeParam2="RMFD BOTTOM 2" typeParam="AutoPlay" />
-<Animation name="RMFD BOTTOM 3" guid="5246821e-54b4-43ac-a108-bf21f95f6706" length="5" type="Sim" typeParam2="RMFD BOTTOM 3" typeParam="AutoPlay" />
-<Animation name="RMFD BOTTOM 4" guid="c8c5c4dd-ec8b-41ec-a9ec-42eab35bb5cb" length="5" type="Sim" typeParam2="RMFD BOTTOM 4" typeParam="AutoPlay" />
-<Animation name="RMFD BOTTOM 5" guid="5ddfd5fd-f344-4af2-abe2-55e450f7417c" length="5" type="Sim" typeParam2="RMFD BOTTOM 5" typeParam="AutoPlay" />
-<Animation name="RMFD BOTTOM 6" guid="239a594a-37bd-4321-8da4-7eead5202ee1" length="5" type="Sim" typeParam2="RMFD BOTTOM 6" typeParam="AutoPlay" />
-<PartInfo>
-  <Name>RMFD BOTTOM 1</Name>
-  <AnimLength>5</AnimLength>
-  <Animation>
-    <Parameter>
-      <Code>(L:MFDPFD3,enum) 100 * </Code>
-      <Lag>30</Lag>
-    </Parameter>
-  </Animation>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <MouseFlags>LeftRelease+LeftSingle</MouseFlags>
-    <CallbackCode>
-      (M:Event) 'LeftSingle' scmp 0 == if{ 1 (&gt;L:MFDPFD3,enum) 0 (&gt;L:MFDX3 mode,enum) }
-      (M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:MFDPFD3,enum) }
-    </CallbackCode>
-  </MouseRect>
-</PartInfo>
-
-<PartInfo>
-  <Name>RMFD BOTTOM 2</Name>
-  <AnimLength>5</AnimLength>
-  <Animation>
-    <Parameter>
-      <Code>(L:MFDND3,enum) 100 * </Code>
-      <Lag>30</Lag>
-    </Parameter>
-  </Animation>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <MouseFlags>LeftRelease+LeftSingle</MouseFlags>
-    <CallbackCode>
-      (M:Event) 'LeftSingle' scmp 0 == if{ 1 (&gt;L:MFDND3,enum) 1 (&gt;L:MFDX3 mode,enum) }
-      (M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:MFDND3,enum) }
-    </CallbackCode>
-  </MouseRect>
-</PartInfo>
-
-<PartInfo>
-  <Name>RMFD BOTTOM 3</Name>
-  <AnimLength>5</AnimLength>
-  <Animation>
-    <Parameter>
-      <Code>(L:MFDND3,enum) 100 * </Code>
-      <Lag>30</Lag>
-    </Parameter>
-  </Animation>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <TooltipText>Not supported</TooltipText>
-    <MouseFlags>LeftRelease+LeftSingle</MouseFlags>
-    <CallbackCode>
-      (M:Event) 'LeftSingle' scmp 0 == if{ 1 (&gt;L:MFDPPI3,enum) }
-      (M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:MFDPPI3,enum) }
-    </CallbackCode>
-  </MouseRect>
-</PartInfo>
-
-<PartInfo>
-  <Name>RMFD BOTTOM 4</Name>
-  <AnimLength>5</AnimLength>
-  <Animation>
-    <Parameter>
-      <Code>(L:MFDENG3,enum) 100 * </Code>
-      <Lag>30</Lag>
-    </Parameter>
-  </Animation>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <MouseFlags>LeftRelease+LeftSingle</MouseFlags>
-    <CallbackCode>
-      (M:Event) 'LeftSingle' scmp 0 == if{ 1 (&gt;L:MFDENG3,enum) (L:MFDX3 mode,enum) 3 == if{ 4 (&gt;L:MFDX3 mode,enum) } els{ (L:MFDX3 mode,enum) 4 == if{ 5 (&gt;L:MFDX3 mode,enum) } els{ 3 (&gt;L:MFDX3 mode,enum) } } }
-      (M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:MFDENG3,enum) }
-    </CallbackCode>
-  </MouseRect>
-</PartInfo>
-
-<PartInfo>
-  <Name>RMFD BOTTOM 5</Name>
-  <AnimLength>5</AnimLength>
-  <Animation>
-    <Parameter>
-      <Code>(L:MFDCFG3,enum) 100 * </Code>
-      <Lag>30</Lag>
-    </Parameter>
-  </Animation>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <MouseFlags>LeftRelease+LeftSingle</MouseFlags>
-    <CallbackCode>
-      (M:Event) 'LeftSingle' scmp 0 == if{ 1 (&gt;L:MFDCFG3,enum) 6 (&gt;L:MFDX3 mode,enum) }
-      (M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:MFDCFG3,enum) }
-    </CallbackCode>
-  </MouseRect>
-</PartInfo>
-<PartInfo>
-  <Name>RMFD BOTTOM 6</Name>
-  <AnimLength>5</AnimLength>
-  <Animation>
-      <Parameter>
-    <Code>5</Code>
-    <Lag>20</Lag>
-  </Parameter>
-  </Animation>
-  <MouseRect>
-  <TooltipText>MAP</TooltipText>
-      <Cursor>Hand</Cursor><CallbackCode>(L:RMFD BOTTOM 6, number) ! (&gt;L:RMFD BOTTOM 6, number)</CallbackCode>
-  </MouseRect>
-</PartInfo>
-
-<Animation name="RPFD BOTTOM 1" guid="3bb0bd07-37e0-4e54-8aeb-72e18cc16d4d" length="5" type="Sim" typeParam2="RPFD BOTTOM 1" typeParam="AutoPlay" />
-<Animation name="RPFD BOTTOM 2" guid="b2881cd0-a994-4c18-8453-3045e1c557ef" length="5" type="Sim" typeParam2="RPFD BOTTOM 2" typeParam="AutoPlay" />
-<Animation name="RPFD BOTTOM 3" guid="beb92a92-3229-4bda-bf83-4d278a87a08f" length="5" type="Sim" typeParam2="RPFD BOTTOM 3" typeParam="AutoPlay" />
-<Animation name="RPFD BOTTOM 4" guid="778ef211-0d2e-457d-8842-c0b7d740c125" length="5" type="Sim" typeParam2="RPFD BOTTOM 4" typeParam="AutoPlay" />
-<Animation name="RPFD BOTTOM 5" guid="5214ff32-b838-4785-9b6f-c121aa582fa8" length="5" type="Sim" typeParam2="RPFD BOTTOM 5" typeParam="AutoPlay" />
-<Animation name="RPFD BOTTOM 6" guid="401ca64e-a827-4e94-96f3-8e822d6c46f6" length="5" type="Sim" typeParam2="RPFD BOTTOM 6" typeParam="AutoPlay" />
-<PartInfo>
-  <Name>RPFD BOTTOM 1</Name>
-  <AnimLength>5</AnimLength>
-  <Animation>
-    <Parameter>
-      <Code>(L:MFDPFD4,enum) 100 * </Code>
-      <Lag>30</Lag>
-    </Parameter>
-  </Animation>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <MouseFlags>LeftRelease+LeftSingle</MouseFlags>
-    <CallbackCode>
-      (M:Event) 'LeftSingle' scmp 0 == if{ 1 (&gt;L:MFDPFD4,enum) 0 (&gt;L:MFDX4 mode,enum) }
-      (M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:MFDPFD4,enum) }
-    </CallbackCode>
-  </MouseRect>
-</PartInfo>
-
-<PartInfo>
-  <Name>RPFD BOTTOM 2</Name>
-  <AnimLength>5</AnimLength>
-  <Animation>
-    <Parameter>
-      <Code>(L:MFDND4,enum) 100 * </Code>
-      <Lag>30</Lag>
-    </Parameter>
-  </Animation>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <MouseFlags>LeftRelease+LeftSingle</MouseFlags>
-    <CallbackCode>
-      (M:Event) 'LeftSingle' scmp 0 == if{ 1 (&gt;L:MFDND4,enum) 1 (&gt;L:MFDX4 mode,enum) }
-      (M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:MFDND4,enum) }
-    </CallbackCode>
-  </MouseRect>
-</PartInfo>
-
-<PartInfo>
-  <Name>RPFD BOTTOM 3</Name>
-  <AnimLength>5</AnimLength>
-  <Animation>
-    <Parameter>
-      <Code>(L:MFDND4,enum) 100 * </Code>
-      <Lag>30</Lag>
-    </Parameter>
-  </Animation>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <TooltipText>Not supported</TooltipText>
-    <MouseFlags>LeftRelease+LeftSingle</MouseFlags>
-    <CallbackCode>
-      (M:Event) 'LeftSingle' scmp 0 == if{ 1 (&gt;L:MFDPPI4,enum) }
-      (M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:MFDPPI4,enum) }
-    </CallbackCode>
-  </MouseRect>
-</PartInfo>
-
-<PartInfo>
-  <Name>RPFD BOTTOM 4</Name>
-  <AnimLength>5</AnimLength>
-  <Animation>
-    <Parameter>
-      <Code>(L:MFDENG4,enum) 100 * </Code>
-      <Lag>30</Lag>
-    </Parameter>
-  </Animation>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <MouseFlags>LeftRelease+LeftSingle</MouseFlags>
-    <CallbackCode>
-      (M:Event) 'LeftSingle' scmp 0 == if{ 1 (&gt;L:MFDENG4,enum) (L:MFDX4 mode,enum) 3 == if{ 4 (&gt;L:MFDX4 mode,enum) } els{ (L:MFDX4 mode,enum) 4 == if{ 5 (&gt;L:MFDX4 mode,enum) } els{ 3 (&gt;L:MFDX4 mode,enum) } } }
-      (M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:MFDENG4,enum) }
-    </CallbackCode>
-  </MouseRect>
-</PartInfo>
-
-<PartInfo>
-  <Name>RPFD BOTTOM 5</Name>
-  <AnimLength>5</AnimLength>
-  <Animation>
-    <Parameter>
-      <Code>(L:MFDCFG4,enum) 100 * </Code>
-      <Lag>30</Lag>
-    </Parameter>
-  </Animation>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <MouseFlags>LeftRelease+LeftSingle</MouseFlags>
-    <CallbackCode>
-      (M:Event) 'LeftSingle' scmp 0 == if{ 1 (&gt;L:MFDCFG4,enum) 6 (&gt;L:MFDX4 mode,enum) }
-      (M:Event) 'LeftRelease' scmp 0 == if{ 0 (&gt;L:MFDCFG4,enum) }
-    </CallbackCode>
-  </MouseRect>
-</PartInfo>
-<PartInfo>
-  <Name>RPFD BOTTOM 6</Name>
-  <AnimLength>5</AnimLength>
-  <Animation>
-      <Parameter>
-    <Code>5</Code>
-    <Lag>20</Lag>
-  </Parameter>
-  </Animation>
-  <MouseRect>
-  <TooltipText>MAP</TooltipText>
-      <Cursor>Hand</Cursor><CallbackCode>(L:LMFD BOTTOM 6, number) ! (&gt;L:LMFD BOTTOM 6, number)</CallbackCode>
-  </MouseRect>
-</PartInfo>
 
 <Animation name="RBF_Tags" guid="2a0f86ef-2791-4029-bab3-3b85dee548de" length="1" type="Sim" typeParam="AutoPlay" />
 <PartInfo>
