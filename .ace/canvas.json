@@ -1,11 +1,11 @@
 {
     "elements": [
         {
-            "__uuid": "676e039c-7f74-43cc-93df-becfe8766a3c",
+            "__uuid": "cb11ae85-428e-4552-9fc1-4b105e06304a",
             "__kind": "instrument",
             "dataKind": "bundled",
-            "title": "Systems",
-            "instrumentName": "Systems",
+            "title": "READOUT",
+            "instrumentName": "READOUT",
             "position": {
                 "x": 0,
                 "y": 0

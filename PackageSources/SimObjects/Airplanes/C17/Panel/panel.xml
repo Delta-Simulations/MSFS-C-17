@@ -1,44 +1,44 @@
 <PlaneHTMLConfig>
 
 	<Instrument>
-		<Name>WTB748_PFD_1</Name>
+		<Name>B747_8_FMC</Name>
 		<Electric>
-			<Simvar name="CIRCUIT ON:21" unit="Boolean"/>
+			<Simvar name="CIRCUIT ON:72" unit="Boolean"/>
 		</Electric>
 	</Instrument>
 
 	<Instrument>
 		<Name>WTB748_MFD_1</Name>
 		<Electric>
-			<Simvar name="CIRCUIT ON:23" unit="Boolean"/>
+			<Simvar name="CIRCUIT ON:81" unit="Boolean"/>
 		</Electric>
 	</Instrument>
 
 	<Instrument>
 		<Name>WTB748_MFD_2</Name>
 		<Electric>
-			<Simvar name="CIRCUIT ON:24" unit="Boolean"/>
+			<Simvar name="CIRCUIT ON:81" unit="Boolean"/>
 		</Electric>
 	</Instrument>
 
 	<Instrument>
 		<Name>WTB748_MFD_3</Name>
 		<Electric>
-			<Simvar name="CIRCUIT ON:25" unit="Boolean"/>
+			<Simvar name="CIRCUIT ON:81" unit="Boolean"/>
 		</Electric>
 	</Instrument>
 
 	<Instrument>
 		<Name>WTB748_MFD_4</Name>
 		<Electric>
-			<Simvar name="CIRCUIT ON:26" unit="Boolean"/>
+			<Simvar name="CIRCUIT ON:81" unit="Boolean"/>
 		</Electric>
 	</Instrument>
 
 	<Instrument>
 		<Name>WTB748_CDU_1</Name>
 		<Electric>
-			<Simvar name="CIRCUIT ON:27" unit="Boolean"/>
+			<Simvar name="CIRCUIT ON:81" unit="Boolean"/>
 		</Electric>
 		<AlwaysUpdate>True</AlwaysUpdate>
 	</Instrument>
@@ -46,80 +46,9 @@
 	<Instrument>
 		<Name>WTB748_CDU_2</Name>
 		<Electric>
-			<Simvar name="CIRCUIT ON:28" unit="Boolean"/>
+			<Simvar name="CIRCUIT ON:81" unit="Boolean"/>
 		</Electric>
 		<AlwaysUpdate>True</AlwaysUpdate>
-	</Instrument>
-
-	<Instrument>
-		<Name>B747_8_Com_1</Name>
-		<Electric>
-			<Simvar name="CIRCUIT ON:16" unit="Boolean"/>
-		</Electric>
-	</Instrument>
-
-	<Instrument>
-		<Name>B747_8_Com_2</Name>
-		<Electric>
-			<Simvar name="CIRCUIT ON:18" unit="Boolean"/>
-		</Electric>
-	</Instrument>
-
-	<Instrument>
-		<Name>B747_8_Com_3</Name>
-		<Electric>
-			<Simvar name="CIRCUIT ON:20" unit="Boolean"/>
-		</Electric>
-	</Instrument>
-
-	<Instrument>
-		<Name>WTB748_MCP_1</Name>
-		<Electric>
-			<Simvar name="CIRCUIT ON:21" unit="Boolean"/>
-		</Electric>
-		<AlwaysUpdate>True</AlwaysUpdate>
-	</Instrument>
-
-	<Instrument>
-		<Name>WTB748_MCP_2</Name>
-		<Electric>
-			<Simvar name="CIRCUIT ON:21" unit="Boolean"/>
-		</Electric>
-	</Instrument>
-
-	<Instrument>
-		<Name>WTB748_MCP_3</Name>
-		<Electric>
-			<Simvar name="CIRCUIT ON:21" unit="Boolean"/>
-		</Electric>
-	</Instrument>
-
-	<Instrument>
-		<Name>B747_8_ALT</Name>
-		<Electric>
-			<Simvar name="CIRCUIT ON:21" unit="Boolean"/>
-		</Electric>
-	</Instrument>
-
-	<Instrument>
-		<Name>B747_8_SAI</Name>
-		<Electric>
-			<Simvar name="CIRCUIT ON:21" unit="Boolean"/>
-		</Electric>
-	</Instrument>
-
-	<Instrument>
-		<Name>B747_8_ATC</Name>
-		<Electric>
-			<Simvar name="CIRCUIT ON:7" unit="Boolean"/>
-		</Electric>
-	</Instrument>
-
-	<Instrument>
-		<Name>B747_8_RUDDER</Name>
-		<Electric>
-			<Simvar name="CIRCUIT ON:21" unit="Boolean"/>
-		</Electric>
 	</Instrument>
 
 	<!-- WT: Sensors -->
@@ -136,11 +65,7 @@
 			</Electric>
 		</Ahrs>
 
-		<RadarAltimeter index="1">
-			<Electric>
-				<Simvar name="CIRCUIT ON:121" unit="Boolean" />
-			</Electric>
-		</RadarAltimeter>
+
 
 		<!--RadarAltimeter
 		index="2">
@@ -159,8 +84,6 @@
 				<Simvar name="CIRCUIT ON:124" unit="Boolean" />
 			</Electric>
 		</Gps>
-		
 	</Sensors>
-
 
 </PlaneHTMLConfig>

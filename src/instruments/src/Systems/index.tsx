@@ -18,6 +18,7 @@ const Systems = () => {
                 <g>           
                     <AURALS />
                     <MasterCaution />
+                    
 
                 </g>
             </svg>

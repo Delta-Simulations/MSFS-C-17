@@ -1,0 +1,20 @@
+<svg viewBox="-72 -5 141 121" xmlns="http://www.w3.org/2000/svg">
+  <path
+    d="M 12 0 V 114 M -12 0 V 114 M 12 57 H 60 M -12 57 H -60 M -12 114 H -30 M 12 114 H 30 z"
+    stroke="black"
+    stroke-linecap="round"
+    stroke-width="4"
+    stroke-linejoin="round"
+    fill="none"
+    vector-effect="non-scaling-stroke"
+    />
+  <path
+    d="M 12 0 V 114 M -12 0 V 114 M 12 57 H 60 M -12 57 H -60 M -12 114 H -30 M 12 114 H 30 z"
+    stroke="white"
+    stroke-linecap="round"
+    stroke-width="3"
+    stroke-linejoin="round"
+    fill="none"
+    vector-effect="non-scaling-stroke"
+  />
+</svg>

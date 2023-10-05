@@ -1,23 +1,76 @@
 {
     "elements": [
         {
-            "__uuid": "8e0f7412-4efe-4a5a-a189-62aa341c2cd2",
-            "title": "Autothrottle Warning",
-            "varPrefix": "L",
-            "varName": "C17_AT_warning",
-            "varUnit": "bool",
+            "__uuid": "809d4deb-9638-4dad-b01d-e80d500793eb",
+            "title": "pwr",
+            "varPrefix": "A",
+            "varName": "CIRCUIT ON:65",
+            "varUnit": "number",
             "style": {
                 "type": 3
             }
         },
         {
-            "__uuid": "a4481861-2380-4cf4-a033-f354c05047d0",
-            "title": "AT switch",
+            "__uuid": "aba5635b-f6bf-4d4c-8147-b96945c8627b",
+            "title": "pwr2",
             "varPrefix": "A",
-            "varName": "AUTOPILOT THROTTLE ARM",
-            "varUnit": "bool",
+            "varName": "CIRCUIT ON:81",
+            "varUnit": "number",
             "style": {
                 "type": 3
+            }
+        },
+        {
+            "__uuid": "e69d34aa-2744-40e0-8573-f0863085c84a",
+            "title": "UVs",
+            "varPrefix": "L",
+            "varName": "C17_HUDDEBUG",
+            "varUnit": "number",
+            "style": {
+                "type": 3
+            }
+        },
+        {
+            "__uuid": "b3b96914-b3a3-46f4-a62f-5d97aac86df9",
+            "title": "REV THRUST",
+            "varPrefix": "L",
+            "varName": "C17_REV_THRUST",
+            "varUnit": "number",
+            "style": {
+                "type": 3
+            }
+        },
+        {
+            "__uuid": "21c21c4a-2538-4e43-b27b-0dff0c350184",
+            "title": "AT SWITCH",
+            "varPrefix": "A",
+            "varName": "AUTOPILOT THROTTLE ARM",
+            "varUnit": "number",
+            "style": {
+                "type": 3
+            }
+        },
+        {
+            "__uuid": "8c3c6fa4-57fa-4bc5-85ed-076753879c1a",
+            "title": "at aural",
+            "varPrefix": "L",
+            "varName": "C17_AT_warning",
+            "varUnit": "number",
+            "style": {
+                "type": 3
+            }
+        },
+        {
+            "__uuid": "5bfb872a-8eca-4cf5-a464-5f8800bd1030",
+            "title": "SimRate",
+            "varPrefix": "E",
+            "varName": "SIMULATION RATE",
+            "varUnit": "number",
+            "style": {
+                "type": 2,
+                "min": 0.5,
+                "max": 100,
+                "step": 0.5
             }
         }
     ]

@@ -1915,6 +1915,15 @@
   </UseTemplate>
 
   <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>PushButton_E</NODE_ID>
+    <TOOLTIPID>TOGGLE REVERSE THRUST</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+      (L:C17_REV_THRUST) ! (&gt;L:C17_REV_THRUST)
+    </LEFT_SINGLE_CODE>
+</UseTemplate>
+
+
+  <UseTemplate Name="DELTASIM_PushButton_Template">
     <NODE_ID>BUTTON_WAP_BRT_DIM</NODE_ID>
     <TOOLTIPID>WAP BRT/DIM</TOOLTIPID>
     <LEFT_SINGLE_CODE>
@@ -2375,14 +2384,13 @@
 </Component>
 <Component ID="Yoke_Controls">
       <UseTemplate Name="ASOBO_GT_Update">
-        <!-- REV THRUST ABILITY -->
-        <FREQUENCY>80</FREQUENCY>
+        <FREQUENCY>200</FREQUENCY>
         <UPDATE_CODE>
           (L:C17_REV_THRUST, bool) 1 == if{
-            -0.1 (&gt;A:GENERAL ENG THROTTLE LEVER POSITION:1, percent)
-            -40 (&gt;A:GENERAL ENG THROTTLE LEVER POSITION:2, percent)
-            -40 (&gt;A:GENERAL ENG THROTTLE LEVER POSITION:3, percent)
-            -0.1 (&gt;A:GENERAL ENG THROTTLE LEVER POSITION:4, percent)
+            -1 (&gt;A:GENERAL ENG THROTTLE LEVER POSITION:1, percent)
+            -20 (&gt;A:GENERAL ENG THROTTLE LEVER POSITION:2, percent)
+            -20 (&gt;A:GENERAL ENG THROTTLE LEVER POSITION:3, percent)
+            -1 (&gt;A:GENERAL ENG THROTTLE LEVER POSITION:4, percent)
           }
         </UPDATE_CODE>
       </UseTemplate>
@@ -3325,19 +3333,7 @@
 
 
 
-<Animation name="REV_THRUST" guid="e1bd1fb4-52bd-4de8-9004-f6f4b657b98a" length="5" type="Sim" typeParam="AutoPlay" />
-<!-- REVERSE THRUST-->
-<PartInfo>
-  <Name>REV_THRUST</Name>
-  <AnimLength>5</AnimLength>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <TooltipText>IN AIR REVERSE</TooltipText>
-     <CallbackCode>
-          (L:C17_REV_THRUST,bool) ! (&gt;L:C17_REV_THRUST)
-     </CallbackCode>
-</MouseRect>
-</PartInfo>   
+
 
 <Animation name="trimtab_rudder" guid="b0b1a570-052f-493b-92d8-42a71b653ce8" type="Sim" typeParam="AutoPlay" />
 <PartInfo>

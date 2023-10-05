@@ -8935,7 +8935,7 @@
 	  let [StabMotion, setStabMotion] = useSimVar('L:C17_STAB_MOTION', 'bool');
 	  let [Stab_Trim] = useSimVar('A:ELEVATOR TRIM PCT', 'degrees');
 	  let [SimOnGround] = useSimVar('A:SIM ON GROUND', 'bool');
-	  useSimVar('A:AUTOPILOT THROTTLE ARM', 'bool');
+	  let [ATEngaged] = useSimVar('A:AUTOPILOT THROTTLE ARM', 'bool');
 	  let [ATWarning, setATWarning] = useSimVar('L:C17_AT_warning', 'bool');
 	  const prevStab_TrimRef = react.useRef(Stab_Trim); // Store the previous value of Stab_Trim
 
@@ -8947,6 +8947,19 @@
 	  const isInitialRenderWacs = react.useRef(true);
 	  react.useState(false);
 	  const [isStabMotionActive, setIsStabMotionActive] = react.useState(false);
+	  react.useEffect(() => {
+	    // Check if ATEngaged went from 1 to 0
+	    if (ATEngaged === false) {
+	      // Set ATWarning to true
+	      setATWarning(true); // Set a timer to reset ATWarning to false after 4 seconds
+
+	      const timer = setTimeout(() => {
+	        setATWarning(false);
+	      }, 4000); // Clear the timer when the component unmounts or when ATEngaged changes
+
+	      return () => clearTimeout(timer);
+	    }
+	  }, [ATEngaged]);
 	  react.useEffect(() => {
 	    // Check if there's power and the aircraft is on the ground
 	    if (!isInitialRenderStab.current && Avionics_PWR && SimOnGround) {
@@ -9023,7 +9036,7 @@
 	      fontSize: 100,
 	      fill: "white",
 	      className: "ESIS",
-	      children: WacsFail * Cargo_door_Sound * StabMotion * ATWarning
+	      children: ATWarning * ATEngaged * WacsFail * Cargo_door_Sound * StabMotion * ATWarning
 	    })
 	  });
 	};

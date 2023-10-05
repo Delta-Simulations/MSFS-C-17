@@ -26,7 +26,21 @@ const isInitialRenderWacs = useRef(true);
 const [timerActive, setTimerActive] = useState(false);
 const [isStabMotionActive, setIsStabMotionActive] = useState(false);
 
+useEffect(() => {
+  // Check if ATEngaged went from 1 to 0
+  if (ATEngaged === false) {
+    // Set ATWarning to true
+    setATWarning(true);
 
+    // Set a timer to reset ATWarning to false after 4 seconds
+    const timer = setTimeout(() => {
+      setATWarning(false);
+    }, 4000);
+
+    // Clear the timer when the component unmounts or when ATEngaged changes
+    return () => clearTimeout(timer);
+  }
+}, [ATEngaged]);
 
 useEffect(() => {
   // Check if there's power and the aircraft is on the ground
@@ -107,7 +121,7 @@ useEffect(() => {
 
   return (
       <g>
-          <text x={50} y={50} fontSize={100} fill='white' className='ESIS'>{WacsFail*Cargo_door_Sound*StabMotion*ATWarning}</text>
+          <text x={50} y={50} fontSize={100} fill='white' className='ESIS'>{ATWarning*ATEngaged*WacsFail*Cargo_door_Sound*StabMotion*ATWarning}</text>
       </g>
   );
 };
