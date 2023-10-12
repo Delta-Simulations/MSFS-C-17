@@ -8928,9 +8928,12 @@
 	};
 
 	const Stationary = () => {
-	  var [RADalt] = useSimVar('PLANE ALT ABOVE GROUND', 'feet');
+	  let [RADalt] = useSimVar('PLANE ALT ABOVE GROUND', 'feet');
 	  RADalt = Math.floor(RADalt);
-	  const [DCLT] = useSimVar('L:C17_DCLT', 'bool');
+	  let [DCLT] = useSimVar('L:C17_DCLT', 'bool');
+	  let [UseRAalt] = useSimVar('L:C17_HUD_RaBa', 'bool');
+	  let [INDalt] = useSimVar('A:INDICATED ALTITUDE', 'feet');
+	  INDalt = Math.floor(INDalt);
 	  let ShowRA = 1;
 
 	  if (RADalt <= 1500) {
@@ -8939,17 +8942,17 @@
 	    ShowRA = 0;
 	  }
 
-	  var [IndicatedSpeed] = useSimVar('AIRSPEED INDICATED', 'knots');
+	  let [IndicatedSpeed] = useSimVar('AIRSPEED INDICATED', 'knots');
 	  IndicatedSpeed = Math.floor(IndicatedSpeed);
-	  var [VS] = useSimVar('VERTICAL SPEED', 'feet per minute');
+	  let [VS] = useSimVar('VERTICAL SPEED', 'feet per minute');
 	  VS = Math.floor(VS / 20) * 20;
-	  var [AP_ALT] = useSimVar('A:Autopilot altitude lock var', 'feet');
+	  let [AP_ALT] = useSimVar('A:Autopilot altitude lock var', 'feet');
 	  AP_ALT = Math.floor(AP_ALT / 10);
-	  const [AP_ALT_ON] = useSimVar('A:Autopilot altitude lock', 'bool');
-	  var [AP_SPD] = useSimVar('A:Autopilot airspeed hold var', 'knots');
+	  let [AP_ALT_ON] = useSimVar('A:Autopilot altitude lock', 'bool');
+	  let [AP_SPD] = useSimVar('A:Autopilot airspeed hold var', 'knots');
 	  AP_SPD = Math.floor(AP_SPD / 10);
-	  const [AP_SPD_ON] = useSimVar('A:AUTOPILOT AIRSPEED HOLD', 'bool');
-	  var [Accel_Forwards] = useSimVar('A:ACCELERATION BODY Z', 'feet per second squared');
+	  let [AP_SPD_ON] = useSimVar('A:AUTOPILOT AIRSPEED HOLD', 'bool');
+	  let [Accel_Forwards] = useSimVar('A:ACCELERATION BODY Z', 'feet per second squared');
 	  Accel_Forwards = Math.floor(Accel_Forwards * 100) / 100;
 
 	  if (Accel_Forwards >= 6) {
@@ -9015,7 +9018,7 @@
 	      y: 428,
 	      fontSize: 32,
 	      textAnchor: "end",
-	      children: RADalt
+	      children: UseRAalt ? RADalt : INDalt
 	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
 	      visibility: DCLT ? 'visible' : 'hidden',
 	      x: 125,

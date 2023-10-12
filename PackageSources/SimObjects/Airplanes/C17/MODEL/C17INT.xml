@@ -157,6 +157,10 @@
 </Component>
 <Component ID="FRONT_PANEL" >
 
+   
+
+
+
   <UseTemplate Name="DELTASIM_PushButton_Template">
     <NODE_ID>PushButton_Master_Caution</NODE_ID>
     <TOOLTIPID>Master Caution Acknowledge</TOOLTIPID>
@@ -254,6 +258,15 @@
   </LEFT_SINGLE_CODE>
 </UseTemplate>
 
+<UseTemplate Name="GENERIC_Toggle_Switch_Template">
+  <ANIM>(A:ANTISKID BRAKES ACTIVE, bool) 100 *</ANIM>
+  <NODE_ID>Switch_AntiSkid</NODE_ID>
+  <TOOLTIPID>ANTI SKID</TOOLTIPID>
+  <INTERACT_CODE>
+    (K:ANTISKID_BRAKES_TOGGLE, bool) ! (&gt;L:ANTISKID_BRAKES_TOGGLE, bool)
+  </INTERACT_CODE>
+</UseTemplate>
+
 <!-- HUD DISPLAY BRIGHTNESS -->
 <UseTemplate Name="DELTASIM_Finite_Knob_Template">
   <NODE_ID>Knob_Hud_Master_Control</NODE_ID>
@@ -279,7 +292,20 @@
   <CW_ANIMTIP>HUD BRT</CW_ANIMTIP>
   <CCW_ANIMTIP>HUD BRT</CCW_ANIMTIP>
 </UseTemplate>
-
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>PushButton_Stby_Att_Adjust_P_Cage</NODE_ID>
+  <TOOLTIPID>CAGE</TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+    (L:C17_Cpit_Cmpas_Pwr,bool) 0 &gt; if{ 1 (&gt;K:ATTITUDE_CAGE_BUTTON) }
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>PushButton_Stby_Att_Adjust_CP_Cage</NODE_ID>
+  <TOOLTIPID>CAGE</TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+    (L:C17_Cpit_Cmpas_Pwr,bool) 0 &gt; if{ 1 (&gt;K:ATTITUDE_CAGE_BUTTON) }
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
 <UseTemplate Name="DELTASIM_Finite_Knob_Template">
   <NODE_ID>Knob_Stby_Att_Adjust_P</NODE_ID>
   <ANIM_CODE>
@@ -287,11 +313,9 @@
   </ANIM_CODE>
   <CLOCKWISE_CODE>
     (L:C17_P_Stby_Att_Adjust) ++ 55 min (&gt;L:C17_P_Stby_Att_Adjust)
-    1 (&gt;K:ATTITUDE_CAGE_BUTTON)
   </CLOCKWISE_CODE>
   <ANTICLOCKWISE_CODE>
     (L:C17_P_Stby_Att_Adjust) -- 40 max (&gt;L:C17_P_Stby_Att_Adjust)
-    1 (&gt;K:ATTITUDE_CAGE_BUTTON)
   </ANTICLOCKWISE_CODE>
   <CW_ANIMTIP>ADJUST ATTITUDE</CW_ANIMTIP>
   <CCW_ANIMTIP>ADJUST ATTITUDE</CCW_ANIMTIP>
@@ -303,11 +327,9 @@
   </ANIM_CODE>
   <CLOCKWISE_CODE>
     (L:C17_CP_Stby_Att_Adjust) ++ 55 min (&gt;L:C17_CP_Stby_Att_Adjust)
-    1 (&gt;K:ATTITUDE_CAGE_BUTTON)
   </CLOCKWISE_CODE>
   <ANTICLOCKWISE_CODE>
     (L:C17_CP_Stby_Att_Adjust) -- 40 max (&gt;L:C17_CP_Stby_Att_Adjust)
-    1 (&gt;K:ATTITUDE_CAGE_BUTTON)
   </ANTICLOCKWISE_CODE>
   <CW_ANIMTIP>ADJUST ATTITUDE</CW_ANIMTIP>
   <CCW_ANIMTIP>ADJUST ATTITUDE</CCW_ANIMTIP>
@@ -326,6 +348,216 @@
   <CW_ANIMTIP>DISP BRT</CW_ANIMTIP>
   <CCW_ANIMTIP>DISP BRT</CCW_ANIMTIP>
 </UseTemplate>
+
+<Component ID="ALTIMETER_1_P">
+  <Component ID="ALTIMETER_1_CALIBRATION">
+      <UseTemplate Name="ASOBO_INSTRUMENT_Altimeter_Template">
+          <KNOB_NODE_ID>Knob_Altimeter_Set</KNOB_NODE_ID>
+          <KNOB_ANIM_NAME>Knob_Altimeter_Set</KNOB_ANIM_NAME>
+      </UseTemplate>
+  </Component>
+  <Component ID="ALTIMETER_2_CALIBRATION">
+    <UseTemplate Name="ASOBO_INSTRUMENT_Altimeter_Template">
+        <KNOB_NODE_ID>Knob_Altimeter_Set_2</KNOB_NODE_ID>
+        <KNOB_ANIM_NAME>Knob_Altimeter_Set_2</KNOB_ANIM_NAME>
+    </UseTemplate>
+</Component>
+
+<Component ID="Turn_Coordinator_1" Node="Turn_Coordinator_1">
+  <!-- <UseTemplate name="ASOBO_GT_Anim_Code">
+      <PART_ID>Turn_Coordinator_1</PART_ID>
+      <ANIM_NAME>Turn_Coordinator_1</ANIM_NAME>
+      <ANIM_CODE>            
+          (A:TURN COORDINATOR BALL, Position 128) 50 +
+      </ANIM_CODE>
+      <ANIM_LENGTH>100</ANIM_LENGTH>
+      <ANIM_WRAP>False</ANIM_WRAP>
+      <ANIM_LAG>100</ANIM_LAG>
+  </UseTemplate> -->
+  <UseTemplate Name="ASOBO_INSTRUMENT_Needle_Turn_Template">
+    <BALL_NODE_ID>Turn_Coordinator_1</BALL_NODE_ID>
+    <BALL_ANIM_NAME>Turn_Coordinator_1</BALL_ANIM_NAME>
+    <NO_WARNING>True</NO_WARNING>
+  </UseTemplate>
+</Component>
+
+
+  <Component ID="ALTIMETER_1_100" Node="ALTIMETER_1_100">
+      <UseTemplate name="ASOBO_GT_Anim_Code">
+          <PART_ID>ALTIMETER_1_100</PART_ID>
+          <ANIM_NAME>ALTIMETER_1_100</ANIM_NAME>
+          <ANIM_CODE>            
+              (A:INDICATED ALTITUDE, Feet) 10 / 100 %
+          </ANIM_CODE>
+          <ANIM_LENGTH>100</ANIM_LENGTH>
+          <ANIM_WRAP>True</ANIM_WRAP>
+          <ANIM_LAG>100</ANIM_LAG>
+      </UseTemplate>
+  </Component>
+  <Component ID="INHG_BAR_1_4" Node="INHG_BAR_1_4">
+      <UseTemplate name="ASOBO_GT_Anim_Code">
+          <PART_ID>INHG_BAR_1_4</PART_ID>
+          <ANIM_NAME>INHG_BAR_1_4</ANIM_NAME>
+          <ANIM_CODE>                    
+              (A:KOHLSMAN SETTING HG, inHg) 10 / flr
+          </ANIM_CODE>
+          <ANIM_LENGTH>10</ANIM_LENGTH>
+          <ANIM_LAG>10</ANIM_LAG>
+          <ANIM_WRAP>True</ANIM_WRAP>
+      </UseTemplate>
+  </Component>
+  <Component ID="INHG_BAR_1_3" Node="INHG_BAR_1_3">
+      <UseTemplate name="ASOBO_GT_Anim_Code">
+          <PART_ID>INHG_BAR_1_3</PART_ID>
+          <ANIM_NAME>INHG_BAR_1_3</ANIM_NAME>
+          <ANIM_CODE>                    
+              (A:KOHLSMAN SETTING HG, inHg) 10 % flr
+          </ANIM_CODE>
+          <ANIM_LENGTH>10</ANIM_LENGTH>
+          <ANIM_LAG>10</ANIM_LAG>
+          <ANIM_WRAP>True</ANIM_WRAP>
+      </UseTemplate>
+  </Component>
+  <Component ID="INHG_BAR_1_2" Node="INHG_BAR_1_2">
+      <UseTemplate name="ASOBO_GT_Anim_Code">
+          <PART_ID>INHG_BAR_1_2</PART_ID>
+          <ANIM_NAME>INHG_BAR_1_2</ANIM_NAME>
+          <ANIM_CODE>                            
+              (A:KOHLSMAN SETTING HG, inHg) 10 * 10 % flr
+          </ANIM_CODE>
+          <ANIM_LENGTH>10</ANIM_LENGTH>
+          <ANIM_LAG>10</ANIM_LAG>
+          <ANIM_WRAP>True</ANIM_WRAP>
+      </UseTemplate>
+  </Component>
+  <Component ID="INHG_BAR_1_1" Node="INHG_BAR_1_1">
+      <UseTemplate name="ASOBO_GT_Anim_Code">
+          <PART_ID>INHG_BAR_1_1</PART_ID>
+          <ANIM_NAME>INHG_BAR_1_1</ANIM_NAME>
+          <ANIM_CODE>                                    
+              (A:KOHLSMAN SETTING HG, inHg) 100 * 10 % flr
+          </ANIM_CODE>
+          <ANIM_LENGTH>10</ANIM_LENGTH>
+          <ANIM_LAG>10</ANIM_LAG>
+          <ANIM_WRAP>True</ANIM_WRAP>
+      </UseTemplate>
+  </Component>
+<Component ID="INMG_BAR_1_4" Node="INMG_BAR_1_4">
+  <UseTemplate name="ASOBO_GT_Anim_Code">
+      <PART_ID>INMG_BAR_1_4</PART_ID>
+      <ANIM_NAME>INMG_BAR_1_4</ANIM_NAME>
+      <ANIM_CODE>                    
+          (A:KOHLSMAN SETTING MB, Millibars) 1000 / 10 % flr
+      </ANIM_CODE>
+      <ANIM_LENGTH>10</ANIM_LENGTH>
+      <ANIM_LAG>10</ANIM_LAG>
+      <ANIM_WRAP>True</ANIM_WRAP>
+  </UseTemplate>
+</Component>
+<Component ID="INMG_BAR_1_3" Node="INMG_BAR_1_3">
+  <UseTemplate name="ASOBO_GT_Anim_Code">
+      <PART_ID>INMG_BAR_1_3</PART_ID>
+      <ANIM_NAME>INMG_BAR_1_3</ANIM_NAME>
+      <ANIM_CODE>                    
+          (A:KOHLSMAN SETTING MB, Millibars) 100 / 10 % flr
+      </ANIM_CODE>
+      <ANIM_LENGTH>10</ANIM_LENGTH>
+      <ANIM_LAG>10</ANIM_LAG>
+      <ANIM_WRAP>True</ANIM_WRAP>
+  </UseTemplate>
+</Component>
+<Component ID="INMG_BAR_1_2" Node="INMG_BAR_1_2">
+  <UseTemplate name="ASOBO_GT_Anim_Code">
+      <PART_ID>INMG_BAR_1_2</PART_ID>
+      <ANIM_NAME>INMG_BAR_1_2</ANIM_NAME>
+      <ANIM_CODE>                            
+          (A:KOHLSMAN SETTING MB, Millibars) 10 / 10 % flr
+      </ANIM_CODE>
+      <ANIM_LENGTH>10</ANIM_LENGTH>
+      <ANIM_LAG>10</ANIM_LAG>
+      <ANIM_WRAP>True</ANIM_WRAP>
+  </UseTemplate>
+</Component>
+<Component ID="INMG_BAR_1_1" Node="INMG_BAR_1_1">
+  <UseTemplate name="ASOBO_GT_Anim_Code">
+      <PART_ID>INMG_BAR_1_1</PART_ID>
+      <ANIM_NAME>INMG_BAR_1_1</ANIM_NAME>
+      <ANIM_CODE>                                    
+          (A:KOHLSMAN SETTING MB, Millibars) 10 % flr
+      </ANIM_CODE>
+      <ANIM_LENGTH>10</ANIM_LENGTH>
+      <ANIM_LAG>10</ANIM_LAG>
+      <ANIM_WRAP>True</ANIM_WRAP>
+  </UseTemplate>
+</Component>
+<Component ID="Knob_Alt_10000" Node="Knob_Alt_10000">
+  <UseTemplate name="ASOBO_GT_Anim_Code">
+      <PART_ID>Knob_Alt_10000</PART_ID>
+      <ANIM_NAME>Knob_Alt_10000</ANIM_NAME>
+      <ANIM_CODE>                    
+        (A:INDICATED ALTITUDE, feet) 10000 / 10 %
+      </ANIM_CODE>
+      <ANIM_LENGTH>10</ANIM_LENGTH>
+      <ANIM_LAG>10</ANIM_LAG>
+      <ANIM_WRAP>True</ANIM_WRAP>
+  </UseTemplate>
+</Component>
+<Component ID="Knob_Alt_1000" Node="Knob_Alt_1000">
+  <UseTemplate name="ASOBO_GT_Anim_Code">
+      <PART_ID>Knob_Alt_1000</PART_ID>
+      <ANIM_NAME>Knob_Alt_1000</ANIM_NAME>
+      <ANIM_CODE>                    
+        (A:INDICATED ALTITUDE, feet) 1000 / 10 %
+      </ANIM_CODE>
+      <ANIM_LENGTH>10</ANIM_LENGTH>
+      <ANIM_LAG>10</ANIM_LAG>
+      <ANIM_WRAP>True</ANIM_WRAP>
+  </UseTemplate>
+</Component>
+<Component ID="Knob_Alt_100" Node="Knob_Alt_100">
+  <UseTemplate name="ASOBO_GT_Anim_Code">
+      <PART_ID>Knob_Alt_100</PART_ID>
+      <ANIM_NAME>Knob_Alt_100</ANIM_NAME>
+      <ANIM_CODE>                            
+        (A:INDICATED ALTITUDE, feet) 100 / 10 %
+      </ANIM_CODE>
+      <ANIM_LENGTH>10</ANIM_LENGTH>
+      <ANIM_LAG>10</ANIM_LAG>
+      <ANIM_WRAP>True</ANIM_WRAP>
+  </UseTemplate>
+</Component>
+<Component ID="Knob_Alt_10" Node="Knob_Alt_10">
+  <UseTemplate name="ASOBO_GT_Anim_Code">
+      <PART_ID>Knob_Alt_10</PART_ID>
+      <ANIM_NAME>Knob_Alt_10</ANIM_NAME>
+      <ANIM_CODE>                                    
+        (A:INDICATED ALTITUDE, Feet) 10 / 10 %
+      </ANIM_CODE>
+      <ANIM_LENGTH>10</ANIM_LENGTH>
+      <ANIM_LAG>10</ANIM_LAG>
+      <ANIM_WRAP>True</ANIM_WRAP>
+  </UseTemplate>
+</Component>
+<Component ID="Knob_Alt_1" Node="Knob_Alt_1">
+  <UseTemplate name="ASOBO_GT_Anim_Code">
+      <PART_ID>Knob_Alt_1</PART_ID>
+      <ANIM_NAME>Knob_Alt_1</ANIM_NAME>
+      <ANIM_CODE>                                    
+          (A:INDICATED ALTITUDE, Feet) 10 %
+      </ANIM_CODE>
+      <ANIM_LENGTH>10</ANIM_LENGTH>
+      <ANIM_LAG>10</ANIM_LAG>
+      <ANIM_WRAP>True</ANIM_WRAP>
+  </UseTemplate>
+</Component>
+
+
+
+
+
+</Component>
+
+
 
 <UseTemplate Name="DELTASIM_Finite_Knob_Template">
   <NODE_ID>Knob_PFD_BRT_2</NODE_ID>
@@ -353,7 +585,7 @@
 </UseTemplate>
 <UseTemplate Name="DELTASIM_Finite_Knob_Template">
   <NODE_ID>Knob_PFD_BRT_4</NODE_ID>
-  <ANIM_CODE>(L:C17_PFD3_BRT) 50 *</ANIM_CODE>
+  <ANIM_CODE>(L:C17_PFD4_BRT) 50 *</ANIM_CODE>
   <CLOCKWISE_CODE>
     (L:C17_PFD4_BRT) ++ 2 min (&gt;L:C17_PFD4_BRT)
   </CLOCKWISE_CODE>
@@ -1826,18 +2058,22 @@
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>ENG1_STARTER_LGT</NODE_ID>
     <TRUECODE>(A:GENERAL ENG STARTER:1, bool) 1 ==</TRUECODE>
+    <INTENSITY>3</INTENSITY>
   </UseTemplate>
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>ENG2_STARTER_LGT</NODE_ID>
     <TRUECODE>(A:GENERAL ENG STARTER:2, bool) 1 ==</TRUECODE>
+    <INTENSITY>3</INTENSITY>
   </UseTemplate>
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>ENG3_STARTER_LGT</NODE_ID>
     <TRUECODE>(A:GENERAL ENG STARTER:3, bool) 1 ==</TRUECODE>
+    <INTENSITY>3</INTENSITY>
   </UseTemplate>
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>ENG4_STARTER_LGT</NODE_ID>
     <TRUECODE>(A:GENERAL ENG STARTER:4, bool) 1 ==</TRUECODE>
+    <INTENSITY>3</INTENSITY>
   </UseTemplate>
   <Component ID="EFB_BRIGHTNESS" Node="EFB_DISPLAY">
     <UseTemplate Name="ASOBO_GT_Material_Emissive_Code">
@@ -3066,7 +3302,7 @@
 	  <Animation>
 		<Parameter>
 		  <Code>
-      (L:C17_Cpit_Cmpas_Pwr,bool) 100 * 100 -
+      (L:C17_Cpit_Cmpas_Pwr,bool) 100 *
 		  </Code>
 		</Parameter>
 	  </Animation>
@@ -3110,6 +3346,25 @@
 		</Parameter>
 	  </Animation>
 	</PartInfo>
+  <Animation name="attitude_indicator_bank" guid="9dbb9070-ff3e-4314-98c2-5ee4a3f50fcb" type="Sim" typeParam="AutoPlay" />
+	<PartInfo>
+	  <Name>attitude_indicator_bank</Name>
+	  <AnimLength>360</AnimLength>
+	  <Animation>
+		<Parameter>
+		  <Code>
+			(A:ATTITUDE INDICATOR BANK DEGREES, degree) 180 +
+		  </Code>
+      <Lag>50</Lag>
+		</Parameter>
+	  </Animation>
+	</PartInfo>
+
+
+
+
+
+
 <Animation name="Gauge_Indc_Airspeed" guid="3fbd4429-a861-470c-9ad7-1942701599b7" type="Sim" typeParam="AutoPlay" />
   <PartInfo>
     <Name>Gauge_Indc_Airspeed</Name>
@@ -3525,22 +3780,39 @@
       </Visibility>
     </PartInfo>
 
-<Animation name="RBF_Tags" guid="2a0f86ef-2791-4029-bab3-3b85dee548de" length="1" type="Sim" typeParam="AutoPlay" />
+<Animation name="RBF_Tags" guid="6f65e8f4-b677-4e43-952e-c806cf2dafa6" length="1" type="Sim" typeParam="AutoPlay" />
 <PartInfo>
     <Name>RBF_Tags</Name>
     <Visibility>
         <Parameter>
             <Code>
-            (L:C17_RBF_TAGS, bool) 1 ==
-			(A:AIRSPEED INDICATED, knots) 0 == and
-            (A:Eng1 Combustion,bool) 0 == and
-            (A:Eng2 Combustion,bool) 0 == and
-            (A:Eng3 Combustion,bool) 0 == and
-            (A:Eng4 Combustion,bool) 0 == and
-			(A:SIM ON GROUND,bool) 1 == and
+              (L:C17_RBF_TAGS, bool) 1 ==
+              (A:SURFACE RELATIVE GROUND SPEED, meter/second) 0.01 &lt; and
+                  (A:Eng1 Combustion,bool) 0 == and
+                  (A:Eng2 Combustion,bool) 0 == and
+                  (A:Eng3 Combustion,bool) 0 == and
+                  (A:Eng4 Combustion,bool) 0 == and
+              (A:SIM ON GROUND,bool) 1 == and
 			</Code>
         </Parameter>
     </Visibility>
 </PartInfo>
+
+<Animation name="Pilot_Vis_Halloween" guid="4ebf8350-301f-40be-a3d6-4a18fc9e581b" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+    <Name>Pilot_Vis_Halloween</Name>
+    <Visibility>
+      <Parameter>
+        <Code>
+          (E:ZULU DAY OF MONTH, Number) 31 ==
+          (E:ZULU MONTH OF YEAR, Number) 10 == and
+          (A:CAMERA VIEW TYPE AND INDEX, number) 1 != and
+					(A:CAMERA VIEW TYPE AND INDEX, number) 3 != and
+        </Code>
+      </Parameter>
+    </Visibility>
+</PartInfo>
+
+
 
 </ModelInfo>

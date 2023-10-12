@@ -31,46 +31,59 @@
             }
         },
         {
-            "__uuid": "b3b96914-b3a3-46f4-a62f-5d97aac86df9",
-            "title": "REV THRUST",
+            "__uuid": "8efecbfe-3910-40d1-b006-7326d9ca7787",
+            "title": "hud flip",
             "varPrefix": "L",
-            "varName": "C17_REV_THRUST",
+            "varName": "C17_HUD_DISABLE",
             "varUnit": "number",
             "style": {
                 "type": 3
             }
         },
         {
-            "__uuid": "21c21c4a-2538-4e43-b27b-0dff0c350184",
-            "title": "AT SWITCH",
+            "__uuid": "f7a3cb8f-6f2c-489b-8e4d-834505fb174e",
+            "title": "hudpwr",
+            "varPrefix": "L",
+            "varName": "C17_HUD_CNTRL",
+            "varUnit": "number",
+            "style": {
+                "type": 3
+            }
+        },
+        {
+            "__uuid": "ffc78044-cfe5-4cdf-80a6-78c0868017cf",
+            "title": "RABA",
+            "varPrefix": "L",
+            "varName": "C17_HUD_RaBa",
+            "varUnit": "bool",
+            "style": {
+                "type": 3
+            }
+        },
+        {
+            "__uuid": "3d108853-c205-470a-9b5b-83903613ba73",
+            "title": "IND ALT",
             "varPrefix": "A",
-            "varName": "AUTOPILOT THROTTLE ARM",
-            "varUnit": "number",
-            "style": {
-                "type": 3
-            }
-        },
-        {
-            "__uuid": "8c3c6fa4-57fa-4bc5-85ed-076753879c1a",
-            "title": "at aural",
-            "varPrefix": "L",
-            "varName": "C17_AT_warning",
-            "varUnit": "number",
-            "style": {
-                "type": 3
-            }
-        },
-        {
-            "__uuid": "5bfb872a-8eca-4cf5-a464-5f8800bd1030",
-            "title": "SimRate",
-            "varPrefix": "E",
-            "varName": "SIMULATION RATE",
+            "varName": "INDICATED ALTITUDE",
             "varUnit": "number",
             "style": {
                 "type": 2,
-                "min": 0.5,
+                "min": 0,
                 "max": 100,
-                "step": 0.5
+                "step": 1
+            }
+        },
+        {
+            "__uuid": "a901a83e-8976-4929-a6fb-48f210deafb1",
+            "title": "Radar ALT",
+            "varPrefix": "A",
+            "varName": "PLANE ALT ABOVE GROUND",
+            "varUnit": "feet",
+            "style": {
+                "type": 2,
+                "min": 0,
+                "max": 10000,
+                "step": 1
             }
         }
     ]

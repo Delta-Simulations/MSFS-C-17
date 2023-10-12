@@ -134,9 +134,9 @@
 		   <Range LowerBound="1" />
 		 </Requires>
 	</Sound>
-	
+
     <Sound WwiseData="true" WwiseEvent="AT_warning" Continuous="true" LocalVar="C17_AT_warning" Units="Bool" Index="1" NodeName="Plane.093" ViewPoint="Inside">
-        <Range LowerBound="1.0" />  
+        <Range LowerBound="1.0" />    
     </Sound>
 
     <Sound WwiseData="true" WwiseEvent="Bell_alert" Continuous="false" LocalVar="C17_Cpit_Pacs" Units="Bool" Index="1" NodeName="Cube.031" ViewPoint="Inside">
@@ -210,12 +210,17 @@
 	<Sound WwiseData="true" WwiseEvent="Retract_Takeoff_Spoilers" LocalVar="C17_SET_TAKEOFF_SPOILERS" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
         <Range LowerBound="1.0" />    
     </Sound>
-	<Sound WwiseData="true" WwiseEvent="Terrain_FlyUP" LocalVar="C17_TERRAIN_FLYUP" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+    <Sound WwiseData="true" WwiseEvent="Terrain_Takeoff_Spoilers" Continuous="true" LocalVar="C17_SET_TAKEOFF_SPOILERS" Units="Bool" Index="1" NodeName="Plane.093" ViewPoint="Inside">
         <Range LowerBound="1.0" />    
     </Sound>
-	<Sound WwiseData="true" WwiseEvent="Gear_Annun" LocalVar="C17_EXTEND_GEAR" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+    <Sound WwiseData="true" WwiseEvent="Terrain_FlyUP" Continuous="true" LocalVar="C17_TERRAIN_FLYUP" Units="Bool" Index="1" NodeName="Plane.093" ViewPoint="Inside">
         <Range LowerBound="1.0" />    
     </Sound>
+
+    <Sound WwiseData="true" WwiseEvent="Gear_Annun" Continuous="true" LocalVar="C17_EXTEND_GEAR" Units="Bool" Index="1" NodeName="Plane.093" ViewPoint="Inside">
+        <Range LowerBound="1.0" />    
+    </Sound>
+
 	<Sound WwiseData="true" WwiseEvent="AP_Alt_deviate" LocalVar="C17_AP_ALT_DEVIATE" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
         <Range LowerBound="1.0" />    
     </Sound>

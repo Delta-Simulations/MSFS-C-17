@@ -282,7 +282,7 @@
 				(A:EXTERNAL POWER ON, bool) 1 ==
 				(A:EXTERNAL POWER AVAILABLE, bool) 1 == and
 				(A:SIM ON GROUND,bool) 1 == and
-				(A:AIRSPEED INDICATED, knots) 0 == and
+				(A:SURFACE RELATIVE GROUND SPEED, meter/second) 0.01 &lt; and
 			</Code>
         </Parameter>
     </Visibility>
@@ -296,7 +296,7 @@
 				(A:EXTERNAL POWER ON, bool) 1 ==
 				(A:EXTERNAL POWER AVAILABLE, bool) 1 == and
 				(A:SIM ON GROUND,bool) 1 == and
-				(A:AIRSPEED INDICATED, knots) 0 == and
+				(A:SURFACE RELATIVE GROUND SPEED, meter/second) 0.01 &lt; and
 				if{ 100 } els{ 0 }
 			 </Code>
 	</Parameter>
@@ -311,13 +311,13 @@
     <Visibility>
         <Parameter>
             <Code>
-            (L:C17_RBF_TAGS, bool) 1 ==
-			(A:AIRSPEED INDICATED, knots) 0 == and
-            (A:Eng1 Combustion,bool) 0 == and
-            (A:Eng2 Combustion,bool) 0 == and
-            (A:Eng3 Combustion,bool) 0 == and
-            (A:Eng4 Combustion,bool) 0 == and
-			(A:SIM ON GROUND,bool) 1 == and
+				(L:C17_RBF_TAGS, bool) 1 ==
+				(A:SURFACE RELATIVE GROUND SPEED, meter/second) 0.01 &lt; and
+					  (A:Eng1 Combustion,bool) 0 == and
+					  (A:Eng2 Combustion,bool) 0 == and
+					  (A:Eng3 Combustion,bool) 0 == and
+					  (A:Eng4 Combustion,bool) 0 == and
+				(A:SIM ON GROUND,bool) 1 == and
 			</Code>
         </Parameter>
     </Visibility>

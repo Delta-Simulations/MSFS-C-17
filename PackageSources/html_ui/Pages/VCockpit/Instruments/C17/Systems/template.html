@@ -8945,60 +8945,28 @@
 	  let [Cargo_door] = useSimVar('L:C17_CargoDoor_POS', 'enum');
 	  let [Cargo_door_Sound, setCargoDoorSound] = useSimVar('L:C17_CargoDoor_Sound', 'bool');
 	  let [StabMotion, setStabMotion] = useSimVar('L:C17_STAB_MOTION', 'bool');
-	  let [Stab_Trim] = useSimVar('A:ELEVATOR TRIM PCT', 'degrees');
-	  let [SimOnGround] = useSimVar('A:SIM ON GROUND', 'bool');
-	  let [ATEngaged] = useSimVar('A:AUTOPILOT THROTTLE ARM', 'bool');
-	  let [ATWarning, setATWarning] = useSimVar('L:C17_AT_warning', 'bool');
-	  const prevStab_TrimRef = react.useRef(Stab_Trim); // Store the previous value of Stab_Trim
-
-	  react.useRef(true); // Use separate refs for each effect's initial render check
+	  useSimVar('A:ELEVATOR TRIM PCT', 'degrees');
+	  useSimVar('A:SIM ON GROUND', 'bool');
+	  let [ATEngaged] = useSimVar('A:AUTOTHROTTLE ACTIVE', 'bool');
+	  let [ATWarning, setATWarning] = useSimVar('L:C17_ATHR_warning', 'bool'); // Use separate refs for each effect's initial render check
 
 	  const isInitialRenderCargo = react.useRef(true);
 	  const isInitialRenderAT = react.useRef(true);
 	  const isInitialRenderStab = react.useRef(true);
 	  const isInitialRenderWacs = react.useRef(true);
-	  react.useState(false);
-	  const [isStabMotionActive, setIsStabMotionActive] = react.useState(false);
 	  react.useEffect(() => {
 	    // Check if ATEngaged went from 1 to 0
 	    if (ATEngaged === false) {
 	      // Set ATWarning to true
-	      setATWarning(true); // Set a timer to reset ATWarning to false after 4 seconds
+	      setATWarning(true); // Set a timer to reset ATWarning to false after 3 seconds
 
 	      const timer = setTimeout(() => {
 	        setATWarning(false);
-	      }, 4000); // Clear the timer when the component unmounts or when ATEngaged changes
+	      }, 3000); // Clear the timer when ATEngaged changes again or the component unmounts
 
 	      return () => clearTimeout(timer);
 	    }
 	  }, [ATEngaged]);
-	  react.useEffect(() => {
-	    // Check if there's power and the aircraft is on the ground
-	    if (!isInitialRenderStab.current && Avionics_PWR && SimOnGround) {
-	      // Check if Stab_Trim has changed from the previous value
-	      if (Stab_Trim !== prevStab_TrimRef.current) {
-	        setIsStabMotionActive(true); // Turn on StabMotion
-	      } // Use a timer to turn off StabMotion after one second if it was turned on
-
-
-	      if (isStabMotionActive) {
-	        const turnOffTimeout = setTimeout(() => {
-	          setIsStabMotionActive(false);
-	        }, 1000); // 1000 milliseconds = 1 second
-	        // Cleanup the timer when the component unmounts, power is lost, not on the ground, or Stab_Trim changes
-
-	        return () => {
-	          clearTimeout(turnOffTimeout);
-	        };
-	      }
-	    } else {
-	      // Reset StabMotion when power is lost, not on the ground, or Stab_Trim changes
-	      setIsStabMotionActive(false);
-	    } // Update the previous value of Stab_Trim
-
-
-	    prevStab_TrimRef.current = Stab_Trim;
-	  }, [Avionics_PWR, SimOnGround, Stab_Trim]);
 	  react.useEffect(() => {
 	    // Check if Cargo_door changes
 	    if (!isInitialRenderCargo.current) {
@@ -9041,15 +9009,19 @@
 	  react.useEffect(() => {
 	    isInitialRenderWacs.current = false;
 	  }, []);
-	  return /*#__PURE__*/jsxRuntime.jsx("g", {
-	    children: /*#__PURE__*/jsxRuntime.jsx("text", {
+	  return /*#__PURE__*/jsxRuntime.jsxs("g", {
+	    children: [/*#__PURE__*/jsxRuntime.jsx("text", {
 	      x: 50,
 	      y: 50,
 	      fontSize: 100,
 	      fill: "white",
 	      className: "ESIS",
 	      children: ATWarning * ATEngaged * WacsFail * Cargo_door_Sound * StabMotion * ATWarning
-	    })
+	    }), /*#__PURE__*/jsxRuntime.jsxs("p", {
+	      children: ["ATEngaged: ", ATEngaged ? 'Engaged' : 'Disengaged']
+	    }), /*#__PURE__*/jsxRuntime.jsxs("p", {
+	      children: ["ATWarning: ", ATWarning ? 'Active' : 'Inactive']
+	    })]
 	  });
 	};
 

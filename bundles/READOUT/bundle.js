@@ -9141,7 +9141,7 @@
 	      children: "REVERSE THR"
 	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
 	      visibility: SimRate === 1 ? 'hidden' : 'visible',
-	      x: 190,
+	      x: 180,
 	      y: 783,
 	      fontSize: 19,
 	      fill: "#00EE00",
@@ -9150,7 +9150,7 @@
 	      children: "SIM RATE"
 	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
 	      visibility: SimRate === 1 ? 'hidden' : 'visible',
-	      x: 285,
+	      x: 276,
 	      y: 783,
 	      fontSize: 19,
 	      fill: "#00EE00",
