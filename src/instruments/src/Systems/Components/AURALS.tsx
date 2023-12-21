@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { render } from "../../Hooks/index";
 import { useSimVar } from '../../Hooks/simVars';
 import "../style.scss";
 
@@ -13,29 +14,26 @@ export const AURALS = () => {
   let [Stab_Trim] = useSimVar('A:ELEVATOR TRIM PCT', 'degrees');
   let [SimOnGround] = useSimVar('A:SIM ON GROUND', 'bool');
   let [ATEngaged] = useSimVar('A:AUTOTHROTTLE ACTIVE', 'bool');
-  let [ATWarning, setATWarning] = useSimVar('L:C17_ATHR_warning', 'bool');
+  let [ThrrotleWarning, setThrrotleWarning] = useSimVar('L:C17_AT_warning', 'bool');
 
-// Use separate refs for each effect's initial render check
-const isInitialRenderCargo = useRef(true)
-const isInitialRenderAT = useRef(true)
-const isInitialRenderStab = useRef(true)
-const isInitialRenderWacs = useRef(true)
+const isInitialRenderCargo = useRef(true);
+const isInitialRenderWacs = useRef(true);
 
 useEffect(() => {
   // Check if ATEngaged went from 1 to 0
   if (ATEngaged === false) {
     // Set ATWarning to true
-    setATWarning(true)
-
+    setThrrotleWarning(true)
+    const delayA = 2000; // 2000 milliseconds = 2 second
     // Set a timer to reset ATWarning to false after 3 seconds
-    const timer = setTimeout(() => {
-      setATWarning(false)
-    }, 3000)
+    const timerAT = setTimeout(() => {
+      setThrrotleWarning(false)
+    }, delayA)
 
     // Clear the timer when ATEngaged changes again or the component unmounts
-    return () => clearTimeout(timer)
+    return () => clearTimeout(timerAT)
   }
-}, [ATEngaged])
+}, [ATEngaged]);
 
 useEffect(() => {
   // Check if Cargo_door changes
@@ -53,7 +51,7 @@ useEffect(() => {
       clearTimeout(timeoutId)
     };
   }
-}, [Cargo_door])
+}, [Cargo_door]);
 
 useEffect(() => {
   // Check if Avionics_PWR changes
@@ -67,19 +65,11 @@ useEffect(() => {
     // Cleanup the timer if the component unmounts or Avionics_PWR changes
     return () => clearTimeout(timerId)
   }
-}, [Avionics_PWR])
+}, [Avionics_PWR]);
 
 // Set the corresponding ref to false after the initial render
 useEffect(() => {
   isInitialRenderCargo.current = false;
-}, []);
-
-useEffect(() => {
-  isInitialRenderAT.current = false;
-}, []);
-
-useEffect(() => {
-  isInitialRenderStab.current = false;
 }, []);
 
 useEffect(() => {
@@ -88,9 +78,7 @@ useEffect(() => {
 
   return (
       <g>
-          <text x={50} y={50} fontSize={100} fill='white' className='ESIS'>{ATWarning*ATEngaged*WacsFail*Cargo_door_Sound*StabMotion*ATWarning}</text>
-          <p>ATEngaged: {ATEngaged ? 'Engaged' : 'Disengaged'}</p>
-      <p>ATWarning: {ATWarning ? 'Active' : 'Inactive'}</p>
+          <text x={50} y={50} fontSize={100} fill='white'>{ThrrotleWarning && ATEngaged && WacsFail && Cargo_door_Sound && StabMotion && ThrrotleWarning && ATEngaged}</text>
       </g>
   );
 };

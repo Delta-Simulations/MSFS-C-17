@@ -104,6 +104,51 @@
       <ANIM_LAG>300</ANIM_LAG>
     </UseTemplate>
   </Component>
+
+  <Component ID="WindowSlideR" Node="WindowSlideR">
+    <UseTemplate Name="ASOBO_GT_Interaction_DraggingAxis_Code">
+        <UP_CODE>
+            (L:C17_CpitWindowR, number) ++ 100 min (>L:C17_CpitWindowR, number)
+        </UP_CODE>
+        <DOWN_CODE>
+            (L:C17_CpitWindowR, number) -- 0 max (>L:C17_CpitWindowR, number)
+        </DOWN_CODE>
+        <AXIS>X</AXIS>
+        <DRAG_AXIS_SCALE>100</DRAG_AXIS_SCALE>
+    </UseTemplate>
+    <UseTemplate Name="ASOBO_GT_Anim_Code">
+      <PART_ID>WindowSlideR</PART_ID>
+      <ANIM_NAME>WindowSlideR</ANIM_NAME>
+      <NODE_ID>WindowSlideR</NODE_ID>
+      <ANIM_CODE>
+        (L:C17_CpitWindowR, number)
+      </ANIM_CODE>
+      <ANIM_LAG>300</ANIM_LAG>
+    </UseTemplate>
+</Component>
+<Component ID="WindowSlideL" Node="WindowSlideL">
+  <UseTemplate Name="ASOBO_GT_Interaction_DraggingAxis_Code">
+      <UP_CODE>
+          (L:C17_CpitWindowL, number) -- 0 max (>L:C17_CpitWindowL, number)
+      </UP_CODE>
+      <DOWN_CODE>
+          (L:C17_CpitWindowL, number) ++ 100 min (>L:C17_CpitWindowL, number)
+      </DOWN_CODE>
+      <AXIS>X</AXIS>
+      <DRAG_AXIS_SCALE>100</DRAG_AXIS_SCALE>
+  </UseTemplate>
+  <UseTemplate Name="ASOBO_GT_Anim_Code">
+    <PART_ID>WindowSlideL</PART_ID>
+    <ANIM_NAME>WindowSlideL</ANIM_NAME>
+    <NODE_ID>WindowSlideL</NODE_ID>
+    <ANIM_CODE>
+      (L:C17_CpitWindowL, number)
+    </ANIM_CODE>
+    <ANIM_LAG>300</ANIM_LAG>
+  </UseTemplate>
+</Component>
+
+
   <Component ID="Switch_UARRSI_Emerg_Handle" Node="Switch_UARRSI_Emerg_Handle">
     <UseTemplate Name="ASOBO_GT_Interaction_DraggingAxis_Code">
         <UP_CODE>
@@ -256,6 +301,16 @@
   <LEFT_SINGLE_CODE>
     (A:Fuel total quantity weight,pounds) (&gt;L:Fuel actual quantity,pounds) 
   </LEFT_SINGLE_CODE>
+</UseTemplate>
+
+<UseTemplate Name="GENERIC_Toggle_Switch_Template">
+  <ANIM>(L:C17_Fly_Flag,bool) 200 *</ANIM>
+  <NODE_ID>Flag_Brace</NODE_ID>
+  <TOOLTIPID>?</TOOLTIPID>
+  <INTERACT_CODE>
+    (L:C17_Fly_Flag,bool) ! (&gt;L:C17_Fly_Flag,bool)
+  </INTERACT_CODE>
+  <ANIM_LAG>13</ANIM_LAG>
 </UseTemplate>
 
 <UseTemplate Name="GENERIC_Toggle_Switch_Template">
@@ -1134,14 +1189,12 @@
           (L:C17_Nav_System_Active, enum) 7 == if{ (&gt;K:VOR1_OBI_FAST_INC) }
           (L:C17_Nav_System_Active, enum) 8 == if{ (&gt;K:VOR2_OBI_FAST_INC) }
           (L:C17_Nav_System_Active, enum) 9 == if{ (A:TACAN STANDBY CHANNEL:1,number) ++ (&gt;K:TACAN1_STANDBY_CHANNEL_SET) }
-
           (L:C17_Nav_System_Active, enum) 10 == if{ (&gt;K:ADF_1_INC) }
         </CLOCKWISE_CODE>
         <ANTICLOCKWISE_CODE>
           (L:C17_Nav_System_Active, enum) 7 == if{ (&gt;K:VOR1_OBI_FAST_DEC) } 
           (L:C17_Nav_System_Active, enum) 8 == if{ (&gt;K:VOR2_OBI_FAST_DEC) }
           (L:C17_Nav_System_Active, enum) 9 == if{ (A:TACAN STANDBY CHANNEL:1,number) -- (&gt;K:TACAN1_STANDBY_CHANNEL_SET) }
-
           (L:C17_Nav_System_Active, enum) 10 == if{ (&gt;K:ADF_1_DEC) }
         </ANTICLOCKWISE_CODE>
         <ANIMTIP_0>ADJ LARGE</ANIMTIP_0>
@@ -1158,7 +1211,7 @@
           (L:C17_Nav_System_Active, enum) 9 == if{ 1 (&gt;K:TACAN1_STANDBY_MODE_SET) }
         </CLOCKWISE_CODE>
         <ANTICLOCKWISE_CODE>
-          (L:C17_Nav_System_Active, enum) 1 == if{ (&gt;K:VOR1_OBI_DEC) } 
+          (L:C17_Nav_System_Active, enum) 7 == if{ (&gt;K:VOR1_OBI_DEC) } 
           (L:C17_Nav_System_Active, enum) 8 == if{ (&gt;K:VOR2_OBI_DEC) }
           (L:C17_Nav_System_Active, enum) 9 == if{ 0 (&gt;K:TACAN1_STANDBY_MODE_SET) }
         </ANTICLOCKWISE_CODE>
@@ -2214,215 +2267,186 @@
   </UseTemplate>
 
 <!-- FUEL PANEL -->
-  <UseTemplate Name="AircraftVar_Switch_DELTASIM">
-    <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
-    <NODE_ID>BUTTON_ENG1_FWD_PUMP</NODE_ID>
-    <TOOLTIPID>TOGGLE ENG1 FWD PUMP</TOOLTIPID>
-    <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
-    <INDEX>1</INDEX>
-  </UseTemplate>
-  <UseTemplate Name="AircraftVar_Switch_DELTASIM">
-    <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
-    <NODE_ID>BUTTON_ENG1_AFT_PUMP</NODE_ID>
-    <TOOLTIPID>TOGGLE ENG1 AFT PUMP</TOOLTIPID>
-    <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
-    <INDEX>2</INDEX>
-  </UseTemplate>
-  <UseTemplate Name="AircraftVar_Switch_DELTASIM">
-    <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-    <NODE_ID>BUTTON_ENG1_XFER_PUMP</NODE_ID>
-    <TOOLTIPID>TOGGLE ENG1 XFEED PUMP</TOOLTIPID>
-    <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-    <INDEX>5</INDEX>
-  </UseTemplate>
-  <UseTemplate Name="AircraftVar_Switch_DELTASIM">
-    <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-    <NODE_ID>SWITCH_ENG_FIRE_CUTOFF_1</NODE_ID>
-    <TOOLTIPID>TOGGLE ENG1 CUTOFF</TOOLTIPID>
-    <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-    <INDEX>1</INDEX>
-  </UseTemplate>
-  <UseTemplate Name="AircraftVar_Switch_DELTASIM">
-    <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-    <NODE_ID>BUTTON_ENG1_FILL_VALVE</NODE_ID>
-    <TOOLTIPID>TOGGLE ENG1 FILL</TOOLTIPID>
-    <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-    <INDEX>1</INDEX>
-  </UseTemplate>
-  <UseTemplate Name="AircraftVar_Switch_DELTASIM">
-    <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-    <NODE_ID>BUTTON_ENG1_XFD_VALVE</NODE_ID>
-    <TOOLTIPID>TOGGLE ENG1 XFEED VALVE</TOOLTIPID>
-    <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-    <INDEX>1</INDEX>
-  </UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_ENG1_FWD_PUMP</NODE_ID>
+  <TOOLTIPID>TOGGLE ENG1 FWD PUMP</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
+  <INDEX>1</INDEX>
+</UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_ENG1_AFT_PUMP</NODE_ID>
+  <TOOLTIPID>TOGGLE ENG1 AFT PUMP</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
+  <INDEX>2</INDEX>
+</UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_ENG1_XFER_PUMP</NODE_ID>
+  <TOOLTIPID>TOGGLE ENG1 XFEED PUMP</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
+  <INDEX>5</INDEX>
+</UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
+  <NODE_ID>SWITCH_ENG_FIRE_CUTOFF_1</NODE_ID>
+  <TOOLTIPID>TOGGLE ENG1 CUTOFF</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
+  <INDEX>1</INDEX>
+</UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_ENG1_FILL_VALVE</NODE_ID>
+  <TOOLTIPID>TOGGLE ENG1 FILL</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
+  <INDEX>11</INDEX>
+</UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_ENG1_XFD_VALVE</NODE_ID>
+  <TOOLTIPID>TOGGLE ENG1 XFEED VALVE</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
+  <INDEX>15</INDEX>
+</UseTemplate>
 
-  <UseTemplate Name="AircraftVar_Switch_DELTASIM">
-    <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
-    <NODE_ID>BUTTON_ENG2_FWD_PUMP</NODE_ID>
-    <TOOLTIPID>TOGGLE ENG2 FWD PUMP</TOOLTIPID>
-    <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
-    <INDEX>3</INDEX>
-  </UseTemplate>
-  <UseTemplate Name="AircraftVar_Switch_DELTASIM">
-    <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
-    <NODE_ID>BUTTON_ENG2_AFT_PUMP</NODE_ID>
-    <TOOLTIPID>TOGGLE ENG2 AFT PUMP</TOOLTIPID>
-    <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
-    <INDEX>4</INDEX>
-  </UseTemplate>
-  <UseTemplate Name="AircraftVar_Switch_DELTASIM">
-    <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-    <NODE_ID>BUTTON_ENG2_XFER_PUMP</NODE_ID>
-    <TOOLTIPID>TOGGLE ENG2 XFEED PUMP</TOOLTIPID>
-    <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-    <INDEX>6</INDEX>
-  </UseTemplate>
-  <UseTemplate Name="AircraftVar_Switch_DELTASIM">
-    <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-    <NODE_ID>SWITCH_ENG_FIRE_CUTOFF_2</NODE_ID>
-    <TOOLTIPID>TOGGLE ENG2 CUTOFF</TOOLTIPID>
-    <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-    <INDEX>2</INDEX>
-  </UseTemplate>
-  <UseTemplate Name="AircraftVar_Switch_DELTASIM">
-    <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-    <NODE_ID>BUTTON_ENG2_FILL_VALVE</NODE_ID>
-    <TOOLTIPID>TOGGLE ENG2 FILL</TOOLTIPID>
-    <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-    <INDEX>1</INDEX>
-  </UseTemplate>
-  <UseTemplate Name="AircraftVar_Switch_DELTASIM">
-    <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-    <NODE_ID>BUTTON_ENG2_XFD_VALVE</NODE_ID>
-    <TOOLTIPID>TOGGLE ENG2 XFEED VALVE</TOOLTIPID>
-    <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-    <INDEX>1</INDEX>
-  </UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_ENG2_FWD_PUMP</NODE_ID>
+  <TOOLTIPID>TOGGLE ENG2 FWD PUMP</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
+  <INDEX>3</INDEX>
+</UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_ENG2_AFT_PUMP</NODE_ID>
+  <TOOLTIPID>TOGGLE ENG2 AFT PUMP</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
+  <INDEX>4</INDEX>
+</UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_ENG2_XFER_PUMP</NODE_ID>
+  <TOOLTIPID>TOGGLE ENG2 XFEED PUMP</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
+  <INDEX>6</INDEX>
+</UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
+  <NODE_ID>SWITCH_ENG_FIRE_CUTOFF_2</NODE_ID>
+  <TOOLTIPID>TOGGLE ENG2 CUTOFF</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
+  <INDEX>2</INDEX>
+</UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_ENG2_FILL_VALVE</NODE_ID>
+  <TOOLTIPID>TOGGLE ENG2 FILL</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
+  <INDEX>12</INDEX>
+</UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_ENG2_XFD_VALVE</NODE_ID>
+  <TOOLTIPID>TOGGLE ENG2 XFEED VALVE</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
+  <INDEX>16</INDEX>
+</UseTemplate>
 
-  <UseTemplate Name="AircraftVar_Switch_DELTASIM">
-    <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
-    <NODE_ID>BUTTON_ENG3_FWD_PUMP</NODE_ID>
-    <TOOLTIPID>TOGGLE ENG3 FWD PUMP</TOOLTIPID>
-    <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
-    <INDEX>5</INDEX>
-  </UseTemplate>
-  <UseTemplate Name="AircraftVar_Switch_DELTASIM">
-    <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
-    <NODE_ID>BUTTON_ENG3_AFT_PUMP</NODE_ID>
-    <TOOLTIPID>TOGGLE ENG3 AFT PUMP</TOOLTIPID>
-    <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
-    <INDEX>6</INDEX>
-  </UseTemplate>
-  <UseTemplate Name="AircraftVar_Switch_DELTASIM">
-    <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-    <NODE_ID>BUTTON_ENG3_XFER_PUMP</NODE_ID>
-    <TOOLTIPID>TOGGLE ENG3 XFEED PUMP</TOOLTIPID>
-    <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-    <INDEX>7</INDEX>
-  </UseTemplate>
-  <UseTemplate Name="AircraftVar_Switch_DELTASIM">
-    <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-    <NODE_ID>SWITCH_ENG_FIRE_CUTOFF_3</NODE_ID>
-    <TOOLTIPID>TOGGLE ENG3 CUTOFF</TOOLTIPID>
-    <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-    <INDEX>3</INDEX>
-  </UseTemplate>
-  <UseTemplate Name="AircraftVar_Switch_DELTASIM">
-    <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-    <NODE_ID>BUTTON_ENG3_FILL_VALVE</NODE_ID>
-    <TOOLTIPID>TOGGLE ENG3 FILL</TOOLTIPID>
-    <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-    <INDEX>1</INDEX>
-  </UseTemplate>
-  <UseTemplate Name="AircraftVar_Switch_DELTASIM">
-    <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-    <NODE_ID>BUTTON_ENG3_XFD_VALVE</NODE_ID>
-    <TOOLTIPID>TOGGLE ENG3 XFEED VALVE</TOOLTIPID>
-    <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-    <INDEX>1</INDEX>
-  </UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_ENG3_FWD_PUMP</NODE_ID>
+  <TOOLTIPID>TOGGLE ENG3 FWD PUMP</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
+  <INDEX>5</INDEX>
+</UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_ENG3_AFT_PUMP</NODE_ID>
+  <TOOLTIPID>TOGGLE ENG3 AFT PUMP</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
+  <INDEX>6</INDEX>
+</UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_ENG3_XFER_PUMP</NODE_ID>
+  <TOOLTIPID>TOGGLE ENG3 XFEED PUMP</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
+  <INDEX>7</INDEX>
+</UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
+  <NODE_ID>SWITCH_ENG_FIRE_CUTOFF_3</NODE_ID>
+  <TOOLTIPID>TOGGLE ENG3 CUTOFF</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
+  <INDEX>3</INDEX>
+</UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_ENG3_FILL_VALVE</NODE_ID>
+  <TOOLTIPID>TOGGLE ENG3 FILL</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
+  <INDEX>13</INDEX>
+</UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_ENG3_XFD_VALVE</NODE_ID>
+  <TOOLTIPID>TOGGLE ENG3 XFEED VALVE</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
+  <INDEX>17</INDEX>
+</UseTemplate>
 
-  <UseTemplate Name="AircraftVar_Switch_DELTASIM">
-    <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
-    <NODE_ID>BUTTON_ENG4_FWD_PUMP</NODE_ID>
-    <TOOLTIPID>TOGGLE ENG4 FWD PUMP</TOOLTIPID>
-    <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
-    <INDEX>7</INDEX>
-  </UseTemplate>
-  <UseTemplate Name="AircraftVar_Switch_DELTASIM">
-    <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
-    <NODE_ID>BUTTON_ENG4_AFT_PUMP</NODE_ID>
-    <TOOLTIPID>TOGGLE ENG4 AFT PUMP</TOOLTIPID>
-    <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
-    <INDEX>8</INDEX>
-  </UseTemplate>
-  <UseTemplate Name="AircraftVar_Switch_DELTASIM">
-    <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-    <NODE_ID>BUTTON_ENG4_XFER_PUMP</NODE_ID>
-    <TOOLTIPID>TOGGLE ENG4 XFEED PUMP</TOOLTIPID>
-    <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-    <INDEX>8</INDEX>
-  </UseTemplate>
-  <UseTemplate Name="AircraftVar_Switch_DELTASIM">
-    <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-    <NODE_ID>SWITCH_ENG_FIRE_CUTOFF_4</NODE_ID>
-    <TOOLTIPID>TOGGLE ENG4 CUTOFF</TOOLTIPID>
-    <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-    <INDEX>4</INDEX>
-  </UseTemplate>
-  <UseTemplate Name="AircraftVar_Switch_DELTASIM">
-    <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-    <NODE_ID>BUTTON_ENG4_FILL_VALVE</NODE_ID>
-    <TOOLTIPID>TOGGLE ENG4 FILL</TOOLTIPID>
-    <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-    <INDEX>1</INDEX>
-  </UseTemplate>
-  <UseTemplate Name="AircraftVar_Switch_DELTASIM">
-    <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-    <NODE_ID>BUTTON_ENG4_XFD_VALVE</NODE_ID>
-    <TOOLTIPID>TOGGLE ENG4 XFEED VALVE</TOOLTIPID>
-    <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-    <INDEX>1</INDEX>
-  </UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_ENG4_FWD_PUMP</NODE_ID>
+  <TOOLTIPID>TOGGLE ENG4 FWD PUMP</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
+  <INDEX>7</INDEX>
+</UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_ENG4_AFT_PUMP</NODE_ID>
+  <TOOLTIPID>TOGGLE ENG4 AFT PUMP</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
+  <INDEX>8</INDEX>
+</UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_ENG4_XFER_PUMP</NODE_ID>
+  <TOOLTIPID>TOGGLE ENG4 XFEED PUMP</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
+  <INDEX>8</INDEX>
+</UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
+  <NODE_ID>SWITCH_ENG_FIRE_CUTOFF_4</NODE_ID>
+  <TOOLTIPID>TOGGLE ENG4 CUTOFF</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
+  <INDEX>4</INDEX>
+</UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_ENG4_FILL_VALVE</NODE_ID>
+  <TOOLTIPID>TOGGLE ENG4 FILL</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
+  <INDEX>14</INDEX>
+</UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_ENG4_XFD_VALVE</NODE_ID>
+  <TOOLTIPID>TOGGLE ENG4 XFEED VALVE</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
+  <INDEX>18</INDEX>
+</UseTemplate>
 <!-- WING ISOLATION -->
-  <UseTemplate Name="AircraftVar_Switch_DELTASIM">
-    <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-    <NODE_ID>BUTTON_FUEL_SEPERATION</NODE_ID>
-    <TOOLTIPID>TOGGLE WING ISOLATION</TOOLTIPID>
-    <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-    <INDEX>1</INDEX>
-  </UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_FUEL_SEPERATION</NODE_ID>
+  <TOOLTIPID>TOGGLE WING ISOLATION</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
+  <INDEX>10</INDEX>
+</UseTemplate>
 
-<!-- EXTENDED RANGE PUMP CONTROLS -->
-  <UseTemplate Name="AircraftVar_Switch_DELTASIM">
-    <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
-    <NODE_ID>BUTTON_L_ERTANK_FWD_PUMP</NODE_ID>
-    <TOOLTIPID>TOGGLE L FWD ER PUMP</TOOLTIPID>
-    <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
-    <INDEX>1</INDEX>
-  </UseTemplate>
-  <UseTemplate Name="AircraftVar_Switch_DELTASIM">
-    <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
-    <NODE_ID>BUTTON_L_ERTANK_AFT_PUMP</NODE_ID>
-    <TOOLTIPID>TOGGLE L AFT ER PUMP</TOOLTIPID>
-    <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
-    <INDEX>1</INDEX>
-  </UseTemplate>
-  <UseTemplate Name="AircraftVar_Switch_DELTASIM">
-    <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
-    <NODE_ID>BUTTON_R_ERTANK_FWD_PUMP</NODE_ID>
-    <TOOLTIPID>TOGGLE R FWD ER PUMP</TOOLTIPID>
-    <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
-    <INDEX>1</INDEX>
-  </UseTemplate>
-  <UseTemplate Name="AircraftVar_Switch_DELTASIM">
-    <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
-    <NODE_ID>BUTTON_R_ERTANK_AFT_PUMP</NODE_ID>
-    <TOOLTIPID>TOGGLE R AFT ER PUMP</TOOLTIPID>
-    <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
-    <INDEX>1</INDEX>
-  </UseTemplate>
   
 </Component>
 <Component ID="ElectricalSystem" > 
@@ -2944,6 +2968,7 @@
           </LEFT_SINGLE_CODE>
         </UseTemplate>
 
+
 				<UseTemplate Name="ASOBO_AUTOPILOT_Push_SpeedToggle_Template">
 					<NODE_ID>IAS_TOGGLE</NODE_ID>
 					<ANIM_NAME>IAS_TOGGLEPSH</ANIM_NAME>
@@ -3332,7 +3357,19 @@
 		</Parameter>
 	  </Animation>
 	</PartInfo>
-
+  <Animation name="Flag_pitch" guid="42e48991-5853-4e99-82d2-0f098b5de613" type="Sim" typeParam="AutoPlay" />
+	<PartInfo>
+	  <Name>Flag_pitch</Name>
+	  <AnimLength>360</AnimLength>
+	  <Animation>
+		<Parameter>
+		  <Code>
+			(A:PLANE PITCH DEGREES, degree) 180 +
+		  </Code>
+      <Lag>50</Lag>
+		</Parameter>
+	  </Animation>
+	</PartInfo>
 <Animation name="attitude_indicator_pitch" guid="f7d7df71-e51b-4924-9657-bd593fc3518c" type="Sim" typeParam="AutoPlay" />
 	<PartInfo>
 	  <Name>attitude_indicator_pitch</Name>
@@ -3416,46 +3453,113 @@
         </PartInfo>
 
 
-<Animation name="Blackhawk_VIS" guid="843e0d1e-8590-43f1-a44b-1901aae0acf3" length="1" type="Sim" typeParam="AutoPlay" />
+<Animation name="Cargo_Pallet_FWD" guid="965d4d0a-7973-41c3-8551-75333a85773e" type="Sim" typeParam="AutoPlay" />
 <PartInfo>
-    <Name>Blackhawk_VIS</Name>
-    <AnimLength>1</AnimLength>
+    <Name>Cargo_Pallet_FWD</Name>
     <Visibility>
         <Parameter>
             <Code>
-				(A:Payload Station Weight:3, pounds) 44000 &gt;
+				(A:Payload Station Weight:3, pounds) 5000 &gt;
+        (A:Payload Station Weight:3, pounds) 15000 &lt; and
+				 if{ 1 } els{ 0 }
+			</Code>
+        </Parameter>
+    </Visibility>
+</PartInfo>
+<Animation name="Cargo_ISU_FWD" guid="f020627d-8797-465d-b9a0-bce5b4e9d801" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+    <Name>Cargo_ISU_FWD</Name>
+    <Visibility>
+        <Parameter>
+            <Code>
+				(A:Payload Station Weight:3, pounds) 15000 &gt;
+        (A:Payload Station Weight:3, pounds) 23000 &lt; and
 				 if{ 1 } els{ 0 }
 			</Code>
         </Parameter>
     </Visibility>
 </PartInfo>
 
-<Animation name="Cargo_Pallet" guid="12b5768b-0b28-4413-95bb-4647c6b5d848" length="1" type="Sim" typeParam="AutoPlay" />
+<Animation name="Cargo_UH60_FWD" guid="27168024-7d87-4457-96b7-766316ecccee" type="Sim" typeParam="AutoPlay" />
 <PartInfo>
-    <Name>Cargo_Pallet</Name>
+    <Name>Cargo_UH60_FWD</Name>
     <Visibility>
         <Parameter>
             <Code>
-				(A:Payload Station Weight:3, pounds) 15000 &gt;
-        (A:Payload Station Weight:3, pounds) 44000 &lt; and
+				(A:Payload Station Weight:3, pounds) 23000 &gt;
+        (A:Payload Station Weight:3, pounds) 40000 &lt; and
 				 if{ 1 } els{ 0 }
 			</Code>
         </Parameter>
     </Visibility>
 </PartInfo>
-<Animation name="Cargo_ISU" guid="a3601ac9-bb5f-43f7-9845-d89c3ce217d2" length="1" type="Sim" typeParam="AutoPlay" />
+<Animation name="Cargo_FuelBladder_FWD" guid="a0ff3bec-42fc-4117-91ad-940325786433" type="Sim" typeParam="AutoPlay" />
 <PartInfo>
-    <Name>Cargo_ISU</Name>
+    <Name>Cargo_FuelBladder_FWD</Name>
     <Visibility>
         <Parameter>
             <Code>
-				(A:Payload Station Weight:3, pounds) 33000 &gt;
-        (A:Payload Station Weight:3, pounds) 44000 &lt; and
+				(A:Payload Station Weight:3, pounds) 40000 &gt;
 				 if{ 1 } els{ 0 }
 			</Code>
         </Parameter>
     </Visibility>
 </PartInfo>
+
+<Animation name="Cargo_Pallet_AFT" guid="56156183-54a2-43a1-8117-f928eec7a5fb" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+    <Name>Cargo_Pallet_AFT</Name>
+    <Visibility>
+        <Parameter>
+            <Code>
+				(A:Payload Station Weight:4, pounds) 5000 &gt;
+        (A:Payload Station Weight:4, pounds) 15000 &lt; and
+				 if{ 1 } els{ 0 }
+			</Code>
+        </Parameter>
+    </Visibility>
+</PartInfo>
+<Animation name="Cargo_ISU_AFT" guid="53fcff1f-910a-445a-993b-aadc7d147522" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+    <Name>Cargo_ISU_AFT</Name>
+    <Visibility>
+        <Parameter>
+            <Code>
+				(A:Payload Station Weight:4, pounds) 15000 &gt;
+        (A:Payload Station Weight:4, pounds) 23000 &lt; and
+				 if{ 1 } els{ 0 }
+			</Code>
+        </Parameter>
+    </Visibility>
+</PartInfo>
+
+<Animation name="Cargo_UH60_AFT" guid="c15c3efa-b114-46ec-a4ab-baa4b77b2f97" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+    <Name>Cargo_UH60_AFT</Name>
+    <Visibility>
+        <Parameter>
+            <Code>
+				(A:Payload Station Weight:4, pounds) 23000 &gt;
+        (A:Payload Station Weight:4, pounds) 40000 &lt; and
+				 if{ 1 } els{ 0 }
+			</Code>
+        </Parameter>
+    </Visibility>
+</PartInfo>
+<Animation name="Cargo_FuelBladder_AFT" guid="fa60599a-1359-4155-82b6-26c68923bca6" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+    <Name>Cargo_FuelBladder_AFT</Name>
+    <Visibility>
+        <Parameter>
+            <Code>
+				(A:Payload Station Weight:4, pounds) 40000 &gt;
+				 if{ 1 } els{ 0 }
+			</Code>
+        </Parameter>
+    </Visibility>
+</PartInfo>
+
+
 
 
 <Animation name="Ramp_main" guid="ad635157-f30f-4c38-9853-3baa5a26b216" type="Sim" typeparam="AutoPlay" />

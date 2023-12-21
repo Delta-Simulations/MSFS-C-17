@@ -282,7 +282,7 @@
 				(A:EXTERNAL POWER ON, bool) 1 ==
 				(A:EXTERNAL POWER AVAILABLE, bool) 1 == and
 				(A:SIM ON GROUND,bool) 1 == and
-				(A:SURFACE RELATIVE GROUND SPEED, meter/second) 0.01 &lt; and
+				(A:SURFACE RELATIVE GROUND SPEED, meter/second) 0 &lt; and
 			</Code>
         </Parameter>
     </Visibility>
@@ -312,7 +312,7 @@
         <Parameter>
             <Code>
 				(L:C17_RBF_TAGS, bool) 1 ==
-				(A:SURFACE RELATIVE GROUND SPEED, meter/second) 0.01 &lt; and
+				(A:SURFACE RELATIVE GROUND SPEED, meter/second) 0 &lt; and
 					  (A:Eng1 Combustion,bool) 0 == and
 					  (A:Eng2 Combustion,bool) 0 == and
 					  (A:Eng3 Combustion,bool) 0 == and

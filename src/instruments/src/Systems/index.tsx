@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { render } from '../Hooks/index';
 import { useSimVar } from '../Hooks/simVars';
 import { AURALS } from './Components/AURALS';

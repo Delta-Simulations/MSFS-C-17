@@ -232,18 +232,6 @@
 </Element>
 
 
-<!--		AUTOTHROTTLE OFF		-->	
-<Element>
-  <Select>
-        <Value>        
-          (A:CIRCUIT ON:65,bool) 1 ==
-          (K:AUTO_THROTTLE_DISCONNECT) 1 == and
-          if{ 1 (&gt;L:C17_AUTOTHROTTLE_OFF,bool) }
-          els{ 0 (&gt;L:C17_AUTOTHROTTLE_OFF,bool) }					
-        </Value>
-  </Select>
-</Element>
-
 
 <!--		TAKEOFF PARKING BRAKE SET		-->	
 <Element>

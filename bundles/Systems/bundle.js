@@ -8936,23 +8936,22 @@
 	  useSimVar('A:ELEVATOR TRIM PCT', 'degrees');
 	  useSimVar('A:SIM ON GROUND', 'bool');
 	  let [ATEngaged] = useSimVar('A:AUTOTHROTTLE ACTIVE', 'bool');
-	  let [ATWarning, setATWarning] = useSimVar('L:C17_ATHR_warning', 'bool'); // Use separate refs for each effect's initial render check
-
+	  let [ThrrotleWarning, setThrrotleWarning] = useSimVar('L:C17_AT_warning', 'bool');
 	  const isInitialRenderCargo = react.useRef(true);
-	  const isInitialRenderAT = react.useRef(true);
-	  const isInitialRenderStab = react.useRef(true);
 	  const isInitialRenderWacs = react.useRef(true);
 	  react.useEffect(() => {
 	    // Check if ATEngaged went from 1 to 0
 	    if (ATEngaged === false) {
 	      // Set ATWarning to true
-	      setATWarning(true); // Set a timer to reset ATWarning to false after 3 seconds
+	      setThrrotleWarning(true);
+	      const delayA = 2000; // 2000 milliseconds = 2 second
+	      // Set a timer to reset ATWarning to false after 3 seconds
 
-	      const timer = setTimeout(() => {
-	        setATWarning(false);
-	      }, 3000); // Clear the timer when ATEngaged changes again or the component unmounts
+	      const timerAT = setTimeout(() => {
+	        setThrrotleWarning(false);
+	      }, delayA); // Clear the timer when ATEngaged changes again or the component unmounts
 
-	      return () => clearTimeout(timer);
+	      return () => clearTimeout(timerAT);
 	    }
 	  }, [ATEngaged]);
 	  react.useEffect(() => {
@@ -8989,27 +8988,16 @@
 	    isInitialRenderCargo.current = false;
 	  }, []);
 	  react.useEffect(() => {
-	    isInitialRenderAT.current = false;
-	  }, []);
-	  react.useEffect(() => {
-	    isInitialRenderStab.current = false;
-	  }, []);
-	  react.useEffect(() => {
 	    isInitialRenderWacs.current = false;
 	  }, []);
-	  return /*#__PURE__*/jsxRuntime.jsxs("g", {
-	    children: [/*#__PURE__*/jsxRuntime.jsx("text", {
+	  return /*#__PURE__*/jsxRuntime.jsx("g", {
+	    children: /*#__PURE__*/jsxRuntime.jsx("text", {
 	      x: 50,
 	      y: 50,
 	      fontSize: 100,
 	      fill: "white",
-	      className: "ESIS",
-	      children: ATWarning * ATEngaged * WacsFail * Cargo_door_Sound * StabMotion * ATWarning
-	    }), /*#__PURE__*/jsxRuntime.jsxs("p", {
-	      children: ["ATEngaged: ", ATEngaged ? 'Engaged' : 'Disengaged']
-	    }), /*#__PURE__*/jsxRuntime.jsxs("p", {
-	      children: ["ATWarning: ", ATWarning ? 'Active' : 'Inactive']
-	    })]
+	      children: ThrrotleWarning && ATEngaged && WacsFail && Cargo_door_Sound && StabMotion && ThrrotleWarning && ATEngaged
+	    })
 	  });
 	};
 

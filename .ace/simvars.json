@@ -85,6 +85,26 @@
                 "max": 10000,
                 "step": 1
             }
+        },
+        {
+            "__uuid": "24b21bcb-2bde-4212-a6bd-a288471feb8e",
+            "title": "At aural Active",
+            "varPrefix": "L",
+            "varName": "C17_AT_warning",
+            "varUnit": "number",
+            "style": {
+                "type": 3
+            }
+        },
+        {
+            "__uuid": "c2706248-b0ce-4f22-8758-0e33b8cfd87f",
+            "title": "at switch",
+            "varPrefix": "A",
+            "varName": "AUTOTHROTTLE ACTIVE",
+            "varUnit": "bool",
+            "style": {
+                "type": 3
+            }
         }
     ]
 }
