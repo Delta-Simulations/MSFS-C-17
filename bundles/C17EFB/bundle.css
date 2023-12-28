@@ -178,3 +178,13 @@ text {
   top: 5px;
   left: 580px;
 }
+.aircraftContainer {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 1040;
+  height: 810px;
+  background-position: right;
+  background-size: 80%;
+  background-repeat: no-repeat;
+}

@@ -7,6 +7,7 @@ export const ButtonBar = () => {
 	return (
 		<g>
 			<div className="ButtonBarContainer">
+
 				<NavLink
 					style={{ textDecoration: 'none' }}
 					to="/"
@@ -14,18 +15,17 @@ export const ButtonBar = () => {
 						'BottomButton' + (isActive ? 'ButtomButtonActive' : '')
 					}
 				>
-					<Button variant="contained">Home</Button>
+					<Button variant="contained">Aircraft</Button>
 				</NavLink>
 				<NavLink
 					style={{ textDecoration: 'none' }}
-					to="/Aircraft"
+					to="/Cargo"
 					className={(isActive) =>
 						'BottomButton' + (isActive ? 'ButtomButtonActive' : '')
 					}
 				>
-					<Button variant="contained">Aircraft</Button>
+					<Button variant="contained">Cargo</Button>
 				</NavLink>
-
 				<NavLink
 					style={{ textDecoration: 'none' }}
 					to="/PDF"
@@ -36,7 +36,7 @@ export const ButtonBar = () => {
 					<Button variant="contained">Manual</Button>
 				</NavLink>
 
-				<NavLink
+				{/* <NavLink
 					style={{ textDecoration: 'none' }}
 					to="/Map"
 					className={(isActive) =>
@@ -44,7 +44,7 @@ export const ButtonBar = () => {
 					}
 				>
 					<Button variant="contained">Map</Button>
-				</NavLink>
+				</NavLink> */}
 
 				<NavLink
 					style={{ textDecoration: 'none' }}

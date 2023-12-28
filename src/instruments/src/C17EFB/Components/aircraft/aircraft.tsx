@@ -11,7 +11,7 @@ import { useSimVar } from '../../../Hooks/simVars';
 
 import './aircraft.scss';
 
-export const Airctaft = () => {
+export const Aircraft = () => {
 	let [removeTags, setremoveTags] = useSimVar('L:C17_RBF_TAGS', 'bool');
 	let [rearDoorL, setRearDoorL] = useSimVar('L:C17_PARA_L', 'bool');
 	let [rearDoorR, setRearDoorR] = useSimVar('L:C17_PARA_R', 'bool');

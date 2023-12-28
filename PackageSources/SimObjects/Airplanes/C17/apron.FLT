@@ -179,13 +179,13 @@ PedestalLights=False
 Potentiometer.6=0
 Potentiometer.8=0
 Potentiometer.9=0
-Potentiometer.11=0.1
-Potentiometer.12=0.1
-Potentiometer.13=0.1
-Potentiometer.14=0.1
-Potentiometer.15=0.1
+Potentiometer.11=0.0
+Potentiometer.12=0.0
+Potentiometer.13=0.0
+Potentiometer.14=0.0
+Potentiometer.15=0.0
 Potentiometer.17=0.0
-Potentiometer.18=0.1
+Potentiometer.18=0.0
 
 
 [AutoPilot.0]
@@ -239,31 +239,18 @@ RudderTrimDisabled=False
 
 
 [LocalVars.0]
-C17_CPIT_ILLUM_MODE=1
 C17_HUD_DISABLE=1
 C17_HUD_BRIGHTNESS=10
 C17_AR_Korry_Intensity=0.8
-C17_PEDESTAL_PNL_BACKLIGHT=10
-C17_OH_PNL_BACKLIGHT=10
-C17_PILOT_PNL_BACKLIGHT=10
-C17_COPILOT_PNL_BACKLIGHT=10
-C17_PEDESTAL_PNL_BACKLIGHT=10
-C17_AFCS_PNL_BACKLIGHT=10
-C17_OH_DISP_BACKLIGHT=1
-C17_AFCS_DISP_BACKLIGHT=1
 C17_CargoDoor_POS=100
 C17_Crew_Enterance=1
-C17_EFB_Brightness=40
 C17_ANTICOLL_MODE=1
 C17_RBF_TAGS=1
 C17_Fuel_Qty_Sel=0
 C17_ENG_IGN_MODE=3
 C17_SMOKE_SYS=0
 C17_Emerg_LT=0
-C17_THR_MODE=3
-C17_PFD1_BRT=2
-C17_PFD2_BRT=2
-C17_PFD3_BRT=2
-C17_PFD4_BRT=2
 C17_P_Stby_Att_Adjust=50
 C17_CP_Stby_Att_Adjust=50
+C17_OH_DISP_BACKLIGHT=1
+C17_AFCS_DISP_BACKLIGHT=1

@@ -1,11 +1,11 @@
 {
     "elements": [
         {
-            "__uuid": "cb11ae85-428e-4552-9fc1-4b105e06304a",
+            "__uuid": "0f4e9a5e-4def-471f-b164-f8c5e6f82e84",
             "__kind": "instrument",
             "dataKind": "bundled",
-            "title": "READOUT",
-            "instrumentName": "READOUT",
+            "title": "C17EFB",
+            "instrumentName": "C17EFB",
             "position": {
                 "x": 0,
                 "y": 0

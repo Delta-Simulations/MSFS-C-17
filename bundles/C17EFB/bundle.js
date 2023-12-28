@@ -17142,17 +17142,17 @@
 	        className: isActive => 'BottomButton' + (isActive ? 'ButtomButtonActive' : ''),
 	        children: /*#__PURE__*/jsxRuntime.jsx(Button$1, {
 	          variant: "contained",
-	          children: "Home"
+	          children: "Aircraft"
 	        })
 	      }), /*#__PURE__*/jsxRuntime.jsx(NavLink, {
 	        style: {
 	          textDecoration: 'none'
 	        },
-	        to: "/Aircraft",
+	        to: "/Cargo",
 	        className: isActive => 'BottomButton' + (isActive ? 'ButtomButtonActive' : ''),
 	        children: /*#__PURE__*/jsxRuntime.jsx(Button$1, {
 	          variant: "contained",
-	          children: "Aircraft"
+	          children: "Cargo"
 	        })
 	      }), /*#__PURE__*/jsxRuntime.jsx(NavLink, {
 	        style: {
@@ -17163,16 +17163,6 @@
 	        children: /*#__PURE__*/jsxRuntime.jsx(Button$1, {
 	          variant: "contained",
 	          children: "Manual"
-	        })
-	      }), /*#__PURE__*/jsxRuntime.jsx(NavLink, {
-	        style: {
-	          textDecoration: 'none'
-	        },
-	        to: "/Map",
-	        className: isActive => 'BottomButton' + (isActive ? 'ButtomButtonActive' : ''),
-	        children: /*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	          variant: "contained",
-	          children: "Map"
 	        })
 	      }), /*#__PURE__*/jsxRuntime.jsx(NavLink, {
 	        style: {
@@ -17964,7 +17954,7 @@
 	});
 	var Stack$1 = Stack;
 
-	const Airctaft = () => {
+	const Aircraft = () => {
 	  let [removeTags, setremoveTags] = useSimVar('L:C17_RBF_TAGS', 'bool');
 	  let [rearDoorL, setRearDoorL] = useSimVar('L:C17_PARA_L', 'bool');
 	  let [rearDoorR, setRearDoorR] = useSimVar('L:C17_PARA_R', 'bool');
@@ -18171,8 +18161,8 @@
 
 	const Browser = () => {
 	  return /*#__PURE__*/jsxRuntime.jsx("iframe", {
-	    width: "2080",
-	    height: "1620",
+	    width: "1040",
+	    height: "810",
 	    src: "https://www.bing.com/",
 	    frameBorder: "0"
 	  });
@@ -23687,6 +23677,211 @@
 	  });
 	};
 
+	const Cargo = () => {
+	  let [removeTags, setremoveTags] = useSimVar('L:C17_RBF_TAGS', 'bool');
+	  let [rearDoorL, setRearDoorL] = useSimVar('L:C17_PARA_L', 'bool');
+	  let [rearDoorR, setRearDoorR] = useSimVar('L:C17_PARA_R', 'bool');
+	  let [CargoDoor, setCargoDoor] = useSimVar('L:C17_CargoDoor_POS', 'enum');
+	  let [ARSlipway, setARSlipway] = useSimVar('L:C17_UARRSI_Slipway', 'bool');
+	  let [EnteranceDoor, setEnteranceDoor] = useSimVar('L:C17_Crew_Enterance', 'bool');
+
+	  const handleChange = (event, newValue) => {
+	    setCargoDoor(newValue);
+	  };
+
+	  return /*#__PURE__*/jsxRuntime.jsx("div", {
+	    className: "cargoContainer",
+	    children: /*#__PURE__*/jsxRuntime.jsxs(Box$1, {
+	      sx: {
+	        position: 'absolute',
+	        width: 1040,
+	        height: 810,
+	        backgroundImage: 'url(/Images/C17_Home.png)',
+	        backgroundPosition: 'right',
+	        backgroundSize: '80%',
+	        backgroundRepeat: 'no-repeat',
+	        borderRadius: 4,
+	        left: 5,
+	        boxShadow: '0px 0px 7px rgba(0, 0, 0, 0.699)',
+	        color: '#1B93FF',
+	        justifyContent: 'center',
+	        display: 'flex',
+	        textAlign: 'center',
+	        fontSize: 14
+	      },
+	      children: [/*#__PURE__*/jsxRuntime.jsx("h1", {
+	        style: {
+	          marginLeft: 15,
+	          color: '#1B93FF'
+	        },
+	        children: "Cargo Customization"
+	      }), /*#__PURE__*/jsxRuntime.jsx(Box$1, {
+	        sx: {
+	          position: 'absolute',
+	          width: 200,
+	          height: 200,
+	          backgroundColor: '16161E',
+	          borderRadius: 4,
+	          left: 15,
+	          top: 520,
+	          boxShadow: '0px 0px 7px rgba(0, 0, 0, 0.699)',
+	          color: '#1B93FF',
+	          justifyContent: 'center',
+	          display: 'flex',
+	          flexDirection: 'column',
+	          textAlign: 'center',
+	          alignItems: 'center',
+	          fontSize: 14
+	        },
+	        children: /*#__PURE__*/jsxRuntime.jsx(Container$1, {
+	          maxWidth: "sm",
+	          children: /*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	            onClick: () => setremoveTags(!removeTags),
+	            size: "small",
+	            variant: "contained",
+	            color: removeTags ? 'error' : 'success',
+	            children: "Cones & Covers"
+	          })
+	        })
+	      }), /*#__PURE__*/jsxRuntime.jsx(Box$1, {
+	        sx: {
+	          position: 'absolute',
+	          width: 110,
+	          height: 35,
+	          backgroundColor: '16161E',
+	          borderRadius: 1.5,
+	          left: 300,
+	          top: 389,
+	          boxShadow: '0px 0px 7px rgba(0, 0, 0, 0.699)',
+	          color: '#1B93FF',
+	          justifyContent: 'center',
+	          display: 'flex',
+	          flexDirection: 'column',
+	          textAlign: 'center',
+	          alignItems: 'center',
+	          fontSize: 14
+	        },
+	        children: /*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	          onClick: () => setARSlipway(!ARSlipway),
+	          size: "small",
+	          variant: "contained",
+	          color: ARSlipway ? 'error' : 'success',
+	          children: "A/R Slipway"
+	        })
+	      }), /*#__PURE__*/jsxRuntime.jsx(Box$1, {
+	        sx: {
+	          position: 'absolute',
+	          width: 110,
+	          height: 35,
+	          backgroundColor: '16161E',
+	          borderRadius: 1,
+	          left: 360,
+	          top: 455,
+	          boxShadow: '0px 0px 7px rgba(0, 0, 0, 0.699)',
+	          color: '#1B93FF',
+	          justifyContent: 'center',
+	          display: 'flex',
+	          flexDirection: 'column',
+	          textAlign: 'center',
+	          alignItems: 'center',
+	          fontSize: 14
+	        },
+	        children: /*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	          onClick: () => setEnteranceDoor(!EnteranceDoor),
+	          size: "small",
+	          variant: "contained",
+	          color: EnteranceDoor ? 'error' : 'success',
+	          children: "crew door"
+	        })
+	      }), /*#__PURE__*/jsxRuntime.jsx(Box$1, {
+	        sx: {
+	          position: 'absolute',
+	          width: 79,
+	          height: 52,
+	          backgroundColor: '16161E',
+	          borderRadius: 1,
+	          left: 740,
+	          top: 280,
+	          boxShadow: '0px 0px 7px rgba(0, 0, 0, 0.699)',
+	          color: '#1B93FF',
+	          justifyContent: 'center',
+	          display: 'flex',
+	          flexDirection: 'column',
+	          textAlign: 'center',
+	          alignItems: 'center',
+	          fontSize: 14
+	        },
+	        children: /*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	          onClick: () => setRearDoorR(!rearDoorR),
+	          color: rearDoorR ? 'error' : 'success',
+	          size: "small",
+	          variant: "contained",
+	          children: "Para Door R"
+	        })
+	      }), /*#__PURE__*/jsxRuntime.jsx(Box$1, {
+	        sx: {
+	          position: 'absolute',
+	          width: 79,
+	          height: 52,
+	          backgroundColor: '16161E',
+	          borderRadius: 1,
+	          left: 740,
+	          top: 480,
+	          boxShadow: '0px 0px 7px rgba(0, 0, 0, 0.699)',
+	          color: '#1B93FF',
+	          justifyContent: 'center',
+	          display: 'flex',
+	          flexDirection: 'column',
+	          textAlign: 'center',
+	          alignItems: 'center',
+	          fontSize: 14
+	        },
+	        children: /*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	          onClick: () => setRearDoorL(!rearDoorL),
+	          color: rearDoorL ? 'error' : 'success',
+	          size: "small",
+	          variant: "contained",
+	          children: "para Door L"
+	        })
+	      }), /*#__PURE__*/jsxRuntime.jsxs(Box$1, {
+	        sx: {
+	          position: 'absolute',
+	          width: 250,
+	          height: 90,
+	          backgroundColor: '16161E',
+	          borderRadius: 1,
+	          left: 740,
+	          top: 360,
+	          boxShadow: '0px 0px 7px rgba(0, 0, 0, 0.699)',
+	          color: '#1B93FF',
+	          justifyContent: 'center',
+	          display: 'flex',
+	          flexDirection: 'column',
+	          textAlign: 'center',
+	          alignItems: 'center',
+	          fontSize: 14
+	        },
+	        children: [/*#__PURE__*/jsxRuntime.jsx(Typography$3, {
+	          id: "input-slider",
+	          gutterBottom: true,
+	          children: "Cargo Bay Position"
+	        }), /*#__PURE__*/jsxRuntime.jsx(Box$1, {
+	          sx: {
+	            width: 200,
+	            height: 135
+	          },
+	          children: /*#__PURE__*/jsxRuntime.jsx(Slider$1, {
+	            "aria-labelledby": "brightness",
+	            value: CargoDoor,
+	            onChange: handleChange,
+	            step: 50
+	          })
+	        })]
+	      })]
+	    })
+	  });
+	};
+
 	const C17EFB = () => {
 	  return /*#__PURE__*/jsxRuntime.jsx(MemoryRouter, {
 	    children: /*#__PURE__*/jsxRuntime.jsx(EfbPower, {
@@ -23695,14 +23890,17 @@
 	        className: "EFBContainer",
 	        children: [/*#__PURE__*/jsxRuntime.jsxs(Routes, {
 	          children: [/*#__PURE__*/jsxRuntime.jsx(Route, {
-	            path: "/",
+	            path: "/Home",
 	            element: /*#__PURE__*/jsxRuntime.jsx(Home, {})
 	          }), /*#__PURE__*/jsxRuntime.jsx(Route, {
-	            path: "/Aircraft",
-	            element: /*#__PURE__*/jsxRuntime.jsx(Airctaft, {})
+	            path: "/A",
+	            element: /*#__PURE__*/jsxRuntime.jsx(Aircraft, {})
 	          }), /*#__PURE__*/jsxRuntime.jsx(Route, {
 	            path: "/Browser",
 	            element: /*#__PURE__*/jsxRuntime.jsx(Browser, {})
+	          }), /*#__PURE__*/jsxRuntime.jsx(Route, {
+	            path: "/",
+	            element: /*#__PURE__*/jsxRuntime.jsx(Cargo, {})
 	          }), /*#__PURE__*/jsxRuntime.jsx(Route, {
 	            path: "/PDF",
 	            element: /*#__PURE__*/jsxRuntime.jsx(MANUAL, {})

@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { render } from "../../Hooks/index";
 import { useSimVar } from '../../Hooks/simVars';
 import "../style.scss";
 
@@ -12,63 +13,27 @@ export const AURALS = () => {
   let [StabMotion, setStabMotion] = useSimVar('L:C17_STAB_MOTION', 'bool');
   let [Stab_Trim] = useSimVar('A:ELEVATOR TRIM PCT', 'degrees');
   let [SimOnGround] = useSimVar('A:SIM ON GROUND', 'bool');
-  let [ATEngaged] = useSimVar('A:AUTOPILOT THROTTLE ARM', 'bool');
-  let [ATWarning, setATWarning] = useSimVar('L:C17_AT_warning', 'bool');
-  const prevStab_TrimRef = useRef(Stab_Trim); // Store the previous value of Stab_Trim
-  const isInitialRender = useRef(true);
+  let [ATEngaged] = useSimVar('A:AUTOTHROTTLE ACTIVE', 'bool');
+  let [ThrrotleWarning, setThrrotleWarning] = useSimVar('L:C17_AT_warning', 'bool');
 
-// Use separate refs for each effect's initial render check
 const isInitialRenderCargo = useRef(true);
-const isInitialRenderAT = useRef(true);
-const isInitialRenderStab = useRef(true);
 const isInitialRenderWacs = useRef(true);
-
-const [timerActive, setTimerActive] = useState(false);
-const [isStabMotionActive, setIsStabMotionActive] = useState(false);
 
 useEffect(() => {
   // Check if ATEngaged went from 1 to 0
   if (ATEngaged === false) {
     // Set ATWarning to true
-    setATWarning(true);
+    setThrrotleWarning(true)
+    const delayA = 2000; // 2000 milliseconds = 2 second
+    // Set a timer to reset ATWarning to false after 3 seconds
+    const timerAT = setTimeout(() => {
+      setThrrotleWarning(false)
+    }, delayA)
 
-    // Set a timer to reset ATWarning to false after 4 seconds
-    const timer = setTimeout(() => {
-      setATWarning(false);
-    }, 4000);
-
-    // Clear the timer when the component unmounts or when ATEngaged changes
-    return () => clearTimeout(timer);
+    // Clear the timer when ATEngaged changes again or the component unmounts
+    return () => clearTimeout(timerAT)
   }
 }, [ATEngaged]);
-
-useEffect(() => {
-  // Check if there's power and the aircraft is on the ground
-  if (!isInitialRenderStab.current && Avionics_PWR && SimOnGround) {
-    // Check if Stab_Trim has changed from the previous value
-    if (Stab_Trim !== prevStab_TrimRef.current) {
-      setIsStabMotionActive(true); // Turn on StabMotion
-    }
-
-    // Use a timer to turn off StabMotion after one second if it was turned on
-    if (isStabMotionActive) {
-      const turnOffTimeout = setTimeout(() => {
-        setIsStabMotionActive(false);
-      }, 1000); // 1000 milliseconds = 1 second
-
-      // Cleanup the timer when the component unmounts, power is lost, not on the ground, or Stab_Trim changes
-      return () => {
-        clearTimeout(turnOffTimeout);
-      };
-    }
-  } else {
-    // Reset StabMotion when power is lost, not on the ground, or Stab_Trim changes
-    setIsStabMotionActive(false);
-  }
-
-  // Update the previous value of Stab_Trim
-  prevStab_TrimRef.current = Stab_Trim;
-}, [Avionics_PWR, SimOnGround, Stab_Trim]);
 
 useEffect(() => {
   // Check if Cargo_door changes
@@ -86,7 +51,7 @@ useEffect(() => {
       clearTimeout(timeoutId)
     };
   }
-}, [Cargo_door])
+}, [Cargo_door]);
 
 useEffect(() => {
   // Check if Avionics_PWR changes
@@ -100,19 +65,11 @@ useEffect(() => {
     // Cleanup the timer if the component unmounts or Avionics_PWR changes
     return () => clearTimeout(timerId)
   }
-}, [Avionics_PWR])
+}, [Avionics_PWR]);
 
 // Set the corresponding ref to false after the initial render
 useEffect(() => {
   isInitialRenderCargo.current = false;
-}, []);
-
-useEffect(() => {
-  isInitialRenderAT.current = false;
-}, []);
-
-useEffect(() => {
-  isInitialRenderStab.current = false;
 }, []);
 
 useEffect(() => {
@@ -121,7 +78,7 @@ useEffect(() => {
 
   return (
       <g>
-          <text x={50} y={50} fontSize={100} fill='white' className='ESIS'>{ATWarning*ATEngaged*WacsFail*Cargo_door_Sound*StabMotion*ATWarning}</text>
+          <text x={50} y={50} fontSize={100} fill='white'>{ThrrotleWarning && ATEngaged && WacsFail && Cargo_door_Sound && StabMotion && ThrrotleWarning && ATEngaged}</text>
       </g>
   );
 };

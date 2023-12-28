@@ -119,8 +119,8 @@ export const RadioDisp = () => {
             <rect  visibility={ReverseThrust ? 'visible' : 'hidden'} x={25} y={767} width={128} height={19} stroke='RED' fill="none" stroke-width="2.5"/>
             <text visibility={ReverseThrust ? 'visible' : 'hidden'} x={26} y={783} fontSize={19} fill='RED' className='Radio' textAnchor="start">REVERSE THR</text>
             
-            <text visibility={SimRate === 1 ? 'hidden' : 'visible'} x={190} y={783} fontSize={19} fill='#00EE00' className='Radio' textAnchor="start">SIM RATE</text>
-            <text visibility={SimRate === 1 ? 'hidden' : 'visible'} x={285} y={783} fontSize={19} fill='#00EE00' className='Radio' textAnchor="start">{SimRate}</text>
+            <text visibility={SimRate === 1 ? 'hidden' : 'visible'} x={180} y={783} fontSize={19} fill='#00EE00' className='Radio' textAnchor="start">SIM RATE</text>
+            <text visibility={SimRate === 1 ? 'hidden' : 'visible'} x={276} y={783} fontSize={19} fill='#00EE00' className='Radio' textAnchor="start">{SimRate}</text>
 
             <rect  x={145} y={855} width={143.5} height={83} className='YllwRect' fill="none" stroke-width="2.5"/>
             <text x={14} y={813} fontSize={19} fill='#00EE00' className='Radio' textAnchor="start">COM</text>
