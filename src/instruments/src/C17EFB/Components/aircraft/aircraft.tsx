@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Checkbox from '@mui/material/Checkbox';
@@ -8,7 +8,10 @@ import Slider from '@mui/material/Slider';
 import MuiInput from '@mui/material/Input';
 import Container from '@mui/material/Container';
 import { useSimVar } from '../../../Hooks/simVars';
-
+import { ButtonColour } from '../ThemesEFB';
+import { ThemeProvider } from '@mui/material/styles';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import { Images } from './Images'
 import './aircraft.scss';
 
 export const Aircraft = () => {
@@ -18,10 +21,13 @@ export const Aircraft = () => {
 	let [CargoDoor, setCargoDoor] = useSimVar('L:C17_CargoDoor_POS', 'enum');
 	let [ARSlipway, setARSlipway] = useSimVar('L:C17_UARRSI_Slipway', 'bool');
 	let [EnteranceDoor, setEnteranceDoor] = useSimVar('L:C17_Crew_Enterance', 'bool');
+	let [WXDome, setWXDome] = useSimVar('L:C17_Radome_Open', 'bool');
+	let [FARP, setFARP] = useSimVar('A:LIGHT PEDESTRAL', 'bool');
+	let [FARPSHOW, setFARPSHOW] = useSimVar('L:C17_FARPSHOW', 'bool');
+	let [FARPTANK, setFARPTANK] = useSimVar('L:C17_FARP_TANK', 'bool');
+	let [DevModeEFB] = useSimVar('L:C17_DevModeEFB', 'bool');
 
-	const handleChange = (event: Event, newValue: number | number[]) =>{
-		setCargoDoor(newValue as number)
-	  }
+
 
 	return (
 		<div className="aircraftContainer">
@@ -30,209 +36,164 @@ export const Aircraft = () => {
 					position: 'absolute',
 					width: 1040,
 					height: 810,
-					backgroundImage: 'url(/Images/C17_Home.png)',
-					backgroundPosition: 'right',
-					backgroundSize: '80%',
-					backgroundRepeat: 'no-repeat',
 					borderRadius: 4,
-					left: 5,
-					boxShadow: '0px 0px 7px rgba(0, 0, 0, 0.699)',
-					color: '#1B93FF',
-					justifyContent: 'center',
+					left: 0,
+					justifyContent: 'Left',
 					display: 'flex',
 					textAlign: 'center',
 					fontSize: 14,
 				}}
 			>
-				
-				<h1 style={{ marginLeft: 15, color: '#1B93FF' }}>
-					Aircraft Customization
-				</h1>
+				<Images />
 				<Box
 					sx={{
 						position: 'absolute',
-						width: 200,
-						height: 200,
-						backgroundColor: '16161E',
-						borderRadius: 4,
+						width: 220,
+						height: 140,
+						backgroundColor: '#343a40',
+						borderRadius: 1,
 						left: 15,
-						top: 520,
-						boxShadow: '0px 0px 7px rgba(0, 0, 0, 0.699)',
-						color: '#1B93FF',
-						justifyContent: 'center',
-						display: 'flex',
-						flexDirection: 'column',
+						top: 20,
+						boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.699)',
+						justifyContent: 'start',
 						textAlign: 'center',
-						alignItems: 'center',
 						fontSize: 14,
+						padding: 1,
 					}}
 				>
-					<Container maxWidth="sm">
-					<Button
-						onClick={() => setremoveTags(!removeTags)}
-						size="small"
-						variant="contained"
-						color={removeTags ? 'error' : 'success'}
-					>
-						Cones & Covers
-					</Button>
-					</Container>
+					<h2 style={{ marginTop: 0, color: '#aeb0b3' }}>Ground Services</h2>
+					<Stack direction="column" spacing={1}>
+						<ThemeProvider theme={ButtonColour}>
+
+							<Button
+								onClick={() => setWXDome(!WXDome)}
+								size="large"
+								variant={WXDome ? 'contained' : 'outlined'}
+							>
+								WX Dome
+							</Button>
+							<Button
+								onClick={() => setremoveTags(!removeTags)}
+								size="large"
+								variant={removeTags ? 'contained' : 'outlined'}
+
+							>
+								Cones & Covers
+							</Button>
+							<Button
+								onClick={() => setFARPSHOW(!FARPSHOW)}
+								size="large"
+								variant={FARPSHOW ? 'contained' : 'outlined'}
+								style={{ display: DevModeEFB ? 'block' : 'none' }}
+							>
+								SET UP FARP (MP)
+							</Button>
+							<Button
+								onClick={() => setFARPTANK(!FARPTANK)}
+								size="large"
+								variant={FARPTANK ? 'contained' : 'outlined'}
+								style={{ display: DevModeEFB ? 'block' : 'none' }}
+							>
+								FARP - FEED TO TANK
+							</Button>
+							</ThemeProvider>
+					</Stack>
 				</Box>
+				<ThemeProvider theme={ButtonColour}>
 				<Box
-					sx={{
-						position: 'absolute',
-						width: 110,
-						height: 35,
-						backgroundColor: '16161E',
-						borderRadius: 1.5,
-						left: 300,
-						top: 389,
-						boxShadow: '0px 0px 7px rgba(0, 0, 0, 0.699)',
-						color: '#1B93FF',
-						justifyContent: 'center',
-						display: 'flex',
-						flexDirection: 'column',
-						textAlign: 'center',
-						alignItems: 'center',
-						fontSize: 14,
-					}}
-				>
+      sx={{
+        display: 'flex',
+        '& > *': {
+          m: 1,
+        },
+		left: 824,
+		top: 160,
+		position: 'absolute',
+      }}
+    >
+      <ButtonGroup
+        orientation="vertical"
+        aria-label="vertical outlined button group"
+      >
+    <Button size="large" variant={CargoDoor === 0 ? 'contained' : 'outlined'} onClick={() => setCargoDoor(CargoDoor=0)} key="one">CLOSED</Button>
+    <Button size="large" variant={CargoDoor === 50 ? 'contained' : 'outlined'} onClick={() => setCargoDoor(CargoDoor=50)} key="two">AIRDROP</Button>
+    <Button size="large" variant={CargoDoor === 100 ? 'contained' : 'outlined'} onClick={() => setCargoDoor(CargoDoor=100)} key="three">GROUND</Button>
+      </ButtonGroup>
+
+    </Box>
 					<Button
 						onClick={() => setARSlipway(!ARSlipway)}
-						size="small"
-						variant="contained"
-						color={ARSlipway ? 'error' : 'success'}
+						size="large"
+						variant={ARSlipway ? 'contained' : 'outlined'}
+						style={{
+							position: 'absolute',
+							top: '340px',
+							left: '45px',
+							margin: '10px',
+							boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.699)',
+							backgroundColor: ARSlipway ? ButtonColour.palette.primary.main : '#22262a',
+
+						}}
 					>
 						A/R Slipway
 					</Button>
-				</Box>
-				<Box
-					sx={{
-						position: 'absolute',
-						width: 110,
-						height: 35,
-						backgroundColor: '16161E',
-						borderRadius: 1,
-						left: 360,
-						top: 455,
-						boxShadow: '0px 0px 7px rgba(0, 0, 0, 0.699)',
-						color: '#1B93FF',
-						justifyContent: 'center',
-						display: 'flex',
-						flexDirection: 'column',
-						textAlign: 'center',
-						alignItems: 'center',
-						fontSize: 14,
-					}}
-				>
 					<Button
 						onClick={() => setEnteranceDoor(!EnteranceDoor)}
-						size="small"
-						variant="contained"
-						color={EnteranceDoor ? 'error' : 'success'}
+						size="large"
+						variant={EnteranceDoor ? 'contained' : 'outlined'}
+						style={{
+							position: 'absolute',
+							top: '635px',
+							left: '120px',
+							margin: '10px',
+							boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.699)',
+							backgroundColor: EnteranceDoor ? ButtonColour.palette.primary.main : '#22262a',
+
+						}}
 					>
-						crew door
+						Crew Door
 					</Button>
-				</Box>
-				<Box
-					sx={{
-						position: 'absolute',
-						width: 79,
-						height: 52,
-						backgroundColor: '16161E',
-						borderRadius: 1,
-						left: 740,
-						top: 280,
-						boxShadow: '0px 0px 7px rgba(0, 0, 0, 0.699)',
-						color: '#1B93FF',
-						justifyContent: 'center',
-						display: 'flex',
-						flexDirection: 'column',
-						textAlign: 'center',
-						alignItems: 'center',
-						fontSize: 14,
-					}}
-				>
+
+
 					<Button
 						onClick={() => setRearDoorR(!rearDoorR)}
-						color={rearDoorR ? 'error' : 'success'}
-						size="small"
-						variant="contained"
+						size="large"
+						variant={rearDoorR ? 'contained' : 'outlined'}
+						style={{
+							position: 'absolute',
+							top: '300px',
+							left: '620px',
+							margin: '10px',
+							boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.699)',
+							backgroundColor: rearDoorR ? ButtonColour.palette.primary.main : '#22262a',
+
+						}}
 					>
 						Para Door R
 					</Button>
-				</Box>
-				<Box
-					sx={{
-						position: 'absolute',
-						width: 79,
-						height: 52,
-						backgroundColor: '16161E',
-						borderRadius: 1,
-						left: 740,
-						top: 480,
-						boxShadow: '0px 0px 7px rgba(0, 0, 0, 0.699)',
-						color: '#1B93FF',
-						justifyContent: 'center',
-						display: 'flex',
-						flexDirection: 'column',
-						textAlign: 'center',
-						alignItems: 'center',
-						fontSize: 14,
-					}}
-				>
 					<Button
 						onClick={() => setRearDoorL(!rearDoorL)}
-						color={rearDoorL ? 'error' : 'success'}
-						size="small"
-						variant="contained"
+						size="large"
+						variant={rearDoorL ? 'contained' : 'outlined'}
+						style={{
+							position: 'absolute',
+							top: '640px',
+							left: '620px',
+							margin: '10px',
+							boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.699)',
+							backgroundColor: rearDoorL ? ButtonColour.palette.primary.main : '#22262a',
+
+						}}
 					>
-						para Door L
+						Para Door L
 					</Button>
-				</Box>
+				</ThemeProvider>
 
 
-			<Box
-				sx={{
-					position: 'absolute',
-					width: 250,
-					height: 90,
-					backgroundColor: '16161E',
-					borderRadius: 1,
-					left: 740,
-					top: 360,
-					boxShadow: '0px 0px 7px rgba(0, 0, 0, 0.699)',
-					color: '#1B93FF',
-					justifyContent: 'center',
-					display: 'flex',
-					flexDirection: 'column',
-					textAlign: 'center',
-					alignItems: 'center',
-					fontSize: 14,
 
-				}}>
-				<Typography id="input-slider" gutterBottom>
-					Cargo Bay Position
-				</Typography>
-			<Box
-			sx={{
-				width: 200,
-				height: 135,
-			}}
-			>
-			<Slider 
-			aria-labelledby="brightness" 
-			value={CargoDoor} 
-			onChange={handleChange} 
-			step={50}  
-			
-			
-			/> 
-					
-			</Box>			
+
+
 			</Box>
-
-		</Box>
 
 		</div>
 	);

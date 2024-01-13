@@ -14,6 +14,175 @@
 		<Include ModelBehaviorFile="Asobo\Airliner\Airbus.xml"/>
     <Include Path="DeltaSim-C17\DeltaSim_Switch_Template.xml"/>
     <Include Path="DeltaSim-C17\DeltaSim_Lighting_Template.xml"/>
+    <Include Path="DeltaSim-UH60\DeltaSim_Anim_Template.xml"/>
+
+    <Component ID="CDUs">
+      <DefaultTemplateParameters>
+        <ANIM_NEVER_FAILS>True</ANIM_NEVER_FAILS>
+        <FAILURE>(A:LIGHT PANEL ON:3, Bool)</FAILURE>
+        <DONT_OVERRIDE_BASE_EMISSIVE>False</DONT_OVERRIDE_BASE_EMISSIVE>
+        <BRT_DIM_SWITCH_DIRECTION>Horizontal</BRT_DIM_SWITCH_DIRECTION>
+        <NO_BRT_DIM_EMISSIVE_SEQ2>True</NO_BRT_DIM_EMISSIVE_SEQ2>
+        <SCREEN_ID>FMC</SCREEN_ID>
+      </DefaultTemplateParameters>
+      <Component ID="CDU_1">
+        <UseTemplate Name="ASOBO_FMC_B747">
+          <WWISE_EVENT_1>cdu_in</WWISE_EVENT_1>
+          <WWISE_EVENT_2>cdu_out</WWISE_EVENT_2>
+          <NODE_ID_SCREEN>SCREEN_FMC1</NODE_ID_SCREEN>
+          <CIRCUIT_ID>27</CIRCUIT_ID>
+          <ID>1</ID>
+          <SEQ1_SUFFIX>_decal</SEQ1_SUFFIX>
+          <NODE_ID_INIT>btn_CDU1_INIT</NODE_ID_INIT>
+          <ANIM_NAME_INIT>cdu1_push_INIT</ANIM_NAME_INIT>
+          <NODE_ID_RTE>btn_CDU1_RTE</NODE_ID_RTE>
+          <ANIM_NAME_RTE>cdu1_push_RTE</ANIM_NAME_RTE>
+          <NODE_ID_DEP_ARR>btn_CDU1_DEP_ARR</NODE_ID_DEP_ARR>
+          <ANIM_NAME_DEP_ARR>cdu1_push_DEP_ARR</ANIM_NAME_DEP_ARR>
+          <NODE_ID_ATC>btn_CDU1_ATC</NODE_ID_ATC>
+          <ANIM_NAME_ATC>cdu1_push_ATC</ANIM_NAME_ATC>
+          <NODE_ID_VNAV>btn_CDU1_VNAV</NODE_ID_VNAV>
+          <ANIM_NAME_VNAV>cdu1_push_VNAV</ANIM_NAME_VNAV>
+          <NODE_ID_BRT_DIM>btn_CDU1_BRT</NODE_ID_BRT_DIM>
+          <ANIM_NAME_BRT_DIM>cdu1_push_BRT</ANIM_NAME_BRT_DIM>
+          <NODE_ID_BRT_DIM_SEQ1>btn_CDU1_BRT_DECAL</NODE_ID_BRT_DIM_SEQ1>
+          <NODE_ID_FIX>btn_CDU1_FIX</NODE_ID_FIX>
+          <ANIM_NAME_FIX>cdu1_push_FIX</ANIM_NAME_FIX>
+          <NODE_ID_LEGS>btn_CDU1_LEGS</NODE_ID_LEGS>
+          <ANIM_NAME_LEGS>cdu1_push_LEGS</ANIM_NAME_LEGS>
+          <NODE_ID_HOLD>btn_CDU1_HOLD</NODE_ID_HOLD>
+          <ANIM_NAME_HOLD>cdu1_push_HOLD</ANIM_NAME_HOLD>
+          <NODE_ID_FMC_COMM>btn_CDU1_FMC_COMM</NODE_ID_FMC_COMM>
+          <ANIM_NAME_FMC_COMM>cdu1_push_FMC_COMM</ANIM_NAME_FMC_COMM>
+          <NODE_ID_PROG>btn_CDU1_PROG</NODE_ID_PROG>
+          <ANIM_NAME_PROG>cdu1_push_PROG</ANIM_NAME_PROG>
+          <NODE_ID_EXEC>btn_CDU1_EXE</NODE_ID_EXEC>
+          <ANIM_NAME_EXEC>cdu1_push_EXEC</ANIM_NAME_EXEC>
+          <NODE_ID_MENU>btn_CDU1_MENU</NODE_ID_MENU>
+          <ANIM_NAME_MENU>cdu1_push_MENU</ANIM_NAME_MENU>
+          <NODE_ID_NAV_RAD>btn_CDU1_NAV_RAD</NODE_ID_NAV_RAD>
+          <ANIM_NAME_NAV_RAD>cdu1_push_NAV_RAD</ANIM_NAME_NAV_RAD>
+          <NODE_ID_PREV_PAGE>btn_CDU1_PAGE_PREV</NODE_ID_PREV_PAGE>
+          <ANIM_NAME_PREV_PAGE>cdu1_push_PAGE_PREV</ANIM_NAME_PREV_PAGE>
+          <NODE_ID_NEXT_PAGE>btn_CDU1_PAGE_NEXT</NODE_ID_NEXT_PAGE>
+          <ANIM_NAME_NEXT_PAGE>cdu1_push_PAGE_NEXT</ANIM_NAME_NEXT_PAGE>
+          <NODE_ID_SP>btn_CDU1_SP</NODE_ID_SP>
+          <ANIM_NAME_SP>cdu1_push_SP</ANIM_NAME_SP>
+          <NODE_ID_DEL>btn_CDU1_DEL</NODE_ID_DEL>
+          <ANIM_NAME_DEL>cdu1_push_DEL</ANIM_NAME_DEL>
+          <NODE_ID_CLR>btn_CDU1_CLR</NODE_ID_CLR>
+          <ANIM_NAME_CLR>cdu1_push_CLR</ANIM_NAME_CLR>
+          <NODE_ID_DIV>btn_CDU1_DIVIDE</NODE_ID_DIV>
+          <ANIM_NAME_DIV>cdu1_push_DIV</ANIM_NAME_DIV>
+          <NODE_ID_L1>btn_CDU1_L_1</NODE_ID_L1>
+          <ANIM_NAME_L1>cdu1_push_L1</ANIM_NAME_L1>
+          <NODE_ID_L2>btn_CDU1_L_2</NODE_ID_L2>
+          <ANIM_NAME_L2>cdu1_push_L2</ANIM_NAME_L2>
+          <NODE_ID_L3>btn_CDU1_L_3</NODE_ID_L3>
+          <ANIM_NAME_L3>cdu1_push_L3</ANIM_NAME_L3>
+          <NODE_ID_L4>btn_CDU1_L_4</NODE_ID_L4>
+          <ANIM_NAME_L4>cdu1_push_L4</ANIM_NAME_L4>
+          <NODE_ID_L5>btn_CDU1_L_5</NODE_ID_L5>
+          <ANIM_NAME_L5>cdu1_push_L5</ANIM_NAME_L5>
+          <NODE_ID_L6>btn_CDU1_L_6</NODE_ID_L6>
+          <ANIM_NAME_L6>cdu1_push_L6</ANIM_NAME_L6>
+          <NODE_ID_R1>btn_CDU1_R_1</NODE_ID_R1>
+          <ANIM_NAME_R1>cdu1_push_R1</ANIM_NAME_R1>
+          <NODE_ID_R2>btn_CDU1_R_2</NODE_ID_R2>
+          <ANIM_NAME_R2>cdu1_push_R2</ANIM_NAME_R2>
+          <NODE_ID_R3>btn_CDU1_R_3</NODE_ID_R3>
+          <ANIM_NAME_R3>cdu1_push_R3</ANIM_NAME_R3>
+          <NODE_ID_R4>btn_CDU1_R_4</NODE_ID_R4>
+          <ANIM_NAME_R4>cdu1_push_R4</ANIM_NAME_R4>
+          <NODE_ID_R5>btn_CDU1_R_5</NODE_ID_R5>
+          <ANIM_NAME_R5>cdu1_push_R5</ANIM_NAME_R5>
+          <NODE_ID_R6>btn_CDU1_R_6</NODE_ID_R6>
+          <ANIM_NAME_R6>cdu1_push_R6</ANIM_NAME_R6>
+          <NODE_ID_A>btn_CDU1_A</NODE_ID_A>
+          <ANIM_NAME_A>cdu1_push_A</ANIM_NAME_A>
+          <NODE_ID_B>btn_CDU1_B</NODE_ID_B>
+          <ANIM_NAME_B>cdu1_push_B</ANIM_NAME_B>
+          <NODE_ID_C>btn_CDU1_C</NODE_ID_C>
+          <ANIM_NAME_C>cdu1_push_C</ANIM_NAME_C>
+          <NODE_ID_D>btn_CDU1_D</NODE_ID_D>
+          <ANIM_NAME_D>cdu1_push_D</ANIM_NAME_D>
+          <NODE_ID_E>btn_CDU1_E</NODE_ID_E>
+          <ANIM_NAME_E>cdu1_push_E</ANIM_NAME_E>
+          <NODE_ID_F>btn_CDU1_F</NODE_ID_F>
+          <ANIM_NAME_F>cdu1_push_F</ANIM_NAME_F>
+          <NODE_ID_G>btn_CDU1_G</NODE_ID_G>
+          <ANIM_NAME_G>cdu1_push_G</ANIM_NAME_G>
+          <NODE_ID_H>btn_CDU1_H</NODE_ID_H>
+          <ANIM_NAME_H>cdu1_push_H</ANIM_NAME_H>
+          <NODE_ID_I>btn_CDU1_I</NODE_ID_I>
+          <ANIM_NAME_I>cdu1_push_I</ANIM_NAME_I>
+          <NODE_ID_J>btn_CDU1_J</NODE_ID_J>
+          <ANIM_NAME_J>cdu1_push_J</ANIM_NAME_J>
+          <NODE_ID_K>btn_CDU1_K</NODE_ID_K>
+          <ANIM_NAME_K>cdu1_push_K</ANIM_NAME_K>
+          <NODE_ID_L>btn_CDU1_L</NODE_ID_L>
+          <ANIM_NAME_L>cdu1_push_L</ANIM_NAME_L>
+          <NODE_ID_M>btn_CDU1_M</NODE_ID_M>
+          <ANIM_NAME_M>cdu1_push_M</ANIM_NAME_M>
+          <NODE_ID_N>btn_CDU1_N</NODE_ID_N>
+          <ANIM_NAME_N>cdu1_push_N</ANIM_NAME_N>
+          <NODE_ID_O>btn_CDU1_O</NODE_ID_O>
+          <ANIM_NAME_O>cdu1_push_O</ANIM_NAME_O>
+          <NODE_ID_P>btn_CDU1_P</NODE_ID_P>
+          <ANIM_NAME_P>cdu1_push_P</ANIM_NAME_P>
+          <NODE_ID_Q>btn_CDU1_Q</NODE_ID_Q>
+          <ANIM_NAME_Q>cdu1_push_Q</ANIM_NAME_Q>
+          <NODE_ID_R>btn_CDU1_R</NODE_ID_R>
+          <ANIM_NAME_R>cdu1_push_R</ANIM_NAME_R>
+          <NODE_ID_S>btn_CDU1_S</NODE_ID_S>
+          <ANIM_NAME_S>cdu1_push_S</ANIM_NAME_S>
+          <NODE_ID_T>btn_CDU1_T</NODE_ID_T>
+          <ANIM_NAME_T>cdu1_push_T</ANIM_NAME_T>
+          <NODE_ID_U>btn_CDU1_U</NODE_ID_U>
+          <ANIM_NAME_U>cdu1_push_U</ANIM_NAME_U>
+          <NODE_ID_V>btn_CDU1_V</NODE_ID_V>
+          <ANIM_NAME_V>cdu1_push_V</ANIM_NAME_V>
+          <NODE_ID_W>btn_CDU1_W</NODE_ID_W>
+          <ANIM_NAME_W>cdu1_push_W</ANIM_NAME_W>
+          <NODE_ID_X>btn_CDU1_X</NODE_ID_X>
+          <ANIM_NAME_X>cdu1_push_X</ANIM_NAME_X>
+          <NODE_ID_Y>btn_CDU1_Y</NODE_ID_Y>
+          <ANIM_NAME_Y>cdu1_push_Y</ANIM_NAME_Y>
+          <NODE_ID_Z>btn_CDU1_Z</NODE_ID_Z>
+          <ANIM_NAME_Z>cdu1_push_Z</ANIM_NAME_Z>
+          <NODE_ID_0>btn_CDU1_0</NODE_ID_0>
+          <ANIM_NAME_0>cdu1_push_0</ANIM_NAME_0>
+          <NODE_ID_1>btn_CDU1_1</NODE_ID_1>
+          <ANIM_NAME_1>cdu1_push_1</ANIM_NAME_1>
+          <NODE_ID_2>btn_CDU1_2</NODE_ID_2>
+          <ANIM_NAME_2>cdu1_push_2</ANIM_NAME_2>
+          <NODE_ID_3>btn_CDU1_3</NODE_ID_3>
+          <ANIM_NAME_3>cdu1_push_3</ANIM_NAME_3>
+          <NODE_ID_4>btn_CDU1_4</NODE_ID_4>
+          <ANIM_NAME_4>cdu1_push_4</ANIM_NAME_4>
+          <NODE_ID_5>btn_CDU1_5</NODE_ID_5>
+          <ANIM_NAME_5>cdu1_push_5</ANIM_NAME_5>
+          <NODE_ID_6>btn_CDU1_6</NODE_ID_6>
+          <ANIM_NAME_6>cdu1_push_6</ANIM_NAME_6>
+          <NODE_ID_7>btn_CDU1_7</NODE_ID_7>
+          <ANIM_NAME_7>cdu1_push_7</ANIM_NAME_7>
+          <NODE_ID_8>btn_CDU1_8</NODE_ID_8>
+          <ANIM_NAME_8>cdu1_push_8</ANIM_NAME_8>
+          <NODE_ID_9>btn_CDU1_9</NODE_ID_9>
+          <ANIM_NAME_9>cdu1_push_9</ANIM_NAME_9>
+          <NODE_ID_DOT>btn_CDU1_DOT</NODE_ID_DOT>
+          <ANIM_NAME_DOT>cdu1_push_DOT</ANIM_NAME_DOT>
+          <NODE_ID_PLUSMINUS>btn_CDU1_OPE</NODE_ID_PLUSMINUS>
+          <ANIM_NAME_PLUSMINUS>cdu1_push_OPE</ANIM_NAME_PLUSMINUS>
+          <NODE_ID_OFST>CDU1_OFST_decal</NODE_ID_OFST>
+          <NODE_ID_MSG>CDU1_MSG_decal</NODE_ID_MSG>
+          <NODE_ID_FAIL>CDU1_FAIL_decal</NODE_ID_FAIL>
+          <NODE_ID_DSPL>CDU1_DSPY_decal</NODE_ID_DSPL>
+          <NODE_ID_EMISSIVE_EXEC>CDU_EXEC_Active_1</NODE_ID_EMISSIVE_EXEC>
+        </UseTemplate>
+      </Component>
+    </Component>
+
 
   <Component ID="Other" >
 
@@ -149,6 +318,7 @@
 </Component>
 
 
+
   <Component ID="Switch_UARRSI_Emerg_Handle" Node="Switch_UARRSI_Emerg_Handle">
     <UseTemplate Name="ASOBO_GT_Interaction_DraggingAxis_Code">
         <UP_CODE>
@@ -270,6 +440,14 @@
       <CODE_POS_2></CODE_POS_2>
     </UseTemplate>
     </Component>
+    <UseTemplate Name="GENERIC_Toggle_Switch_Template">
+      <ANIM>(L:C17_Aural_Inhibit, bool) 100 *</ANIM>
+      <NODE_ID>Button_Pedestal_Aural_Silence</NODE_ID>
+      <TOOLTIPID>INHIBIT AURALS</TOOLTIPID>
+      <INTERACT_CODE>
+        (L:C17_Aural_Inhibit, bool) ! (&gt;L:C17_Aural_Inhibit, bool)
+      </INTERACT_CODE>
+    </UseTemplate>
 
     <UseTemplate Name="GENERIC_Toggle_Switch_Template">
       <ANIM>(L:C17_Emerg_LT, bool) 100 *</ANIM>
@@ -2175,6 +2353,13 @@
     <TOOLTIPID>EMERG UARRSI HANDLE ACCESS</TOOLTIPID>
     <ANIM_LAG>50</ANIM_LAG>	
   </UseTemplate>
+  <UseTemplate name="Generic_Anim_DELTASIM">
+    <ANIM_NAME>r_gear</ANIM_NAME>
+    <ANIM_CODE>
+      (A:GEAR ANIMATION POSITION:2, keyframe)
+    </ANIM_CODE>
+    <ANIM_LENGTH>200</ANIM_LENGTH>
+  </UseTemplate>
 
   <UseTemplate Name="GENERIC_Toggle_Switch_Template">
     <ANIM>(L:C17_UARRSI_Slipway, bool) 100 *</ANIM>
@@ -3493,7 +3678,7 @@
         </Parameter>
     </Visibility>
 </PartInfo>
-<Animation name="Cargo_FuelBladder_FWD" guid="a0ff3bec-42fc-4117-91ad-940325786433" type="Sim" typeParam="AutoPlay" />
+<Animation name="Cargo_FuelBladder_FWD" guid="04f43559-0e1e-41e3-9d59-9210b815793a" type="Sim" typeParam="AutoPlay" />
 <PartInfo>
     <Name>Cargo_FuelBladder_FWD</Name>
     <Visibility>
@@ -3504,7 +3689,29 @@
 			</Code>
         </Parameter>
     </Visibility>
+</PartInfo>  
+<Animation name="Cargo_FuelBladder_Fill_Front" guid="f06879c7-23ef-4b51-b423-fc85e2783b4a" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+    <Name>Cargo_FuelBladder_Fill_Front</Name>
+    <AnimLength>100</AnimLength>
+    <Animation>
+        <Parameter>
+            <Code>(A:Payload Station Weight:3, pounds) 40000 - 49747 / 100 * 70 min </Code>
+        <Lag>40</Lag>
+        </Parameter>
+    </Animation>
 </PartInfo>
+  <Animation name="Cargo_FuelBladder_Fill_Rear" guid="72df37cd-0e32-48b8-9d58-9a20b24d697d" type="Sim" typeParam="AutoPlay" />
+  <PartInfo>
+      <Name>Cargo_FuelBladder_Fill_Rear</Name>
+      <AnimLength>100</AnimLength>
+      <Animation>
+          <Parameter>
+              <Code>(A:Payload Station Weight:4, pounds) 40000 - 49747 / 100 * 70 min </Code>
+          <Lag>40</Lag>
+          </Parameter>
+      </Animation>
+  </PartInfo>
 
 <Animation name="Cargo_Pallet_AFT" guid="56156183-54a2-43a1-8117-f928eec7a5fb" type="Sim" typeParam="AutoPlay" />
 <PartInfo>

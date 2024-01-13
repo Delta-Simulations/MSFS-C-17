@@ -20,7 +20,7 @@
 	right: 10px;
 }
 .pageButton {
-	opacity: 0.3;
+	opacity: 0.8;
 	transition: ease-in-out 0.3s;
 	&:hover {
 		opacity: 1;
@@ -29,7 +29,7 @@
 }
 .nextPage {
 	@extend .pageButton;
-	bottom: 45%;
+	bottom: 45px;
 	left: 86%;
 }
 .previousPage {
@@ -42,7 +42,7 @@
 	position: absolute;
 	left: 0px;
 	top: 0px;
-	width: 1040px;
+	width: 1040;
 	height: 810px;
 	// background-image: url('/images/Top_down.png');
 	background-position: right;

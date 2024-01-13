@@ -22,32 +22,8 @@ text {
   left: 0px;
   width: 1040px;
   height: 810px;
-  background-color: #1a1b26;
+  background-color: #22262a;
   font-family: system-ui;
-}
-.homeContainer {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 1040px;
-  height: 810px;
-  background-image: url("/images/C17_LOGO.png"), url("/images/C17_EFB_Backround.jpg");
-  background-position: center, center;
-  background-repeat: no-repeat, no-repeat;
-  background-size: 45%, cover;
-}
-.ButtonBarContainer {
-  position: absolute;
-  bottom: 5px;
-  left: 5px;
-  height: 50px;
-  background-color: #16161e;
-  width: 1026px;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  border-radius: 5px;
-  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.699);
 }
 .aircraftContainer {
   position: absolute;
@@ -94,7 +70,7 @@ text {
 }
 
 .pageButton, .previousPage, .nextPage {
-  opacity: 0.3;
+  opacity: 0.8;
   transition: ease-in-out 0.3s;
 }
 
@@ -104,7 +80,7 @@ text {
 }
 
 .nextPage {
-  bottom: 45%;
+  bottom: 45px;
   left: 86%;
 }
 
@@ -118,7 +94,7 @@ text {
   position: absolute;
   left: 0px;
   top: 0px;
-  width: 1040px;
+  width: 1040;
   height: 810px;
   background-position: right;
   background-size: 80%;

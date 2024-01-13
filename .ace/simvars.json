@@ -11,60 +11,30 @@
             }
         },
         {
-            "__uuid": "aba5635b-f6bf-4d4c-8147-b96945c8627b",
-            "title": "pwr2",
-            "varPrefix": "A",
-            "varName": "CIRCUIT ON:81",
+            "__uuid": "3d6517b3-5a29-4950-92d4-ca81f71f633d",
+            "title": "Tags",
+            "varPrefix": "L",
+            "varName": "C17_RBF_TAGS",
             "varUnit": "number",
             "style": {
                 "type": 3
             }
         },
         {
-            "__uuid": "e69d34aa-2744-40e0-8573-f0863085c84a",
-            "title": "UVs",
+            "__uuid": "6039d7c6-c9e4-4b13-a1fc-f24b5bf53080",
+            "title": "gpu",
             "varPrefix": "L",
-            "varName": "C17_HUDDEBUG",
+            "varName": "C17_GPU_Vis",
             "varUnit": "number",
             "style": {
                 "type": 3
             }
         },
         {
-            "__uuid": "8efecbfe-3910-40d1-b006-7326d9ca7787",
-            "title": "hud flip",
+            "__uuid": "c034cb28-658c-4fbc-afb0-cc43803b857b",
+            "title": "CargoDoorpos",
             "varPrefix": "L",
-            "varName": "C17_HUD_DISABLE",
-            "varUnit": "number",
-            "style": {
-                "type": 3
-            }
-        },
-        {
-            "__uuid": "f7a3cb8f-6f2c-489b-8e4d-834505fb174e",
-            "title": "hudpwr",
-            "varPrefix": "L",
-            "varName": "C17_HUD_CNTRL",
-            "varUnit": "number",
-            "style": {
-                "type": 3
-            }
-        },
-        {
-            "__uuid": "ffc78044-cfe5-4cdf-80a6-78c0868017cf",
-            "title": "RABA",
-            "varPrefix": "L",
-            "varName": "C17_HUD_RaBa",
-            "varUnit": "bool",
-            "style": {
-                "type": 3
-            }
-        },
-        {
-            "__uuid": "3d108853-c205-470a-9b5b-83903613ba73",
-            "title": "IND ALT",
-            "varPrefix": "A",
-            "varName": "INDICATED ALTITUDE",
+            "varName": "C17_CargoDoor_POS",
             "varUnit": "number",
             "style": {
                 "type": 2,
@@ -74,34 +44,11 @@
             }
         },
         {
-            "__uuid": "a901a83e-8976-4929-a6fb-48f210deafb1",
-            "title": "Radar ALT",
+            "__uuid": "91e26f83-d2cb-4d23-b810-e848bd874eb2",
+            "title": "FARPMODE",
             "varPrefix": "A",
-            "varName": "PLANE ALT ABOVE GROUND",
-            "varUnit": "feet",
-            "style": {
-                "type": 2,
-                "min": 0,
-                "max": 10000,
-                "step": 1
-            }
-        },
-        {
-            "__uuid": "24b21bcb-2bde-4212-a6bd-a288471feb8e",
-            "title": "At aural Active",
-            "varPrefix": "L",
-            "varName": "C17_AT_warning",
+            "varName": "LIGHT PEDESTRAL",
             "varUnit": "number",
-            "style": {
-                "type": 3
-            }
-        },
-        {
-            "__uuid": "c2706248-b0ce-4f22-8758-0e33b8cfd87f",
-            "title": "at switch",
-            "varPrefix": "A",
-            "varName": "AUTOTHROTTLE ACTIVE",
-            "varUnit": "bool",
             "style": {
                 "type": 3
             }

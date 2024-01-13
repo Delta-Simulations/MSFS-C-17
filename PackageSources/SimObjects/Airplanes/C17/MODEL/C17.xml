@@ -270,24 +270,33 @@
 				</UseTemplate>
 			</Component>
 		</Component>
-		
+		<Component ID="FARPUPDATE">
+		<UseTemplate Name="ASOBO_GT_Update">
+			<FREQUENCY>1</FREQUENCY>
+			<UPDATE_CODE>
+			  (L:C17_FARPSHOW, bool) 1 ==
+			  if{ 
+				1 (&gt;A:LIGHT PEDESTRAL, bool)
+			   } els{
+				0 (&gt;A:LIGHT PEDESTRAL, bool)
+			   }
+			</UPDATE_CODE>
+		  </UseTemplate>
+		</Component>
 	</Behaviors>
 
-<Animation name="GPU_Ext" guid="0f2a2809-6329-4aae-8679-76c9d2e8b182" length="100" type="Sim" typeParam="AutoPlay" />
+<Animation name="GPU_Ext" guid="aa41a793-a86c-496a-b832-7749aa6693db" type="Sim" typeParam="AutoPlay" />
 <PartInfo>
     <Name>GPU_Ext</Name>
     <Visibility>
         <Parameter>
             <Code>
-				(A:EXTERNAL POWER ON, bool) 1 ==
-				(A:EXTERNAL POWER AVAILABLE, bool) 1 == and
-				(A:SIM ON GROUND,bool) 1 == and
-				(A:SURFACE RELATIVE GROUND SPEED, meter/second) 0 &lt; and
+				(L:C17_GPU_Vis,bool)
 			</Code>
         </Parameter>
     </Visibility>
 </PartInfo>
-<Animation name="GPU_Door" guid="a047a456-2ad3-4c77-b695-1b3780cb11c5" length="100" type="Sim" typeParam="AutoPlay" />
+<Animation name="GPU_Door" guid="1c1deb31-bec3-44e5-a4f6-b6165d6b9ecb" type="Sim" typeParam="AutoPlay" />
 <PartInfo>
     <Name>GPU_Door</Name>
 	<Animation>
@@ -296,14 +305,53 @@
 				(A:EXTERNAL POWER ON, bool) 1 ==
 				(A:EXTERNAL POWER AVAILABLE, bool) 1 == and
 				(A:SIM ON GROUND,bool) 1 == and
-				(A:SURFACE RELATIVE GROUND SPEED, meter/second) 0.01 &lt; and
+				(A:SURFACE RELATIVE GROUND SPEED, meter/second) 0.1 &lt; and
 				if{ 100 } els{ 0 }
 			 </Code>
 	</Parameter>
 	</Animation>
 </PartInfo>
+<Animation name="AC_Pitch_StaticObject" guid="7d88a0be-1e03-41f8-8d8c-f5697512d962" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+    <Name>AC_Pitch_StaticObject</Name>
+	<AnimLength>10</AnimLength>
+	<Animation>
+		<Parameter>
+			 <Code>
+				(A:PLANE PITCH DEGREES, degrees) * 5 +
+			</Code> 
+	</Parameter>
+	</Animation>
+</PartInfo>
 
-
+<Animation name="FARP_REFUEL_MP" guid="379fad31-3008-44fd-96bf-b699516d2a02" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+    <Name>FARP_REFUEL_MP</Name>
+    <Visibility>
+        <Parameter>
+            <Code>
+				(A:LIGHT PEDESTRAL, bool) 1 ==
+				(A:SIM ON GROUND,bool) 1 == and
+				(A:SURFACE RELATIVE GROUND SPEED, meter/second) 0.1 &lt; and
+				if{ 100 } els{ 0 }
+			</Code> 
+		</Parameter>
+		</Visibility>
+</PartInfo>
+<Animation name="FARP_REFUEL_TANK" guid="63d7b94e-ec18-48c9-a90c-0b8886a6eb0b" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+    <Name>FARP_REFUEL_TANK</Name>
+    <Visibility>
+        <Parameter>
+            <Code>
+				(L:C17_FARP_TANK, bool) 1 ==
+				(A:SIM ON GROUND,bool) 1 == and
+				(A:SURFACE RELATIVE GROUND SPEED, meter/second) 0.1 &lt; and
+				if{ 100 } els{ 0 }
+			</Code> 
+		</Parameter>
+		</Visibility>
+</PartInfo>
 
 <Animation name="RBF_Tags" guid="2a0f86ef-2791-4029-bab3-3b85dee548de" length="1" type="Sim" typeParam="AutoPlay" />
 <PartInfo>
@@ -312,15 +360,17 @@
         <Parameter>
             <Code>
 				(L:C17_RBF_TAGS, bool) 1 ==
-				(A:SURFACE RELATIVE GROUND SPEED, meter/second) 0 &lt; and
+				(A:SURFACE RELATIVE GROUND SPEED, meter/second) 0.1 &lt; and
 					  (A:Eng1 Combustion,bool) 0 == and
 					  (A:Eng2 Combustion,bool) 0 == and
 					  (A:Eng3 Combustion,bool) 0 == and
 					  (A:Eng4 Combustion,bool) 0 == and
 				(A:SIM ON GROUND,bool) 1 == and
-			</Code>
-        </Parameter>
-    </Visibility>
+			</Code> 
+		</Parameter>
+		</Visibility>
+					
+						
 </PartInfo>
 
 
@@ -773,7 +823,19 @@
 	  </Parameter>
 	  </Animation>
   </PartInfo>
-
+  <Animation name="Radome_Open" guid="02890b9e-f720-427e-9ab6-3b23dd08dd92"  type="Sim" typeparam="AutoPlay" />
+  <PartInfo>
+	  <Name>Radome_Open</Name>
+	  <AnimLength>100</AnimLength>
+	  <Animation>
+		  <Parameter>
+			  <Code>
+				  (L:C17_Radome_Open, bool) 100 *
+			  </Code>
+			  <Lag>10</Lag>
+	  </Parameter>
+	  </Animation>
+  </PartInfo>
 <Animation name="C17_UARRSI" guid="430b1bbc-0a25-4cf1-a877-d3288e3de9e9" length="100" type="Sim" typeparam="AutoPlay" />
 <PartInfo>
 	<Name>C17_UARRSI</Name>
@@ -781,7 +843,7 @@
 	<Animation>
 		<Parameter>
 			<Code>
-				(L:C17_UARRSI_Slipway, bool) 100 *
+				(L:C17_UARRSI_Slipway, bool) (A:ELECTRICAL MASTER BATTERY, BOOL) * 100 *
 			</Code>
 			<Lag>10</Lag>
 	</Parameter>

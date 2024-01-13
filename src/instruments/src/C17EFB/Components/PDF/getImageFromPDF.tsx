@@ -7,12 +7,10 @@ interface getImageFromPDFProps {
 }
 
 const GetImageFromPDF: FC<getImageFromPDFProps> = (props: any): JSX.Element => {
-	let page1Src = `/Images/FM/DeltaSim C17 FLIGHT MANUAL-${String(
-		props.page
-	).padStart(2, '0')}.png`;
-	let page2Src = `/Images/FM/DeltaSim C17 FLIGHT MANUAL-${String(
+	let page1Src = `/Images/FM/DeltaSim C17 MASTER_page-00${String(props.page).padStart(2, '0')}.jpg`;
+	let page2Src = `/Images/FM/DeltaSim C17 MASTER_page-00${String(
 		props.page + 1
-	).padStart(2, '0')}.png`;
+	).padStart(2, '0')}.jpg`;
 
 	return (
 		<div style={{ paddingTop: '30px', display: 'flex' }}>

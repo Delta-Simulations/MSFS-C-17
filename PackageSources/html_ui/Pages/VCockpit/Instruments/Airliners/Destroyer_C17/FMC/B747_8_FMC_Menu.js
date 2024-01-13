@@ -3,7 +3,7 @@ class FMC_Menu {
         fmc.clearDisplay();
         const updateView = () => {
             fmc.setTemplate([
-                ["MENU"],
+                ["MSN INDEX"],
                 ["", "EFIS CP[color]inop"],
                 ["\<FMC", "", fmc.activeSystem == "FMC" ? store.act : ""],
                 ["", "EICAS CP[color]inop"],

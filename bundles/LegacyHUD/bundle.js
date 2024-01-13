@@ -8525,8 +8525,54 @@
 	  throw new Error('Could not find rootElement');
 	};
 
+	var _typeof_1 = createCommonjsModule(function (module) {
+	  function _typeof(o) {
+	    "@babel/helpers - typeof";
+
+	    return (module.exports = _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
+	      return typeof o;
+	    } : function (o) {
+	      return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
+	    }, module.exports.__esModule = true, module.exports["default"] = module.exports), _typeof(o);
+	  }
+
+	  module.exports = _typeof, module.exports.__esModule = true, module.exports["default"] = module.exports;
+	});
+
+	var toPrimitive_1 = createCommonjsModule(function (module) {
+	  var _typeof = _typeof_1["default"];
+
+	  function toPrimitive(t, r) {
+	    if ("object" != _typeof(t) || !t) return t;
+	    var e = t[Symbol.toPrimitive];
+
+	    if (void 0 !== e) {
+	      var i = e.call(t, r || "default");
+	      if ("object" != _typeof(i)) return i;
+	      throw new TypeError("@@toPrimitive must return a primitive value.");
+	    }
+
+	    return ("string" === r ? String : Number)(t);
+	  }
+
+	  module.exports = toPrimitive, module.exports.__esModule = true, module.exports["default"] = module.exports;
+	});
+
+	var toPropertyKey_1 = createCommonjsModule(function (module) {
+	  var _typeof = _typeof_1["default"];
+
+	  function toPropertyKey(t) {
+	    var i = toPrimitive_1(t, "string");
+	    return "symbol" == _typeof(i) ? i : String(i);
+	  }
+
+	  module.exports = toPropertyKey, module.exports.__esModule = true, module.exports["default"] = module.exports;
+	});
+
 	var defineProperty = createCommonjsModule(function (module) {
 	  function _defineProperty(obj, key, value) {
+	    key = toPropertyKey_1(key);
+
 	    if (key in obj) {
 	      Object.defineProperty(obj, key, {
 	        value: value,

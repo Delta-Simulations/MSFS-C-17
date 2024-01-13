@@ -10,6 +10,17 @@
 	<Select>
 			<Value>
 
+
+				(A:EXTERNAL POWER ON, bool) 1 ==
+				(A:EXTERNAL POWER AVAILABLE, bool) 1 == and
+				(A:SIM ON GROUND,bool) 1 == and
+				(A:SURFACE RELATIVE GROUND SPEED, meter/second) 0.1 &lt; and
+				if{ 
+					1 (&gt;L:C17_GPU_Vis,bool)
+				   } els{
+					0 (&gt;L:C17_GPU_Vis,bool)
+				   }
+
 				(A:SURFACE RELATIVE GROUND SPEED, meter/second) 5 &gt;
 				(A:SIM ON GROUND,bool) 0 == or
 				(L:C17_CargoDoor_POS, enum) 51 &gt; and

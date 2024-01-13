@@ -4,17 +4,21 @@ import GetImageFromPDF from './getImageFromPDF';
 import './pdf.scss';
 import { usePersistentProperty } from '../../../Hooks/persistence';
 import Bookmarks from './bookmarks';
+import { ButtonColour } from '../ThemesEFB';
+import { Box, Stack, ThemeProvider } from '@mui/material';
+import { useSimVar } from '../../../Hooks/simVars';
 
 export const MANUAL = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [_, forceReRender] = useReducer((x) => x + 1, 0);
 	const [bookmarks, setBookmarks] = useState(() => {
-		const saved = localStorage.getItem('bookmarks');
+		var saved = localStorage.getItem('bookmarks');
 		const initalValue = JSON.parse(saved);
 		return initalValue || [];
 	});
-	const [invert, setInvert] = useState(false);
+	const [invert, setInvert] = useSimVar('L:C17_EFB_FM_INVERT', 'bool');
 	const totalPages: number = 68; // Total number of images
+	const [FMMode, setFMMode] = useSimVar('L:C17_EFB_FM_TYPE', 'bool');
 
 	const navigateToPage = (pageNumber: number): void => {
 		if (pageNumber >= 1 && pageNumber <= totalPages) {
@@ -42,7 +46,7 @@ export const MANUAL = () => {
 		forceReRender();
 	};
 	const bookmarkPageRemove = (page): void => {
-		if (bookmarks.length == 0) {
+		if (bookmarks.length === 0) {
 			bookmarks.shift();
 			return;
 		}
@@ -52,41 +56,63 @@ export const MANUAL = () => {
 		forceReRender();
 	};
 
+
+
 	useEffect(() => {
 		localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
 	}, [bookmarks]);
 
 	return (
 		<div className="PDFContainer">
-			<GetImageFromPDF invertColors={invert} page={currentPage} />
+			<g style={{ display: FMMode ? 'none' : 'block' }}>
+			<GetImageFromPDF invertColors={invert} page={currentPage} /></g>
+			<g style={{ display: FMMode ? 'block' : 'none' }}>
+				<img
+					className={invert ? 'invert' : ''}
+					src={`/Images/FM/QuickRef.jpg`}
+					style={{ maxWidth: '88%', justifyContent:'center'}}
+				/></g>
+			<ThemeProvider theme={ButtonColour}>
+			<Box
+				sx={{
+					position: 'absolute',
+					width: 1040,
+					height: 40,
+					left: 200,
+					top: 710,
+					justifyContent: 'Left',
+					display: 'flex',
+					textAlign: 'center',
+					fontSize: 14,
+				}}
+			>
+			<Stack direction="row" spacing={1}>
 			<Button
 				size="small"
-				className="previousPage"
+
 				variant="contained"
 				onClick={handlePreviousPage}
 			>
 				&lt;
 			</Button>
-			<div className="pageDisplay">
-				Page {currentPage} and {currentPage + 1} of {totalPages}
-			</div>
+			<h2 style={{color: '#aeb0b3' }}>Page {currentPage} and {currentPage + 1} of {totalPages}</h2>
 			<Button
 				size="small"
-				className="nextPage"
-				variant="contained"
-				onClick={handleNextPage}
-			>
-				&gt;
-			</Button>
-			<Button
-				className="invertButton"
 				variant="contained"
 				onClick={handleInvert}
 			>
 				Invert Colors
 			</Button>
 			<Button
-				className="addToBookmarks"
+				size="small"
+				variant="contained"
+				onClick={() => setFMMode(!FMMode)}
+			>
+				{FMMode ? 'Flight Manual' : 'Checklist'}
+			</Button>
+			<Button
+				size="small"
+				variant="contained"
 				onClick={() =>
 					bookmarks.includes(currentPage)
 						? bookmarkPageRemove(currentPage)
@@ -95,7 +121,21 @@ export const MANUAL = () => {
 			>
 				{bookmarks.includes(currentPage) ? 'Remove' : 'Add'} Bookmark
 			</Button>
-			<Bookmarks navigateTo={navigateToPage} pages={bookmarks} />
+			<Button
+				size="small"
+				variant="contained"
+				onClick={handleNextPage}
+			>
+				&gt;
+			</Button>
+			
+			</Stack>
+			
+			</Box>
+
+
+			</ThemeProvider>
+			
 		</div>
 	);
 };

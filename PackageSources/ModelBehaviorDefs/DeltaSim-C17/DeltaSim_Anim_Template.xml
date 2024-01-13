@@ -1,0 +1,24 @@
+<ModelBehaviors>
+    <!-- CREATED FOR DELTA SIMULATION AIRCRAFT###################################### -->
+    <Include ModelBehaviorFile="Asobo\Common.xml"/> 
+    <Include ModelBehaviorFile="Asobo\Airliner\AirlinerCommon.xml"/>
+    <Include ModelBehaviorFile="Asobo\Airliner\Boeing.xml"/>
+    <Include ModelBehaviorFile="Asobo\Airliner\FMC.xml"/>
+    <Include ModelBehaviorFile="Asobo\Airliner\GlassCockpit.xml"/>
+    <Include ModelBehaviorFile="Asobo\Airliner\Airbus.xml"/>
+
+
+<Template Name="Generic_Anim_DELTASIM">
+    <DefaultTemplateParameters>
+        <ANIM_LENGTH>100</ANIM_LENGTH>
+    </DefaultTemplateParameters>
+    <Component ID="#ANIM_NAME#">
+        <UseTemplate name="ASOBO_GT_Anim_Code">
+            <ANIM_NAME>#ANIM_NAME#</ANIM_NAME>
+            <ANIM_CODE>
+                #ANIM_CODE#
+            </ANIM_CODE>
+        </UseTemplate>
+    </Component>
+</Template>
+</ModelBehaviors>

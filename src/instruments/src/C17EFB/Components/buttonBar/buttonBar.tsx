@@ -1,70 +1,51 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import Button from '@mui/material/Button';
-import './buttonBar.scss';
+import { AppBar, Tab, Tabs, Divider, ThemeProvider } from '@mui/material';
+import { Link, useLocation } from 'react-router-dom';
+import { ButtonColour } from '../ThemesEFB';
 
 export const ButtonBar = () => {
-	return (
-		<g>
-			<div className="ButtonBarContainer">
+  const location = useLocation();
 
-				<NavLink
-					style={{ textDecoration: 'none' }}
-					to="/"
-					className={(isActive) =>
-						'BottomButton' + (isActive ? 'ButtomButtonActive' : '')
-					}
-				>
-					<Button variant="contained">Aircraft</Button>
-				</NavLink>
-				<NavLink
-					style={{ textDecoration: 'none' }}
-					to="/Cargo"
-					className={(isActive) =>
-						'BottomButton' + (isActive ? 'ButtomButtonActive' : '')
-					}
-				>
-					<Button variant="contained">Cargo</Button>
-				</NavLink>
-				<NavLink
-					style={{ textDecoration: 'none' }}
-					to="/PDF"
-					className={(isActive) =>
-						'BottomButton' + (isActive ? 'ButtomButtonActive' : '')
-					}
-				>
-					<Button variant="contained">Manual</Button>
-				</NavLink>
+  const tabs = [
+    { label: 'Aircraft', path: '/' },
+    // { label: 'Cargo', path: '/Cargo' },
+    { label: 'Manual', path: '/PDF' },
+    { label: 'Browser', path: '/Browser' },
+    { label: 'Settings', path: '/Settings' },
+  ];
 
-				{/* <NavLink
-					style={{ textDecoration: 'none' }}
-					to="/Map"
-					className={(isActive) =>
-						'BottomButton' + (isActive ? 'ButtomButtonActive' : '')
-					}
-				>
-					<Button variant="contained">Map</Button>
-				</NavLink> */}
+  const currentTab = tabs.findIndex((tab) => tab.path === location.pathname);
 
-				<NavLink
-					style={{ textDecoration: 'none' }}
-					to="/Browser"
-					className={(isActive) =>
-						'BottomButton' + (isActive ? 'ButtomButtonActive' : '')
-					}
-				>
-					<Button variant="contained">Browser</Button>
-				</NavLink>
-				<NavLink
-					style={{ textDecoration: 'none' }}
-					to="/Settings"
-					className={(isActive) =>
-						'BottomButton' + (isActive ? 'ButtomButtonActive' : '')
-					}
-				>
-					<Button variant="contained">Settings</Button>
-				</NavLink>
-			</div>
-		</g>
-	);
+  return (
+    <AppBar position="absolute" sx={{ borderRadius:1, top: 'auto', bottom: -2, backgroundColor: '#343a40' }}>
+      <ThemeProvider theme={ButtonColour}>
+  <Tabs
+    value={currentTab}
+    centered
+    sx={{ indicator: { display: 'none' } }} // Hide the indicator
+  >
+        {tabs.map((tab, index) => (
+          <React.Fragment key={index}>
+            <Tab
+			
+              label={tab.label}
+              component={Link}
+              to={tab.path}
+              disableRipple
+              sx={{
+                color: index === currentTab ? '#ffaa00' : 'inherit', // Change the text color for the selected tab
+				fontSize: index === currentTab ? '17px' : '16px', // Adjust the font size for the selected tab
+				boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.699)',
+
+				fontWeight: index === currentTab ? 'bold' : 'normal',
+              }}
+            />
+            {index < tabs.length - 1 && <Divider orientation="vertical" flexItem />}
+          </React.Fragment>
+        ))}
+      </Tabs></ThemeProvider>
+    </AppBar>
+  );
 };
+
+export default ButtonBar;

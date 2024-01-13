@@ -191,8 +191,8 @@ class B747_8_FMC_MainDisplay extends Boeing_FMC {
         this.timer = 0;
         let oat = SimVar.GetSimVarValue("AMBIENT TEMPERATURE", "celsius");
         this._thrustTakeOffTemp = Math.ceil(oat / 10) * 10;
-        this.aircraftType = Aircraft.B747_8;
-        this.maxCruiseFL = 430;
+        this.aircraftType = Aircraft.C17A;
+        this.maxCruiseFL = 450;
         this.saltyBase = new SaltyBase();
         this.saltyBoarding = new SaltyBoarding();
         this.saltyFueling = new SaltyFueling();

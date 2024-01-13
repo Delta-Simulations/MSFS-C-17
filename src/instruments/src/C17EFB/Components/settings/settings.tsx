@@ -1,68 +1,71 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import Checkbox from '@mui/material/Checkbox';
-import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
 import { useSimVar } from '../../../Hooks/simVars';
 import Typography from '@material-ui/core/Typography';
-import { Slider } from '@mui/material';
+import { Button, Slider, ThemeProvider } from '@mui/material';
 import './settings.scss';
-import Grid from '@material-ui/core/Grid';
+import { ButtonColour } from '../ThemesEFB';
 
 export const Settings = () => {
+	let [DevModeEFB, setDevModeEFB] = useSimVar('L:C17_DevModeEFB', 'bool');
+	let [EFBPopOut, setEFBPopOut] = useSimVar('L:C17_EFBPopOut', 'bool');
 
-	const [brightnessEFB, setbrightnessEFB] = useSimVar('L:C17_EFB_Brightness', 'enum');
-	
-	const handleChange = (event: Event, newValue: number | number[]) =>{
+	let [brightnessEFB, setbrightnessEFB] = useSimVar('L:C17_EFB_Brightness', 'enum');
+	const handleChange = (event: Event, newValue: number | number[]) => {
 		setbrightnessEFB(newValue as number);
-	  };
+	};
 	return (
 		<div className="settingsContainer">
 
-				<Box
-					sx={{
-						position: 'absolute',
-						width: 500,
-						height: 300,
-						backgroundColor: '16161E',
-						borderRadius: 4,
-						left: 300,
-						boxShadow: '0px 0px 7px rgba(0, 0, 0, 0.699)',
-						color: '#1B93FF',
-						justifyContent: 'center',
-						display: 'block',
-						flexDirection: 'collumn',
-						textAlign: 'center',
-						alignItems: 'center',
-						fontSize: 14,
-					}}
-				>
-					<h1 style={{ marginTop: 5 }}>Settings</h1>
-					<Stack spacing={1}>
+			<Box
+				sx={{
+					position: 'absolute',
+					width: 420,
+					height: 150,
+					backgroundColor: '#343a40',
+					borderRadius: 1,
+					left: 300,
+					top: 20,
+					boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.699)',
+					justifyContent: 'start',
+					textAlign: 'center',
+					fontSize: 14,
+					padding: 2,
+				}}
+			>
+				<h2 style={{ marginTop: 0, color: '#aeb0b3' }}>EFB Brightness</h2>
 
-						<Typography id="continuous-slider" gutterBottom>
-							EFB Brightness
-						</Typography>
-						<Box sx={{
-							marginTop: 30,
-							borderRadius: 4,
-							width: 400,
-							height: 200,
-							left: 50,
-							textAlign: 'center',
-							alignItems: 'center',
-							position: 'absolute',
-							justifyContent: 'center',
+				<Stack direction="column" spacing={1}>
+
+					<ThemeProvider theme={ButtonColour}>
+
+						<Slider aria-labelledby="brightness" value={brightnessEFB} onChange={handleChange}
+							sx={{
+								color: 'orange', // Set the color to orange
+								"& .MuiSlider-thumb": {
+									backgroundColor: '#ffaa00', // Set the color of the slider thumb to orange
+								},
 							}}
-							>
-							<Slider aria-labelledby="brightness" value={brightnessEFB} onChange={handleChange} />                
-						
-						</Box>
-					</Stack>
+						/>
+
+						<Button
+							onClick={() => setDevModeEFB(!DevModeEFB)}
+							size="large"
+							variant={DevModeEFB ? 'contained' : 'outlined'}
+						>
+							EXPERIMENTAL MODE
+						</Button>
+
+						<h3 style={{ marginTop: 5, color: '#aeb0b3' }}>Use Right-Alt to pop this display out</h3>
+					</ThemeProvider>
 
 
-			</Box>	
+				</Stack>
+
+			</Box>
+
+
 		</div>
 	);
 };

@@ -32,7 +32,7 @@ class FMCSaltyOptions_Misc {
         fmc.setTemplate([
             ["MISC OPTIONS"],
             ["", "", "PILOTS VISIBILITY"],
-            ["<", ">", `${displayCurrentPilotsOption}`],
+            ["<", ">", "INOP"],
             ["", "", "FP SYNC (WORLD MAP FP)"],
             [`< ${fpSyncDisplayOption}`, "", ""],
             ["", "", "PAUSE AT T/D"],
