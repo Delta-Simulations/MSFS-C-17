@@ -1,8 +1,9 @@
 class FMCPosInitPage {
     static ShowPage1(fmc) {
-        let gpsPos = new LatLong(SimVar.GetSimVarValue("GPS POSITION LAT", "degree latitude"), SimVar.GetSimVarValue("GPS POSITION LON", "degree longitude")).toDegreeString();
+        let currPos = new LatLong(SimVar.GetSimVarValue("GPS POSITION LAT", "degree latitude"), SimVar.GetSimVarValue("GPS POSITION LON", "degree longitude")).toDegreeString();
+        console.log(currPos);
         let date = new Date();
-        let dateString = date.getHours().toFixed(0).padStart(2, "0") + date.getMinutes().toFixed(0).padStart(2, "0") + "z";
+        let dateString = fastToFixed(date.getHours(), 0).padStart(2, "0") + fastToFixed(date.getMinutes(), 0).padStart(2, "0") + "z";
         let lastPos = "";
         if (fmc.lastPos) {
             lastPos = fmc.lastPos;
@@ -21,7 +22,7 @@ class FMCPosInitPage {
         }
         let heading = "---°";
         if (fmc.refHeading) {
-            heading = fmc.refHeading.toFixed(0).padStart(3, "0") + "°";
+            heading = fastToFixed(fmc.refHeading, 0).padStart(3, "0") + "°";
         }
         let irsPos = "□□□°□□.□ □□□□°□□.□";
         if (fmc.initCoordinates) {
@@ -29,33 +30,23 @@ class FMCPosInitPage {
         }
         fmc.clearDisplay();
         fmc.setTemplate([
-            ["POS INIT", "1", "4"],
+            ["POS INIT", "1", "3"],
             ["", "LAST POS"],
             ["", lastPos],
-            ["\xa0REF AIRPORT"],
+            ["REF AIRPORT"],
             [refAirport, refAirportCoordinates],
-            ["\xa0GATE"],
+            ["GATE"],
             [gate],
-            ["\xa0UTC (GPS)", "GPS POS"],
-            [dateString, gpsPos],
-            ["\xa0SET HDG", "SET IRS POS"],
+            ["UTC (GPS)", "GPS POS"],
+            [dateString, currPos],
+            ["SET HDG", "SET IRS POS"],
             [heading, irsPos],
             ["__FMCSEPARATOR"],
-            ["<INDEX", "ROUTE>"]
+            ["\<INDEX", "ROUTE>"]
         ]);
-
-        fmc.onPrevPage = () => {
-            FMCPosInitPage.ShowPage4(fmc);
-        };
-
-        fmc.onNextPage = () => {
-            FMCPosInitPage.ShowPage2(fmc);
-        };
-
         fmc.onRightInput[0] = () => {
             fmc.inOut = fmc.lastPos;
         };
-
         fmc.onLeftInput[1] = async () => {
             let value = fmc.inOut;
             fmc.inOut = "";
@@ -63,11 +54,9 @@ class FMCPosInitPage {
                 FMCPosInitPage.ShowPage1(fmc);
             }
         };
-
         fmc.onRightInput[1] = () => {
             fmc.inOut = refAirportCoordinates;
         };
-
         fmc.onLeftInput[2] = async () => {
             let value = fmc.inOut;
             fmc.inOut = "";
@@ -75,11 +64,9 @@ class FMCPosInitPage {
                 FMCPosInitPage.ShowPage1(fmc);
             }
         };
-
         fmc.onRightInput[3] = () => {
-            fmc.inOut = gpsPos;
+            fmc.inOut = currPos;
         };
-
         fmc.onLeftInput[4] = async () => {
             let value = fmc.inOut;
             fmc.inOut = "";
@@ -87,7 +74,6 @@ class FMCPosInitPage {
                 FMCPosInitPage.ShowPage1(fmc);
             }
         };
-
         fmc.onRightInput[4] = async () => {
             let value = fmc.inOut;
             fmc.inOut = "";
@@ -95,141 +81,54 @@ class FMCPosInitPage {
                 FMCPosInitPage.ShowPage1(fmc);
             }
         };
-
-        fmc.onLeftInput[5] = () => {
-            B747_8_FMC_InitRefIndexPage.ShowPage1(fmc);
-        };
-        
-        fmc.onRightInput[5] = () => {
-            FMCRoutePage.ShowPage1(fmc);
-        };
+        fmc.onLeftInput[5] = () => { B747_8_FMC_InitRefIndexPage.ShowPage1(fmc); };
+        fmc.onRightInput[5] = () => { FMCRoutePage.ShowPage1(fmc); };
+        fmc.onPrevPage = () => { FMCPosInitPage.ShowPage3(fmc); };
+        fmc.onNextPage = () => { FMCPosInitPage.ShowPage2(fmc); };
     }
-
-    static ShowPage2(fmc, store = {latBrgSwitch: "LAT/LON"}) {
+    static ShowPage2(fmc) {
         fmc.clearDisplay();
-        let currPos = new LatLong(SimVar.GetSimVarValue("GPS POSITION LAT", "degree latitude"), SimVar.GetSimVarValue("GPS POSITION LON", "degree longitude")).toDegreeString();
-        let irsPos = "";
-        if (fmc.initCoordinates) {
-            irsPos = fmc.initCoordinates;
-        }
-        const updateView = () => {
-            fmc.setTemplate([
-                ["POS REF", "2", "4"],
-                ["\xa0FMC (GPS L)", "UPDATE"],
-                [currPos, "ARM>"],
-                ["\xa0IRS(3)", "0.00NM"],
-                [irsPos, ""],
-                ["\xa0GPS", "0.00NM"],
-                [currPos, ""],
-                ["\xa0RADIO", "0.00NM"],
-                [currPos, "NOW>"],
-                ["\xa0RNP/ACTUAL", "VOR DME"],
-                ["0.50NM/0.00NM", ""],
-                [""],
-                ["<INDEX", `${store.latBrgSwitch}>`]
-            ]);
-        }
-        updateView();
-        fmc.onPrevPage = () => {
-            FMCPosInitPage.ShowPage1(fmc);
-        };
-        fmc.onNextPage = () => {
-            FMCPosInitPage.ShowPage3(fmc);
-        };
-        fmc.onLeftInput[5] = () => {
-            B747_8_FMC_InitRefIndexPage.ShowPage1(fmc);
-        };
-        fmc.onRightInput[5] = () => {
-            if (store.latBrgSwitch == "LAT/LON") {
-                store.latBrgSwitch = "BRG/DIS";
-                updateView();
-            } else if (store.latBrgSwitch == "BRG/DIS") {
-                store.latBrgSwitch = "LAT/LON";
-                updateView();
-            }
-        };
-    }
-
-    static ShowPage3(fmc, store = {latBrgSwitch: "LAT/LON"}) {
-        fmc.clearDisplay();
-        let gpsPos = new LatLong(SimVar.GetSimVarValue("GPS POSITION LAT", "degree latitude"), SimVar.GetSimVarValue("GPS POSITION LON", "degree longitude")).toDegreeString();
-        let irsPos = "";
-        if (fmc.initCoordinates) {
-            irsPos = fmc.initCoordinates;
-        }
-        const updateView = () => {
-            fmc.setTemplate([
-                ["POS REF", "3", "4"],
-                ["GPS L", ""],
-                [gpsPos, ""],
-                ["GPS R", ""],
-                [gpsPos, ""],
-                ["FMC L", ""],
-                [irsPos, ""],
-                ["FMC R", ""],
-                [irsPos, ""],
-                ["", ""],
-                ["", ""],
-                ["__FMCSEPARATOR"],
-                ["<INDEX", `${store.latBrgSwitch}>`]
-            ]);
-        }
-        updateView();
-        fmc.onPrevPage = () => {
-            FMCPosInitPage.ShowPage2(fmc);
-        };
-        fmc.onNextPage = () => {
-            FMCPosInitPage.ShowPage4(fmc);
-        };
-        fmc.onLeftInput[5] = () => {
-            B747_8_FMC_InitRefIndexPage.ShowPage1(fmc);
-        };
-        fmc.onRightInput[5] = () => {
-            if (store.latBrgSwitch == "LAT/LON") {
-                store.latBrgSwitch = "BRG/DIS";
-                updateView();
-            } else if (store.latBrgSwitch == "BRG/DIS") {
-                store.latBrgSwitch = "LAT/LON";
-                updateView();
-            }
-        };
-    }
-
-    static ShowPage4(fmc, store = {irsPos: "", irsGs: "", infoSwitch: "BRG/DIS"}) {
-        fmc.clearDisplay();
-        let currPos = new LatLong(SimVar.GetSimVarValue("GPS POSITION LAT", "degree latitude"), SimVar.GetSimVarValue("GPS POSITION LON", "degree longitude")).toDegreeString();
-        let irsPos = "";
-        if (fmc.initCoordinates) {
-            irsPos = fmc.initCoordinates;
-        }
-        let irsGs = SimVar.GetSimVarValue("SURFACE RELATIVE GROUND SPEED", "knots").toFixed(0) + "KT";
         fmc.setTemplate([
-            ["POS REF", "4", "4"],
-            ["\xa0IRS L", "GS"],
-            [`${irsPos}`, `${irsGs}`],
-            ["\xa0IRS C", "GS"],
-            [`${irsPos}`, `${irsGs}`],
-            ["\xa0IRS R", "GS"],
-            [`${irsPos}`, `${irsGs}`],
+            ["POS REF", "2", "3"],
+            ["FMC POS (GPS L)", "GS"],
+            [""],
+            ["IRS(3)"],
+            [""],
+            ["RNP/ACTUAL", "DME DME"],
             [""],
             [""],
             [""],
+            ["-----------------", "GPS NAV"],
+            ["\<PURGE", "INHIBIT>"],
             [""],
-            ["__FMCSEPARATOR"],
-            ["<INDEX", `${store.infoSwitch}`]
+            ["\<INDEX", "BRG/DIST>"]
         ]);
-        fmc.onPrevPage = () => {
-            FMCPosInitPage.ShowPage3(fmc);
-        };
-        fmc.onNextPage = () => {
-            FMCPosInitPage.ShowPage1(fmc);
-        };
-        fmc.onLeftInput[5] = () => {
-            B747_8_FMC_InitRefIndexPage.ShowPage1(fmc);
-        };
-        fmc.onRightInput[5] = () => {
-
-        };
+        fmc.onLeftInput[5] = () => { B747_8_FMC_InitRefIndexPage.ShowPage1(fmc); };
+        fmc.onRightInput[5] = () => { };
+        fmc.onPrevPage = () => { FMCPosInitPage.ShowPage1(fmc); };
+        fmc.onNextPage = () => { FMCPosInitPage.ShowPage3(fmc); };
+    }
+    static ShowPage3(fmc) {
+        fmc.clearDisplay();
+        fmc.setTemplate([
+            ["POS REF", "3", "3"],
+            ["IRS L", "GS"],
+            ["000°/0.0NM", "290KT"],
+            ["IRS C", "GS"],
+            ["000°/0.0NM", "290KT"],
+            ["IRS R", "GS"],
+            ["000°/0.0NM", "290KT"],
+            ["GPS L", "GS"],
+            ["000°/0.0NM", "290KT"],
+            ["GPS R", "GS"],
+            ["000°/0.0NM", "290KT"],
+            ["__FMCSEPARATOR"],
+            ["\<INDEX", "LAT/LON>"]
+        ]);
+        fmc.onLeftInput[5] = () => { B747_8_FMC_InitRefIndexPage.ShowPage1(fmc); };
+        fmc.onRightInput[5] = () => { };
+        fmc.onPrevPage = () => { FMCPosInitPage.ShowPage2(fmc); };
+        fmc.onNextPage = () => { FMCPosInitPage.ShowPage1(fmc); };
     }
 }
 //# sourceMappingURL=B747_8_FMC_PosInitPage.js.map
