@@ -74,27 +74,26 @@ fmc-b747-8-main-display {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: #0e0d08;
-  color: white;
+  background-color: #000000;
+  color: #2CE832;
   font-family: "Not Courier Sans", "Consolas";
   font-size: 6.46vw;
-  color: green; 
 }
 
 .blue {
-  color: #99ceff;
+  color: #2CE832;
 }
 
 .yellow {
-  color: #f9dd02;
+  color: #2CE832;
 }
 
 .green {
-  color: #1daa05;
+  color: #2CE832;
 }
 
 .red {
-  color: #ff886d;
+  color: #2CE832;
 }
 
 fmc-b747-8-main-display::before {

@@ -101,6 +101,13 @@ if{
   0 (&gt;K:LIGHT_POTENTIOMETER_4_SET) 
 }
 
+(L:C17_LIGHTS_CMPAS, bool) 1 ==
+(L:C17_STBY_CMPAS_VIS, bool) 1 == and
+if{ 
+  11 (>K:CABIN_LIGHTS_ON)
+} els{
+  11 (>K:CABIN_LIGHTS_OFF)
+}
 
 (L:C17_LIGHTS_EPC, bool) 1 ==
 (L:C17_CPIT_ILLUM_MODE, enum) 0 != and
@@ -133,6 +140,21 @@ if{
   3 (>K:WING_LIGHTS_ON)
 } els{
   3 (>K:WING_LIGHTS_OFF)
+}
+
+(L:C17_CARGO_LGT_MODE, bool) 0 ==
+(A:LIGHT POTENTIOMETER:18, percent) 0 &gt; and
+if{ 
+  7 (>K:CABIN_LIGHTS_ON)
+} els{
+  7 (>K:CABIN_LIGHTS_OFF)
+}
+(L:C17_CARGO_LGT_MODE, bool) 1 ==
+(A:LIGHT POTENTIOMETER:18, percent) 0 &gt; and
+if{ 
+  12 (>K:CABIN_LIGHTS_ON)
+} els{
+  12 (>K:CABIN_LIGHTS_OFF)
 }
 
 
@@ -180,9 +202,8 @@ if{
 <!-- Overhead flood LGT -->
 (A:LIGHT POTENTIOMETER:17, percent) 0 > (A:LIGHT CABIN:6, bool) 0 == and if{ 6 (&gt;K:TOGGLE_CABIN_LIGHTS) }
 (A:LIGHT POTENTIOMETER:17, percent) 0 == (A:LIGHT CABIN:6, bool) 1 == and if{ 6 (&gt;K:TOGGLE_CABIN_LIGHTS) }
-<!-- Cargo flood LGT -->
-(A:LIGHT POTENTIOMETER:18, percent) 0 > (A:LIGHT CABIN:7, bool) 0 == and if{ 7 (&gt;K:TOGGLE_CABIN_LIGHTS) }
-(A:LIGHT POTENTIOMETER:18, percent) 0 == (A:LIGHT CABIN:7, bool) 1 == and if{ 7 (&gt;K:TOGGLE_CABIN_LIGHTS) }
+
+
 
 
 

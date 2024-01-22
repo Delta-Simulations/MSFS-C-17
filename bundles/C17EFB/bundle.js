@@ -19844,6 +19844,7 @@
 	  let [FARPSHOW, setFARPSHOW] = useSimVar('L:C17_FARPSHOW', 'bool');
 	  let [FARPTANK, setFARPTANK] = useSimVar('L:C17_FARP_TANK', 'bool');
 	  let [DevModeEFB] = useSimVar('L:C17_DevModeEFB', 'bool');
+	  let [CargoLightMode, setCargoLightMode] = useSimVar('L:C17_CARGO_LGT_MODE', 'bool');
 	  return /*#__PURE__*/jsxRuntime.jsx("div", {
 	    className: "aircraftContainer",
 	    children: /*#__PURE__*/jsxRuntime.jsxs(Box$1, {
@@ -19944,6 +19945,34 @@
 	              onClick: () => setCargoDoor(CargoDoor = 100),
 	              children: "GROUND"
 	            }, "three")]
+	          })
+	        }), /*#__PURE__*/jsxRuntime.jsx(Box$1, {
+	          sx: {
+	            display: 'flex',
+	            '& > *': {
+	              m: 1
+	            },
+	            left: 824,
+	            top: 640,
+	            position: 'absolute'
+	          },
+	          children: /*#__PURE__*/jsxRuntime.jsxs(ButtonGroup$1, {
+	            orientation: "horizontal",
+	            "aria-label": "horizontal outlined button group",
+	            children: [/*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	              size: "large",
+	              variant: CargoLightMode === 0 ? 'contained' : 'outlined',
+	              onClick: () => setCargoLightMode(CargoLightMode = 0),
+	              children: "DAY"
+	            }, "one"), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	              sx: {
+	                backgroundColor: CargoLightMode === 0 ? 'transparent' : '#8B0000'
+	              },
+	              size: "large",
+	              variant: CargoLightMode === 1 ? 'contained' : 'outlined',
+	              onClick: () => setCargoLightMode(CargoLightMode = 1),
+	              children: "NIGHT"
+	            }, "two")]
 	          })
 	        }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
 	          onClick: () => setARSlipway(!ARSlipway),

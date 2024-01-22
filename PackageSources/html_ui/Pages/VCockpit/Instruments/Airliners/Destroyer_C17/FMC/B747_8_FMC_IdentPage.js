@@ -9,7 +9,7 @@ class FMCIdentPage {
         fmc.setTemplate([
             ["IDENT"],
             ["MODEL", "ENGINES"],
-            ["C-17", "F117-PW-100"],
+            ["C-17A", "F117-PW-100"],
             ["NAV DATA", "ACTIVE"],
             ["AIRAC", date + ''],
             ["DRAG/FF"],

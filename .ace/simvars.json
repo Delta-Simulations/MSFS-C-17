@@ -52,6 +52,16 @@
             "style": {
                 "type": 3
             }
+        },
+        {
+            "__uuid": "d9f61f6f-e391-4a0f-8620-cc73b0fb075e",
+            "title": "Modelgy",
+            "varPrefix": "L",
+            "varName": "C17_CARGO_LGT_MODE",
+            "varUnit": "number",
+            "style": {
+                "type": 3
+            }
         }
     ]
 }

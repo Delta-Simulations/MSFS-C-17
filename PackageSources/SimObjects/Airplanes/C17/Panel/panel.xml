@@ -7,33 +7,6 @@
 		</Electric>
 	</Instrument>
 
-	<Instrument>
-		<Name>WTB748_MFD_1</Name>
-		<Electric>
-			<Simvar name="CIRCUIT ON:81" unit="Boolean"/>
-		</Electric>
-	</Instrument>
-
-	<Instrument>
-		<Name>WTB748_MFD_2</Name>
-		<Electric>
-			<Simvar name="CIRCUIT ON:81" unit="Boolean"/>
-		</Electric>
-	</Instrument>
-
-	<Instrument>
-		<Name>WTB748_MFD_3</Name>
-		<Electric>
-			<Simvar name="CIRCUIT ON:81" unit="Boolean"/>
-		</Electric>
-	</Instrument>
-
-	<Instrument>
-		<Name>WTB748_MFD_4</Name>
-		<Electric>
-			<Simvar name="CIRCUIT ON:81" unit="Boolean"/>
-		</Electric>
-	</Instrument>
 
 	<Instrument>
 		<Name>WTB748_CDU_1</Name>

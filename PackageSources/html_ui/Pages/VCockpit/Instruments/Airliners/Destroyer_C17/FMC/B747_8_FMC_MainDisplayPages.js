@@ -2,7 +2,7 @@ class FMCMainDisplayPages {
     static MenuPage(fmc) {
         fmc.clearDisplay();
         fmc.setTemplate([
-            ["MENU"],
+            ["MSN INDEX"],
             ["", "EFIS CP"],
             ["\<FMC", "", "<ACT>"],
             ["", "EICAS CP"],
