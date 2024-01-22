@@ -1,7 +1,6 @@
 class FMCIdentPage {
     static ShowPage1(fmc) {
         fmc.clearDisplay();
-        fmc.activeSystem = "FMC";
         let model = SimVar.GetSimVarValue("ATC MODEL", "string", "FMC");
         if (!model) {
             model = "unkn.";
@@ -9,27 +8,21 @@ class FMCIdentPage {
         let date = fmc.getNavDataDateRange();
         fmc.setTemplate([
             ["IDENT"],
-            ["\xa0MODEL", "ENGINES"],
-            ["C-17A", "F117-PW-100"],
-            ["\xa0NAV DATA", "ACTIVE"],
-            ["AIRAC", date.toString()],
-            ["", ""],
-            ["", date.toString()],
-            ["\xa0OP PROGRAM", "CO DATA"],
+            ["MODEL", "ENGINES"],
+            ["C-17", "F117-PW-100"],
+            ["NAV DATA", "ACTIVE"],
+            ["AIRAC", date + ''],
+            ["DRAG/FF"],
+            [""],
+            ["OP PROGRAM", "CO DATA"],
             ["AW-P010-0-0", "VS1001"],
-            ["\xa0OPC", "DRAG/FF"],
-            ["AW-C010-0-0", "+0.0/+0.0"],
+            ["OPC"],
+            ["AW-C010-0-0", ""],
             ["__FMCSEPARATOR"],
-            ["<INDEX", "POS INIT>"]
+            ["\<INDEX", "POS INIT>"]
         ]);
-        
-        fmc.onLeftInput[5] = () => {
-            B747_8_FMC_InitRefIndexPage.ShowPage1(fmc);
-        };
-
-        fmc.onRightInput[5] = () => {
-            FMCPosInitPage.ShowPage1(fmc);
-        };
+        fmc.onLeftInput[5] = () => { B747_8_FMC_InitRefIndexPage.ShowPage1(fmc); };
+        fmc.onRightInput[5] = () => { FMCPosInitPage.ShowPage1(fmc); };
     }
 }
 //# sourceMappingURL=B747_8_FMC_IdentPage.js.map

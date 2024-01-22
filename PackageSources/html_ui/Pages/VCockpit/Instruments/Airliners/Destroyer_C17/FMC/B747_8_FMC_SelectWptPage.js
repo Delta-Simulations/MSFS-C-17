@@ -13,43 +13,31 @@ class B747_8_FMC_SelectWptPage {
             [""],
             [""]
         ];
-        const orderedWaypoints = [...waypoints].sort((a, b) => this.calculateDistance(a) - this.calculateDistance(b));
-
-        let alreadyPressed = false;
-
         for (let i = 0; i < 5; i++) {
-            const w = orderedWaypoints[i + 5 * page];
+            let w = waypoints[i + 5 * page];
             if (w) {
                 let t = "";
-                let freq = "";
                 if (w.icao[0] === "V") {
                     t = " VOR";
-                    freq = (w.infos.frequencyMHz) ? fastToFixed(w.infos.frequencyMHz, 1).toString() : " ";
                 }
                 else if (w.icao[0] === "N") {
                     t = " NDB";
-                    freq = (w.infos.frequencyMHz) ? fastToFixed(w.infos.frequencyMHz, 1).toString() : " ";
                 }
                 else if (w.icao[0] === "A") {
                     t = " AIRPORT";
-                    freq = " ";
                 }
                 rows[2 * i] = [w.ident + t];
-                rows[2 * i + 1] = [freq, w.infos.coordinates.toDegreeString()];
-
-                const onInput = () => {
-                    if (!alreadyPressed) {
-                        callback(w);
-                        alreadyPressed = true;
-                    }
-                }
-
-                fmc.onLeftInput[i] = () => onInput();
-                fmc.onRightInput[i] = () => onInput();
+                rows[2 * i + 1] = [w.infos.coordinates.toDegreeString()];
+                fmc.onLeftInput[i] = () => {
+                    callback(w);
+                };
+                fmc.onRightInput[i] = () => {
+                    callback(w);
+                };
             }
         }
         fmc.setTemplate([
-            ["SELECT DESIRED WPT", (page + 1).toFixed(0), (waypoints.length / 5).toFixed(0)],
+            ["SELECT DESIRED WPT", fastToFixed((page + 1), 0), fastToFixed((waypoints.length / 5), 0)],
             ...rows,
             [""]
         ]);
@@ -63,11 +51,6 @@ class B747_8_FMC_SelectWptPage {
                 B747_8_FMC_SelectWptPage.ShowPage(fmc, waypoints, callback, page + 1);
             }
         };
-    }
-
-    static calculateDistance(wpt) {
-        const planeLla = new LatLongAlt(SimVar.GetSimVarValue("PLANE LATITUDE", "degree latitude"), SimVar.GetSimVarValue("PLANE LONGITUDE", "degree longitude"));
-        return Avionics.Utils.computeGreatCircleDistance(planeLla, wpt.infos.coordinates);
     }
 }
 //# sourceMappingURL=B747_8_FMC_SelectWptPage.js.map
