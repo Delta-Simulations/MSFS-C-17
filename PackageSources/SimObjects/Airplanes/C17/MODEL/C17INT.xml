@@ -14,7 +14,7 @@
 		<Include ModelBehaviorFile="Asobo\Airliner\Airbus.xml"/>
     <Include Path="DeltaSim-C17\DeltaSim_Switch_Template.xml"/>
     <Include Path="DeltaSim-C17\DeltaSim_Lighting_Template.xml"/>
-    <Include Path="DeltaSim-UH60\DeltaSim_Anim_Template.xml"/>
+    <Include Path="DeltaSim-C17\DeltaSim_Anim_Template.xml"/>
 
     <Component ID="CDUs">
       <DefaultTemplateParameters>
@@ -448,6 +448,14 @@
         (L:C17_Aural_Inhibit, bool) ! (&gt;L:C17_Aural_Inhibit, bool)
       </INTERACT_CODE>
     </UseTemplate>
+    <UseTemplate Name="GENERIC_Toggle_Switch_Template">
+      <ANIM>(L:C17_Aural_Inhibit, bool) 100 *</ANIM>
+      <NODE_ID>Button_Glaresheild_Aural_Silence</NODE_ID>
+      <TOOLTIPID>INHIBIT AURALS</TOOLTIPID>
+      <INTERACT_CODE>
+        (L:C17_Aural_Inhibit, bool) ! (&gt;L:C17_Aural_Inhibit, bool)
+      </INTERACT_CODE>
+    </UseTemplate>
 
     <UseTemplate Name="GENERIC_Toggle_Switch_Template">
       <ANIM>(L:C17_Emerg_LT, bool) 100 *</ANIM>
@@ -496,7 +504,7 @@
   <NODE_ID>Switch_AntiSkid</NODE_ID>
   <TOOLTIPID>ANTI SKID</TOOLTIPID>
   <INTERACT_CODE>
-    (K:ANTISKID_BRAKES_TOGGLE, bool) ! (&gt;L:ANTISKID_BRAKES_TOGGLE, bool)
+    (K:ANTISKID_BRAKES_TOGGLE, bool) ! (&gt;K:ANTISKID_BRAKES_TOGGLE, bool)
   </INTERACT_CODE>
 </UseTemplate>
 
@@ -525,6 +533,32 @@
   <CW_ANIMTIP>HUD BRT</CW_ANIMTIP>
   <CCW_ANIMTIP>HUD BRT</CCW_ANIMTIP>
 </UseTemplate>
+<UseTemplate Name="GENERIC_Toggle_Switch_Template">
+  <ANIM>(L:C17_HUD_DISABLE) 100 *</ANIM>
+  <NODE_ID>HUD_TOGGLE</NODE_ID>
+  <TOOLTIPID>MOVE HUD</TOOLTIPID>
+  <INTERACT_CODE>
+    (L:C17_HUD_DISABLE, bool) ! (&gt;L:C17_HUD_DISABLE, bool)
+  </INTERACT_CODE>
+  <ANIM_LAG>50</ANIM_LAG>
+</UseTemplate>
+<UseTemplate Name="GENERIC_Toggle_Switch_Template">
+  <ANIM>(L:C17_EFFECT_FLARE) 100 *</ANIM>
+  <NODE_ID>Button_FlareDispense</NODE_ID>
+  <TOOLTIPID>MANUAL FLARE DISPENSE</TOOLTIPID>
+  <INTERACT_CODE>
+    (L:C17_EFFECT_FLARE, bool) ! (&gt;L:C17_EFFECT_FLARE, bool)
+  </INTERACT_CODE>
+  <ANIM_LAG>50</ANIM_LAG>
+</UseTemplate>
+<UseTemplate Name="DELTASIM_PushButton_Template">
+  <NODE_ID>Button_HUD_Test</NODE_ID>
+  <TOOLTIPID>TEST HUD SYMBOLOGY</TOOLTIPID>
+  <LEFT_SINGLE_CODE>
+    (L:C17_HUD_TEST, bool) ! (&gt;L:C17_HUD_TEST, bool)
+  </LEFT_SINGLE_CODE>
+</UseTemplate>
+
 <UseTemplate Name="DELTASIM_PushButton_Template">
   <NODE_ID>PushButton_Stby_Att_Adjust_P_Cage</NODE_ID>
   <TOOLTIPID>CAGE</TOOLTIPID>
@@ -1669,10 +1703,10 @@
   <NODE_ID>Switch_CrewRest_FLOOD</NODE_ID>
   <TOOLTIPID>Crew Rest Flood</TOOLTIPID>
 </UseTemplate>
-<Component ID="CargoDoorSwitch" Node="PUSH_AUTOPILOT_AP1.008">
+<Component ID="Switch_Cargo_Door_Pos" Node="Switch_Cargo_Door_Pos">
   <UseTemplate Name="DELTASIM_Momentary_Cargo">
-    <NODE_ID>PUSH_AUTOPILOT_AP1.008</NODE_ID>
-    <ANIM_NAME>DoorSwitch</ANIM_NAME>
+    <NODE_ID>Switch_Cargo_Door_Pos</NODE_ID>
+    <ANIM_NAME>Switch_Cargo_Door_Pos</ANIM_NAME>
     <INVERT_ANIM>True</INVERT_ANIM>
     <ANIMTIP_0_ON_PERCENT>0.0</ANIMTIP_0_ON_PERCENT>
 		<ANIMTIP_1_ON_PERCENT>1.0</ANIMTIP_1_ON_PERCENT>
@@ -2446,14 +2480,21 @@
 </UseTemplate>
 
 
-  <UseTemplate Name="GENERIC_Toggle_Switch_Template">
+
+<UseTemplate Name="ASOBO_AUTOPILOT_Push_AutoThrottle_Template">
+  <NODE_ID>Switch_AT</NODE_ID>
+  <ANIM_NAME>Switch_AT</ANIM_NAME>
+  <TYPE>B747</TYPE>
+</UseTemplate>
+
+  <!-- <UseTemplate Name="GENERIC_Toggle_Switch_Template">
     <ANIM>(A:AUTOPILOT THROTTLE ARM, bool) 100 *</ANIM>
     <NODE_ID>Switch_AT</NODE_ID>
     <TOOLTIPID>AUTOTHROTTLE</TOOLTIPID>
     <INTERACT_CODE>
       (K:AUTO_THROTTLE_ARM) ! (&gt;K:AUTO_THROTTLE_ARM)
     </INTERACT_CODE>
-  </UseTemplate>
+  </UseTemplate> -->
   <UseTemplate Name="GENERIC_Toggle_Switch_Template">
     <ANIM>(A:AUTOPILOT MASTER, bool) 100 *</ANIM>
     <NODE_ID>Switch_AP</NODE_ID>
@@ -3287,6 +3328,23 @@
 					<TT_ICON>MOVE_Y</TT_ICON>
 				</UseTemplate>
 
+        <Component ID="HANDLING_Trims">
+          <DefaultTemplateParameters>
+            <USE_DEFAULT_VARIABLE_SPEED_TRIM>True</USE_DEFAULT_VARIABLE_SPEED_TRIM>
+          </DefaultTemplateParameters>
+          <UseTemplate Name="ASOBO_HANDLING_Switch_RudderTrim_Template">
+            <NODE_ID>knob_rudder_trim</NODE_ID>
+            <ANIM_NAME>knob_rudder_trim</ANIM_NAME>
+            <TRIM_LIMIT>35</TRIM_LIMIT>
+            <NO_RESET_PUSH/>
+            <TT_ICON>ROTATE</TT_ICON>
+            <!-- This is to get around the broken knob light material. -->
+          </UseTemplate>
+          <UseTemplate Name="ASOBO_HANDLING_Switch_AileronTrim_Template">
+            <NODE_ID>switch_ailerons_altn</NODE_ID>
+            <ANIM_NAME>switch_ailerons_altn</ANIM_NAME>
+          </UseTemplate>
+        </Component>
 
 
 
@@ -3613,7 +3671,7 @@
     </Animation>
   </PartInfo>
 <!-- RMI -->
-<Animation name="RMI_INTERIOR" guid="8afbb568-df16-4605-ac5e-4585f6270637" length="360" type="Sim" typeParam2="RMI_INTERIOR" typeParam="AutoPlay" />
+<Animation name="RMI_INTERIOR" guid="6cce1a5d-0c77-4bfc-9350-8d28f20a3a88" length="360" type="Sim" typeParam="AutoPlay" />
         <PartInfo>
             <Name>RMI_INTERIOR</Name>
             <AnimLength>360</AnimLength>
@@ -3624,7 +3682,7 @@
             </Animation>
         </PartInfo>
 
-<Animation name="RMI_VOR_NEEDLE" guid="3e5bfee3-7094-44ae-b419-ec7c497414bd" length="360" type="Sim" typeParam2="RMI_VOR_NEEDLE" typeParam="AutoPlay" />
+<Animation name="RMI_VOR_NEEDLE" guid="af008334-ebc0-4bd6-bbb7-b48ddf4f51e1" length="360" type="Sim" typeParam="AutoPlay" />
         <PartInfo>
             <Name>RMI_VOR_NEEDLE</Name>
             <AnimLength>360</AnimLength>
@@ -3888,40 +3946,19 @@
 </PartInfo>
 
 
-<Animation name="FLARE_DISPENSE" guid="da79a02f-12c0-4140-a417-6a6af89eaf00" typeParam2="FLARE_DISPENSE" length="100" type="Sim" typeParam="AutoPlay" />
-<PartInfo>
-    <Name>FLARE_DISPENSE</Name>
-    <AnimLength>100</AnimLength>
-    <Animation>
-        <Parameter>
-             <Code>
-           (L:C17_EFFECT_FLARE, bool) 100 *
-             </Code> 
-    </Parameter>
-    </Animation>
-    <MouseRect>
-        <Cursor>Hand</Cursor>
-        <TooltipText>TOGGLE FLARES</TooltipText>
-         <CallbackCode>
-   (L:C17_EFFECT_FLARE, bool) ! (>L:C17_EFFECT_FLARE, bool)
-         </CallbackCode>
-    </MouseRect>
-</PartInfo>
 
 
 
-
-
-
-<Animation name="trimtab_rudder" guid="b0b1a570-052f-493b-92d8-42a71b653ce8" type="Sim" typeParam="AutoPlay" />
+<Animation name="trimtab_rudder" guid="9ff518a1-ba8f-47bb-967c-f9e48f13dc74" type="Sim" typeParam="AutoPlay" />
 <PartInfo>
   <Name>trimtab_rudder</Name>
   <AnimLength>100</AnimLength>
   <Animation>
     <Parameter>
          <Code>
-       (A:RUDDER TRIM POSITION, degrees) 5 * 50 +
+       (A:RUDDER TRIM PCT, percent) 5 * 50 +
          </Code> 
+         <Lag>50</Lag>
 </Parameter>
 </Animation>
 </PartInfo>
@@ -3934,6 +3971,7 @@
          <Code>
        (A:AILERON TRIM POSITION, degrees) 5 * 50 +
          </Code> 
+         <Lag>50</Lag>
 </Parameter>
 </Animation>
 </PartInfo>
@@ -3946,6 +3984,7 @@
          <Code>
        (A:ELEVATOR TRIM POSITION, degrees) 5 * 50 +
          </Code> 
+         <Lag>50</Lag>
 </Parameter>
 </Animation>
 </PartInfo>
@@ -3958,6 +3997,7 @@
       <Code>
         (A:TRAILING EDGE FLAPS RIGHT ANGLE, degrees)
           </Code> 
+          <Lag>50</Lag>
     </Parameter>
   </Animation>
 </PartInfo>
@@ -4043,43 +4083,36 @@
 
 
 <!-- ===========================================  HUD  CONTROLS ===============================================-->
-<Animation name="HUD" guid="26123f91-78ad-462b-82e1-2c3a63e33f68" type="Sim" typeParam="AutoPlay" />
-<Animation name="HUD_HIDE" guid="00d21182-febf-49a4-8205-01a259da901b" type="Sim"  typeParam="AutoPlay" />
+<Animation name="Wiper_Glass" guid="c8b4b4df-928c-4452-88b3-e7979bcea697" length="1" type="Sim" typeParam="AutoPlay" />
     <PartInfo>
-        <Name>HUD</Name>
-        <AnimLength>20</AnimLength>
-        <Animation>
-            <Parameter>
-				 <Code>
-                 	(L:C17_HUD_DISABLE,bool) 1 == if{ 20 } els{ 0 }
-                 </Code>
-				<Lag>40</Lag>
-            </Parameter>
-        </Animation>
-        <MouseRect>
-            <Cursor>Hand</Cursor>
-            <TooltipText>%((L:C17_HUD_DISABLE, bool))%{if}SHOW HUD%{else}HIDE HUD%{end}</TooltipText>
-             <CallbackCode>
-                	(L:C17_HUD_DISABLE,bool) ! 	(&gt;L:C17_HUD_DISABLE,bool)
-             </CallbackCode>
-        </MouseRect>
-    </PartInfo>
-
-
-<PartInfo>
-  <Name>HUD_HIDE</Name>
-  <AnimLength>100</AnimLength>
-  <Animation>
+    <Name>Wiper_Glass</Name>
+    <AnimLength>1</AnimLength>
+    <Visibility>
       <Parameter>
-           <Code>
-             (L:C17_HUD_DISABLE,bool) 1 == if{ 100 } els{ 0 }
-           </Code>
-       <Lag>100</Lag>
+        <Code>
+          (L:C17_WIPER, enum) 0 &gt;
+				  (A:CIRCUIT ON:65,bool) 1 == and
+          if{ 0 }
+          els{ 1 }
+        </Code>
       </Parameter>
-  </Animation>
-</PartInfo>
-
-
+      </Visibility>
+    </PartInfo>
+    <Animation name="Wiper_Glass_Off" guid="05980ee9-e0c6-466f-834a-a065876534a5" length="1" type="Sim" typeParam="AutoPlay" />
+    <PartInfo>
+    <Name>Wiper_Glass_Off</Name>
+    <AnimLength>1</AnimLength>
+    <Visibility>
+      <Parameter>
+        <Code>
+          (L:C17_WIPER, enum) 0 &gt;
+				  (A:CIRCUIT ON:65,bool) 1 == and
+          if{ 1 }
+          els{ 0 }
+        </Code>
+      </Parameter>
+      </Visibility>
+    </PartInfo>
 <Animation name="HUDEMIS" guid="d134cbff-c2db-4f4d-aa02-56234fda0f08" typeParam2="HUDEMIS" length="1" type="Sim" typeParam="AutoPlay" />
     <PartInfo>
     <Name>HUDEMIS</Name>

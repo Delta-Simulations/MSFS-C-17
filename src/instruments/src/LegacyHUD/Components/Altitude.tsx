@@ -27,7 +27,7 @@ export const Altitude = () => {
     }
 
     return(
-        <g> 
+        <g  > 
             <g>
 
             <g transform={`translate(0, 0) `}>

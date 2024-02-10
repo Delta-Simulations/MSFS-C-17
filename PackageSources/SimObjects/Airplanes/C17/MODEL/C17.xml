@@ -8,7 +8,7 @@
 		<Include ModelBehaviorFile="Asobo\Common.xml"/>
 		<Include ModelBehaviorFile="Asobo\Generic\FX.xml"/>
 		<Include Path="Asobo\Exterior.xml"/>
-
+		<Include Path="DeltaSim-C17\DeltaSim_Anim_Template.xml"/>
 
 		<Component ID="FX_FLARES_LEFT" node="C-17_LG_doors_mainF_R">
 			<UseTemplate Name="ASOBO_GT_FX">
@@ -55,12 +55,69 @@
 				<ANIM_NAME_LEFT>l_aileron_percent_key</ANIM_NAME_LEFT>
 				<ANIM_NAME_RIGHT>r_aileron_percent_key</ANIM_NAME_RIGHT>
 			</UseTemplate>
-			<UseTemplate Name="ASOBO_HANDLING_Rudder_Template">
-				<ANIM_NAME>rudder_percent_key</ANIM_NAME>
-				<USE_INTEGRATED_TRIM>True</USE_INTEGRATED_TRIM>
+			<UseTemplate name="Generic_Anim_DELTASIM">
+				<ANIM_NAME>Spoiler_Left_1</ANIM_NAME>
+				<ANIM_CODE>
+		(A:SPOILERS LEFT POSITION, percent) 
+				</ANIM_CODE>
+	  <ANIM_LAG>100</ANIM_LAG>
 			</UseTemplate>
+			<UseTemplate name="Generic_Anim_DELTASIM">
+				<ANIM_NAME>Spoiler_Left_2</ANIM_NAME>
+				<ANIM_CODE>
+		(A:SPOILERS LEFT POSITION, percent)
+				</ANIM_CODE>
+	  <ANIM_LAG>50</ANIM_LAG>
+			</UseTemplate>
+			<UseTemplate name="Generic_Anim_DELTASIM">
+				<ANIM_NAME>Spoiler_Left_3</ANIM_NAME>
+				<ANIM_CODE>
+		(A:SPOILERS LEFT POSITION, percent)
+				</ANIM_CODE>
+	  <ANIM_LAG>70</ANIM_LAG>
+			</UseTemplate>
+			<UseTemplate name="Generic_Anim_DELTASIM">
+				<ANIM_NAME>Spoiler_Left_4</ANIM_NAME>
+				<ANIM_CODE>
+		(A:SPOILERS LEFT POSITION, percent)
+				</ANIM_CODE>
+	  <ANIM_LAG>60</ANIM_LAG>
+			</UseTemplate>
+			<UseTemplate name="Generic_Anim_DELTASIM">
+				<ANIM_NAME>Spoiler_Right_1</ANIM_NAME>
+				<ANIM_CODE>
+		(A:SPOILERS RIGHT POSITION, percent) 
+				</ANIM_CODE>
+	  <ANIM_LAG>75</ANIM_LAG>
+			</UseTemplate>
+			<UseTemplate name="Generic_Anim_DELTASIM">
+				<ANIM_NAME>Spoiler_Right_2</ANIM_NAME>
+				<ANIM_CODE>
+		(A:SPOILERS RIGHT POSITION, percent)
+				</ANIM_CODE>
+	  <ANIM_LAG>100</ANIM_LAG>
+			</UseTemplate>
+			<UseTemplate name="Generic_Anim_DELTASIM">
+				<ANIM_NAME>Spoiler_Right_3</ANIM_NAME>
+				<ANIM_CODE>
+		(A:SPOILERS RIGHT POSITION, percent)
+				</ANIM_CODE>
+	  <ANIM_LAG>50</ANIM_LAG>
+			</UseTemplate>
+			<UseTemplate name="Generic_Anim_DELTASIM">
+				<ANIM_NAME>Spoiler_Right_4</ANIM_NAME>
+				<ANIM_CODE>
+		(A:SPOILERS RIGHT POSITION, percent)
+				</ANIM_CODE>
+	  <ANIM_LAG>40</ANIM_LAG>
+			</UseTemplate>
+
+
 		</Component>
 		<Component ID="GEARS">
+
+
+
 			<UseTemplate Name="ASOBO_GEAR_Center_Template">
 				<ANIM_NAME>c_gear</ANIM_NAME>
 			  </UseTemplate>
@@ -274,15 +331,15 @@
 		<UseTemplate Name="ASOBO_GT_Update">
 			<FREQUENCY>1</FREQUENCY>
 			<UPDATE_CODE>
-			  (L:C17_FARPSHOW, bool) 1 ==
-			  if{ 
-				1 (&gt;A:LIGHT PEDESTRAL, bool)
-			   } els{
-				0 (&gt;A:LIGHT PEDESTRAL, bool)
-			   }
+			  (L:C17_FARPSHOW, bool) ! (A:LIGHT PEDESTRAL:1,bool) &amp;&amp; if{ 0 (&gt;A:LIGHT PEDESTRAL:1,bool) }
+			  (L:C17_FARPSHOW, bool) (A:LIGHT PEDESTRAL:1,bool) ! &amp;&amp; if{ 1 (&gt;A:LIGHT PEDESTRAL:1,bool) }
 			</UPDATE_CODE>
 		  </UseTemplate>
 		</Component>
+
+
+
+
 	</Behaviors>
 
 <Animation name="GPU_Ext" guid="aa41a793-a86c-496a-b832-7749aa6693db" type="Sim" typeParam="AutoPlay" />
@@ -462,7 +519,45 @@
         </Animation>
     </PartInfo>   
 
+	<Animation name="Rudder_Upper_Section" guid="9df437bd-9a84-4c5a-870d-ee277535cb70" type="Sim" typeParam="AutoPlay" />
+    <PartInfo>
+        <Name>Rudder_Upper_Section</Name>
+        <AnimLength>100</AnimLength>
+        <Animation>
+            <Parameter>
+				 <Code>
+					(A:SIM ON GROUND,bool) 0 == 
+					if{
+					 (A:RUDDER DEFLECTION PCT, percent) 2 / 50 +
+					 } els{
+						50
+					}
+                 </Code>
+				<Lag>70</Lag>
+            </Parameter>
+        </Animation>
+    </PartInfo>   
+	<Animation name="Rudder_Lower_Section" guid="46576a87-ffdc-4098-8800-4dc352fb6dd8" type="Sim" typeParam="AutoPlay" />
+    <PartInfo>
+        <Name>Rudder_Lower_Section</Name>
+        <AnimLength>100</AnimLength>
+        <Animation>
+            <Parameter>
+				 <Code>
+					(A:SIM ON GROUND,bool) 0 ==
+					(A:AIRSPEED INDICATED, knots) 30 &lt; and
+					if{
+					 (A:RUDDER DEFLECTION PCT, percent) 2 / 50 +
+					 } els{
+						(A:RUDDER DEFLECTION PCT, percent) 2 / 50 +
+					}
 
+                 </Code>
+				<Lag>90</Lag>
+            </Parameter>
+        </Animation>
+    </PartInfo>
+	
     <Animation name="Aidrop_main" guid="ff3a42f8-abc2-4d9c-bae6-86d217abf46b" type="Sim" typeParam="AutoPlay" />
     <PartInfo>
         <Name>Aidrop_main</Name>
@@ -906,32 +1001,6 @@
         <Units>percent</Units>
         <Scale>1</Scale>
         <Bias>0</Bias>
-      </Sim>
-    </Parameter>
-  </Animation>
-</PartInfo>
-<Animation name="l_spoiler_key" guid="F5D81E0E-0238-43a6-B169-2A7DF682295F" type="Sim" typeParam="AutoPlay" />
-<Animation name="r_spoiler_key" guid="1DAC9F00-4B37-417f-A463-8D6F2B72024D" type="Sim" typeParam="AutoPlay" />
-<PartInfo>
-  <Name>l_spoiler_key</Name>
-  <AnimLength>100</AnimLength>
-  <Animation>
-    <Parameter>
-      <Sim>
-        <Variable>SPOILERS LEFT POSITION</Variable>
-        <Units>percent</Units>
-      </Sim>
-    </Parameter>
-  </Animation>
-</PartInfo>
-<PartInfo>
-  <Name>r_spoiler_key</Name>
-  <AnimLength>100</AnimLength>
-  <Animation>
-    <Parameter>
-      <Sim>
-        <Variable>SPOILERS RIGHT POSITION</Variable>
-        <Units>percent</Units>
       </Sim>
     </Parameter>
   </Animation>

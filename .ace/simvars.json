@@ -1,66 +1,56 @@
 {
     "elements": [
         {
-            "__uuid": "809d4deb-9638-4dad-b01d-e80d500793eb",
-            "title": "pwr",
+            "__uuid": "fd2303dc-e340-4fcc-8ede-dc372cefdb53",
+            "title": "Debug",
+            "varPrefix": "L",
+            "varName": "C17_HUDDEBUG",
+            "varUnit": "number",
+            "style": {
+                "type": 1
+            }
+        },
+        {
+            "__uuid": "69d6d7dc-46b8-4129-980c-a6e314afbdb0",
+            "title": "Test Mode",
+            "varPrefix": "L",
+            "varName": "C17_HUD_TEST",
+            "varUnit": "bool",
+            "style": {
+                "type": 3
+            }
+        },
+        {
+            "__uuid": "b65aeb5e-da35-4073-b3b7-c35d6a6fa55f",
+            "title": "Power",
             "varPrefix": "A",
-            "varName": "CIRCUIT ON:65",
+            "varName": "CIRCUIT ON:81",
             "varUnit": "number",
             "style": {
                 "type": 3
             }
         },
         {
-            "__uuid": "3d6517b3-5a29-4950-92d4-ca81f71f633d",
-            "title": "Tags",
+            "__uuid": "4eb48084-2b37-446d-a54a-2d77799a8197",
+            "title": "HUD UP DOWN",
             "varPrefix": "L",
-            "varName": "C17_RBF_TAGS",
+            "varName": "C17_HUD_DISABLE",
             "varUnit": "number",
             "style": {
                 "type": 3
             }
         },
         {
-            "__uuid": "6039d7c6-c9e4-4b13-a1fc-f24b5bf53080",
-            "title": "gpu",
+            "__uuid": "adc483c3-8254-41db-9e67-9147c3f0d9c6",
+            "title": "HUD MODE",
             "varPrefix": "L",
-            "varName": "C17_GPU_Vis",
-            "varUnit": "number",
-            "style": {
-                "type": 3
-            }
-        },
-        {
-            "__uuid": "c034cb28-658c-4fbc-afb0-cc43803b857b",
-            "title": "CargoDoorpos",
-            "varPrefix": "L",
-            "varName": "C17_CargoDoor_POS",
+            "varName": "C17_HUD_CNTRL",
             "varUnit": "number",
             "style": {
                 "type": 2,
                 "min": 0,
-                "max": 100,
+                "max": 4,
                 "step": 1
-            }
-        },
-        {
-            "__uuid": "91e26f83-d2cb-4d23-b810-e848bd874eb2",
-            "title": "FARPMODE",
-            "varPrefix": "A",
-            "varName": "LIGHT PEDESTRAL",
-            "varUnit": "number",
-            "style": {
-                "type": 3
-            }
-        },
-        {
-            "__uuid": "d9f61f6f-e391-4a0f-8620-cc73b0fb075e",
-            "title": "Modelgy",
-            "varPrefix": "L",
-            "varName": "C17_CARGO_LGT_MODE",
-            "varUnit": "number",
-            "style": {
-                "type": 3
             }
         }
     ]

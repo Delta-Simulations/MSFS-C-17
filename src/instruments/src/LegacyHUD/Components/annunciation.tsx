@@ -13,7 +13,7 @@ export const Toga = () => {
 
 
     return(
-        <g>
+        <g> 
             <g>
             <rect x={395} y={35} width={3} height={95} fill='white'/>
             <rect x={735} y={35} width={3} height={95} fill='white'/>

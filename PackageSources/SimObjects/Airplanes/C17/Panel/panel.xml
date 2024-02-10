@@ -11,7 +11,7 @@
 	<Instrument>
 		<Name>WTB748_CDU_1</Name>
 		<Electric>
-			<Simvar name="CIRCUIT ON:81" unit="Boolean"/>
+			<Simvar name="CIRCUIT ON:72" unit="Boolean"/>
 		</Electric>
 		<AlwaysUpdate>True</AlwaysUpdate>
 	</Instrument>
@@ -19,7 +19,7 @@
 	<Instrument>
 		<Name>WTB748_CDU_2</Name>
 		<Electric>
-			<Simvar name="CIRCUIT ON:81" unit="Boolean"/>
+			<Simvar name="CIRCUIT ON:72" unit="Boolean"/>
 		</Electric>
 		<AlwaysUpdate>True</AlwaysUpdate>
 	</Instrument>
@@ -28,13 +28,13 @@
 	<Sensors adc-count="1" ahrs-count="1" radar-altimeter-count="1" gps-count="2">
 		<Adc index="1" altimeter="1" airspeed-indicator="1">
 			<Electric>
-				<Simvar name="CIRCUIT ON:9" unit="Boolean" />
+				<Simvar name="CIRCUIT ON:72" unit="Boolean" />
 			</Electric>
 		</Adc>
 
 		<Ahrs index="1" attitude-indicator="1" direction-indicator="1">
 			<Electric>
-				<Simvar name="CIRCUIT ON:9" unit="Boolean" />
+				<Simvar name="CIRCUIT ON:72" unit="Boolean" />
 			</Electric>
 		</Ahrs>
 
@@ -49,12 +49,12 @@
 
 		<Gps index="1">
 			<Electric>
-				<Simvar name="CIRCUIT ON:123" unit="Boolean" />
+				<Simvar name="CIRCUIT ON:72" unit="Boolean" />
 			</Electric>
 		</Gps>
 		<Gps index="2">
 			<Electric>
-				<Simvar name="CIRCUIT ON:124" unit="Boolean" />
+				<Simvar name="CIRCUIT ON:72" unit="Boolean" />
 			</Electric>
 		</Gps>
 	</Sensors>

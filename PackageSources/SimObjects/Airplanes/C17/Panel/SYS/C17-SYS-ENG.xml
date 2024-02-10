@@ -34,6 +34,7 @@
 					0 (&gt;L:C17_Crew_Enterance, bool)
 					0 (&gt;L:C17_CpitWindowR, bool)
 					0 (&gt;L:C17_CpitWindowL, bool)
+					0 (&gt;L:C17_Radome_Open, bool)
 				}
 
 				(L:C17_P_PITOT, bool) 1 ==

@@ -37,6 +37,7 @@ export const FPV = () => {
     } else {
         ShowCage = false
     }
+    
     return(
         <g>
             <g transform={`translate(0 75)` }>
