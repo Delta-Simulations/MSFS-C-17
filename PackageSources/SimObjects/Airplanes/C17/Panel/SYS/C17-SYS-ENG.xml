@@ -9,7 +9,14 @@
 <Element>
 	<Select>
 			<Value>
-
+				(A:SIM ON GROUND,bool) 0 ==
+				(A:CIRCUIT ON:65,bool) 1 == and
+				(L:C17_PUSH_FLARES, bool) 1 == and
+				if{ 
+					1 (&gt;L:C17_EFFECT_FLARE,bool)
+				   } els{
+					0 (&gt;L:C17_EFFECT_FLARE,bool)
+				   }
 
 				(A:EXTERNAL POWER ON, bool) 1 ==
 				(A:EXTERNAL POWER AVAILABLE, bool) 1 == and

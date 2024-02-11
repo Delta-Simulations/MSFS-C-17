@@ -543,11 +543,11 @@
   <ANIM_LAG>50</ANIM_LAG>
 </UseTemplate>
 <UseTemplate Name="GENERIC_Toggle_Switch_Template">
-  <ANIM>(L:C17_EFFECT_FLARE) 100 *</ANIM>
+  <ANIM>(L:C17_PUSH_FLARES) 100 *</ANIM>
   <NODE_ID>Button_FlareDispense</NODE_ID>
   <TOOLTIPID>MANUAL FLARE DISPENSE</TOOLTIPID>
   <INTERACT_CODE>
-    (L:C17_EFFECT_FLARE, bool) ! (&gt;L:C17_EFFECT_FLARE, bool)
+    (L:C17_PUSH_FLARES, bool) ! (&gt;L:C17_PUSH_FLARES, bool)
   </INTERACT_CODE>
   <ANIM_LAG>50</ANIM_LAG>
 </UseTemplate>
@@ -1927,7 +1927,7 @@
     <NODE_ID>KORRY_SLAT_DISAG</NODE_ID>
     <TRUECODE>
       (A:LEADING EDGE FLAPS LEFT PERCENT, percent) 0 &gt;
-      (A:LEADING EDGE FLAPS LEFT PERCENT, percent) 8 &lt; and
+      (A:LEADING EDGE FLAPS LEFT PERCENT, percent) 100 &lt; and
     </TRUECODE>
   </UseTemplate>
 
@@ -2407,6 +2407,36 @@
     <ANIM_LENGTH>200</ANIM_LENGTH>
   </UseTemplate>
 
+<!-- FOR NACE NACE============================================= FBW SYSTEMS CONTROLS =========================== -->
+<UseTemplate Name="GENERIC_Toggle_Switch_Template">
+  <ANIM>(A:FLY BY WIRE SEC SWITCH, bool) 100 * 100 -</ANIM>
+  <NODE_ID>Switch_Pitch_EFCS</NODE_ID>
+  <TOOLTIPID>PITCH EFCS</TOOLTIPID>
+  <INTERACT_CODE>
+    (K:FLY_BY_WIRE_SEC_TOGGLE) ! (&gt;K:FLY_BY_WIRE_SEC_TOGGLE)
+  </INTERACT_CODE>
+</UseTemplate>
+<UseTemplate Name="GENERIC_Toggle_Switch_Template">
+  <ANIM>(A:FLY BY WIRE ELAC SWITCH, bool) 100 * 100 -</ANIM>
+  <NODE_ID>Switch_Roll_EFCS</NODE_ID>
+  <TOOLTIPID>ROLL EFCS</TOOLTIPID>
+  <INTERACT_CODE>
+    (K:FLY_BY_WIRE_ELAC_TOGGLE) ! (&gt;K:FLY_BY_WIRE_ELAC_TOGGLE)
+  </INTERACT_CODE>
+</UseTemplate>
+<UseTemplate Name="GENERIC_Toggle_Switch_Template">
+  <ANIM>(A:FLY BY WIRE FAC SWITCH, bool) 100 * 100 -</ANIM>
+  <NODE_ID>Switch_Pitch_Trim_EFCS</NODE_ID>
+  <TOOLTIPID>ROLL EFCS</TOOLTIPID>
+  <INTERACT_CODE>
+    (K:FLY_BY_WIRE_FAC_TOGGLE) ! (&gt;K:FLY_BY_WIRE_FAC_TOGGLE)
+  </INTERACT_CODE>
+</UseTemplate>
+
+
+
+
+
   <UseTemplate Name="GENERIC_Toggle_Switch_Template">
     <ANIM>(L:C17_UARRSI_Slipway, bool) 100 *</ANIM>
     <NODE_ID>BUTTON_AR_R_MASTER</NODE_ID>
@@ -2479,22 +2509,46 @@
   </LEFT_SINGLE_CODE>
 </UseTemplate>
 
+<UseTemplate Name="GENERIC_Toggle_Switch_Template">
+  <ANIM>(A:AUTOPILOT THROTTLE ARM, bool) 100 *</ANIM>
+  <NODE_ID>Test1</NODE_ID>
+  <TOOLTIPID>1</TOOLTIPID>
+  <INTERACT_CODE>
+    (K:AP_AIRSPEED_SET) ! (&gt;K:AP_AIRSPEED_SET)
+  </INTERACT_CODE>
+  <ANIM_LAG>50</ANIM_LAG>
+</UseTemplate>
 
+<UseTemplate Name="GENERIC_Toggle_Switch_Template">
+  <ANIM>(A:AUTOPILOT THROTTLE ARM, bool) 100 *</ANIM>
+  <NODE_ID>Test2</NODE_ID>
+  <TOOLTIPID>2</TOOLTIPID>
+  <INTERACT_CODE>
+    (K:AUTO_THROTTLE_ARM) ! (&gt;K:AUTO_THROTTLE_ARM)
+  </INTERACT_CODE>
+  <ANIM_LAG>50</ANIM_LAG>
+</UseTemplate>
 
-<UseTemplate Name="ASOBO_AUTOPILOT_Push_AutoThrottle_Template">
+<!-- <UseTemplate Name="ASOBO_AUTOPILOT_Push_AutoThrottle_Template">
   <NODE_ID>Switch_AT</NODE_ID>
   <ANIM_NAME>Switch_AT</ANIM_NAME>
   <TYPE>B747</TYPE>
-</UseTemplate>
+</UseTemplate> -->
 
-  <!-- <UseTemplate Name="GENERIC_Toggle_Switch_Template">
+  <UseTemplate Name="GENERIC_Toggle_Switch_Template">
     <ANIM>(A:AUTOPILOT THROTTLE ARM, bool) 100 *</ANIM>
     <NODE_ID>Switch_AT</NODE_ID>
     <TOOLTIPID>AUTOTHROTTLE</TOOLTIPID>
     <INTERACT_CODE>
       (K:AUTO_THROTTLE_ARM) ! (&gt;K:AUTO_THROTTLE_ARM)
+      4 (&gt;A:GENERAL ENG THROTTLE MANAGED MODE:1)
+      4 (&gt;A:GENERAL ENG THROTTLE MANAGED MODE:2)
+      4 (&gt;A:GENERAL ENG THROTTLE MANAGED MODE:3)
+      4 (&gt;A:GENERAL ENG THROTTLE MANAGED MODE:4)
     </INTERACT_CODE>
-  </UseTemplate> -->
+  </UseTemplate>
+
+
   <UseTemplate Name="GENERIC_Toggle_Switch_Template">
     <ANIM>(A:AUTOPILOT MASTER, bool) 100 *</ANIM>
     <NODE_ID>Switch_AP</NODE_ID>
