@@ -18,6 +18,15 @@
 					0 (&gt;L:C17_EFFECT_FLARE,bool)
 				   }
 
+				   (A:AUTOPILOT THROTTLE ARM, bool) 1 ==
+				   if{ 
+					4 (&gt;A:GENERAL ENG THROTTLE MANAGED MODE:1, bool)
+					4 (&gt;A:GENERAL ENG THROTTLE MANAGED MODE:2, bool)
+					4 (&gt;A:GENERAL ENG THROTTLE MANAGED MODE:3, bool)
+					4 (&gt;A:GENERAL ENG THROTTLE MANAGED MODE:4, bool)
+					  }
+
+
 				(A:EXTERNAL POWER ON, bool) 1 ==
 				(A:EXTERNAL POWER AVAILABLE, bool) 1 == and
 				(A:SIM ON GROUND,bool) 1 == and

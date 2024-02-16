@@ -393,6 +393,18 @@
   </UseTemplate>
 
   <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_AP</NODE_ID>
+    <TRUECODE>
+      (A:AUTOPILOT MASTER, bool) 1 ==
+    </TRUECODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_ATS</NODE_ID>
+    <TRUECODE>
+      (A:AUTOPILOT THROTTLE ARM, bool) 1 ==
+    </TRUECODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>KORRY_MASTER_CAUTION</NODE_ID>
     <TRUECODE>
       (L:C17_ALERT_MASTER_CAUTION,bool) 1 ==
@@ -1614,6 +1626,33 @@
   <CCW_ANIMTIP>CoPilot Flood</CCW_ANIMTIP>
 </UseTemplate>
 <UseTemplate Name="DELTASIM_Finite_Knob_Template">
+  <NODE_ID>Knob_Side_Pilot_PNL_PWR</NODE_ID>
+  <ANIM_CODE>(L:C17_Side_PILOT_PNL_BACKLIGHT, percent)</ANIM_CODE>
+  <CLOCKWISE_CODE>
+    (L:C17_Side_PILOT_PNL_BACKLIGHT, percent) 10 + 100 min (&gt;L:C17_Side_PILOT_PNL_BACKLIGHT, percent)
+  </CLOCKWISE_CODE>
+  <ANTICLOCKWISE_CODE>
+    (L:C17_Side_PILOT_PNL_BACKLIGHT, percent) 10 - 0 max (&gt;L:C17_Side_PILOT_PNL_BACKLIGHT, percent)
+  </ANTICLOCKWISE_CODE>
+  <CW_ANIMTIP>PILOT PNL BACKLIGHT</CW_ANIMTIP>
+  <CCW_ANIMTIP>PILOT PNL BACKLIGHT</CCW_ANIMTIP>
+</UseTemplate>
+<UseTemplate Name="DELTASIM_Finite_Knob_Template">
+  <NODE_ID>Knob_Side_CoPilot_PNL_PWR</NODE_ID>
+  <ANIM_CODE>(L:C17_Side_CoPilot_PNL_BACKLIGHT, percent)</ANIM_CODE>
+  <CLOCKWISE_CODE>
+    (L:C17_Side_CoPilot_PNL_BACKLIGHT, percent) 10 + 100 min (&gt;L:C17_Side_CoPilot_PNL_BACKLIGHT, percent)
+  </CLOCKWISE_CODE>
+  <ANTICLOCKWISE_CODE>
+    (L:C17_Side_CoPilot_PNL_BACKLIGHT, percent) 10 - 0 max (&gt;L:C17_Side_CoPilot_PNL_BACKLIGHT, percent)
+  </ANTICLOCKWISE_CODE>
+  <CW_ANIMTIP>COPILOT PNL BACKLIGHT</CW_ANIMTIP>
+  <CCW_ANIMTIP>COPILOT PNL BACKLIGHT</CCW_ANIMTIP>
+</UseTemplate>
+
+
+
+<UseTemplate Name="DELTASIM_Finite_Knob_Template">
   <NODE_ID>Knob_Cpit_Dome_Control</NODE_ID>
   <ANIM_CODE>(A:LIGHT POTENTIOMETER:14, percent)</ANIM_CODE>
   <CLOCKWISE_CODE>
@@ -1625,6 +1664,9 @@
   <CW_ANIMTIP>Dome_Control</CW_ANIMTIP>
   <CCW_ANIMTIP>Dome_Control</CCW_ANIMTIP>
 </UseTemplate>
+
+
+
 <UseTemplate Name="DELTASIM_Finite_Knob_Template">
   <NODE_ID>Knob_Pedestal_LGT_Flood</NODE_ID>
   <ANIM_CODE>(A:LIGHT POTENTIOMETER:15, percent)</ANIM_CODE>
@@ -2037,6 +2079,11 @@
   </UseTemplate>
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>KORRY_ELEC_INOP</NODE_ID>
+    <TRUECODE>0</TRUECODE>
+  </UseTemplate>
+
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_Front_Panel_Inop</NODE_ID>
     <TRUECODE>0</TRUECODE>
   </UseTemplate>
   <UseTemplate Name="Korry_Emmis_DELTASIM">
@@ -2509,31 +2556,7 @@
   </LEFT_SINGLE_CODE>
 </UseTemplate>
 
-<UseTemplate Name="GENERIC_Toggle_Switch_Template">
-  <ANIM>(A:AUTOPILOT THROTTLE ARM, bool) 100 *</ANIM>
-  <NODE_ID>Test1</NODE_ID>
-  <TOOLTIPID>1</TOOLTIPID>
-  <INTERACT_CODE>
-    (K:AP_AIRSPEED_SET) ! (&gt;K:AP_AIRSPEED_SET)
-  </INTERACT_CODE>
-  <ANIM_LAG>50</ANIM_LAG>
-</UseTemplate>
 
-<UseTemplate Name="GENERIC_Toggle_Switch_Template">
-  <ANIM>(A:AUTOPILOT THROTTLE ARM, bool) 100 *</ANIM>
-  <NODE_ID>Test2</NODE_ID>
-  <TOOLTIPID>2</TOOLTIPID>
-  <INTERACT_CODE>
-    (K:AUTO_THROTTLE_ARM) ! (&gt;K:AUTO_THROTTLE_ARM)
-  </INTERACT_CODE>
-  <ANIM_LAG>50</ANIM_LAG>
-</UseTemplate>
-
-<!-- <UseTemplate Name="ASOBO_AUTOPILOT_Push_AutoThrottle_Template">
-  <NODE_ID>Switch_AT</NODE_ID>
-  <ANIM_NAME>Switch_AT</ANIM_NAME>
-  <TYPE>B747</TYPE>
-</UseTemplate> -->
 
   <UseTemplate Name="GENERIC_Toggle_Switch_Template">
     <ANIM>(A:AUTOPILOT THROTTLE ARM, bool) 100 *</ANIM>
@@ -2541,10 +2564,6 @@
     <TOOLTIPID>AUTOTHROTTLE</TOOLTIPID>
     <INTERACT_CODE>
       (K:AUTO_THROTTLE_ARM) ! (&gt;K:AUTO_THROTTLE_ARM)
-      4 (&gt;A:GENERAL ENG THROTTLE MANAGED MODE:1)
-      4 (&gt;A:GENERAL ENG THROTTLE MANAGED MODE:2)
-      4 (&gt;A:GENERAL ENG THROTTLE MANAGED MODE:3)
-      4 (&gt;A:GENERAL ENG THROTTLE MANAGED MODE:4)
     </INTERACT_CODE>
   </UseTemplate>
 
@@ -2951,14 +2970,6 @@
 				<NODE_ID2>HANDLING_Yoke_2</NODE_ID2>
 				<CREATE_TWO_NODES/>
 			</UseTemplate>
-			<UseTemplate Name="ASOBO_HANDLING_Yoke_Hider_Template">
-				<ID>1</ID>
-				<NODE_ID>HANDLING_Yoke_1_Hider_Pylon</NODE_ID>
-			</UseTemplate>
-			<UseTemplate Name="ASOBO_HANDLING_Yoke_Hider_Template">
-				<ID>2</ID>
-				<NODE_ID>HANDLING_Yoke_2_Hider_Yoke</NODE_ID>
-			</UseTemplate>
 </Component>
 <Component ID="Pedestal_Fwd">
 
@@ -3102,7 +3113,20 @@
               (L:C17_MACHIAS,bool) ! (&gt;L:C17_MACHIAS,bool)
           </LEFT_SINGLE_CODE>
           </UseTemplate>
-
+          <UseTemplate Name="DELTASIM_PushButton_Template">
+            <NODE_ID>Hide_Pilot_Yoke</NODE_ID>
+            <TOOLTIPID>TOGGLE YOKE VISIBILITY</TOOLTIPID>
+            <LEFT_SINGLE_CODE>
+              (L:C17_PILOT_YOKE_VIS,bool) ! (&gt;L:C17_PILOT_YOKE_VIS,bool)
+          </LEFT_SINGLE_CODE>
+          </UseTemplate>
+          <UseTemplate Name="DELTASIM_PushButton_Template">
+            <NODE_ID>Hide_CP_Yoke</NODE_ID>
+            <TOOLTIPID>TOGGLE YOKE VISIBILITY</TOOLTIPID>
+            <LEFT_SINGLE_CODE>
+              (L:C17_CoPILOT_YOKE_VIS,bool) ! (&gt;L:C17_CoPILOT_YOKE_VIS,bool)
+          </LEFT_SINGLE_CODE>
+          </UseTemplate>
 
           <Component ID="Knob_SPD_SEL" Node="Knob_SPD_SEL">
             <UseTemplate Name="ASOBO_GT_Knob_Infinite_Push">
@@ -3238,18 +3262,25 @@
             (K:AP_ALT_HOLD,bool) ! (&gt;K:AP_ALT_HOLD,bool)
           </LEFT_SINGLE_CODE>
         </UseTemplate>
-        <UseTemplate Name="DELTASIM_PushButton_Template">
-          <NODE_ID>BUTTON_TURB</NODE_ID>
-          <TOOLTIPID>V/S MODE</TOOLTIPID>
-          <LEFT_SINGLE_CODE>
-            (L:AP_VS_ACTIVE,bool) ! (&gt;L:AP_VS_ACTIVE,bool)
-          </LEFT_SINGLE_CODE>
-        </UseTemplate>
+
+        <Component ID="TILLER">
+          <UseTemplate Name="ASOBO_HANDLING_Steering_Tiller_Template">
+              <NODE_ID>P_TILLER</NODE_ID>
+              <ANIM_NAME>P_TILLER</ANIM_NAME> 
+          </UseTemplate>
+          <!-- <UseTemplate Name="ASOBO_HANDLING_Steering_Tiller_Template">
+            <NODE_ID>CP_TILLER</NODE_ID>
+            <ANIM_NAME>CP_TILLER</ANIM_NAME> 
+        </UseTemplate> -->
+      </Component>
+
         <UseTemplate Name="DELTASIM_PushButton_Template">
           <NODE_ID>BUTTON_VNAV</NODE_ID>
           <TOOLTIPID>VNAV</TOOLTIPID>
           <LEFT_SINGLE_CODE>
             (L:XMLVAR_VNAVButtonValue,bool) ! (&gt;L:XMLVAR_VNAVButtonValue,bool)
+            (L:AP_VNAV_ACTIVE) ! (&gt;L:AP_VNAV_ACTIVE)
+            (L:AP_VNAV_ARMED) ! (&gt;L:AP_VNAV_ARMED)
           </LEFT_SINGLE_CODE>
         </UseTemplate>
         <UseTemplate Name="DELTASIM_PushButton_Template">
@@ -3257,6 +3288,20 @@
           <TOOLTIPID>APPROACH</TOOLTIPID>
           <LEFT_SINGLE_CODE>
             (K:AP_APR_HOLD) ! (&gt;K:AP_APR_HOLD)
+          </LEFT_SINGLE_CODE>
+        </UseTemplate>
+        <UseTemplate Name="DELTASIM_PushButton_Template">
+          <NODE_ID>BUTTON_TURB</NODE_ID>
+          <TOOLTIPID>TURBULENCE MODE</TOOLTIPID>
+          <LEFT_SINGLE_CODE>
+            (K:AP_ATT_HOLD) ! (&gt;K:AP_ATT_HOLD)
+          </LEFT_SINGLE_CODE>
+        </UseTemplate>
+        <UseTemplate Name="DELTASIM_PushButton_Template">
+          <NODE_ID>BUTTON_SPLIT_AXIS</NODE_ID>
+          <TOOLTIPID>V/S MODE</TOOLTIPID>
+          <LEFT_SINGLE_CODE>
+            (L:AP_VS_ACTIVE,bool) ! (&gt;L:AP_VS_ACTIVE,bool)
           </LEFT_SINGLE_CODE>
         </UseTemplate>
 
@@ -3294,12 +3339,7 @@
             <NO_GEARUP_ON_GROUND>True</NO_GEARUP_ON_GROUND>
           </UseTemplate>
         </Component>
-				<UseTemplate Name="ASOBO_AUTOPILOT_Push_Vertical_Navigation_Template">
-					<NODE_ID>btn_autopilot_vnav</NODE_ID>
-					<ANIM_NAME>autopilot_push_vnav</ANIM_NAME>
-					<AUTOPILOT_PUSH_BUTTON_ON>autopilot_largepush_button_on</AUTOPILOT_PUSH_BUTTON_ON>
-					<AUTOPILOT_PUSH_BUTTON_OFF>autopilot_largepush_button_off</AUTOPILOT_PUSH_BUTTON_OFF>
-				</UseTemplate>
+
 				<UseTemplate Name="ASOBO_AUTOPILOT_Knob_VerticalSpeed_Template">
 					<NODE_ID>wheel_autopilot_vert_speed</NODE_ID>
 					<ANIM_NAME>wheel_autopilot_vert_speed</ANIM_NAME>
@@ -3460,6 +3500,21 @@
 <Code>(L:C17_PEDESTAL_PNL_BACKLIGHT, percent) 200 /  (A:CIRCUIT ON:65,bool) *</Code> 
 </Parameter> </Emissive> </Materials>
 </PartInfo>
+<Animation name="PILOT_Side_PNL_BACKLIGHT" guid="3b23857e-c5a4-4dd9-9b75-dbe2e88d5234" length="1" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+<Name>PILOT_Side_PNL_BACKLIGHT</Name>
+<Materials> <Emissive> <Parameter>
+<Code>(L:C17_Side_PILOT_PNL_BACKLIGHT, percent) 200 /  (A:CIRCUIT ON:65,bool) *</Code> 
+</Parameter> </Emissive> </Materials>
+</PartInfo>
+<Animation name="CoPILOT_Side_PNL_BACKLIGHT" guid="eff74dce-1a0d-4f19-9673-f7e797d89a43" length="1" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+<Name>CoPILOT_Side_PNL_BACKLIGHT</Name>
+<Materials> <Emissive> <Parameter>
+<Code>(L:C17_Side_CoPilot_PNL_BACKLIGHT, percent) 200 /  (A:CIRCUIT ON:65,bool) *</Code> 
+</Parameter> </Emissive> </Materials>
+</PartInfo>
+
 
 <Animation name="AFCS_Disp" guid="be18a2df-dde6-4adf-9e38-f320e6ae97ca" length="1" type="Sim" typeParam="AutoPlay" />
 <PartInfo>
@@ -3485,107 +3540,8 @@
 </PartInfo>
   
 
-<!--========================AUTOPILOT=============================-->
-<Animation name="switch_flight_director" guid="dfab66dd-4abc-4d6e-a338-a4e2ec849add" length="50" type="Sim" typeParam2="switch_flight_director" typeParam="AutoPlay" />
-<Animation name="switch_autopilot_master" guid="87fc8726-f402-4d30-9fb5-8027f9b89d16" length="50" type="Sim" typeParam2="switch_autopilot_master" typeParam="AutoPlay" />
 
-  <PartInfo>
-    <Name>switch_flight_director</Name>
-    <MouseRect>
-      <Cursor>Hand</Cursor>
-      <HelpID>HELPID_AUTOPILOT_FLIGHT_DIRECTOR_SWITCH</HelpID>
-      <TooltipID>TOOLTIPTEXT_AUTOPILOT_FLIGHT_DIRECTOR_SWITCH</TooltipID>
-      <EventID>TOGGLE_FLIGHT_DIRECTOR</EventID>
-    </MouseRect>
-    <AnimLength>25</AnimLength>
-    <Animation>
-      <Parameter>
-        <Sim>
-          <Variable>AUTOPILOT FLIGHT DIRECTOR ACTIVE</Variable>
-          <Units>bool</Units>
-          <Scale>50</Scale>
-          <Bias>0</Bias>
-        </Sim>
-        <Lag>400</Lag>
-      </Parameter>
-    </Animation>
-  </PartInfo>
-  <PartInfo>
-    <Name>switch_autopilot_master</Name>
-    <MouseRect>
-      <Cursor>Hand</Cursor>
-      <HelpID>HELPID_AUTOPILOT_MASTER</HelpID>
-      <TooltipID>TOOLTIPTEXT_AUTOPILOT_MASTER</TooltipID>
-      <EventID>AP_MASTER</EventID>
-    </MouseRect>
-    <AnimLength>25</AnimLength>
-    <Animation>
-      <Parameter>
-        <Sim>
-          <Variable>AUTOPILOT MASTER</Variable>
-          <Units>bool</Units>
-          <Scale>50</Scale>
-          <Bias>0</Bias>
-        </Sim>
-        <Lag>400</Lag>
-      </Parameter>
-    </Animation>
-  </PartInfo>
-<Animation name="HDG HOLD" guid="58219eb3-a5ea-4ec6-b528-b944c1b00052" length="25" type="Sim" typeParam2="HDG HOLD" typeParam="AutoPlay" />
-<PartInfo>
-  <Name>HDG HOLD</Name>
-  <AnimLength>25</AnimLength>
-  <Animation>
-    <Parameter>
-      <Code>(A:Autopilot heading lock,bool) 25 * </Code>
-      <Lag>100</Lag>
-    </Parameter>
-  </Animation>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <TooltipText>%Heading hold %((A:Autopilot heading lock, bool))%{if}%ON%{else}%OFF%</TooltipText>
-    <CallbackCode>
-      (K:AP_HDG_HOLD,bool) ! (&gt;K:AP_HDG_HOLD,bool)
-        </CallbackCode>
-  </MouseRect>
-</PartInfo>
-<Animation name="VSSPEED" guid="b3d01bd0-9c19-462d-b1f3-046f80bd63f5" length="100" type="Sim" typeParam2="VSSPEED" typeParam="AutoPlay" />
-<PartInfo>
-  <Name>VSSPEED</Name>
-  <AnimLength>100</AnimLength>
-  <Animation>
-	<Parameter>
-	  <Code>50 (A:Autopilot vertical hold var, ft/min) 196 / + </Code>
-	</Parameter>
-  </Animation>
-  <MouseRect>
-	<Cursor>Hand</Cursor>
-	<TooltipText>%Attitude Hold %((A:Autopilot attitude hold, bool))%{if}%ON%{else}%OFF%</TooltipText>
-	<CallbackCode>
-			  (K:AP_ATT_HOLD) ! (&gt;K:AP_ATT_HOLD)
-				  </CallbackCode>
-  </MouseRect>
-</PartInfo> 
 
-<Animation name="autopilot_push_vs" guid="3ef32557-4a54-4d53-b9f7-2c001db17947" type="Sim" typeParam="AutoPlay" />
-<PartInfo>
-  <Name>autopilot_push_vs</Name>
-  <AnimLength>100</AnimLength>
-  <Animation>
-    <Parameter>
-      <Code>(L:AP_VS_ACTIVE,bool) 100 * </Code>
-      <Lag>100</Lag>
-    </Parameter>
-  </Animation>
-  <MouseRect>
-    <Cursor>Hand</Cursor>
-    <TooltipText>%VS SPEED %((L:AP_VS_ACTIVE, bool))%{if}%ON%{else}%OFF%</TooltipText>
-    <CallbackCode>
-      (L:AP_VS_ACTIVE,bool) ! (&gt;L:AP_VS_ACTIVE,bool)
-        </CallbackCode>
-  </MouseRect>
-</PartInfo>
- 
   <Animation name="PARA DOORL" guid="795ad260-d165-4486-bc6b-84cd202e3693" type="Sim" typeparam="AutoPlay" />
   <PartInfo>
 	  <Name>PARA DOORL</Name>
@@ -3705,8 +3661,30 @@
 		</Parameter>
 	  </Animation>
 	</PartInfo>
-
-
+  <Animation name="Toe_brake_R" guid="fd463200-3f51-4c79-8360-8b491d546da1" type="Sim" typeParam="AutoPlay" />
+	<PartInfo>
+	  <Name>Toe_brake_R</Name>
+	  <AnimLength>100</AnimLength>
+	  <Animation>
+		<Parameter>
+		  <Code>
+			(A:BRAKE RIGHT POSITION, percent)
+		  </Code>
+		</Parameter>
+	  </Animation>
+	</PartInfo>
+  <Animation name="Toe_brake_L" guid="2f222bc9-7a24-47ef-8950-ae4eff7caec6" type="Sim" typeParam="AutoPlay" />
+	<PartInfo>
+	  <Name>Toe_brake_L</Name>
+	  <AnimLength>100</AnimLength>
+	  <Animation>
+		<Parameter>
+		  <Code>
+			(A:BRAKE LEFT POSITION, percent)
+		  </Code>
+		</Parameter>
+	  </Animation>
+	</PartInfo>
 
 
 
@@ -3890,8 +3868,30 @@
     </Visibility>
 </PartInfo>
 
-
-
+<Animation name="Hide_pilot_yoke" guid="6b69bbae-c859-46e6-b564-7670b88359e9" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+    <Name>Hide_pilot_yoke</Name>
+    <Visibility>
+        <Parameter>
+            <Code>
+        (L:C17_PILOT_YOKE_VIS) 1 ==
+				 if{ 0 } els{ 1 }
+			</Code>
+        </Parameter>
+    </Visibility>
+</PartInfo>
+<Animation name="Hide_copilot_yoke" guid="c8622833-f0ea-4d85-8955-49d50c3186be" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+    <Name>Hide_copilot_yoke</Name>
+    <Visibility>
+        <Parameter>
+            <Code>
+        (L:C17_CoPILOT_YOKE_VIS) 1 ==
+				 if{ 0 } els{ 1 }
+			</Code>
+        </Parameter>
+    </Visibility>
+</PartInfo>
 
 <Animation name="Ramp_main" guid="ad635157-f30f-4c38-9853-3baa5a26b216" type="Sim" typeparam="AutoPlay" />
 <PartInfo>
@@ -4130,7 +4130,6 @@
         <Scale>1</Scale>
         <Bias>0</Bias>
       </Sim>
-      <Lag>100</Lag>
     </Parameter>
   </Animation>
 </PartInfo>

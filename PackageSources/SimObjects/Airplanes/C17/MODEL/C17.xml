@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ModelInfo>
 	<LODS>
-		<LOD minSize="0" ModelFile="C17.gltf"/>
+		<LOD minSize="0" ModelFile="C17.gltf" />
 	</LODS>
 	<Behaviors>
-		<Include ModelBehaviorFile="Asobo\Exterior.xml"/>
-		<Include ModelBehaviorFile="Asobo\Common.xml"/>
-		<Include ModelBehaviorFile="Asobo\Generic\FX.xml"/>
-		<Include Path="Asobo\Exterior.xml"/>
-		<Include Path="DeltaSim-C17\DeltaSim_Anim_Template.xml"/>
+		<Include ModelBehaviorFile="Asobo\Exterior.xml" />
+		<Include ModelBehaviorFile="Asobo\Common.xml" />
+		<Include ModelBehaviorFile="Asobo\Generic\FX.xml" />
+		<Include Path="Asobo\Exterior.xml" />
+		<Include Path="DeltaSim-C17\DeltaSim_Anim_Template.xml" />
 
 		<Component ID="FX_FLARES_LEFT" node="C-17_LG_doors_mainF_R">
 			<UseTemplate Name="ASOBO_GT_FX">
@@ -279,7 +279,7 @@
 
 
   <Component ID="LANDING_FX">
-    <UseTemplate Name="ASOBO_LANDING_FX"/>
+			<UseTemplate Name="ASOBO_LANDING_FX" />
   </Component>
    
 
@@ -342,7 +342,8 @@
 
 	</Behaviors>
 
-<Animation name="GPU_Ext" guid="aa41a793-a86c-496a-b832-7749aa6693db" type="Sim" typeParam="AutoPlay" />
+	<Animation name="GPU_Ext" guid="aa41a793-a86c-496a-b832-7749aa6693db" type="Sim"
+		typeParam="AutoPlay" />
 <PartInfo>
     <Name>GPU_Ext</Name>
     <Visibility>
@@ -353,7 +354,8 @@
         </Parameter>
     </Visibility>
 </PartInfo>
-<Animation name="GPU_Door" guid="1c1deb31-bec3-44e5-a4f6-b6165d6b9ecb" type="Sim" typeParam="AutoPlay" />
+	<Animation name="GPU_Door" guid="1c1deb31-bec3-44e5-a4f6-b6165d6b9ecb" type="Sim"
+		typeParam="AutoPlay" />
 <PartInfo>
     <Name>GPU_Door</Name>
 	<Animation>
@@ -368,7 +370,8 @@
 	</Parameter>
 	</Animation>
 </PartInfo>
-<Animation name="AC_Pitch_StaticObject" guid="7d88a0be-1e03-41f8-8d8c-f5697512d962" type="Sim" typeParam="AutoPlay" />
+	<Animation name="AC_Pitch_StaticObject" guid="7d88a0be-1e03-41f8-8d8c-f5697512d962" type="Sim"
+		typeParam="AutoPlay" />
 <PartInfo>
     <Name>AC_Pitch_StaticObject</Name>
 	<AnimLength>10</AnimLength>
@@ -381,7 +384,8 @@
 	</Animation>
 </PartInfo>
 
-<Animation name="FARP_REFUEL_MP" guid="379fad31-3008-44fd-96bf-b699516d2a02" type="Sim" typeParam="AutoPlay" />
+	<Animation name="FARP_REFUEL_MP" guid="379fad31-3008-44fd-96bf-b699516d2a02" type="Sim"
+		typeParam="AutoPlay" />
 <PartInfo>
     <Name>FARP_REFUEL_MP</Name>
     <Visibility>
@@ -395,7 +399,8 @@
 		</Parameter>
 		</Visibility>
 </PartInfo>
-<Animation name="FARP_REFUEL_TANK" guid="63d7b94e-ec18-48c9-a90c-0b8886a6eb0b" type="Sim" typeParam="AutoPlay" />
+	<Animation name="FARP_REFUEL_TANK" guid="63d7b94e-ec18-48c9-a90c-0b8886a6eb0b" type="Sim"
+		typeParam="AutoPlay" />
 <PartInfo>
     <Name>FARP_REFUEL_TANK</Name>
     <Visibility>
@@ -410,7 +415,8 @@
 		</Visibility>
 </PartInfo>
 
-<Animation name="RBF_Tags" guid="2a0f86ef-2791-4029-bab3-3b85dee548de" length="1" type="Sim" typeParam="AutoPlay" />
+	<Animation name="RBF_Tags" guid="2a0f86ef-2791-4029-bab3-3b85dee548de" length="1" type="Sim"
+		typeParam="AutoPlay" />
 <PartInfo>
     <Name>RBF_Tags</Name>
     <Visibility>
@@ -431,8 +437,8 @@
 </PartInfo>
 
 
-
-	<Animation name="WIPER_MOVE" guid="b436ca33-9a63-44ea-855f-4bd6f3049b0f" type="Sim" typeParam="AutoPlay" />
+	<Animation name="WIPER_MOVE" guid="b436ca33-9a63-44ea-855f-4bd6f3049b0f" type="Sim"
+		typeParam="AutoPlay" />
     <PartInfo>
         <Name>WIPER_MOVE</Name>
         <AnimLength>100</AnimLength>
@@ -452,7 +458,8 @@
         </Parameter>
         </Animation>
     </PartInfo>
-	<Animation name="Refuellight" guid="3e16dd94-4e75-4b77-b365-2ced234b3886" length="1" type="Sim" typeParam="AutoPlay" />
+	<Animation name="Refuellight" guid="3e16dd94-4e75-4b77-b365-2ced234b3886" length="1" type="Sim"
+		typeParam="AutoPlay" />
 	<PartInfo>
 	  <Name>Refuellight</Name>
 	  <AnimLength>1</AnimLength>
@@ -465,7 +472,8 @@
 		</Parameter>
 	  </Visibility>
 	</PartInfo>
-    <Animation name="LDG_C_EXTEND" guid="a82a6883-6623-4935-a8fa-4ab3330dbf5d" length="50" type="Sim"  typeParam="AutoPlay" />
+	<Animation name="LDG_C_EXTEND" guid="a82a6883-6623-4935-a8fa-4ab3330dbf5d" length="50"
+		type="Sim" typeParam="AutoPlay" />
     <PartInfo>
         <Name>LDG_C_EXTEND</Name>
         <AnimLength>50</AnimLength>
@@ -478,7 +486,8 @@
             </Parameter>
         </Animation>
     </PartInfo>
-    <Animation name="LDG_R_EXTEND" guid="33ec8256-6912-464a-b3b5-c9f63808e90e" length="50" type="Sim"  typeParam="AutoPlay" />
+	<Animation name="LDG_R_EXTEND" guid="33ec8256-6912-464a-b3b5-c9f63808e90e" length="50"
+		type="Sim" typeParam="AutoPlay" />
     <PartInfo>
         <Name>LDG_R_EXTEND</Name>
         <AnimLength>50</AnimLength>
@@ -490,8 +499,9 @@
 				<Lag>10</Lag>
             </Parameter>
         </Animation>
-    </PartInfo>   
-    <Animation name="LDG_L_EXTEND" guid="f6f99309-5020-4fd0-9e73-528bb2726d8b" length="50" type="Sim" typeParam="AutoPlay" />
+    </PartInfo>
+	<Animation name="LDG_L_EXTEND" guid="f6f99309-5020-4fd0-9e73-528bb2726d8b" length="50"
+		type="Sim" typeParam="AutoPlay" />
     <PartInfo>
         <Name>LDG_L_EXTEND</Name>
         <AnimLength>50</AnimLength>
@@ -503,9 +513,10 @@
 				<Lag>10</Lag>
             </Parameter>
         </Animation>
-    </PartInfo> 
-	
-	<Animation name="APU INLET DOOR" guid="ed10adc4-e2bd-485e-b68a-647402735b0c" type="Sim" typeParam="AutoPlay" />
+    </PartInfo>
+
+	<Animation name="APU INLET DOOR" guid="ed10adc4-e2bd-485e-b68a-647402735b0c" type="Sim"
+		typeParam="AutoPlay" />
     <PartInfo>
         <Name>APU INLET DOOR</Name>
         <AnimLength>100</AnimLength>
@@ -517,46 +528,47 @@
 				<Lag>8</Lag>
             </Parameter>
         </Animation>
-    </PartInfo>   
+    </PartInfo>
 
 	<Animation name="Rudder_Upper_Section" guid="9df437bd-9a84-4c5a-870d-ee277535cb70" type="Sim" typeParam="AutoPlay" />
-    <PartInfo>
-        <Name>Rudder_Upper_Section</Name>
-        <AnimLength>100</AnimLength>
-        <Animation>
-            <Parameter>
-				 <Code>
-					(A:SIM ON GROUND,bool) 0 == 
+	<PartInfo>
+		<Name>Rudder_Upper_Section</Name>
+		<AnimLength>100</AnimLength>
+		<Animation>
+			<Parameter>
+				<Code>
+					(A:SIM ON GROUND,bool) 1 ==
+					(A:AIRSPEED TRUE, knots) 15 &lt; and
 					if{
-					 (A:RUDDER DEFLECTION PCT, percent) 2 / 50 +
-					 } els{
-						50
+					50
+					} els{
+					(A:RUDDER DEFLECTION PCT, percent) 2 / 50 +
 					}
-                 </Code>
-				<Lag>70</Lag>
-            </Parameter>
-        </Animation>
-    </PartInfo>   
-	<Animation name="Rudder_Lower_Section" guid="46576a87-ffdc-4098-8800-4dc352fb6dd8" type="Sim" typeParam="AutoPlay" />
-    <PartInfo>
-        <Name>Rudder_Lower_Section</Name>
-        <AnimLength>100</AnimLength>
-        <Animation>
-            <Parameter>
-				 <Code>
-					(A:SIM ON GROUND,bool) 0 ==
-					(A:AIRSPEED INDICATED, knots) 30 &lt; and
+				</Code>
+				<Lag>80</Lag>
+			</Parameter>
+		</Animation>
+	</PartInfo>
+	<Animation name="Rudder_Lower_Section" guid="abfb6330-0bfe-4233-bd31-4760fa53e2aa" type="Sim" typeParam="AutoPlay" />
+	<PartInfo>
+		<Name>Rudder_Lower_Section</Name>
+		<AnimLength>100</AnimLength>
+		<Animation>
+			<Parameter>
+				<Code>
+					(A:SIM ON GROUND,bool) 1 ==
+					(A:AIRSPEED TRUE, knots) 15 &lt; and
 					if{
-					 (A:RUDDER DEFLECTION PCT, percent) 2 / 50 +
-					 } els{
+						(A:RUDDER DEFLECTION PCT, percent) 2 / neg 50 +
+					} els{
 						(A:RUDDER DEFLECTION PCT, percent) 2 / 50 +
 					}
 
-                 </Code>
-				<Lag>90</Lag>
-            </Parameter>
-        </Animation>
-    </PartInfo>
+				</Code>
+				<Lag>100</Lag>
+			</Parameter>
+		</Animation>
+	</PartInfo>
 	
     <Animation name="Aidrop_main" guid="ff3a42f8-abc2-4d9c-bae6-86d217abf46b" type="Sim" typeParam="AutoPlay" />
     <PartInfo>
@@ -754,7 +766,7 @@
 				</Parameter>
 			</Animation>
 		</PartInfo>
-<!-- REFUEL LIGHTS-->
+	<!-- REFUEL LIGHTS-->
 
 <Animation name="SLIMELIGHT" guid="c81d560e-cd12-4c98-af43-771a54fbef07" length="1" type="Sim" typeParam="AutoPlay" />
  <PartInfo>
@@ -787,7 +799,7 @@
 </PartInfo>
 
 
-<!-- HUMMER-TRIGGERED OVER 15K POUNDS-->
+	<!-- HUMMER-TRIGGERED OVER 15K POUNDS-->
 <Animation name="Humvee_VIS" guid="aee400df-2ac7-4525-9a75-c111e056aba9" length="1" type="Sim" typeParam="AutoPlay" />
 <PartInfo>
     <Name>Humvee_VIS</Name>
@@ -817,7 +829,7 @@
 	</Animation>
   </PartInfo>
 
-<!-- old code-->	  
+	<!-- old code-->	  
 <Animation name="doorfront" guid="bfe53d1d-7b4c-495f-84ec-586bcb249fbd" length="50" type="Sim" typeparam="AutoPlay" />
 	  <PartInfo>
 		  <Name>doorfront</Name>
