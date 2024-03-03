@@ -1,56 +1,23 @@
 {
     "elements": [
         {
-            "__uuid": "fd2303dc-e340-4fcc-8ede-dc372cefdb53",
-            "title": "Debug",
+            "__uuid": "3788a461-b9bc-400d-96fd-e220e68db88c",
+            "title": "WarningAT",
             "varPrefix": "L",
-            "varName": "C17_HUDDEBUG",
+            "varName": "C17_AT_warning",
             "varUnit": "number",
-            "style": {
-                "type": 1
-            }
-        },
-        {
-            "__uuid": "69d6d7dc-46b8-4129-980c-a6e314afbdb0",
-            "title": "Test Mode",
-            "varPrefix": "L",
-            "varName": "C17_HUD_TEST",
-            "varUnit": "bool",
             "style": {
                 "type": 3
             }
         },
         {
-            "__uuid": "b65aeb5e-da35-4073-b3b7-c35d6a6fa55f",
-            "title": "Power",
+            "__uuid": "d68e279d-f797-4532-b05b-e463063368b8",
+            "title": "AT POS",
             "varPrefix": "A",
-            "varName": "CIRCUIT ON:81",
+            "varName": "AUTOTHROTTLE ACTIVE",
             "varUnit": "number",
             "style": {
                 "type": 3
-            }
-        },
-        {
-            "__uuid": "4eb48084-2b37-446d-a54a-2d77799a8197",
-            "title": "HUD UP DOWN",
-            "varPrefix": "L",
-            "varName": "C17_HUD_DISABLE",
-            "varUnit": "number",
-            "style": {
-                "type": 3
-            }
-        },
-        {
-            "__uuid": "adc483c3-8254-41db-9e67-9147c3f0d9c6",
-            "title": "HUD MODE",
-            "varPrefix": "L",
-            "varName": "C17_HUD_CNTRL",
-            "varUnit": "number",
-            "style": {
-                "type": 2,
-                "min": 0,
-                "max": 4,
-                "step": 1
             }
         }
     ]

@@ -6,7 +6,6 @@ import { MemoryRouter, Route, Routes } from 'react-router';
 import { ButtonBar } from './Components/buttonBar/buttonBar';
 import { Map } from './Components/map/map';
 import { Aircraft } from './Components/Aircraft/aircraft';
-import Box from '@mui/material/Box';
 import { Checklist } from './Components/Checklist/checklist';
 import { Traditional } from './Components/Checklist/traditional/traditional';
 import { Emergency } from './Components/Checklist/emergency/emergency';

@@ -3,8 +3,8 @@
     src: url("/Fonts/BoeingFont.ttf") format("truetype");
 }
 @font-face {
-    font-family: 'state_wide_roughlight_italic';
-    src: url('/Fonts/alerting-webfont.ttf') format('truetype');
+    font-family: 'NewHUDAlert';
+    src: url('/Fonts/NewHUDAlert.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -19,7 +19,7 @@ text {
 }
 
 .textAlert {
-    font-family: "state_wide_roughlight_italic";
+    font-family: "NewHUDAlert";
     fill: #00cc00;
 }
 

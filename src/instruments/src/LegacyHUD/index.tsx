@@ -48,7 +48,7 @@ const HUD = () => {
                     <Horizon />
                     <FPV2 />
                     <Glideslope />
-
+                    <Annunciations />
 
                     <rect visibility={HUD_TEST_MODE ? 'visible' : 'hidden'} x={0} y={0} width={1170} height={1280} fill='#00000' />
                     <g visibility={HUD_TEST_MODE ? 'visible' : 'hidden'} >

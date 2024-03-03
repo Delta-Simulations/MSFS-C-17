@@ -8976,7 +8976,7 @@
 	const AURALS = () => {
 	  let [WacsFail, setWacsFail] = useSimVar('L:C17_ALERT_Wacs_Fail', 'bool');
 	  let [Avionics_PWR] = useSimVar('A:CIRCUIT ON:65', 'bool');
-	  let [Cargo_door] = useSimVar('L:C17_CargoDoor_POS', 'enum');
+	  useSimVar('L:C17_CargoDoor_POS', 'enum');
 	  let [Cargo_door_Sound, setCargoDoorSound] = useSimVar('L:C17_CargoDoor_Sound', 'bool');
 	  let [StabMotion, setStabMotion] = useSimVar('L:C17_STAB_MOTION', 'bool');
 	  useSimVar('A:ELEVATOR TRIM PCT', 'degrees');
@@ -8986,36 +8986,21 @@
 	  const isInitialRenderCargo = react.useRef(true);
 	  const isInitialRenderWacs = react.useRef(true);
 	  react.useEffect(() => {
-	    // Check if ATEngaged went from 1 to 0
 	    if (ATEngaged === false) {
-	      // Set ATWarning to true
 	      setThrrotleWarning(true);
-	      const delayA = 2000; // 2000 milliseconds = 2 second
-	      // Set a timer to reset ATWarning to false after 3 seconds
-
-	      const timerAT = setTimeout(() => {
-	        setThrrotleWarning(false);
-	      }, delayA); // Clear the timer when ATEngaged changes again or the component unmounts
-
-	      return () => clearTimeout(timerAT);
+	      const timeoutId = setTimeout(() => setThrrotleWarning(false), 2000);
+	      return () => clearTimeout(timeoutId);
 	    }
 	  }, [ATEngaged]);
+	  const [ThrrotleWarningValue, setThrrotleWarningValue] = useSimVar('L:C17_AT_warning', 'bool');
 	  react.useEffect(() => {
-	    // Check if Cargo_door changes
-	    if (!isInitialRenderCargo.current) {
-	      // Set Cargo_door_Sound to true when Cargo_door changes
-	      setCargoDoorSound(true); // Use setTimeout to reset Cargo_door_Sound to false after 5 seconds
-
-	      const timeoutId = setTimeout(() => {
-	        setCargoDoorSound(false);
-	      }, 5000); // 5000 milliseconds = 5 seconds
-	      // Cleanup the timer if the component unmounts or if Cargo_door changes
-
-	      return () => {
-	        clearTimeout(timeoutId);
-	      };
+	    // Check if ATEngaged changed from true to false
+	    if (ThrrotleWarningValue && !ThrrotleWarning) {
+	      setThrrotleWarning(true);
+	      const timeoutId = setTimeout(() => setThrrotleWarning(false), 2000);
+	      return () => clearTimeout(timeoutId);
 	    }
-	  }, [Cargo_door]);
+	  }, [ThrrotleWarningValue, ThrrotleWarning]);
 	  react.useEffect(() => {
 	    // Check if Avionics_PWR changes
 	    if (!isInitialRenderWacs.current && Avionics_PWR) {
@@ -9036,14 +9021,20 @@
 	  react.useEffect(() => {
 	    isInitialRenderWacs.current = false;
 	  }, []);
-	  return /*#__PURE__*/jsxRuntime.jsx("g", {
-	    children: /*#__PURE__*/jsxRuntime.jsx("text", {
+	  return /*#__PURE__*/jsxRuntime.jsxs("g", {
+	    children: [/*#__PURE__*/jsxRuntime.jsx("text", {
+	      x: 0,
+	      y: 50,
+	      fontSize: 100,
+	      fill: "white",
+	      children: ATEngaged
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
 	      x: 50,
 	      y: 50,
 	      fontSize: 100,
 	      fill: "white",
 	      children: ThrrotleWarning && ATEngaged && WacsFail && Cargo_door_Sound && StabMotion && ThrrotleWarning && ATEngaged
-	    })
+	    })]
 	  });
 	};
 

@@ -9443,6 +9443,35 @@
 	  });
 	};
 
+	const Annunciations = () => {
+	  let [IRU1] = useSimVar('L:C17_IRU1', 'bool');
+	  let [IRU2] = useSimVar('L:C17_IRU2', 'bool');
+	  let [IRU3] = useSimVar('L:C17_IRU3', 'bool');
+	  let [IRU4] = useSimVar('L:C17_IRU4', 'bool');
+	  let [Terrain_Caution] = useSimVar('L:C17_TERRAIN_FLYUP', 'bool');
+	  return /*#__PURE__*/jsxRuntime.jsxs("g", {
+	    children: [/*#__PURE__*/jsxRuntime.jsx("text", {
+	      visibility: IRU1 && IRU2 && IRU3 && IRU4 ? 'hidden' : 'visible',
+	      x: 585,
+	      y: 430,
+	      fontSize: 60,
+	      fill: "green",
+	      textAnchor: "middle",
+	      className: "textAlert",
+	      children: "DO NOT TAXI"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      visibility: Terrain_Caution ? 'visible' : 'hidden',
+	      x: 585,
+	      y: 430,
+	      fontSize: 60,
+	      fill: "green",
+	      textAnchor: "middle",
+	      className: "textAlert",
+	      children: "TERRAIN"
+	    })]
+	  });
+	};
+
 	const FPV2 = () => {
 	  const [velX] = useSimVar('A:VELOCITY BODY X', 'm/s');
 	  const [velY] = useSimVar('A:VELOCITY BODY Y', 'm/s');
@@ -9450,12 +9479,13 @@
 	  const [pitch] = useSimVar('A:PLANE PITCH DEGREES', 'Degrees');
 	  const [ias] = useSimVar('A:AIRSPEED INDICATED', 'Knots');
 	  const [onGround] = useSimVar('A:SIM ON GROUND', 'Boolean');
+	  useSimVar('L:FPVNUMBER', 'enum');
 	  const activeVert = !onGround;
 	  const ShowFPV = ias >= 60;
 	  const crabAnble = ShowFPV ? 180 / Math.PI * Math.atan2(velX, velZ) : 0;
 	  const pitchAngle = activeVert ? 180 / Math.PI * Math.atan2(velY, velZ) : 0;
-	  const dx = crabAnble * 28;
-	  const dy = -pitchAngle * 37;
+	  const dx = crabAnble * 40;
+	  const dy = -pitchAngle * 40;
 	  var [Cage_FPV] = useSimVar('L:C17_HUD_Cage', 'bool');
 	  let ShowCage = true;
 
@@ -9849,7 +9879,7 @@
 	          width: 1170,
 	          height: 1280,
 	          fill: "#00000"
-	        }), /*#__PURE__*/jsxRuntime.jsx(Altitude, {}), /*#__PURE__*/jsxRuntime.jsx(Stationary, {}), /*#__PURE__*/jsxRuntime.jsx(FlightDirector, {}), /*#__PURE__*/jsxRuntime.jsx(Horizon, {}), /*#__PURE__*/jsxRuntime.jsx(FPV2, {}), /*#__PURE__*/jsxRuntime.jsx(Glideslope, {}), /*#__PURE__*/jsxRuntime.jsx("rect", {
+	        }), /*#__PURE__*/jsxRuntime.jsx(Altitude, {}), /*#__PURE__*/jsxRuntime.jsx(Stationary, {}), /*#__PURE__*/jsxRuntime.jsx(FlightDirector, {}), /*#__PURE__*/jsxRuntime.jsx(Horizon, {}), /*#__PURE__*/jsxRuntime.jsx(FPV2, {}), /*#__PURE__*/jsxRuntime.jsx(Glideslope, {}), /*#__PURE__*/jsxRuntime.jsx(Annunciations, {}), /*#__PURE__*/jsxRuntime.jsx("rect", {
 	          visibility: HUD_TEST_MODE ? 'visible' : 'hidden',
 	          x: 0,
 	          y: 0,

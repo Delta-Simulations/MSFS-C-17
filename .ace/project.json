@@ -1,8 +1,0 @@
-{
-	"name": "C-17MSFS",
-	"paths": {
-		"instrumentSrc": "src\\instruments\\src",
-		"bundlesSrc": "bundles",
-		"htmlUiSrc": "PackageSources\\html_ui"
-	}
-}

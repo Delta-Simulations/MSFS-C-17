@@ -10,14 +10,15 @@ export const FPV2 = () => {
     const [pitch] = useSimVar('A:PLANE PITCH DEGREES', 'Degrees');
     const [ias] = useSimVar('A:AIRSPEED INDICATED', 'Knots');
     const [onGround] = useSimVar('A:SIM ON GROUND', 'Boolean');
+    const [FPVMultiplyer] = useSimVar('L:FPVNUMBER', 'enum');
 
     const activeVert = !onGround;
     const ShowFPV = ias >= 60;
 
     const crabAnble = ShowFPV ? (180/Math.PI)*(Math.atan2(velX, velZ)) : 0;
     const pitchAngle = activeVert ? (180/Math.PI)*(Math.atan2(velY, velZ)) : 0;
-    const dx = crabAnble * 28;
-    const dy = -pitchAngle * 37;
+    const dx = crabAnble * 40;
+    const dy = -pitchAngle * 40;
 
     var [Cage_FPV] = useSimVar('L:C17_HUD_Cage', 'bool')
 

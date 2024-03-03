@@ -19,39 +19,24 @@ export const AURALS = () => {
 const isInitialRenderCargo = useRef(true);
 const isInitialRenderWacs = useRef(true);
 
-useEffect(() => {
-  // Check if ATEngaged went from 1 to 0
-  if (ATEngaged === false) {
-    // Set ATWarning to true
-    setThrrotleWarning(true)
-    const delayA = 2000; // 2000 milliseconds = 2 second
-    // Set a timer to reset ATWarning to false after 3 seconds
-    const timerAT = setTimeout(() => {
-      setThrrotleWarning(false)
-    }, delayA)
 
-    // Clear the timer when ATEngaged changes again or the component unmounts
-    return () => clearTimeout(timerAT)
+useEffect(() => {
+  if (ATEngaged === false) {
+    setThrrotleWarning(true);
+    const timeoutId = setTimeout(() => setThrrotleWarning(false), 2000);
+    return () => clearTimeout(timeoutId);
   }
 }, [ATEngaged]);
 
+const [ThrrotleWarningValue, setThrrotleWarningValue] = useSimVar('L:C17_AT_warning', 'bool');
 useEffect(() => {
-  // Check if Cargo_door changes
-  if (!isInitialRenderCargo.current) {
-    // Set Cargo_door_Sound to true when Cargo_door changes
-    setCargoDoorSound(true);
-
-    // Use setTimeout to reset Cargo_door_Sound to false after 5 seconds
-    const timeoutId = setTimeout(() => {
-      setCargoDoorSound(false);
-    }, 5000); // 5000 milliseconds = 5 seconds
-
-    // Cleanup the timer if the component unmounts or if Cargo_door changes
-    return () => {
-      clearTimeout(timeoutId)
-    };
+  // Check if ATEngaged changed from true to false
+  if (ThrrotleWarningValue && !ThrrotleWarning) {
+    setThrrotleWarning(true);
+    const timeoutId = setTimeout(() => setThrrotleWarning(false), 2000);
+    return () => clearTimeout(timeoutId);
   }
-}, [Cargo_door]);
+}, [ThrrotleWarningValue, ThrrotleWarning]);
 
 useEffect(() => {
   // Check if Avionics_PWR changes
@@ -78,6 +63,9 @@ useEffect(() => {
 
   return (
       <g>
+
+<text x={0} y={50} fontSize={100} fill='white'>{ATEngaged}</text>
+
           <text x={50} y={50} fontSize={100} fill='white'>{ThrrotleWarning && ATEngaged && WacsFail && Cargo_door_Sound && StabMotion && ThrrotleWarning && ATEngaged}</text>
       </g>
   );
