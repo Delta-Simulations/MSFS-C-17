@@ -571,7 +571,7 @@
   </LEFT_SINGLE_CODE>
 </UseTemplate>
 
-<UseTemplate Name="DELTASIM_PushButton_Template">
+<!-- <UseTemplate Name="DELTASIM_PushButton_Template">
   <NODE_ID>PushButton_Stby_Att_Adjust_P_Cage</NODE_ID>
   <TOOLTIPID>CAGE</TOOLTIPID>
   <LEFT_SINGLE_CODE>
@@ -584,7 +584,7 @@
   <LEFT_SINGLE_CODE>
     (L:C17_Cpit_Cmpas_Pwr,bool) 0 &gt; if{ 1 (&gt;K:ATTITUDE_CAGE_BUTTON) }
   </LEFT_SINGLE_CODE>
-</UseTemplate>
+</UseTemplate> -->
 <UseTemplate Name="DELTASIM_Finite_Knob_Template">
   <NODE_ID>Knob_Stby_Att_Adjust_P</NODE_ID>
   <ANIM_CODE>
