@@ -1,0 +1,19 @@
+{
+  "name": "C-17",
+  "paths": {
+    "instruments": "C:\\Users\\Taco\\Documents\\Github\\aircraft\\MSFS-C-17\\Systems\\instruments",
+    "bundles": "C:\\Users\\Taco\\Documents\\Github\\aircraft\\MSFS-C-17\\bundles",
+    "html_ui": "C:\\Users\\Taco\\Documents\\Github\\aircraft\\MSFS-C-17\\PackageSources\\html_ui"
+  },
+  "elements": [
+    {
+      "uuid": "3cb3c8d8-0c04-4a56-8256-ff741726ba7a",
+      "name": "C17EFB",
+      "element": "Instrument",
+      "width": 1040,
+      "height": 810,
+      "x": 6180,
+      "y": 2600
+    }
+  ]
+}

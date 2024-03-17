@@ -1,24 +1,184 @@
-{
-    "elements": [
-        {
-            "__uuid": "3788a461-b9bc-400d-96fd-e220e68db88c",
-            "title": "WarningAT",
-            "varPrefix": "L",
-            "varName": "C17_AT_warning",
-            "varUnit": "number",
-            "style": {
-                "type": 3
-            }
-        },
-        {
-            "__uuid": "d68e279d-f797-4532-b05b-e463063368b8",
-            "title": "AT POS",
-            "varPrefix": "A",
-            "varName": "AUTOTHROTTLE ACTIVE",
-            "varUnit": "number",
-            "style": {
-                "type": 3
-            }
-        }
-    ]
-}
+[
+  {
+    "type": "L",
+    "name": "C17_EFB_PWR",
+    "index": 0,
+    "unit": "bool",
+    "value": 0.0,
+    "control": {
+      "type": "Slider",
+      "min": 0.0,
+      "max": 250.0
+    },
+    "pinned": null
+  },
+  {
+    "type": "L",
+    "name": "C17_RBF_TAGS",
+    "index": 0,
+    "unit": "bool",
+    "value": 0.0,
+    "control": {
+      "type": "Slider",
+      "min": 0.0,
+      "max": 250.0
+    },
+    "pinned": null
+  },
+  {
+    "type": "L",
+    "name": "C17_PARA_L",
+    "index": 0,
+    "unit": "bool",
+    "value": 0.0,
+    "control": {
+      "type": "Slider",
+      "min": 0.0,
+      "max": 250.0
+    },
+    "pinned": null
+  },
+  {
+    "type": "L",
+    "name": "C17_PARA_R",
+    "index": 0,
+    "unit": "bool",
+    "value": 0.0,
+    "control": {
+      "type": "Slider",
+      "min": 0.0,
+      "max": 250.0
+    },
+    "pinned": null
+  },
+  {
+    "type": "L",
+    "name": "C17_CargoDoor_POS",
+    "index": 0,
+    "unit": "enum",
+    "value": 0.0,
+    "control": {
+      "type": "Slider",
+      "min": 0.0,
+      "max": 250.0
+    },
+    "pinned": null
+  },
+  {
+    "type": "L",
+    "name": "C17_UARRSI_Slipway",
+    "index": 0,
+    "unit": "bool",
+    "value": 0.0,
+    "control": {
+      "type": "Slider",
+      "min": 0.0,
+      "max": 250.0
+    },
+    "pinned": null
+  },
+  {
+    "type": "L",
+    "name": "C17_Crew_Enterance",
+    "index": 0,
+    "unit": "bool",
+    "value": 0.0,
+    "control": {
+      "type": "Slider",
+      "min": 0.0,
+      "max": 250.0
+    },
+    "pinned": null
+  },
+  {
+    "type": "L",
+    "name": "C17_Radome_Open",
+    "index": 0,
+    "unit": "bool",
+    "value": 0.0,
+    "control": {
+      "type": "Slider",
+      "min": 0.0,
+      "max": 250.0
+    },
+    "pinned": null
+  },
+  {
+    "type": "A",
+    "name": "LIGHT PEDESTRAL",
+    "index": 0,
+    "unit": "bool",
+    "value": 0.0,
+    "control": {
+      "type": "Slider",
+      "min": 0.0,
+      "max": 250.0
+    },
+    "pinned": null
+  },
+  {
+    "type": "L",
+    "name": "C17_FARPSHOW",
+    "index": 0,
+    "unit": "bool",
+    "value": 0.0,
+    "control": {
+      "type": "Slider",
+      "min": 0.0,
+      "max": 250.0
+    },
+    "pinned": null
+  },
+  {
+    "type": "L",
+    "name": "C17_FARP_TANK",
+    "index": 0,
+    "unit": "bool",
+    "value": 0.0,
+    "control": {
+      "type": "Slider",
+      "min": 0.0,
+      "max": 250.0
+    },
+    "pinned": null
+  },
+  {
+    "type": "L",
+    "name": "C17_DevModeEFB",
+    "index": 0,
+    "unit": "bool",
+    "value": 0.0,
+    "control": {
+      "type": "Slider",
+      "min": 0.0,
+      "max": 250.0
+    },
+    "pinned": null
+  },
+  {
+    "type": "L",
+    "name": "C17_CARGO_LGT_MODE",
+    "index": 0,
+    "unit": "bool",
+    "value": 0.0,
+    "control": {
+      "type": "Slider",
+      "min": 0.0,
+      "max": 250.0
+    },
+    "pinned": null
+  },
+  {
+    "type": "L",
+    "name": "C17_GPU_Vis",
+    "index": 0,
+    "unit": "bool",
+    "value": 0.0,
+    "control": {
+      "type": "Slider",
+      "min": 0.0,
+      "max": 250.0
+    },
+    "pinned": null
+  }
+]

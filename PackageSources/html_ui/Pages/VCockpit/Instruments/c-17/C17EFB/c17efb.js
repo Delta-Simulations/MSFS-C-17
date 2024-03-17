@@ -1,4 +1,33 @@
-(() => {
+'use strict';
+/* global BaseInstrument */
+/* global registerInstrument */
+class InstrumentLogic extends BaseInstrument {
+    constructor() {
+        super();
+        let lastTime = this._lastTime;
+        this.getDeltaTime = () => {
+            const nowTime = Date.now();
+            const deltaTime = nowTime - lastTime;
+            lastTime = nowTime;
+            return deltaTime;
+        };
+    }
+
+    get templateID() {
+        return 'C17EFB';
+    }
+
+    get isInteractive() {
+        return true;
+    }
+
+    get IsGlassCockpit() {
+        return true;
+    }
+
+    connectedCallback() {
+        super.connectedCallback();
+        (() => {
   var __create = Object.create;
   var __defProp = Object.defineProperty;
   var __defProps = Object.defineProperties;
@@ -40278,3 +40307,19 @@ object-assign
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
+
+    }
+
+    Update() {
+        super.Update();
+        this.dispatchEvent(new CustomEvent('update', { detail: this.getDeltaTime() }));
+    }
+
+    onInteractionEvent(event) {
+        const eventName = String(event);
+        this.dispatchEvent(new CustomEvent(eventName));
+        this.dispatchEvent(new CustomEvent('*', { detail: eventName }));
+    }
+}
+
+registerInstrument('c-17-c17efb', InstrumentLogic);

@@ -2,3 +2,8 @@ Packages/
 PackagesMetadata/
 _PackageInt/
 node_modules/
+bundles
+.idea
+.vscode
+display-ref
+.env
