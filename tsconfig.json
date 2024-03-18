@@ -3,7 +3,6 @@
     "incremental": true,
     "target": "ES2017",
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": ".",
     "resolveJsonModule": true,
     "strictNullChecks": true,
     "strict": true,
@@ -13,14 +12,6 @@
     "typeRoots": ["./typings/", "./node_modules/@types", "./node_modules"],
     "types": ["sass"]
   },
-  "include": [
-    ".eslintrc.cjs",
-    "node_modules/@types",
-    "Systems/instruments/**/*.ts",
-    "Systems/instruments/**/*.tsx",
-    "Systems/instruments/common/**/*.ts",
-    "Systems/instruments/common/**/*.tsx",
-    "mach.config.js"
-  ],
+  "include": [".eslintrc.cjs", "node_modules/@types", "Systems", "mach.config.js"],
   "exclude": ["node_modules"]
 }

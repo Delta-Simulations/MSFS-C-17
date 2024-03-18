@@ -24,7 +24,8 @@ module.exports = {
     reactInstrument('EFB', null, true),
     reactInstrument('Systems', null, false),
     reactInstrument('READOUT', null, false),
-    reactInstrument('HUD', null, false)
+    reactInstrument('HUD', null, false),
+    reactInstrument('MFD', null, false)
   ]
 }
 

@@ -13,6 +13,7 @@ import { HUDPower } from '../Common/circuit'
 
 interface ElectricityProps {
   circuit: string | number
+  children: React.ReactNode
 }
 
 const Electricity: FC<ElectricityProps> = ({ circuit, children }) => {
