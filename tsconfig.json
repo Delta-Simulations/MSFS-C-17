@@ -6,6 +6,7 @@
     "baseUrl": ".",
     "resolveJsonModule": true,
     "strictNullChecks": true,
+    "strict": true,
     "moduleResolution": "node",
     "jsx": "react",
     "allowSyntheticDefaultImports": true,

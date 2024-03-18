@@ -14,7 +14,7 @@ class InstrumentLogic extends BaseInstrument {
     }
 
     get templateID() {
-        return 'C17EFB';
+        return 'EFB';
     }
 
     get isInteractive() {
@@ -30564,7 +30564,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
     }
   });
 
-  // Systems/instruments/C17EFB/index.tsx
+  // Systems/instruments/EFB/index.tsx
   var import_react16 = __toESM(require_react());
 
   // Systems/instruments/Hooks/index.tsx
@@ -31970,7 +31970,7 @@ The following color spaces are supported: srgb, display-p3, a98-rgb, prophoto-rg
     return routes;
   }
 
-  // Systems/instruments/C17EFB/Components/buttonBar/buttonBar.tsx
+  // Systems/instruments/EFB/Components/buttonBar/buttonBar.tsx
   var import_react7 = __toESM(require_react());
 
   // node_modules/@mui/material/colors/common.js
@@ -40386,7 +40386,7 @@ Please use another name.` : (0, import_formatMuiErrorMessage.default)(18));
     return matchPath(path.pathname, nextPath) != null || matchPath(path.pathname, currentPath) != null;
   }
 
-  // Systems/instruments/C17EFB/Components/ThemesEFB.tsx
+  // Systems/instruments/EFB/Components/ThemesEFB.tsx
   var ButtonColour = createTheme_default2({
     palette: {
       primary: {
@@ -40395,7 +40395,7 @@ Please use another name.` : (0, import_formatMuiErrorMessage.default)(18));
     }
   });
 
-  // Systems/instruments/C17EFB/Components/buttonBar/buttonBar.tsx
+  // Systems/instruments/EFB/Components/buttonBar/buttonBar.tsx
   var ButtonBar = () => {
     const location = useLocation();
     const tabs = [
@@ -40430,10 +40430,10 @@ Please use another name.` : (0, import_formatMuiErrorMessage.default)(18));
     )));
   };
 
-  // Systems/instruments/C17EFB/Components/Aircraft/aircraft.tsx
+  // Systems/instruments/EFB/Components/Aircraft/aircraft.tsx
   var import_react9 = __toESM(require_react());
 
-  // Systems/instruments/C17EFB/Components/Aircraft/Images.tsx
+  // Systems/instruments/EFB/Components/Aircraft/Images.tsx
   var import_react8 = __toESM(require_react());
   var Images = () => {
     let [GPU] = useSimVar("L:C17_GPU_Vis", "bool");
@@ -40560,7 +40560,7 @@ Please use another name.` : (0, import_formatMuiErrorMessage.default)(18));
     ));
   };
 
-  // Systems/instruments/C17EFB/Components/Aircraft/aircraft.tsx
+  // Systems/instruments/EFB/Components/Aircraft/aircraft.tsx
   var Aircraft = () => {
     let [removeTags, setremoveTags] = useSimVar("L:C17_RBF_TAGS", "bool");
     let [rearDoorL, setRearDoorL] = useSimVar("L:C17_PARA_L", "bool");
@@ -40781,7 +40781,7 @@ Please use another name.` : (0, import_formatMuiErrorMessage.default)(18));
     ));
   };
 
-  // Systems/instruments/C17EFB/Components/browser/browser.tsx
+  // Systems/instruments/EFB/Components/browser/browser.tsx
   var import_react10 = __toESM(require_react());
   var Browser = () => {
     return /* @__PURE__ */ import_react10.default.createElement(
@@ -40795,7 +40795,7 @@ Please use another name.` : (0, import_formatMuiErrorMessage.default)(18));
     );
   };
 
-  // Systems/instruments/C17EFB/Components/settings/settings.tsx
+  // Systems/instruments/EFB/Components/settings/settings.tsx
   var import_react11 = __toESM(require_react());
   var Settings = () => {
     let [DevModeEFB, setDevModeEFB] = useSimVar("L:C17_DevModeEFB", "bool");
@@ -40848,10 +40848,10 @@ Please use another name.` : (0, import_formatMuiErrorMessage.default)(18));
     ));
   };
 
-  // Systems/instruments/C17EFB/Components/PDF/PDF.tsx
+  // Systems/instruments/EFB/Components/PDF/PDF.tsx
   var import_react13 = __toESM(require_react());
 
-  // Systems/instruments/C17EFB/Components/PDF/getImageFromPDF.tsx
+  // Systems/instruments/EFB/Components/PDF/getImageFromPDF.tsx
   var import_react12 = __toESM(require_react());
   var GetImageFromPDF = (props) => {
     let page1Src = `/Images/FM/DeltaSim C17 MASTER_page-00${String(props.page).padStart(2, "0")}.jpg`;
@@ -40878,7 +40878,7 @@ Please use another name.` : (0, import_formatMuiErrorMessage.default)(18));
   };
   var getImageFromPDF_default = GetImageFromPDF;
 
-  // Systems/instruments/C17EFB/Components/PDF/PDF.tsx
+  // Systems/instruments/EFB/Components/PDF/PDF.tsx
   var MANUAL = () => {
     const [currentPage, setCurrentPage] = (0, import_react13.useState)(1);
     const [_2, forceReRender] = (0, import_react13.useReducer)((x) => x + 1, 0);
@@ -40962,10 +40962,10 @@ Please use another name.` : (0, import_formatMuiErrorMessage.default)(18));
     )));
   };
 
-  // Systems/instruments/C17EFB/Components/Cargo/Cargo.tsx
+  // Systems/instruments/EFB/Components/Cargo/Cargo.tsx
   var import_react15 = __toESM(require_react());
 
-  // Systems/instruments/C17EFB/Components/Cargo/CargoImages.tsx
+  // Systems/instruments/EFB/Components/Cargo/CargoImages.tsx
   var import_react14 = __toESM(require_react());
   var ImagesCargo = () => {
     let [GPU] = useSimVar("L:C17_GPU_Vis", "bool");
@@ -41007,7 +41007,7 @@ Please use another name.` : (0, import_formatMuiErrorMessage.default)(18));
     ));
   };
 
-  // Systems/instruments/C17EFB/Components/Cargo/Cargo.tsx
+  // Systems/instruments/EFB/Components/Cargo/Cargo.tsx
   var Cargo = () => {
     let [GPU] = useSimVar("L:C17_GPU_Vis", "bool");
     let [removeTags, setremoveTags] = useSimVar("L:C17_RBF_TAGS", "bool");
@@ -41101,7 +41101,7 @@ Please use another name.` : (0, import_formatMuiErrorMessage.default)(18));
     ));
   };
 
-  // Systems/instruments/C17EFB/index.tsx
+  // Systems/instruments/EFB/index.tsx
   var C17EFB = () => {
     return /* @__PURE__ */ import_react16.default.createElement(MemoryRouter, null, /* @__PURE__ */ import_react16.default.createElement("g", null, /* @__PURE__ */ import_react16.default.createElement("div", { className: "EFBContainer" }, /* @__PURE__ */ import_react16.default.createElement(Routes, null, /* @__PURE__ */ import_react16.default.createElement(Route, { path: "/", element: /* @__PURE__ */ import_react16.default.createElement(Aircraft, null) }), /* @__PURE__ */ import_react16.default.createElement(Route, { path: "/Browser", element: /* @__PURE__ */ import_react16.default.createElement(Browser, null) }), /* @__PURE__ */ import_react16.default.createElement(Route, { path: "/Cargo", element: /* @__PURE__ */ import_react16.default.createElement(Cargo, null) }), /* @__PURE__ */ import_react16.default.createElement(Route, { path: "/PDF", element: /* @__PURE__ */ import_react16.default.createElement(MANUAL, null) }), /* @__PURE__ */ import_react16.default.createElement(Route, { path: "/Settings", element: /* @__PURE__ */ import_react16.default.createElement(Settings, null) })), /* @__PURE__ */ import_react16.default.createElement(ButtonBar, null))));
   };
@@ -41251,4 +41251,4 @@ object-assign
     }
 }
 
-registerInstrument('c-17-c17efb', InstrumentLogic);
+registerInstrument('c-17-efb', InstrumentLogic);

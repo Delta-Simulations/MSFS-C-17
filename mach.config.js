@@ -20,7 +20,12 @@ module.exports = {
     }),
     sassPlugin()
   ],
-  instruments: [reactInstrument('C17EFB', null, true)]
+  instruments: [
+    reactInstrument('EFB', null, true),
+    reactInstrument('Systems', null, false),
+    reactInstrument('READOUT', null, false),
+    reactInstrument('HUD', null, false)
+  ]
 }
 
 function reactInstrument(name, additionalImports, isInteractive) {

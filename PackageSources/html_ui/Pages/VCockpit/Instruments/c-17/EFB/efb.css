@@ -1,0 +1,160 @@
+/* temp_stylePlugin:Systems\instruments\EFB\style.scss */
+@font-face {
+  font-family: "OCRB";
+  src: url(/Fonts/OcrB2.ttf) format("truetype");
+}
+@font-face {
+  font-family: "system-ui";
+  src: url(/Fonts/roboto.ttf) format("truetype");
+}
+text {
+  font-family: "system-ui";
+  fill: white;
+  font-size: 25px;
+}
+.EFBContainer {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 1040px;
+  height: 810px;
+  background-color: #22262a;
+  font-family: system-ui;
+}
+
+/* temp_stylePlugin:Systems\instruments\EFB\Components\Aircraft\aircraft.scss */
+.aircraftContainer {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 1040;
+  height: 810px;
+  background-position: right;
+  background-size: 80%;
+  background-repeat: no-repeat;
+}
+
+/* temp_stylePlugin:Systems\instruments\EFB\Components\settings\settings.scss */
+.settingsContainer {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 1040;
+  height: 810px;
+  background-position: right;
+  background-size: 80%;
+  background-repeat: no-repeat;
+}
+
+/* temp_stylePlugin:Systems\instruments\EFB\Components\PDF\pdf.scss */
+.invert {
+  -webkit-filter: invert(1);
+  filter: invert(1);
+}
+.pageDisplay {
+  position: absolute;
+  bottom: 60px;
+  font-size: 25px;
+  left: 0px;
+  text-align: center;
+  width: 100%;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  user-select: none;
+  color: white;
+}
+.invertButton {
+  position: absolute;
+  bottom: -5px;
+  right: 10px;
+}
+.pageButton,
+.previousPage,
+.nextPage {
+  opacity: 0.8;
+  transition: ease-in-out 0.3s;
+}
+.pageButton:hover,
+.previousPage:hover,
+.nextPage:hover {
+  opacity: 1;
+  transition: ease-in-out 0.3s;
+}
+.nextPage {
+  bottom: 45px;
+  left: 86%;
+}
+.previousPage {
+  position: absolute;
+  bottom: 45%;
+  left: 10px;
+}
+.PDFContainer {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 1040;
+  height: 810px;
+  background-position: right;
+  background-size: 80%;
+  background-repeat: no-repeat;
+}
+.bookmarkitem {
+  list-style: none;
+}
+.dropdown {
+  background-color: rgba(0, 0, 0, 0.2);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  position: absolute;
+  border-radius: 5px;
+  transition: ease-in-out 0.5s;
+  height: 500px;
+  width: 300px;
+  left: 570px;
+  top: -750px;
+  display: flex;
+  justify-content: center;
+  padding-right: 30px;
+  gap: 10px;
+}
+.bookmarkButton {
+  position: absolute;
+  top: -240px;
+  left: 900px;
+}
+.hidden {
+  transition: ease-in-out 0.5s;
+}
+.shown {
+  transform: translate(0px, 510px);
+  transition: ease-in-out 0.5s;
+}
+.bookmarkItemButton {
+  width: 300px;
+  border: none;
+  background-color: #2196f3;
+  border-radius: 5px;
+  color: white;
+  padding-top: 5;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  font-size: 15px;
+}
+.addToBookmarks {
+  position: absolute;
+  top: 5px;
+  left: 580px;
+}
+
+/* temp_stylePlugin:Systems\instruments\EFB\Components\Cargo\cargo.scss */
+.aircraftContainer {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 1040;
+  height: 810px;
+  background-position: right;
+  background-size: 80%;
+  background-repeat: no-repeat;
+}

@@ -14,6 +14,7 @@ import { WACAP_Warning } from './Components/WACAP_Warning'
 
 interface ElectricityProps {
   circuit: string | number
+  children: React.ReactNode
 }
 
 const Electricity: FC<ElectricityProps> = ({ circuit, children }) => {
@@ -28,7 +29,7 @@ const AP = () => {
   const [HUD_OVERLAY] = useSimVar('L:C17_HUDDEBUG', 'bool')
 
   return (
-    <Electricity circuit="81">
+    <Electricity circuit={81}>
       <svg viewBox="0 0 1024 1024">
         <rect x={0} y={0} width={1024} height={1024} fill="black" />
         <g>

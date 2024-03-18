@@ -16,18 +16,22 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import React from 'react';
-import { useSimVar } from '../../Hooks/simVars';
+import React, { type FC } from 'react'
+import { useSimVar } from '../../Hooks/simVars'
 
-export const Errors = (props) => {
+type T_ErrorsProps = {
+  height: number
+  error: string
+}
 
-    return(
-        <g>
-            <g>
-                <text x={76} y={160+props.height} fontSize={52} fill="yellow" textAnchor="left">
-                    {props.error}
-                </text>
-            </g>
-        </g>
-    )
-};
+export const Errors: FC<T_ErrorsProps> = (props: T_ErrorsProps) => {
+  return (
+    <g>
+      <g>
+        <text x={76} y={160 + props.height} fontSize={52} fill="yellow" textAnchor="left">
+          {props.error}
+        </text>
+      </g>
+    </g>
+  )
+}

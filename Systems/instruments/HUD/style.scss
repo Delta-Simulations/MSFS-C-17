@@ -3,13 +3,26 @@
     src: url("/Fonts/BoeingFont.ttf") format("truetype");
 }
 @font-face {
+    font-family: 'NewHUDAlert';
+    src: url('/Fonts/NewHUDAlert.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
     font-family: "Degrees";
     src: url("/Fonts/mono.ttf") format("truetype");
 }
 text {
     font-family: "OCRB";
-    fill: #2CE832;
+    fill: #00cc00;
 }
+
+.textAlert {
+    font-family: "NewHUDAlert";
+    fill: #00cc00;
+}
+
 .text {
     fill: white;
     text-anchor: end;
@@ -23,19 +36,26 @@ text {
 .degrees {
     font-family: "Degrees";
 }
-.readouts {
+.HUDIndiacted {
     font-style: 'italic';
 }
 
 .readouts {
-    stroke: #2CE832;
+    stroke: #00cc00;
 }
 .a{
     fill:none;
-    stroke:#2CE832;
-    stroke-width:1.5px;
+    stroke:#00cc00;
+    stroke-width:1.8px;
 }
 .a2{
     fill:none;
-    stroke:#2CE832;
+    stroke:#00cc00;
+    // 00cc00
+}
+
+.HUDAlt{
+width: 140px; 
+height: 430px; 
+opacity: 1;
 }

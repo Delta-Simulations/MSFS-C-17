@@ -7,6 +7,7 @@ export const Glideslope = () => {
     const [glide] = useSimVar('NAV GLIDE SLOPE ERROR', 'degrees')
     const [local] = useSimVar('NAV LOCALIZER', 'degrees')
     const [heading] = useSimVar('PLANE HEADING DEGREES TRUE', 'degrees')
+    const [APPRMode] = useSimVar('A:AUTOPILOT APPROACH ARM', 'bool')
 
     var glide2: number = glide;
     var loc2: number = local
@@ -25,11 +26,11 @@ export const Glideslope = () => {
 
 
     return(
-        <g>
+        <g visibility={APPRMode ? 'visible' : 'hidden'} >
             <g transform={`translate(127, 66), scale(0.7)`}>
                 <g transform={`translate(0, ${-glide2*15.5})`}>
                     <g transform={`translate(1165.5, 521), rotate(45)`}>
-                        <rect x={0} y={0} width={35} height={35} stroke='#2CE832' strokeWidth={3} fill='black'/>
+                        <rect x={0} y={0} width={35} height={35} className='readouts' strokeWidth={5}/>
                     </g>
                 </g>
                 <g>
@@ -38,7 +39,7 @@ export const Glideslope = () => {
                     <text x={1134} y={713} fontSize={110} fill='white' className='degrees'>°</text>
                     <text x={1134} y={813} fontSize={110} fill='white' className='degrees'>°</text>
                     
-                    <rect x={1148} y={535} width={35} height={22} stroke='#2CE832' strokeWidth={3} fill='none'/>
+                    <rect x={1148} y={535} width={35} height={22} className='readouts' strokeWidth={5}/>
                 </g>
             </g>
 
@@ -49,11 +50,11 @@ export const Glideslope = () => {
                     <text x={1134} y={713} fontSize={110} fill='white' className='degrees'>°</text>
                     <text x={1134} y={813} fontSize={110} fill='white' className='degrees'>°</text>
 
-                    <rect x={1148} y={533} width={35} height={22} stroke='#2CE832' strokeWidth={3} fill='black'/>
+                    <rect x={1148} y={533} width={35} height={22} className='readouts' strokeWidth={5}/>
                 </g>
                 <g transform={`translate(${(-loc2*15.5)}, 0)`}>
                     <g transform={`translate(644, 950), rotate(45)`}>
-                        <rect x={0} y={0} width={35} height={35} stroke='#2CE832' strokeWidth={3} fill='black'/>
+                        <rect x={0} y={0} width={35} height={35} className='readouts' strokeWidth={5}/>
                     </g>
                 </g>
             </g>
