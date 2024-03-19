@@ -1047,7 +1047,7 @@ class InstrumentLogic extends BaseInstrument {
             }
             return dispatcher.useContext(Context);
           }
-          function useState2(initialState) {
+          function useState3(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1059,7 +1059,7 @@ class InstrumentLogic extends BaseInstrument {
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect2(create, deps) {
+          function useEffect3(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1839,7 +1839,7 @@ class InstrumentLogic extends BaseInstrument {
           exports.useContext = useContext2;
           exports.useDebugValue = useDebugValue;
           exports.useDeferredValue = useDeferredValue;
-          exports.useEffect = useEffect2;
+          exports.useEffect = useEffect3;
           exports.useId = useId;
           exports.useImperativeHandle = useImperativeHandle;
           exports.useInsertionEffect = useInsertionEffect;
@@ -1847,7 +1847,7 @@ class InstrumentLogic extends BaseInstrument {
           exports.useMemo = useMemo;
           exports.useReducer = useReducer;
           exports.useRef = useRef2;
-          exports.useState = useState2;
+          exports.useState = useState3;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -2343,9 +2343,9 @@ class InstrumentLogic extends BaseInstrument {
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React5 = require_react();
+          var React14 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React5.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React14.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -3866,7 +3866,7 @@ class InstrumentLogic extends BaseInstrument {
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React5.Children.forEach(props.children, function(child) {
+                  React14.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -8038,17 +8038,17 @@ class InstrumentLogic extends BaseInstrument {
               node = node.parentNode;
             }
           }
-          function getNodeForCharacterOffset(root2, offset) {
+          function getNodeForCharacterOffset(root2, offset2) {
             var node = getLeafNode(root2);
             var nodeStart = 0;
             var nodeEnd = 0;
             while (node) {
               if (node.nodeType === TEXT_NODE) {
                 nodeEnd = nodeStart + node.textContent.length;
-                if (nodeStart <= offset && nodeEnd >= offset) {
+                if (nodeStart <= offset2 && nodeEnd >= offset2) {
                   return {
                     node,
-                    offset: offset - nodeStart
+                    offset: offset2 - nodeStart
                   };
                 }
                 nodeStart = nodeEnd;
@@ -12027,7 +12027,7 @@ class InstrumentLogic extends BaseInstrument {
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React5.Component().refs;
+          var emptyRefsObject = new React14.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -22944,7 +22944,7 @@ class InstrumentLogic extends BaseInstrument {
   });
 
   // Systems/instruments/MFD/index.tsx
-  var import_react4 = __toESM(require_react());
+  var import_react13 = __toESM(require_react());
 
   // Systems/instruments/Hooks/index.tsx
   var import_react3 = __toESM(require_react());
@@ -23113,6 +23113,25 @@ class InstrumentLogic extends BaseInstrument {
       children
     );
   };
+  var useSimVar = (name, unit, maxStaleness = 0) => {
+    const value = useSimVarValue(name, unit, maxStaleness);
+    const setter = useSimVarSetter(name, unit);
+    return [value, setter];
+  };
+  var useSimVarValue = (name, unit, maxStaleness) => {
+    const contextValue = (0, import_react2.useContext)(context);
+    (0, import_react2.useEffect)(() => {
+      contextValue.register(name, unit, maxStaleness, false);
+      return () => {
+        contextValue.unregister(name, unit, maxStaleness, false);
+      };
+    }, [name, unit, maxStaleness]);
+    return contextValue.retrieve(name, unit);
+  };
+  var useSimVarSetter = (name, unit, proxy) => {
+    const contextValue = (0, import_react2.useContext)(context);
+    return (value) => contextValue.update(name, unit, value, proxy);
+  };
 
   // Systems/instruments/Hooks/index.tsx
   var import_client = __toESM(require_client());
@@ -23121,11 +23140,215 @@ class InstrumentLogic extends BaseInstrument {
     root.render(/* @__PURE__ */ import_react3.default.createElement(SimVarProvider, null, Slot));
   };
 
+  // Systems/instruments/MFD/Pages/PFD/PFD.tsx
+  var import_react12 = __toESM(require_react());
+
+  // Systems/instruments/MFD/Pages/PFD/Components/PFDProvider.tsx/PFDProvider.tsx
+  var import_react11 = __toESM(require_react());
+
+  // Systems/instruments/MFD/Pages/PFD/Components/Heading/Heading.tsx
+  var import_react4 = __toESM(require_react());
+  var Heading = (props) => {
+    return /* @__PURE__ */ import_react4.default.createElement("g", null, /* @__PURE__ */ import_react4.default.createElement("rect", { x: 200, y: 690, opacity: 0.5, height: 100, width: 400, fill: "red" }));
+  };
+
+  // Systems/instruments/MFD/Pages/PFD/Components/Attitude/Attitude.tsx
+  var import_react5 = __toESM(require_react());
+  var Attitude = (props) => {
+    return /* @__PURE__ */ import_react5.default.createElement("g", null, /* @__PURE__ */ import_react5.default.createElement("rect", { x: 150, y: 74, width: 495, height: 590, fill: "white", opacity: 0.4 }));
+  };
+
+  // Systems/instruments/MFD/Pages/PFD/Components/Altitude/Altitude.tsx
+  var import_react6 = __toESM(require_react());
+  var Altitude = (props) => {
+    return /* @__PURE__ */ import_react6.default.createElement("g", null, /* @__PURE__ */ import_react6.default.createElement("rect", { x: 600, y: 100, width: 200, height: 560, fill: "yellow", opacity: 0.4 }));
+  };
+
+  // Systems/instruments/MFD/Pages/PFD/Components/Airspeed/Airspeed.tsx
+  var import_react10 = __toESM(require_react());
+
+  // Systems/instruments/MFD/Pages/PFD/Components/Airspeed/Components/AirspeedScroller.tsx
+  var import_react7 = __toESM(require_react());
+  var AirspeedScroller = (props) => {
+    return /* @__PURE__ */ import_react7.default.createElement("g", null, /* @__PURE__ */ import_react7.default.createElement(
+      "path",
+      {
+        d: "M 0,370 L 80 370 L 80 390 L 110 390 L 110 370 L 142 347 L 110 324 L 110 304 L 80 304 L 80 324 L 0 324",
+        stroke: "white",
+        strokeLinecap: "round",
+        strokeLinejoin: "round",
+        strokeWidth: 2
+      }
+    ));
+  };
+
+  // Systems/instruments/MFD/Pages/PFD/Components/Airspeed/Components/AirspeedTape.tsx
+  var import_react9 = __toESM(require_react());
+
+  // Systems/instruments/MFD/Pages/PFD/Components/Airspeed/Components/SelectedAirspeedBug.tsx
+  var import_react8 = __toESM(require_react());
+  var SelectedAirspeedBug = (props) => {
+    return /* @__PURE__ */ import_react8.default.createElement("g", { transform: `translate(${props.x},${props.y})` }, /* @__PURE__ */ import_react8.default.createElement(
+      "path",
+      {
+        d: `M 20, 0 L 2 15 L 20 30 ${!props.single && "M 30,0 L 12 15 L 30 30"}`,
+        stroke: "cyan",
+        fill: "transparent",
+        strokeLinecap: "round",
+        strokeWidth: 3,
+        strokeLinejoin: "round"
+      }
+    ));
+  };
+
+  // Systems/instruments/Common/util/CreateArray.ts
+  var createArray = (length) => {
+    const array = new Array(length);
+    for (let i = 0; i < length; i++) {
+      array[i] = i;
+    }
+    return array;
+  };
+
+  // Systems/instruments/MFD/Pages/PFD/Components/Airspeed/Components/AirspeedTape.tsx
+  var spacing = 5;
+  var offset = 348;
+  var SmallTick = (y) => {
+    let correctedYValue = y * spacing + offset;
+    if (y > 200)
+      correctedYValue = (y / 2.5 + 120) * spacing + offset;
+    return /* @__PURE__ */ import_react9.default.createElement(
+      "path",
+      {
+        d: `M 125, ${correctedYValue} L 140 ${correctedYValue}`,
+        stroke: "white",
+        strokeWidth: 3,
+        strokeLinecap: "round"
+      }
+    );
+  };
+  var zeroTickMarker = () => {
+    const correctedYValue = 20 * spacing + offset;
+    return /* @__PURE__ */ import_react9.default.createElement("g", null, /* @__PURE__ */ import_react9.default.createElement(
+      "path",
+      {
+        d: `M 112, ${correctedYValue} L 140 ${correctedYValue}`,
+        stroke: "white",
+        strokeWidth: 3,
+        strokeLinecap: "round"
+      }
+    ), /* @__PURE__ */ import_react9.default.createElement("text", { x: 100, letterSpacing: 3, fill: "white", y: correctedYValue + 10, fontSize: 34, textAnchor: "end" }, "0"));
+  };
+  var largeTickWithNumber = (y) => {
+    let correctedYValue = y * spacing + offset;
+    if (y > 200)
+      correctedYValue = (y / 2.5 + 120) * spacing + offset;
+    return /* @__PURE__ */ import_react9.default.createElement("g", null, /* @__PURE__ */ import_react9.default.createElement(
+      "path",
+      {
+        d: `M 112, ${correctedYValue} L 140 ${correctedYValue}`,
+        stroke: "white",
+        strokeWidth: 3,
+        strokeLinecap: "round"
+      }
+    ), /* @__PURE__ */ import_react9.default.createElement("text", { x: 100, letterSpacing: 3, fill: "white", y: correctedYValue + 10, fontSize: 34, textAnchor: "end" }, y));
+  };
+  var drawTick = (value) => {
+    if (value < 40 || value % 10 !== 0 && value % 20 !== 0) {
+      return /* @__PURE__ */ import_react9.default.createElement(import_react9.default.Fragment, null);
+    }
+    if (value >= 200 && value % 50 === 0) {
+      return largeTickWithNumber(value);
+    } else if (value < 200 && value % 20 === 0) {
+      return largeTickWithNumber(value);
+    } else if (value % 10 === 0) {
+      return SmallTick(value);
+    }
+    return /* @__PURE__ */ import_react9.default.createElement(import_react9.default.Fragment, null);
+  };
+  var AirspeedTape = (props) => {
+    const speedArray = createArray(451);
+    const zeroMarker = zeroTickMarker();
+    const tape = speedArray.map((value) => {
+      return drawTick(value);
+    });
+    const [translatedAirspeedValue, setTranslatedAirspeedValue] = (0, import_react9.useState)(0);
+    const [selectedAirspeedY, setSelectedAirspeedY] = (0, import_react9.useState)(0);
+    const [shouldTranslateBug, setShouldTranslateBug] = (0, import_react9.useState)(false);
+    const [translateAbove200, setTranslateAbove200] = (0, import_react9.useState)(false);
+    (0, import_react9.useEffect)(() => {
+      if (props.airspeed >= 200) {
+        setTranslatedAirspeedValue(props.airspeed / 2.5 + 120);
+        setTranslateAbove200(true);
+      } else if (props.airspeed >= 30) {
+        setTranslatedAirspeedValue(props.airspeed);
+        setTranslateAbove200(false);
+      } else {
+        setTranslatedAirspeedValue(20);
+        setTranslateAbove200(false);
+      }
+    }, [props.airspeed, translatedAirspeedValue]);
+    (0, import_react9.useEffect)(() => {
+      let selectedAirspeed = props.selectedAirspeed;
+      let above200Adjustment = 0;
+      let above200BelowAirspeedAdjustment = 0;
+      if (props.selectedAirspeed > 200) {
+        above200BelowAirspeedAdjustment = (selectedAirspeed - 200) / 1.6;
+        above200Adjustment = (selectedAirspeed - 200) / 1.7;
+      }
+      const difference = translatedAirspeedValue - props.selectedAirspeed;
+      if (difference >= 42 - above200BelowAirspeedAdjustment) {
+        setSelectedAirspeedY(offset - 45 * 5);
+        setShouldTranslateBug(false);
+      } else if (difference <= -43 - above200Adjustment) {
+        setSelectedAirspeedY(offset + 40 * 5);
+        setShouldTranslateBug(false);
+      } else {
+        if (props.selectedAirspeed > 200) {
+          setSelectedAirspeedY((props.selectedAirspeed / 2.5 + 120) * 5 + 333);
+          setShouldTranslateBug(true);
+        } else {
+          setSelectedAirspeedY(props.selectedAirspeed * 5 + 333);
+          setShouldTranslateBug(true);
+        }
+      }
+    }, [props.selectedAirspeed, props.airspeed, selectedAirspeedY]);
+    return /* @__PURE__ */ import_react9.default.createElement("g", null, /* @__PURE__ */ import_react9.default.createElement("defs", null, /* @__PURE__ */ import_react9.default.createElement("clipPath", { id: "AirspeedClip" }, /* @__PURE__ */ import_react9.default.createElement("rect", { x: 20, y: 140, width: 160, height: 425, fill: "white", opacity: 0.3 }))), /* @__PURE__ */ import_react9.default.createElement("g", { clipPath: "url(#AirspeedClip)" }, /* @__PURE__ */ import_react9.default.createElement("g", { transform: `translate(0, ${-translatedAirspeedValue * 5})` }, props.airspeed >= 30 && zeroMarker, tape)), shouldTranslateBug ? /* @__PURE__ */ import_react9.default.createElement("g", { transform: `translate(0, ${-translatedAirspeedValue * 5})` }, /* @__PURE__ */ import_react9.default.createElement(SelectedAirspeedBug, { single: true, x: 135, y: selectedAirspeedY })) : /* @__PURE__ */ import_react9.default.createElement(SelectedAirspeedBug, { x: 135, y: selectedAirspeedY }));
+  };
+
+  // Systems/instruments/MFD/Pages/PFD/Components/Airspeed/Airspeed.tsx
+  var Airspeed = (props) => {
+    return /* @__PURE__ */ import_react10.default.createElement("g", null, /* @__PURE__ */ import_react10.default.createElement(AirspeedTape, { airspeed: props.airspeed, selectedAirspeed: props.selectedAirspeed }), /* @__PURE__ */ import_react10.default.createElement(AirspeedScroller, { airspeed: props.airspeed }));
+  };
+
+  // Systems/instruments/MFD/Pages/PFD/Components/PFDProvider.tsx/PFDProvider.tsx
+  var PFDProvider = (props) => {
+    return /* @__PURE__ */ import_react11.default.createElement("svg", { viewBox: "0 0 800 800", className: "pfd-provider-svg" }, /* @__PURE__ */ import_react11.default.createElement(Heading, { heading: props.vars.heading, selectedHeading: props.vars.selectedHeading }), /* @__PURE__ */ import_react11.default.createElement(Attitude, { pitch: props.vars.pitch, bank: props.vars.bank }), /* @__PURE__ */ import_react11.default.createElement(Altitude, { altitude: props.vars.altitude, selectedAltitude: props.vars.selectedAltitude }), /* @__PURE__ */ import_react11.default.createElement(Airspeed, { airspeed: props.vars.airspeed, selectedAirspeed: props.vars.selectedAirspeed }));
+  };
+
+  // Systems/instruments/MFD/Pages/PFD/PFD.tsx
+  var PFD = () => {
+    const [airspeed] = useSimVar("AIRSPEED INDICATED", "knots");
+    const [selectedAirspeed] = useSimVar("L:C17_SELECTED_AIRSPEED", "knots");
+    const fillerData = {
+      airspeed,
+      altitude: 0,
+      heading: 0,
+      pitch: 0,
+      bank: 0,
+      slipSkid: 0,
+      selectedAirspeed,
+      selectedAltitude: 0,
+      selectedHeading: 0
+    };
+    return /* @__PURE__ */ import_react12.default.createElement(PFDProvider, { vars: fillerData });
+  };
+
   // Systems/instruments/MFD/index.tsx
   var MFD = () => {
-    return /* @__PURE__ */ import_react4.default.createElement("div", { className: "MFD" }, /* @__PURE__ */ import_react4.default.createElement("h1", null, "MFD"));
+    return /* @__PURE__ */ import_react13.default.createElement("div", { className: "MFD" }, /* @__PURE__ */ import_react13.default.createElement(PFD, null));
   };
-  render(/* @__PURE__ */ import_react4.default.createElement(MFD, null));
+  render(/* @__PURE__ */ import_react13.default.createElement(MFD, null));
 })();
 /**
  * @license React

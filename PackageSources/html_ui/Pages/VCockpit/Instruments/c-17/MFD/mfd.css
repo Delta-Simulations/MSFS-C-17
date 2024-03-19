@@ -1,1 +1,22 @@
 /* temp_stylePlugin:Systems\instruments\MFD\index.scss */
+.MFD {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 800px;
+  height: 800px;
+  color: white;
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+}
+
+/* temp_stylePlugin:Systems\instruments\MFD\Pages\PFD\Components\PFDProvider.tsx\PFDProvider.scss */
+.pfd-provider-svg {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 800px;
+  height: 800px;
+}
