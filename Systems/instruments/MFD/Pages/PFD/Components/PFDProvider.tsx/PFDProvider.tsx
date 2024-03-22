@@ -15,6 +15,7 @@ export type T_PFDVars = {
   selectedAirspeed: number
   selectedAltitude: number
   selectedHeading: number
+  useEnhanced: boolean
 }
 
 type T_PFDProviderProps = {
@@ -26,7 +27,11 @@ export const PFDProvider: FC<T_PFDProviderProps> = (props: T_PFDProviderProps): 
     <svg viewBox="0 0 800 800" className="pfd-provider-svg">
       <Heading heading={props.vars.heading} selectedHeading={props.vars.selectedHeading} />
       <Attitude pitch={props.vars.pitch} bank={props.vars.bank} />
-      <Altitude altitude={props.vars.altitude} selectedAltitude={props.vars.selectedAltitude} />
+      <Altitude
+        altitude={props.vars.altitude}
+        selectedAltitude={props.vars.selectedAltitude}
+        drawEnhanced={props.vars.useEnhanced}
+      />
       <Airspeed airspeed={props.vars.airspeed} selectedAirspeed={props.vars.selectedAirspeed} />
     </svg>
   )

@@ -1,14 +1,20 @@
 import React, { type FC } from 'react'
+import { AltitudeTape } from './Components/AltitudeTape'
 
 type T_AltitudeProps = {
   altitude: number
   selectedAltitude: number
+  drawEnhanced: boolean
 }
 
 export const Altitude: FC<T_AltitudeProps> = (props: T_AltitudeProps): JSX.Element => {
   return (
     <g>
-      <rect x={600} y={100} width={200} height={560} fill="yellow" opacity={0.4} />
+      <AltitudeTape
+        altitude={props.altitude}
+        selectedAltitude={props.selectedAltitude}
+        drawEnhanced={props.drawEnhanced}
+      />
     </g>
   )
 }
