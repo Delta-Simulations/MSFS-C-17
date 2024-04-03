@@ -8,40 +8,45 @@ type T_AltitudeTapeProps = {
   drawEnhanced: boolean
 }
 
-const spacing: number = 2
+const spacing: number = 2.0
 const offset: number = -0
-const enhancedSpacing: number = 9
+const enhancedSpacing: number = 9.9
+const additionalEnhancedOffset: number = 290
 
 // need to adjust the offset of the non enhanced markings dynamically based off the length of the selected altitude
 const SmallTick = (y: number, enhanced: boolean, selectedAltitude: number): JSX.Element => {
   let correctedY = enhanced ? y * enhancedSpacing + offset : y / spacing + offset
-  let correctedOffset = (selectedAltitude === 0 ? 5001 : selectedAltitude + 225) * enhancedSpacing + offset
+  const topOfEnhanced = getScopeOfEnhancedRes(selectedAltitude)
+  let correctedOffset =
+    (selectedAltitude === 0 ? 5001 : topOfEnhanced) * enhancedSpacing + offset + additionalEnhancedOffset
   let nonEnhancedY = y * spacing + correctedOffset / 1.285
   if (!enhanced) {
     return (
-      <path d={`M 650, ${-nonEnhancedY} L 680 ${-nonEnhancedY}`} stroke="white" strokeWidth={3} strokeLinecap="round" />
+      <path d={`M 648, ${-nonEnhancedY} L 663 ${-nonEnhancedY}`} stroke="white" strokeWidth={3} strokeLinecap="round" />
     )
   } else {
     return (
-      <path d={`M 650, ${-correctedY} L 680 ${-correctedY}`} stroke="white" strokeWidth={3} strokeLinecap="round" />
+      <path d={`M 648, ${-correctedY} L 663 ${-correctedY}`} stroke="white" strokeWidth={3} strokeLinecap="round" />
     )
   }
 }
 const largeTickWithNumber = (y: number, enhanced: boolean, selectedAltitude: number): JSX.Element => {
   let correctedY = enhanced ? y * enhancedSpacing + offset : y / spacing + offset
-  let correctedOffset = (selectedAltitude === 0 ? 5001 : selectedAltitude + 225) * enhancedSpacing + offset
+  const topOfEnhanced = getScopeOfEnhancedRes(selectedAltitude)
+  let correctedOffset =
+    (selectedAltitude === 0 ? 5001 : topOfEnhanced) * enhancedSpacing + offset + additionalEnhancedOffset
   let nonEnhancedY = y * spacing + correctedOffset / 1.285
 
   if (!enhanced) {
     return (
       <g>
         <path
-          d={`M 650, ${-nonEnhancedY} L 690 ${-nonEnhancedY}`}
+          d={`M 648, ${-nonEnhancedY} L 675 ${-nonEnhancedY}`}
           stroke="white"
           strokeWidth={3}
           strokeLinecap="round"
         />
-        <text x={700} letterSpacing={3} fill="red" y={-nonEnhancedY + 10} fontSize={34} textAnchor="start">
+        <text x={782} letterSpacing={3} fill="white" y={-nonEnhancedY + 10} fontSize={25} textAnchor="end">
           {y * 10}
         </text>
       </g>
@@ -49,8 +54,8 @@ const largeTickWithNumber = (y: number, enhanced: boolean, selectedAltitude: num
   } else {
     return (
       <g>
-        <path d={`M 650, ${-correctedY} L 690 ${-correctedY}`} stroke="white" strokeWidth={3} strokeLinecap="round" />
-        <text x={700} letterSpacing={3} fill="white" y={-correctedY + 10} fontSize={34} textAnchor="start">
+        <path d={`M 648, ${-correctedY} L 675 ${-correctedY}`} stroke="white" strokeWidth={3} strokeLinecap="round" />
+        <text x={782} letterSpacing={3} fill="white" y={-correctedY + 10} fontSize={25} textAnchor="end">
           {y * 10}
         </text>
       </g>
@@ -62,11 +67,18 @@ const getScopeOfEnhancedRes = (selectedAlt: number): number => {
   if (selectedAlt === 0) {
     return 5001
   } else {
-    return selectedAlt + 225
+    const enhancedRes = selectedAlt + 255
+    const roundedRes = Math.ceil(enhancedRes / 50) * 50 // only simple solution i could come up with to fix the blending issue with odd multiples (blending a 200 the next number being a 500)
+    return roundedRes
   }
 }
 
-const drawTick = (shouldDrawEnhanced: boolean, selectedAltitude: number, cvalue: number): JSX.Element => {
+const drawTick = (
+  shouldDrawEnhanced: boolean,
+  selectedAltitude: number,
+  cvalue: number,
+  skipNormalRange: boolean
+): JSX.Element => {
   let value = cvalue - 50
 
   let topOfEnhanced: number = getScopeOfEnhancedRes(selectedAltitude)
@@ -78,11 +90,14 @@ const drawTick = (shouldDrawEnhanced: boolean, selectedAltitude: number, cvalue:
     } else if (value % 2 === 0) {
       return SmallTick(value, true, selectedAltitude)
     } else return <></>
-  } else if (value % 50 === 0) {
-    return largeTickWithNumber(value, false, selectedAltitude)
-  } else if (value % 10 === 0) {
-    return SmallTick(value, false, selectedAltitude)
+  } else if (!skipNormalRange) {
+    if (value % 50 === 0) {
+      return largeTickWithNumber(value, false, selectedAltitude)
+    } else if (value % 10 === 0) {
+      return SmallTick(value, false, selectedAltitude)
+    }
   }
+
   return <></>
 }
 
@@ -104,10 +119,37 @@ export const AltitudeTape: FC<T_AltitudeTapeProps> = (props: T_AltitudeTapeProps
   const [tape, setTape] = useState<JSX.Element[]>([])
   useEffect(() => {
     const newTape = speedArray.map((value: number) => {
-      return drawTick(props.drawEnhanced, props.selectedAltitude / 10, value)
+      const skipNonEnhanced: boolean = getScopeOfEnhancedRes(props.selectedAltitude) === 5001
+
+      if (skipNonEnhanced) {
+        return drawTick(props.drawEnhanced, props.selectedAltitude / 10, value, true)
+      } else {
+        return drawTick(props.drawEnhanced, props.selectedAltitude / 10, value, false)
+      }
     })
     setTape(newTape)
   }, [props.selectedAltitude, props.drawEnhanced])
+
+  // dealing with the translation: going to set a const var that gets the top of the enhanced tape, if we are above the enhanced we will do the math for the translation in the enhanced region and get the final translation value for the top, then we can just add that to our new translation formula as an offset
+  const topOfEnhanced = getScopeOfEnhancedRes(props.selectedAltitude)
+  const getTranslation = (altitude: number, topOfEnhanced: number): number => {
+    let clampedAltitude = Math.min(altitude, 50010) // i fw ghetto ah solutions
+    let offset = 350
+    let enhancedFactor = 0.99
+    let normalFactor = 0.2
+    // translation in the enhanced region is literally almost 1 to 1 with the altitude
+    if (clampedAltitude <= topOfEnhanced * 10) {
+      return clampedAltitude * enhancedFactor + offset
+    } else if (clampedAltitude > topOfEnhanced * 10) {
+      let translationOffset = topOfEnhanced * enhancedFactor + offset
+      return clampedAltitude * normalFactor + translationOffset
+    } else {
+      console.error('failed to calculate altitude transformation')
+      return 0 // will just replace with failed altitude tape if this is returned
+    }
+  }
+
+  // damn, it works
 
   return (
     <g>
@@ -116,9 +158,8 @@ export const AltitudeTape: FC<T_AltitudeTapeProps> = (props: T_AltitudeTapeProps
           <rect x={640} y={140} width={160} height={425} fill="cyan" opacity={0.3} />
         </clipPath>
       </defs>
-      {/* <g clipPath="url(#AltitudeClip)"> */}
-      <g>
-        <g transform={`translate(0,${props.altitude})`}>{tape}</g>
+      <g clipPath="url(#AltitudeClip)">
+        <g transform={`translate(0,${getTranslation(props.altitude, topOfEnhanced)})`}>{tape}</g>
       </g>
     </g>
   )

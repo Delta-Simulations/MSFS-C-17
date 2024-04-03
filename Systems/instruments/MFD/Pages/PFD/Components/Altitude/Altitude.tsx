@@ -1,5 +1,6 @@
 import React, { type FC } from 'react'
 import { AltitudeTape } from './Components/AltitudeTape'
+import { AltitudeScroller } from './Components/AltitudeScroller'
 
 type T_AltitudeProps = {
   altitude: number
@@ -15,6 +16,7 @@ export const Altitude: FC<T_AltitudeProps> = (props: T_AltitudeProps): JSX.Eleme
         selectedAltitude={props.selectedAltitude}
         drawEnhanced={props.drawEnhanced}
       />
+      <AltitudeScroller altitude={props.altitude} />
     </g>
   )
 }

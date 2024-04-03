@@ -2343,9 +2343,9 @@ class InstrumentLogic extends BaseInstrument {
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React15 = require_react();
+          var React17 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React15.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React17.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -3866,7 +3866,7 @@ class InstrumentLogic extends BaseInstrument {
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React15.Children.forEach(props.children, function(child) {
+                  React17.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -12027,7 +12027,7 @@ class InstrumentLogic extends BaseInstrument {
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React15.Component().refs;
+          var emptyRefsObject = new React17.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -22944,7 +22944,7 @@ class InstrumentLogic extends BaseInstrument {
   });
 
   // Systems/instruments/MFD/index.tsx
-  var import_react14 = __toESM(require_react());
+  var import_react16 = __toESM(require_react());
 
   // Systems/instruments/Hooks/index.tsx
   var import_react3 = __toESM(require_react());
@@ -23141,10 +23141,10 @@ class InstrumentLogic extends BaseInstrument {
   };
 
   // Systems/instruments/MFD/Pages/PFD/PFD.tsx
-  var import_react13 = __toESM(require_react());
+  var import_react15 = __toESM(require_react());
 
   // Systems/instruments/MFD/Pages/PFD/Components/PFDProvider.tsx/PFDProvider.tsx
-  var import_react12 = __toESM(require_react());
+  var import_react14 = __toESM(require_react());
 
   // Systems/instruments/MFD/Pages/PFD/Components/Heading/Heading.tsx
   var import_react4 = __toESM(require_react());
@@ -23153,16 +23153,31 @@ class InstrumentLogic extends BaseInstrument {
   };
 
   // Systems/instruments/MFD/Pages/PFD/Components/Attitude/Attitude.tsx
+  var import_react6 = __toESM(require_react());
+
+  // Systems/instruments/MFD/Pages/PFD/Components/Attitude/Components/Horizon.tsx
   var import_react5 = __toESM(require_react());
+  var Horizon = () => {
+    return /* @__PURE__ */ import_react5.default.createElement("g", null, /* @__PURE__ */ import_react5.default.createElement("rect", { x: -4e3, y: -1e4, width: 8800, height: 10349, fill: "#0000fe" }), /* @__PURE__ */ import_react5.default.createElement("rect", { x: -4e3, y: 349, width: 8800, height: 1040, fill: "#986500" }));
+  };
+
+  // Systems/instruments/MFD/Pages/PFD/Components/Attitude/Attitude.tsx
   var Attitude = (props) => {
-    return /* @__PURE__ */ import_react5.default.createElement("g", null, /* @__PURE__ */ import_react5.default.createElement("rect", { x: 150, y: 74, width: 495, height: 590, fill: "white", opacity: 0.4 }));
+    return /* @__PURE__ */ import_react6.default.createElement("g", null, /* @__PURE__ */ import_react6.default.createElement("defs", null, /* @__PURE__ */ import_react6.default.createElement("clipPath", { id: "AttitudeClip" }, /* @__PURE__ */ import_react6.default.createElement(
+      "path",
+      {
+        d: "M 203 213 L 203 480 C 300 620, 500 620 600 480 L 600 213 C 500 75 ,300 75, 203 213",
+        stroke: "red",
+        fill: "none"
+      }
+    ))), /* @__PURE__ */ import_react6.default.createElement("g", { clipPath: "url(#AttitudeClip)" }, /* @__PURE__ */ import_react6.default.createElement(Horizon, null)));
   };
 
   // Systems/instruments/MFD/Pages/PFD/Components/Altitude/Altitude.tsx
-  var import_react7 = __toESM(require_react());
+  var import_react9 = __toESM(require_react());
 
   // Systems/instruments/MFD/Pages/PFD/Components/Altitude/Components/AltitudeTape.tsx
-  var import_react6 = __toESM(require_react());
+  var import_react7 = __toESM(require_react());
 
   // Systems/instruments/Common/util/CreateArray.ts
   var createArray = (length) => {
@@ -23176,43 +23191,48 @@ class InstrumentLogic extends BaseInstrument {
   // Systems/instruments/MFD/Pages/PFD/Components/Altitude/Components/AltitudeTape.tsx
   var spacing = 2;
   var offset = -0;
-  var enhancedSpacing = 9;
+  var enhancedSpacing = 9.9;
+  var additionalEnhancedOffset = 290;
   var SmallTick = (y, enhanced, selectedAltitude) => {
     let correctedY = enhanced ? y * enhancedSpacing + offset : y / spacing + offset;
-    let correctedOffset = (selectedAltitude === 0 ? 5001 : selectedAltitude + 225) * enhancedSpacing + offset;
+    const topOfEnhanced = getScopeOfEnhancedRes(selectedAltitude);
+    let correctedOffset = (selectedAltitude === 0 ? 5001 : topOfEnhanced) * enhancedSpacing + offset + additionalEnhancedOffset;
     let nonEnhancedY = y * spacing + correctedOffset / 1.285;
     if (!enhanced) {
-      return /* @__PURE__ */ import_react6.default.createElement("path", { d: `M 650, ${-nonEnhancedY} L 680 ${-nonEnhancedY}`, stroke: "white", strokeWidth: 3, strokeLinecap: "round" });
+      return /* @__PURE__ */ import_react7.default.createElement("path", { d: `M 648, ${-nonEnhancedY} L 663 ${-nonEnhancedY}`, stroke: "white", strokeWidth: 3, strokeLinecap: "round" });
     } else {
-      return /* @__PURE__ */ import_react6.default.createElement("path", { d: `M 650, ${-correctedY} L 680 ${-correctedY}`, stroke: "white", strokeWidth: 3, strokeLinecap: "round" });
+      return /* @__PURE__ */ import_react7.default.createElement("path", { d: `M 648, ${-correctedY} L 663 ${-correctedY}`, stroke: "white", strokeWidth: 3, strokeLinecap: "round" });
     }
   };
   var largeTickWithNumber = (y, enhanced, selectedAltitude) => {
     let correctedY = enhanced ? y * enhancedSpacing + offset : y / spacing + offset;
-    let correctedOffset = (selectedAltitude === 0 ? 5001 : selectedAltitude + 225) * enhancedSpacing + offset;
+    const topOfEnhanced = getScopeOfEnhancedRes(selectedAltitude);
+    let correctedOffset = (selectedAltitude === 0 ? 5001 : topOfEnhanced) * enhancedSpacing + offset + additionalEnhancedOffset;
     let nonEnhancedY = y * spacing + correctedOffset / 1.285;
     if (!enhanced) {
-      return /* @__PURE__ */ import_react6.default.createElement("g", null, /* @__PURE__ */ import_react6.default.createElement(
+      return /* @__PURE__ */ import_react7.default.createElement("g", null, /* @__PURE__ */ import_react7.default.createElement(
         "path",
         {
-          d: `M 650, ${-nonEnhancedY} L 690 ${-nonEnhancedY}`,
+          d: `M 648, ${-nonEnhancedY} L 675 ${-nonEnhancedY}`,
           stroke: "white",
           strokeWidth: 3,
           strokeLinecap: "round"
         }
-      ), /* @__PURE__ */ import_react6.default.createElement("text", { x: 700, letterSpacing: 3, fill: "red", y: -nonEnhancedY + 10, fontSize: 34, textAnchor: "start" }, y * 10));
+      ), /* @__PURE__ */ import_react7.default.createElement("text", { x: 782, letterSpacing: 3, fill: "white", y: -nonEnhancedY + 10, fontSize: 25, textAnchor: "end" }, y * 10));
     } else {
-      return /* @__PURE__ */ import_react6.default.createElement("g", null, /* @__PURE__ */ import_react6.default.createElement("path", { d: `M 650, ${-correctedY} L 690 ${-correctedY}`, stroke: "white", strokeWidth: 3, strokeLinecap: "round" }), /* @__PURE__ */ import_react6.default.createElement("text", { x: 700, letterSpacing: 3, fill: "white", y: -correctedY + 10, fontSize: 34, textAnchor: "start" }, y * 10));
+      return /* @__PURE__ */ import_react7.default.createElement("g", null, /* @__PURE__ */ import_react7.default.createElement("path", { d: `M 648, ${-correctedY} L 675 ${-correctedY}`, stroke: "white", strokeWidth: 3, strokeLinecap: "round" }), /* @__PURE__ */ import_react7.default.createElement("text", { x: 782, letterSpacing: 3, fill: "white", y: -correctedY + 10, fontSize: 25, textAnchor: "end" }, y * 10));
     }
   };
   var getScopeOfEnhancedRes = (selectedAlt) => {
     if (selectedAlt === 0) {
       return 5001;
     } else {
-      return selectedAlt + 225;
+      const enhancedRes = selectedAlt + 255;
+      const roundedRes = Math.ceil(enhancedRes / 50) * 50;
+      return roundedRes;
     }
   };
-  var drawTick = (shouldDrawEnhanced, selectedAltitude, cvalue) => {
+  var drawTick = (shouldDrawEnhanced, selectedAltitude, cvalue, skipNormalRange) => {
     let value = cvalue - 50;
     let topOfEnhanced = getScopeOfEnhancedRes(selectedAltitude);
     console.log(topOfEnhanced);
@@ -23222,45 +23242,83 @@ class InstrumentLogic extends BaseInstrument {
       } else if (value % 2 === 0) {
         return SmallTick(value, true, selectedAltitude);
       } else
-        return /* @__PURE__ */ import_react6.default.createElement(import_react6.default.Fragment, null);
-    } else if (value % 50 === 0) {
-      return largeTickWithNumber(value, false, selectedAltitude);
-    } else if (value % 10 === 0) {
-      return SmallTick(value, false, selectedAltitude);
+        return /* @__PURE__ */ import_react7.default.createElement(import_react7.default.Fragment, null);
+    } else if (!skipNormalRange) {
+      if (value % 50 === 0) {
+        return largeTickWithNumber(value, false, selectedAltitude);
+      } else if (value % 10 === 0) {
+        return SmallTick(value, false, selectedAltitude);
+      }
     }
-    return /* @__PURE__ */ import_react6.default.createElement(import_react6.default.Fragment, null);
+    return /* @__PURE__ */ import_react7.default.createElement(import_react7.default.Fragment, null);
   };
   var AltitudeTape = (props) => {
     const speedArray = createArray(5101);
-    const [tape, setTape] = (0, import_react6.useState)([]);
-    (0, import_react6.useEffect)(() => {
+    const [tape, setTape] = (0, import_react7.useState)([]);
+    (0, import_react7.useEffect)(() => {
       const newTape = speedArray.map((value) => {
-        return drawTick(props.drawEnhanced, props.selectedAltitude / 10, value);
+        const skipNonEnhanced = getScopeOfEnhancedRes(props.selectedAltitude) === 5001;
+        if (skipNonEnhanced) {
+          return drawTick(props.drawEnhanced, props.selectedAltitude / 10, value, true);
+        } else {
+          return drawTick(props.drawEnhanced, props.selectedAltitude / 10, value, false);
+        }
       });
       setTape(newTape);
     }, [props.selectedAltitude, props.drawEnhanced]);
-    return /* @__PURE__ */ import_react6.default.createElement("g", null, /* @__PURE__ */ import_react6.default.createElement("defs", null, /* @__PURE__ */ import_react6.default.createElement("clipPath", { id: "AltitudeClip" }, /* @__PURE__ */ import_react6.default.createElement("rect", { x: 640, y: 140, width: 160, height: 425, fill: "cyan", opacity: 0.3 }))), /* @__PURE__ */ import_react6.default.createElement("g", null, /* @__PURE__ */ import_react6.default.createElement("g", { transform: `translate(0,${props.altitude})` }, tape)));
+    const topOfEnhanced = getScopeOfEnhancedRes(props.selectedAltitude);
+    const getTranslation = (altitude, topOfEnhanced2) => {
+      let clampedAltitude = Math.min(altitude, 50010);
+      let offset3 = 350;
+      let enhancedFactor = 0.99;
+      let normalFactor = 0.2;
+      if (clampedAltitude <= topOfEnhanced2 * 10) {
+        return clampedAltitude * enhancedFactor + offset3;
+      } else if (clampedAltitude > topOfEnhanced2 * 10) {
+        let translationOffset = topOfEnhanced2 * enhancedFactor + offset3;
+        return clampedAltitude * normalFactor + translationOffset;
+      } else {
+        console.error("failed to calculate altitude transformation");
+        return 0;
+      }
+    };
+    return /* @__PURE__ */ import_react7.default.createElement("g", null, /* @__PURE__ */ import_react7.default.createElement("defs", null, /* @__PURE__ */ import_react7.default.createElement("clipPath", { id: "AltitudeClip" }, /* @__PURE__ */ import_react7.default.createElement("rect", { x: 640, y: 140, width: 160, height: 425, fill: "cyan", opacity: 0.3 }))), /* @__PURE__ */ import_react7.default.createElement("g", { clipPath: "url(#AltitudeClip)" }, /* @__PURE__ */ import_react7.default.createElement("g", { transform: `translate(0,${getTranslation(props.altitude, topOfEnhanced)})` }, tape)));
+  };
+
+  // Systems/instruments/MFD/Pages/PFD/Components/Altitude/Components/AltitudeScroller.tsx
+  var import_react8 = __toESM(require_react());
+  var AltitudeScroller = (props) => {
+    return /* @__PURE__ */ import_react8.default.createElement("g", null, /* @__PURE__ */ import_react8.default.createElement(
+      "path",
+      {
+        d: "M 800 304 L 740 304 L 740 324 L 670 324 L 646 348 L 670 372 L 740 372 L 740 392 L 800 392",
+        stroke: "white",
+        strokeLinecap: "round",
+        strokeLinejoin: "round",
+        strokeWidth: 2
+      }
+    ));
   };
 
   // Systems/instruments/MFD/Pages/PFD/Components/Altitude/Altitude.tsx
   var Altitude = (props) => {
-    return /* @__PURE__ */ import_react7.default.createElement("g", null, /* @__PURE__ */ import_react7.default.createElement(
+    return /* @__PURE__ */ import_react9.default.createElement("g", null, /* @__PURE__ */ import_react9.default.createElement(
       AltitudeTape,
       {
         altitude: props.altitude,
         selectedAltitude: props.selectedAltitude,
         drawEnhanced: props.drawEnhanced
       }
-    ));
+    ), /* @__PURE__ */ import_react9.default.createElement(AltitudeScroller, { altitude: props.altitude }));
   };
 
   // Systems/instruments/MFD/Pages/PFD/Components/Airspeed/Airspeed.tsx
-  var import_react11 = __toESM(require_react());
+  var import_react13 = __toESM(require_react());
 
   // Systems/instruments/MFD/Pages/PFD/Components/Airspeed/Components/AirspeedScroller.tsx
-  var import_react8 = __toESM(require_react());
+  var import_react10 = __toESM(require_react());
   var AirspeedScroller = (props) => {
-    return /* @__PURE__ */ import_react8.default.createElement("g", null, /* @__PURE__ */ import_react8.default.createElement(
+    return /* @__PURE__ */ import_react10.default.createElement("g", null, /* @__PURE__ */ import_react10.default.createElement(
       "path",
       {
         d: "M 0,370 L 80 370 L 80 390 L 110 390 L 110 370 L 142 347 L 110 324 L 110 304 L 80 304 L 80 324 L 0 324",
@@ -23273,12 +23331,12 @@ class InstrumentLogic extends BaseInstrument {
   };
 
   // Systems/instruments/MFD/Pages/PFD/Components/Airspeed/Components/AirspeedTape.tsx
-  var import_react10 = __toESM(require_react());
+  var import_react12 = __toESM(require_react());
 
   // Systems/instruments/MFD/Pages/PFD/Components/Airspeed/Components/SelectedAirspeedBug.tsx
-  var import_react9 = __toESM(require_react());
+  var import_react11 = __toESM(require_react());
   var SelectedAirspeedBug = (props) => {
-    return /* @__PURE__ */ import_react9.default.createElement("g", { transform: `translate(${props.x},${props.y})` }, /* @__PURE__ */ import_react9.default.createElement(
+    return /* @__PURE__ */ import_react11.default.createElement("g", { transform: `translate(${props.x},${props.y})` }, /* @__PURE__ */ import_react11.default.createElement(
       "path",
       {
         d: `M 20, 0 L 2 15 L 20 30 ${!props.single && "M 30,0 L 12 15 L 30 30"}`,
@@ -23298,7 +23356,7 @@ class InstrumentLogic extends BaseInstrument {
     let correctedYValue = y * spacing2 + offset2;
     if (y > 200)
       correctedYValue = (y / 2.5 + 120) * spacing2 + offset2;
-    return /* @__PURE__ */ import_react10.default.createElement(
+    return /* @__PURE__ */ import_react12.default.createElement(
       "path",
       {
         d: `M 125, ${correctedYValue} L 140 ${correctedYValue}`,
@@ -23310,7 +23368,7 @@ class InstrumentLogic extends BaseInstrument {
   };
   var zeroTickMarker = () => {
     const correctedYValue = 20 * spacing2 + offset2;
-    return /* @__PURE__ */ import_react10.default.createElement("g", null, /* @__PURE__ */ import_react10.default.createElement(
+    return /* @__PURE__ */ import_react12.default.createElement("g", null, /* @__PURE__ */ import_react12.default.createElement(
       "path",
       {
         d: `M 112, ${correctedYValue} L 140 ${correctedYValue}`,
@@ -23318,13 +23376,13 @@ class InstrumentLogic extends BaseInstrument {
         strokeWidth: 3,
         strokeLinecap: "round"
       }
-    ), /* @__PURE__ */ import_react10.default.createElement("text", { x: 100, letterSpacing: 3, fill: "white", y: correctedYValue + 10, fontSize: 34, textAnchor: "end" }, "0"));
+    ), /* @__PURE__ */ import_react12.default.createElement("text", { x: 100, letterSpacing: 3, fill: "white", y: correctedYValue + 10, fontSize: 34, textAnchor: "end" }, "0"));
   };
   var largeTickWithNumber2 = (y) => {
     let correctedYValue = y * spacing2 + offset2;
     if (y > 200)
       correctedYValue = (y / 2.5 + 120) * spacing2 + offset2;
-    return /* @__PURE__ */ import_react10.default.createElement("g", null, /* @__PURE__ */ import_react10.default.createElement(
+    return /* @__PURE__ */ import_react12.default.createElement("g", null, /* @__PURE__ */ import_react12.default.createElement(
       "path",
       {
         d: `M 112, ${correctedYValue} L 140 ${correctedYValue}`,
@@ -23332,11 +23390,11 @@ class InstrumentLogic extends BaseInstrument {
         strokeWidth: 3,
         strokeLinecap: "round"
       }
-    ), /* @__PURE__ */ import_react10.default.createElement("text", { x: 100, letterSpacing: 3, fill: "white", y: correctedYValue + 10, fontSize: 34, textAnchor: "end" }, y));
+    ), /* @__PURE__ */ import_react12.default.createElement("text", { x: 100, letterSpacing: 3, fill: "white", y: correctedYValue + 10, fontSize: 34, textAnchor: "end" }, y));
   };
   var drawTick2 = (value) => {
     if (value < 40 || value % 10 !== 0 && value % 20 !== 0) {
-      return /* @__PURE__ */ import_react10.default.createElement(import_react10.default.Fragment, null);
+      return /* @__PURE__ */ import_react12.default.createElement(import_react12.default.Fragment, null);
     }
     if (value >= 200 && value % 50 === 0) {
       return largeTickWithNumber2(value);
@@ -23345,7 +23403,7 @@ class InstrumentLogic extends BaseInstrument {
     } else if (value % 10 === 0) {
       return SmallTick2(value);
     }
-    return /* @__PURE__ */ import_react10.default.createElement(import_react10.default.Fragment, null);
+    return /* @__PURE__ */ import_react12.default.createElement(import_react12.default.Fragment, null);
   };
   var AirspeedTape = (props) => {
     const speedArray = createArray(451);
@@ -23353,11 +23411,11 @@ class InstrumentLogic extends BaseInstrument {
     const tape = speedArray.map((value) => {
       return drawTick2(value);
     });
-    const [translatedAirspeedValue, setTranslatedAirspeedValue] = (0, import_react10.useState)(0);
-    const [selectedAirspeedY, setSelectedAirspeedY] = (0, import_react10.useState)(0);
-    const [shouldTranslateBug, setShouldTranslateBug] = (0, import_react10.useState)(false);
-    const [translateAbove200, setTranslateAbove200] = (0, import_react10.useState)(false);
-    (0, import_react10.useEffect)(() => {
+    const [translatedAirspeedValue, setTranslatedAirspeedValue] = (0, import_react12.useState)(0);
+    const [selectedAirspeedY, setSelectedAirspeedY] = (0, import_react12.useState)(0);
+    const [shouldTranslateBug, setShouldTranslateBug] = (0, import_react12.useState)(false);
+    const [translateAbove200, setTranslateAbove200] = (0, import_react12.useState)(false);
+    (0, import_react12.useEffect)(() => {
       if (props.airspeed >= 200) {
         setTranslatedAirspeedValue(props.airspeed / 2.5 + 120);
         setTranslateAbove200(true);
@@ -23369,7 +23427,7 @@ class InstrumentLogic extends BaseInstrument {
         setTranslateAbove200(false);
       }
     }, [props.airspeed, translatedAirspeedValue]);
-    (0, import_react10.useEffect)(() => {
+    (0, import_react12.useEffect)(() => {
       let selectedAirspeed = props.selectedAirspeed;
       let above200Adjustment = 0;
       let above200BelowAirspeedAdjustment = 0;
@@ -23394,24 +23452,24 @@ class InstrumentLogic extends BaseInstrument {
         }
       }
     }, [props.selectedAirspeed, props.airspeed, selectedAirspeedY]);
-    return /* @__PURE__ */ import_react10.default.createElement("g", null, /* @__PURE__ */ import_react10.default.createElement("defs", null, /* @__PURE__ */ import_react10.default.createElement("clipPath", { id: "AirspeedClip" }, /* @__PURE__ */ import_react10.default.createElement("rect", { x: 20, y: 140, width: 160, height: 425, fill: "white", opacity: 0.3 }))), /* @__PURE__ */ import_react10.default.createElement("g", { clipPath: "url(#AirspeedClip)" }, /* @__PURE__ */ import_react10.default.createElement("g", { transform: `translate(0, ${-translatedAirspeedValue * 5})` }, props.airspeed >= 30 && zeroMarker, tape)), shouldTranslateBug ? /* @__PURE__ */ import_react10.default.createElement("g", { transform: `translate(0, ${-translatedAirspeedValue * 5})` }, /* @__PURE__ */ import_react10.default.createElement(SelectedAirspeedBug, { single: true, x: 135, y: selectedAirspeedY })) : /* @__PURE__ */ import_react10.default.createElement(SelectedAirspeedBug, { x: 135, y: selectedAirspeedY }));
+    return /* @__PURE__ */ import_react12.default.createElement("g", null, /* @__PURE__ */ import_react12.default.createElement("defs", null, /* @__PURE__ */ import_react12.default.createElement("clipPath", { id: "AirspeedClip" }, /* @__PURE__ */ import_react12.default.createElement("rect", { x: 20, y: 140, width: 160, height: 425, fill: "white", opacity: 0.3 }))), /* @__PURE__ */ import_react12.default.createElement("g", { clipPath: "url(#AirspeedClip)" }, /* @__PURE__ */ import_react12.default.createElement("g", { transform: `translate(0, ${-translatedAirspeedValue * 5})` }, props.airspeed >= 30 && zeroMarker, tape)), shouldTranslateBug ? /* @__PURE__ */ import_react12.default.createElement("g", { transform: `translate(0, ${-translatedAirspeedValue * 5})` }, /* @__PURE__ */ import_react12.default.createElement(SelectedAirspeedBug, { single: true, x: 135, y: selectedAirspeedY })) : /* @__PURE__ */ import_react12.default.createElement(SelectedAirspeedBug, { x: 135, y: selectedAirspeedY }));
   };
 
   // Systems/instruments/MFD/Pages/PFD/Components/Airspeed/Airspeed.tsx
   var Airspeed = (props) => {
-    return /* @__PURE__ */ import_react11.default.createElement("g", null, /* @__PURE__ */ import_react11.default.createElement(AirspeedTape, { airspeed: props.airspeed, selectedAirspeed: props.selectedAirspeed }), /* @__PURE__ */ import_react11.default.createElement(AirspeedScroller, { airspeed: props.airspeed }));
+    return /* @__PURE__ */ import_react13.default.createElement("g", null, /* @__PURE__ */ import_react13.default.createElement(AirspeedTape, { airspeed: props.airspeed, selectedAirspeed: props.selectedAirspeed }), /* @__PURE__ */ import_react13.default.createElement(AirspeedScroller, { airspeed: props.airspeed }));
   };
 
   // Systems/instruments/MFD/Pages/PFD/Components/PFDProvider.tsx/PFDProvider.tsx
   var PFDProvider = (props) => {
-    return /* @__PURE__ */ import_react12.default.createElement("svg", { viewBox: "0 0 800 800", className: "pfd-provider-svg" }, /* @__PURE__ */ import_react12.default.createElement(Heading, { heading: props.vars.heading, selectedHeading: props.vars.selectedHeading }), /* @__PURE__ */ import_react12.default.createElement(Attitude, { pitch: props.vars.pitch, bank: props.vars.bank }), /* @__PURE__ */ import_react12.default.createElement(
+    return /* @__PURE__ */ import_react14.default.createElement("svg", { viewBox: "0 0 800 800", className: "pfd-provider-svg" }, /* @__PURE__ */ import_react14.default.createElement(Heading, { heading: props.vars.heading, selectedHeading: props.vars.selectedHeading }), /* @__PURE__ */ import_react14.default.createElement(Attitude, { pitch: props.vars.pitch, bank: props.vars.bank }), /* @__PURE__ */ import_react14.default.createElement(
       Altitude,
       {
         altitude: props.vars.altitude,
         selectedAltitude: props.vars.selectedAltitude,
         drawEnhanced: props.vars.useEnhanced
       }
-    ), /* @__PURE__ */ import_react12.default.createElement(Airspeed, { airspeed: props.vars.airspeed, selectedAirspeed: props.vars.selectedAirspeed }));
+    ), /* @__PURE__ */ import_react14.default.createElement(Airspeed, { airspeed: props.vars.airspeed, selectedAirspeed: props.vars.selectedAirspeed }));
   };
 
   // Systems/instruments/MFD/Pages/PFD/PFD.tsx
@@ -23432,14 +23490,14 @@ class InstrumentLogic extends BaseInstrument {
       selectedHeading: 0,
       useEnhanced: true
     };
-    return /* @__PURE__ */ import_react13.default.createElement(PFDProvider, { vars: fillerData });
+    return /* @__PURE__ */ import_react15.default.createElement(PFDProvider, { vars: fillerData });
   };
 
   // Systems/instruments/MFD/index.tsx
   var MFD = () => {
-    return /* @__PURE__ */ import_react14.default.createElement("div", { className: "MFD" }, /* @__PURE__ */ import_react14.default.createElement(PFD, null));
+    return /* @__PURE__ */ import_react16.default.createElement("div", { className: "MFD" }, /* @__PURE__ */ import_react16.default.createElement(PFD, null));
   };
-  render(/* @__PURE__ */ import_react14.default.createElement(MFD, null));
+  render(/* @__PURE__ */ import_react16.default.createElement(MFD, null));
 })();
 /**
  * @license React
