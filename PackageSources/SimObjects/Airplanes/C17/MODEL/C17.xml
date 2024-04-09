@@ -156,9 +156,8 @@
 		</Component>
 		<Component ID="ENGINE">
 			<DefaultTemplateParameters>
-				<STILL_NODE_ID_COUNT>1</STILL_NODE_ID_COUNT>
-				<MIN_RPM_FOR_SLOW>300</MIN_RPM_FOR_SLOW>
-				<MIN_RPM_FOR_BLUR>9000</MIN_RPM_FOR_BLUR>
+				<MIN_RPM_FOR_SLOW>188</MIN_RPM_FOR_SLOW>
+				<MIN_RPM_FOR_BLUR>375</MIN_RPM_FOR_BLUR>
 			</DefaultTemplateParameters>
 			<UseTemplate Name="ASOBO_ENGINE_Turbine_Template">
 				<ID>1</ID>
@@ -741,30 +740,39 @@
 	  <PartInfo>
 			<Name>r_wing_flex</Name>
 			<AnimLength>100</AnimLength>
+			<Lag>70</Lag>
 			<Animation>
 				<Parameter>
-					<Sim>
-						<Variable>WING FLEX PCT:2</Variable>
-						<Scale>0.5</Scale>
-						<Units>percent</Units>
-						<Bias>50</Bias>
-					</Sim>
+				  <Code>
+					(A:WING FLEX PCT:2, percent) 0 &gt; 
+					if{
+					  (A:WING FLEX PCT:2, percent) 0.33 * 50 +
+				  } els{ 
+					  (A:WING FLEX PCT:2, percent) 0.5 * 50 +
+				  }
+					</Code>
 				</Parameter>
-			</Animation>
+			  </Animation>
 		</PartInfo>
 		<PartInfo>
 			<Name>l_wing_flex</Name>
 			<AnimLength>100</AnimLength>
+			<Lag>70</Lag>
 			<Animation>
 				<Parameter>
-					<Sim>
-						<Variable>WING FLEX PCT:1</Variable>
-						<Scale>0.5</Scale>
-						<Units>percent</Units>
-						<Bias>50</Bias>
-					</Sim>
+				  <Code>
+					  
+
+
+					  (A:WING FLEX PCT:1, percent) 0 &gt; 
+					  if{
+						(A:WING FLEX PCT:1, percent) 0.33 * 50 +
+					} els{ 
+						(A:WING FLEX PCT:1, percent) 0.5 * 50 +
+					}
+					</Code>
 				</Parameter>
-			</Animation>
+			  </Animation>
 		</PartInfo>
 	<!-- REFUEL LIGHTS-->
 

@@ -10,7 +10,7 @@
 
 <Template Name="Korry_Emmis_DELTASIM">
     <DefaultTemplateParameters>
-        <INTENSITY>1</INTENSITY>
+        <INTENSITY>40</INTENSITY>
         <ELEC_INDEX>65</ELEC_INDEX>
         <TRUECODE>0</TRUECODE>
         <TESTCODE>(L:C17_WACAP_Test, bool) 1 == or</TESTCODE>		
@@ -32,5 +32,106 @@
         </UseTemplate>
     </Component>
 </Template>
+<Template Name="Korry_Emmis_FuelPump_FlowLine_DELTASIM">
+    <DefaultTemplateParameters>
+        <INTENSITY>40</INTENSITY>
+        <ENG>1</ENG>
+        <POSITION>FWD</POSITION>
+        <ELEC_INDEX>65</ELEC_INDEX>
+        <TESTCODE>(L:C17_WACAP_Test, bool) 1 == or</TESTCODE>		
+    </DefaultTemplateParameters>
+    <Component ID="KORRY_#POSITION#_PUMP_ENG#ENG#" Node="KORRY_#POSITION#_PUMP_ENG#ENG#">
+        <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>KORRY_#POSITION#_PUMP_ENG#ENG#</NODE_ID>
+            <EMISSIVE_CODE>
+            (A:FUELSYSTEM PUMP ACTIVE:#INDEX#, bool) 1 ==
+            #TESTCODE#
+            (A:CIRCUIT ON:#ELEC_INDEX#,bool) 1 == and
+            
+            if{
+                #INTENSITY#
+            }else{0}
+
+            </EMISSIVE_CODE>
+        </UseTemplate>
+    </Component>
+</Template>
+
+<Template Name="Korry_Emmis_FuelValve_FlowLine_DELTASIM">
+    <DefaultTemplateParameters>
+        <INTENSITY>40</INTENSITY>
+        <ENG>1</ENG>
+        <POSITION>XFEED</POSITION>
+        <ELEC_INDEX>65</ELEC_INDEX>
+        <TESTCODE>(L:C17_WACAP_Test, bool) 1 == or</TESTCODE>		
+    </DefaultTemplateParameters>
+    <Component ID="KORRY_#POSITION#_VALVE_ENG#ENG#" Node="KORRY_#POSITION#_VALVE_ENG#ENG#">
+        <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>KORRY_#POSITION#_VALVE_ENG#ENG#</NODE_ID>
+            <EMISSIVE_CODE>
+            (A:FUELSYSTEM VALVE OPEN:#INDEX#, bool) 1 ==
+            #TESTCODE#
+            (A:CIRCUIT ON:#ELEC_INDEX#,bool) 1 == and
+            
+            if{
+                #INTENSITY#
+            }else{0}
+
+            </EMISSIVE_CODE>
+        </UseTemplate>
+    </Component>
+</Template>
+
+<Template Name="Korry_Emmis_FuelPump_Low_DELTASIM">
+    <DefaultTemplateParameters>
+        <INTENSITY>40</INTENSITY>
+        <ENG>1</ENG>
+        <POSITION>FWD</POSITION>
+        <INDEX>1</INDEX>
+        <ELEC_INDEX>65</ELEC_INDEX>
+        <TESTCODE>(L:C17_WACAP_Test, bool) 1 == or</TESTCODE>		
+    </DefaultTemplateParameters>
+    <Component ID="KORRY_#POSITION#_PUMP_LOW_ENG#ENG#" Node="KORRY_#POSITION#_PUMP_LOW_ENG#ENG#">
+        <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>KORRY_#POSITION#_PUMP_LOW_ENG#ENG#</NODE_ID>
+            <EMISSIVE_CODE>
+            (A:FUELSYSTEM LINE FUEL PRESSURE:#INDEX#, gph) 1500 &lt;
+            #TESTCODE#
+            (A:CIRCUIT ON:#ELEC_INDEX#,bool) 1 == and
+            
+            if{
+                #INTENSITY#
+            }else{0}
+
+            </EMISSIVE_CODE>
+        </UseTemplate>
+    </Component>
+</Template>
+
+<Template Name="Korry_Emmis_FuelValve_Disag_DELTASIM">
+    <DefaultTemplateParameters>
+        <INTENSITY>40</INTENSITY>
+        <ENG>1</ENG>
+        <POSITION>FWD</POSITION>
+        <ELEC_INDEX>65</ELEC_INDEX>
+        <TESTCODE>(L:C17_WACAP_Test, bool) 1 == or</TESTCODE>		
+    </DefaultTemplateParameters>
+    <Component ID="KORRY_#POSITION#_VALVE_DISAG_ENG#ENG#" Node="KORRY_#POSITION#_VALVE_DISAG_ENG#ENG#">
+        <UseTemplate Name="ASOBO_GT_Component_Emissive_Gauge">
+            <NODE_ID>KORRY_#POSITION#_VALVE_DISAG_ENG#ENG#</NODE_ID>
+            <EMISSIVE_CODE>
+            (A:FUELSYSTEM VALVE OPEN:#INDEX#, bool)  (A:FUELSYSTEM VALVE SWITCH:#INDEX#, bool) !=
+            #TESTCODE#
+            (A:CIRCUIT ON:#ELEC_INDEX#,bool) 1 == and 
+            if{
+                #INTENSITY#
+            }else{0}
+
+            </EMISSIVE_CODE>
+        </UseTemplate>
+    </Component>
+</Template>
+
+
 
 </ModelBehaviors>
