@@ -38,6 +38,10 @@ AudioAdfListen=False
 AudioAdf2Listen=False
 AvionicsSwitch=True
 
+[Loading]
+ImageName=../../Missions/LoadingFlight.png
+
+
 [Engine Parameters.1.0]
 ThrottleLeverPct=0
 PropellerLeverPct=1

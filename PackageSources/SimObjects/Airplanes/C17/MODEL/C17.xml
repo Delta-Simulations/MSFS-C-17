@@ -155,41 +155,23 @@
 			</UseTemplate>
 		</Component>
 		<Component ID="ENGINE">
-			<DefaultTemplateParameters>
-				<MIN_RPM_FOR_SLOW>188</MIN_RPM_FOR_SLOW>
-				<MIN_RPM_FOR_BLUR>375</MIN_RPM_FOR_BLUR>
-			</DefaultTemplateParameters>
-			<UseTemplate Name="ASOBO_ENGINE_Turbine_Template">
-				<ID>1</ID>
-				<ANIM_NODE_ID>N1_1_anim</ANIM_NODE_ID>
-				<ANIM_NAME>N1_1_anim</ANIM_NAME>
-				<STILL_NODE_ID>ENG_1_STILL_LEFT</STILL_NODE_ID>
-				<SLOW_NODE_ID>ENG_1_SLOW_LEFT</SLOW_NODE_ID>
-				<BLURRED_NODE_ID>ENG_1_BLURRED_LEFT</BLURRED_NODE_ID>
+
+
+			<UseTemplate Name="Turbine_Anim_DELTASIM">
+				<ENG_ID>1</ENG_ID>
+				<ANIM_NODE>Turbine_Blade_1</ANIM_NODE>
 			</UseTemplate>
-			<UseTemplate Name="ASOBO_ENGINE_Turbine_Template">
-				<ID>2</ID>
-				<ANIM_NODE_ID>N1_2_anim</ANIM_NODE_ID>
-				<ANIM_NAME>N1_2_anim</ANIM_NAME>
-				<STILL_NODE_ID>ENG_2_STILL_LEFT</STILL_NODE_ID>
-				<SLOW_NODE_ID>ENG_2_SLOW_LEFT</SLOW_NODE_ID>
-				<BLURRED_NODE_ID>ENG_2_BLURRED_LEFT</BLURRED_NODE_ID>
+			<UseTemplate Name="Turbine_Anim_DELTASIM">
+				<ENG_ID>2</ENG_ID>
+				<ANIM_NODE>Turbine_Blade_2</ANIM_NODE>
 			</UseTemplate>
-			<UseTemplate Name="ASOBO_ENGINE_Turbine_Template">
-				<ID>3</ID>
-				<ANIM_NODE_ID>N1_3_anim</ANIM_NODE_ID>
-				<ANIM_NAME>N1_3_anim</ANIM_NAME>
-				<STILL_NODE_ID>ENG_3_STILL_LEFT</STILL_NODE_ID>
-				<SLOW_NODE_ID>ENG_3_SLOW_LEFT</SLOW_NODE_ID>
-				<BLURRED_NODE_ID>ENG_3_BLURRED_LEFT</BLURRED_NODE_ID>
+			<UseTemplate Name="Turbine_Anim_DELTASIM">
+				<ENG_ID>3</ENG_ID>
+				<ANIM_NODE>Turbine_Blade_3</ANIM_NODE>
 			</UseTemplate>
-			<UseTemplate Name="ASOBO_ENGINE_Turbine_Template">
-				<ID>4</ID>
-				<ANIM_NODE_ID>N1_4_anim</ANIM_NODE_ID>
-				<ANIM_NAME>N1_4_anim</ANIM_NAME>
-				<STILL_NODE_ID>ENG_4_STILL_LEFT</STILL_NODE_ID>
-				<SLOW_NODE_ID>ENG_4_SLOW_LEFT</SLOW_NODE_ID>
-				<BLURRED_NODE_ID>ENG_4_BLURRED_LEFT</BLURRED_NODE_ID>
+			<UseTemplate Name="Turbine_Anim_DELTASIM">
+				<ENG_ID>4</ENG_ID>
+				<ANIM_NODE>Turbine_Blade_4</ANIM_NODE>
 			</UseTemplate>
 
 			<UseTemplate Name="ASOBO_ENGINE_Turbine_ReverseThrust_Template">

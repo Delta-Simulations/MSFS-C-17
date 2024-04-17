@@ -1,24 +1,76 @@
 <ModelBehaviors>
     <!-- CREATED FOR DELTA SIMULATION AIRCRAFT###################################### -->
-    <Include ModelBehaviorFile="Asobo\Common.xml"/> 
-    <Include ModelBehaviorFile="Asobo\Airliner\AirlinerCommon.xml"/>
-    <Include ModelBehaviorFile="Asobo\Airliner\Boeing.xml"/>
-    <Include ModelBehaviorFile="Asobo\Airliner\FMC.xml"/>
-    <Include ModelBehaviorFile="Asobo\Airliner\GlassCockpit.xml"/>
-    <Include ModelBehaviorFile="Asobo\Airliner\Airbus.xml"/>
+    <Include ModelBehaviorFile="Asobo\Common.xml" />
+    <Include ModelBehaviorFile="Asobo\Airliner\AirlinerCommon.xml" />
+    <Include ModelBehaviorFile="Asobo\Airliner\Boeing.xml" />
+    <Include ModelBehaviorFile="Asobo\Airliner\FMC.xml" />
+    <Include ModelBehaviorFile="Asobo\Airliner\GlassCockpit.xml" />
+    <Include ModelBehaviorFile="Asobo\Airliner\Airbus.xml" />
 
 
-<Template Name="Generic_Anim_DELTASIM">
-    <DefaultTemplateParameters>
-        <ANIM_LENGTH>100</ANIM_LENGTH>
-    </DefaultTemplateParameters>
-    <Component ID="#ANIM_NAME#">
-        <UseTemplate name="ASOBO_GT_Anim_Code">
-            <ANIM_NAME>#ANIM_NAME#</ANIM_NAME>
-            <ANIM_CODE>
-                #ANIM_CODE#
-            </ANIM_CODE>
-        </UseTemplate>
-    </Component>
-</Template>
+    <Template Name="Generic_Anim_DELTASIM">
+        <DefaultTemplateParameters>
+            <ANIM_LENGTH>100</ANIM_LENGTH>
+        </DefaultTemplateParameters>
+        <Component ID="#ANIM_NAME#">
+            <UseTemplate name="ASOBO_GT_Anim_Code">
+                <ANIM_NAME>#ANIM_NAME#</ANIM_NAME>
+                <ANIM_CODE>
+                    #ANIM_CODE#
+                </ANIM_CODE>
+            </UseTemplate>
+        </Component>
+    </Template>
+
+    <Template Name="Turbine_Anim_DELTASIM">
+        <DefaultTemplateParameters>
+            <ENG_ID>1</ENG_ID>
+            <MIN_RPM_FOR_SLOW>100</MIN_RPM_FOR_SLOW>
+            <MIN_RPM_FOR_BLUR>2000</MIN_RPM_FOR_BLUR>
+        </DefaultTemplateParameters>
+        <Component ID="#ANIM_NODE#">
+            <UseTemplate Name="ASOBO_GT_Anim">
+                <ANIM_NAME>#ANIM_NODE#</ANIM_NAME>
+                <ANIM_CODE>
+
+                    (A:GENERAL ENG RPM:#ENG_ID#, rpm) 5 &gt;
+                    if{
+                    (A:GENERAL ENG RPM:#ENG_ID#, degrees per second) (A:ANIMATION DELTA TIME, seconds) *
+                    } els{
+                    (A:AIRCRAFT WIND Z, knots) 5 / neg
+                    }
+
+                </ANIM_CODE>
+                <ANIM_LENGTH>360</ANIM_LENGTH>
+                <ANIM_WRAP>1</ANIM_WRAP>
+                <ANIM_DELTA>1</ANIM_DELTA>
+                <ANIM_LAG>90</ANIM_LAG>
+            </UseTemplate>
+        </Component>
+        <Component ID="ENGINE_Turbine_#ENG_ID#_STILL" Node="Still_Eng_Node_#ENG_ID#">
+            <UseTemplate Name="ASOBO_GT_Visibility">
+                <VISIBILITY_CODE>(A:GENERAL ENG RPM:#ENG_ID#, rpm) #MIN_RPM_FOR_SLOW# &lt;</VISIBILITY_CODE>
+            </UseTemplate>
+        </Component>
+
+        <Component ID="ENGINE_Turbine_#ENG_ID#_SLOW" Node="Slow_Eng_Node_#ENG_ID#">
+            <UseTemplate Name="ASOBO_GT_Visibility">
+                <VISIBILITY_CODE>
+                    (A:GENERAL ENG RPM:#ENG_ID#, rpm) #MIN_RPM_FOR_SLOW# &gt;
+                    (A:GENERAL ENG RPM:#ENG_ID#, rpm) #MIN_RPM_FOR_BLUR# &lt; and
+                </VISIBILITY_CODE>
+            </UseTemplate>
+        </Component>
+        <Component ID="ENGINE_Turbine_#ENG_ID#_FAN_STILL" Node="FanBlade_#ENG_ID#">
+            <UseTemplate Name="ASOBO_GT_Visibility">
+                <VISIBILITY_CODE>(A:GENERAL ENG RPM:#ENG_ID#, rpm) #MIN_RPM_FOR_BLUR# &lt;</VISIBILITY_CODE>
+            </UseTemplate>
+        </Component>
+        <Component ID="ENGINE_Turbine_#ENG_ID#_BLUR" Node="Blur_Eng_Node_#ENG_ID#">
+            <UseTemplate Name="ASOBO_GT_Visibility">
+                <VISIBILITY_CODE>(A:GENERAL ENG RPM:#ENG_ID#, rpm) #MIN_RPM_FOR_BLUR# &gt;</VISIBILITY_CODE>
+            </UseTemplate>
+        </Component>
+    </Template>
+
 </ModelBehaviors>

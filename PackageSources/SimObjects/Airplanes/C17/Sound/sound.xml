@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
-<SoundInfo Version="0.1">
+<SoundInfo Version="1">
 
 	<WwisePackages>
 		<MainPackage Name="DeltaSim_C17"/>
 	</WwisePackages>
 
    <AcousticParameters>
-      <Parameter Name="ReverberationPreset" ShareSetInside="rev_inside_default"/>
-      <Parameter Name="Insulation_ExitClosed" Value="-402"/>
-      <Parameter Name="Insulation_ExitOpen" Value="-12"/>
+      <!-- <Parameter Name="ReverberationPreset" ShareSetInside="rev_inside_default"/> -->
+      <Parameter Name="Insulation_ExitClosed" Value="-40"/>
+      <Parameter Name="Insulation_ExitOpen" Value="-40"/>
   </AcousticParameters>
   
+
+
 <EngineSoundStates>
 	<!--Combustion ===================================-->
 	<Sound WwiseData="true" WwiseEvent="Intake1Ext" EngineIndex="1" RPMMin="200" StateOff="false" StateStart="true" StateOn="true"   ConeHeading="0"> 
@@ -68,11 +70,10 @@
 		<WwiseRTPC SimVar="TURB ENG REVERSE NOZZLE PERCENT" Units="PERCENT" Index="3" RTPCName="SIMVAR_TURB_ENG_REVERSE_NOZZLE_PERCENT"/>
 	</Sound>
 
-	<Sound WwiseData="true" WwiseEvent="Starter1Ext" EngineIndex="1"  StateOff="false" StateStart="true" StateOn="false"/>
-
-	<Sound WwiseEvent="Shutdown" ConeHeading="0" RPMMin="675" WwiseData="true" EngineIndex="1"/>
-	
-	<Sound WwiseEvent="Starter" ConeHeading="0" RPMMin="675" WwiseData="true" EngineIndex="1"/>
+	<Sound WwiseData="true" WwiseEvent="eng1_starter" EngineIndex="1" StateOff="false" StateStart="true" StateOn="false" ConeHeading="0"> 
+        <WwiseRTPC SimVar="TURB ENG N1" Units="PERCENT" Index="1" RTPCName="SIMVAR_TURB_ENG_N1"/>
+		<WwiseRTPC SimVar="GENERAL ENG STARTER ACTIVE" Units="Bool" Index="1" RTPCName="SIMVAR_GENERAL_ENG_STARTER"/>
+	</Sound>
 
     
 
@@ -81,6 +82,12 @@
 <!-- SimvarSounds ========================================================================================== --> 
 
 <SimVarSounds>
+
+    <!-- <Sound WwiseEvent="eng1_starter" WwiseData="true" SimVar="GENERAL ENG STARTER ACTIVE" ConeHeading="0" Units="Bool" Index="1" NodeName="C-17_Engine_1_Dummy" >
+        <WwiseRTPC SimVar="GENERAL ENG STARTER ACTIVE" Units="Bool" Index="1" RTPCName="SIMVAR_GENERAL_ENG_STARTER" />
+        <Range LowerBound="1.0" /> 
+    </Sound> -->
+
 
     <Sound WwiseData="true" WwiseEvent="APU_Idle" ConeHeading="180" ViewPoint="Both" NodeName="APU_Inlet" SimVar="APU PCT RPM" Units="PERCENT" Index="0" FadeOutType="2" FadeOutTime="0.5">
 		<WwiseRTPC SimVar="APU PCT RPM" Units="PERCENT" Index="0" RTPCName="SIMVAR_APU_PCT_RPM" />

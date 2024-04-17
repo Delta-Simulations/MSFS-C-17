@@ -9,8 +9,6 @@ import { AuralPower } from '../Common/circuit';
 
 const Systems = () => {
 
-
-
     return(
     <AuralPower>
             <svg viewBox='0 0 500 500'>
