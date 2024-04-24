@@ -18,13 +18,33 @@ export const Altitude = () => {
     INDalt = Math.floor(INDalt*100)/100;
 
     let [UseRAalt] = useSimVar('L:C17_HUD_RaBa', 'bool')
+    let [AltRef_RABA] = useSimVar('L:C17_Alt_RaBARO_P', 'bool')
 
+    
     let IndicatedALT: number;
     if (UseRAalt === 1) {
       IndicatedALT = RADalt;
     } else {
       IndicatedALT = INDalt;
     }
+    let [AltRef_Set] = useSimVar('L:C17_Alt_Set_P', 'feet')
+    let [AltRefMode] = useSimVar('L:C17_Alt_Ref_P', 'enum')
+
+    const altitudeSetMode = AltRefMode ? "R" : "B";
+    let modeLabel;
+    switch (AltRefMode) {
+        case 0:
+          modeLabel = "M";
+          break;
+        case 1:
+          modeLabel = "T";
+          break;
+        case 2:
+          modeLabel = "D";
+          break;
+        default:
+          modeLabel = "";
+      }
 
     return(
         <g  > 
@@ -38,9 +58,17 @@ export const Altitude = () => {
                     <rect x={5} y={220} width={1154} height={440} fill='white'/>
                 </clipPath>
 
-                <g visibility={DCLT ? 'hidden' : 'visible'} clipPath='url(#Alt)'>
-                    <g transform={`scale(1.3) translate(10 ${IndicatedALT/8.35-6956})`}  > 
-                        <image xlinkHref="/Images/HUD_ALT_strip.jpg" width={92} height={7443} x={765} y={0}/>
+                <g  clipPath='url(#Alt)' >
+                    <g transform={`translate(0 ${IndicatedALT / 6.412})`} >
+                        <g visibility={DCLT ? 'hidden' : 'visible'} transform={`scale(1.3) translate(10 -6956)`}  >
+                            <image xlinkHref="/Images/HUD_ALT_strip.jpg" width={92} height={7443} x={765} y={0} />
+                        </g>
+
+                        <g visibility={AltRef_RABA !== UseRAalt || DCLT === 1 || AltRef_Set === 0 ? 'hidden' : 'visible'} transform={`translate(0 ${-AltRef_Set / 6.412})`} >
+                        <line className='readouts' x1="990" y1="448" x2="1070" y2="448" strokeWidth={3.5} />
+                        <text x={990} y={459} fontSize={32} textAnchor="end">{modeLabel}</text>
+
+                        </g>
                     </g>
                 </g>
 
@@ -58,11 +86,14 @@ export const Altitude = () => {
                 <g transform={`translate(${-9*HDG} 0) scale(1.5)`}> 
                     <image xlinkHref="/Images/HUD_HDG_strip.jpg" width={2620} height={48} x={192} y={720}/>
                 </g>
+                
             </g>
+
 
             <g transform={`translate(-54, 960) `}>
                 <polygon points='625,85 640,124 655,85' className='readouts' strokeWidth={3} fill='none'/>
             </g>
+
         </g>
     )
 };

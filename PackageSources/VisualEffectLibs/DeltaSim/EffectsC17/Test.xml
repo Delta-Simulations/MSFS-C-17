@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<SimBase.Document Type="AceXML" version="1,0">
+    <Descr>AceXML Document</Descr>
+    <WorldBase.Flight>
+        <VisualEffect.VisualEffect InstanceId="{D2780FF8-9B98-4A66-AB61-511091DBE847}">
+            <EmitterList>
+                <ObjectReference InstanceId="{BE77F90F-6F15-4B2A-9B17-A9439E9A7586}" id="Emitter"/>
+            </EmitterList>
+        </VisualEffect.VisualEffect>
+        <VisualEffect.Emitter InstanceId="{BE77F90F-6F15-4B2A-9B17-A9439E9A7586}">
+            <ParticleRate>{D21F1CCA-E920-4432-93E6-409FA51CD95D}, 100.000000</ParticleRate>
+            <Capacity>2000.000</Capacity>
+            <MaxDistanceEmission>600.000</MaxDistanceEmission>
+            <ParticleInit>
+                <ObjectReference InstanceId="{87B184BB-C754-43E6-9914-138C9640E033}" id="BlockParticleInit"/>
+            </ParticleInit>
+        </VisualEffect.Emitter>
+        <VisualEffect.BlockParticleInit InstanceId="{87B184BB-C754-43E6-9914-138C9640E033}">
+            <ParticleUpdate>
+                <ObjectReference InstanceId="{31B495DE-172C-49F7-98AE-73025E030F82}" id="BlockParticleUpdate"/>
+            </ParticleUpdate>
+            <ParticleLifetime>
+                <FloatIn>{00000000-0000-0000-0000-000000000000}, 5.000000</FloatIn>
+            </ParticleLifetime>
+            <ParticleSize>
+                <FloatIn>{00000000-0000-0000-0000-000000000000}, 0.500000</FloatIn>
+            </ParticleSize>
+            <ParticleVelocity>
+                <Float3In>{DC19989F-97D7-422D-ABE4-695E665A699A}, 0.000000, 0.000000, 0.000000</Float3In>
+            </ParticleVelocity>
+        </VisualEffect.BlockParticleInit>
+        <VisualEffect.BlockParticleUpdate InstanceId="{31B495DE-172C-49F7-98AE-73025E030F82}">
+            <ParticleOutput>
+                <ObjectReference InstanceId="{E33679FE-6043-499C-B8ED-73EBA7C9C472}" id="Output"/>
+            </ParticleOutput>
+        </VisualEffect.BlockParticleUpdate>
+        <VisualEffect.Output InstanceId="{E33679FE-6043-499C-B8ED-73EBA7C9C472}">
+            <ParticleColor>
+                <ColorIn>{E6A9C23F-8AA4-41D8-A797-7B0740DED4BE}, 0, 0, 0, 0</ColorIn>
+            </ParticleColor>
+        </VisualEffect.Output>
+        <VisualEffect.GravityVector InstanceId="{43250686-28A1-4B43-84F7-E05538195FDC}">
+            <OutputValue>{DC19989F-97D7-422D-ABE4-695E665A699A}</OutputValue>
+            <GravityScale>{00000000-0000-0000-0000-000000000000}, -1.000000</GravityScale>
+        </VisualEffect.GravityVector>
+        <VisualEffect.Vector4 InstanceId="{153CAACB-B10F-4F55-8901-8ADA02B9F1C8}">
+            <OutputValue>{E6A9C23F-8AA4-41D8-A797-7B0740DED4BE}</OutputValue>
+            <x>{00000000-0000-0000-0000-000000000000}, 1.000000</x>
+            <y>{00000000-0000-0000-0000-000000000000}, 1.000000</y>
+            <z>{00000000-0000-0000-0000-000000000000}, 1.000000</z>
+            <w>{00000000-0000-0000-0000-000000000000}, 1.000000</w>
+        </VisualEffect.Vector4>
+        <VisualEffect.GetSimVar InstanceId="{47B795F7-9CED-41F6-93A4-29F5098C8EC7}">
+            <OutputValue>{B49CF981-6FAA-4A46-900E-97CF1B243E18}</OutputValue>
+            <SimvarType>G FORCE</SimvarType>
+            <Unit>148</Unit>
+        </VisualEffect.GetSimVar>
+        <VisualEffect.MultiplyOperation InstanceId="{3C0CF4EA-CCA3-42EB-8FF0-0893A151444C}">
+            <OutputValue>{D21F1CCA-E920-4432-93E6-409FA51CD95D}</OutputValue>
+            <xVariant>{9EF3E8FA-8277-420C-8DB5-B8116CA52E26}, 0.000000</xVariant>
+            <yVariant>{00000000-0000-0000-0000-000000000000}, 200.000000</yVariant>
+        </VisualEffect.MultiplyOperation>
+        <VisualEffect.SubtractOperation InstanceId="{D2BAB3C5-C8CE-4ED5-B586-0A71718DD8BF}">
+            <OutputValue>{9EF3E8FA-8277-420C-8DB5-B8116CA52E26}</OutputValue>
+            <xVariant>{B49CF981-6FAA-4A46-900E-97CF1B243E18}, 0.000000</xVariant>
+            <yVariant>{00000000-0000-0000-0000-000000000000}, 2.000000</yVariant>
+        </VisualEffect.SubtractOperation>
+    </WorldBase.Flight>
+</SimBase.Document>

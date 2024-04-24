@@ -204,20 +204,133 @@
   </Select>
 </Element>	
 
+<!--		LANDING DESCISION ALTITUDE PILOT BARO		
 
-<!--		MISSILE WARNING		-->	
+C17_Alt_Ref_P
+0 = MDA
+1 = MKR
+2 = DH
+C17_Alt_RaBARO_P
+0 = BARO
+1 = RA
+C17_AP_PILOT_SEL
+0 = P
+1 = CP
+-->
+  <Element>
+    <Select>
+      <Value>
+        <!-- MDA -->
+        (A:CIRCUIT ON:65,bool) 1 ==
+        (L:C17_AP_PILOT_SEL, bool) 0 == and
+        (L:C17_Alt_Ref_P, enum) 0 == and
+        (L:C17_Alt_Set_P, feet) 0 &gt; and
+
+        (L:C17_Alt_RaBARO_P, bool) 0 ==
+        (L:C17_Alt_Set_P, feet) (A:INDICATED ALTITUDE, feet) - abs 1 &lt; and
+
+        (L:C17_Alt_RaBARO_P, bool) 1 ==
+        (L:C17_Alt_Set_P, feet) (A:PLANE ALT ABOVE GROUND, feet) - abs 1 &lt; and or and
+
+        (A:VERTICAL SPEED,feet per minute) 0 &lt; and
+        if{ 1 (&gt;L:C17_GPWS_MDA_P,bool) }
+        els{
+        0 (&gt;L:C17_GPWS_MDA_P,bool)
+        }
+
+
+      </Value>
+    </Select>
+  </Element>
+  <!-- 100' ABOVE PILOT -->
+  <Element>
+    <Select>
+      <Value>
+
+        (A:CIRCUIT ON:65,bool) 1 ==
+        (L:C17_AP_PILOT_SEL, bool) 0 == and
+        (L:C17_Alt_Ref_P, enum) 0 ==
+        (L:C17_Alt_Ref_P, enum) 2 == or and
+        (L:C17_Alt_Set_P, feet) 0 &gt; and
+
+
+        (L:C17_Alt_RaBARO_P, bool) 0 ==
+        (A:INDICATED ALTITUDE, feet) (L:C17_Alt_Set_P, feet) - near 100 == and
+
+        (L:C17_Alt_RaBARO_P, bool) 1 ==
+        (A:PLANE ALT ABOVE GROUND, feet) (L:C17_Alt_Set_P, feet) - near 100 == and or and
+
+        (A:VERTICAL SPEED,feet per minute) 0 &lt; and
+
+        if{ 1 (&gt;L:C17_GPWS_100Above_P,bool) }
+        els{
+        0 (&gt;L:C17_GPWS_100Above_P,bool)
+        }
+      </Value>
+    </Select>
+  </Element>
+
+  <!-- DH -->
+  <Element>
+    <Select>
+      <Value>
+
+        (A:CIRCUIT ON:65,bool) 1 ==
+        (L:C17_AP_PILOT_SEL, bool) 0 == and
+        (L:C17_Alt_Ref_P, enum) 2 == and
+        (L:C17_Alt_Set_P, feet) 0 &gt; and
+
+        (L:C17_Alt_RaBARO_P, bool) 0 ==
+        (L:C17_Alt_Set_P, feet) (A:INDICATED ALTITUDE, feet) - abs 1 &lt; and
+
+        (L:C17_Alt_RaBARO_P, bool) 1 ==
+        (L:C17_Alt_Set_P, feet) (A:PLANE ALT ABOVE GROUND, feet) - abs 1 &lt; and or and
+        (A:VERTICAL SPEED,feet per minute) 0 &lt; and
+        if{ 1 (&gt;L:C17_GPWS_DH_P,bool) }
+        els{
+        0 (&gt;L:C17_GPWS_DH_P,bool)
+        }
+      </Value>
+    </Select>
+  </Element>
+
+  <!-- MKR -->
+  <Element>
+    <Select>
+      <Value>
+
+        (A:CIRCUIT ON:65,bool) 1 ==
+        (L:C17_Alt_Ref_P, enum) 1 == and
+        (L:C17_Alt_Set_P, feet) 0 &gt; and
+
+        (L:C17_Alt_RaBARO_P, bool) 0 ==
+        (L:C17_Alt_Set_P, feet) (A:INDICATED ALTITUDE, feet) - abs 1 &lt; and
+
+        (L:C17_Alt_RaBARO_P, bool) 1 ==
+        (L:C17_Alt_Set_P, feet) (A:PLANE ALT ABOVE GROUND, feet) - abs 1 &lt; and or and
+        (A:VERTICAL SPEED,feet per minute) 0 &lt; and
+        if{ 1 (&gt;L:C17_GPWS_MKR_P,bool) }
+        els{
+        0 (&gt;L:C17_GPWS_MKR_P,bool)
+        }
+      </Value>
+    </Select>
+  </Element>
+
+  <!--		MISSILE WARNING		-->	
 <Element>
   <Select>
         <Value>        
           (A:CIRCUIT ON:65,bool) 1 ==
-          (L:C17_MISSILE_DETECTED,bool) 1 == and
+          (L:C17_MISSILE_DETECTED,bool) 1 ==
+          (L:C17_IRCM_MODE) 2 == or and
           if{ 1 (&gt;L:C17_MissileLaunch,bool) }
           els{ 0 (&gt;L:C17_MissileLaunch,bool) }					
         </Value>
   </Select>
 </Element>
 
-<!--		APU DOOR OPEN FOR TAKEOFF		-->	
+  <!--		APU DOOR OPEN FOR TAKEOFF		-->	
 <Element>
   <Select>
         <Value>        
@@ -230,7 +343,7 @@
   </Select>
 </Element>
 
-<!--		TAKEOFF FLAPS NOT SET		-->	
+  <!--		TAKEOFF FLAPS NOT SET		-->	
 <Element>
   <Select>
         <Value>        
@@ -245,8 +358,7 @@
 </Element>
 
 
-
-<!--		TAKEOFF PARKING BRAKE SET		-->	
+  <!--		TAKEOFF PARKING BRAKE SET		-->	
 <Element>
   <Select>
         <Value>        
@@ -260,7 +372,7 @@
   </Select>
 </Element>
 
-<!--		TAKEOFF SPOILERS SET		-->	
+  <!--		TAKEOFF SPOILERS SET		-->	
 <Element>
   <Select>
         <Value>        
@@ -274,7 +386,7 @@
   </Select>
 </Element>
 
-<!--		GEAR OVERSPEED		-->	
+  <!--		GEAR OVERSPEED		-->	
 <Element>
   <Select>
         <Value>        
@@ -287,7 +399,7 @@
   </Select>
 </Element>
 
-<!--		FLAP OVERSPEED		-->	
+  <!--		FLAP OVERSPEED		-->	
 <Element>
   <Select>
         <Value>        
@@ -300,7 +412,7 @@
   </Select>
 </Element>
 
-<!--		LANDING CONFIG SET		-->	
+  <!--		LANDING CONFIG SET		-->	
 <Element>
   <Select>
         <Value>        
@@ -313,7 +425,7 @@
   </Select>
 </Element>
 
-<!--		TERRAIN FLY UP		-->	
+  <!--		TERRAIN FLY UP		-->	
 <Element>
   <Select>
         <Value>        
@@ -327,7 +439,7 @@
   </Select>
 </Element>
 
-<!--		FLAPS NOT DEPLOYED		-->	
+  <!--		FLAPS NOT DEPLOYED		-->	
 <Element>
   <Select>
         <Value>        
@@ -342,7 +454,7 @@
   </Select>
 </Element>
 
-<!--		GEAR NOT DOWN	-->	
+  <!--		GEAR NOT DOWN	-->	
 <Element>
   <Select>
         <Value>
@@ -354,7 +466,7 @@
   </Select>
 </Element>
 
-<!--		GEAR UNSAFE POS	-->	
+  <!--		GEAR UNSAFE POS	-->	
 <Element>
   <Select>
         <Value>
@@ -370,7 +482,7 @@
   </Select>
 </Element>
 
-<!--		SINKRATE		-->	
+  <!--		SINKRATE		-->	
 <Element>
   <Select>
         <Value>        
@@ -384,7 +496,7 @@
   </Select>
 </Element>
 
-<!--		OVERSPEED		-->	
+  <!--		OVERSPEED		-->	
   <Element>
     <Select>
           <Value>        
@@ -396,7 +508,7 @@
     </Select>
   </Element>
 
-<!--		STICK SHAKER AND STALL		-->	
+  <!--		STICK SHAKER AND STALL		-->	
 <Element>
     <Select>
         <Value>
@@ -407,9 +519,9 @@
       els{ 0 (&gt;L:C17_STICK_SHAKER,bool) }
         </Value>
     </Select>
-</Element>	
+</Element>
 
-<!--	GPWS - ARM	-->	
+  <!--	GPWS - ARM	-->	
 <Element>
     <Select>
         <Value>
@@ -419,9 +531,9 @@
       els{ 0 (&gt;L:C17_GPWS_ACTIVE,bool) }
         </Value>
     </Select>
-</Element>	
+</Element>
 
-<!--		GPWS - 2500	-->	
+  <!--		GPWS - 2500	-->	
 <Element>
   <Select>
         <Value>
@@ -435,7 +547,7 @@
 </Element>
 
 
-<!--		GPWS - 1000		-->	
+  <!--		GPWS - 1000		-->	
 <Element>
   <Select>
         <Value>
@@ -448,7 +560,7 @@
   </Select>
 </Element>
 
-<!--		GPWS - 500		-->	
+  <!--		GPWS - 500		-->	
 <Element>
     <Select>
           <Value>
@@ -460,7 +572,7 @@
           </Value>
     </Select>
 </Element>
-<!--		GPWS - 400		-->	
+  <!--		GPWS - 400		-->	
 <Element>
   <Select>
         <Value>
@@ -472,7 +584,7 @@
         </Value>
   </Select>
 </Element>
-<!--		GPWS - 300		-->	
+  <!--		GPWS - 300		-->	
 <Element>
   <Select>
         <Value>
@@ -484,7 +596,7 @@
         </Value>
   </Select>
 </Element>
-<!--		GPWS - 200		-->	
+  <!--		GPWS - 200		-->	
 <Element>
   <Select>
         <Value>
@@ -496,7 +608,7 @@
         </Value>
   </Select>
 </Element>
-<!--		GPWS - 100		-->	
+  <!--		GPWS - 100		-->	
 <Element>
     <Select>
           <Value>
@@ -508,69 +620,69 @@
           </Value>
     </Select>
 </Element>
-<!--		GPWS - 50		-->	
+  <!--		GPWS - 50		-->	
 <Element>
     <Select>
           <Value>        
             (L:C17_GPWS_ACTIVE, bool) 1 ==
-            (L:C17_RADALT,feet) 47 &gt; and
-            (L:C17_RADALT,feet) 53 &lt; and	
+            (L:C17_RADALT,feet) 49 &gt; and
+            (L:C17_RADALT,feet) 51 &lt; and	
             if{ 1 (&gt;L:C17_GPWS_50,bool) }
             els{ 0 (&gt;L:C17_GPWS_50,bool) }					
           </Value>
     </Select>
 </Element>
 
-<!--		GPWS - 40		-->	
+  <!--		GPWS - 40		-->	
 <Element>
   <Select>
         <Value>      
           (L:C17_GPWS_ACTIVE, bool) 1 ==
  
-          (L:C17_RADALT,feet) 37 &gt; and
-          (L:C17_RADALT,feet) 43 &lt; and	
+          (L:C17_RADALT,feet) 39 &gt; and
+          (L:C17_RADALT,feet) 41 &lt; and	
           if{ 1 (&gt;L:C17_GPWS_40,bool) }
           els{ 0 (&gt;L:C17_GPWS_40,bool) }					
         </Value>
   </Select>
 </Element>
 
-<!--		GPWS - 30		-->	
+  <!--		GPWS - 30		-->	
 <Element>
   <Select>
         <Value>
           (L:C17_GPWS_ACTIVE, bool) 1 ==
         
-          (L:C17_RADALT,feet) 27 &gt; and
-          (L:C17_RADALT,feet) 33 &lt; and	
+          (L:C17_RADALT,feet) 29 &gt; and
+          (L:C17_RADALT,feet) 31 &lt; and	
           if{ 1 (&gt;L:C17_GPWS_30,bool) }
           els{ 0 (&gt;L:C17_GPWS_30,bool) }					
         </Value>
   </Select>
 </Element>
 
-<!--		GPWS - 20		-->	
+  <!--		GPWS - 20		-->	
 <Element>
   <Select>
         <Value>  
           (L:C17_GPWS_ACTIVE, bool) 1 ==
       
-          (L:C17_RADALT,feet) 17 &gt; and
-          (L:C17_RADALT,feet) 23 &lt; and	
+          (L:C17_RADALT,feet) 19 &gt; and
+          (L:C17_RADALT,feet) 21 &lt; and	
           if{ 1 (&gt;L:C17_GPWS_20,bool) }
           els{ 0 (&gt;L:C17_GPWS_20,bool) }					
         </Value>
   </Select>
 </Element>
 
-<!--		GPWS - 10		-->	
+  <!--		GPWS - 10		-->	
 <Element>
   <Select>
         <Value>    
           (L:C17_GPWS_ACTIVE, bool) 1 ==
     
-          (L:C17_RADALT,feet) 7 &gt; and
-          (L:C17_RADALT,feet) 13 &lt; and	
+          (L:C17_RADALT,feet) 9 &gt; and
+          (L:C17_RADALT,feet) 11 &lt; and	
           if{ 1 (&gt;L:C17_GPWS_10,bool) }
           els{ 0 (&gt;L:C17_GPWS_10,bool) }					
         </Value>

@@ -16,7 +16,7 @@
 
 <EngineSoundStates>
 	<!--Combustion ===================================-->
-	<Sound WwiseData="true" WwiseEvent="Intake1Ext" EngineIndex="1" RPMMin="200" StateOff="false" StateStart="true" StateOn="true"   ConeHeading="0"> 
+	<Sound WwiseData="true" WwiseEvent="Intake1Ext" EngineIndex="1" RPMMin="200" StateOff="false" StateStart="true" StateOn="true"   ConeHeading="180"> 
         <WwiseRTPC SimVar="TURB ENG N1" Units="PERCENT" Index="1" RTPCName="SIMVAR_TURB_ENG_N1"/>
     </Sound>
 	<!--Whine ===================================-->
@@ -24,12 +24,12 @@
         <WwiseRTPC SimVar="TURB ENG N1" Units="PERCENT" Index="1" RTPCName="SIMVAR_TURB_ENG_N1"/>
     </Sound>
 
-	<Sound WwiseData="true" WwiseEvent="Thrust1Ext" EngineIndex="1" RPMMin="200" StateOff="false" StateStart="true" StateOn="true"   ConeHeading="180"> 
+	<Sound WwiseData="true" WwiseEvent="Thrust1Ext" EngineIndex="1" RPMMin="200" StateOff="false" StateStart="true" StateOn="true"   ConeHeading="0"> 
         <WwiseRTPC SimVar="TURB ENG N1" Units="PERCENT" Index="1" RTPCName="SIMVAR_TURB_ENG_N1"/>
 		<WwiseRTPC SimVar="TURB ENG REVERSE NOZZLE PERCENT" Units="PERCENT" Index="1" RTPCName="SIMVAR_TURB_ENG_REVERSE_NOZZLE_PERCENT"/>
     </Sound>
 	<!--Combustion ===================================-->
-	<Sound WwiseData="true" WwiseEvent="Intake1Ext" EngineIndex="2" RPMMin="200" StateOff="false" StateStart="true" StateOn="true"   ConeHeading="0"> 
+	<Sound WwiseData="true" WwiseEvent="Intake1Ext" EngineIndex="2" RPMMin="200" StateOff="false" StateStart="true" StateOn="true"   ConeHeading="180"> 
         <WwiseRTPC SimVar="TURB ENG N1" Units="PERCENT" Index="2" RTPCName="SIMVAR_TURB_ENG_N1"/>
     </Sound>
 	<!--Whine ===================================-->
@@ -37,13 +37,13 @@
         <WwiseRTPC SimVar="TURB ENG N1" Units="PERCENT" Index="2" RTPCName="SIMVAR_TURB_ENG_N1"/>
     </Sound>
 
-	<Sound WwiseData="true" WwiseEvent="Thrust1Ext" EngineIndex="2" RPMMin="200" StateOff="false" StateStart="true" StateOn="true"   ConeHeading="180"> 
+	<Sound WwiseData="true" WwiseEvent="Thrust1Ext" EngineIndex="2" RPMMin="200" StateOff="false" StateStart="true" StateOn="true"   ConeHeading="0"> 
         <WwiseRTPC SimVar="TURB ENG N1" Units="PERCENT" Index="2" RTPCName="SIMVAR_TURB_ENG_N1"/>
 		<WwiseRTPC SimVar="TURB ENG REVERSE NOZZLE PERCENT" Units="PERCENT" Index="2" RTPCName="SIMVAR_TURB_ENG_REVERSE_NOZZLE_PERCENT"/>
     </Sound>
 
 	<!--Combustion ===================================-->
-	<Sound WwiseData="true" WwiseEvent="Intake1Ext" EngineIndex="3" RPMMin="200" StateOff="false" StateStart="true" StateOn="true"   ConeHeading="0"> 
+	<Sound WwiseData="true" WwiseEvent="Intake1Ext" EngineIndex="3" RPMMin="200" StateOff="false" StateStart="true" StateOn="true"   ConeHeading="180"> 
         <WwiseRTPC SimVar="TURB ENG N1" Units="PERCENT" Index="3" RTPCName="SIMVAR_TURB_ENG_N1"/>
     </Sound>
 	<!--Whine ===================================-->
@@ -51,13 +51,13 @@
         <WwiseRTPC SimVar="TURB ENG N1" Units="PERCENT" Index="3" RTPCName="SIMVAR_TURB_ENG_N1"/>
     </Sound>
 
-	<Sound WwiseData="true" WwiseEvent="Thrust1Ext" EngineIndex="3" RPMMin="200" StateOff="false" StateStart="true" StateOn="true"   ConeHeading="180"> 
+	<Sound WwiseData="true" WwiseEvent="Thrust1Ext" EngineIndex="3" RPMMin="200" StateOff="false" StateStart="true" StateOn="true"   ConeHeading="0"> 
         <WwiseRTPC SimVar="TURB ENG N1" Units="PERCENT" Index="3" RTPCName="SIMVAR_TURB_ENG_N1"/>
 		<WwiseRTPC SimVar="TURB ENG REVERSE NOZZLE PERCENT" Units="PERCENT" Index="3" RTPCName="SIMVAR_TURB_ENG_REVERSE_NOZZLE_PERCENT"/>
     </Sound>
 
 	<!--Combustion ===================================-->
-	<Sound WwiseData="true" WwiseEvent="Intake1Ext" EngineIndex="4" RPMMin="200" StateOff="false" StateStart="true" StateOn="true"   ConeHeading="0"> 
+	<Sound WwiseData="true" WwiseEvent="Intake1Ext" EngineIndex="4" RPMMin="200" StateOff="false" StateStart="true" StateOn="true"   ConeHeading="180"> 
         <WwiseRTPC SimVar="TURB ENG N1" Units="PERCENT" Index="4" RTPCName="SIMVAR_TURB_ENG_N1"/>
     </Sound>
 	<!--Whine ===================================-->
@@ -65,7 +65,7 @@
         <WwiseRTPC SimVar="TURB ENG N1" Units="PERCENT" Index="4" RTPCName="SIMVAR_TURB_ENG_N1"/>
     </Sound>
 
-	<Sound WwiseData="true" WwiseEvent="Thrust1Ext" EngineIndex="4" RPMMin="200" StateOff="false" StateStart="true" StateOn="true"   ConeHeading="180"> 
+	<Sound WwiseData="true" WwiseEvent="Thrust1Ext" EngineIndex="4" RPMMin="200" StateOff="false" StateStart="true" StateOn="true"   ConeHeading="0"> 
         <WwiseRTPC SimVar="TURB ENG N1" Units="PERCENT" Index="4" RTPCName="SIMVAR_TURB_ENG_N1"/>
 		<WwiseRTPC SimVar="TURB ENG REVERSE NOZZLE PERCENT" Units="PERCENT" Index="3" RTPCName="SIMVAR_TURB_ENG_REVERSE_NOZZLE_PERCENT"/>
 	</Sound>
@@ -81,6 +81,7 @@
 
 <!-- SimvarSounds ========================================================================================== --> 
 
+
 <SimVarSounds>
 
     <!-- <Sound WwiseEvent="eng1_starter" WwiseData="true" SimVar="GENERAL ENG STARTER ACTIVE" ConeHeading="0" Units="Bool" Index="1" NodeName="C-17_Engine_1_Dummy" >
@@ -88,18 +89,23 @@
         <Range LowerBound="1.0" /> 
     </Sound> -->
 
+	<Sound WwiseData="true" WwiseEvent="Master_WWise"  Derived="true"  LocalVar="C17_Volume_Master" Units="ENUM" Index="0" NodeName="Ramp toe">
+		<WwiseRTPC LocalVar="C17_CargoDoor_POS" Units="ENUM" Index="0" RTPCName="CARGO_BAY_OPEN"/>
+		<Range LowerBound="10" UpperBound="90"/>
+	</Sound>
 
-    <Sound WwiseData="true" WwiseEvent="APU_Idle" ConeHeading="180" ViewPoint="Both" NodeName="APU_Inlet" SimVar="APU PCT RPM" Units="PERCENT" Index="0" FadeOutType="2" FadeOutTime="0.5">
+
+    <Sound WwiseData="true" WwiseEvent="APU_Idle" ConeHeading="180" ViewPoint="All" NodeName="APU_Inlet" SimVar="APU PCT RPM" Units="PERCENT" Index="0" FadeOutType="2" FadeOutTime="0.5">
 		<WwiseRTPC SimVar="APU PCT RPM" Units="PERCENT" Index="0" RTPCName="SIMVAR_APU_PCT_RPM" />
 		<Range LowerBound="1.0" />
 	</Sound>   
 	  
-	<Sound WwiseData="true" WwiseEvent="APU_Starter" ConeHeading="270.0" NodeName="APU_Inlet" ViewPoint="Both" SimVar="APU PCT RPM" Units="PERCENT" Index="0" FadeOutType="2" FadeOutTime="0.5">
+	<Sound WwiseData="true" WwiseEvent="APU_Starter" ConeHeading="270.0" NodeName="APU_Inlet" ViewPoint="All" SimVar="APU PCT RPM" Units="PERCENT" Index="0" FadeOutType="2" FadeOutTime="0.5">
 		<WwiseRTPC SimVar="APU PCT RPM" Units="PERCENT" Index="0" RTPCName="SIMVAR_APU_PCT_RPM" />
 		<Range LowerBound="1.0" />
 		<WwiseRTPC LocalVar="C17_APUSTARTER" Units="ENUM" Index="0" RTPCName="APU_SWITCH_POS"/>
 	</Sound>
-	<Sound WwiseData="true" WwiseEvent="APU_Shutdown" ConeHeading="270.0" NodeName="APU_Inlet" ViewPoint="Both" SimVar="APU PCT RPM" Units="PERCENT" Index="0" FadeOutType="2" FadeOutTime="0.5">
+	<Sound WwiseData="true" WwiseEvent="APU_Shutdown" ConeHeading="270.0" NodeName="APU_Inlet" ViewPoint="All" SimVar="APU PCT RPM" Units="PERCENT" Index="0" FadeOutType="2" FadeOutTime="0.5">
 		<WwiseRTPC SimVar="APU PCT RPM" Units="PERCENT" Index="0" RTPCName="SIMVAR_APU_PCT_RPM" />
 		<Range LowerBound="1.0" />
 		<WwiseRTPC LocalVar="C17_APUSTARTER" Units="ENUM" Index="0" RTPCName="APU_SWITCH_POS"/>
@@ -191,9 +197,28 @@
 	<Sound WwiseData="true" WwiseEvent="GPWS_10" LocalVar="C17_GPWS_10" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
         <Range LowerBound="1.0" />    
     </Sound>
-	<Sound WwiseData="true" WwiseEvent="Warning_MissileLaunch" LocalVar="C17_MissileLaunch" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+
+	<Sound WwiseData="true" WwiseEvent="Landing_MDA" LocalVar="C17_GPWS_MDA_P" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
         <Range LowerBound="1.0" />    
     </Sound>
+
+	<Sound WwiseData="true" WwiseEvent="Landing_MDA" LocalVar="C17_GPWS_DH_P" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+
+    <Sound WwiseData="true" WwiseEvent="Landing_100Above" LocalVar="C17_GPWS_100Above_P" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+
+    <Sound WwiseData="true" WwiseEvent="Landing_100Above" LocalVar="C17_GPWS_MKR_P" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+
+
+	<Sound WwiseData="true" WwiseEvent="Warning_MissileLaunch" LocalVar="C17_MissileLaunch" NodeName="Plane.093" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+
 	<Sound WwiseData="true" WwiseEvent="APU_Door" LocalVar="C17_ALERT_APU_DOOR" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
         <Range LowerBound="1.0" />    
     </Sound>

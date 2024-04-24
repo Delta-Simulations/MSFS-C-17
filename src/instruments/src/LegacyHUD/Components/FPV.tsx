@@ -41,7 +41,7 @@ export const FPV = () => {
     return(
         <g>
             <g transform={`translate(0 75)` }>
-                <g visibility={ShowFPV ? 'visible' : 'hidden'} transform={`translate(${10*XShift} ${10*YShift})`}>
+                <g visibility={ShowFPV ? 'visible' : 'hidden'} transform={`translate(${20*XShift} ${20*YShift})`}>
                     <g transform='scale(0.87) translate(628,386)'>
                         <line x1="45.5" y1="18" x2="45.5" y2="-6.55671e-08" className="readouts" stroke-width="3.2"/>
                         <line y1="45.5" x2="18" y2="45.5" className="readouts" stroke-width="3.2"/>
@@ -49,7 +49,7 @@ export const FPV = () => {
                         <circle cx="45.5" cy="45.5" r="27" className="readouts" stroke-width="3.2" fill='none'/>
                     </g>
                 </g>
-                <g visibility={ShowCage ? 'visible' : 'hidden'} transform={`translate(0 ${15*YShift})`}>
+                <g visibility={ShowCage ? 'visible' : 'hidden'} transform={`translate(0 ${20*YShift})`}>
                     <g transform='scale(0.87) translate(628,386)'>
                         <g>
                             <circle cx="45.5" cy="45.5" r="27" className="readouts" stroke-width="3.2"/>

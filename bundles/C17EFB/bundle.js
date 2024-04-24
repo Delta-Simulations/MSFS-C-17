@@ -20053,20 +20053,45 @@
 
 	const Settings = () => {
 	  let [DevModeEFB, setDevModeEFB] = useSimVar('L:C17_DevModeEFB', 'bool');
-	  useSimVar('L:C17_EFBPopOut', 'bool');
 	  let [brightnessEFB, setbrightnessEFB] = useSimVar('L:C17_EFB_Brightness', 'enum');
 
-	  const handleChange = (event, newValue) => {
+	  const handleChangeBrightness = (event, newValue) => {
 	    setbrightnessEFB(newValue);
 	  };
 
-	  return /*#__PURE__*/jsxRuntime.jsx("div", {
+	  let [MasterVolume, setMasterVolume] = useSimVar('L:C17_Volume_Exterior', 'enum');
+	  let [EngineVolume, setEngineVolume] = useSimVar('L:C17_Volume_Engine', 'enum');
+	  let [AuralVolume, setAuralVolume] = useSimVar('L:C17_Volume_Aurals', 'enum');
+	  let [CockpitVolume, setCockpitVolume] = useSimVar('L:C17_Volume_Cockpit', 'enum');
+	  let [EngInCockpitVolume, setEngInCockpitVolume] = useSimVar('L:C17_Volume_EngInCockpit', 'enum');
+
+	  const handleMasterVolume = (event, newValue) => {
+	    setMasterVolume(newValue);
+	  };
+
+	  const handleEngineVolume = (event, newValue) => {
+	    setEngineVolume(newValue);
+	  };
+
+	  const handleAuralVolume = (event, newValue) => {
+	    setAuralVolume(newValue);
+	  };
+
+	  const handleCockpitVolume = (event, newValue) => {
+	    setCockpitVolume(newValue);
+	  };
+
+	  const handleEngInCockpitVolume = (event, newValue) => {
+	    setEngInCockpitVolume(newValue);
+	  };
+
+	  return /*#__PURE__*/jsxRuntime.jsxs("div", {
 	    className: "settingsContainer",
-	    children: /*#__PURE__*/jsxRuntime.jsxs(Box$1, {
+	    children: [/*#__PURE__*/jsxRuntime.jsxs(Box$1, {
 	      sx: {
 	        position: 'absolute',
 	        width: 420,
-	        height: 150,
+	        height: 170,
 	        backgroundColor: '#343a40',
 	        borderRadius: 1,
 	        left: 300,
@@ -20091,7 +20116,7 @@
 	          children: [/*#__PURE__*/jsxRuntime.jsx(Slider$1, {
 	            "aria-labelledby": "brightness",
 	            value: brightnessEFB,
-	            onChange: handleChange,
+	            onChange: handleChangeBrightness,
 	            sx: {
 	              color: 'orange',
 	              // Set the color to orange
@@ -20107,6 +20132,7 @@
 	            children: "EXPERIMENTAL MODE"
 	          }), /*#__PURE__*/jsxRuntime.jsx("h3", {
 	            style: {
+	              marginBottom: 5,
 	              marginTop: 5,
 	              color: '#aeb0b3'
 	            },
@@ -20114,7 +20140,127 @@
 	          })]
 	        })
 	      })]
-	    })
+	    }), /*#__PURE__*/jsxRuntime.jsx(Box$1, {
+	      sx: {
+	        position: 'absolute',
+	        width: 420,
+	        height: 390,
+	        backgroundColor: '#343a40',
+	        borderRadius: 1,
+	        left: 300,
+	        top: 260,
+	        boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.699)',
+	        justifyContent: 'start',
+	        textAlign: 'center',
+	        fontSize: 14,
+	        padding: 2,
+	        marginBottom: 5
+	      },
+	      children: /*#__PURE__*/jsxRuntime.jsx(Stack$1, {
+	        direction: "column",
+	        spacing: 1,
+	        children: /*#__PURE__*/jsxRuntime.jsxs(ThemeProvider, {
+	          theme: ButtonColour,
+	          children: [/*#__PURE__*/jsxRuntime.jsx("h2", {
+	            style: {
+	              marginTop: 0,
+	              color: 'Red'
+	            },
+	            children: "INOP"
+	          }), /*#__PURE__*/jsxRuntime.jsx("h2", {
+	            style: {
+	              marginTop: 0,
+	              color: '#aeb0b3'
+	            },
+	            children: "Exterior Volume"
+	          }), /*#__PURE__*/jsxRuntime.jsx(Slider$1, {
+	            "aria-labelledby": "brightness",
+	            value: MasterVolume,
+	            onChange: handleMasterVolume,
+	            sx: {
+	              color: 'orange',
+	              // Set the color to orange
+	              "& .MuiSlider-thumb": {
+	                backgroundColor: '#ffaa00' // Set the color of the slider thumb to orange
+
+	              }
+	            }
+	          }), /*#__PURE__*/jsxRuntime.jsx("h2", {
+	            style: {
+	              marginTop: 0,
+	              color: '#aeb0b3'
+	            },
+	            children: "Engine Volume"
+	          }), /*#__PURE__*/jsxRuntime.jsx(Slider$1, {
+	            "aria-labelledby": "brightness",
+	            value: EngineVolume,
+	            onChange: handleEngineVolume,
+	            sx: {
+	              color: 'orange',
+	              // Set the color to orange
+	              "& .MuiSlider-thumb": {
+	                backgroundColor: '#ffaa00' // Set the color of the slider thumb to orange
+
+	              }
+	            }
+	          }), /*#__PURE__*/jsxRuntime.jsx("h2", {
+	            style: {
+	              marginTop: 0,
+	              color: '#aeb0b3'
+	            },
+	            children: "Aural Volume"
+	          }), /*#__PURE__*/jsxRuntime.jsx(Slider$1, {
+	            "aria-labelledby": "brightness",
+	            value: AuralVolume,
+	            onChange: handleAuralVolume,
+	            sx: {
+	              color: 'orange',
+	              // Set the color to orange
+	              "& .MuiSlider-thumb": {
+	                backgroundColor: '#ffaa00' // Set the color of the slider thumb to orange
+
+	              }
+	            }
+	          }), /*#__PURE__*/jsxRuntime.jsx("h2", {
+	            style: {
+	              marginTop: 0,
+	              color: '#aeb0b3'
+	            },
+	            children: "Cockpit Volume"
+	          }), /*#__PURE__*/jsxRuntime.jsx(Slider$1, {
+	            "aria-labelledby": "brightness",
+	            value: CockpitVolume,
+	            onChange: handleCockpitVolume,
+	            sx: {
+	              color: 'orange',
+	              // Set the color to orange
+	              "& .MuiSlider-thumb": {
+	                backgroundColor: '#ffaa00' // Set the color of the slider thumb to orange
+
+	              }
+	            }
+	          }), /*#__PURE__*/jsxRuntime.jsx("h2", {
+	            style: {
+	              marginTop: 0,
+	              color: '#aeb0b3'
+	            },
+	            children: "Engine In-Cockpit Volume"
+	          }), /*#__PURE__*/jsxRuntime.jsx(Slider$1, {
+	            "aria-labelledby": "brightness",
+	            value: EngInCockpitVolume,
+	            onChange: handleEngInCockpitVolume,
+	            sx: {
+	              color: 'orange',
+	              // Set the color to orange
+	              "& .MuiSlider-thumb": {
+	                backgroundColor: '#ffaa00' // Set the color of the slider thumb to orange
+
+	              }
+	            }
+	          })]
+	        })
+	      })
+	    })]
 	  });
 	};
 

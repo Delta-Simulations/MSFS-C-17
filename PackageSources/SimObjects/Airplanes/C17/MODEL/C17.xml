@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ModelInfo>
 	<LODS>
-		<LOD minSize="0" ModelFile="C17.gltf" />
+		<LOD minSize="150" ModelFile="C17.gltf"/>
+		<!-- <LOD minSize="1" ModelFile="C17_LOD01.gltf"/> -->
 	</LODS>
 	<Behaviors>
 		<Include ModelBehaviorFile="Asobo\Exterior.xml" />
 		<Include ModelBehaviorFile="Asobo\Common.xml" />
 		<Include ModelBehaviorFile="Asobo\Generic\FX.xml" />
+		
 		<Include Path="Asobo\Exterior.xml" />
 		<Include Path="DeltaSim-C17\DeltaSim_Anim_Template.xml" />
 
@@ -224,39 +226,24 @@
 	</UseTemplate>
 </Component>
 
-<Component ID = "FX_LOW_ALTITUDE_VORTEX_RIGHT">
-	<Parameters Type="Override">
-		<FX_GRAPH_PARAM_0>GP_Side, 0</FX_GRAPH_PARAM_0>
-	</Parameters>
-	<UseTemplate Name="ASOBO_GROUND_CP_LOWALTITUDEDUSTFX2_FX">
-	</UseTemplate>
-</Component>
-
-<Component ID = "FX_LOW_ALTITUDE_VORTEX_LEFT">
-	<Parameters Type="Override">
-		<FX_GRAPH_PARAM_0>GP_Side, 1</FX_GRAPH_PARAM_0>
-	</Parameters>
-	<UseTemplate Name="ASOBO_GROUND_CP_LOWALTITUDEDUSTFX2_FX">
-	</UseTemplate>
-</Component>
 
 <Component ID = "DragTrail_Left_FX">
 	<Parameters Type="Override">
 		<FX_GRAPH_PARAM_0>DT_Side, -1</FX_GRAPH_PARAM_0>
 	</Parameters>
-	<UseTemplate Name="ASOBO_FX_DRAGTRAIL">
-		<FX_NODE>STROBE R</FX_NODE>
+	<UseTemplate Name="ASOBO_FX_PRESSURETRAIL">
+		<FX_NODE>fx_vorttrail_02</FX_NODE>
 	</UseTemplate>
 </Component>
-
 <Component ID = "DragTrail_Right_FX">
 	<Parameters Type="Override">
 		<FX_GRAPH_PARAM_0>DT_Side, 1</FX_GRAPH_PARAM_0>
 	</Parameters>
-	<UseTemplate Name="ASOBO_FX_DRAGTRAIL">
-		<FX_NODE>STROBE L</FX_NODE>
+	<UseTemplate Name="ASOBO_FX_PRESSURETRAIL">
+		<FX_NODE>fx_vorttrail_01</FX_NODE>
 	</UseTemplate>
 </Component>
+
 
 
   <Component ID="LANDING_FX">
@@ -940,12 +927,28 @@
 	<Animation>
 		<Parameter>
 			<Code>
-				(L:C17_UARRSI_Slipway, bool) (A:ELECTRICAL MASTER BATTERY, BOOL) * 100 *
+				(L:C17_UARRSI_Slipway, bool) (A:CIRCUIT ON:65,bool) * 100 *
 			</Code>
 			<Lag>10</Lag>
 	</Parameter>
 	</Animation>
 </PartInfo>
+
+<Animation name="LAIRCM_Deploy" guid="bd5f18e8-47d5-482c-b25f-0ee0e48bdfcd" length="100" type="Sim" typeparam="AutoPlay" />
+<PartInfo>
+	<Name>LAIRCM_Deploy</Name>
+	<AnimLength>100</AnimLength>
+	<Animation>
+		<Parameter>
+			<Code>
+				(A:CIRCUIT ON:65,bool) (L:C17_IRCM_CDU_MODE) * 100 * 
+			</Code>
+			<Lag>70</Lag>
+	</Parameter>
+	</Animation>
+</PartInfo>
+
+
 
 <Animation guid="bd7e5faa-0d3c-4d11-b1bf-e7db7e349791" name="Slats_Left" type="Sim" typeparam="AutoPlay"/>
 <Animation guid="f945aa4a-8213-4ae9-84b8-54b78d15a649" name="Slats_Right" type="Sim" typeparam="AutoPlay"/>

@@ -1,11 +1,11 @@
 {
     "elements": [
         {
-            "__uuid": "4c00098e-1039-4257-aaf2-283e6b84983a",
+            "__uuid": "a3676b3c-4bab-4bf6-9bcd-aad39a2ed3bc",
             "__kind": "instrument",
             "dataKind": "bundled",
-            "title": "Systems",
-            "instrumentName": "Systems",
+            "title": "LegacyHUD",
+            "instrumentName": "LegacyHUD",
             "position": {
                 "x": 0,
                 "y": 0

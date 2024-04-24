@@ -1,6 +1,6 @@
 @font-face {
     font-family: "OCRB";
-    src: url("/Fonts/BoeingFont.ttf") format("truetype");
+    src: url("/Fonts/OcrB2.ttf") format("truetype");
 }
 @font-face {
     font-family: 'NewHUDAlert';
@@ -42,6 +42,7 @@ text {
 
 .readouts {
     stroke: #00cc00;
+    font-family: "OCRB";
 }
 .a{
     fill:none;

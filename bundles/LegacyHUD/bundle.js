@@ -9010,6 +9010,27 @@
 	  }
 
 	  Accel_Forwards = Accel_Forwards * 10;
+	  let [AltRefMode] = useSimVar('L:C17_Alt_Ref_P', 'enum');
+	  let [AltRef_RABA] = useSimVar('L:C17_Alt_RaBARO_P', 'bool');
+	  let [AltRef_Set] = useSimVar('L:C17_Alt_Set_P', 'feet'); // Determine the altitude reference mode
+
+	  let altitudeRefMode;
+
+	  switch (AltRefMode) {
+	    case 0:
+	      altitudeRefMode = "MDA";
+	      break;
+
+	    case 1:
+	      altitudeRefMode = "";
+	      break;
+
+	    default:
+	      altitudeRefMode = "DH";
+	  } // Determine the altitude set mode based on AltRef_RABA
+
+
+	  const altitudeSetMode = AltRef_RABA ? "R" : "B";
 	  return /*#__PURE__*/jsxRuntime.jsxs("g", {
 	    children: [/*#__PURE__*/jsxRuntime.jsxs("g", {
 	      transform: "translate(458, 120), scale(2,1.93)",
@@ -9046,6 +9067,23 @@
 	      }), /*#__PURE__*/jsxRuntime.jsx("path", {
 	        className: "a",
 	        d: "M68.7,4.11c29.45,1.23,47.15,10.43,57.77,17.14L120.16,30l-3-2,2.7-4.18,3-4.66-3,4.66c-1.8,0-21.94-14.38-53.64-14.42"
+	      })]
+	    }), /*#__PURE__*/jsxRuntime.jsxs("g", {
+	      visibility: AltRef_Set >= 0 ? 'visible' : 'hidden',
+	      children: [/*#__PURE__*/jsxRuntime.jsxs("text", {
+	        x: 1142,
+	        y: 798,
+	        fontSize: 33,
+	        className: "readouts",
+	        textAnchor: "end",
+	        children: [AltRef_Set, altitudeSetMode]
+	      }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	        x: 1009,
+	        y: 798,
+	        fontSize: 33,
+	        className: "readouts",
+	        textAnchor: "end",
+	        children: altitudeRefMode
 	      })]
 	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
 	      x: 485,
@@ -9120,14 +9158,14 @@
 	        x: 1142,
 	        y: 748,
 	        fontSize: 33,
-	        className: "FrontPNL",
+	        className: "readouts",
 	        textAnchor: "end",
 	        children: RADalt
 	      }), /*#__PURE__*/jsxRuntime.jsx("text", {
 	        x: 1009,
 	        y: 748,
 	        fontSize: 33,
-	        className: "FrontPNL",
+	        className: "readouts",
 	        textAnchor: "end",
 	        children: "RA"
 	      })]
@@ -9186,12 +9224,34 @@
 	  let [INDalt] = useSimVar('A:INDICATED ALTITUDE', 'feet');
 	  INDalt = Math.floor(INDalt * 100) / 100;
 	  let [UseRAalt] = useSimVar('L:C17_HUD_RaBa', 'bool');
+	  let [AltRef_RABA] = useSimVar('L:C17_Alt_RaBARO_P', 'bool');
 	  let IndicatedALT;
 
 	  if (UseRAalt === 1) {
 	    IndicatedALT = RADalt;
 	  } else {
 	    IndicatedALT = INDalt;
+	  }
+
+	  let [AltRef_Set] = useSimVar('L:C17_Alt_Set_P', 'feet');
+	  let [AltRefMode] = useSimVar('L:C17_Alt_Ref_P', 'enum');
+	  let modeLabel;
+
+	  switch (AltRefMode) {
+	    case 0:
+	      modeLabel = "M";
+	      break;
+
+	    case 1:
+	      modeLabel = "T";
+	      break;
+
+	    case 2:
+	      modeLabel = "D";
+	      break;
+
+	    default:
+	      modeLabel = "";
 	  }
 
 	  return /*#__PURE__*/jsxRuntime.jsxs("g", {
@@ -9214,17 +9274,37 @@
 	          fill: "white"
 	        })
 	      }), /*#__PURE__*/jsxRuntime.jsx("g", {
-	        visibility: DCLT ? 'hidden' : 'visible',
 	        clipPath: "url(#Alt)",
-	        children: /*#__PURE__*/jsxRuntime.jsx("g", {
-	          transform: "scale(1.3) translate(10 ".concat(IndicatedALT / 8.35 - 6956, ")"),
-	          children: /*#__PURE__*/jsxRuntime.jsx("image", {
-	            xlinkHref: "/Images/HUD_ALT_strip.jpg",
-	            width: 92,
-	            height: 7443,
-	            x: 765,
-	            y: 0
-	          })
+	        children: /*#__PURE__*/jsxRuntime.jsxs("g", {
+	          transform: "translate(0 ".concat(IndicatedALT / 6.412, ")"),
+	          children: [/*#__PURE__*/jsxRuntime.jsx("g", {
+	            visibility: DCLT ? 'hidden' : 'visible',
+	            transform: "scale(1.3) translate(10 -6956)",
+	            children: /*#__PURE__*/jsxRuntime.jsx("image", {
+	              xlinkHref: "/Images/HUD_ALT_strip.jpg",
+	              width: 92,
+	              height: 7443,
+	              x: 765,
+	              y: 0
+	            })
+	          }), /*#__PURE__*/jsxRuntime.jsxs("g", {
+	            visibility: AltRef_RABA !== UseRAalt || DCLT === 1 || AltRef_Set === 0 ? 'hidden' : 'visible',
+	            transform: "translate(0 ".concat(-AltRef_Set / 6.412, ")"),
+	            children: [/*#__PURE__*/jsxRuntime.jsx("line", {
+	              className: "readouts",
+	              x1: "990",
+	              y1: "448",
+	              x2: "1070",
+	              y2: "448",
+	              strokeWidth: 3.5
+	            }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	              x: 990,
+	              y: 459,
+	              fontSize: 32,
+	              textAnchor: "end",
+	              children: modeLabel
+	            })]
+	          })]
 	        })
 	      }), /*#__PURE__*/jsxRuntime.jsx("g", {
 	        visibility: DCLT ? 'hidden' : 'visible',
@@ -9449,26 +9529,53 @@
 	  let [IRU3] = useSimVar('L:C17_IRU3', 'bool');
 	  let [IRU4] = useSimVar('L:C17_IRU4', 'bool');
 	  let [Terrain_Caution] = useSimVar('L:C17_TERRAIN_FLYUP', 'bool');
-	  return /*#__PURE__*/jsxRuntime.jsxs("g", {
-	    children: [/*#__PURE__*/jsxRuntime.jsx("text", {
-	      visibility: IRU1 && IRU2 && IRU3 && IRU4 ? 'hidden' : 'visible',
+	  let [DH] = useSimVar('L:C17_GPWS_DH_P', 'bool');
+	  let [MDA] = useSimVar('L:C17_GPWS_MDA_P', 'bool');
+	  let [MKR] = useSimVar('L:C17_GPWS_MKR_P', 'bool'); // State to keep track of displayed text
+
+	  const [displayedText, setDisplayedText] = react.useState(''); // State to keep track of previous displayed text
+
+	  const [prevDisplayedText, setPrevDisplayedText] = react.useState(''); // State to keep track of render count
+
+	  const [renderCount, setRenderCount] = react.useState(0); // Update displayed text based on the highest priority variable that is true
+
+	  react.useEffect(() => {
+	    if (Terrain_Caution) {
+	      setDisplayedText('TERRAIN');
+	    } else if (!IRU1 || !IRU2 || !IRU3 || !IRU4) {
+	      setDisplayedText('DO NOT TAXI');
+	    } else if (DH) {
+	      setDisplayedText('DH');
+	    } else if (MDA) {
+	      setDisplayedText('MDA');
+	    } else if (MKR) {
+	      setDisplayedText('TOO LOW');
+	    }
+
+	    setRenderCount(prevCount => prevCount + 1);
+	  }, [IRU1, IRU2, IRU3, IRU4, Terrain_Caution, DH, MDA, MKR]); // Effect to clear displayed text after 2 seconds if it has changed
+
+	  react.useEffect(() => {
+	    if (displayedText !== prevDisplayedText) {
+	      const timeoutId = setTimeout(() => {
+	        setDisplayedText('');
+	      }, 2000);
+	      return () => clearTimeout(timeoutId);
+	    }
+
+	    setPrevDisplayedText(displayedText);
+	  }, [displayedText, prevDisplayedText]);
+	  return /*#__PURE__*/jsxRuntime.jsx("g", {
+	    children: displayedText && /*#__PURE__*/jsxRuntime.jsx("text", {
+	      visibility: 'visible',
 	      x: 585,
 	      y: 430,
 	      fontSize: 60,
 	      fill: "green",
 	      textAnchor: "middle",
 	      className: "textAlert",
-	      children: "DO NOT TAXI"
-	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
-	      visibility: Terrain_Caution ? 'visible' : 'hidden',
-	      x: 585,
-	      y: 430,
-	      fontSize: 60,
-	      fill: "green",
-	      textAnchor: "middle",
-	      className: "textAlert",
-	      children: "TERRAIN"
-	    })]
+	      children: displayedText
+	    })
 	  });
 	};
 

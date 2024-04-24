@@ -78,11 +78,16 @@ export const Ap_Disp = (props) => {
     const AP_VS_THOU = formattedVS < 10000 ? formattedVS.slice(0, 1) : formattedVS.slice(0, 2); // get first 1 or 2 digits
     const AP_VS_HUND = formattedVS.slice(-3); // get last 3 digits
 
-
+    let [Landing_Alt_P] = useSimVar('L:C17_Alt_Set_P', 'feet');
+    let [Landing_Alt_CP] = useSimVar('L:C17_Alt_Set_CP', 'feet');
 
     return(
         <g>
-            <rect  x={0} y={0} width={1020} height={(AFCS_Color) ? 500 : 580} className='OHDispBackrnd' fill="none" stroke-width="2.5"/>
+
+
+
+
+            <rect  x={0} y={0} width={(AFCS_Color) ? 820 : 1020} height={(AFCS_Color) ? 500 : 580} className='OHDispBackrnd' fill="none" stroke-width="2.5"/>
             <rect  x={45} y={670} width={250} height={90} visibility={(AFCS_Color) ? 'hidden' : 'visible'} className='OHDispBackrnd' fill="none" stroke-width="2.5"/>
             <text x={205} y={48} fontSize={32} fill='#00EE00' className='OHPNL' textAnchor="end">---</text>
             <text x={485} y={48} fontSize={32} fill='#00EE00' className='OHPNL' textAnchor="end">---</text>
@@ -146,6 +151,8 @@ export const Ap_Disp = (props) => {
             <text x={265} y={735} fontSize={65} fill={(AFCS_Color) ? '#C6C6C6' : '#00EE00'} className='FrontPNL' textAnchor="end">{Tot_Fuel}</text>
 
 
+            <text x={920} y={30} fontSize={30} fill={(AFCS_Color) ? '#C6C6C6' : '#00EE00'} className='FrontPNL' textAnchor="end">{Landing_Alt_P}</text>
+            <text x={1018} y={30} fontSize={30} fill={(AFCS_Color) ? '#C6C6C6' : '#00EE00'} className='FrontPNL' textAnchor="end">{Landing_Alt_CP}</text>
 
 
 

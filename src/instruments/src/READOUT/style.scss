@@ -14,11 +14,21 @@
     font-family: "WACAP";
     src: url("/Fonts/erbos_draco_open_nbp.ttf") format("truetype");
 }
-
+@font-face {
+    font-family: "IRCMSYS";
+    src: url("/Fonts/AP_DISP.ttf") format("truetype");
+}
 @font-face {
     font-family: EngCntrl;
     src: url("/Fonts/BoeingFont.ttf");
 }  
+.IRCMTEST {
+    /* Define the font and size of the caution messages */
+    font-family:"IRCMSYS";
+    /* Add any other desired styles */
+  }
+
+
 .EngCNTRL {
     font-family: "EngCntrl";
 }

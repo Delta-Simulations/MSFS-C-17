@@ -1,0 +1,8 @@
+{
+	"name": "C-17A",
+	"paths": {
+		"instrumentSrc": "src\\instruments\\src",
+		"bundlesSrc": "bundles",
+		"htmlUiSrc": "PackageSources\\html_ui"
+	}
+}

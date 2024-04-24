@@ -23,8 +23,8 @@ const isInitialRenderWacs = useRef(true);
 useEffect(() => {
   if (ATEngaged === false) {
     setThrrotleWarning(true);
-    const timeoutId = setTimeout(() => setThrrotleWarning(false), 2000);
-    return () => clearTimeout(timeoutId);
+    const timeoutIdAT = setTimeout(() => setThrrotleWarning(false), 2000);
+    return () => clearTimeout(timeoutIdAT);
   }
 }, [ATEngaged]);
 

@@ -39,8 +39,30 @@ export const Stationary = () => {
     }else{
         Accel_Forwards = Accel_Forwards
     }
-
     Accel_Forwards=Accel_Forwards*10
+
+    let [AltRefMode] = useSimVar('L:C17_Alt_Ref_P', 'enum')
+    let [AltRef_RABA] = useSimVar('L:C17_Alt_RaBARO_P', 'bool')
+    let [AltRef_Set] = useSimVar('L:C17_Alt_Set_P', 'feet')
+        // Determine the altitude reference mode
+        let altitudeRefMode;
+        switch (AltRefMode) {
+          case 0:
+            altitudeRefMode = "MDA";
+            break;
+          case 1:
+            altitudeRefMode = "";
+            break;
+          default:
+            altitudeRefMode = "DH";
+        }
+
+        // Determine the altitude set mode based on AltRef_RABA
+        const altitudeSetMode = AltRef_RABA ? "R" : "B";
+
+
+
+
 
     return(
         <g>
@@ -52,6 +74,11 @@ export const Stationary = () => {
                 <line className="a" x1="101.59" y1="16.12" x2="101.59" y2="21.53"/>
                 <line className="a" x1="82.85" y1="11.15" x2="82.85" y2="16.16"/>
                 <path className="a" d="M68.7,4.11c29.45,1.23,47.15,10.43,57.77,17.14L120.16,30l-3-2,2.7-4.18,3-4.66-3,4.66c-1.8,0-21.94-14.38-53.64-14.42"/>
+            </g>
+
+            <g visibility={ AltRef_Set >= 0 ? 'visible' : 'hidden'} >
+                <text x={1142} y={798} fontSize={33} className='readouts' textAnchor="end">{AltRef_Set}{altitudeSetMode}</text>
+                <text x={1009} y={798} fontSize={33} className='readouts' textAnchor="end">{altitudeRefMode}</text>
             </g>
 
             <text x={485} y={428} fontSize={32} textAnchor="end">{IndicatedSpeed}</text>
@@ -79,8 +106,8 @@ export const Stationary = () => {
                 <path d="M0 3.5H18.5L41.5 41L61 0.5H68L87.5 41L110.5 3.5H129" fill='none' strokeWidth={4} className='readouts'/>
             </g>
             <g visibility={ShowRA ? 'visible' : 'hidden'} >
-                <text x={1142} y={748} fontSize={33} className='FrontPNL' textAnchor="end">{RADalt}</text>
-                <text x={1009} y={748} fontSize={33} className='FrontPNL' textAnchor="end">RA</text>
+                <text x={1142} y={748} fontSize={33} className='readouts' textAnchor="end">{RADalt}</text>
+                <text x={1009} y={748} fontSize={33} className='readouts' textAnchor="end">RA</text>
             </g>
             <g visibility={AP_ALT_ON ? 'visible' : 'hidden'} >
                 <text x={955} y={187} fontSize={32} textAnchor="start">ALT {AP_ALT}</text>

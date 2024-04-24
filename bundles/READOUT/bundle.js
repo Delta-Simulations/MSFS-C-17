@@ -9923,11 +9923,13 @@
 
 	  const AP_VS_HUND = formattedVS.slice(-3); // get last 3 digits
 
+	  let [Landing_Alt_P] = useSimVar('L:C17_Alt_Set_P', 'feet');
+	  let [Landing_Alt_CP] = useSimVar('L:C17_Alt_Set_CP', 'feet');
 	  return /*#__PURE__*/jsxRuntime.jsxs("g", {
 	    children: [/*#__PURE__*/jsxRuntime.jsx("rect", {
 	      x: 0,
 	      y: 0,
-	      width: 1020,
+	      width: AFCS_Color ? 820 : 1020,
 	      height: AFCS_Color ? 500 : 580,
 	      className: "OHDispBackrnd",
 	      fill: "none",
@@ -10288,6 +10290,22 @@
 	      className: "FrontPNL",
 	      textAnchor: "end",
 	      children: Tot_Fuel
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      x: 920,
+	      y: 30,
+	      fontSize: 30,
+	      fill: AFCS_Color ? '#C6C6C6' : '#00EE00',
+	      className: "FrontPNL",
+	      textAnchor: "end",
+	      children: Landing_Alt_P
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      x: 1018,
+	      y: 30,
+	      fontSize: 30,
+	      fill: AFCS_Color ? '#C6C6C6' : '#00EE00',
+	      className: "FrontPNL",
+	      textAnchor: "end",
+	      children: Landing_Alt_CP
 	    })]
 	  });
 	};
@@ -10593,6 +10611,156 @@
 	  });
 	};
 
+	const IRCMPanel = props => {
+	  const [AC_ON_GROUND] = useSimVar('A:SIM ON GROUND', 'bool');
+	  const [HUD_OVERLAY] = useSimVar('L:C17_HUDDEBUG', 'bool');
+	  const [IRCM_ON] = useSimVar('L:C17_IRCM_MODE', 'enum');
+	  let [isFlashing, setIsFlashing] = react.useState(true); // Start flashing when IRCM_ON is equal to 2
+
+	  react.useEffect(() => {
+	    if (IRCM_ON === 2) {
+	      const intervalId = setInterval(() => {
+	        setIsFlashing(prevIsFlashing => !prevIsFlashing);
+	      }, 200); // Flash every 500ms
+
+	      return () => clearInterval(intervalId);
+	    }
+	  }, [IRCM_ON]);
+	  const isVisible = IRCM_ON >= 1;
+
+	  if (!isVisible) {
+	    return null; // If IRCM_ON is less than 1, don't render anything
+	  }
+
+	  return /*#__PURE__*/jsxRuntime.jsxs("g", {
+	    children: [/*#__PURE__*/jsxRuntime.jsx("image", {
+	      visibility: HUD_OVERLAY ? 'visible' : 'hidden',
+	      x: 828,
+	      y: 42,
+	      height: 100,
+	      xlinkHref: "/Images/IRCM.png",
+	      opacity: 0.2
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      x: 875,
+	      y: 82,
+	      fontSize: 25,
+	      className: "IRCMTEST",
+	      fill: '#C6C6C6',
+	      textAnchor: "middle",
+	      children: IRCM_ON === 2 ? "TEST" : "MW"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      x: 801,
+	      y: 365,
+	      fontSize: 18,
+	      fill: "yellow",
+	      className: "WAPanel",
+	      visibility: AC_ON_GROUND ? 'visible' : 'hidden',
+	      textAnchor: "middle",
+	      children: "NO"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      x: 813,
+	      y: 365,
+	      fontSize: 18,
+	      visibility: AC_ON_GROUND ? 'visible' : 'hidden',
+	      fill: "yellow",
+	      className: "WAPanel",
+	      textAnchor: "start",
+	      children: "GO"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      x: 813,
+	      y: 365,
+	      fontSize: 18,
+	      visibility: AC_ON_GROUND ? 'visible' : 'hidden',
+	      fill: "yellow",
+	      className: "WAPanel",
+	      textAnchor: "start",
+	      children: "GO"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      x: 846,
+	      y: 365,
+	      fontSize: 18,
+	      visibility: AC_ON_GROUND ? 'hidden' : 'visible',
+	      fill: "#00EE00",
+	      className: "WAPanel",
+	      textAnchor: "start",
+	      children: "GO"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      x: 897,
+	      y: 365,
+	      fontSize: 18,
+	      visibility: IRCM_ON === 2 ? 'visible' : 'hidden',
+	      fill: "#00EE00",
+	      className: "WAPanel",
+	      textAnchor: "start",
+	      children: "DISPENSE RDY"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      x: 813,
+	      y: 390,
+	      fontSize: 18,
+	      fill: "#00EE00",
+	      className: "WAPanel",
+	      textAnchor: "start",
+	      children: "0"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      x: 867,
+	      y: 390,
+	      fontSize: 18,
+	      fill: "#00EE00",
+	      className: "WAPanel",
+	      textAnchor: "start",
+	      children: "0"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      x: 921,
+	      y: 390,
+	      fontSize: 18,
+	      fill: "#00EE00",
+	      className: "WAPanel",
+	      textAnchor: "start",
+	      children: "15"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      x: 971,
+	      y: 390,
+	      fontSize: 18,
+	      fill: "#00EE00",
+	      className: "WAPanel",
+	      textAnchor: "start",
+	      children: "30"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      x: 839,
+	      y: 120,
+	      fontSize: 25,
+	      fill: '#C6C6C6',
+	      className: "IRCMTEST",
+	      textAnchor: "start",
+	      visibility: IRCM_ON === 2 ? 'visible' : 'hidden',
+	      children: "XXX"
+	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
+	      x: 898,
+	      y: 110,
+	      fontSize: 20,
+	      fill: '#C6C6C6',
+	      className: "IRCMTEST",
+	      textAnchor: "start",
+	      visibility: IRCM_ON === 2 ? 'visible' : 'hidden',
+	      children: "o"
+	    }), /*#__PURE__*/jsxRuntime.jsx("image", {
+	      xlinkHref: "/Images/EFB/IRCM.svg",
+	      x: 919,
+	      y: 42,
+	      width: "100",
+	      height: "100",
+	      visibility: isFlashing ? 'visible' : 'hidden'
+	    }), /*#__PURE__*/jsxRuntime.jsx("image", {
+	      xlinkHref: "/Images/EFB/IRCM.svg",
+	      x: 919,
+	      y: 42,
+	      width: "100",
+	      height: "100",
+	      opacity: "0.1"
+	    })]
+	  });
+	};
+
 	const Electricity = ({
 	  circuit,
 	  children
@@ -10624,11 +10792,17 @@
 	          xlinkHref: "/Images/stg.png",
 	          height: 220,
 	          opacity: 0.7
-	        }), /*#__PURE__*/jsxRuntime.jsx(Ap_Disp, {}), /*#__PURE__*/jsxRuntime.jsx(WACAP_Left, {}), /*#__PURE__*/jsxRuntime.jsx(WACAP_Right, {}), /*#__PURE__*/jsxRuntime.jsx(WACAP, {}), /*#__PURE__*/jsxRuntime.jsx(WACAP_Warning, {}), /*#__PURE__*/jsxRuntime.jsx(StbyEngDisp, {}), /*#__PURE__*/jsxRuntime.jsx(RadioDisp, {}), /*#__PURE__*/jsxRuntime.jsx("image", {
+	        }), /*#__PURE__*/jsxRuntime.jsx(Ap_Disp, {}), /*#__PURE__*/jsxRuntime.jsx(WACAP_Left, {}), /*#__PURE__*/jsxRuntime.jsx(WACAP_Right, {}), /*#__PURE__*/jsxRuntime.jsx(WACAP, {}), /*#__PURE__*/jsxRuntime.jsx(WACAP_Warning, {}), /*#__PURE__*/jsxRuntime.jsx(StbyEngDisp, {}), /*#__PURE__*/jsxRuntime.jsx(RadioDisp, {}), /*#__PURE__*/jsxRuntime.jsx("rect", {
+	          x: 780,
+	          y: 38,
+	          width: 260,
+	          height: 360,
+	          fill: 'black'
+	        }), /*#__PURE__*/jsxRuntime.jsx(IRCMPanel, {}), /*#__PURE__*/jsxRuntime.jsx("image", {
 	          visibility: HUD_OVERLAY ? 'visible' : 'hidden',
 	          x: 0,
 	          y: 0,
-	          xlinkHref: "/Images/Dispbackround.png",
+	          xlinkHref: "/Images/SystemsUVs.png",
 	          height: 1024,
 	          width: 1024,
 	          opacity: 0.7

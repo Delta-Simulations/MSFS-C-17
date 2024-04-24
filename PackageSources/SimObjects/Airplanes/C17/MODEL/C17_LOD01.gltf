@@ -1,0 +1,2200 @@
+{
+    "asset" : {
+        "extensions" : {
+            "ASOBO_normal_map_convention" : {
+                "tangent_space_convention" : "DirectX"
+            }
+        },
+        "generator" : "Khronos glTF Blender I/O v1.8.19 and Asobo Studio MSFS Blender I/O v1.3.2",
+        "version" : "2.0"
+    },
+    "extensionsUsed" : [
+        "ASOBO_normal_map_convention",
+        "ASOBO_unique_id",
+        "ASOBO_material_invisible",
+        "ASOBO_material_shadow_options"
+    ],
+    "scene" : 0,
+    "scenes" : [
+        {
+            "extras" : {
+                "automirror" : {
+                    "axis" : 1,
+                    "orientation" : 1
+                },
+                "texToolsSettings" : {},
+                "msfs_extAsoboProperties" : {},
+                "uvpm3_props" : {
+                    "scripted_pipeline_props" : {},
+                    "scripted_props" : {},
+                    "precision" : 500,
+                    "margin" : 0.003000000026077032,
+                    "heuristic_enable" : 1,
+                    "heuristic_search_time" : 14,
+                    "advanced_heuristic" : 1,
+                    "active_main_mode_id" : 0,
+                    "tile_count_x" : 2,
+                    "auto_group_options" : {
+                        "base" : {
+                            "tile_count_per_group" : 2
+                        },
+                        "tdensity_policy" : 1,
+                        "group_layout_mode" : 3
+                    },
+                    "group_method" : 2,
+                    "use_blender_tile_grid" : 0,
+                    "normalize_islands" : 1,
+                    "custom_target_box" : {},
+                    "lock_overlapping_enable" : 1,
+                    "lock_overlapping_mode" : 2
+                },
+                "UVPackerProps" : {},
+                "msfs_exporter_properties" : {
+                    "use_unique_id" : 1
+                },
+                "msfs_multi_exporter_current_tab" : 1,
+                "msfs_multi_exporter_settings" : {
+                    "export_texture_dir" : "D:\\MSFS SDK\\C-17\\PackageSources\\SimObjects\\Airplanes\\C17\\TEXTURE",
+                    "export_extras" : 1,
+                    "use_active_collection" : 0,
+                    "use_visible" : 0,
+                    "export_apply" : 1,
+                    "export_materials" : 0,
+                    "export_colors" : 0,
+                    "use_renderable" : 0,
+                    "export_frame_range" : 0,
+                    "export_normals" : 1,
+                    "export_texcoords" : 1,
+                    "export_tangents" : 0,
+                    "export_image_format" : 0,
+                    "use_selected" : 1,
+                    "use_active_scene" : 0,
+                    "export_morph" : 1,
+                    "use_unique_id" : 1,
+                    "remember_export_settings" : 1,
+                    "export_animations" : 1,
+                    "export_skins" : 1,
+                    "export_force_sampling" : 1,
+                    "optimize_animation_size" : 0
+                },
+                "msfs_multi_exporter_presets" : [
+                    {
+                        "name" : "C17int_LOD01.gltf",
+                        "file_path" : "D:\\MSFS SDK\\C-17\\PackageSources\\SimObjects\\Airplanes\\C17\\MODEL\\",
+                        "layers" : [
+                            {
+                                "collection" : {
+                                    "name" : "Additional-restored",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Aidrop Cargo",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 0
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "CARGO HOLD",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 0
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Cockpit SHELL",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Details",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Displays",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "EFB",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "ENG BLADES",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 0
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "EXTERIOR",
+                                    "type" : "Collection"
+                                },
+                                "expanded" : 0,
+                                "enabled" : 0
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Floor",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 0
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Front PNL",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "FUSELAGE",
+                                    "type" : "Collection"
+                                },
+                                "expanded" : 1,
+                                "enabled" : 0
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "FX NODES",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 0
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "GEAR",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 0,
+                                "expanded" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Glarsheild PNL",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "HUD",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "INTERIOR",
+                                    "type" : "Collection"
+                                },
+                                "expanded" : 1,
+                                "enabled" : 0
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Side Walls",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 0
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Other_HP",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 0
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Overhead PNL",
+                                    "type" : "Collection"
+                                },
+                                "expanded" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Pedestal PNL",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Rear Cpit bulkhead",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 0
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Light Rigs",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Cargo Bay",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 0
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Cargo LGT",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 0
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "CPit",
+                                    "type" : "Collection"
+                                },
+                                "expanded" : 0
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Front",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 0
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Lighting",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 0
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Rear",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 0
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "REF IMAGE",
+                                    "type" : "Collection"
+                                },
+                                "expanded" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Cpit Remake",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Interior_LOD_FAR",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Pallet",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 0
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "GPU",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "RBF",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Seats",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "OLD",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "UH60M",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Rear Walls",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Ceiling Detail",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Collection 7",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "FARP",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Fuel Bladder",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "ISU",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Render",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Yokes",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "EPC Panel",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Humvee",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Side Console",
+                                    "type" : "Collection"
+                                }
+                            }
+                        ],
+                        "expanded" : 1,
+                        "enabled" : 0
+                    },
+                    {
+                        "name" : "C17int.gltf",
+                        "file_path" : "D:\\MSFS SDK\\C-17\\PackageSources\\SimObjects\\Airplanes\\C17\\MODEL\\",
+                        "enabled" : 0,
+                        "layers" : [
+                            {
+                                "collection" : {
+                                    "name" : "Additional-restored",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Aidrop Cargo",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Cargo Bay",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1,
+                                "expanded" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "CARGO HOLD",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Cargo LGT",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Ceiling Detail",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Cockpit SHELL",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Collection 7",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "CPit",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1,
+                                "expanded" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Cpit Remake",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Details",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Displays",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "EFB",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "ENG BLADES",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "EXTERIOR",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 0,
+                                "expanded" : 0
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "FARP",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Floor",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Front",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Front PNL",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Fuel Bladder",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "FUSELAGE",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "FX NODES",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "GEAR",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Glarsheild PNL",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "GPU",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "HUD",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "INTERIOR",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Interior_LOD_FAR",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "ISU",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Light Rigs",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Lighting",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "OLD",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Other_HP",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Overhead PNL",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Pallet",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Pedestal PNL",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "RBF",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Rear",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Rear Cpit bulkhead",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Rear Walls",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "REF IMAGE",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Render",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Seats",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Side Walls",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "UH60M",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Yokes",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Side Console",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Humvee",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "EPC Panel",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            }
+                        ],
+                        "expanded" : 1
+                    },
+                    {
+                        "name" : "C17.gltf",
+                        "file_path" : "D:\\MSFS SDK\\C-17\\PackageSources\\SimObjects\\Airplanes\\C17\\MODEL\\",
+                        "enabled" : 0,
+                        "layers" : [
+                            {
+                                "collection" : {
+                                    "name" : "Additional-restored",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Aidrop Cargo",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Cargo Bay",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "CARGO HOLD",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Cargo LGT",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Ceiling Detail",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Cockpit SHELL",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Collection 7",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "CPit",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Cpit Remake",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Details",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Displays",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "EFB",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "ENG BLADES",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "EXTERIOR",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "FARP",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Floor",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Front",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Front PNL",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Fuel Bladder",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "FUSELAGE",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "FX NODES",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "GEAR",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Glarsheild PNL",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "GPU",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "HUD",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "INTERIOR",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Interior_LOD_FAR",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "ISU",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Light Rigs",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Lighting",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "OLD",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Other_HP",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Overhead PNL",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Pallet",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Pedestal PNL",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "RBF",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Rear",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Rear Cpit bulkhead",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Rear Walls",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "REF IMAGE",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Render",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Seats",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Side Walls",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "UH60M",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Yokes",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "EPC Panel",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Humvee",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Side Console",
+                                    "type" : "Collection"
+                                }
+                            }
+                        ],
+                        "expanded" : 1
+                    },
+                    {
+                        "name" : "C17_LOD01.gltf",
+                        "file_path" : "D:\\MSFS SDK\\C-17\\PackageSources\\SimObjects\\Airplanes\\C17\\MODEL\\",
+                        "layers" : [
+                            {
+                                "collection" : {
+                                    "name" : "Additional-restored",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Aidrop Cargo",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Cargo Bay",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "CARGO HOLD",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Cargo LGT",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Ceiling Detail",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Cockpit SHELL",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Collection 7",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "CPit",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Cpit Remake",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Details",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Displays",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "EFB",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "ENG BLADES",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "EPC Panel",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "EXTERIOR",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Exterior_LOD_FAR",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "FARP",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Floor",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Front",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Front PNL",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Fuel Bladder",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "FUSELAGE",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "FX NODES",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "GEAR",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Glarsheild PNL",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "GPU",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "HUD",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Humvee",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "INTERIOR",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Interior_LOD_FAR",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "ISU",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Light Rigs",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Lighting",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "OLD",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Other_HP",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Overhead PNL",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Pallet",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Pedestal PNL",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "RBF",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Rear",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Rear Cpit bulkhead",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Rear Walls",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "REF IMAGE",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Render",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Seats",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Side Console",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Side Walls",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "UH60M",
+                                    "type" : "Collection"
+                                }
+                            },
+                            {
+                                "collection" : {
+                                    "name" : "Yokes",
+                                    "type" : "Collection"
+                                }
+                            }
+                        ],
+                        "enabled" : 1
+                    }
+                ],
+                "msfs_multi_exporter_lod_groups" : [
+                    {
+                        "group_name" : "Additional-restored",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "Additional-restored",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "Additional-restored"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "Aidrop Cargo",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "Aidrop Cargo",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "Aidrop Cargo"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "Cargo Bay",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "Cargo Bay",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "Cargo Bay"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "CARGO HOLD",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "CARGO HOLD",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "CARGO HOLD"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "Cargo LGT",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "Cargo LGT",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "Cargo LGT"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "Ceiling Detail",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "Ceiling Detail",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "Ceiling Detail"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "Cockpit SHELL",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "Cockpit SHELL",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "Cockpit SHELL"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "Collection 7",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "Collection 7",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "Collection 7"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "CPit",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "CPit",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "CPit"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "Cpit Remake",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "Cpit Remake",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "Cpit Remake"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "Details",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "Details",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "Details"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "Displays",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "Displays",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "Displays"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "EFB",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "EFB",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "EFB"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "ENG BLADES",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "ENG BLADES",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "ENG BLADES"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "EXTERIOR",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "EXTERIOR",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "EXTERIOR"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "FARP",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "FARP",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "FARP"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "Floor",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "Floor",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "Floor"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "Front",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "Front",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "Front"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "Front PNL",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "Front PNL",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "Front PNL"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "Fuel Bladder",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "Fuel Bladder",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "Fuel Bladder"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "FUSELAGE",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "FUSELAGE",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "FUSELAGE"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "FX NODES",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "FX NODES",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "FX NODES"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "GEAR",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "GEAR",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "GEAR"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "Glarsheild PNL",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "Glarsheild PNL",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "Glarsheild PNL"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "GPU",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "GPU",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "GPU"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "HUD",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "HUD",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "HUD"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "INTERIOR",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "INTERIOR",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "INTERIOR"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "Interior_LOD_FAR",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "Interior_LOD_FAR",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "Interior_LOD_FAR"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "ISU",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "ISU",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "ISU"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "Light Rigs",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "Light Rigs",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "Light Rigs"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "Lighting",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "Lighting",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "Lighting"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "OLD",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "OLD",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "OLD"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "Other_HP",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "Other_HP",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "Other_HP"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "Overhead PNL",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "Overhead PNL",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "Overhead PNL"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "Pallet",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "Pallet",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "Pallet"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "Pedestal PNL",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "Pedestal PNL",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "Pedestal PNL"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "RBF",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "RBF",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "RBF"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "Rear",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "Rear",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "Rear"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "Rear Cpit bulkhead",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "Rear Cpit bulkhead",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "Rear Cpit bulkhead"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "Rear Walls",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "Rear Walls",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "Rear Walls"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "REF IMAGE",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "REF IMAGE",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "REF IMAGE"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "Render",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "Render",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "Render"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "Seats",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "Seats",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "Seats"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "Side Walls",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "Side Walls",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "Side Walls"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "UH60M",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "UH60M",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "UH60M"
+                            }
+                        ]
+                    },
+                    {
+                        "group_name" : "Yokes",
+                        "lods" : [
+                            {
+                                "collection" : {
+                                    "name" : "Yokes",
+                                    "type" : "Collection"
+                                },
+                                "file_name" : "Yokes"
+                            }
+                        ]
+                    }
+                ],
+                "multi_exporter_show_hidden_objects" : 0,
+                "multi_exporter_grouped_by_collections" : 1,
+                "amth_datablock_types" : 0,
+                "amth_list_users_for_x_name" : "C17 NEW MODEL_Wings_OcclusionRoughnessMetallic.png",
+                "amaranth_cycles_list_sampling" : 0,
+                "amaranth_lighterscorner_list_meshlights" : 0,
+                "sna_starttime_vechms" : [
+                    16,
+                    32,
+                    26
+                ],
+                "sna_startdate_vecymd" : [
+                    2024,
+                    4,
+                    21
+                ],
+                "sna_startttomin" : 992,
+                "sna_previous_sesion" : 23,
+                "sna_full_time" : 7745,
+                "sna_sesion_str" : "",
+                "sna_all_sesions_str" : "2024-04-21 -  23min \n2024-04-21 -  45min \n2024-04-21 -  28min \n2024-04-19 -  1min \n2024-04-18 -  1h 42min \n2024-04-18 -  2min \n2024-04-18 -  13min \n2024-04-17 -  0min \n2024-04-15 -  18min \n2024-04-13 -  43min \n2024-04-12 -  1h 20min \n2024-04-12 -  54min \n2024-04-12 -  46min \n2024-04-09 -  1h 39min \n2024-04-09 -  1h 25min \n2024-04-08 -  6min \n2024-04-08 -  4h 33min \n2024-04-08 -  0min \n2024-04-08 -  18min \n2024-04-08 -  52min \n2024-04-07 -  7min \n2024-04-07 -  29min \n2024-04-07 -  4min \n2024-04-07 -  35min \n2024-04-07 -  54min \n2024-04-07 -  13min \n2024-04-07 -  17min \n2024-04-07 -  40min \n2024-04-07 -  0min \n2024-04-05 -  31min \n2024-04-05 -  1min \n2024-04-03 -  1min \n2024-04-02 -  0min \n2024-04-02 -  43min \n2024-03-27 -  2min \n2024-03-27 -  2min \n2024-03-27 -  0min \n2024-03-27 -  3min \n2024-03-26 -  7min \n2024-03-26 -  8min \n2024-03-23 -  1h 6min \n2024-03-22 -  2min \n2024-03-22 -  1h 25min \n2024-03-22 -  22min \n2024-03-22 -  2h 18min \n2024-03-22 -  1h 31min \n2024-03-22 -  18min \n2024-03-17 -  1min \n2024-03-17 -  31min \n2024-03-17 -  33min \n2024-03-17 -  5min \n2024-03-17 -  3h 4min \n2024-03-17 -  16min \n2024-03-17 -  1h 17min \n2024-03-16 -  1min \n2024-03-16 -  31min \n2024-03-16 -  14min \n2024-03-16 -  0min \n2024-03-16 -  1min \n2024-03-15 -  33min \n2024-03-14 -  9h 45min \n2024-03-12 -  2h 41min \n2024-03-12 -  1min \n2024-03-12 -  21min \n2024-03-10 -  32min \n2024-03-07 -  34min \n2024-03-07 -  51min \n2024-03-07 -  33min \n2024-03-07 -  37min \n2024-03-07 -  7min \n2024-03-07 -  1h 3min \n2024-03-06 -  7min \n2024-03-06 -  1h 32min \n2024-03-05 -  15min \n2024-03-05 -  23min \n2024-03-03 -  1h 15min \n2024-03-03 -  26min \n2024-03-03 -  2h 2min \n2024-03-03 -  54min \n2024-03-03 -  4h 37min \n2024-03-02 -  32min \n2024-03-02 -  11min \n2024-02-28 -  3min \n2024-02-26 -  9min \n2024-02-16 -  8min \n2024-02-16 -  20min \n2024-02-16 -  2min \n2024-02-16 -  4min \n2024-02-16 -  48min \n2024-02-16 -  2min \n2024-02-16 -  2min \n2024-02-16 -  4h 19min \n2024-02-15 -  25min \n2024-02-15 -  47min \n2024-02-14 -  20min \n2024-02-13 -  0min \n2024-02-13 -  9min \n2024-02-13 -  5min \n2024-02-12 -  45min \n2024-02-12 -  1min \n2024-02-12 -  30min \n2024-02-12 -  2h 39min \n2024-02-11 -  1min \n2024-02-11 -  0min \n2024-02-11 -  1min \n2024-02-11 -  2h 26min \n2024-02-11 -  8min \n2024-02-11 -  3h 18min \n2024-02-10 -  1h 33min \n2024-02-10 -  3h 5min \n2024-02-10 -  15min \n2024-02-09 -  12min \n2024-02-09 -  30min \n2024-02-09 -  1h 12min \n2024-02-09 -  0min \n2024-02-09 -  0min \n2024-02-09 -  5min \n2024-02-09 -  1min \n2024-02-09 -  18min \n2024-02-09 -  21min \n2024-02-08 -  1h 13min \n2024-02-08 -  1h 29min \n2024-02-08 -  47min \n2024-02-08 -  1min \n2024-02-08 -  1h 22min \n2024-02-08 -  1h 4min \n2024-02-07 -  6min \n2024-02-07 -  47min \n2024-02-07 -  1min \n2024-02-07 -  2min \n2024-02-06 -  9min \n2024-02-06 -  7min \n2024-02-06 -  5min \n2024-02-06 -  6min \n2024-02-06 -  11min \n2024-02-05 -  2min \n2024-02-05 -  2min \n2024-02-05 -  3min \n2024-02-05 -  0min \n2024-02-04 -  10min \n2024-02-04 -  34min \n2024-02-04 -  5h 42min \n2024-02-04 -  38min \n2024-02-04 -  4min \n2024-02-04 -  4min \n2024-02-04 -  4min \n2024-02-04 -  4h 40min \n2024-02-03 -  18min \n2024-02-03 -  29min \n2024-02-03 -  1h 7min \n2024-02-03 -  2min \n2024-02-03 -  1h 32min \n2024-02-03 -  48min \n2024-02-02 -  16min \n2024-02-02 -  1h 22min \n2024-02-02 -  1h 27min \n2024-02-02 -  7min \n2024-02-02 -  1h 13min \n2024-02-02 -  9min \n2024-02-02 -  41min \n2024-02-02 -  1min \n2024-02-02 -  2h 54min \n2024-02-01 -  0min \n2024-02-01 -  1h 5min \n2024-02-01 -  3min \n2024-01-31 -  3min \n2024-01-31 -  2min \n2024-01-31 -  49min \n2024-01-30 -  2min \n2024-01-30 -  10min \n2024-01-30 -  1min \n2024-01-30 -  13min \n2024-01-30 -  17min \n2024-01-30 -  5min \n2024-01-30 -  4min \n2024-01-30 -  55min \n2024-01-30 -  13min \n2024-01-30 -  5min \n2024-01-30 -  49min \n2024-01-30 -  6min \n2024-01-30 -  1h 58min \n2024-01-30 -  9min \n -  0min \n",
+                "sna_delta_time_min" : 50,
+                "sna_activesec_add" : 188855,
+                "sna_mausewindow" : [
+                    2136,
+                    878
+                ],
+                "sna_asctivestring" : "S",
+                "sna_endtime_vechms" : [
+                    17,
+                    22,
+                    15
+                ],
+                "sna_enddate_vecymd" : [
+                    2024,
+                    4,
+                    21
+                ],
+                "sna_enddatestr" : "2024-04-21",
+                "sna_endttomin" : 1042,
+                "sna_delta_sec" : 3015,
+                "sna_inactivesec" : 45547,
+                "sna_full_time_str" : "Full Time -  4d 17h 47min\n",
+                "sna_render_time_str" : "Render Time - 1h 4min 38sec\n",
+                "sna_currect_time_str" : "2024-04-08 - 0min \n",
+                "sna_active_time_str" : "Active Time - 1d 22h 46min 0sec\n",
+                "act" : {},
+                "sna_render_start" : 1108,
+                "sna_deltarender" : 348,
+                "sna_render_finish" : 1456,
+                "sna_fullrender" : 3878,
+                "amth_wire_toggle_edges_all" : 0,
+                "amth_wire_toggle_optimal" : 0,
+                "amth_wire_toggle_scene_all" : 0,
+                "amth_wire_toggle_is_selected" : 0
+            },
+            "name" : "Scene",
+            "nodes" : [
+                0
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "LOD_FAR"
+                }
+            },
+            "mesh" : 0,
+            "name" : "LOD_FAR",
+            "scale" : [
+                515.9508056640625,
+                515.9508056640625,
+                515.9508056640625
+            ]
+        }
+    ],
+    "materials" : [
+        {
+            "alphaMode" : "BLEND",
+            "emissiveFactor" : [
+                0,
+                0,
+                0
+            ],
+            "extensions" : {
+                "ASOBO_material_invisible" : {
+                    "enabled" : true
+                },
+                "ASOBO_material_shadow_options" : {
+                    "noCastShadow" : true
+                }
+            },
+            "extras" : {
+                "msfs_material_type" : 12,
+                "msfs_blend_mask_texture" : {},
+                "msfs_no_cast_shadow" : 1,
+                "msfs_alpha_mode" : 2,
+                "msfs_base_color_factor" : [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.0
+                ]
+            },
+            "name" : "Invis",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.800000011920929,
+                    0.800000011920929,
+                    0.800000011920929,
+                    0
+                ]
+            }
+        },
+        {
+            "doubleSided" : true,
+            "emissiveFactor" : [
+                0,
+                0,
+                0
+            ],
+            "extras" : {},
+            "name" : "Material",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.12743771076202393,
+                    0.15292617678642273,
+                    0.17464745044708252,
+                    1
+                ],
+                "metallicFactor" : 0,
+                "roughnessFactor" : 0.550000011920929
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "Cube.007",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2
+                    },
+                    "indices" : 3,
+                    "material" : 0
+                },
+                {
+                    "attributes" : {
+                        "POSITION" : 4,
+                        "NORMAL" : 5,
+                        "TEXCOORD_0" : 6
+                    },
+                    "indices" : 7,
+                    "material" : 1
+                }
+            ]
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 24,
+            "max" : [
+                1,
+                1,
+                1
+            ],
+            "min" : [
+                -1,
+                -1,
+                -1
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 24,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 24,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5123,
+            "count" : 36,
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 4,
+            "componentType" : 5126,
+            "count" : 7917,
+            "max" : [
+                0.050243932753801346,
+                0.025641245767474174,
+                0.03953401744365692
+            ],
+            "min" : [
+                -0.05010096728801727,
+                -0.006054244004189968,
+                -0.0622909776866436
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 5,
+            "componentType" : 5126,
+            "count" : 7917,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 6,
+            "componentType" : 5126,
+            "count" : 7917,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 7,
+            "componentType" : 5123,
+            "count" : 22713,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 288,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 288,
+            "byteOffset" : 288
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 192,
+            "byteOffset" : 576
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 72,
+            "byteOffset" : 768
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 95004,
+            "byteOffset" : 840
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 95004,
+            "byteOffset" : 95844
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 63336,
+            "byteOffset" : 190848
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 45426,
+            "byteOffset" : 254184
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 299612,
+            "uri" : "C17_LOD01.bin"
+        }
+    ]
+}

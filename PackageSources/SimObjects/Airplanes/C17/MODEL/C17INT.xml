@@ -419,19 +419,19 @@
     <TRUECODE>
       (L:C17_TERRAIN_FLYUP,BOOL) 1 ==
     </TRUECODE>
-    <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !</INTENSITY>
+    <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > ! 40 *</INTENSITY>
   </UseTemplate>
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>KORRY_WARNING_THRUST_LOSS</NODE_ID>
     <TRUECODE></TRUECODE>
-    <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !</INTENSITY>
+    <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > ! 40 * </INTENSITY>
   </UseTemplate>
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>KORRY_WARNING_WACS_FAIL</NODE_ID>
     <TRUECODE>
       (L:C17_ALERT_WACS_FAIL,BOOL) 1 ==
     </TRUECODE>
-    <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !</INTENSITY>
+    <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !40 * </INTENSITY>
   </UseTemplate>
 
 
@@ -874,6 +874,9 @@
   <CW_ANIMTIP>DISP BRT</CW_ANIMTIP>
   <CCW_ANIMTIP>DISP BRT</CCW_ANIMTIP>
 </UseTemplate>
+
+
+
 <Component ID="PFD1" Node="PFD1">
   <UseTemplate Name="ASOBO_GT_Material_Emissive_Code">
 <EMISSIVE_CODE>
@@ -2081,6 +2084,10 @@
     <NODE_ID>KORRY_ELEC_INOP</NODE_ID>
     <TRUECODE>0</TRUECODE>
   </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_ELEC_Normal</NODE_ID>
+    <TRUECODE>1</TRUECODE>
+  </UseTemplate>
 
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>KORRY_Front_Panel_Inop</NODE_ID>
@@ -2518,6 +2525,7 @@
     <TOOLTIPID>TOGGLE REVERSE THRUST</TOOLTIPID>
     <LEFT_SINGLE_CODE>
       (L:C17_REV_THRUST) ! (&gt;L:C17_REV_THRUST)
+      
     </LEFT_SINGLE_CODE>
 </UseTemplate>
 
@@ -3366,18 +3374,119 @@
             </UseTemplate>
           </Component>
 
+          <Component ID="IRCM_Display" Node="IRCM_Display">
+            <UseTemplate Name="ASOBO_GT_Material_Emissive_Code">
+          <EMISSIVE_CODE>
+            (L:C17_IRCMDISP1_BRIGHTNESS) (A:GLASSCOCKPIT AUTOMATIC BRIGHTNESS, number) * (L:C17_IRCM_MODE,bool) 1 min * 0.1 *
+          </EMISSIVE_CODE>
+          </UseTemplate>
+          </Component>
+          <Component ID="Gauge_IRCM_CDU" Node="Gauge_IRCM_CDU">
+            <UseTemplate Name="ASOBO_GT_Material_Emissive_Code">
+          <EMISSIVE_CODE>
+            (L:C17_IRCMDISP1_BRIGHTNESS) (A:GLASSCOCKPIT AUTOMATIC BRIGHTNESS, number) * (L:C17_IRCM_CDU_MODE,bool) 1 min * 0.1 *
+          </EMISSIVE_CODE>
+          </UseTemplate>
+          </Component>
+
+          <UseTemplate Name="DELTASIM_Finite_Knob_Template">
+            <NODE_ID>Knob_IRCM_CDU_MODE</NODE_ID>
+            <ANIM_CODE>(L:C17_IRCM_CDU_MODE) 16.7 * </ANIM_CODE>
+            <CLOCKWISE_CODE>
+              (L:C17_IRCM_CDU_MODE) ++ 6 min (&gt;L:C17_IRCM_CDU_MODE)
+            </CLOCKWISE_CODE>
+            <ANTICLOCKWISE_CODE>
+              (L:C17_IRCM_CDU_MODE) -- 0 max (&gt;L:C17_IRCM_CDU_MODE)
+            </ANTICLOCKWISE_CODE>
+            <CW_ANIMTIP>CDU MODE</CW_ANIMTIP>
+            <CCW_ANIMTIP>CDU MODE</CCW_ANIMTIP>
+          </UseTemplate>
+
+          <UseTemplate Name="DELTASIM_Finite_Knob_Template">
+            <NODE_ID>Knob_IRCM_DISP_1</NODE_ID>
+            <ANIM_CODE>(L:C17_IRCMDISP1_BRIGHTNESS)</ANIM_CODE>
+            <CLOCKWISE_CODE>
+              (L:C17_IRCMDISP1_BRIGHTNESS) 10 + 100 min (&gt;L:C17_IRCMDISP1_BRIGHTNESS)
+            </CLOCKWISE_CODE>
+            <ANTICLOCKWISE_CODE>
+              (L:C17_IRCMDISP1_BRIGHTNESS) 10 - 10 max (&gt;L:C17_IRCMDISP1_BRIGHTNESS)
+            </ANTICLOCKWISE_CODE>
+            <CW_ANIMTIP>DISP BRT</CW_ANIMTIP>
+            <CCW_ANIMTIP>DISP BRT</CCW_ANIMTIP>
+          </UseTemplate>
+          <UseTemplate Name="DELTASIM_Finite_Knob_Template">
+            <NODE_ID>Knob_IRCM_PWR</NODE_ID>
+            <ANIM_CODE>(L:C17_IRCM_MODE) 50 *</ANIM_CODE>
+            <CLOCKWISE_CODE>
+              (L:C17_IRCM_MODE) ++ 2 min (&gt;L:C17_IRCM_MODE)
+            </CLOCKWISE_CODE>
+            <ANTICLOCKWISE_CODE>
+              (L:C17_IRCM_MODE) -- 0 max (&gt;L:C17_IRCM_MODE)
+            </ANTICLOCKWISE_CODE>
+            <CW_ANIMTIP>PNL PWR</CW_ANIMTIP>
+            <CCW_ANIMTIP>PNL PWR</CCW_ANIMTIP>
+          </UseTemplate>
+
+          <UseTemplate Name="GENERIC_Toggle_Switch_Template">
+            <ANIM>(L:C17_AP_PILOT_SEL, bool) 100 *</ANIM>
+            <NODE_ID>Switch_Pilot_ID</NODE_ID>
+            <TOOLTIPID>SEL PILOT SIDE</TOOLTIPID>
+            <INTERACT_CODE>
+              (L:C17_AP_PILOT_SEL, bool) ! (&gt;L:C17_AP_PILOT_SEL, bool)
+            </INTERACT_CODE>
+          </UseTemplate>
+
+          <Component ID="Knob_Min_Set_Alt_P" Node="Knob_Min_Set_Alt_P">
+            <UseTemplate Name="ASOBO_GT_Knob_Infinite">
+              <ANIM_NAME>Knob_Min_Set_Alt_P</ANIM_NAME>					
+              <CLOCKWISE_CODE>  
+                (L:C17_Alt_Set_P, feet) 10 + (&gt;L:C17_Alt_Set_P, feet)
+                <!-- (L:C17_Alt_Set_P, feet) 1000 &gt; if{ 0 (&gt;L:C17_Alt_Set_P, feet) } -->
+              </CLOCKWISE_CODE>
+              <ANTICLOCKWISE_CODE>
+                (L:C17_Alt_Set_P, feet) 10 - 0 max (&gt;L:C17_Alt_Set_P, feet) 
+              </ANTICLOCKWISE_CODE>
+              <ANIMTIP_0>MIN ALT</ANIMTIP_0>
+              <ANIMTIP_1>MIN ALT</ANIMTIP_1>
+            </UseTemplate>
+          </Component>
+          <UseTemplate Name="DELTASIM_Finite_Knob_Template">
+            <NODE_ID>Knob_Alt_Ref_P</NODE_ID>
+            <ANIM_CODE>(L:C17_Alt_Ref_P) 50 *</ANIM_CODE>
+            <CLOCKWISE_CODE>
+              (L:C17_Alt_Ref_P) ++ 2 min (&gt;L:C17_Alt_Ref_P)
+            </CLOCKWISE_CODE>
+            <ANTICLOCKWISE_CODE>
+              (L:C17_Alt_Ref_P) -- 0 max (&gt;L:C17_Alt_Ref_P)
+            </ANTICLOCKWISE_CODE>
+            <CW_ANIMTIP>ALT REFERENCE MODE</CW_ANIMTIP>
+            <CCW_ANIMTIP>ALT REFERENCE MODE</CCW_ANIMTIP>
+          </UseTemplate>
+          <UseTemplate Name="DELTASIM_Finite_Knob_Template">
+            <NODE_ID>Knob_Min_Set_Baro_RA_P</NODE_ID>
+            <ANIM_CODE>(L:C17_Alt_RaBARO_P) 50 *</ANIM_CODE>
+            <CLOCKWISE_CODE>
+              (L:C17_Alt_RaBARO_P) ++ 1 min (&gt;L:C17_Alt_RaBARO_P)
+            </CLOCKWISE_CODE>
+            <ANTICLOCKWISE_CODE>
+              (L:C17_Alt_RaBARO_P) -- 0 max (&gt;L:C17_Alt_RaBARO_P)
+            </ANTICLOCKWISE_CODE>
+            <CW_ANIMTIP>ALT REFERENCE RA/BA</CW_ANIMTIP>
+            <CCW_ANIMTIP>ALT REFERENCE RA/BA</CCW_ANIMTIP>
+          </UseTemplate>
+
 
           <UseTemplate Name="DELTASIM_Finite_Knob_Template">
             <NODE_ID>KNOB_SPOILER_ARM</NODE_ID>
             <ANIM_CODE>(A:SPOILERS ARMED, bool) 100 * </ANIM_CODE>
             <CLOCKWISE_CODE>
-              1 (&gt;K:SPOILERS_ARM_SET)
+              0 (&gt;K:SPOILERS_ARM_SET) 
             </CLOCKWISE_CODE>
             <ANTICLOCKWISE_CODE>
-              0 (&gt;K:SPOILERS_ARM_SET)
+              1 (&gt;K:SPOILERS_ARM_SET)
             </ANTICLOCKWISE_CODE>
-            <CW_ANIMTIP>SPOILER ARM</CW_ANIMTIP>
-            <CCW_ANIMTIP>SPOILER ARM</CCW_ANIMTIP>
+            <CW_ANIMTIP>SPOILERS ARM</CW_ANIMTIP>
+            <CCW_ANIMTIP>SPOILERS ARM</CCW_ANIMTIP>
           </UseTemplate>
         <UseTemplate Name="DELTASIM_PushButton_Template">
             <NODE_ID>BUTTON_HDG_HOLD</NODE_ID>
