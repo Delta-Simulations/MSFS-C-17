@@ -75,7 +75,7 @@
 		<WwiseRTPC SimVar="GENERAL ENG STARTER ACTIVE" Units="Bool" Index="1" RTPCName="SIMVAR_GENERAL_ENG_STARTER"/>
 	</Sound>
 
-    
+   
 
   </EngineSoundStates>
 
@@ -89,17 +89,16 @@
         <Range LowerBound="1.0" /> 
     </Sound> -->
 
-	<Sound WwiseData="true" WwiseEvent="Master_WWise"  Derived="true"  LocalVar="C17_Volume_Master" Units="ENUM" Index="0" NodeName="Ramp toe">
-		<WwiseRTPC LocalVar="C17_CargoDoor_POS" Units="ENUM" Index="0" RTPCName="CARGO_BAY_OPEN"/>
-		<Range LowerBound="10" UpperBound="90"/>
-	</Sound>
-
 
     <Sound WwiseData="true" WwiseEvent="APU_Idle" ConeHeading="180" ViewPoint="All" NodeName="APU_Inlet" SimVar="APU PCT RPM" Units="PERCENT" Index="0" FadeOutType="2" FadeOutTime="0.5">
 		<WwiseRTPC SimVar="APU PCT RPM" Units="PERCENT" Index="0" RTPCName="SIMVAR_APU_PCT_RPM" />
 		<Range LowerBound="1.0" />
 	</Sound>   
 	  
+
+
+
+
 	<Sound WwiseData="true" WwiseEvent="APU_Starter" ConeHeading="270.0" NodeName="APU_Inlet" ViewPoint="All" SimVar="APU PCT RPM" Units="PERCENT" Index="0" FadeOutType="2" FadeOutTime="0.5">
 		<WwiseRTPC SimVar="APU PCT RPM" Units="PERCENT" Index="0" RTPCName="SIMVAR_APU_PCT_RPM" />
 		<Range LowerBound="1.0" />
@@ -110,6 +109,15 @@
 		<Range LowerBound="1.0" />
 		<WwiseRTPC LocalVar="C17_APUSTARTER" Units="ENUM" Index="0" RTPCName="APU_SWITCH_POS"/>
 	</Sound>
+
+
+
+    <Sound WwiseData="true" Continuous="true" WwiseEvent="TurbWindSpin1" NodeName="C-17_Engine_1_Dummy" LocalVar="C17_RBF_TAGS" Units="bool" Index="0">
+        <Range UpperBound="1.0" />
+        <WwiseRTPC SimVar="TURB ENG N1" Units="PERCENT" Index="1" RTPCName="SIMVAR_TURB_ENG_N1"/>
+        <WwiseRTPC SimVar="AIRCRAFT WIND Z" Units="knots" Index="0" RTPCName="SIMVAR_WIND_Z"/>
+		<WwiseRTPC LocalVar="C17_RBF_EngCovers" Units="Bool" Index="0" RTPCName="LVAR_ENGINECOVERS"/>
+</Sound>
 
 
     <Sound WwiseData="true" WwiseEvent="Cpit_Pacs" Continuous="true" LocalVar="C17_Cpit_Pacs" Units="Bool" Index="1" NodeName="Cube.031" ViewPoint="Inside" >
@@ -317,6 +325,9 @@
 </Sound> 
 
 
-</SimVarSounds> 
+
+
+</SimVarSounds>
+
 
 </SoundInfo>

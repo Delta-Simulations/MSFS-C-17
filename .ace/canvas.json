@@ -1,11 +1,11 @@
 {
     "elements": [
         {
-            "__uuid": "a3676b3c-4bab-4bf6-9bcd-aad39a2ed3bc",
+            "__uuid": "63d003e3-2525-4001-a6a1-b3d3924b65ed",
             "__kind": "instrument",
             "dataKind": "bundled",
-            "title": "LegacyHUD",
-            "instrumentName": "LegacyHUD",
+            "title": "MFD",
+            "instrumentName": "MFD",
             "position": {
                 "x": 0,
                 "y": 0

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ModelInfo>
 	<LODS>
-		<LOD minSize="150" ModelFile="C17.gltf"/>
+		<LOD minSize="150" ModelFile="C17.gltf" />
 		<!-- <LOD minSize="1" ModelFile="C17_LOD01.gltf"/> -->
 	</LODS>
 	<Behaviors>
 		<Include ModelBehaviorFile="Asobo\Exterior.xml" />
 		<Include ModelBehaviorFile="Asobo\Common.xml" />
 		<Include ModelBehaviorFile="Asobo\Generic\FX.xml" />
-		
+
 		<Include Path="Asobo\Exterior.xml" />
 		<Include Path="DeltaSim-C17\DeltaSim_Anim_Template.xml" />
 
@@ -307,7 +307,6 @@
 
 
 
-
 	</Behaviors>
 
 	<Animation name="GPU_Ext" guid="aa41a793-a86c-496a-b832-7749aa6693db" type="Sim"
@@ -390,18 +389,22 @@
     <Visibility>
         <Parameter>
             <Code>
-				(L:C17_RBF_TAGS, bool) 1 ==
-				(A:SURFACE RELATIVE GROUND SPEED, meter/second) 0.1 &lt; and
-					  (A:Eng1 Combustion,bool) 0 == and
-					  (A:Eng2 Combustion,bool) 0 == and
-					  (A:Eng3 Combustion,bool) 0 == and
-					  (A:Eng4 Combustion,bool) 0 == and
-				(A:SIM ON GROUND,bool) 1 == and
+				(L:C17_RBF_EngCovers, bool) 1 ==
 			</Code> 
 		</Parameter>
-		</Visibility>
-					
-						
+		</Visibility>					
+</PartInfo>
+	<Animation name="Cones_Chocks" guid="999b801b-1fdf-4d60-84c6-bb2a7941775a" length="1" type="Sim"
+		typeParam="AutoPlay" />
+<PartInfo>
+<Name>Cones_Chocks</Name>
+<Visibility>
+<Parameter>
+	<Code>
+		(L:C17_RBF_ChocksCones, bool) 1 ==
+	</Code> 
+</Parameter>
+</Visibility>					
 </PartInfo>
 
 
@@ -498,6 +501,32 @@
         </Animation>
     </PartInfo>
 
+	<Animation name="KC135_Movement_Telescope" guid="32f85d33-f733-4eaa-b95d-55c04cf0948e"
+		length="200" type="Sim"
+		typeParam="AutoPlay" />
+	<PartInfo>
+		<Name>KC135_Movement_Telescope</Name>
+		<AnimLength>200</AnimLength>
+		<Animation>
+			<Parameter>
+				<Code>
+					(L:C17_UARRSI_LATCHED,bool) 200 *
+				</Code>
+				<Lag>8</Lag>
+			</Parameter>
+		</Animation>
+		<Visibility>
+			<Parameter>
+			  <Code>
+				(L:C17_UARRSI_READY, bool)
+				(L:C17_UARRSI_LATCHED, bool) or
+			  </Code>
+			  <Lag>10</Lag>
+			</Parameter>
+		</Visibility>
+	</PartInfo>
+
+	
 	<Animation name="Rudder_Upper_Section" guid="9df437bd-9a84-4c5a-870d-ee277535cb70" type="Sim" typeParam="AutoPlay" />
 	<PartInfo>
 		<Name>Rudder_Upper_Section</Name>

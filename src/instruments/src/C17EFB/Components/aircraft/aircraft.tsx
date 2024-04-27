@@ -15,7 +15,9 @@ import { Images } from './Images'
 import './aircraft.scss';
 
 export const Aircraft = () => {
-	let [removeTags, setremoveTags] = useSimVar('L:C17_RBF_TAGS', 'bool');
+	let [removeTags, setremoveTags] = useSimVar('L:C17_RBF_EngCovers', 'bool');
+	let [removeCones, setremoveCones] = useSimVar('L:C17_RBF_ChocksCones', 'bool');
+
 	let [rearDoorL, setRearDoorL] = useSimVar('L:C17_PARA_L', 'bool');
 	let [rearDoorR, setRearDoorR] = useSimVar('L:C17_PARA_R', 'bool');
 	let [CargoDoor, setCargoDoor] = useSimVar('L:C17_CargoDoor_POS', 'enum');
@@ -49,7 +51,7 @@ export const Aircraft = () => {
 					sx={{
 						position: 'absolute',
 						width: 220,
-						height: 140,
+						height: 200,
 						backgroundColor: '#343a40',
 						borderRadius: 1,
 						left: 15,
@@ -78,7 +80,15 @@ export const Aircraft = () => {
 								variant={removeTags ? 'contained' : 'outlined'}
 
 							>
-								Cones & Covers
+								Engine Covers
+							</Button>
+							<Button
+								onClick={() => setremoveCones(!removeCones)}
+								size="large"
+								variant={removeCones ? 'contained' : 'outlined'}
+
+							>
+								Cones & Chocks
 							</Button>
 							<Button
 								onClick={() => setFARPSHOW(!FARPSHOW)}

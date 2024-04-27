@@ -6,7 +6,7 @@
   <Element>
     <Select>
           <Value>    
-            (A:PLANE ALT ABOVE GROUND,feet) 10 - (&gt;L:C17_RADALT,feet)
+            (A:PLANE ALT ABOVE GROUND,feet) (&gt;L:C17_RADALT,feet)
           </Value>
     </Select>
   </Element>

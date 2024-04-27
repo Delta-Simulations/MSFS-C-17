@@ -34,6 +34,7 @@
                 <ANIM_CODE>
 
                     (A:GENERAL ENG RPM:#ENG_ID#, rpm) 5 &gt;
+                    (L:C17_RBF_EngCovers, bool) 0 == and
                     if{
                     (A:GENERAL ENG RPM:#ENG_ID#, degrees per second) (A:ANIMATION DELTA TIME, seconds) *
                     } els{

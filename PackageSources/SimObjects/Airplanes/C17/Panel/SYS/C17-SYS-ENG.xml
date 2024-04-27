@@ -6,136 +6,140 @@
 	</Comment>
 
 
-<Element>
-	<Select>
+	<Element>
+		<Select>
 			<Value>
+
+
+				(L:C17_RBF_EngCovers, bool) 1 ==
+				(A:SURFACE RELATIVE GROUND SPEED, meter/second) 1 &lt; and
+				(A:GENERAL ENG RPM:1, rpm) 5 &lt; and
+				(A:GENERAL ENG RPM:2, rpm) 5 &lt; and
+				(A:GENERAL ENG RPM:3, rpm) 5 &lt; and
+				(A:GENERAL ENG RPM:4, rpm) 5 &lt; and
+				(A:SIM ON GROUND,bool) 1 == and
+				if{
+				0
+				} els{
+				0 (&gt;L:C17_RBF_EngCovers)
+				}
+
+				(L:C17_RBF_ChocksCones, bool) 1 ==
+				(A:SURFACE RELATIVE GROUND SPEED, meter/second) 1 &lt; and
+				(A:SIM ON GROUND,bool) 1 == and
+				if{
+				0
+				} els{
+				0 (&gt;L:C17_RBF_ChocksCones)
+				}
+
+
 				(A:SIM ON GROUND,bool) 0 ==
 				(A:CIRCUIT ON:65,bool) 1 == and
 				(L:C17_PUSH_FLARES, bool) 1 == and
-				if{ 
-					1 (&gt;L:C17_EFFECT_FLARE,bool)
-				   } els{
-					0 (&gt;L:C17_EFFECT_FLARE,bool)
-				   }
+				if{
+				1 (&gt;L:C17_EFFECT_FLARE,bool)
+				} els{
+				0 (&gt;L:C17_EFFECT_FLARE,bool)
+				}
 
-				   (A:AUTOPILOT THROTTLE ARM, bool) 1 ==
-				   if{ 
-					4 (&gt;A:GENERAL ENG THROTTLE MANAGED MODE:1, bool)
-					4 (&gt;A:GENERAL ENG THROTTLE MANAGED MODE:2, bool)
-					4 (&gt;A:GENERAL ENG THROTTLE MANAGED MODE:3, bool)
-					4 (&gt;A:GENERAL ENG THROTTLE MANAGED MODE:4, bool)
-					  }
+				(A:AUTOPILOT THROTTLE ARM, bool) 1 ==
+				if{
+				4 (&gt;A:GENERAL ENG THROTTLE MANAGED MODE:1, bool)
+				4 (&gt;A:GENERAL ENG THROTTLE MANAGED MODE:2, bool)
+				4 (&gt;A:GENERAL ENG THROTTLE MANAGED MODE:3, bool)
+				4 (&gt;A:GENERAL ENG THROTTLE MANAGED MODE:4, bool)
+				}
 
 
 				(A:EXTERNAL POWER ON, bool) 1 ==
 				(A:EXTERNAL POWER AVAILABLE, bool) 1 == and
 				(A:SIM ON GROUND,bool) 1 == and
 				(A:SURFACE RELATIVE GROUND SPEED, meter/second) 0.1 &lt; and
-				if{ 
-					1 (&gt;L:C17_GPU_Vis,bool)
-				   } els{
-					0 (&gt;L:C17_GPU_Vis,bool)
-				   }
+				if{
+				1 (&gt;L:C17_GPU_Vis,bool)
+				} els{
+				0 (&gt;L:C17_GPU_Vis,bool)
+				}
 
 				(A:SURFACE RELATIVE GROUND SPEED, meter/second) 5 &gt;
 				(A:SIM ON GROUND,bool) 0 == or
 				(L:C17_CargoDoor_POS, enum) 51 &gt; and
-				if{ 
-					50 (&gt;L:C17_CargoDoor_POS, enum)
+				if{
+				50 (&gt;L:C17_CargoDoor_POS, enum)
 				}
 
 				(A:SURFACE RELATIVE GROUND SPEED, meter/second) 5 &gt;
 				(A:SIM ON GROUND,bool) 0 == or
-				if{ 
-					0 (&gt;L:C17_Crew_Enterance, bool)
-					0 (&gt;L:C17_CpitWindowR, bool)
-					0 (&gt;L:C17_CpitWindowL, bool)
-					0 (&gt;L:C17_Radome_Open, bool)
+				if{
+				0 (&gt;L:C17_Crew_Enterance, bool)
+				0 (&gt;L:C17_CpitWindowR, bool)
+				0 (&gt;L:C17_CpitWindowL, bool)
+				0 (&gt;L:C17_Radome_Open, bool)
 				}
 
 				(L:C17_P_PITOT, bool) 1 ==
 				(L:C17_CP_PITOT, bool) 1 == or
-				if{ 
-				 1 (&gt;K:PITOT_HEAT_SET,bool)
+				if{
+				1 (&gt;K:PITOT_HEAT_SET,bool)
 				} els{
-				 0 (&gt;K:PITOT_HEAT_SET,bool)
+				0 (&gt;K:PITOT_HEAT_SET,bool)
 				}
 
-			(L:C17_APUSTARTER, enum) 0 !=
-			if{ 
-				9 (&gt;K:FUELSYSTEM_PUMP_ON,bool) 
-				9 (&gt;K:FUELSYSTEM_VALVE_OPEN,bool) 
+				(L:C17_APUSTARTER, enum) 0 !=
+				if{
+				9 (&gt;K:FUELSYSTEM_PUMP_ON,bool)
+				9 (&gt;K:FUELSYSTEM_VALVE_OPEN,bool)
 
-			} els{ 
+				} els{
 				0 (&gt;K:APU_OFF_SWITCH,bool)
-				9 (&gt;K:FUELSYSTEM_PUMP_TOGGLE,bool) 
-				9 (&gt;K:FUELSYSTEM_PUMP_OFF,bool) 
-			}
-			(L:C17_APUSTARTER, enum) 2 == if{
+				9 (&gt;K:FUELSYSTEM_PUMP_TOGGLE,bool)
+				9 (&gt;K:FUELSYSTEM_PUMP_OFF,bool)
+				}
+				(L:C17_APUSTARTER, enum) 2 == if{
 				1 (&gt;K:APU_STARTER,bool)
-			}
+				}
 			</Value>
-	</Select>
-</Element>
+		</Select>
+	</Element>
 
-<Element>
-	<Select>
+	<Element>
+		<Select>
 			<Value>
-				(A:APU PCT RPM, percent) 7 &gt; 
+				(A:APU PCT RPM, percent) 7 &gt;
 				if{
-					1 (&gt;L:C17_APUDOOR_OPEN, bool)
+				1 (&gt;L:C17_APUDOOR_OPEN, bool)
 				} els{
-					0 (&gt;L:C17_APUDOOR_OPEN, bool)
+				0 (&gt;L:C17_APUDOOR_OPEN, bool)
 				}
 			</Value>
-	</Select>
-</Element>
-<Comment>
-	*************************************************
-	Thrust settings:
-	0-4
-	MAN, Derated, Max Continuous, Intermidate, Maximum
-	*************************************************
-</Comment>
-<Element>
-	<Select>
-			<Value>
-
-				(L:C17_THR_MODE, enum) 0 ==
-				if{
-					(L:C17_EPR_MAN_SEL,number) (&gt;L:C17_ENG_SET_EPR,number)
-					(L:C17_EPR_MAN_SEL,number) 1.7 / 100 * (&gt;A:AUTOPILOT THROTTLE MAX THRUST,percent)
-				}
-				(L:C17_THR_MODE, enum) 1 ==
-				if{
-					1.35 (&gt;L:C17_ENG_SET_EPR,number)
-					79 (&gt;A:AUTOPILOT THROTTLE MAX THRUST,percent)
-				}
-				(L:C17_THR_MODE, enum) 2 ==
-				if{
-					1.5 (&gt;L:C17_ENG_SET_EPR,number)
-					88 (&gt;A:AUTOPILOT THROTTLE MAX THRUST,percent)
-				}
-
-				(L:C17_THR_MODE, enum) 3 ==
-				if{
-					1.6 (&gt;L:C17_ENG_SET_EPR,number)
-					94 (&gt;A:AUTOPILOT THROTTLE MAX THRUST,percent)
-				}
-
-				(L:C17_THR_MODE, enum) 4 ==
-				if{
-					1.7 (&gt;L:C17_ENG_SET_EPR,number)
-					100 (&gt;A:AUTOPILOT THROTTLE MAX THRUST,percent)
-				}
-
-				(L:C17_ENG_SET_EPR,number) (&gt;L:AP N1 rating display,number)
-				<!-- (L:C17_ENG_SET_EPR,number) 1.7 / 100 * (&gt;A:AUTOPILOT THROTTLE MAX THRUST,percent) -->
+		</Select>
+	</Element>
+	<Comment>
+		*************************************************
+		Thrust settings:
+		0-4
+		MAN, Derated, Max Continuous, Intermidate, Maximum
+		*************************************************
+	</Comment>
+	<Element>
+		<Select>
+			<Value> 
+				(L:C17_THR_MODE, enum) 0 == if{ (L:C17_EPR_MAN_SEL,number)
+				(&gt;L:C17_ENG_SET_EPR,number) (L:C17_EPR_MAN_SEL,number) 1.7 / 100 *
+				(&gt;A:AUTOPILOT THROTTLE MAX THRUST,percent) } (L:C17_THR_MODE, enum) 1 == if{ 1.35
+				(&gt;L:C17_ENG_SET_EPR,number) 79 (&gt;A:AUTOPILOT THROTTLE MAX THRUST,percent) }
+				(L:C17_THR_MODE, enum) 2 == if{ 1.5 (&gt;L:C17_ENG_SET_EPR,number) 88
+				(&gt;A:AUTOPILOT THROTTLE MAX THRUST,percent) } (L:C17_THR_MODE, enum) 3 == if{ 1.6
+				(&gt;L:C17_ENG_SET_EPR,number) 94 (&gt;A:AUTOPILOT THROTTLE MAX THRUST,percent) }
+				(L:C17_THR_MODE, enum) 4 == if{ 1.7 (&gt;L:C17_ENG_SET_EPR,number) 100
+				(&gt;A:AUTOPILOT THROTTLE MAX THRUST,percent) } (L:C17_ENG_SET_EPR,number) (&gt;L:AP
+				N1 rating display,number) <!-- (L:C17_ENG_SET_EPR,number) 1.7 / 100 * (&gt;A:AUTOPILOT THROTTLE MAX
+				THRUST,percent) -->
 
 			</Value>
-	</Select>
-</Element>
-
+		</Select>
+	</Element>
 
 
 </Gauge>

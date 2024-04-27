@@ -1,0 +1,108 @@
+<Gauge Name="C-17 REFUELLING STATIC SYSTEM" Version="2.0">
+
+<!--		Refuelling Init, clear codes		-->			
+   	<Element>
+    		<Select>
+      			<Value>
+				(L:C17_UARRSI_Slipway,bool) 0 == 				
+					if{ 
+						0 (>L:C17_UARRSI_READY,bool) 
+						0 (>L:C17_UARRSI_LATCHED,bool) 
+						0 (>L:C17_UARRSI_LATCHED,bool) 
+						0 (>L:C17_UARRSI_DISC,bool) 
+						0 (>L:RF_COMPLETE,bool) 
+						0 (>L:RF_FAILED,bool) 
+					}
+      			</Value>
+    		</Select>
+  	</Element>
+	
+
+<!--		PreContact	-->			
+   	<Element>
+    		<Select>
+      			<Value>
+					(L:C17_UARRSI_Slipway,bool) 1 == 
+					(A:INDICATED ALTITUDE,feet) 19500 &gt; and
+					(A:INDICATED ALTITUDE,feet) 20500 &lt; and
+					(L:C17_UARRSI_LATCHED,bool) 0 == and
+					(L:RF_COMPLETE,bool) 0 == and
+					(L:RF_FAILED,bool) 0 == and
+						if{ 
+							1 (>L:C17_UARRSI_READY,bool) 
+						}
+				</Value>
+    		</Select>
+  	</Element>
+
+<!--		Contact - Latched	-->		
+	<Element>
+		<Select>
+			<Value>
+               	(A:AIRSPEED INDICATED,knots) 270 &gt; 
+				(A:AIRSPEED INDICATED,knots) 280 &lt; and
+				(A:INDICATED ALTITUDE,feet) 20000 &gt; and
+				(A:INDICATED ALTITUDE,feet) 20050 &lt; and
+				(L:C17_UARRSI_READY,bool) 1 == and
+				(L:RF_COMPLETE,bool) 0 == and
+				(L:RF_FAILED,bool) 0 == and
+					if{ 
+						1 (>L:C17_UARRSI_LATCHED,bool) 
+						0 (>L:C17_UARRSI_READY,bool) 
+					}
+			</Value>
+		</Select>
+	</Element>
+
+<!--		FIll Fuel Code	-->		
+  <Element>
+      <Select>
+          <Value>
+					(L:C17_UARRSI_LATCHED,bool) 1 ==
+					(E:local time,seconds) 1 % 0.05 &lt; and
+						if{ 
+							(A:FUELSYSTEM TANK LEVEL:1,percent) 0.5 + (&gt;A:FUELSYSTEM TANK LEVEL:1,percent)
+							(A:FUELSYSTEM TANK LEVEL:2,percent) 0.5 + (&gt;A:FUELSYSTEM TANK LEVEL:2,percent)
+							(A:FUELSYSTEM TANK LEVEL:3,percent) 0.5 + (&gt;A:FUELSYSTEM TANK LEVEL:3,percent)
+							(A:FUELSYSTEM TANK LEVEL:4,percent) 0.5 + (&gt;A:FUELSYSTEM TANK LEVEL:4,percent)
+						}
+
+          </Value>
+      </Select>
+  </Element>
+
+
+  <!-- Max Fill -->
+  <Element>
+      <Select>
+          <Value>
+				(L:C17_UARRSI_LATCHED,bool) 1 ==
+				(A:FUEL TANK LEFT MAIN LEVEL,percent) 95 &gt; and
+				(A:FUEL TANK RIGHT MAIN LEVEL,percent) 95 &gt; and
+					if{ 
+						1 (>L:RF_COMPLETE,bool) 
+						1 (>L:C17_UARRSI_DISC,bool) 
+						0 (>L:C17_UARRSI_LATCHED,bool) 
+					}
+          </Value>
+      </Select>
+  </Element>
+  
+<!--		Disconnect, alt change, airspeed out of optimal	-->		
+  <Element>
+      <Select>
+          <Value>
+				(A:AIRSPEED INDICATED,knots) 270 &lt; 
+				(A:AIRSPEED INDICATED,knots) 280 &gt; or
+				(A:INDICATED ALTITUDE,feet) 19950 &lt; or
+				(A:INDICATED ALTITUDE,feet) 20050 &gt; or
+				(L:C17_UARRSI_LATCHED,bool) 1 == and
+					if{ 
+						1 (>L:RF_FAILED,bool) 
+						1 (>L:C17_UARRSI_DISC,bool) 
+						0 (>L:C17_UARRSI_LATCHED,bool) 
+					}
+          </Value>
+      </Select>
+  </Element>  
+</Gauge>

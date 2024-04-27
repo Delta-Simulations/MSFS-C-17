@@ -516,7 +516,9 @@
   <NODE_ID>Switch_AntiSkid</NODE_ID>
   <TOOLTIPID>ANTI SKID</TOOLTIPID>
   <INTERACT_CODE>
+
     (K:ANTISKID_BRAKES_TOGGLE, bool) ! (&gt;K:ANTISKID_BRAKES_TOGGLE, bool)
+
   </INTERACT_CODE>
 </UseTemplate>
 
@@ -1173,7 +1175,7 @@
     <LEFT_SINGLE_CODE>
       (L:C17_Nav_System_Active,enum) ++ (&gt;L:C17_Nav_System_Active,enum)
       (L:C17_Nav_System_Active,enum) 2 &gt; if{ 1 (&gt;L:C17_Nav_System_Active,enum) }
-      (L:C17_Nav_System_Active,enum) 2 == if{ 1 (&gt;K:COM2_RECEIVE_SELECT) 0 (&gt;K:COM1_RECEIVE_SELECT) }els{ 1 (&gt;K:COM1_RECEIVE_SELECT) 0 (&gt;K:COM2_RECEIVE_SELECT)}
+      (L:C17_Nav_System_Active,enum) 2 == if{ 1 (&gt;K:COM2_RECEIVE_SELECT) 0 (&gt;K:COM1_RECEIVE_SELECT) } els{ 1 (&gt;K:COM1_RECEIVE_SELECT) 0 (&gt;K:COM2_RECEIVE_SELECT)}
     </LEFT_SINGLE_CODE>
   </UseTemplate>
   <UseTemplate Name="DELTASIM_PushButton_Template">
@@ -2029,12 +2031,28 @@
       (A:WINDSHIELD DEICE SWITCH,bool) !
     </TRUECODE>
   </UseTemplate>
-
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_AR_INOP</NODE_ID>
+    <TRUECODE>0</TRUECODE>
+    <INTENSITY>(L:C17_AR_Korry_Intensity, percent) 40 +</INTENSITY>
+  </UseTemplate>`
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>KORRY_AR_READY</NODE_ID>
-    <TRUECODE>(L:C17_UARRSI_Slipway, bool) 1 ==</TRUECODE>
-    <INTENSITY>(L:C17_AR_Korry_Intensity, percent) 0.1 +</INTENSITY>
+    <TRUECODE>(L:C17_UARRSI_READY, bool) 1 ==</TRUECODE>
+    <INTENSITY>(L:C17_AR_Korry_Intensity, percent) 40 +</INTENSITY>
   </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_AR_LATCHED</NODE_ID>
+    <TRUECODE>(L:C17_UARRSI_LATCHED, bool) 1 ==</TRUECODE>
+    <INTENSITY>(L:C17_AR_Korry_Intensity, percent) 40 +</INTENSITY>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_AR_DISC</NODE_ID>
+    <TRUECODE>(L:C17_UARRSI_DISC, bool) 1 ==</TRUECODE>
+    <INTENSITY>(L:C17_AR_Korry_Intensity, percent) 40 +</INTENSITY>
+  </UseTemplate>
+
+
       <!-- INOP FOR NOW -->
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>Korry_UARRSI_L_DISAG</NODE_ID>
@@ -2322,11 +2340,7 @@
     <NODE_ID>Korry_UARRSI_POS</NODE_ID>
     <TRUECODE>(L:C17_UARRSI_Slipway, bool) 1 ==</TRUECODE>
   </UseTemplate>
-  <UseTemplate Name="Korry_Emmis_DELTASIM">
-    <NODE_ID>KORRY_AR_INOP</NODE_ID>
-    <TRUECODE>0</TRUECODE>
-    <INTENSITY>(L:C17_AR_Korry_Intensity, percent) 0.1 +</INTENSITY>
-  </UseTemplate>
+
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>KORRY_IRCM_INOP_GLARESHEILD</NODE_ID>
     <TRUECODE>0</TRUECODE>
@@ -2465,7 +2479,7 @@
 
 <!-- FOR NACE NACE============================================= FBW SYSTEMS CONTROLS =========================== -->
 <UseTemplate Name="GENERIC_Toggle_Switch_Template">
-  <ANIM>(A:FLY BY WIRE SEC SWITCH, bool) 100 * 100 -</ANIM>
+  <ANIM>(A:FLY BY WIRE SEC SWITCH, bool) ! 100 * </ANIM>
   <NODE_ID>Switch_Pitch_EFCS</NODE_ID>
   <TOOLTIPID>PITCH EFCS</TOOLTIPID>
   <INTERACT_CODE>
@@ -2473,7 +2487,7 @@
   </INTERACT_CODE>
 </UseTemplate>
 <UseTemplate Name="GENERIC_Toggle_Switch_Template">
-  <ANIM>(A:FLY BY WIRE ELAC SWITCH, bool) 100 * 100 -</ANIM>
+  <ANIM>(A:FLY BY WIRE ELAC SWITCH, bool) ! 100 * </ANIM>
   <NODE_ID>Switch_Roll_EFCS</NODE_ID>
   <TOOLTIPID>ROLL EFCS</TOOLTIPID>
   <INTERACT_CODE>
@@ -2481,7 +2495,7 @@
   </INTERACT_CODE>
 </UseTemplate>
 <UseTemplate Name="GENERIC_Toggle_Switch_Template">
-  <ANIM>(A:FLY BY WIRE FAC SWITCH, bool) 100 * 100 -</ANIM>
+  <ANIM>(A:FLY BY WIRE FAC SWITCH, bool) ! 100 * </ANIM>
   <NODE_ID>Switch_Pitch_Trim_EFCS</NODE_ID>
   <TOOLTIPID>ROLL EFCS</TOOLTIPID>
   <INTERACT_CODE>
@@ -3481,9 +3495,13 @@
             <ANIM_CODE>(A:SPOILERS ARMED, bool) 100 * </ANIM_CODE>
             <CLOCKWISE_CODE>
               0 (&gt;K:SPOILERS_ARM_SET) 
+              0 (&gt;K:SET_AUTOBRAKE_CONTROL)
+
             </CLOCKWISE_CODE>
             <ANTICLOCKWISE_CODE>
               1 (&gt;K:SPOILERS_ARM_SET)
+              1 (&gt;K:SET_AUTOBRAKE_CONTROL)
+
             </ANTICLOCKWISE_CODE>
             <CW_ANIMTIP>SPOILERS ARM</CW_ANIMTIP>
             <CCW_ANIMTIP>SPOILERS ARM</CCW_ANIMTIP>
@@ -3500,6 +3518,7 @@
           <TOOLTIPID>FLIGHT DIRECTOR</TOOLTIPID>
           <LEFT_SINGLE_CODE>
             (K:TOGGLE_FLIGHT_DIRECTOR) ! (&gt;K:TOGGLE_FLIGHT_DIRECTOR)
+            (K:TOGGLE_FLIGHT_DIRECTOR:1) ! (&gt;K:TOGGLE_FLIGHT_DIRECTOR:1)
           </LEFT_SINGLE_CODE>
         </UseTemplate>
 
