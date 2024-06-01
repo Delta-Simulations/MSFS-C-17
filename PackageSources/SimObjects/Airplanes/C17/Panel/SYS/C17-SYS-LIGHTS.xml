@@ -227,6 +227,13 @@ if{
 (A:LIGHT POTENTIOMETER:9, percent) 0 > (A:LIGHT NAV:3, bool) 0 == and if{ 3 (&gt;K:TOGGLE_NAV_LIGHTS) }
 (A:LIGHT POTENTIOMETER:9, percent) 0 == (A:LIGHT NAV:3, bool) 1 == and if{ 3 (&gt;K:TOGGLE_NAV_LIGHTS) }
 
+<!-- SLIME LIGHTS TRAIL -->
+(A:LIGHT POTENTIOMETER:22, percent) 0 > (A:LIGHT RECOGNITION:1, bool) 0 == and if{ 1 (&gt;K:TOGGLE_RECOGNITION_LIGHTS) }
+(A:LIGHT POTENTIOMETER:22, percent) 0 == (A:LIGHT RECOGNITION:1, bool) 1 == and if{ 1 (&gt;K:TOGGLE_RECOGNITION_LIGHTS) }
+
+<!-- SLIME LIGHTS TRAIL -->
+(A:LIGHT POTENTIOMETER:23, percent) 0 > (A:LIGHT RECOGNITION:2, bool) 0 == and if{ 2 (&gt;K:TOGGLE_RECOGNITION_LIGHTS) }
+(A:LIGHT POTENTIOMETER:23, percent) 0 == (A:LIGHT RECOGNITION:2, bool) 1 == and if{ 2 (&gt;K:TOGGLE_RECOGNITION_LIGHTS) }
 
 </Value>
 </Select>

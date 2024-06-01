@@ -10,12 +10,12 @@
 		<Include ModelBehaviorFile="Asobo\Generic\FX.xml" />
 
 		<Include Path="Asobo\Exterior.xml" />
-		<Include Path="DeltaSim-C17\DeltaSim_Anim_Template.xml" />
+		<Include Path="DeltaSim-XML\DeltaSim_Anim_Template.xml" />
 
 		<Component ID="FX_FLARES_LEFT" node="C-17_LG_doors_mainF_R">
 			<UseTemplate Name="ASOBO_GT_FX">
 				  <FX_GUID>{7E7AFC8D-0EC2-4EC9-BAD4-E5AE509EFB55}</FX_GUID>
-			  <FX_CODE>(L:C17_EFFECT_FLARE,bool)</FX_CODE>
+			  <FX_CODE>(A:LIGHT BEACON:3,bool)</FX_CODE>
 			  <FX_GRAPH_PARAM_0>FlareOrientation, 1</FX_GRAPH_PARAM_0>
 			  </UseTemplate>
 		 </Component>
@@ -23,7 +23,7 @@
 		 <Component ID="FX_FLARES_RIGHT" node="C-17_LG_doors_mainF_L.001">
 			 <UseTemplate Name="ASOBO_GT_FX">
 					 <FX_GUID>{7E7AFC8D-0EC2-4EC9-BAD4-E5AE509EFB55}</FX_GUID>
-					 <FX_CODE>(L:C17_EFFECT_FLARE,bool)</FX_CODE>
+					 <FX_CODE>(A:LIGHT BEACON:3,bool)</FX_CODE>
 					 <FX_GRAPH_PARAM_0>FlareOrientation, -1</FX_GRAPH_PARAM_0>
 			   </UseTemplate>
 		   </Component>
@@ -31,7 +31,7 @@
 		   <Component ID="FX_FLARES_LEFT2" node="C-17_LG_doors_mainF_R">
 			<UseTemplate Name="ASOBO_GT_FX">
 				  <FX_GUID>{7E7AFC8D-0EC2-4EC9-BAD4-E5AE509EFB55}</FX_GUID>
-			  <FX_CODE>(L:C17_EFFECT_FLARE,bool)</FX_CODE>
+			  <FX_CODE>(A:LIGHT BEACON:3,bool)</FX_CODE>
 			  <FX_GRAPH_PARAM_0>FlareOrientation, 6</FX_GRAPH_PARAM_0>
 			  </UseTemplate>
 		 </Component>
@@ -305,6 +305,62 @@
 		  </UseTemplate>
 		</Component>
 
+		<Component ID="ANIM">
+			<UseTemplate Name="ASOBO_GT_Update">
+				<UPDATE_CODE>
+					(L:C17_FARPSHOW, bool) 1 ==
+					if{
+						1 (&gt;A:LIGHT BEACON:8,bool)
+					} els{
+						0 (&gt;A:LIGHT BEACON:8,bool)
+					}
+					(L:C17_CargoDoor_POS, enum) 50 ==
+					if{
+						1 (&gt;A:LIGHT BEACON:4,bool)
+					} els{
+						0 (&gt;A:LIGHT BEACON:4,bool)
+					}
+					(L:C17_CargoDoor_POS, enum) 100 ==
+					if{
+						1 (&gt;A:LIGHT BEACON:5,bool)
+					} els{
+						0 (&gt;A:LIGHT BEACON:5,bool)
+					}
+					(L:C17_UARRSI_Slipway, bool) 1 ==
+					if{
+					1 (&gt;A:LIGHT BEACON:6,bool)
+					} els{
+					0 (&gt;A:LIGHT BEACON:6,bool)
+					}
+					(L:C17_Crew_Enterance, bool) 1 == 
+					if{
+					1 (&gt;A:LIGHT BEACON:7,bool)
+					} els{
+					0 (&gt;A:LIGHT BEACON:7,bool)
+					}
+					(L:C17_PARA_L, bool) 1 == 
+					if{
+					1 (&gt;A:LIGHT STROBE:2,bool)
+					} els{
+					0 (&gt;A:LIGHT STROBE:2,bool)
+					}
+					(L:C17_PARA_R, bool) 1 == 
+					if{
+					1 (&gt;A:LIGHT STROBE:3,bool)
+					} els{
+					0 (&gt;A:LIGHT STROBE:3,bool)
+					}
+
+					(L:C17_EFFECT_FLARE,bool) 1 == 
+					if{
+						1 (&gt;A:LIGHT BEACON:3,bool)
+					} els{
+						0 (&gt;A:LIGHT BEACON:3,bool)
+					}
+
+				</UPDATE_CODE>
+			</UseTemplate>
+		</Component>
 
 
 	</Behaviors>
@@ -358,7 +414,7 @@
     <Visibility>
         <Parameter>
             <Code>
-				(A:LIGHT PEDESTRAL, bool) 1 ==
+				(A:LIGHT BEACON:8,bool) 1 ==
 				(A:SIM ON GROUND,bool) 1 == and
 				(A:SURFACE RELATIVE GROUND SPEED, meter/second) 0.1 &lt; and
 				if{ 100 } els{ 0 }
@@ -772,37 +828,8 @@
 				</Parameter>
 			  </Animation>
 		</PartInfo>
+
 	<!-- REFUEL LIGHTS-->
-
-<Animation name="SLIMELIGHT" guid="c81d560e-cd12-4c98-af43-771a54fbef07" length="1" type="Sim" typeParam="AutoPlay" />
- <PartInfo>
-    <Name>SLIMELIGHT</Name>
-    <Materials> 
-		<Emissive> 
-			<Parameter>
-					<Code>
-						(L:C17_SLIMELIGHT, percent) 0.15 * (A:CIRCUIT ON:65,bool) *
-					</Code>
-					<Lag>20</Lag>
-			</Parameter> 
-		</Emissive> 
-	</Materials>
-</PartInfo>
-
-<Animation name="Lead_In_Lights" guid="25e9db8e-4dc9-46a5-8c18-b3cbbdcfac2a" length="1" type="Sim" typeParam="AutoPlay" />
- <PartInfo>
-    <Name>Lead_In_Lights</Name>
-    <Materials> 
-		<Emissive> 
-			<Parameter>
-					<Code>
-						(L:C17_AR_LeadIn_LGT, percent) 0.15 * (A:CIRCUIT ON:65,bool) *
-					</Code>
-					<Lag>20</Lag>
-			</Parameter> 
-		</Emissive> 
-	</Materials>
-</PartInfo>
 
 
 	<!-- HUMMER-TRIGGERED OVER 15K POUNDS-->
@@ -874,7 +901,8 @@
 	<Animation>
 	<Parameter>
 		<Code>
-			(L:C17_CargoDoor_POS, enum)
+			(A:LIGHT BEACON:4,bool) 50 *
+			(A:LIGHT BEACON:5,bool) 100 * +
 		</Code>
 		<Lag>10</Lag>
 	</Parameter>
@@ -882,14 +910,16 @@
 </PartInfo>
 
 
-<Animation name="Ramp_top" guid="21f7f8fa-5c90-4a32-b413-84ba658197e4" type="Sim" typeparam="AutoPlay" />
+<Animation name="Ramp_top" guid="6d9c5806-29cb-401b-a6b0-f2898e120cfa" type="Sim" typeparam="AutoPlay" />
 <PartInfo>
 	<Name>Ramp_top</Name>
 	<AnimLength>100</AnimLength>
 	<Animation>
 	  <Parameter>
 		<Code>
-			(L:C17_CargoDoor_POS, enum) 2 *
+			(A:LIGHT BEACON:4,bool) 100 *
+			(A:LIGHT BEACON:5,bool) 100 * +
+
 		</Code>
 		<Lag>10</Lag>
 	  </Parameter>
@@ -904,7 +934,7 @@
 	<Animation>
 	  <Parameter>
 		<Code>
-			(L:C17_Crew_Enterance, bool) 100 * 50 +
+			(A:LIGHT BEACON:7,bool) 100 * 50 +
 		</Code>
 		<Lag>10</Lag>
 	  </Parameter>
@@ -919,7 +949,7 @@
 	  <AnimLength>100</AnimLength>
 	  <Animation>
 		  <Parameter>
-			   <Code>(L:C17_PARA_L, percent) 100 *</Code>
+			   <Code>(A:LIGHT STROBE:2,bool) 100 *</Code>
 			  <Lag>30</Lag>
 	  </Parameter>
 	  </Animation>
@@ -931,7 +961,7 @@
 	  <AnimLength>100</AnimLength>
 	  <Animation>
 		  <Parameter>
-			   <Code>(L:C17_PARA_R, percent) 100 *</Code>
+			   <Code>(A:LIGHT STROBE:3,bool) 100 *</Code>
 			  <Lag>30</Lag>
 	  </Parameter>
 	  </Animation>
@@ -956,7 +986,7 @@
 	<Animation>
 		<Parameter>
 			<Code>
-				(L:C17_UARRSI_Slipway, bool) (A:CIRCUIT ON:65,bool) * 100 *
+				(A:LIGHT BEACON:6,bool) 100 *
 			</Code>
 			<Lag>10</Lag>
 	</Parameter>

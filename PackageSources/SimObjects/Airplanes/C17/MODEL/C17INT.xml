@@ -12,9 +12,9 @@
 		<Include ModelBehaviorFile="Asobo\Airliner\FMC.xml"/>
 		<Include ModelBehaviorFile="Asobo\Airliner\GlassCockpit.xml"/>
 		<Include ModelBehaviorFile="Asobo\Airliner\Airbus.xml"/>
-    <Include Path="DeltaSim-C17\DeltaSim_Switch_Template.xml"/>
-    <Include Path="DeltaSim-C17\DeltaSim_Lighting_Template.xml"/>
-    <Include Path="DeltaSim-C17\DeltaSim_Anim_Template.xml"/>
+    <Include Path="DeltaSim-XML\DeltaSim_Switch_Template.xml"/>
+    <Include Path="DeltaSim-XML\DeltaSim_Lighting_Template.xml"/>
+    <Include Path="DeltaSim-XML\DeltaSim_Anim_Template.xml"/>
 
     <Component ID="CDUs">
       <DefaultTemplateParameters>
@@ -1238,6 +1238,9 @@
     <NODE_ID>PushButton_Radio_MSK_1</NODE_ID>
     <TOOLTIPID>MSK 1</TOOLTIPID>
     <LEFT_SINGLE_CODE>
+      
+      (L:C17_Nav_System_Active, enum) 7 == if{ (&gt;K:TOGGLE_GPS_DRIVES_NAV1) } 
+      (L:C17_Nav_System_Active, enum) 8 == if{ (&gt;K:TOGGLE_GPS_DRIVES_NAV1) } 
     </LEFT_SINGLE_CODE>
   </UseTemplate>
   <UseTemplate Name="DELTASIM_PushButton_Template">
@@ -1918,24 +1921,24 @@
 </UseTemplate>
 <UseTemplate Name="DELTASIM_Finite_Knob_Template">
   <NODE_ID>Knob_AR_LeadIn_Light</NODE_ID>
-  <ANIM_CODE>(L:C17_AR_LeadIn_LGT, percent) 10 *</ANIM_CODE>
+  <ANIM_CODE>(A:LIGHT POTENTIOMETER:23, percent)</ANIM_CODE>
   <CLOCKWISE_CODE>
-    (L:C17_AR_LeadIn_LGT, percent) 1 + 10 min (&gt;L:C17_AR_LeadIn_LGT, percent)
+    (A:LIGHT POTENTIOMETER:23, percent) 5 + 100 min (&gt;K:LIGHT_POTENTIOMETER_23_SET)
   </CLOCKWISE_CODE>
   <ANTICLOCKWISE_CODE>
-    (L:C17_AR_LeadIn_LGT, percent) 1 - 0 max (&gt;L:C17_AR_LeadIn_LGT, percent)
+    (A:LIGHT POTENTIOMETER:23, percent) 5 - 0 max (&gt;K:LIGHT_POTENTIOMETER_23_SET)
   </ANTICLOCKWISE_CODE>
   <CW_ANIMTIP>A/R CHEVRON INTENSITY</CW_ANIMTIP>
   <CCW_ANIMTIP>A/R CHEVRON INTENSITY</CCW_ANIMTIP>
 </UseTemplate>
 <UseTemplate Name="DELTASIM_Finite_Knob_Template">
   <NODE_ID>Knob_Fuse_SlimeLGT_Trail</NODE_ID>
-  <ANIM_CODE>(L:C17_SLIMELIGHT,percent) 10 *</ANIM_CODE>
+  <ANIM_CODE>(A:LIGHT POTENTIOMETER:22, percent)</ANIM_CODE>
   <CLOCKWISE_CODE>
-    (L:C17_SLIMELIGHT, percent) 1 + 10 min (&gt;L:C17_SLIMELIGHT, percent)
+    (A:LIGHT POTENTIOMETER:22, percent) 5 + 100 min (&gt;K:LIGHT_POTENTIOMETER_22_SET)
   </CLOCKWISE_CODE>
   <ANTICLOCKWISE_CODE>
-    (L:C17_SLIMELIGHT, percent) 1 - 0 max (&gt;L:C17_SLIMELIGHT, percent)
+    (A:LIGHT POTENTIOMETER:22, percent) 5 - 0 max (&gt;K:LIGHT_POTENTIOMETER_22_SET)
   </ANTICLOCKWISE_CODE>
   <CW_ANIMTIP>SIDE FORMATION INTENSITY</CW_ANIMTIP>
   <CCW_ANIMTIP>SIDE FORMATION INTENSITY</CCW_ANIMTIP>
@@ -2285,7 +2288,7 @@
   </UseTemplate>
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>KORRY_WARNING_GEAR_ALERT</NODE_ID>
-    <INTENSITY>10</INTENSITY>
+    <INTENSITY>40</INTENSITY>
     <TRUECODE>
       (L:C17_EXTEND_GEAR, bool) 1 ==
       (L:C17_WARN_GEAR_POS, bool) 1 == or
@@ -3878,7 +3881,7 @@
 	  <AnimLength>100</AnimLength>
 	  <Animation>
 		  <Parameter>
-			   <Code>(L:C17_PARA_L, percent) 100 *</Code>
+			   <Code>(A:LIGHT STROBE:2,bool) 100 *</Code>
 			  <Lag>30</Lag>
 	  </Parameter>
 	  </Animation>
@@ -3890,7 +3893,7 @@
 	  <AnimLength>100</AnimLength>
 	  <Animation>
 		  <Parameter>
-			   <Code>(L:C17_PARA_R, percent) 100 *</Code>
+			   <Code>(A:LIGHT STROBE:3,bool) 100 *</Code>
 			  <Lag>30</Lag>
 	  </Parameter>
 	  </Animation>
@@ -4230,7 +4233,8 @@
 	<Animation>
 	<Parameter>
 		<Code>
-			(L:C17_CargoDoor_POS, enum)
+      (A:LIGHT BEACON:4,bool) 50 *
+			(A:LIGHT BEACON:5,bool) 100 * +
 		</Code>
 		<Lag>10</Lag>
 	</Parameter>
@@ -4245,7 +4249,9 @@
 	<Animation>
 	  <Parameter>
 		<Code>
-			(L:C17_CargoDoor_POS, enum) 2 *
+      (A:LIGHT BEACON:4,bool) 100 *
+			(A:LIGHT BEACON:5,bool) 100 * +
+
 		</Code>
 		<Lag>10</Lag>
 	  </Parameter>
@@ -4258,7 +4264,7 @@
 	<Animation>
 	<Parameter>
 		<Code>
-			(L:C17_CargoDoor_POS, enum) 99.1 &gt; if{ 100 }els{0}
+			(A:LIGHT BEACON:5,bool) 100 *
 		</Code>
 		<Lag>7</Lag>
 	</Parameter>
@@ -4266,7 +4272,7 @@
 	<Visibility>
 		<Parameter>
 		<Code>
-			(L:C17_CargoDoor_POS, enum) 74 &gt;
+			(A:LIGHT BEACON:5,bool)
 		</Code>
 		</Parameter>
 	</Visibility>

@@ -1,0 +1,448 @@
+<ModelBehaviors>
+    <!-- CREATED FOR DELTA SIMULATION AIRCRAFT###################################### -->
+    <Include ModelBehaviorFile="Asobo\Common.xml"/> 
+    <Include ModelBehaviorFile="Asobo\Airliner\AirlinerCommon.xml"/>
+    <Include ModelBehaviorFile="Asobo\Airliner\Boeing.xml"/>
+    <Include ModelBehaviorFile="Asobo\Airliner\FMC.xml"/>
+    <Include ModelBehaviorFile="Asobo\Airliner\GlassCockpit.xml"/>
+    <Include ModelBehaviorFile="Asobo\Airliner\Airbus.xml"/>
+
+  <!-- A/T ARM Switch -->
+  <Template Name="WT_AUTOPILOT_Push_AutoThrottle_Template">
+    <Parameters Type="Default">
+      <Condition Valid="ID">
+        <True>
+          <SIMVAR_ID_SUFFIX>:#ID#</SIMVAR_ID_SUFFIX>
+          <IE_ID>#ID#</IE_ID>
+        </True>
+        <False>
+          <SIMVAR_ID_SUFFIX/>
+          <ID>0</ID>
+          <IE_ID>1</IE_ID>
+        </False>
+      </Condition>
+    </Parameters>
+    <Parameters Type="Default">
+      <DEFAULT_NAME>AutoThrottle</DEFAULT_NAME>
+      <ON_AT_MODE_SWITCH/>
+    </Parameters>
+    <Parameters Type="Override">
+      <IS_USING_L_VAR_FOR_STATE>True</IS_USING_L_VAR_FOR_STATE>
+      <LVAR>AS01B_AUTO_THROTTLE_ARM_STATE</LVAR>
+      <ON_AP_MODE_STATE_CHANGED>#ON_AT_MODE_SWITCH#</ON_AP_MODE_STATE_CHANGED>
+    </Parameters>
+    <Parameters Type="Override">
+      <Condition Valid="NO_K_EVENT_CALL">
+        <True>
+          <K_EVENT_CALL>0</K_EVENT_CALL>
+        </True>
+        <False>
+          <K_EVENT_CALL>#ID# (&gt;K:AUTO_THROTTLE_ARM)</K_EVENT_CALL>
+        </False>
+      </Condition>
+    </Parameters>
+    <Parameters Type="Override">
+      <Condition Valid="IS_USING_L_VAR_FOR_STATE">
+        <True>
+          <SET_STATE_EXTERNAL>(L:#LVAR#) ! (&gt;L:#LVAR#) (L:#LVAR#) (A:AUTOPILOT THROTTLE ARM#SIMVAR_ID_SUFFIX#, Bool) != if{ #K_EVENT_CALL# }</SET_STATE_EXTERNAL>
+          <TOGGLEABLE/>
+          <ANIM_CODE>(L:#LVAR#) 100 *</ANIM_CODE>
+          <NO_INDICATOR>True</NO_INDICATOR>
+          <NO_TEXT_EMISSIVE>True</NO_TEXT_EMISSIVE>
+          <LOCAL_VAR_TO_WATCH_0>#LVAR#</LOCAL_VAR_TO_WATCH_0>
+        </True>
+        <False>
+          <SET_STATE_EXTERNAL>
+						#ID# (&gt;K:AUTO_THROTTLE_ARM)
+						(A:FLAPS HANDLE INDEX, Number) 0 &gt; if{
+						(A:DESIGN SPEED VS0, knots) sp1
+						} els{
+						(A:DESIGN SPEED VS1, knots) sp1
+						}
+						l1 1.3 * (A:AUTOPILOT AIRSPEED HOLD VAR:0, knots) max (&gt;K:AP_SPD_VAR_SET)
+          </SET_STATE_EXTERNAL>
+          <EMISSIVE_SIMVAR_ACTIVE>AUTOPILOT THROTTLE ARM#SIMVAR_ID_SUFFIX#</EMISSIVE_SIMVAR_ACTIVE>
+          <Condition Check="TOGGLEABLE">
+            <True>
+              <ANIM_CODE>(A:AUTOPILOT THROTTLE ARM#SIMVAR_ID_SUFFIX#, Bool) 100 *</ANIM_CODE>
+            </True>
+          </Condition>
+        </False>
+      </Condition>
+      <IS_SWITCH_ON>(A:AUTOPILOT THROTTLE ARM#SIMVAR_ID_SUFFIX#, Bool)</IS_SWITCH_ON>
+      <SIMVAR_TO_WATCH_0>AUTOPILOT THROTTLE ARM#SIMVAR_ID_SUFFIX#</SIMVAR_TO_WATCH_0>
+    </Parameters>
+    <Condition Valid="IS_USING_L_VAR_FOR_STATE">
+      <UseTemplate Name="ASOBO_GT_Update">
+        <UPDATE_CODE>(A:AUTOPILOT THROTTLE ARM#SIMVAR_ID_SUFFIX#, Bool) (&gt;L:#LVAR#)</UPDATE_CODE>
+        <UPDATE_ONCE>True</UPDATE_ONCE>
+      </UseTemplate>
+    </Condition>
+    <UseTemplate Name="ASOBO_AUTOPILOT_Push_Template">
+      <SIM_STATE_IS_ON_EXTERNAL>l0</SIM_STATE_IS_ON_EXTERNAL>
+      <GET_STATE_EXTERNAL>#IS_SWITCH_ON# sp0</GET_STATE_EXTERNAL>
+      <SET_STATE_EXTERNAL>#SET_STATE_EXTERNAL# #ON_AP_MODE_STATE_CHANGED#</SET_STATE_EXTERNAL>
+      <BTN_ID>AutoThrottle_#IE_ID#</BTN_ID>
+      <TT_DESCRIPTION_ID>@TT_Package.AUTOPILOT_PUSH_AUTOTHROTTLE_ACTION</TT_DESCRIPTION_ID>
+      <TT_DESCRIPTION_INDEX>#IE_ID#</TT_DESCRIPTION_INDEX>
+      <TOOLTIP_TITLE>@TT_Package.AUTOPILOT_PUSH_AUTOTHROTTLE_TITLE</TOOLTIP_TITLE>
+    </UseTemplate>
+  </Template>
+
+	<!-- Autothrottle arm switch -->
+	<Template Name="WT_AUTOPILOT_AutoThrottle_Arm_Template">
+		<Parameters Type="Default">
+			<BTN_ID>AutoThrottle_Arm</BTN_ID>
+			<PART_ID>AUTOPILOT_Push_AutoThrottle</PART_ID>
+			<NODE_ID>switch_autopilot_at_arm</NODE_ID>
+			<ANIM_NAME>autopilot_switch_at_arm</ANIM_NAME>
+		</Parameters>
+
+		<UseTemplate Name="ASOBO_AUTOPILOT_Push_Template">
+			<GET_STATE_EXTERNAL>(L:AS01B_AUTO_THROTTLE_ARM_STATE, Bool) sp0</GET_STATE_EXTERNAL>
+			<SET_STATE_EXTERNAL>(&gt;K:AUTO_THROTTLE_ARM)</SET_STATE_EXTERNAL>
+			<ANIM_CODE>(L:AS01B_AUTO_THROTTLE_ARM_STATE, Bool) 100 *</ANIM_CODE>
+			<TT_DESCRIPTION_ID>COCKPIT.TOOLTIPS.AUTOPILOT_PANEL_AUTOTHROTTLE_OFF</TT_DESCRIPTION_ID>
+			<TOOLTIP_TITLE>@TT_Package.AUTOPILOT_PUSH_AUTOTHROTTLE_TITLE</TOOLTIP_TITLE>
+			<TT_VALUE_OFF>(R:1:@TT_Package.GT_STATE_OFF)</TT_VALUE_OFF>
+			<TT_VALUE_ON>
+				(L:WT_Boeing_Autothrottle_Status, number) 3 ==
+					if{ (R:1:@TT_Package.GT_STATE_ON) }
+					els{ (R:1:@TT_Package.GT_STATE_ARMED) }
+			</TT_VALUE_ON>
+			<LOCAL_VAR_TO_WATCH_0>AS01B_AUTO_THROTTLE_ARM_STATE</LOCAL_VAR_TO_WATCH_0>
+			<NO_TEXT_EMISSIVE>True</NO_TEXT_EMISSIVE>
+			<NO_INDICATOR>True</NO_INDICATOR>
+		</UseTemplate>
+	</Template>
+
+    
+<Template Name="AircraftVar_Switch_DELTASIM">
+    <DefaultTemplateParameters>
+        
+        <ANIM_LENGTH>100</ANIM_LENGTH>
+        <OFFSET>0</OFFSET>
+		<ANIMREF_ID>0</ANIMREF_ID>
+		<ANIMTIP_0_ON_PERCENT>0.0</ANIMTIP_0_ON_PERCENT>
+		<ANIMTIP_1_ON_PERCENT>1.0</ANIMTIP_1_ON_PERCENT>
+        <CONVERSION_FACTOR>1</CONVERSION_FACTOR>
+        <!-- PUMP OR VALVE
+		ex <SYSTYPE>PUMP</SYSTYPE> -->
+        <!-- INDEX OF PART
+        ex <INDEX>0</INDEX> -->
+        <!-- NAME OF EVENT SIMVAR
+        <EVENT_SIMVAR> </EVENT_SIMVAR>
+        -->
+        <!-- NAME OF SIMVAR
+        <SIMVAR> </SIMVAR>
+        -->
+
+        <ANIM_LAG>300</ANIM_LAG>			
+    </DefaultTemplateParameters>
+
+    <Component ID="#NODE_ID#" Node="#NODE_ID#">
+        <UseTemplate Name="ASOBO_GT_Anim_Code">
+            <ANIM_NAME>#NODE_ID#</ANIM_NAME>
+            <ANIM_CODE>(A:#SIMVAR#:#INDEX#,bool) #ANIM_LENGTH# * #OFFSET# + </ANIM_CODE>
+            <ANIM_LENGTH>#ANIM_LENGTH#</ANIM_LENGTH>
+        </UseTemplate>
+
+        <UseTemplate Name="ASOBO_GT_MouseRect">
+            <CURSOR>Hand</CURSOR>
+            <TOOLTIPID>#TOOLTIPID#</TOOLTIPID>
+            <MOUSEFLAGS_DEFAULT_IM>LeftSingle+LeftRelease</MOUSEFLAGS_DEFAULT_IM>
+            <CALLBACKCODE_DEFAULT_IM>
+                (M:Event) 'LeftSingle' scmi 0 == if{
+                    #INDEX# (&gt;K:#EVENT_SIMVAR#)
+                }
+            </CALLBACKCODE_DEFAULT_IM>
+        </UseTemplate>
+    </Component>
+</Template>
+
+<Template Name="AircraftVar_Switch_Toggle_DELTASIM">
+    <DefaultTemplateParameters>
+        
+        <ANIM_LENGTH>100</ANIM_LENGTH>
+        <OFFSET>0</OFFSET>
+		<ANIMREF_ID>0</ANIMREF_ID>
+		<ANIMTIP_0_ON_PERCENT>0.0</ANIMTIP_0_ON_PERCENT>
+		<ANIMTIP_1_ON_PERCENT>1.0</ANIMTIP_1_ON_PERCENT>
+        <CONVERSION_FACTOR>1</CONVERSION_FACTOR>
+        <!-- PUMP OR VALVE
+		ex <SYSTYPE>PUMP</SYSTYPE> -->
+        <!-- NAME OF EVENT SIMVAR
+        <EVENT_SIMVAR> </EVENT_SIMVAR>
+        -->
+        <!-- NAME OF SIMVAR
+        <SIMVAR> </SIMVAR>
+        -->
+
+        <ANIM_LAG>300</ANIM_LAG>			
+    </DefaultTemplateParameters>
+
+    <Component ID="#NODE_ID#" Node="#NODE_ID#">
+        <UseTemplate Name="ASOBO_GT_Anim_Code">
+            <ANIM_NAME>#NODE_ID#</ANIM_NAME>
+            <ANIM_CODE>(A:#SIMVAR#,bool) #ANIM_LENGTH# * #OFFSET# + </ANIM_CODE>
+            <ANIM_LENGTH>#ANIM_LENGTH#</ANIM_LENGTH>
+        </UseTemplate>
+
+        <UseTemplate Name="ASOBO_GT_MouseRect">
+            <CURSOR>Hand</CURSOR>
+            <TOOLTIPID>#TOOLTIPID#</TOOLTIPID>
+            <MOUSEFLAGS_DEFAULT_IM>LeftSingle+LeftRelease</MOUSEFLAGS_DEFAULT_IM>
+            <CALLBACKCODE_DEFAULT_IM>
+                (M:Event) 'LeftSingle' scmi 0 == if{
+                    (K:#EVENT_SIMVAR#) ! (&gt;K:#EVENT_SIMVAR#)
+                }
+            </CALLBACKCODE_DEFAULT_IM>
+        </UseTemplate>
+    </Component>
+</Template>
+
+
+<Template Name="LVAR_Switch_Template">
+    <DefaultTemplateParameters>
+        <SIMVAR_PREFIX>L</SIMVAR_PREFIX>
+        <ANIM_LENGTH>100</ANIM_LENGTH>
+        <CONVERSION_FACTOR>1</CONVERSION_FACTOR>
+        <OFFSET>0</OFFSET>
+        <PRE_CODE></PRE_CODE>
+        <POST_CODE></POST_CODE>
+		<ANIMREF_ID>0</ANIMREF_ID>
+		<ANIMTIP_0_ON_PERCENT>0.0</ANIMTIP_0_ON_PERCENT>
+		<ANIMTIP_1_ON_PERCENT>1.0</ANIMTIP_1_ON_PERCENT>
+		<ANIM_LAG>400</ANIM_LAG>				
+    </DefaultTemplateParameters>
+
+    <Component ID="#NODE_ID#" Node="#NODE_ID#">
+        <UseTemplate Name="ASOBO_GT_Anim_Code">
+            <ANIM_NAME>#NODE_ID#</ANIM_NAME>
+            <ANIM_CODE>(L:#SIMVAR#,bool) #ANIM_LENGTH# * #OFFSET# + </ANIM_CODE>
+            <ANIM_LENGTH>#ANIM_LENGTH#</ANIM_LENGTH>
+        </UseTemplate>
+
+        <UseTemplate Name="ASOBO_GT_MouseRect">
+            <CURSOR>Hand</CURSOR>
+            <TOOLTIPID>#TOOLTIPID#</TOOLTIPID>
+            <MOUSEFLAGS_DEFAULT_IM>LeftSingle+LeftRelease</MOUSEFLAGS_DEFAULT_IM>
+            <CALLBACKCODE_DEFAULT_IM>
+                (M:Event) 'LeftSingle' scmi 0 == if{
+                    (L:#SIMVAR#,bool) ! (&gt;L:#SIMVAR#,bool)
+                }
+            </CALLBACKCODE_DEFAULT_IM>
+        </UseTemplate>
+    </Component>
+</Template>
+
+<Template Name="GENERIC_Toggle_Switch_Template">
+    <DefaultTemplateParameters>
+        <ANIM_LENGTH>100</ANIM_LENGTH>
+        <CONVERSION_FACTOR>1</CONVERSION_FACTOR>
+        <OFFSET>0</OFFSET>
+        <PRE_CODE></PRE_CODE>
+        <POST_CODE></POST_CODE>
+		<ANIMREF_ID>0</ANIMREF_ID>
+		<ANIMTIP_0_ON_PERCENT>0.0</ANIMTIP_0_ON_PERCENT>
+		<ANIMTIP_1_ON_PERCENT>1.0</ANIMTIP_1_ON_PERCENT>			
+    </DefaultTemplateParameters>
+
+    <Component ID="#NODE_ID#" Node="#NODE_ID#">
+        <UseTemplate Name="ASOBO_GT_Anim_Code">
+            <ANIM_NAME>#NODE_ID#</ANIM_NAME>
+            <ANIM_CODE>#ANIM#</ANIM_CODE>
+            <ANIM_LENGTH>#ANIM_LENGTH#</ANIM_LENGTH>
+        </UseTemplate>
+
+        <UseTemplate Name="ASOBO_GT_MouseRect">
+            <CURSOR>Hand</CURSOR>
+            <TOOLTIPID>#TOOLTIPID#</TOOLTIPID>
+            <MOUSEFLAGS_DEFAULT_IM>LeftSingle+LeftRelease+RightSingle+MoveRepeat</MOUSEFLAGS_DEFAULT_IM>
+            <CALLBACKCODE_DEFAULT_IM>
+                #PRE_CODE#
+                (M:Event) 'LeftSingle' scmi 0 == if{
+                    #INTERACT_CODE#
+                }
+                #POST_CODE#
+            </CALLBACKCODE_DEFAULT_IM>
+        </UseTemplate>
+    </Component>
+</Template>
+
+<Template Name="GENERIC_Toggle_Switch_Template_V2">
+    <DefaultTemplateParameters>
+        <ANIM_LENGTH>100</ANIM_LENGTH>	
+    </DefaultTemplateParameters>
+
+    <Component ID="#NODE_ID#" Node="#NODE_ID#">
+        <UseTemplate Name="ASOBO_GT_Anim_Code">
+            <ANIM_NAME>#NODE_ID#</ANIM_NAME>
+            <ANIM_CODE>(O:ToggleGeneric, bool) #ANIM_LENGTH# *</ANIM_CODE>
+            <ANIM_LENGTH>#ANIM_LENGTH#</ANIM_LENGTH>
+        </UseTemplate>
+
+        <UseTemplate Name="ASOBO_GT_MouseRect">
+            <CURSOR>Hand</CURSOR>
+            <TOOLTIPID>#TOOLTIPID#</TOOLTIPID>
+            <MOUSEFLAGS_DEFAULT_IM>LeftSingle+LeftRelease+RightSingle+MoveRepeat</MOUSEFLAGS_DEFAULT_IM>
+            <CALLBACKCODE_DEFAULT_IM>
+                (M:Event) 'LeftSingle' scmi 0 == if{
+                    (O:ToggleGeneric, bool) ! (&gt;O:ToggleGeneric, bool)
+                    
+                    #INTERACT_CODE#
+                }
+            </CALLBACKCODE_DEFAULT_IM>
+        </UseTemplate>
+    </Component>
+</Template>
+
+<Template Name="DELTASIM_PushButton_Template">
+    <DefaultTemplateParameters>
+        <ANIM_LENGTH>100</ANIM_LENGTH>
+        <POSTCODE></POSTCODE>
+		<ANIM_LAG>400</ANIM_LAG>			
+        <SINGLECODE>(O:PushGeneric, bool) if{ #VARCHANGE# (&gt; #VARIABLE# ) }</SINGLECODE>
+    </DefaultTemplateParameters>
+<!-- <Component ID="#NODE_ID#" Node="#NODE_ID#">
+    <UseTemplate Name="ASOBO_GT_Anim_Code">
+        <ANIM_NAME>#NODE_ID#</ANIM_NAME>
+        <ANIM_CODE>(O:PushGeneric, bool) 100 *</ANIM_CODE>
+        <ANIM_LENGTH>#ANIM_LENGTH#</ANIM_LENGTH>
+    </UseTemplate>
+    <UseTemplate Name="ASOBO_GT_MouseRect">
+        <CURSOR>Hand</CURSOR>
+        <TOOLTIPID>#TOOLTIPID#</TOOLTIPID>
+        <MOUSEFLAGS_DEFAULT_IM>LeftSingle+LeftRelease</MOUSEFLAGS_DEFAULT_IM>
+        <CALLBACKCODE_DEFAULT_IM>
+            #PRE_CODE#
+            (M:Event) 'LeftSingle' scmi 0 == if{
+                1 (&gt;O:PushGeneric, bool)
+                #SINGLECODE#
+            }
+            (M:Event) 'LeftRelease' scmi 0 == if{
+                0 (&gt;O:PushGeneric, bool)
+            }
+            #POSTCODE#
+        </CALLBACKCODE_DEFAULT_IM>
+    </UseTemplate>
+</Component> -->
+<Component ID="#NODE_ID#" Node="#NODE_ID#">
+    <UseTemplate Name="ASOBO_GT_Push_Button">
+        <ANIM_NAME>#NODE_ID#</ANIM_NAME>
+        <TOOLTIPID>#TOOLTIPID#</TOOLTIPID>
+        <LEFT_SINGLE_CODE>
+            #LEFT_SINGLE_CODE#
+        </LEFT_SINGLE_CODE>
+      </UseTemplate>
+</Component>
+
+</Template>
+
+
+
+<Template Name="DELTASIM_Dummy_Switch_Template">
+    <DefaultTemplateParameters>
+        <ANIM_LENGTH>100</ANIM_LENGTH>
+        <CONVERSION_FACTOR>1</CONVERSION_FACTOR>
+        <OFFSET>0</OFFSET>
+        <PRE_CODE></PRE_CODE>
+        <POST_CODE></POST_CODE>
+		<ANIMREF_ID>0</ANIMREF_ID>
+		<ANIMTIP_0_ON_PERCENT>0.0</ANIMTIP_0_ON_PERCENT>
+		<ANIMTIP_1_ON_PERCENT>1.0</ANIMTIP_1_ON_PERCENT>
+		<ANIM_LAG>400</ANIM_LAG>				
+    </DefaultTemplateParameters>
+    <Component ID="#NODE_ID#" Node="#NODE_ID#">
+        <UseTemplate Name="ASOBO_GT_Anim_Code">
+            <ANIM_NAME>#NODE_ID#</ANIM_NAME>
+            <ANIM_CODE>(O:ToggleGeneric, bool) 100 *</ANIM_CODE>
+            <ANIM_LENGTH>#ANIM_LENGTH#</ANIM_LENGTH>
+        </UseTemplate>
+        <UseTemplate Name="ASOBO_GT_MouseRect">
+            <CURSOR>Hand</CURSOR>
+            <TOOLTIPID>#TOOLTIPID#</TOOLTIPID>
+            <MOUSEFLAGS_DEFAULT_IM>LeftSingle+LeftRelease</MOUSEFLAGS_DEFAULT_IM>
+            <CALLBACKCODE_DEFAULT_IM>
+                #PRE_CODE#
+                (M:Event) 'LeftSingle' scmi 0 == if{
+                    (O:ToggleGeneric, bool) ! (&gt;O:ToggleGeneric, bool)
+                }
+                #POST_CODE#
+            </CALLBACKCODE_DEFAULT_IM>
+        </UseTemplate>
+    </Component>
+</Template>
+
+
+
+<Template Name="DELTASIM_Finite_Knob_Template">
+    <DefaultTemplateParameters>
+        <ANIM_LENGTH>100</ANIM_LENGTH>
+		<ANIM_LAG>400</ANIM_LAG>		
+    </DefaultTemplateParameters>
+    <Component ID="#NODE_ID#" Node="#NODE_ID#">
+        <UseTemplate Name="ASOBO_GT_Knob_Finite_Code">
+          <NODE_ID>#NODE_ID#</NODE_ID>
+          <ANIM_NAME>#NODE_ID#</ANIM_NAME>
+          <ANIM_CODE>#ANIM_CODE#</ANIM_CODE>
+          <ANIM_LENGTH>#ANIM_LENGTH#</ANIM_LENGTH>
+          <CLOCKWISE_CODE>
+            #CLOCKWISE_CODE#
+          </CLOCKWISE_CODE>
+          <ANTICLOCKWISE_CODE>
+            #ANTICLOCKWISE_CODE#
+          </ANTICLOCKWISE_CODE>
+          <ANIMTIP_0>#CW_ANIMTIP#</ANIMTIP_0>
+          <ANIMTIP_0_ON_CURSOR>TurnLeft</ANIMTIP_0_ON_CURSOR>
+          <ANIMTIP_1>#CCW_ANIMTIP#</ANIMTIP_1>
+          <ANIMTIP_1_ON_CURSOR>TurnRight</ANIMTIP_1_ON_CURSOR>
+          <THRESHOLD_X_INPUT>0.05</THRESHOLD_X_INPUT>
+          <THRESHOLD_X_MOUSE>0.015</THRESHOLD_X_MOUSE>
+        </UseTemplate>
+      </Component>
+</Template>
+
+<Template Name="DELTASIM_Momentary_Cargo">
+	<Parameters Type="Default">
+		<MOMENTARY_REPEAT_FREQUENCY>5</MOMENTARY_REPEAT_FREQUENCY>
+		<VAR_CLAMP></VAR_CLAMP>
+        <INCREMENT>12.5</INCREMENT>
+        <INCREMENT_FAST>25</INCREMENT_FAST>
+        <INCREMENT_FASTEST>50</INCREMENT_FASTEST>
+		<CODE_POS_1></CODE_POS_1>
+        <CONTROLLED_VAR>L:C17_CargoDoor_POS</CONTROLLED_VAR>
+        <MIN_VALUE>-0.01</MIN_VALUE>
+        <MAX_VALUE>100.1</MAX_VALUE>
+	</Parameters>
+	<Parameters Type="Override">
+		<Condition Valid="ACCELERATE_ON_HOLD">
+			<True>
+				<INCREMENT_VALUE>(O:XMLVAR_IncrementCount) 10 &gt; if{ (O:XMLVAR_IncrementCount) 25 &gt; if{ #INCREMENT_FASTEST# } els{ #INCREMENT_FAST# } } els{ #INCREMENT# }</INCREMENT_VALUE>
+			</True>
+			<False>
+				<INCREMENT_VALUE>#INCREMENT#</INCREMENT_VALUE>
+			</False>
+		</Condition>
+	</Parameters>
+	<UseTemplate Name="ASOBO_GT_Switch_3States">
+		<CODE_POS_0>
+            (#CONTROLLED_VAR#) #MAX_VALUE# &lt;
+             if{
+            (#CONTROLLED_VAR#) #INCREMENT_VALUE# + #VAR_CLAMP# (&gt;#CONTROLLED_VAR#) (O:XMLVAR_IncrementCount) 1 + (&gt;O:XMLVAR_IncrementCount)
+                }
+        </CODE_POS_0>
+		<CODE_POS_1>#CODE_POS_1# 0 (&gt;O:XMLVAR_IncrementCount)</CODE_POS_1>
+		<CODE_POS_2>
+            (#CONTROLLED_VAR#) #MIN_VALUE# &gt;
+            if{
+            (#CONTROLLED_VAR#) #INCREMENT_VALUE# - #VAR_CLAMP# (&gt;#CONTROLLED_VAR#) (O:XMLVAR_IncrementCount) 1 + (&gt;O:XMLVAR_IncrementCount)
+            }
+        </CODE_POS_2>
+		<MOMENTARY_SWITCH>True</MOMENTARY_SWITCH>
+		<STATE0_TIMER>0.01</STATE0_TIMER>
+		<STATE_MAX_TIMER>0.01</STATE_MAX_TIMER>
+	</UseTemplate>
+</Template>
+
+</ModelBehaviors>
