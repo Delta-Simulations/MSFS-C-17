@@ -317,6 +317,55 @@
 	</Sound>
 
 
+    <!-- AIRDROP CAWS ===========================================================================-->
+
+
+
+	<Sound WwiseData="true" WwiseEvent="AD_Minute_30" LocalVar="C17_AD_30Min" NodeName="Plane.093" ViewPoint="Inside" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="AD_Minute_20" LocalVar="C17_AD_20Min" NodeName="Plane.093" ViewPoint="Inside" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+    <Sound WwiseData="true" WwiseEvent="AD_Minute_10" LocalVar="C17_AD_10Min" NodeName="Plane.093" ViewPoint="Inside"  Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="AD_Minute_6" LocalVar="C17_AD_6Min" NodeName="Plane.093" ViewPoint="Inside" BreakOnStop="false" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+    <Sound WwiseData="true" WwiseEvent="AD_Minute_1" LocalVar="C17_AD_1Min" NodeName="Plane.093" ViewPoint="Inside" BreakOnStop="true" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+
+	<Sound WwiseData="true" WwiseEvent="AD_Second_10" LocalVar="C17_AD_10Sec" NodeName="Plane.093" ViewPoint="Inside" BreakOnStop="True" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+	<Sound WwiseData="true" WwiseEvent="AD_Second_5" LocalVar="C17_AD_5Sec" NodeName="Plane.093" ViewPoint="Inside" BreakOnStop="True" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+    <Sound WwiseData="true" WwiseEvent="AD_Second_4" LocalVar="C17_AD_4Sec" NodeName="Plane.093" ViewPoint="Inside" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+    <Sound WwiseData="true" WwiseEvent="AD_Second_3" LocalVar="C17_AD_3Sec" NodeName="Plane.093" ViewPoint="Inside" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+    <Sound WwiseData="true" WwiseEvent="AD_Second_2" LocalVar="C17_AD_2Sec" NodeName="Plane.093" ViewPoint="Inside" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+    <Sound WwiseData="true" WwiseEvent="AD_Second_1" LocalVar="C17_AD_1Sec" NodeName="Plane.093" ViewPoint="Inside" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+
+    <Sound WwiseData="true" WwiseEvent="AD_Alert_Green_Lt" LocalVar="C17_AD_GreenLT" Continuous="False" NodeName="Plane.093" ViewPoint="Inside" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+    <Sound WwiseData="true" WwiseEvent="AD_Alert_Red_Lt" LocalVar="C17_AD_RedLT" NodeName="Plane.093" ViewPoint="Inside" BreakOnStop="True" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+    <Sound WwiseData="true" WwiseEvent="AD_Alert_Autodrop" BreakOnStop="True" LocalVar="C17_AD_Autodrop" NodeName="Plane.093" ViewPoint="Inside" Model="Interior">
+        <Range LowerBound="1.0" /> 
+    </Sound>
+
 <!-- RAIN ===============-->
 <Sound WwiseData="true" WwiseEvent="Rain"  NodeName="WHEEL_AUTOPILOT_VERT_SPEED" SimVar="AMBIENT PRECIP RATE" Units="millimeters of water" Index="0"> 
 	<Range LowerBound="0.05" />

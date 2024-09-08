@@ -3575,6 +3575,17 @@
           </LEFT_SINGLE_CODE>
         </UseTemplate>
         <UseTemplate Name="DELTASIM_PushButton_Template">
+          <NODE_ID>BUTTON_AD</NODE_ID>
+          <TOOLTIPID>AIRDROP MODE</TOOLTIPID>
+          <LEFT_SINGLE_CODE>
+            (L:C17_AD_ACTIVE,bool) ! (&gt;L:C17_AD_ACTIVE,bool)
+            1 (&gt;L:C17_AD_DirTo, bool)
+            (A:GPS FLIGHT PLAN WP COUNT, number) 1 - (&gt;L:C17_AD_WP_ID, number)
+          </LEFT_SINGLE_CODE>
+        </UseTemplate>
+
+
+        <UseTemplate Name="DELTASIM_PushButton_Template">
           <NODE_ID>BUTTON_SPD_HOLD</NODE_ID>
           <TOOLTIPID>SPD HOLD</TOOLTIPID>
           <LEFT_SINGLE_CODE>
@@ -4470,6 +4481,37 @@
   </Animation>
 </PartInfo>
 
+<Animation name="r_aileron_key" guid="77db62be-36d4-4c03-bea7-c4cc2a224d9d" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+  <Name>r_aileron_key</Name>
+  <AnimLength>100</AnimLength>
+  <Animation>
+    <Parameter>
+      <Code>
+        (A:GROUND VELOCITY, knots) 250 &lt; if{ (A:AILERON LEFT DEFLECTION PCT, percent) -1 * 50 + } els{ 50 }
+          </Code> 
+          <Lag>50</Lag>
+    </Parameter>
+  </Animation>
+</PartInfo>
+
+<Animation name="l_aileron_key" guid="93b074a9-7d94-4fe7-a825-7d7758960761" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+  <Name>l_aileron_key</Name>
+  <AnimLength>100</AnimLength>
+  <Animation>
+    <Parameter>
+      <Sim>
+        <Variable>AILERON LEFT DEFLECTION PCT</Variable>
+        <Units>percent</Units>
+        <Scale>-1</Scale>
+        <Bias>50</Bias>
+      </Sim>
+    </Parameter>
+  </Animation>
+</PartInfo>
+
+
 
 <!-- ===========================================  HUD  CONTROLS ===============================================-->
 <Animation name="Wiper_Glass" guid="c8b4b4df-928c-4452-88b3-e7979bcea697" length="1" type="Sim" typeParam="AutoPlay" />
@@ -4557,6 +4599,36 @@
       </Parameter>
     </Visibility>
 </PartInfo>
+
+<Animation name="AC_Bank" guid="7119b3db-6cae-45fb-8c54-5c57f2d0145a" type="Sim"
+typeParam="AutoPlay" />
+<PartInfo>
+<Name>AC_Bank</Name>
+<AnimLength>360</AnimLength>
+<Animation>
+<Parameter>
+   <Code>
+    (A:PLANE BANK DEGREES, degrees) 180 +
+  </Code> 
+</Parameter>
+</Animation>
+</PartInfo>
+
+<Animation name="AIRDROP_HUMMER" guid="06f5f580-9cfe-46ee-b020-b2b51400bbb6" type="Sim"
+typeParam="AutoPlay" />
+<PartInfo>
+<Name>AIRDROP_HUMMER</Name>
+<AnimLength>1000</AnimLength>
+<Animation>
+<Parameter>
+   <Code>
+    (E:ABSOLUTE TIME, second) 15 % 60 * (L:C17_AD_PlayAnim, bool) *
+  </Code> 
+</Parameter>
+</Animation>
+</PartInfo>
+
+
 
 
 

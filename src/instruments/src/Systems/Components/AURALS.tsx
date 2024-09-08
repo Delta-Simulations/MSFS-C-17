@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { render } from "../../Hooks/index";
 import { useSimVar } from '../../Hooks/simVars';
+import { Airdrop_CAWS } from './Airdrop';
 import "../style.scss";
 
 export const AURALS = () => {
@@ -63,7 +64,7 @@ useEffect(() => {
 
   return (
       <g>
-
+        <Airdrop_CAWS />
 <text x={0} y={50} fontSize={100} fill='white'>{ATEngaged}</text>
 
           <text x={50} y={50} fontSize={100} fill='white'>{ThrrotleWarning && ATEngaged && WacsFail && Cargo_door_Sound && StabMotion && ThrrotleWarning && ATEngaged}</text>

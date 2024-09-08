@@ -60,7 +60,12 @@ export const Stationary = () => {
         // Determine the altitude set mode based on AltRef_RABA
         const altitudeSetMode = AltRef_RABA ? "R" : "B";
 
-
+        const [Airdrop_Active] = useSimVar('L:C17_AD_ACTIVE', 'bool');
+        let [Airdrop_WP_ETA] = useSimVar('A:GPS WP ETE', 'enum');
+        Airdrop_WP_ETA = Math.round(Airdrop_WP_ETA)
+        let [Airdrop_WP_Lat_Offset] = useSimVar('A:GPS WP CROSS TRK', 'yards');
+        Airdrop_WP_Lat_Offset = Math.round(Airdrop_WP_Lat_Offset/10)*10
+        const [Airdrop_Dir_To_WP] = useSimVar('L:C17_AD_DirTo', 'enum');
 
 
 
@@ -81,9 +86,9 @@ export const Stationary = () => {
                 <text x={1009} y={798} fontSize={33} className='readouts' textAnchor="end">{altitudeRefMode}</text>
             </g>
 
-            <text x={485} y={428} fontSize={32} textAnchor="end">{IndicatedSpeed}</text>
-            <text x={795} y={468} fontSize={32} textAnchor="end">{VS}</text>
-            <text x={795} y={428} fontSize={32} textAnchor="end">{UseRAalt ? RADalt : INDalt}</text>
+            <text x={485} y={498} fontSize={32} textAnchor="end">{Math.round(IndicatedSpeed/5)*5}</text>
+            <text x={795} y={538} fontSize={32} textAnchor="end">{VS}</text>
+            <text x={795} y={498} fontSize={32} textAnchor="end">{Math.round((UseRAalt ? RADalt : INDalt)/10)*10}</text>
 
 
 
@@ -120,6 +125,15 @@ export const Stationary = () => {
             <g transform={`translate(0 ${-Accel_Forwards})`}>
                 <polygon points='512,456 512,440 526,448' className='readouts' strokeWidth={3} fill='none'/>
             </g>
+
+            <g  >
+                <text visibility={(Airdrop_WP_ETA >= 60 && Airdrop_Active && Airdrop_Dir_To_WP > 0) ? 'visible' : 'hidden'} x={1009} y={948} fontSize={33} className='readouts' textAnchor="start">MC</text>
+                <text visibility={(Airdrop_WP_ETA < 60 && Airdrop_Active && Airdrop_Dir_To_WP > 0) ? 'visible' : 'hidden'} x={1009} y={948} fontSize={33} className='readouts' textAnchor="start">T 0M{Airdrop_WP_ETA}</text>
+                <text visibility={(Airdrop_WP_ETA >= 0 && Airdrop_Active && Airdrop_Dir_To_WP > 0) ? 'visible' : 'hidden'} x={1110} y={994} fontSize={33} className='readouts' textAnchor="end">{Math.abs(Airdrop_WP_Lat_Offset)} {Airdrop_WP_Lat_Offset > 0 ? 'RT' : 'LT'}</text>
+                <text visibility={(Airdrop_WP_ETA < 60 && Airdrop_Active && Airdrop_Dir_To_WP < 0) ? 'visible' : 'hidden'} x={1009} y={948} fontSize={33} className='readouts' textAnchor="start">DZ/+{Airdrop_WP_ETA}</text>
+
+            </g>
+
 
         </g>
     )

@@ -1,3 +1,66 @@
 {
-    "elements": []
+    "elements": [
+        {
+            "__uuid": "d0ae5aea-c9a0-4c32-a0a3-5aa9f3a57673",
+            "title": "adbutton",
+            "varPrefix": "L",
+            "varName": "C17_AD_ACTIVE",
+            "varUnit": "number",
+            "style": {
+                "type": 3
+            }
+        },
+        {
+            "__uuid": "c32d3b15-51fa-443e-aca9-d27291c61322",
+            "title": "speed",
+            "varPrefix": "A",
+            "varName": "AIRSPEED INDICATED",
+            "varUnit": "number",
+            "style": {
+                "type": 2,
+                "min": 0,
+                "max": 500,
+                "step": 1
+            }
+        },
+        {
+            "__uuid": "aca61554-896e-40d1-9fff-d830384be151",
+            "title": "ETE TO WP",
+            "varPrefix": "A",
+            "varName": "GPS WP ETE",
+            "varUnit": "enum",
+            "style": {
+                "type": 2,
+                "min": 0,
+                "max": 66,
+                "step": 1
+            }
+        },
+        {
+            "__uuid": "f641f2a5-ac98-47cf-913d-5294cf26e09f",
+            "title": "DirtoWP",
+            "varPrefix": "L",
+            "varName": "C17_AD_DirTo",
+            "varUnit": "number",
+            "style": {
+                "type": 2,
+                "min": -1,
+                "max": 1,
+                "step": 1
+            }
+        },
+        {
+            "__uuid": "504024da-30da-400e-8a17-93ee1aab0f34",
+            "title": "Cross Lateral",
+            "varPrefix": "A",
+            "varName": "GPS WP CROSS TRK",
+            "varUnit": "number",
+            "style": {
+                "type": 2,
+                "min": -100,
+                "max": 100,
+                "step": 1
+            }
+        }
+    ]
 }

@@ -8985,6 +8985,24 @@
 	  }), getRenderTarget());
 	};
 
+	const Airdrop_CAWS = () => {
+	  useSimVar('A:GPS POSITION LAT', 'Degrees', 500);
+	  useSimVar('A:GPS POSITION LON', 'Degrees', 500);
+	  useSimVar('L:C17_AD_Lat', 'Degrees');
+	  useSimVar('L:C17_AD_Lon', 'Degrees');
+	  useSimVar('L:C17_AD_Dist', 'kilometers');
+	  useSimVar('L:C17_AD_ACTIVE', 'bool');
+	  return /*#__PURE__*/jsxRuntime.jsx("g", {
+	    children: /*#__PURE__*/jsxRuntime.jsx("text", {
+	      x: 0,
+	      y: 50,
+	      fontSize: 100,
+	      fill: "white",
+	      children: 1
+	    })
+	  });
+	};
+
 	const AURALS = () => {
 	  let [WacsFail, setWacsFail] = useSimVar('L:C17_ALERT_Wacs_Fail', 'bool');
 	  let [Avionics_PWR] = useSimVar('A:CIRCUIT ON:65', 'bool');
@@ -9034,7 +9052,7 @@
 	    isInitialRenderWacs.current = false;
 	  }, []);
 	  return /*#__PURE__*/jsxRuntime.jsxs("g", {
-	    children: [/*#__PURE__*/jsxRuntime.jsx("text", {
+	    children: [/*#__PURE__*/jsxRuntime.jsx(Airdrop_CAWS, {}), /*#__PURE__*/jsxRuntime.jsx("text", {
 	      x: 0,
 	      y: 50,
 	      fontSize: 100,

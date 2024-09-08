@@ -11,6 +11,14 @@ export const Annunciations = () => {
     let [DH] = useSimVar('L:C17_GPWS_DH_P', 'bool');
     let [MDA] = useSimVar('L:C17_GPWS_MDA_P', 'bool');
     let [MKR] = useSimVar('L:C17_GPWS_MKR_P', 'bool');
+    let [GREENLT] = useSimVar('L:C17_AD_GreenLT', 'bool');
+    let [REDLT] = useSimVar('L:C17_AD_RedLT', 'bool');
+    let [AUTODROP_Caution] = useSimVar('L:C17_AD_Autodrop', 'bool');
+
+    let [AD1MIN] = useSimVar('L:C17_AD_1Min', 'bool');
+    let [AD10SEC] = useSimVar('L:C17_AD_10Sec', 'bool');
+    let [AD6MIN] = useSimVar('L:C17_AD_6Min', 'bool');
+
 
     // State to keep track of displayed text
     const [displayedText, setDisplayedText] = useState('');
@@ -31,17 +39,30 @@ export const Annunciations = () => {
             setDisplayedText('MDA');
         } else if (MKR) {
             setDisplayedText('TOO LOW');
-        }
+        } else if (AUTODROP_Caution) {
+            setDisplayedText('AUTODROP');
+        } else if (GREENLT) {
+            setDisplayedText('GREEN LIGHT');
+        } else if (REDLT) {
+            setDisplayedText('RED LIGHT');
+        } else if (AD10SEC) {
+            setDisplayedText('10 SEC');
+        } else if (AD1MIN) {
+            setDisplayedText('1 MIn');
+        } else if (AD6MIN) {
+            setDisplayedText('6 MIn');
+        } 
+        
 
         setRenderCount(prevCount => prevCount + 1);
-    }, [IRU1, IRU2, IRU3, IRU4, Terrain_Caution, DH, MDA, MKR]);
+    }, [IRU1, IRU2, IRU3, IRU4, Terrain_Caution, DH, MDA, MKR, AUTODROP_Caution, GREENLT, REDLT, AD10SEC, AD1MIN, AD6MIN]);
 
     // Effect to clear displayed text after 2 seconds if it has changed
     useEffect(() => {
         if (displayedText !== prevDisplayedText) {
             const timeoutId = setTimeout(() => {
                 setDisplayedText('');
-            }, 2000);
+            }, 2500);
             return () => clearTimeout(timeoutId);
         }
 

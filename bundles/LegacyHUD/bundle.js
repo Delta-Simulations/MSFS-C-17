@@ -9031,6 +9031,12 @@
 
 
 	  const altitudeSetMode = AltRef_RABA ? "R" : "B";
+	  const [Airdrop_Active] = useSimVar('L:C17_AD_ACTIVE', 'bool');
+	  let [Airdrop_WP_ETA] = useSimVar('A:GPS WP ETE', 'enum');
+	  Airdrop_WP_ETA = Math.round(Airdrop_WP_ETA);
+	  let [Airdrop_WP_Lat_Offset] = useSimVar('A:GPS WP CROSS TRK', 'yards');
+	  Airdrop_WP_Lat_Offset = Math.round(Airdrop_WP_Lat_Offset / 10) * 10;
+	  const [Airdrop_Dir_To_WP] = useSimVar('L:C17_AD_DirTo', 'enum');
 	  return /*#__PURE__*/jsxRuntime.jsxs("g", {
 	    children: [/*#__PURE__*/jsxRuntime.jsxs("g", {
 	      transform: "translate(458, 120), scale(2,1.93)",
@@ -9087,22 +9093,22 @@
 	      })]
 	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
 	      x: 485,
-	      y: 428,
+	      y: 498,
 	      fontSize: 32,
 	      textAnchor: "end",
-	      children: IndicatedSpeed
+	      children: Math.round(IndicatedSpeed / 5) * 5
 	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
 	      x: 795,
-	      y: 468,
+	      y: 538,
 	      fontSize: 32,
 	      textAnchor: "end",
 	      children: VS
 	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
 	      x: 795,
-	      y: 428,
+	      y: 498,
 	      fontSize: 32,
 	      textAnchor: "end",
-	      children: UseRAalt ? RADalt : INDalt
+	      children: Math.round((UseRAalt ? RADalt : INDalt) / 10) * 10
 	    }), /*#__PURE__*/jsxRuntime.jsx("text", {
 	      visibility: DCLT ? 'visible' : 'hidden',
 	      x: 125,
@@ -9209,6 +9215,40 @@
 	        strokeWidth: 3,
 	        fill: "none"
 	      })
+	    }), /*#__PURE__*/jsxRuntime.jsxs("g", {
+	      children: [/*#__PURE__*/jsxRuntime.jsx("text", {
+	        visibility: Airdrop_WP_ETA >= 60 && Airdrop_Active && Airdrop_Dir_To_WP > 0 ? 'visible' : 'hidden',
+	        x: 1009,
+	        y: 948,
+	        fontSize: 33,
+	        className: "readouts",
+	        textAnchor: "start",
+	        children: "MC"
+	      }), /*#__PURE__*/jsxRuntime.jsxs("text", {
+	        visibility: Airdrop_WP_ETA < 60 && Airdrop_Active && Airdrop_Dir_To_WP > 0 ? 'visible' : 'hidden',
+	        x: 1009,
+	        y: 948,
+	        fontSize: 33,
+	        className: "readouts",
+	        textAnchor: "start",
+	        children: ["T 0M", Airdrop_WP_ETA]
+	      }), /*#__PURE__*/jsxRuntime.jsxs("text", {
+	        visibility: Airdrop_WP_ETA >= 0 && Airdrop_Active && Airdrop_Dir_To_WP > 0 ? 'visible' : 'hidden',
+	        x: 1110,
+	        y: 994,
+	        fontSize: 33,
+	        className: "readouts",
+	        textAnchor: "end",
+	        children: [Math.abs(Airdrop_WP_Lat_Offset), " ", Airdrop_WP_Lat_Offset > 0 ? 'RT' : 'LT']
+	      }), /*#__PURE__*/jsxRuntime.jsxs("text", {
+	        visibility: Airdrop_WP_ETA < 60 && Airdrop_Active && Airdrop_Dir_To_WP < 0 ? 'visible' : 'hidden',
+	        x: 1009,
+	        y: 948,
+	        fontSize: 33,
+	        className: "readouts",
+	        textAnchor: "start",
+	        children: ["DZ/+", Airdrop_WP_ETA]
+	      })]
 	    })]
 	  });
 	};
@@ -9359,6 +9399,12 @@
 	  const [pitch] = useSimVar("PLANE PITCH DEGREES", "degrees");
 	  const [bank] = useSimVar("PLANE BANK DEGREES", "degrees");
 	  const [isFD] = useSimVar('AUTOPILOT FLIGHT DIRECTOR ACTIVE', 'Bool');
+	  const [Airdrop_Active] = useSimVar('L:C17_AD_ACTIVE', 'bool');
+	  const [Airdrop_Dir_To_WP] = useSimVar('L:C17_AD_DirTo', 'enum');
+	  let [Airdrop_WP_ETA] = useSimVar('A:GPS WP ETE', 'enum');
+	  Airdrop_WP_ETA = Math.round(Airdrop_WP_ETA);
+	  let [Airdrop_WP_Lat_Offset] = useSimVar('A:GPS WP CROSS TRK', 'yards');
+	  Airdrop_WP_Lat_Offset = Math.round(Airdrop_WP_Lat_Offset * 10) / 10;
 
 	  const degreesToPixels = angle => angle < 0 ? Math.max(angle * 8, -12 * 8) : Math.min(angle * 8, 12 * 8);
 
@@ -9381,6 +9427,29 @@
 	        className: "readouts",
 	        strokeWidth: 3,
 	        fill: "black"
+	      })
+	    }), /*#__PURE__*/jsxRuntime.jsx("g", {
+	      visibility: Airdrop_Active ? 'visible' : 'hidden',
+	      transform: "translate(0 ".concat(-30 * Airdrop_WP_ETA * Airdrop_Dir_To_WP, ")"),
+	      children: /*#__PURE__*/jsxRuntime.jsx("rect", {
+	        x: "560",
+	        y: "350",
+	        width: 50,
+	        height: 50,
+	        className: "readouts",
+	        strokeWidth: 3,
+	        fill: "none"
+	      })
+	    }), /*#__PURE__*/jsxRuntime.jsx("g", {
+	      visibility: Airdrop_Active ? 'visible' : 'hidden',
+	      transform: "translate(".concat(Airdrop_WP_Lat_Offset / 2, " 0)"),
+	      children: /*#__PURE__*/jsxRuntime.jsx("line", {
+	        className: "a2",
+	        x1: "586",
+	        y1: "370",
+	        x2: "586",
+	        y2: "900",
+	        strokeWidth: 4
 	      })
 	    })]
 	  });
@@ -9531,7 +9600,13 @@
 	  let [Terrain_Caution] = useSimVar('L:C17_TERRAIN_FLYUP', 'bool');
 	  let [DH] = useSimVar('L:C17_GPWS_DH_P', 'bool');
 	  let [MDA] = useSimVar('L:C17_GPWS_MDA_P', 'bool');
-	  let [MKR] = useSimVar('L:C17_GPWS_MKR_P', 'bool'); // State to keep track of displayed text
+	  let [MKR] = useSimVar('L:C17_GPWS_MKR_P', 'bool');
+	  let [GREENLT] = useSimVar('L:C17_AD_GreenLT', 'bool');
+	  let [REDLT] = useSimVar('L:C17_AD_RedLT', 'bool');
+	  let [AUTODROP_Caution] = useSimVar('L:C17_AD_Autodrop', 'bool');
+	  let [AD1MIN] = useSimVar('L:C17_AD_1Min', 'bool');
+	  let [AD10SEC] = useSimVar('L:C17_AD_10Sec', 'bool');
+	  let [AD6MIN] = useSimVar('L:C17_AD_6Min', 'bool'); // State to keep track of displayed text
 
 	  const [displayedText, setDisplayedText] = react.useState(''); // State to keep track of previous displayed text
 
@@ -9550,16 +9625,28 @@
 	      setDisplayedText('MDA');
 	    } else if (MKR) {
 	      setDisplayedText('TOO LOW');
+	    } else if (AUTODROP_Caution) {
+	      setDisplayedText('AUTODROP');
+	    } else if (GREENLT) {
+	      setDisplayedText('GREEN LIGHT');
+	    } else if (REDLT) {
+	      setDisplayedText('RED LIGHT');
+	    } else if (AD10SEC) {
+	      setDisplayedText('10 SEC');
+	    } else if (AD1MIN) {
+	      setDisplayedText('1 MIn');
+	    } else if (AD6MIN) {
+	      setDisplayedText('6 MIn');
 	    }
 
 	    setRenderCount(prevCount => prevCount + 1);
-	  }, [IRU1, IRU2, IRU3, IRU4, Terrain_Caution, DH, MDA, MKR]); // Effect to clear displayed text after 2 seconds if it has changed
+	  }, [IRU1, IRU2, IRU3, IRU4, Terrain_Caution, DH, MDA, MKR, AUTODROP_Caution, GREENLT, REDLT, AD10SEC, AD1MIN, AD6MIN]); // Effect to clear displayed text after 2 seconds if it has changed
 
 	  react.useEffect(() => {
 	    if (displayedText !== prevDisplayedText) {
 	      const timeoutId = setTimeout(() => {
 	        setDisplayedText('');
-	      }, 2000);
+	      }, 2500);
 	      return () => clearTimeout(timeoutId);
 	    }
 
