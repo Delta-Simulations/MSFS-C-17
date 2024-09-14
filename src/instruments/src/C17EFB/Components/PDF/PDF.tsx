@@ -27,6 +27,7 @@ export const MANUAL = () => {
 	};
 	const handleNextPage = (): void => {
 		navigateToPage(currentPage + 2);
+
 	};
 	const handleInvert = (): void => {
 		setInvert(!invert);
@@ -64,14 +65,14 @@ export const MANUAL = () => {
 
 	return (
 		<div className="PDFContainer">
-			<g style={{ display: FMMode ? 'none' : 'block' }}>
-			<GetImageFromPDF invertColors={invert} page={currentPage} /></g>
-			<g style={{ display: FMMode ? 'block' : 'none' }}>
+			<g >
+			<GetImageFromPDF invertColors={invert} page={currentPage} FMMode={FMMode}/></g>
+			{/* <g style={{ display: FMMode ? 'block' : 'none' }}>
 				<img
 					className={invert ? 'invert' : ''}
 					src={`/Images/FM/QuickRef.jpg`}
 					style={{ maxWidth: '88%', justifyContent:'center'}}
-				/></g>
+				/></g> */}
 			<ThemeProvider theme={ButtonColour}>
 			<Box
 				sx={{

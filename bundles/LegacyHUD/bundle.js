@@ -9606,7 +9606,8 @@
 	  let [AUTODROP_Caution] = useSimVar('L:C17_AD_Autodrop', 'bool');
 	  let [AD1MIN] = useSimVar('L:C17_AD_1Min', 'bool');
 	  let [AD10SEC] = useSimVar('L:C17_AD_10Sec', 'bool');
-	  let [AD6MIN] = useSimVar('L:C17_AD_6Min', 'bool'); // State to keep track of displayed text
+	  let [AD6MIN] = useSimVar('L:C17_AD_6Min', 'bool');
+	  let [AD30SEC] = useSimVar('L:C17_AD_30Sec', 'bool'); // State to keep track of displayed text
 
 	  const [displayedText, setDisplayedText] = react.useState(''); // State to keep track of previous displayed text
 
@@ -9633,14 +9634,16 @@
 	      setDisplayedText('RED LIGHT');
 	    } else if (AD10SEC) {
 	      setDisplayedText('10 SEC');
+	    } else if (AD30SEC) {
+	      setDisplayedText('30 SEC');
 	    } else if (AD1MIN) {
-	      setDisplayedText('1 MIn');
+	      setDisplayedText('1 MIN');
 	    } else if (AD6MIN) {
-	      setDisplayedText('6 MIn');
+	      setDisplayedText('6 MIN');
 	    }
 
 	    setRenderCount(prevCount => prevCount + 1);
-	  }, [IRU1, IRU2, IRU3, IRU4, Terrain_Caution, DH, MDA, MKR, AUTODROP_Caution, GREENLT, REDLT, AD10SEC, AD1MIN, AD6MIN]); // Effect to clear displayed text after 2 seconds if it has changed
+	  }, [IRU1, IRU2, IRU3, IRU4, Terrain_Caution, DH, MDA, MKR, AUTODROP_Caution, GREENLT, REDLT, AD10SEC, AD30SEC, AD1MIN, AD6MIN]); // Effect to clear displayed text after 2 seconds if it has changed
 
 	  react.useEffect(() => {
 	    if (displayedText !== prevDisplayedText) {

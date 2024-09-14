@@ -21,13 +21,13 @@ const isInitialRenderCargo = useRef(true);
 const isInitialRenderWacs = useRef(true);
 
 
-useEffect(() => {
-  if (ATEngaged === false) {
-    setThrrotleWarning(true);
-    const timeoutIdAT = setTimeout(() => setThrrotleWarning(false), 2000);
-    return () => clearTimeout(timeoutIdAT);
-  }
-}, [ATEngaged]);
+// useEffect(() => {
+//   if (ATEngaged === false) {
+//     setThrrotleWarning(true);
+//     const timeoutIdAT = setTimeout(() => setThrrotleWarning(false), 2000);
+//     return () => clearTimeout(timeoutIdAT);
+//   }
+// }, [ATEngaged]);
 
 const [ThrrotleWarningValue, setThrrotleWarningValue] = useSimVar('L:C17_AT_warning', 'bool');
 useEffect(() => {

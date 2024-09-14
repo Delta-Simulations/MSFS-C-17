@@ -445,4 +445,38 @@
 	</UseTemplate>
 </Template>
 
+<Template Name="DELTASIM_Cover_Template">
+    <DefaultTemplateParameters>
+        <ANIM_LENGTH>1</ANIM_LENGTH>
+        <CONVERSION_FACTOR>1</CONVERSION_FACTOR>
+        <OFFSET>0</OFFSET>
+        <PRE_CODE></PRE_CODE>
+        <POST_CODE></POST_CODE>
+		<ANIMREF_ID>0</ANIMREF_ID>
+		<ANIMTIP_0_ON_PERCENT>0.0</ANIMTIP_0_ON_PERCENT>
+		<ANIMTIP_1_ON_PERCENT>1.0</ANIMTIP_1_ON_PERCENT> 
+		<ANIM_LAG>50</ANIM_LAG>
+        <TOOLTIPID></TOOLTIPID>				
+    </DefaultTemplateParameters>
+    <Component ID="#NODE_ID#" Node="#NODE_ID#">
+        <UseTemplate Name="ASOBO_GT_Anim_Code">
+            <ANIM_NAME>#NODE_ID#</ANIM_NAME>
+            <ANIM_CODE>(O:ToggleGeneric, bool) 100 *</ANIM_CODE>
+            <ANIM_LENGTH>#ANIM_LENGTH#</ANIM_LENGTH>
+        </UseTemplate>
+        <UseTemplate Name="ASOBO_GT_MouseRect">
+            <CURSOR>Hand</CURSOR>
+            <TOOLTIPID>#TOOLTIPID#</TOOLTIPID>
+            <MOUSEFLAGS_DEFAULT_IM>LeftSingle+LeftRelease</MOUSEFLAGS_DEFAULT_IM>
+            <CALLBACKCODE_DEFAULT_IM>
+                #PRE_CODE#
+                (M:Event) 'LeftSingle' scmi 0 == if{
+                    (O:ToggleGeneric, bool) ! (&gt;O:ToggleGeneric, bool)
+                }
+                #POST_CODE#
+            </CALLBACKCODE_DEFAULT_IM>
+        </UseTemplate>
+    </Component>
+</Template>
+
 </ModelBehaviors>

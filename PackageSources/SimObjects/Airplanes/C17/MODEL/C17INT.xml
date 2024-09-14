@@ -391,7 +391,12 @@
       0 (&gt;L:C17_ALERT_MASTER_Warning,bool)
     </LEFT_SINGLE_CODE>
   </UseTemplate>
-
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_Auto_Drop</NODE_ID>
+    <TRUECODE>
+      (L:C17_AD_GreenLT, bool) 1 ==
+    </TRUECODE>
+  </UseTemplate>
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>KORRY_AP</NODE_ID>
     <TRUECODE>
@@ -423,17 +428,36 @@
   </UseTemplate>
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>KORRY_WARNING_THRUST_LOSS</NODE_ID>
-    <TRUECODE></TRUECODE>
+    <TRUECODE>
+      (A:SIM ON GROUND,bool) 0 ==
+      (A:ENG COMBUSTION:1,bool) 1 == and
+      (A:ENG COMBUSTION:2,bool) 1 == and
+      (A:ENG COMBUSTION:3,bool) 1 == and
+      (A:ENG COMBUSTION:4,bool) 1 == and
+      (A:TURB ENG REVERSE NOZZLE PERCENT:1,percent) 0 == and
+      (A:TURB ENG REVERSE NOZZLE PERCENT:2,percent) 0 == and
+      (A:TURB ENG REVERSE NOZZLE PERCENT:3,percent) 0 == and
+      (A:TURB ENG REVERSE NOZZLE PERCENT:4,percent) 0 == and
+
+      
+      (L:C17_AVG_THROTTLE_POS,percent) (A:GENERAL ENG THROTTLE LEVER POSITION:1, percent) - 8 &gt;  
+      (L:C17_AVG_THROTTLE_POS,percent) (A:GENERAL ENG THROTTLE LEVER POSITION:2, percent) - 8 &gt; or
+      (L:C17_AVG_THROTTLE_POS,percent) (A:GENERAL ENG THROTTLE LEVER POSITION:3, percent) - 8 &gt; or  
+      (L:C17_AVG_THROTTLE_POS,percent) (A:GENERAL ENG THROTTLE LEVER POSITION:4, percent) - 8 &gt; or 
+
+      (L:C17_AVG_THROTTLE_POS,percent) 12 &gt; and and
+
+    </TRUECODE>
     <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > ! 40 * </INTENSITY>
   </UseTemplate>
+
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>KORRY_WARNING_WACS_FAIL</NODE_ID>
     <TRUECODE>
-      (L:C17_ALERT_WACS_FAIL,BOOL) 1 ==
+      (L:C17_ALERT_WACS_FAIL,bool) 1 ==
     </TRUECODE>
-    <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > !40 * </INTENSITY>
+    <INTENSITY>(P:Absolute time,seconds) 0.5 % 0.25 > ! 40 * </INTENSITY>
   </UseTemplate>
-
 
   <Component ID="Switch_Smoke_Sys" Node="Switch_Smoke_Sys">
     <UseTemplate Name = "ASOBO_GT_Switch_3States">
@@ -1971,13 +1995,14 @@
     <NODE_ID>KORRY_SLAT_EXTEND</NODE_ID>
     <TRUECODE>
       (A:LEADING EDGE FLAPS LEFT PERCENT, percent) 0 &gt;
+      (A:LEADING EDGE FLAPS RIGHT PERCENT, percent) 0 &gt; or
     </TRUECODE>
   </UseTemplate>
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>KORRY_SLAT_DISAG</NODE_ID>
     <TRUECODE>
       (A:LEADING EDGE FLAPS LEFT PERCENT, percent) 0 &gt;
-      (A:LEADING EDGE FLAPS LEFT PERCENT, percent) 100 &lt; and
+      (A:LEADING EDGE FLAPS LEFT PERCENT, percent) 99 &lt; and
     </TRUECODE>
   </UseTemplate>
 
@@ -2109,11 +2134,73 @@
     <NODE_ID>KORRY_ELEC_Normal</NODE_ID>
     <TRUECODE>1</TRUECODE>
   </UseTemplate>
-
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>KORRY_Front_Panel_Inop</NODE_ID>
     <TRUECODE>0</TRUECODE>
   </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_Pedestal_Inop</NODE_ID>
+    <TRUECODE>0</TRUECODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_Pedestal_Inop_On</NODE_ID>
+    <TRUECODE>1</TRUECODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_Pedestal_Ramp_AD</NODE_ID>
+    <TRUECODE> (L:C17_CargoDoor_POS, enum) 50 == </TRUECODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_Pedestal_ParaDoor_L</NODE_ID>
+    <TRUECODE> (A:LIGHT STROBE:2,bool) </TRUECODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_Pedestal_ParaDoor_R</NODE_ID>
+    <TRUECODE> (A:LIGHT STROBE:3,bool) </TRUECODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_Pedestal_Dispense_Arm</NODE_ID>
+    <TRUECODE> (A:SIM ON GROUND,bool) 0 == </TRUECODE>
+  </UseTemplate>
+
+  <UseTemplate Name="DELTASIM_Cover_Template">
+    <NODE_ID>Cover_Pedestal_Dispense_Arm</NODE_ID>
+  </UseTemplate>
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>Button_ARM_CMWS</NODE_ID>
+    <TOOLTIPID>ARM DISPENSERS</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+      (L:C17_ARM_FLARES, bool) ! (&gt;L:C17_ARM_FLARES, bool)
+    </LEFT_SINGLE_CODE>
+  </UseTemplate>
+
+  <UseTemplate Name="DELTASIM_Cover_Template">
+    <NODE_ID>Cover_Pedestal_Jump_Rel</NODE_ID>
+  </UseTemplate>
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>Button_Jump_Rel</NODE_ID>
+    <TOOLTIPID>ADS Green Light</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+    </LEFT_SINGLE_CODE>
+  </UseTemplate>
+  <UseTemplate Name="DELTASIM_Cover_Template">
+    <NODE_ID>Cover_Pedestal_Ready_Drogue</NODE_ID>
+  </UseTemplate>
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>Button_Ready_Drogue</NODE_ID>
+    <TOOLTIPID>ADS Ready/Drogue</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+    </LEFT_SINGLE_CODE>
+  </UseTemplate>
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>BUTTON_RED_LT</NODE_ID>
+    <TOOLTIPID>ADS Red Light</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+    </LEFT_SINGLE_CODE>
+  </UseTemplate>
+
+
+
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>KORRY_ELEC_BATT_BUS_OFF</NODE_ID>
     <TRUECODE>
@@ -2149,6 +2236,13 @@
     <NODE_ID>KORRY_ENVIR_APU_DISAG</NODE_ID>
     <TRUECODE>0</TRUECODE>
   </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_Slat_Disabled</NODE_ID>
+    <TRUECODE>
+      (L:C17_Slat_Disable, bool) 1 ==
+    </TRUECODE>
+  </UseTemplate>
+
 
       <!-- FIRE LOOP PANEL -->
 <UseTemplate Name="Korry_Emmis_DELTASIM">
@@ -2156,6 +2250,13 @@
   <TRUECODE>
     (L:C17_FIRE_ANNUN_TEST, bool) 1 ==
     (L:C17_FIRE_APU, bool) 1 == or
+  </TRUECODE>
+</UseTemplate>
+
+<UseTemplate Name="Korry_Emmis_DELTASIM">
+  <NODE_ID>KORRY_Glaresheild_FireBottleLvl</NODE_ID>
+  <TRUECODE>
+    (L:C17_FIRE_ANNUN_TEST, bool) 1 ==
   </TRUECODE>
 </UseTemplate>
 
@@ -2591,6 +2692,7 @@
     <TOOLTIPID>AUTOTHROTTLE</TOOLTIPID>
     <INTERACT_CODE>
       (K:AUTO_THROTTLE_ARM) ! (&gt;K:AUTO_THROTTLE_ARM)
+      
     </INTERACT_CODE>
   </UseTemplate>
 
@@ -3576,7 +3678,7 @@
         </UseTemplate>
         <UseTemplate Name="DELTASIM_PushButton_Template">
           <NODE_ID>BUTTON_AD</NODE_ID>
-          <TOOLTIPID>AIRDROP MODE</TOOLTIPID>
+          <TOOLTIPID>AIRDROP SYMBOLOGY</TOOLTIPID>
           <LEFT_SINGLE_CODE>
             (L:C17_AD_ACTIVE,bool) ! (&gt;L:C17_AD_ACTIVE,bool)
             1 (&gt;L:C17_AD_DirTo, bool)
@@ -3785,6 +3887,45 @@
         </Component>
 
 
+        <Component ID="Last_humvee_Pos_Ramp" Node="Main_Anim.006">
+          <UseTemplate Name="ASOBO_GT_Visibility">
+            <VISIBILITY_CODE>
+              (L:C17_CargoDoor_POS, enum) 50 != (A:PAYLOAD STATION WEIGHT:4, pounds) 30000 &gt; (L:C17_AD_GreenLT, bool) or and
+            </VISIBILITY_CODE>
+          </UseTemplate>
+        </Component>
+        <Component ID="Last_humvee_Pos" Node="Main_Anim">
+          <UseTemplate Name="ASOBO_GT_Visibility">
+            <VISIBILITY_CODE>
+              (L:C17_CargoDoor_POS, enum) 50 == (A:PAYLOAD STATION WEIGHT:4, pounds) 30000 &gt; (L:C17_AD_GreenLT, bool) or and
+            </VISIBILITY_CODE>
+          </UseTemplate>
+        </Component>
+        <Component ID="Humvee_STA5" Node="Main_Anim.001">
+          <UseTemplate Name="ASOBO_GT_Visibility">
+            <VISIBILITY_CODE>(A:PAYLOAD STATION WEIGHT:4, pounds) 20000 &gt; (L:C17_AD_GreenLT, bool) or</VISIBILITY_CODE>
+          </UseTemplate>
+        </Component>
+        <Component ID="Humvee_STA4" Node="Main_Anim.002">
+          <UseTemplate Name="ASOBO_GT_Visibility">
+            <VISIBILITY_CODE>(A:PAYLOAD STATION WEIGHT:4, pounds) 10000 &gt; (L:C17_AD_GreenLT, bool) or</VISIBILITY_CODE>
+          </UseTemplate>
+        </Component>
+        <Component ID="Humvee_STA3" Node="Main_Anim.003">
+          <UseTemplate Name="ASOBO_GT_Visibility">
+            <VISIBILITY_CODE>(A:PAYLOAD STATION WEIGHT:3, pounds) 30000 &gt; (L:C17_AD_GreenLT, bool) or</VISIBILITY_CODE>
+          </UseTemplate>
+        </Component>
+        <Component ID="Humvee_STA2" Node="Main_Anim.004">
+          <UseTemplate Name="ASOBO_GT_Visibility">
+            <VISIBILITY_CODE>(A:PAYLOAD STATION WEIGHT:3, pounds) 20000 &gt; (L:C17_AD_GreenLT, bool) or</VISIBILITY_CODE>
+          </UseTemplate>
+        </Component>
+        <Component ID="Humvee_STA1" Node="Main_Anim.005">
+          <UseTemplate Name="ASOBO_GT_Visibility">
+            <VISIBILITY_CODE>(A:PAYLOAD STATION WEIGHT:3, pounds) 10000 &gt; (L:C17_AD_GreenLT, bool) or</VISIBILITY_CODE>
+          </UseTemplate>
+        </Component>
 
 
 </Component>
@@ -4608,7 +4749,14 @@ typeParam="AutoPlay" />
 <Animation>
 <Parameter>
    <Code>
-    (A:PLANE BANK DEGREES, degrees) 180 +
+    (A:LIGHT RECOGNITION:3, bool) 1 ==
+    if{
+      (A:PLANE BANK DEGREES, degrees) 180 +
+      } els{
+      180
+      }
+
+    
   </Code> 
 </Parameter>
 </Animation>
@@ -4622,7 +4770,7 @@ typeParam="AutoPlay" />
 <Animation>
 <Parameter>
    <Code>
-    (E:ABSOLUTE TIME, second) 15 % 60 * (L:C17_AD_PlayAnim, bool) *
+    (E:ABSOLUTE TIME, second) 15 % 60 * (A:LIGHT RECOGNITION:3, bool) *
   </Code> 
 </Parameter>
 </Animation>

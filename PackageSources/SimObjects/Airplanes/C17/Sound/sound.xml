@@ -158,7 +158,7 @@
 		 </Requires>
 	</Sound>
 
-    <Sound WwiseData="true" WwiseEvent="AT_warning" Continuous="true" LocalVar="C17_AT_warning" Units="Bool" Index="1" NodeName="Plane.093" ViewPoint="Inside">
+    <Sound WwiseData="true" WwiseEvent="AT_warning" Continuous="true" LocalVar="C17_AT_warning" Units="Bool" BreakOnStop="true" Index="1" NodeName="Plane.093" ViewPoint="Inside">
         <Range LowerBound="1.0" />    
     </Sound>
 
@@ -254,7 +254,7 @@
 	<Sound WwiseData="true" WwiseEvent="Retract_Takeoff_Spoilers" LocalVar="C17_SET_TAKEOFF_SPOILERS" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
         <Range LowerBound="1.0" />    
     </Sound>
-    <Sound WwiseData="true" WwiseEvent="Terrain_Takeoff_Spoilers" Continuous="true" LocalVar="C17_SET_TAKEOFF_SPOILERS" Units="Bool" Index="1" NodeName="Plane.093" ViewPoint="Inside">
+    <Sound WwiseData="true" WwiseEvent="ARM_Spoilers" Continuous="true" LocalVar="C17_ARM_SPOILERS" Units="Bool" Index="1" NodeName="Plane.093" ViewPoint="Inside">
         <Range LowerBound="1.0" />    
     </Sound>
     <Sound WwiseData="true" WwiseEvent="Terrain_FlyUP" Continuous="true" LocalVar="C17_TERRAIN_FLYUP" Units="Bool" Index="1" NodeName="Plane.093" ViewPoint="Inside">
@@ -292,7 +292,9 @@
     <Sound WwiseData="true" WwiseEvent="Wacs_fail" Continuous="true" LocalVar="C17_ALERT_Wacs_Fail" Units="Bool" Index="1" NodeName="Plane.093" ViewPoint="Inside">
         <Range LowerBound="1.0" />  
     </Sound>
-
+	<Sound WwiseData="true" WwiseEvent="Max_Cabin_Alt" LocalVar="C17_Cabin_Pressure_Alert" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
 
     <Sound WwiseData="true" WwiseEvent="Fire_Test" Continuous="true" LocalVar="C17_FIRE_TEST" Units="Bool" Index="1" NodeName="Plane.093" ViewPoint="Inside">
         <Range LowerBound="1.0" />    
@@ -336,7 +338,9 @@
     <Sound WwiseData="true" WwiseEvent="AD_Minute_1" LocalVar="C17_AD_1Min" NodeName="Plane.093" ViewPoint="Inside" BreakOnStop="true" Model="Interior">
         <Range LowerBound="1.0" />    
     </Sound>
-
+	<Sound WwiseData="true" WwiseEvent="AD_Second_30" LocalVar="C17_AD_30Sec" NodeName="Plane.093" ViewPoint="Inside" BreakOnStop="True" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
 	<Sound WwiseData="true" WwiseEvent="AD_Second_10" LocalVar="C17_AD_10Sec" NodeName="Plane.093" ViewPoint="Inside" BreakOnStop="True" Model="Interior">
         <Range LowerBound="1.0" />    
     </Sound>

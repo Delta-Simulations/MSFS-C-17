@@ -20271,38 +20271,63 @@
 	};
 
 	const GetImageFromPDF = props => {
-	  let page1Src = "/Images/FM/DeltaSim C17 MASTER_page-00".concat(String(props.page).padStart(2, '0'), ".jpg");
-	  let page2Src = "/Images/FM/DeltaSim C17 MASTER_page-00".concat(String(props.page + 1).padStart(2, '0'), ".jpg");
+	  let page1Src;
+	  let page2Src;
+	  let pageSrc;
+
+	  if (props.FMMode === false) {
+	    page1Src = "/Images/FM/DeltaSim C17 MASTER_page-00".concat(String(props.page).padStart(2, '0'), ".jpg");
+	    page2Src = "/Images/FM/DeltaSim C17 MASTER_page-00".concat(String(props.page + 1).padStart(2, '0'), ".jpg");
+	  } else {
+	    pageSrc = "/Images/FM/C17_Checklist-images-".concat(String(Math.floor(props.page / 2)), ".jpg");
+	  }
+
 	  return /*#__PURE__*/jsxRuntime.jsxs("div", {
-	    style: {
-	      paddingTop: '30px',
-	      display: 'flex'
-	    },
 	    children: [/*#__PURE__*/jsxRuntime.jsx("div", {
 	      style: {
-	        flex: 1
+	        visibility: props.FMMode ? 'visible' : 'hidden'
 	      },
 	      children: /*#__PURE__*/jsxRuntime.jsx("img", {
 	        className: "".concat(props.invertColors ? 'invert' : ''),
-	        src: page1Src,
+	        src: pageSrc,
 	        alt: "Page ".concat(props.page),
 	        style: {
-	          maxWidth: '100%'
+	          maxWidth: '100%',
+	          marginTop: '20px'
 	        }
 	      })
-	    }), /*#__PURE__*/jsxRuntime.jsx("div", {
+	    }), /*#__PURE__*/jsxRuntime.jsxs("div", {
 	      style: {
-	        flex: 1
+	        paddingTop: '30px',
+	        display: 'flex',
+	        visibility: props.FMMode ? 'hidden' : 'visible'
 	      },
-	      children: /*#__PURE__*/jsxRuntime.jsx("img", {
-	        className: "".concat(props.invertColors ? 'invert' : ''),
-	        src: page2Src,
-	        alt: "Page ".concat(props.page + 1),
+	      children: [/*#__PURE__*/jsxRuntime.jsx("div", {
 	        style: {
-	          maxWidth: '100%'
-	        }
-	      })
-	    })]
+	          flex: 1
+	        },
+	        children: /*#__PURE__*/jsxRuntime.jsx("img", {
+	          className: "".concat(props.invertColors ? 'invert' : ''),
+	          src: page1Src,
+	          alt: "Page ".concat(props.page),
+	          style: {
+	            maxWidth: '100%'
+	          }
+	        })
+	      }), /*#__PURE__*/jsxRuntime.jsx("div", {
+	        style: {
+	          flex: 1
+	        },
+	        children: /*#__PURE__*/jsxRuntime.jsx("img", {
+	          className: "".concat(props.invertColors ? 'invert' : ''),
+	          src: page2Src,
+	          alt: "Page ".concat(props.page + 1),
+	          style: {
+	            maxWidth: '100%'
+	          }
+	        })
+	      })]
+	    }), /*#__PURE__*/jsxRuntime.jsx("div", {})]
 	  });
 	};
 
@@ -20367,24 +20392,10 @@
 	  return /*#__PURE__*/jsxRuntime.jsxs("div", {
 	    className: "PDFContainer",
 	    children: [/*#__PURE__*/jsxRuntime.jsx("g", {
-	      style: {
-	        display: FMMode ? 'none' : 'block'
-	      },
 	      children: /*#__PURE__*/jsxRuntime.jsx(GetImageFromPDF, {
 	        invertColors: invert,
-	        page: currentPage
-	      })
-	    }), /*#__PURE__*/jsxRuntime.jsx("g", {
-	      style: {
-	        display: FMMode ? 'block' : 'none'
-	      },
-	      children: /*#__PURE__*/jsxRuntime.jsx("img", {
-	        className: invert ? 'invert' : '',
-	        src: "/Images/FM/QuickRef.jpg",
-	        style: {
-	          maxWidth: '88%',
-	          justifyContent: 'center'
-	        }
+	        page: currentPage,
+	        FMMode: FMMode
 	      })
 	    }), /*#__PURE__*/jsxRuntime.jsx(ThemeProvider, {
 	      theme: ButtonColour,

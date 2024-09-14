@@ -131,15 +131,29 @@
 			} (L:C17_THR_MODE, enum) 1 == if{ 1.35
 				(&gt;L:C17_ENG_SET_EPR,number) 79 (&gt;A:AUTOPILOT THROTTLE MAX THRUST,percent) }
 				(L:C17_THR_MODE, enum) 2 == if{ 1.5 (&gt;L:C17_ENG_SET_EPR,number) 88
-				(&gt;A:AUTOPILOT THROTTLE MAX THRUST,percent) } (L:C17_THR_MODE, enum) 3 == if{ 1.6
+				(&gt;A:AUTOPILOT THROTTLE MAX THRUST,percent) } 
+				(L:C17_THR_MODE, enum) 3 == if{ 1.6
 				(&gt;L:C17_ENG_SET_EPR,number) 94 (&gt;A:AUTOPILOT THROTTLE MAX THRUST,percent) }
 				(L:C17_THR_MODE, enum) 4 == if{ 1.7 (&gt;L:C17_ENG_SET_EPR,number) 100
 				(&gt;A:AUTOPILOT THROTTLE MAX THRUST,percent) } 
 				(L:C17_ENG_SET_EPR,number) (&gt;L:AP N1 rating display,number) 
 
+				(L:C17_THR_MODE, enum) 4 ==
+				(A:INDICATED ALTITUDE, feet) 17000 &gt; and
+				if{
+					3 (&gt;L:C17_THR_MODE, enum)
+				}
+
 				<!-- (L:C17_ENG_SET_EPR,number) 1.7 / 100 * (&gt;A:AUTOPILOT THROTTLE MAX
 				THRUST,percent) -->
 
+
+				(A:GENERAL ENG THROTTLE LEVER POSITION:1, percent)
+				(A:GENERAL ENG THROTTLE LEVER POSITION:2, percent) +
+				(A:GENERAL ENG THROTTLE LEVER POSITION:3, percent) +
+				(A:GENERAL ENG THROTTLE LEVER POSITION:4, percent) +
+				4 / 
+				(&gt;L:C17_AVG_THROTTLE_POS,percent)
 			</Value>
 		</Select>
 	</Element>

@@ -1,0 +1,28 @@
+<Gauge Name="AFCS_SYS" Version="1.0">
+  <Comment>
+  *************************************************
+  FOR DELTA SIMULATIONS C-17 (delta.simulations0@gmail.com)
+  *************************************************
+  AFCS/FLIGHT CONTROL SYSTEMS
+  
+  
+
+  <Comment>
+    *************************************************
+    AUTO SPOILER SYSTEM
+
+    </Comment>
+  <Element>
+  <Select>
+  <Value>
+
+  </Value>
+  </Select>
+  </Element>
+
+  
+</Comment>
+
+   
+
+  </Gauge>

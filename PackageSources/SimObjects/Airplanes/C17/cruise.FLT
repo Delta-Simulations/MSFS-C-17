@@ -1,5 +1,5 @@
 [SimVarForSpawningInTheAir.0]
-IAS=506
+IAS=300
 FlapsDegree=0000.00
 
 [Avionics.0]
@@ -173,7 +173,7 @@ LandingLights=False
 LogoLights=True
 NavLights=True
 PanelLights=True
-RecognitionLights=True
+RecognitionLights=False
 StrobeLights=True
 TaxiLights=False
 WingLights=True
@@ -213,7 +213,7 @@ ApproachHold=False
 BackCourseHold=False
 YawDamper=False
 ToGa=False
-AutoThrottleArm=False
+AutoThrottleArm=True
 GPSdrivesNAV1=True
 IsUsedForLesson=False
 ForceDisplayUI=False

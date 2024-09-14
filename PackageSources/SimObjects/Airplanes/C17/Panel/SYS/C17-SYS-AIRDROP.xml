@@ -31,51 +31,70 @@
             (L:C17_AD_ACTIVE,bool) 1 == and
             (L:C17_AD_DirTo, bool) 1 == and
                 if{
-                (A:GPS WP ETE, seconds) 1800 ==
-                if{ 1 (&gt;L:AD_Minute_30, bool) } els{ 0 (&gt;L:AD_Minute_30, bool) }
-                (A:GPS WP ETE, seconds) 1200 ==
-                if{ 1 (&gt;L:AD_Minute_20, bool) } els{ 0 (&gt;L:AD_Minute_20, bool) }
-                (A:GPS WP ETE, seconds) 600 ==
-                if{ 1 (&gt;L:AD_Minute_10, bool) } els{ 0 (&gt;L:AD_Minute_10, bool) }
-                (A:GPS WP ETE, seconds) 360 ==
-                if{ 1 (&gt;L:AD_Minute_6, bool) } els{ 0 (&gt;L:AD_Minute_6, bool) }
-                (A:GPS WP ETE, seconds) 59 &gt; 
-                (A:GPS WP ETE, seconds) 61 &lt; and
-                if{ 1 (&gt;L:C17_AD_1Min, bool) } els{ 0 (&gt;L:C17_AD_1Min, bool) }
-                (A:GPS WP ETE, seconds) 10 ==
-                if{ 1 (&gt;L:C17_AD_10Sec, bool) } els{ 0 (&gt;L:C17_AD_10Sec, bool) }
-                (A:GPS WP ETE, seconds) 5 ==
-                if{ 1 (&gt;L:C17_AD_5Sec, bool) } els{ 0 (&gt;L:C17_AD_5Sec, bool) }
-                (A:GPS WP ETE, seconds) 4 ==
-                if{ 1 (&gt;L:C17_AD_4Sec, bool) } els{ 0 (&gt;L:C17_AD_4Sec, bool) }
-                (A:GPS WP ETE, seconds) 3 ==
-                if{ 1 (&gt;L:C17_AD_3Sec, bool) } els{ 0 (&gt;L:C17_AD_3Sec, bool) }
-                (A:GPS WP ETE, seconds) 2 ==
-                if{ 1 (&gt;L:C17_AD_2Sec, bool) } els{ 0 (&gt;L:C17_AD_2Sec, bool) }
-                (A:GPS WP ETE, seconds) 1 ==
-                if{ 1 (&gt;L:C17_AD_1Sec, bool) } els{ 0 (&gt;L:C17_AD_1Sec, bool) }
+                    (A:GPS WP ETE, seconds) 1800 ==
+                    if{ 1 (&gt;L:AD_Minute_30, bool) } els{ 0 (&gt;L:AD_Minute_30, bool) }
+                    (A:GPS WP ETE, seconds) 1200 ==
+                    if{ 1 (&gt;L:AD_Minute_20, bool) } els{ 0 (&gt;L:AD_Minute_20, bool) }
+                    (A:GPS WP ETE, seconds) 600 ==
+                    if{ 1 (&gt;L:AD_Minute_10, bool) } els{ 0 (&gt;L:AD_Minute_10, bool) }
+                    (A:GPS WP ETE, seconds) 360 ==
+                    if{ 1 (&gt;L:AD_Minute_6, bool) } els{ 0 (&gt;L:AD_Minute_6, bool) }
+                    (A:GPS WP ETE, seconds) 59 &gt; 
+                    (A:GPS WP ETE, seconds) 61 &lt; and
+                    if{ 1 (&gt;L:C17_AD_1Min, bool) } els{ 0 (&gt;L:C17_AD_1Min, bool) }
+                    (A:GPS WP ETE, seconds) 30 ==
+                    if{ 1 (&gt;L:C17_AD_30Sec, bool) } els{ 0 (&gt;L:C17_AD_30Sec, bool) }
+                    (A:GPS WP ETE, seconds) 10 ==
+                    if{ 1 (&gt;L:C17_AD_10Sec, bool) } els{ 0 (&gt;L:C17_AD_10Sec, bool) }
+                    (A:GPS WP ETE, seconds) 5 ==
+                    if{ 1 (&gt;L:C17_AD_5Sec, bool) } els{ 0 (&gt;L:C17_AD_5Sec, bool) }
+                    (A:GPS WP ETE, seconds) 4 ==
+                    if{ 1 (&gt;L:C17_AD_4Sec, bool) } els{ 0 (&gt;L:C17_AD_4Sec, bool) }
+                    (A:GPS WP ETE, seconds) 3 ==
+                    if{ 1 (&gt;L:C17_AD_3Sec, bool) } els{ 0 (&gt;L:C17_AD_3Sec, bool) }
+                    (A:GPS WP ETE, seconds) 2 ==
+                    if{ 1 (&gt;L:C17_AD_2Sec, bool) } els{ 0 (&gt;L:C17_AD_2Sec, bool) }
+                    (A:GPS WP ETE, seconds) 1 ==
+                    if{ 1 (&gt;L:C17_AD_1Sec, bool) } els{ 0 (&gt;L:C17_AD_1Sec, bool) }
 
                 }
+                
                 (L:C17_AD_DirTo, bool) 1 ==
                 (A:GPS WP ETE, seconds) 0 == and
                 (A:GPS WP DISTANCE, meters) 100 &lt; and
                 if{ 
-                    (A:PAYLOAD STATION WEIGHT:3, pounds) (A:PAYLOAD STATION WEIGHT:3, pounds) 0.9 * - (&gt;A:PAYLOAD STATION WEIGHT:3, pounds) 
+                    (A:PAYLOAD STATION WEIGHT:3, pounds) 10000 - (&gt;A:PAYLOAD STATION WEIGHT:3, pounds) 
+                    (A:PAYLOAD STATION WEIGHT:4, pounds) 10000 - (&gt;A:PAYLOAD STATION WEIGHT:4, pounds) 
 
                     1 (&gt;L:C17_AD_GreenLT, bool)
+                    1 (&gt;A:LIGHT RECOGNITION:3, bool)
+
                     1 (&gt;L:C17_AD_PlayAnim, bool) 
+                    -1 (&gt;L:C17_AD_DirTo, bool)
+                    
+                    -1 (&gt;L:C17_AD_DirTo, bool)
                     -1 (&gt;L:C17_AD_DirTo, bool) 
                 }
 
+                (A:GPS WP ETE, seconds) (L:C17_AD_DirTo, bool) * -6 ==
+                if{ 
+                    (A:PAYLOAD STATION WEIGHT:3, pounds) 10000 - (&gt;A:PAYLOAD STATION WEIGHT:3, pounds) 
+                    (A:PAYLOAD STATION WEIGHT:4, pounds) 10000 - (&gt;A:PAYLOAD STATION WEIGHT:4, pounds) 
+
+                }
+
+
                 (A:GPS WP ETE, seconds) (L:C17_AD_DirTo, bool) * -10 ==
                 if{ 
-                    0 (&gt;L:C17_AD_GreenLT, bool) 
-                    (A:PAYLOAD STATION WEIGHT:4, pounds) (A:PAYLOAD STATION WEIGHT:4, pounds) 0.9 * - (&gt;A:PAYLOAD STATION WEIGHT:4, pounds) 
+                     
+                    (A:PAYLOAD STATION WEIGHT:3, pounds) 10000 - (&gt;A:PAYLOAD STATION WEIGHT:3, pounds) 
+                    (A:PAYLOAD STATION WEIGHT:4, pounds) 10000 - (&gt;A:PAYLOAD STATION WEIGHT:4, pounds)
+                    0 (&gt;L:C17_AD_GreenLT, bool)
 
                 }
 
                 (A:GPS WP ETE, seconds) (L:C17_AD_DirTo, bool) * -15 ==
-                if{ 1 (&gt;L:C17_AD_RedLT, bool) 0 (&gt;L:C17_AD_PlayAnim, bool) } els{ 0 (&gt;L:C17_AD_RedLT, bool) }
+                if{ 1 (&gt;L:C17_AD_RedLT, bool) 0 (&gt;L:C17_AD_PlayAnim, bool) 0 (&gt;A:LIGHT RECOGNITION:3, bool) } els{ 0 (&gt;L:C17_AD_RedLT, bool) }
                 
                 (L:C17_AD_DirTo, bool) -1 ==
                 (A:GPS WP ETE, seconds) 20 == and
