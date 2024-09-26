@@ -1,4 +1,4 @@
-<Gauge Name="AIRDROP_SYS" Version="1.0">
+<Gauge Name="AIRDROP_SYS" Version="2.0">
 	<Comment>
 		*************************************************
 		FOR DELTA SIMULATIONS C-17
@@ -25,88 +25,258 @@
 <Element>
 		<Select>
 			<Value>
-
-            (L:C17_AD_WP_ID, number)
-            (A:GPS FLIGHT PLAN WP INDEX, number) == 
-            (L:C17_AD_ACTIVE,bool) 1 == and
-            (L:C17_AD_DirTo, bool) 1 == and
+            (L:C17_AD_MODE, bool) 0 == 
                 if{
-                    (A:GPS WP ETE, seconds) 1800 ==
-                    if{ 1 (&gt;L:AD_Minute_30, bool) } els{ 0 (&gt;L:AD_Minute_30, bool) }
-                    (A:GPS WP ETE, seconds) 1200 ==
-                    if{ 1 (&gt;L:AD_Minute_20, bool) } els{ 0 (&gt;L:AD_Minute_20, bool) }
-                    (A:GPS WP ETE, seconds) 600 ==
-                    if{ 1 (&gt;L:AD_Minute_10, bool) } els{ 0 (&gt;L:AD_Minute_10, bool) }
-                    (A:GPS WP ETE, seconds) 360 ==
-                    if{ 1 (&gt;L:AD_Minute_6, bool) } els{ 0 (&gt;L:AD_Minute_6, bool) }
-                    (A:GPS WP ETE, seconds) 59 &gt; 
-                    (A:GPS WP ETE, seconds) 61 &lt; and
-                    if{ 1 (&gt;L:C17_AD_1Min, bool) } els{ 0 (&gt;L:C17_AD_1Min, bool) }
-                    (A:GPS WP ETE, seconds) 30 ==
-                    if{ 1 (&gt;L:C17_AD_30Sec, bool) } els{ 0 (&gt;L:C17_AD_30Sec, bool) }
-                    (A:GPS WP ETE, seconds) 10 ==
-                    if{ 1 (&gt;L:C17_AD_10Sec, bool) } els{ 0 (&gt;L:C17_AD_10Sec, bool) }
-                    (A:GPS WP ETE, seconds) 5 ==
-                    if{ 1 (&gt;L:C17_AD_5Sec, bool) } els{ 0 (&gt;L:C17_AD_5Sec, bool) }
-                    (A:GPS WP ETE, seconds) 4 ==
-                    if{ 1 (&gt;L:C17_AD_4Sec, bool) } els{ 0 (&gt;L:C17_AD_4Sec, bool) }
-                    (A:GPS WP ETE, seconds) 3 ==
-                    if{ 1 (&gt;L:C17_AD_3Sec, bool) } els{ 0 (&gt;L:C17_AD_3Sec, bool) }
-                    (A:GPS WP ETE, seconds) 2 ==
-                    if{ 1 (&gt;L:C17_AD_2Sec, bool) } els{ 0 (&gt;L:C17_AD_2Sec, bool) }
-                    (A:GPS WP ETE, seconds) 1 ==
-                    if{ 1 (&gt;L:C17_AD_1Sec, bool) } els{ 0 (&gt;L:C17_AD_1Sec, bool) }
+                    (* AUTO ADS Logic - Computer Commands Green Light, Red LT and Amber still Manual *)
 
-                }
-                
-                (L:C17_AD_DirTo, bool) 1 ==
-                (A:GPS WP ETE, seconds) 0 == and
-                (A:GPS WP DISTANCE, meters) 100 &lt; and
-                if{ 
-                    (A:PAYLOAD STATION WEIGHT:3, pounds) 10000 - (&gt;A:PAYLOAD STATION WEIGHT:3, pounds) 
-                    (A:PAYLOAD STATION WEIGHT:4, pounds) 10000 - (&gt;A:PAYLOAD STATION WEIGHT:4, pounds) 
+                    (* Calculate time from DZ *)
+                    (L:C17_AD_RedLT, bool) 1 ==
+                    if{  
+                        (E:ZULU TIME, seconds) (L:C17_AD_TIME_GREENLT, seconds) - (&gt;L:C17_AD_MAN_DZ_TIME, seconds)
+                    }
 
-                    1 (&gt;L:C17_AD_GreenLT, bool)
-                    1 (&gt;A:LIGHT RECOGNITION:3, bool)
+                    (* Countdown logic *)
+                    (L:C17_AD_WP_ID, number) (A:GPS FLIGHT PLAN WP INDEX, number) == and
+                    (L:C17_AD_ADS_ARMED,bool) 1 == and
+                    (L:C17_AD_DirTo, bool) 1 == and
+                        if{
+                            (A:GPS WP ETE, seconds) 1800 ==
+                            if{ 1 (&gt;L:AD_Minute_30, bool) } els{ 0 (&gt;L:AD_Minute_30, bool) }
+                            (A:GPS WP ETE, seconds) 1200 ==
+                            if{ 1 (&gt;L:AD_Minute_20, bool) } els{ 0 (&gt;L:AD_Minute_20, bool) }
+                            (A:GPS WP ETE, seconds) 600 ==
+                            if{ 1 (&gt;L:AD_Minute_10, bool) } els{ 0 (&gt;L:AD_Minute_10, bool) }
+                            (A:GPS WP ETE, seconds) 360 ==
+                            if{ 1 (&gt;L:AD_Minute_6, bool) } els{ 0 (&gt;L:AD_Minute_6, bool) }
+                            (A:GPS WP ETE, seconds) 59 &gt; 
+                            (A:GPS WP ETE, seconds) 61 &lt; and
+                            if{ 1 (&gt;L:C17_AD_1Min, bool) } els{ 0 (&gt;L:C17_AD_1Min, bool) }
+                            (A:GPS WP ETE, seconds) 30 ==
+                            if{ 1 (&gt;L:C17_AD_30Sec, bool) } els{ 0 (&gt;L:C17_AD_30Sec, bool) }
+                            (A:GPS WP ETE, seconds) 10 ==
+                            if{ 1 (&gt;L:C17_AD_10Sec, bool) } els{ 0 (&gt;L:C17_AD_10Sec, bool) }
+                            (A:GPS WP ETE, seconds) 5 ==
+                            if{ 1 (&gt;L:C17_AD_5Sec, bool) } els{ 0 (&gt;L:C17_AD_5Sec, bool) }
+                            (A:GPS WP ETE, seconds) 4 ==
+                            if{ 1 (&gt;L:C17_AD_4Sec, bool) } els{ 0 (&gt;L:C17_AD_4Sec, bool) }
+                            (A:GPS WP ETE, seconds) 3 ==
+                            if{ 1 (&gt;L:C17_AD_3Sec, bool) } els{ 0 (&gt;L:C17_AD_3Sec, bool) }
+                            (A:GPS WP ETE, seconds) 2 ==
+                            if{ 1 (&gt;L:C17_AD_2Sec, bool) } els{ 0 (&gt;L:C17_AD_2Sec, bool) }
+                            (A:GPS WP ETE, seconds) 1 ==
+                            if{ 1 (&gt;L:C17_AD_1Sec, bool) } els{ 0 (&gt;L:C17_AD_1Sec, bool) }
 
-                    1 (&gt;L:C17_AD_PlayAnim, bool) 
-                    -1 (&gt;L:C17_AD_DirTo, bool)
+                        }
+                        (* At within 100 meters of DZ, start animation ======================================= *)
+                        (L:C17_AD_DirTo, bool) 1 ==
+                        (A:GPS WP ETE, seconds) 0 == and
+                        (A:GPS WP DISTANCE, meters) 100 &lt; and
+                        if{ 
+                            (E:ZULU TIME, seconds) (&gt;L:C17_AD_TIME_GREENLT, seconds)
+
+                            1 (&gt;L:C17_AD_GreenLT, bool)
+                            1 (&gt;A:LIGHT RECOGNITION:3, bool)
+
+
+                            -1 (&gt;L:C17_AD_DirTo, bool)
+                        }
+
+
+                        (* Drogue Chute Logic *)
+                        (L:C17_AD_AmberLT,bool) 1 ==
+                        (L:C17_AD_CHUTE_ARMED, bool) 0 == and
+                        if{ 
+                            1 (&gt;A:LIGHT RECOGNITION:5, bool) 
+                            1 (&gt;L:C17_AD_CHUTE_ARMED, bool)
+                        }
+                        
+    
+                        (L:C17_AD_AmberLT,bool) 0 ==
+                        (L:C17_AD_GreenLT,bool) 1 == or
+                        (L:C17_AD_CHUTE_ARMED, bool) 1 == and
+                        if{
+                            1 (&gt;A:LIGHT RECOGNITION:6, bool)
+                            0 (&gt;L:C17_AD_CHUTE_ARMED, bool)
+                        }
+                        
+                        (* At green light start airdrop animation*)
+                        (L:C17_AD_GreenLT,bool) 1 ==
+                        if{  
+                            1 (&gt;A:LIGHT RECOGNITION:3, bool)
+                            0 (&gt;L:C17_AD_AmberLT, bool)
+                        } 
+                        els{ 0 (&gt;A:LIGHT RECOGNITION:3, bool) }
+                        
+    
+                        (L:C17_AD_MAN_DZ_TIME, seconds) 1.99 &gt;
+                        (L:C17_AD_MAN_DZ_TIME, seconds) 2.01 &lt; and
+                        if{ 
+                            (A:PAYLOAD STATION WEIGHT:3, pounds) 10000 - (&gt;A:PAYLOAD STATION WEIGHT:3, pounds) 
+                            (A:PAYLOAD STATION WEIGHT:4, pounds) 10000 - (&gt;A:PAYLOAD STATION WEIGHT:4, pounds)
+                        }
+    
+                        (L:C17_AD_MAN_DZ_TIME, seconds) 4.99 &gt;
+                        (L:C17_AD_MAN_DZ_TIME, seconds) 5.01 &lt; and
+                        if{ 
+                            0 (&gt;A:LIGHT RECOGNITION:5, bool)
+                            1 (&gt;L:C17_AD_DROGUE_VIS, bool)
+
+                            (A:PAYLOAD STATION WEIGHT:3, pounds) 10000 - (&gt;A:PAYLOAD STATION WEIGHT:3, pounds) 
+                            (A:PAYLOAD STATION WEIGHT:4, pounds) 10000 - (&gt;A:PAYLOAD STATION WEIGHT:4, pounds)
+                        }
+    
+                        (L:C17_AD_MAN_DZ_TIME, seconds) 7.99 &gt;
+                        (L:C17_AD_MAN_DZ_TIME, seconds) 8.01 &lt; and
+                        if{ 
+                            10100 (&gt;A:PAYLOAD STATION WEIGHT:3, pounds) 
+                            10100 (&gt;A:PAYLOAD STATION WEIGHT:4, pounds)
+                            0 (&gt;A:LIGHT RECOGNITION:6, bool)
+                        }
+    
+    
+                        (* At +18 seconds after DZ, reset greenlight, hide animation *)
+                        (L:C17_AD_MAN_DZ_TIME, seconds) 18 ==
+                        if{ 
+                             
+                            0 (&gt;L:C17_AD_GreenLT, bool) 
+                            0 (&gt;L:C17_AD_MAN_DZ_TIME, seconds) 
+                            0 (&gt;L:C17_AD_TIME_GREENLT, seconds) 
+                            0 (&gt;L:C17_AD_DROGUE_VIS, bool)
+                            10000 (&gt;A:PAYLOAD STATION WEIGHT:3, pounds) 
+                            10000 (&gt;A:PAYLOAD STATION WEIGHT:4, pounds)
+                        }
+    
+                        (* Show/Hide Cargo based on weight *)
+    
+                        (A:PAYLOAD STATION WEIGHT:3, pounds) 10000 &gt; 
+                        (A:PAYLOAD STATION WEIGHT:4, pounds) 10000 &gt; or
+                        if{ 1 (&gt;A:LIGHT RECOGNITION:4, bool) } els{ 0 (&gt;A:LIGHT RECOGNITION:4, bool) }
+    
+    
+                        (* Reset all on ADS Arm Fail *)
+    
+                        (L:C17_AD_ADS_ARMED,bool) 0 ==
+                        if{ 
+                            0 (&gt;L:C17_AD_AmberLT, bool) 
+                            0 (&gt;L:C17_AD_GreenLT, bool) 
+                            0 (&gt;A:LIGHT RECOGNITION:6, bool) 
+                            0 (&gt;A:LIGHT RECOGNITION:5, bool)
+                        }
+    
+                        (* AutoDrop Aural Logic *)
+                        (L:C17_AD_ADS_ARMED,bool) 1 ==
+                        (L:C17_CargoDoor_POS, enum) 50 != and
+                        if{ 1 (&gt;L:C17_AD_Autodrop, bool) 0 (&gt;L:C17_AD_ADS_ARMED, bool)  
+                        } els{ 
+                            0 (&gt;L:C17_AD_Autodrop, bool)
+                        }
+                        
+
+                        (L:C17_AD_DirTo, bool) -1 ==
+                        (A:GPS WP ETE, seconds) 20 == and
+                        if{ 0 (&gt;L:C17_AD_ACTIVE, bool) }
+
+
+
+                } els{
                     
-                    -1 (&gt;L:C17_AD_DirTo, bool)
-                    -1 (&gt;L:C17_AD_DirTo, bool) 
+                    (* Drogue Chute Logic *)
+                    (L:C17_AD_AmberLT,bool) 1 ==
+                    (L:C17_AD_CHUTE_ARMED, bool) 0 == and
+                    if{ 
+                        1 (&gt;A:LIGHT RECOGNITION:5, bool) 
+                        1 (&gt;L:C17_AD_CHUTE_ARMED, bool)
+                    }
+                    
+
+                    (L:C17_AD_AmberLT,bool) 0 ==
+                    (L:C17_AD_GreenLT,bool) 1 == or
+                    (L:C17_AD_CHUTE_ARMED, bool) 1 == and
+                    if{
+                        1 (&gt;A:LIGHT RECOGNITION:6, bool)
+                        0 (&gt;L:C17_AD_CHUTE_ARMED, bool)
+                    }
+                    
+                    (* At green light start airdrop animation*)
+                    (L:C17_AD_GreenLT,bool) 1 ==
+                    if{  
+                        1 (&gt;A:LIGHT RECOGNITION:3, bool)
+                        0 (&gt;L:C17_AD_AmberLT, bool)
+                    } 
+                    els{ 0 (&gt;A:LIGHT RECOGNITION:3, bool) }
+                    
+
+                    (L:C17_AD_MAN_DZ_TIME, seconds) 1.99 &gt;
+                    (L:C17_AD_MAN_DZ_TIME, seconds) 2.01 &lt; and
+                    if{ 
+                        (A:PAYLOAD STATION WEIGHT:3, pounds) 10000 - (&gt;A:PAYLOAD STATION WEIGHT:3, pounds) 
+                        (A:PAYLOAD STATION WEIGHT:4, pounds) 10000 - (&gt;A:PAYLOAD STATION WEIGHT:4, pounds)
+                    }
+
+                    (L:C17_AD_MAN_DZ_TIME, seconds) 4.99 &gt;
+                    (L:C17_AD_MAN_DZ_TIME, seconds) 5.01 &lt; and
+                    if{ 
+                        0 (&gt;A:LIGHT RECOGNITION:5, bool)
+                        1 (&gt;L:C17_AD_DROGUE_VIS, bool)
+
+                        (A:PAYLOAD STATION WEIGHT:3, pounds) 10000 - (&gt;A:PAYLOAD STATION WEIGHT:3, pounds) 
+                        (A:PAYLOAD STATION WEIGHT:4, pounds) 10000 - (&gt;A:PAYLOAD STATION WEIGHT:4, pounds)
+                    }
+
+                    (L:C17_AD_MAN_DZ_TIME, seconds) 7.99 &gt;
+                    (L:C17_AD_MAN_DZ_TIME, seconds) 8.01 &lt; and
+                    if{ 
+                        10100 (&gt;A:PAYLOAD STATION WEIGHT:3, pounds) 
+                        10100 (&gt;A:PAYLOAD STATION WEIGHT:4, pounds)
+                        0 (&gt;A:LIGHT RECOGNITION:6, bool)
+                    }
+
+
+                    (* At +18 seconds after DZ, reset greenlight, hide animation *)
+                    (L:C17_AD_MAN_DZ_TIME, seconds) 18 ==
+                    if{ 
+                         
+                        0 (&gt;L:C17_AD_GreenLT, bool) 
+                        0 (&gt;L:C17_AD_MAN_DZ_TIME, seconds) 
+                        0 (&gt;L:C17_AD_TIME_GREENLT, seconds) 
+                        0 (&gt;L:C17_AD_DROGUE_VIS, bool)
+                        10000 (&gt;A:PAYLOAD STATION WEIGHT:3, pounds) 
+                        10000 (&gt;A:PAYLOAD STATION WEIGHT:4, pounds)
+                    }
+
+                    (* Show/Hide Cargo based on weight *)
+
+                    (A:PAYLOAD STATION WEIGHT:3, pounds) 10000 &gt; 
+                    (A:PAYLOAD STATION WEIGHT:4, pounds) 10000 &gt; or
+                    if{ 1 (&gt;A:LIGHT RECOGNITION:4, bool) } els{ 0 (&gt;A:LIGHT RECOGNITION:4, bool) }
+
+
+                    (* Reset all on ADS Arm Fail *)
+
+                    (L:C17_AD_ADS_ARMED,bool) 0 ==
+                    if{ 
+                        0 (&gt;L:C17_AD_AmberLT, bool) 
+                        0 (&gt;L:C17_AD_GreenLT, bool) 
+                        0 (&gt;A:LIGHT RECOGNITION:6, bool) 
+                        0 (&gt;A:LIGHT RECOGNITION:5, bool)
+                    }
+
+                    (* AutoDrop Aural Logic *)
+                    (L:C17_AD_ADS_ARMED,bool) 1 ==
+                    (L:C17_CargoDoor_POS, enum) 50 != and
+                    if{ 1 (&gt;L:C17_AD_Autodrop, bool) 0 (&gt;L:C17_AD_ADS_ARMED, bool)  
+                    } els{ 
+                        0 (&gt;L:C17_AD_Autodrop, bool)
+                    }
+
+                    (L:C17_AD_RedLT, bool) 1 ==
+                    if{  
+                        (E:ZULU TIME, seconds) (L:C17_AD_TIME_GREENLT, seconds) - (&gt;L:C17_AD_MAN_DZ_TIME, seconds)
+                    }
+
+                    
+
                 }
-
-                (A:GPS WP ETE, seconds) (L:C17_AD_DirTo, bool) * -6 ==
-                if{ 
-                    (A:PAYLOAD STATION WEIGHT:3, pounds) 10000 - (&gt;A:PAYLOAD STATION WEIGHT:3, pounds) 
-                    (A:PAYLOAD STATION WEIGHT:4, pounds) 10000 - (&gt;A:PAYLOAD STATION WEIGHT:4, pounds) 
-
-                }
-
-
-                (A:GPS WP ETE, seconds) (L:C17_AD_DirTo, bool) * -10 ==
-                if{ 
-                     
-                    (A:PAYLOAD STATION WEIGHT:3, pounds) 10000 - (&gt;A:PAYLOAD STATION WEIGHT:3, pounds) 
-                    (A:PAYLOAD STATION WEIGHT:4, pounds) 10000 - (&gt;A:PAYLOAD STATION WEIGHT:4, pounds)
-                    0 (&gt;L:C17_AD_GreenLT, bool)
-
-                }
-
-                (A:GPS WP ETE, seconds) (L:C17_AD_DirTo, bool) * -15 ==
-                if{ 1 (&gt;L:C17_AD_RedLT, bool) 0 (&gt;L:C17_AD_PlayAnim, bool) 0 (&gt;A:LIGHT RECOGNITION:3, bool) } els{ 0 (&gt;L:C17_AD_RedLT, bool) }
-                
-                (L:C17_AD_DirTo, bool) -1 ==
-                (A:GPS WP ETE, seconds) 20 == and
-                if{ 0 (&gt;L:C17_AD_ACTIVE, bool) }
-
-                (L:C17_AD_ACTIVE,bool) 1 ==
-                (L:C17_CargoDoor_POS, enum) 50 != and
-                if{ 0 (&gt;L:C17_AD_ACTIVE, bool) 1 (&gt;L:C17_AD_Autodrop, bool) } els{ 0 (&gt;L:C17_AD_Autodrop, bool) }
-
-
-
-
 			</Value>
 		</Select>
 	</Element>

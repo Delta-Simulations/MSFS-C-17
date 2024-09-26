@@ -1,0 +1,20 @@
+<Gauge Name="Caution_Warning_System" Version="1.0">
+  <Comment>
+    *************************************************
+    FOR DELTA SIMULATIONS C-17
+    *************************************************
+  </Comment>
+
+  <Element>
+    <Select>
+      <Value>
+        (A:FUEL TOTAL QUANTITY WEIGHT, pounds) 16000 &lt;
+        if{
+        1 (>K:MASTER_CAUTION_ON)
+        }
+      </Value>
+    </Select>
+  </Element>
+
+
+</Gauge>

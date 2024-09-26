@@ -395,6 +395,7 @@
     <NODE_ID>KORRY_Auto_Drop</NODE_ID>
     <TRUECODE>
       (L:C17_AD_GreenLT, bool) 1 ==
+      (L:C17_AD_MODE, bool) 0 == and
     </TRUECODE>
   </UseTemplate>
   <UseTemplate Name="Korry_Emmis_DELTASIM">
@@ -585,9 +586,9 @@
   <NODE_ID>Button_FlareDispense</NODE_ID>
   <TOOLTIPID>MANUAL FLARE DISPENSE</TOOLTIPID>
   <INTERACT_CODE>
-    (L:C17_PUSH_FLARES, bool) ! (&gt;L:C17_PUSH_FLARES, bool)
+    (L:C17_ARM_FLARES, bool) 1 == (L:C17_PUSH_FLARES, bool) 1 == or if{ (L:C17_PUSH_FLARES, bool) ! (&gt;L:C17_PUSH_FLARES, bool) }
   </INTERACT_CODE>
-  <ANIM_LAG>50</ANIM_LAG>
+  <ANIM_LAG>110</ANIM_LAG>
 </UseTemplate>
 <UseTemplate Name="DELTASIM_PushButton_Template">
   <NODE_ID>Button_HUD_Test</NODE_ID>
@@ -2160,7 +2161,10 @@
   </UseTemplate>
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>KORRY_Pedestal_Dispense_Arm</NODE_ID>
-    <TRUECODE> (A:SIM ON GROUND,bool) 0 == </TRUECODE>
+    <TRUECODE>
+       (A:SIM ON GROUND,bool) 0 ==
+       (L:C17_ARM_FLARES, bool) 1 == and
+    </TRUECODE>
   </UseTemplate>
 
   <UseTemplate Name="DELTASIM_Cover_Template">
@@ -2174,33 +2178,81 @@
     </LEFT_SINGLE_CODE>
   </UseTemplate>
 
+<UseTemplate Name="LVAR_Switch_Template">
+  <SIMVAR>C17_AD_MODE</SIMVAR>
+  <NODE_ID>Switch_Airdrop_MODE</NODE_ID>
+  <TOOLTIPID>Airdrop Mode</TOOLTIPID>
+</UseTemplate>
+
   <UseTemplate Name="DELTASIM_Cover_Template">
     <NODE_ID>Cover_Pedestal_Jump_Rel</NODE_ID>
   </UseTemplate>
-  <UseTemplate Name="DELTASIM_PushButton_Template">
-    <NODE_ID>Button_Jump_Rel</NODE_ID>
-    <TOOLTIPID>ADS Green Light</TOOLTIPID>
-    <LEFT_SINGLE_CODE>
-    </LEFT_SINGLE_CODE>
-  </UseTemplate>
+
   <UseTemplate Name="DELTASIM_Cover_Template">
     <NODE_ID>Cover_Pedestal_Ready_Drogue</NODE_ID>
   </UseTemplate>
   <UseTemplate Name="DELTASIM_PushButton_Template">
     <NODE_ID>Button_Ready_Drogue</NODE_ID>
-    <TOOLTIPID>ADS Ready/Drogue</TOOLTIPID>
-    <LEFT_SINGLE_CODE>
+    <TOOLTIPID>ADS Ready/Drogue</TOOLTIPID>    
+      <LEFT_SINGLE_CODE>
+        (L:C17_AD_ADS_ARMED, bool)
+        if{
+          (L:C17_AD_AmberLT, bool) ! (&gt;L:C17_AD_AmberLT, bool)
+        }
     </LEFT_SINGLE_CODE>
   </UseTemplate>
   <UseTemplate Name="DELTASIM_PushButton_Template">
     <NODE_ID>BUTTON_RED_LT</NODE_ID>
     <TOOLTIPID>ADS Red Light</TOOLTIPID>
     <LEFT_SINGLE_CODE>
+      (L:C17_AD_ADS_ARMED, bool) 0 ==
+      (L:C17_AD_RedLT, bool) 1 == and
+      if{
+        (L:C17_AD_ADS_ARMED, bool) ! (&gt;L:C17_AD_ADS_ARMED, bool)
+      } els{
+        (L:C17_AD_RedLT, bool) ! (&gt;L:C17_AD_RedLT, bool)
+        (L:C17_AD_ADS_ARMED, bool) ! (&gt;L:C17_AD_ADS_ARMED, bool)
+
+      }
     </LEFT_SINGLE_CODE>
   </UseTemplate>
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>Button_Jump_Rel</NODE_ID>
+    <TOOLTIPID>ADS Jump/Release</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+      (L:C17_AD_ADS_ARMED, bool)
+      if{
+        (L:C17_AD_GreenLT, bool) ! (&gt;L:C17_AD_GreenLT, bool)
+      }
+        
+        (L:C17_AD_GreenLT,bool) 1 == 
+        if{
+          (E:ZULU TIME, seconds) (&gt;L:C17_AD_TIME_GREENLT, seconds)
+          (A:PAYLOAD STATION WEIGHT:3, pounds) (&gt;L:C17_AD_ORIG_WEIGHT_STA3, seconds)
+          (A:PAYLOAD STATION WEIGHT:4, pounds) (&gt;L:C17_AD_ORIG_WEIGHT_STA4, seconds)
+        }
+    </LEFT_SINGLE_CODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_Pedestal_RedLt</NODE_ID>
+    <TRUECODE>(L:C17_AD_RedLT, bool)</TRUECODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_Pedestal_ADS_ARM</NODE_ID>
+    <TRUECODE>
+      (L:C17_AD_ADS_ARMED, bool)
+    </TRUECODE>
+  </UseTemplate>
 
-
-
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_Pedestal_GreenLt</NODE_ID>
+    <TRUECODE>(L:C17_AD_GreenLT, bool)</TRUECODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_Pedestal_AmberLt</NODE_ID>
+    <TRUECODE>(L:C17_AD_AmberLT, bool)</TRUECODE>
+  </UseTemplate>
+  
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>KORRY_ELEC_BATT_BUS_OFF</NODE_ID>
     <TRUECODE>
@@ -2319,7 +2371,7 @@
 
 <UseTemplate Name="Korry_Emmis_DELTASIM">
   <NODE_ID>Korry_FireAlertEng1</NODE_ID>
-  <INTENSITY>6</INTENSITY>
+  <INTENSITY>1</INTENSITY>
   <TRUECODE>
     (A:ENG ON FIRE:1,BOOL) 1 ==
   </TRUECODE>
@@ -2327,7 +2379,7 @@
 </UseTemplate>
 <UseTemplate Name="Korry_Emmis_DELTASIM">
   <NODE_ID>Korry_FireAlertEng2</NODE_ID>
-  <INTENSITY>6</INTENSITY>
+  <INTENSITY>1</INTENSITY>
   <TRUECODE>
     (A:ENG ON FIRE:2,BOOL) 1 ==
   </TRUECODE>
@@ -2335,7 +2387,7 @@
 </UseTemplate>
 <UseTemplate Name="Korry_Emmis_DELTASIM">
   <NODE_ID>Korry_FireAlertEng3</NODE_ID>
-  <INTENSITY>6</INTENSITY>
+  <INTENSITY>1</INTENSITY>
   <TRUECODE>
     (A:ENG ON FIRE:3,BOOL) 1 ==
   </TRUECODE>
@@ -2343,7 +2395,7 @@
 </UseTemplate>
 <UseTemplate Name="Korry_Emmis_DELTASIM">
   <NODE_ID>Korry_FireAlertEng4</NODE_ID>
-  <INTENSITY>6</INTENSITY>
+  <INTENSITY>1</INTENSITY>
   <TRUECODE>
     (A:ENG ON FIRE:4,BOOL) 1 ==
   </TRUECODE>
@@ -2707,6 +2759,7 @@
   </UseTemplate>
 
 <!-- FUEL PANEL -->
+ <!-- ENGINE 1 FUEL CONTROLS ===========================-->
 <UseTemplate Name="AircraftVar_Switch_DELTASIM">
   <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
   <NODE_ID>BUTTON_ENG1_FWD_PUMP</NODE_ID>
@@ -2722,33 +2775,88 @@
   <INDEX>2</INDEX>
 </UseTemplate>
 <UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <!-- FILL VALVE -->
   <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
   <NODE_ID>BUTTON_ENG1_FILL_VALVE</NODE_ID>
-  <TOOLTIPID>ENG1 FILL VALVE</TOOLTIPID>
-  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-  <INDEX>11</INDEX>
-</UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
-  <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
-  <NODE_ID>BUTTON_ENG1_XFER_PUMP</NODE_ID>
-  <TOOLTIPID>ENG1 XFER PUMP</TOOLTIPID>
-  <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
-  <INDEX>10</INDEX>
-</UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
-  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-  <NODE_ID>BUTTON_ENG1_XFD_VALVE</NODE_ID>
-  <TOOLTIPID>ENG1 XFEED VALVE</TOOLTIPID>
+  <TOOLTIPID>ENG1 FILL XFEED VALVE</TOOLTIPID>
   <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
   <INDEX>5</INDEX>
 </UseTemplate>
 <UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <!-- TRANSFER PUMP -->
+  <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_ENG1_XFER_PUMP</NODE_ID>
+  <TOOLTIPID>ENG1 XFER PUMP</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
+  <INDEX>9</INDEX>
+</UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <!-- XFEED VALVE -->
+  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_ENG1_XFD_VALVE</NODE_ID>
+  <TOOLTIPID>ENG1 XFEED OUT VALVE</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
+  <INDEX>13</INDEX>
+</UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <!-- FIRE CUTOFF VALVE, ROTATING-->
   <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
   <NODE_ID>SWITCH_ENG_FIRE_CUTOFF_1</NODE_ID>
   <TOOLTIPID>TOGGLE ENG1 CUTOFF</TOOLTIPID>
   <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
   <INDEX>1</INDEX>
 </UseTemplate>
+
+<!-- ENGINE 2 FUEL CONTROLS ===========================-->
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_ENG2_FWD_PUMP</NODE_ID>
+  <TOOLTIPID>ENG2 FWD PUMP</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
+  <INDEX>3</INDEX>
+</UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_ENG2_AFT_PUMP</NODE_ID>
+  <TOOLTIPID>ENG2 AFT PUMP</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
+  <INDEX>4</INDEX>
+</UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <!-- FILL VALVE -->
+  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_ENG2_FILL_VALVE</NODE_ID>
+  <TOOLTIPID>ENG2 FILL XFEED VALVE</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
+  <INDEX>6</INDEX>
+</UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <!-- TRANSFER PUMP -->
+  <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_ENG2_XFER_PUMP</NODE_ID>
+  <TOOLTIPID>ENG2 XFER PUMP</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
+  <INDEX>10</INDEX>
+</UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <!-- XFEED VALVE -->
+  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_ENG2_XFD_VALVE</NODE_ID>
+  <TOOLTIPID>ENG2 XFEED OUT VALVE</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
+  <INDEX>14</INDEX>
+</UseTemplate>
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <!-- FIRE CUTOFF VALVE, ROTATING-->
+  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
+  <NODE_ID>SWITCH_ENG_FIRE_CUTOFF_2</NODE_ID>
+  <TOOLTIPID>TOGGLE ENG2 CUTOFF</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
+  <INDEX>2</INDEX>
+</UseTemplate>
+
+
+
 
 <UseTemplate Name="Korry_Emmis_FuelPump_FlowLine_DELTASIM">
   <ENG>1</ENG>
@@ -2938,135 +3046,8 @@
   <INDEX>8</INDEX>
 </UseTemplate>
 
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
-  <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
-  <NODE_ID>BUTTON_ENG2_FWD_PUMP</NODE_ID>
-  <TOOLTIPID>ENG2 FWD PUMP</TOOLTIPID>
-  <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
-  <INDEX>3</INDEX>
-</UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
-  <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
-  <NODE_ID>BUTTON_ENG2_AFT_PUMP</NODE_ID>
-  <TOOLTIPID>ENG2 AFT PUMP</TOOLTIPID>
-  <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
-  <INDEX>4</INDEX>
-</UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
-  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-  <NODE_ID>BUTTON_ENG2_FILL_VALVE</NODE_ID>
-  <TOOLTIPID>ENG2 FILL VALVE</TOOLTIPID>
-  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-  <INDEX>12</INDEX>
-</UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
-  <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
-  <NODE_ID>BUTTON_ENG2_XFER_PUMP</NODE_ID>
-  <TOOLTIPID>ENG2 XFER PUMP</TOOLTIPID>
-  <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
-  <INDEX>11</INDEX>
-</UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
-  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-  <NODE_ID>BUTTON_ENG2_XFD_VALVE</NODE_ID>
-  <TOOLTIPID>ENG2 XFEED VALVE</TOOLTIPID>
-  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-  <INDEX>6</INDEX>
-</UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
-  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-  <NODE_ID>SWITCH_ENG_FIRE_CUTOFF_2</NODE_ID>
-  <TOOLTIPID>TOGGLE ENG2 CUTOFF</TOOLTIPID>
-  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-  <INDEX>2</INDEX>
-</UseTemplate>
 
 
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
-  <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
-  <NODE_ID>BUTTON_ENG3_FWD_PUMP</NODE_ID>
-  <TOOLTIPID>ENG3 FWD PUMP</TOOLTIPID>
-  <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
-  <INDEX>5</INDEX>
-</UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
-  <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
-  <NODE_ID>BUTTON_ENG3_AFT_PUMP</NODE_ID>
-  <TOOLTIPID>ENG3 AFT PUMP</TOOLTIPID>
-  <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
-  <INDEX>6</INDEX>
-</UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
-  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-  <NODE_ID>BUTTON_ENG3_FILL_VALVE</NODE_ID>
-  <TOOLTIPID>ENG3 FILL VALVE</TOOLTIPID>
-  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-  <INDEX>13</INDEX>
-</UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
-  <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
-  <NODE_ID>BUTTON_ENG3_XFER_PUMP</NODE_ID>
-  <TOOLTIPID>ENG3 XFER PUMP</TOOLTIPID>
-  <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
-  <INDEX>12</INDEX>
-</UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
-  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-  <NODE_ID>BUTTON_ENG3_XFD_VALVE</NODE_ID>
-  <TOOLTIPID>ENG3 XFEED VALVE</TOOLTIPID>
-  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-  <INDEX>7</INDEX>
-</UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
-  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-  <NODE_ID>SWITCH_ENG_FIRE_CUTOFF_3</NODE_ID>
-  <TOOLTIPID>TOGGLE ENG3 CUTOFF</TOOLTIPID>
-  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-  <INDEX>3</INDEX>
-</UseTemplate>
-
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
-  <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
-  <NODE_ID>BUTTON_ENG4_FWD_PUMP</NODE_ID>
-  <TOOLTIPID>ENG3 FWD PUMP</TOOLTIPID>
-  <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
-  <INDEX>7</INDEX>
-</UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
-  <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
-  <NODE_ID>BUTTON_ENG4_AFT_PUMP</NODE_ID>
-  <TOOLTIPID>ENG4 AFT PUMP</TOOLTIPID>
-  <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
-  <INDEX>8</INDEX>
-</UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
-  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-  <NODE_ID>BUTTON_ENG4_FILL_VALVE</NODE_ID>
-  <TOOLTIPID>ENG4 FILL VALVE</TOOLTIPID>
-  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-  <INDEX>14</INDEX>
-</UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
-  <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
-  <NODE_ID>BUTTON_ENG4_XFER_PUMP</NODE_ID>
-  <TOOLTIPID>ENG4 XFER PUMP</TOOLTIPID>
-  <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
-  <INDEX>13</INDEX>
-</UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
-  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-  <NODE_ID>BUTTON_ENG4_XFD_VALVE</NODE_ID>
-  <TOOLTIPID>ENG4 XFEED VALVE</TOOLTIPID>
-  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-  <INDEX>8</INDEX>
-</UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
-  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-  <NODE_ID>SWITCH_ENG_FIRE_CUTOFF_4</NODE_ID>
-  <TOOLTIPID>TOGGLE ENG4 CUTOFF</TOOLTIPID>
-  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-  <INDEX>4</INDEX>
-</UseTemplate>
 
 <!-- WING ISOLATION -->
 <UseTemplate Name="AircraftVar_Switch_DELTASIM">
@@ -3890,40 +3871,40 @@
         <Component ID="Last_humvee_Pos_Ramp" Node="Main_Anim.006">
           <UseTemplate Name="ASOBO_GT_Visibility">
             <VISIBILITY_CODE>
-              (L:C17_CargoDoor_POS, enum) 50 != (A:PAYLOAD STATION WEIGHT:4, pounds) 30000 &gt; (L:C17_AD_GreenLT, bool) or and
+              (L:C17_CargoDoor_POS, enum) 50 != (A:LIGHT RECOGNITION:4, bool) and
             </VISIBILITY_CODE>
           </UseTemplate>
         </Component>
         <Component ID="Last_humvee_Pos" Node="Main_Anim">
           <UseTemplate Name="ASOBO_GT_Visibility">
             <VISIBILITY_CODE>
-              (L:C17_CargoDoor_POS, enum) 50 == (A:PAYLOAD STATION WEIGHT:4, pounds) 30000 &gt; (L:C17_AD_GreenLT, bool) or and
+              (L:C17_CargoDoor_POS, enum) 50 == (A:LIGHT RECOGNITION:4, bool) and
             </VISIBILITY_CODE>
           </UseTemplate>
         </Component>
         <Component ID="Humvee_STA5" Node="Main_Anim.001">
           <UseTemplate Name="ASOBO_GT_Visibility">
-            <VISIBILITY_CODE>(A:PAYLOAD STATION WEIGHT:4, pounds) 20000 &gt; (L:C17_AD_GreenLT, bool) or</VISIBILITY_CODE>
+            <VISIBILITY_CODE>(A:LIGHT RECOGNITION:4, bool)</VISIBILITY_CODE>
           </UseTemplate>
         </Component>
         <Component ID="Humvee_STA4" Node="Main_Anim.002">
           <UseTemplate Name="ASOBO_GT_Visibility">
-            <VISIBILITY_CODE>(A:PAYLOAD STATION WEIGHT:4, pounds) 10000 &gt; (L:C17_AD_GreenLT, bool) or</VISIBILITY_CODE>
+            <VISIBILITY_CODE>(A:LIGHT RECOGNITION:4, bool)</VISIBILITY_CODE>
           </UseTemplate>
         </Component>
         <Component ID="Humvee_STA3" Node="Main_Anim.003">
           <UseTemplate Name="ASOBO_GT_Visibility">
-            <VISIBILITY_CODE>(A:PAYLOAD STATION WEIGHT:3, pounds) 30000 &gt; (L:C17_AD_GreenLT, bool) or</VISIBILITY_CODE>
+            <VISIBILITY_CODE>(A:LIGHT RECOGNITION:4, bool)</VISIBILITY_CODE>
           </UseTemplate>
         </Component>
         <Component ID="Humvee_STA2" Node="Main_Anim.004">
           <UseTemplate Name="ASOBO_GT_Visibility">
-            <VISIBILITY_CODE>(A:PAYLOAD STATION WEIGHT:3, pounds) 20000 &gt; (L:C17_AD_GreenLT, bool) or</VISIBILITY_CODE>
+            <VISIBILITY_CODE>(A:LIGHT RECOGNITION:4, bool)</VISIBILITY_CODE>
           </UseTemplate>
         </Component>
         <Component ID="Humvee_STA1" Node="Main_Anim.005">
           <UseTemplate Name="ASOBO_GT_Visibility">
-            <VISIBILITY_CODE>(A:PAYLOAD STATION WEIGHT:3, pounds) 10000 &gt; (L:C17_AD_GreenLT, bool) or</VISIBILITY_CODE>
+            <VISIBILITY_CODE>(A:LIGHT RECOGNITION:4, bool)</VISIBILITY_CODE>
           </UseTemplate>
         </Component>
 
@@ -4494,11 +4475,11 @@
 <Animation name="trimtab_rudder" guid="9ff518a1-ba8f-47bb-967c-f9e48f13dc74" type="Sim" typeParam="AutoPlay" />
 <PartInfo>
   <Name>trimtab_rudder</Name>
-  <AnimLength>100</AnimLength>
+  <AnimLength>20</AnimLength>
   <Animation>
     <Parameter>
          <Code>
-       (A:RUDDER TRIM PCT, percent) 5 * 50 +
+       (A:RUDDER TRIM, degrees) 10 +
          </Code> 
          <Lag>50</Lag>
 </Parameter>
@@ -4511,7 +4492,7 @@
   <Animation>
     <Parameter>
          <Code>
-       (A:AILERON TRIM POSITION, degrees) 5 * 50 +
+       (A:AILERON TRIM, degrees) 5 * 50 +
          </Code> 
          <Lag>50</Lag>
 </Parameter>
@@ -4520,24 +4501,64 @@
 <Animation name="trimtab_Stab" guid="4df526cb-2c0f-4934-b69c-75089291ba42" type="Sim" typeParam="AutoPlay" />
 <PartInfo>
   <Name>trimtab_Stab</Name>
-  <AnimLength>100</AnimLength>
+  <AnimLength>20</AnimLength>
   <Animation>
     <Parameter>
          <Code>
-       (A:ELEVATOR TRIM POSITION, degrees) 5 * 50 +
+       (A:ELEVATOR TRIM POSITION, degrees) 5 +
          </Code> 
          <Lag>50</Lag>
 </Parameter>
 </Animation>
 </PartInfo>
-<Animation name="Flaps_Index" guid="44c4e709-4d1a-40fc-80b6-9dc744add0e7" type="Sim" typeParam="AutoPlay" />
+
+<Animation name="Flaps_Gauge_L" guid="f1e77143-40c8-41c0-9364-a879bfa4f41e" type="Sim" typeParam="AutoPlay" />
 <PartInfo>
-  <Name>Flaps_Index</Name>
-  <AnimLength>45</AnimLength>
+  <Name>Flaps_Gauge_L</Name>
+  <AnimLength>40</AnimLength>
+  <Animation>
+    <Parameter>
+      <Code>
+        (A:TRAILING EDGE FLAPS LEFT ANGLE, degrees)
+          </Code> 
+          <Lag>30</Lag>
+    </Parameter>
+  </Animation>
+</PartInfo>
+<Animation name="Flaps_Gauge_R" guid="06f92b18-8511-4a0f-b0b4-29a385e4999d" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+  <Name>Flaps_Gauge_R</Name>
+  <AnimLength>40</AnimLength>
   <Animation>
     <Parameter>
       <Code>
         (A:TRAILING EDGE FLAPS RIGHT ANGLE, degrees)
+          </Code> 
+          <Lag>50</Lag>
+    </Parameter>
+  </Animation>
+</PartInfo>
+<Animation name="Needle_Brake_Pressure" guid="636fff50-47d6-46f1-a67b-03686fabbd83" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+  <Name>Needle_Brake_Pressure</Name>
+  <AnimLength>5</AnimLength>
+  <Animation>
+    <Parameter>
+      <Code>
+        (A:BRAKE DEPENDENT HYDRAULIC PRESSURE, psf) 100000 / 2 -
+          </Code> 
+          <Lag>50</Lag>
+    </Parameter>
+  </Animation>
+</PartInfo>
+<Animation name="Needle_Speed_Brakes" guid="32f5b7e5-ad6d-462c-8b38-3e53be97ec68" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+  <Name>Needle_Speed_Brakes</Name>
+  <AnimLength>100</AnimLength>
+  <Animation>
+    <Parameter>
+      <Code>
+        (A:SPOILERS HANDLE POSITION, percent)
           </Code> 
           <Lag>50</Lag>
     </Parameter>
@@ -4762,22 +4783,73 @@ typeParam="AutoPlay" />
 </Animation>
 </PartInfo>
 
-<Animation name="AIRDROP_HUMMER" guid="06f5f580-9cfe-46ee-b020-b2b51400bbb6" type="Sim"
-typeParam="AutoPlay" />
+<Animation name="AIRDROP_HUMMER" guid="dd8909ca-5776-460a-8694-ce9933cd81e9" type="Sim" typeParam="AutoPlay" />
 <PartInfo>
 <Name>AIRDROP_HUMMER</Name>
 <AnimLength>1000</AnimLength>
 <Animation>
 <Parameter>
    <Code>
-    (E:ABSOLUTE TIME, second) 15 % 60 * (A:LIGHT RECOGNITION:3, bool) *
+    (A:LIGHT RECOGNITION:3, bool) 1000 *
   </Code> 
+  <Lag>60</Lag>
 </Parameter>
 </Animation>
 </PartInfo>
 
+<Animation name="Drogue_Deploy" guid="1c3f57a1-2543-4c93-915c-49e173954441" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+<Name>Drogue_Deploy</Name>
+<AnimLength>10</AnimLength>
+<Animation>
+<Parameter>
+   <Code>
+    (A:LIGHT RECOGNITION:5, bool) 10 *
+  </Code> 
+  <Lag>30</Lag>
+</Parameter>
+</Animation>
 
+</PartInfo>
 
+<Animation name="Drogue_Move" guid="2abbc437-e7fb-4128-b2df-06fc477e1552" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+<Name>Drogue_Move</Name>
+<AnimLength>100</AnimLength>
+<Animation>
+<Parameter>
+   <Code>
+    (A:LIGHT RECOGNITION:5, bool) 1 ==
+    if{
+    (E:ABSOLUTE TIME, second) 1 % 100 *
+    } els{ 0 }
+  </Code> 
+</Parameter>
+</Animation>
+</PartInfo>
+<Animation name="Drogue_Eject" guid="dd3f7fab-2f5d-403a-aa03-96cba97fb931" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+<Name>Drogue_Eject</Name>
+<AnimLength>20</AnimLength>
+<Animation>
+<Parameter>
+   <Code>
+    (A:LIGHT RECOGNITION:6, bool) 1 ==
+    if{
+      20
+    } els{ 0 }
+  </Code> 
+  <Lag>10</Lag>
+</Parameter>
+</Animation>
+<Visibility>
+  <Parameter>
+    <Code>
+      (L:C17_AD_DROGUE_VIS, bool) 0 ==
+    </Code>
+  </Parameter>
+</Visibility>
+</PartInfo>
 
 
 </ModelInfo>

@@ -363,7 +363,7 @@
     <Sound WwiseData="true" WwiseEvent="AD_Alert_Green_Lt" LocalVar="C17_AD_GreenLT" Continuous="False" NodeName="Plane.093" ViewPoint="Inside" Model="Interior">
         <Range LowerBound="1.0" />    
     </Sound>
-    <Sound WwiseData="true" WwiseEvent="AD_Alert_Red_Lt" LocalVar="C17_AD_RedLT" NodeName="Plane.093" ViewPoint="Inside" BreakOnStop="True" Model="Interior">
+    <Sound WwiseData="true" WwiseEvent="AD_Alert_Red_Lt" LocalVar="C17_AD_RedLT" NodeName="Plane.093" Continuous="False" ViewPoint="Inside" BreakOnStop="False" Model="Interior">
         <Range LowerBound="1.0" />    
     </Sound>
     <Sound WwiseData="true" WwiseEvent="AD_Alert_Autodrop" BreakOnStop="True" LocalVar="C17_AD_Autodrop" NodeName="Plane.093" ViewPoint="Inside" Model="Interior">

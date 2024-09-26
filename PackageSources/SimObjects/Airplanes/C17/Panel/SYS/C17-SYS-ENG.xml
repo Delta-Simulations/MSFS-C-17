@@ -88,13 +88,13 @@
 
 				(L:C17_APUSTARTER, enum) 0 !=
 				if{
-				9 (&gt;K:FUELSYSTEM_PUMP_ON,bool)
-				9 (&gt;K:FUELSYSTEM_VALVE_OPEN,bool)
+				
+				12 (&gt;K:FUELSYSTEM_VALVE_OPEN,bool)
 
 				} els{
 				0 (&gt;K:APU_OFF_SWITCH,bool)
-				9 (&gt;K:FUELSYSTEM_PUMP_TOGGLE,bool)
-				9 (&gt;K:FUELSYSTEM_PUMP_OFF,bool)
+				12 (&gt;K:FUELSYSTEM_VALVE_CLOSE,bool)
+				
 				}
 				(L:C17_APUSTARTER, enum) 2 == if{
 				1 (&gt;K:APU_STARTER,bool)
@@ -157,6 +157,4 @@
 			</Value>
 		</Select>
 	</Element>
-
-
 </Gauge>
