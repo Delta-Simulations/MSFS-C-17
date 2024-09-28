@@ -187,7 +187,8 @@ Potentiometer.14=0.1
 Potentiometer.15=0.1
 Potentiometer.17=0.0
 Potentiometer.18=0.1
-
+Potentiometer.22=0.0
+Potentiometer.23=0.0
 
 [AutoPilot.0]
 MasterSwitch=False

@@ -4851,5 +4851,28 @@ typeParam="AutoPlay" />
 </Visibility>
 </PartInfo>
 
+<Animation name="Airdrop_AmberLT" guid="9461a27f-b7a1-4ee3-bf3d-ffc403848a81" length="1" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+<Name>Airdrop_AmberLT</Name>
+<Materials> <Emissive> <Parameter>
+<Code>(L:C17_AD_AmberLT,bool) (A:CIRCUIT ON:65,bool) * 15 *</Code> 
+</Parameter> </Emissive> </Materials>
+</PartInfo>
+<Animation name="Airdrop_RedLT" guid="32000a7b-62a5-4cfc-a6ce-b81173530d23" length="1" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+<Name>Airdrop_RedLT</Name>
+<Materials> <Emissive> <Parameter>
+<Code>(L:C17_AD_RedLT,bool) (A:CIRCUIT ON:65,bool) * 15 *</Code> 
+</Parameter> </Emissive> </Materials>
+</PartInfo>
+<Animation name="Airdrop_GreenLT" guid="626a4d90-47f2-417f-b9c7-21d8ee4d05c8" length="1" type="Sim" typeParam="AutoPlay" />
+<PartInfo>
+<Name>Airdrop_GreenLT</Name>
+<Materials> <Emissive> <Parameter>
+<Code>(L:C17_AD_GreenLT,bool) (A:CIRCUIT ON:65,bool) * 15 *</Code> 
+</Parameter> </Emissive> </Materials>
+</PartInfo>
+
+
 
 </ModelInfo>

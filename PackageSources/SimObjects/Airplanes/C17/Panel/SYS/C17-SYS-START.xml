@@ -1,12 +1,21 @@
-<Gauge Name="AircraftStart" Version="1.0">
+<Gauge Name="AircraftStart" Version="2.0">
 <Comment>
 *************************************************
 FOR DELTA SIMULATIONS C-17
-(delta.simulations0@gmail.com)
+INIT SCRIPTS
 *************************************************
 </Comment>
 
-
-
+<Element>
+    <Select>
+      <Value>
+        (L:C17_Initialization) 0 == 
+        if{
+        1 (>K:ALL_LIGHTS_TOGGLE)
+        1 (>L:C17_Initialization)
+        }
+      </Value>
+    </Select>
+  </Element>
 
 </Gauge>

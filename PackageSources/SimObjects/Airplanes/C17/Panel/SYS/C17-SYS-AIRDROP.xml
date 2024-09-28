@@ -25,6 +25,9 @@
 <Element>
 		<Select>
 			<Value>
+
+        (A:CIRCUIT ON:65,bool) 1 == if{
+
             (L:C17_AD_MODE, bool) 0 == 
                 if{
                     (* AUTO ADS Logic - Computer Commands Green Light, Red LT and Amber still Manual *)
@@ -180,6 +183,8 @@
 
                 } els{
                     
+                    (* MANUAL ADS Logic - Red LT, Amber LT, Green LT all manually opererated at any point, NO COUNTDOWN *)
+
                     (* Drogue Chute Logic *)
                     (L:C17_AD_AmberLT,bool) 1 ==
                     (L:C17_AD_CHUTE_ARMED, bool) 0 == and
@@ -277,6 +282,7 @@
                     
 
                 }
+        }
 			</Value>
 		</Select>
 	</Element>

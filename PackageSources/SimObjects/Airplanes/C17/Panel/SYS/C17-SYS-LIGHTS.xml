@@ -11,6 +11,8 @@ Cockpit Lights
 <Element>
 <Select>
 <Value>
+
+
 <!-- PFD CONTROLS -->
 (L:C17_PFD1_BRT,enum) 0 == (L:C17_Cpit_Pacs,bool) 0 == or if{ 1 (&gt;L:MFDX1 on,bool) } els{ 0 (&gt;L:MFDX1 on,bool) }
 (L:C17_PFD2_BRT,enum) 0 == (L:C17_Cpit_Pacs,bool) 0 == or if{ 1 (&gt;L:MFDX2 on,bool) } els{ 0 (&gt;L:MFDX2 on,bool) }

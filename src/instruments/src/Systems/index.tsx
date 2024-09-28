@@ -5,6 +5,7 @@ import { AURALS } from './Components/AURALS';
 import { MasterCaution } from './Components/MasterCaution';
 import './style.scss';
 import { AuralPower } from '../Common/circuit';
+import { Lights_Init } from './Components/Lights_Init';
 
 
 const Systems = () => {
@@ -16,7 +17,7 @@ const Systems = () => {
                 <g>           
                     <AURALS />
                     <MasterCaution />
-                    
+                    <Lights_Init />
 
                 </g>
             </svg>

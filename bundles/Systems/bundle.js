@@ -9131,6 +9131,29 @@
 	  });
 	};
 
+	const Lights_Init = () => {
+	  let [Init, setInit] = useSimVar('L:C17_Initialization', 'bool');
+	  react.useEffect(() => {
+	    // Set a timeout to change the variable after 2 seconds
+	    const timer = setTimeout(() => {
+	      setInit(0);
+	    }, 2000); // Cleanup the timer on component unmount
+
+	    return () => clearTimeout(timer);
+	  }, []); // Empty dependency array means this runs once on mount
+
+	  return /*#__PURE__*/jsxRuntime.jsx("g", {
+	    children: /*#__PURE__*/jsxRuntime.jsx("text", {
+	      x: 10,
+	      y: 10,
+	      fontSize: 5,
+	      fill: "#00EE00",
+	      className: "ESIS",
+	      children: Init
+	    })
+	  });
+	};
+
 	const Systems = () => {
 	  return /*#__PURE__*/jsxRuntime.jsx(AuralPower, {
 	    children: /*#__PURE__*/jsxRuntime.jsxs("svg", {
@@ -9142,7 +9165,7 @@
 	        height: 500,
 	        fill: "black"
 	      }), /*#__PURE__*/jsxRuntime.jsxs("g", {
-	        children: [/*#__PURE__*/jsxRuntime.jsx(AURALS, {}), /*#__PURE__*/jsxRuntime.jsx(MasterCaution, {})]
+	        children: [/*#__PURE__*/jsxRuntime.jsx(AURALS, {}), /*#__PURE__*/jsxRuntime.jsx(MasterCaution, {}), /*#__PURE__*/jsxRuntime.jsx(Lights_Init, {})]
 	      })]
 	    })
 	  });
