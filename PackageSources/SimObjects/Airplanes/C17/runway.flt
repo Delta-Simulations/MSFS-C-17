@@ -133,6 +133,8 @@ Pump.6=True
 Pump.7=True
 Pump.8=True
 Pump.9=True
+Tank.1=1
+Tank.4=1
 
 [Systems.0]
 BatterySwitch=True

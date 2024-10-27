@@ -1,0 +1,56 @@
+<Gauge Name="C17 Fuel Systems" Version="1.0">
+<Comment> 
+  ************************************************* FOR DELTA SIMULATIONS C-17
+  (delta.simulations0@gmail.com) 
+  ************************************************* 
+  FUEL TRANSFER SYSTEMS
+  *************************************************
+
+  (L:C17_SYS_FUEL_MGT_MODE, bool)
+  Auto = 0, Manual = 1
+</Comment>
+
+<Comment> 
+  ================================= AUTO MODE =========================
+</Comment>
+<Element>
+<Select>
+<Value>
+  0.1 (&gt;L:C17_SYS_FUEL_TRANSFER_DELTA, Pounds)
+</Value>
+</Select>
+</Element>
+<Element>
+<Select>
+<Value>
+
+(L:C17_SYS_FUEL_MGT_MODE, bool) 0 ==
+(A:CIRCUIT ON:65,bool) 1 == and
+if{
+
+
+  (A:FUELSYSTEM TANK WEIGHT:2,Pounds) 38000 &gt;
+  (A:FUELSYSTEM TANK LEVEL:1,percent) 99 &lt; and
+  (A:FUELSYSTEM VALVE SWITCH:1,bool) 1 == and
+  (A:FUELSYSTEM VALVE SWITCH:2,bool) 1 == and
+  if{ 
+    (A:FUELSYSTEM TANK WEIGHT:2,Pounds) (L:C17_SYS_FUEL_TRANSFER_DELTA, Pounds) - (&gt;A:FUELSYSTEM TANK WEIGHT:2,Pounds)
+    (A:FUELSYSTEM TANK WEIGHT:1,Pounds) (L:C17_SYS_FUEL_TRANSFER_DELTA, Pounds) + (&gt;A:FUELSYSTEM TANK WEIGHT:1,Pounds)
+  }
+
+  (A:FUELSYSTEM TANK WEIGHT:3,Pounds) 38000 &gt;
+  (A:FUELSYSTEM TANK LEVEL:4,percent) 99 &lt; and
+  (A:FUELSYSTEM VALVE SWITCH:3,bool) 1 == and
+  (A:FUELSYSTEM VALVE SWITCH:4,bool) 1 == and
+  if{ 
+    (A:FUELSYSTEM TANK WEIGHT:3,Pounds) (L:C17_SYS_FUEL_TRANSFER_DELTA, Pounds) - (&gt;A:FUELSYSTEM TANK WEIGHT:3,Pounds)
+    (A:FUELSYSTEM TANK WEIGHT:4,Pounds) (L:C17_SYS_FUEL_TRANSFER_DELTA, Pounds) + (&gt;A:FUELSYSTEM TANK WEIGHT:4,Pounds)
+  }
+  
+}
+</Value>
+</Select>
+</Element>
+
+
+</Gauge>

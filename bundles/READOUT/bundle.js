@@ -8983,6 +8983,11 @@
 	  const [Cargo_door] = useSimVar('L:C17_CargoDoor_POS', 'enum');
 	  const [SlatDisable] = useSimVar('L:C17_Slat_Disable', 'bool');
 	  const [cautionMessages, setCautionMessages] = react.useState([]);
+	  const [Fuel_Quantity_L_Out] = useSimVar('A:FUELSYSTEM TANK WEIGHT:1', 'Pounds');
+	  const [Fuel_Quantity_R_Out] = useSimVar('A:FUELSYSTEM TANK WEIGHT:4', 'Pounds');
+	  const [Fuel_Quantity_L_In] = useSimVar('A:FUELSYSTEM TANK WEIGHT:2', 'Pounds');
+	  const [Fuel_Quantity_R_In] = useSimVar('A:FUELSYSTEM TANK WEIGHT:3', 'Pounds');
+	  let Fuel_Delta = Math.abs(Fuel_Quantity_L_Out + Fuel_Quantity_L_In - (Fuel_Quantity_R_Out + Fuel_Quantity_R_In));
 	  react.useEffect(() => {
 	    const messages = [{
 	      id: 1,
@@ -8996,6 +9001,10 @@
 	      id: 4,
 	      message: 'FUEL LOW',
 	      condition: WACAP_Test || Fuel_quantity <= 16000
+	    }, {
+	      id: 8,
+	      message: 'L OR R FUEL HEAVY',
+	      condition: WACAP_Test || Fuel_Delta >= 8000
 	    }, {
 	      id: 5,
 	      message: 'SPEED BRAKES',

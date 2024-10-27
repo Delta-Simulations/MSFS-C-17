@@ -179,22 +179,22 @@
 			<UseTemplate Name="ASOBO_ENGINE_Turbine_ReverseThrust_Template">
 				<ID>1</ID>
 				<ANIM_NAME>thrust_rev_1</ANIM_NAME>
-				<ANIM_LAG>3</ANIM_LAG>
+				<ANIM_LAG>200</ANIM_LAG>
 			</UseTemplate>
 			<UseTemplate Name="ASOBO_ENGINE_Turbine_ReverseThrust_Template">
 				<ID>2</ID>
 				<ANIM_NAME>thrust_rev_2</ANIM_NAME>
-				<ANIM_LAG>400</ANIM_LAG>
+				<ANIM_LAG>200</ANIM_LAG>
 			</UseTemplate>
 			<UseTemplate Name="ASOBO_ENGINE_Turbine_ReverseThrust_Template">
 				<ID>3</ID>
 				<ANIM_NAME>thrust_rev_3</ANIM_NAME>
-				<ANIM_LAG>400</ANIM_LAG>
+				<ANIM_LAG>200</ANIM_LAG>
 			</UseTemplate>
 			<UseTemplate Name="ASOBO_ENGINE_Turbine_ReverseThrust_Template">
 				<ID>4</ID>
 				<ANIM_NAME>thrust_rev_4</ANIM_NAME>
-				<ANIM_LAG>400</ANIM_LAG>
+				<ANIM_LAG>200</ANIM_LAG>
 			</UseTemplate>
 		</Component>
 		<Component ID="INTERACTIVE_POINTS">

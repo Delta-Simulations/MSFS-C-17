@@ -16,18 +16,23 @@ export const WACAP = (props) => {
   const [Fuel_quantity] = useSimVar('A:FUEL TOTAL QUANTITY', 'gallons');
   const [Cargo_door] = useSimVar('L:C17_CargoDoor_POS', 'enum');
   const [SlatDisable] = useSimVar('L:C17_Slat_Disable', 'bool');
-
   const [cautionMessages, setCautionMessages] = useState<CautionMessage[]>([]);
+  const [Fuel_Quantity_L_Out] = useSimVar('A:FUELSYSTEM TANK WEIGHT:1', 'Pounds');
+  const [Fuel_Quantity_R_Out] = useSimVar('A:FUELSYSTEM TANK WEIGHT:4', 'Pounds');
+  const [Fuel_Quantity_L_In] = useSimVar('A:FUELSYSTEM TANK WEIGHT:2', 'Pounds');
+  const [Fuel_Quantity_R_In] = useSimVar('A:FUELSYSTEM TANK WEIGHT:3', 'Pounds');
+  let Fuel_Delta = Math.abs((Fuel_Quantity_L_Out + Fuel_Quantity_L_In) - (Fuel_Quantity_R_Out + Fuel_Quantity_R_In))
 
   useEffect(() => {
     const messages: CautionMessage[] = [
       { id: 1, message: 'PARK BRAKE ON L, R', condition: WACAP_Test || Park_brake },
       { id: 2, message: 'LANDING/TAXI LTS', condition: WACAP_Test || (Landing_light || Taxi_light) },
       { id: 4, message: 'FUEL LOW', condition: WACAP_Test || Fuel_quantity <= 16000 },
+      { id: 8, message: 'L OR R FUEL HEAVY', condition: WACAP_Test || Fuel_Delta >= 8000 },
       { id: 5, message: 'SPEED BRAKES', condition: WACAP_Test || Speed_brake },
       { id: 6, message: 'RAMP OPEN', condition: WACAP_Test || Cargo_door },
       { id: 7, message: 'SLAT OVERRIDE', condition: WACAP_Test || SlatDisable },
-
+      
       // Add more caution messages here...
     ];
 

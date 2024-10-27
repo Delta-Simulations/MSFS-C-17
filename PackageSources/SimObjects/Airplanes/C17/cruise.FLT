@@ -131,6 +131,8 @@ Pump.6=True
 Pump.7=True
 Pump.8=True
 Pump.9=True
+Tank.1=1
+Tank.4=1
 
 [Systems.0]
 BatterySwitch=True
@@ -215,7 +217,7 @@ ApproachHold=False
 BackCourseHold=False
 YawDamper=False
 ToGa=False
-AutoThrottleArm=True
+AutoThrottleArm=False
 GPSdrivesNAV1=True
 IsUsedForLesson=False
 ForceDisplayUI=False
