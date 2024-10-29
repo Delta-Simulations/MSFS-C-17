@@ -116,6 +116,54 @@
 		</UseTemplate>
 	</Template>
 
+    <Template Name="FuelSystem_Button_DELTASIM">
+        <DefaultTemplateParameters>
+            
+            <ANIM_LENGTH>100</ANIM_LENGTH>
+            <OFFSET>0</OFFSET>
+            <ANIMREF_ID>0</ANIMREF_ID>
+            <ANIMTIP_0_ON_PERCENT>0.0</ANIMTIP_0_ON_PERCENT>
+            <ANIMTIP_1_ON_PERCENT>1.0</ANIMTIP_1_ON_PERCENT>
+            <CONVERSION_FACTOR>1</CONVERSION_FACTOR>
+            <!-- PUMP OR VALVE
+            ex <SYSTYPE>PUMP</SYSTYPE> -->
+            <!-- INDEX OF PART
+            ex <INDEX>0</INDEX> -->
+            <!-- NAME OF EVENT SIMVAR
+            <EVENT_SIMVAR> </EVENT_SIMVAR>
+            -->
+            <!-- NAME OF SIMVAR
+            <SIMVAR> </SIMVAR>
+            -->
+    
+            <ANIM_LAG>300</ANIM_LAG>			
+        </DefaultTemplateParameters>
+    
+        <Component ID="#NODE_ID#" Node="#NODE_ID#">
+            <UseTemplate Name="ASOBO_GT_Anim_Code">
+                <ANIM_NAME>#NODE_ID#</ANIM_NAME>
+                <ANIM_CODE>(O:BUTTONPOS,bool) #ANIM_LENGTH# * #OFFSET# + </ANIM_CODE>
+                <ANIM_LENGTH>#ANIM_LENGTH#</ANIM_LENGTH>
+            </UseTemplate>
+    
+            <UseTemplate Name="ASOBO_GT_MouseRect">
+                <CURSOR>Hand</CURSOR>
+                <TOOLTIPID>#TOOLTIPID#</TOOLTIPID>
+                <MOUSEFLAGS_DEFAULT_IM>LeftSingle+LeftRelease</MOUSEFLAGS_DEFAULT_IM>
+                <CALLBACKCODE_DEFAULT_IM>
+                    (M:Event) 'LeftSingle' scmi 0 == 
+                    if{
+                        (O:BUTTONPOS,bool) (A:#SIMVAR#:#INDEX#,bool) == if{
+                            #INDEX# (&gt;K:#EVENT_SIMVAR#)
+                        }
+                        (O:BUTTONPOS,bool) ! (&gt;O:BUTTONPOS,bool)
+                        1 (&gt;L:C17_SYS_FUEL_MGT_MODE, bool) 
+                    }
+                </CALLBACKCODE_DEFAULT_IM>
+            </UseTemplate>
+        </Component>
+    </Template>
+
     
 <Template Name="AircraftVar_Switch_DELTASIM">
     <DefaultTemplateParameters>

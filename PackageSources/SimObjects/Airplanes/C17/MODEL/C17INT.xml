@@ -1264,8 +1264,8 @@
     <TOOLTIPID>MSK 1</TOOLTIPID>
     <LEFT_SINGLE_CODE>
       
-      (L:C17_Nav_System_Active, enum) 7 == if{ (&gt;K:TOGGLE_GPS_DRIVES_NAV1) } 
-      (L:C17_Nav_System_Active, enum) 8 == if{ (&gt;K:TOGGLE_GPS_DRIVES_NAV1) } 
+      (L:C17_Nav_System_Active, enum) 7 == if{ 1 (&gt;K:TOGGLE_GPS_DRIVES_NAV1) } 
+      (L:C17_Nav_System_Active, enum) 8 == if{ 1 (&gt;K:TOGGLE_GPS_DRIVES_NAV1) } 
     </LEFT_SINGLE_CODE>
   </UseTemplate>
   <UseTemplate Name="DELTASIM_PushButton_Template">
@@ -2084,14 +2084,6 @@
 
       <!-- INOP FOR NOW -->
   <UseTemplate Name="Korry_Emmis_DELTASIM">
-    <NODE_ID>Korry_UARRSI_L_DISAG</NODE_ID>
-    <TRUECODE>0</TRUECODE>
-  </UseTemplate>
-  <UseTemplate Name="Korry_Emmis_DELTASIM">
-    <NODE_ID>Korry_UARRSI_R_DISAG</NODE_ID>
-    <TRUECODE>0</TRUECODE>
-  </UseTemplate>
-  <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>Korry_Fuel_PNL_Inop</NODE_ID>
     <TRUECODE>0</TRUECODE>
   </UseTemplate>
@@ -2549,14 +2541,6 @@
     <NODE_ID>KORRY_GEN1_ON</NODE_ID>
     <TRUECODE>(A:GENERAL ENG MASTER ALTERNATOR:1, bool)</TRUECODE>
   </UseTemplate>
-  <UseTemplate Name="Korry_Emmis_DELTASIM">
-    <NODE_ID>KORRY_Slipway_L_ON</NODE_ID>
-    <TRUECODE>(L:C17_UARRSI_Slipway, bool)</TRUECODE>
-  </UseTemplate>
-  <UseTemplate Name="Korry_Emmis_DELTASIM">
-    <NODE_ID>KORRY_Slipway_R_ON</NODE_ID>
-    <TRUECODE>(L:C17_UARRSI_Slipway, bool)</TRUECODE>
-  </UseTemplate>
 
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>ENG1_STARTER_LGT</NODE_ID>
@@ -2659,28 +2643,6 @@
   </INTERACT_CODE>
 </UseTemplate>
 
-
-
-
-
-  <UseTemplate Name="GENERIC_Toggle_Switch_Template">
-    <ANIM>(L:C17_UARRSI_Slipway, bool) 100 *</ANIM>
-    <NODE_ID>BUTTON_AR_R_MASTER</NODE_ID>
-    <TOOLTIPID>%((L:C17_UARRSI_Slipway, bool))%{if}A/R SLIPWAY OPEN%{else}A/R SLIPWAY CLOSED%{end}</TOOLTIPID>
-    <INTERACT_CODE>
-      (L:C17_UARRSI_Slipway, bool) ! (&gt;L:C17_UARRSI_Slipway, bool)
-          <!-- (O:GenButton, bool) ! (&gt;O:GenButton, bool) -->
-    </INTERACT_CODE>
-  </UseTemplate>
-  <UseTemplate Name="GENERIC_Toggle_Switch_Template">
-    <ANIM>(L:C17_UARRSI_Slipway, bool) 100 *</ANIM>
-    <NODE_ID>BUTTON_AR_L_MASTER</NODE_ID>
-    <TOOLTIPID>%((L:C17_UARRSI_Slipway, bool))%{if}A/R SLIPWAY OPEN%{else}A/R SLIPWAY CLOSED%{end}</TOOLTIPID>
-    <INTERACT_CODE>
-      (L:C17_UARRSI_Slipway, bool) ! (&gt;L:C17_UARRSI_Slipway, bool)
-    </INTERACT_CODE>
-  </UseTemplate>
-
   <UseTemplate Name="GENERIC_Toggle_Switch_Template">
     <ANIM>(L:C17_WACAP_Test, bool) 100 *</ANIM>
     <NODE_ID>BUTTON_WAP_ANNUN_TEST</NODE_ID>
@@ -2758,387 +2720,517 @@
     </INTERACT_CODE>
   </UseTemplate>
 
-<!-- FUEL PANEL -->
+<!-- FUEL PANEL ENG 1 -->
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
+  <NODE_ID>SWITCH_ENG_FIRE_CUTOFF_1</NODE_ID>
+  <TOOLTIPID>FUEL CUTOFF</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
+  <INDEX>1</INDEX>
+</UseTemplate>
 <UseTemplate Name="AircraftVar_Switch_DELTASIM">
   <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
   <NODE_ID>BUTTON_ENG1_FWD_PUMP</NODE_ID>
-  <TOOLTIPID>ENG1 FWD PUMP</TOOLTIPID>
+  <TOOLTIPID>FWD PUMP</TOOLTIPID>
   <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
   <INDEX>1</INDEX>
 </UseTemplate>
 <UseTemplate Name="AircraftVar_Switch_DELTASIM">
   <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
   <NODE_ID>BUTTON_ENG1_AFT_PUMP</NODE_ID>
-  <TOOLTIPID>ENG1 AFT PUMP</TOOLTIPID>
+  <TOOLTIPID>AFT PUMP</TOOLTIPID>
   <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
   <INDEX>2</INDEX>
 </UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+<UseTemplate Name="FuelSystem_Button_DELTASIM">
   <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
   <NODE_ID>BUTTON_ENG1_FILL_VALVE</NODE_ID>
-  <TOOLTIPID>ENG1 FILL VALVE</TOOLTIPID>
+  <TOOLTIPID>XFEED FILL VALVE</TOOLTIPID>
   <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-  <INDEX>11</INDEX>
+  <INDEX>5</INDEX>
 </UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+<UseTemplate Name="FuelSystem_Button_DELTASIM">
   <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
   <NODE_ID>BUTTON_ENG1_XFER_PUMP</NODE_ID>
-  <TOOLTIPID>ENG1 XFER PUMP</TOOLTIPID>
+  <TOOLTIPID>XFER PUMP</TOOLTIPID>
   <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
-  <INDEX>10</INDEX>
+  <INDEX>9</INDEX>
 </UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+<UseTemplate Name="FuelSystem_Button_DELTASIM">
   <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
   <NODE_ID>BUTTON_ENG1_XFD_VALVE</NODE_ID>
-  <TOOLTIPID>ENG1 XFEED VALVE</TOOLTIPID>
+  <TOOLTIPID>XFEED VALVE</TOOLTIPID>
   <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
+  <INDEX>13</INDEX>
+</UseTemplate>
+
+<UseTemplate Name="Korry_Emmis_FuelPump_FlowLine_DELTASIM">
+  <ENG>1</ENG>
+  <POSITION>FWD</POSITION>
+  <INDEX>1</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelPump_FlowLine_DELTASIM">
+  <ENG>1</ENG>
+  <POSITION>AFT</POSITION>
+  <INDEX>2</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelValve_FlowLine_DELTASIM">
+  <ENG>1</ENG>
+  <POSITION>FILL</POSITION>
   <INDEX>5</INDEX>
 </UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelPump_FlowLine_DELTASIM">
+  <ENG>1</ENG>
+  <POSITION>XFER</POSITION>
+  <INDEX>9</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelValve_FlowLine_DELTASIM">
+  <ENG>1</ENG>
+  <POSITION>XFEED</POSITION>
+  <INDEX>13</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelPump_Low_DELTASIM">
+  <ENG>1</ENG>
+  <POSITION>FWD</POSITION>
+  <INDEX>1</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelPump_Low_DELTASIM">
+  <ENG>1</ENG>
+  <POSITION>AFT</POSITION>
+  <INDEX>2</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelPump_Low_DELTASIM">
+  <ENG>1</ENG>
+  <POSITION>XFEED</POSITION>
+  <INDEX>9</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelValve_Disag_DELTASIM">
+  <ENG>1</ENG>
+  <POSITION>XFEED</POSITION>
+  <INDEX>13</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelValve_Disag_DELTASIM">
+  <ENG>1</ENG>
+  <POSITION>FILL</POSITION>
+  <INDEX>5</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelValve_Open_Outboard_DELTASIM">
+  <ENG>1</ENG>
+  <POSITION>FILL</POSITION>
+  <INDEX>5</INDEX>
+</UseTemplate>
+
+
+<!-- FUEL PANEL ENG 2 -->
 <UseTemplate Name="AircraftVar_Switch_DELTASIM">
   <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-  <NODE_ID>SWITCH_ENG_FIRE_CUTOFF_1</NODE_ID>
-  <TOOLTIPID>TOGGLE ENG1 CUTOFF</TOOLTIPID>
+  <NODE_ID>SWITCH_ENG_FIRE_CUTOFF_2</NODE_ID>
+  <TOOLTIPID>FUEL CUTOFF</TOOLTIPID>
   <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-  <INDEX>1</INDEX>
-</UseTemplate>
-
-<UseTemplate Name="Korry_Emmis_FuelPump_FlowLine_DELTASIM">
-  <ENG>1</ENG>
-  <POSITION>FWD</POSITION>
-  <INDEX>1</INDEX>
-</UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelPump_FlowLine_DELTASIM">
-  <ENG>1</ENG>
-  <POSITION>AFT</POSITION>
   <INDEX>2</INDEX>
 </UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelValve_FlowLine_DELTASIM">
-  <ENG>1</ENG>
-  <POSITION>FILL</POSITION>
-  <INDEX>11</INDEX>
-</UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelValve_FlowLine_DELTASIM">
-  <ENG>1</ENG>
-  <POSITION>XFEED</POSITION>
-  <INDEX>5</INDEX>
-</UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelPump_FlowLine_DELTASIM">
-  <ENG>1</ENG>
-  <POSITION>XFER</POSITION>
-  <INDEX>10</INDEX>
-</UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelValve_Disag_DELTASIM">
-  <ENG>1</ENG>
-  <POSITION>XFEED</POSITION>
-  <INDEX>5</INDEX>
-</UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelPump_Low_DELTASIM">
-  <ENG>1</ENG>
-  <POSITION>FWD</POSITION>
-  <INDEX>1</INDEX>
-</UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelPump_Low_DELTASIM">
-  <ENG>1</ENG>
-  <POSITION>AFT</POSITION>
-  <INDEX>2</INDEX>
-</UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelPump_Low_DELTASIM">
-  <ENG>1</ENG>
-  <POSITION>FILL</POSITION>
-  <INDEX>49</INDEX>
-</UseTemplate>
-
-
-<UseTemplate Name="Korry_Emmis_FuelValve_FlowLine_DELTASIM">
-  <ENG>2</ENG>
-  <POSITION>FILL</POSITION>
-  <INDEX>12</INDEX>
-</UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelValve_FlowLine_DELTASIM">
-  <ENG>2</ENG>
-  <POSITION>XFEED</POSITION>
-  <INDEX>6</INDEX>
-</UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelPump_FlowLine_DELTASIM">
-  <ENG>2</ENG>
-  <POSITION>XFER</POSITION>
-  <INDEX>11</INDEX>
-</UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelValve_Disag_DELTASIM">
-  <ENG>2</ENG>
-  <POSITION>XFEED</POSITION>
-  <INDEX>6</INDEX>
-</UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelPump_Low_DELTASIM">
-  <ENG>2</ENG>
-  <POSITION>FWD</POSITION>
-  <INDEX>7</INDEX>
-</UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelPump_Low_DELTASIM">
-  <ENG>2</ENG>
-  <POSITION>AFT</POSITION>
-  <INDEX>8</INDEX>
-</UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelPump_Low_DELTASIM">
-  <ENG>2</ENG>
-  <POSITION>FILL</POSITION>
-  <INDEX>50</INDEX>
-</UseTemplate>
-
-<UseTemplate Name="Korry_Emmis_FuelValve_FlowLine_DELTASIM">
-  <ENG>3</ENG>
-  <POSITION>FILL</POSITION>
-  <INDEX>13</INDEX>
-</UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelValve_FlowLine_DELTASIM">
-  <ENG>3</ENG>
-  <POSITION>XFEED</POSITION>
-  <INDEX>7</INDEX>
-</UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelPump_FlowLine_DELTASIM">
-  <ENG>3</ENG>
-  <POSITION>XFER</POSITION>
-  <INDEX>12</INDEX>
-</UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelValve_Disag_DELTASIM">
-  <ENG>3</ENG>
-  <POSITION>XFEED</POSITION>
-  <INDEX>7</INDEX>
-</UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelPump_Low_DELTASIM">
-  <ENG>3</ENG>
-  <POSITION>FWD</POSITION>
-  <INDEX>13</INDEX>
-</UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelPump_Low_DELTASIM">
-  <ENG>3</ENG>
-  <POSITION>AFT</POSITION>
-  <INDEX>14</INDEX>
-</UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelPump_Low_DELTASIM">
-  <ENG>3</ENG>
-  <POSITION>FILL</POSITION>
-  <INDEX>51</INDEX>
-</UseTemplate>
-
-<UseTemplate Name="Korry_Emmis_FuelValve_FlowLine_DELTASIM">
-  <ENG>4</ENG>
-  <POSITION>FILL</POSITION>
-  <INDEX>14</INDEX>
-</UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelValve_FlowLine_DELTASIM">
-  <ENG>4</ENG>
-  <POSITION>XFEED</POSITION>
-  <INDEX>8</INDEX>
-</UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelPump_FlowLine_DELTASIM">
-  <ENG>4</ENG>
-  <POSITION>XFER</POSITION>
-  <INDEX>13</INDEX>
-</UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelValve_Disag_DELTASIM">
-  <ENG>4</ENG>
-  <POSITION>XFEED</POSITION>
-  <INDEX>8</INDEX>
-</UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelPump_Low_DELTASIM">
-  <ENG>4</ENG>
-  <POSITION>FWD</POSITION>
-  <INDEX>19</INDEX>
-</UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelPump_Low_DELTASIM">
-  <ENG>4</ENG>
-  <POSITION>AFT</POSITION>
-  <INDEX>20</INDEX>
-</UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelPump_Low_DELTASIM">
-  <ENG>4</ENG>
-  <POSITION>FILL</POSITION>
-  <INDEX>52</INDEX>
-</UseTemplate>
-
-
-
-<UseTemplate Name="Korry_Emmis_FuelPump_FlowLine_DELTASIM">
-  <ENG>2</ENG>
-  <POSITION>FWD</POSITION>
-  <INDEX>3</INDEX>
-</UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelPump_FlowLine_DELTASIM">
-  <ENG>2</ENG>
-  <POSITION>AFT</POSITION>
-  <INDEX>4</INDEX>
-</UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelPump_FlowLine_DELTASIM">
-  <ENG>3</ENG>
-  <POSITION>FWD</POSITION>
-  <INDEX>5</INDEX>
-</UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelPump_FlowLine_DELTASIM">
-  <ENG>3</ENG>
-  <POSITION>AFT</POSITION>
-  <INDEX>6</INDEX>
-</UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelPump_FlowLine_DELTASIM">
-  <ENG>4</ENG>
-  <POSITION>FWD</POSITION>
-  <INDEX>7</INDEX>
-</UseTemplate>
-<UseTemplate Name="Korry_Emmis_FuelPump_FlowLine_DELTASIM">
-  <ENG>4</ENG>
-  <POSITION>AFT</POSITION>
-  <INDEX>8</INDEX>
-</UseTemplate>
-
 <UseTemplate Name="AircraftVar_Switch_DELTASIM">
   <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
   <NODE_ID>BUTTON_ENG2_FWD_PUMP</NODE_ID>
-  <TOOLTIPID>ENG2 FWD PUMP</TOOLTIPID>
+  <TOOLTIPID>FWD PUMP</TOOLTIPID>
   <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
   <INDEX>3</INDEX>
 </UseTemplate>
 <UseTemplate Name="AircraftVar_Switch_DELTASIM">
   <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
   <NODE_ID>BUTTON_ENG2_AFT_PUMP</NODE_ID>
-  <TOOLTIPID>ENG2 AFT PUMP</TOOLTIPID>
+  <TOOLTIPID>AFT PUMP</TOOLTIPID>
   <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
   <INDEX>4</INDEX>
 </UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+<UseTemplate Name="FuelSystem_Button_DELTASIM">
   <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
   <NODE_ID>BUTTON_ENG2_FILL_VALVE</NODE_ID>
-  <TOOLTIPID>ENG2 FILL VALVE</TOOLTIPID>
-  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-  <INDEX>12</INDEX>
-</UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
-  <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
-  <NODE_ID>BUTTON_ENG2_XFER_PUMP</NODE_ID>
-  <TOOLTIPID>ENG2 XFER PUMP</TOOLTIPID>
-  <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
-  <INDEX>11</INDEX>
-</UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
-  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-  <NODE_ID>BUTTON_ENG2_XFD_VALVE</NODE_ID>
-  <TOOLTIPID>ENG2 XFEED VALVE</TOOLTIPID>
+  <TOOLTIPID>XFEED FILL VALVE</TOOLTIPID>
   <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
   <INDEX>6</INDEX>
 </UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+<UseTemplate Name="FuelSystem_Button_DELTASIM">
+  <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_ENG2_XFER_PUMP</NODE_ID>
+  <TOOLTIPID>XFER PUMP</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
+  <INDEX>10</INDEX>
+</UseTemplate>
+<UseTemplate Name="FuelSystem_Button_DELTASIM">
   <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-  <NODE_ID>SWITCH_ENG_FIRE_CUTOFF_2</NODE_ID>
-  <TOOLTIPID>TOGGLE ENG2 CUTOFF</TOOLTIPID>
+  <NODE_ID>BUTTON_ENG2_XFD_VALVE</NODE_ID>
+  <TOOLTIPID>XFEED VALVE</TOOLTIPID>
   <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-  <INDEX>2</INDEX>
+  <INDEX>14</INDEX>
 </UseTemplate>
 
+<UseTemplate Name="Korry_Emmis_FuelPump_FlowLine_DELTASIM">
+  <ENG>2</ENG>
+  <POSITION>FWD</POSITION>
+  <INDEX>3</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelPump_FlowLine_DELTASIM">
+  <ENG>2</ENG>
+  <POSITION>AFT</POSITION>
+  <INDEX>4</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelValve_FlowLine_DELTASIM">
+  <ENG>2</ENG>
+  <POSITION>FILL</POSITION>
+  <INDEX>6</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelPump_FlowLine_DELTASIM">
+  <ENG>2</ENG>
+  <POSITION>XFER</POSITION>
+  <INDEX>10</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelValve_FlowLine_DELTASIM">
+  <ENG>2</ENG>
+  <POSITION>XFEED</POSITION>
+  <INDEX>14</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelPump_Low_DELTASIM">
+  <ENG>2</ENG>
+  <POSITION>FWD</POSITION>
+  <INDEX>3</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelPump_Low_DELTASIM">
+  <ENG>2</ENG>
+  <POSITION>AFT</POSITION>
+  <INDEX>4</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelPump_Low_DELTASIM">
+  <ENG>2</ENG>
+  <POSITION>XFEED</POSITION>
+  <INDEX>10</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelValve_Disag_DELTASIM">
+  <ENG>2</ENG>
+  <POSITION>XFEED</POSITION>
+  <INDEX>14</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelValve_Disag_DELTASIM">
+  <ENG>2</ENG>
+  <POSITION>FILL</POSITION>
+  <INDEX>6</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelValve_Open_Outboard_DELTASIM">
+  <ENG>2</ENG>
+  <POSITION>FILL</POSITION>
+  <INDEX>6</INDEX>
+</UseTemplate>
 
+<!-- FUEL PANEL ENG 3 -->
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
+  <NODE_ID>SWITCH_ENG_FIRE_CUTOFF_3</NODE_ID>
+  <TOOLTIPID>FUEL CUTOFF</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
+  <INDEX>3</INDEX>
+</UseTemplate>
 <UseTemplate Name="AircraftVar_Switch_DELTASIM">
   <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
   <NODE_ID>BUTTON_ENG3_FWD_PUMP</NODE_ID>
-  <TOOLTIPID>ENG3 FWD PUMP</TOOLTIPID>
+  <TOOLTIPID>FWD PUMP</TOOLTIPID>
   <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
   <INDEX>5</INDEX>
 </UseTemplate>
 <UseTemplate Name="AircraftVar_Switch_DELTASIM">
   <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
   <NODE_ID>BUTTON_ENG3_AFT_PUMP</NODE_ID>
-  <TOOLTIPID>ENG3 AFT PUMP</TOOLTIPID>
+  <TOOLTIPID>AFT PUMP</TOOLTIPID>
   <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
   <INDEX>6</INDEX>
 </UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+<UseTemplate Name="FuelSystem_Button_DELTASIM">
   <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
   <NODE_ID>BUTTON_ENG3_FILL_VALVE</NODE_ID>
-  <TOOLTIPID>ENG3 FILL VALVE</TOOLTIPID>
+  <TOOLTIPID>XFEED FILL VALVE</TOOLTIPID>
   <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-  <INDEX>13</INDEX>
+  <INDEX>8</INDEX>
 </UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+<UseTemplate Name="FuelSystem_Button_DELTASIM">
   <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
   <NODE_ID>BUTTON_ENG3_XFER_PUMP</NODE_ID>
-  <TOOLTIPID>ENG3 XFER PUMP</TOOLTIPID>
+  <TOOLTIPID>XFER PUMP</TOOLTIPID>
   <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
-  <INDEX>12</INDEX>
+  <INDEX>11</INDEX>
 </UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+<UseTemplate Name="FuelSystem_Button_DELTASIM">
   <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
   <NODE_ID>BUTTON_ENG3_XFD_VALVE</NODE_ID>
-  <TOOLTIPID>ENG3 XFEED VALVE</TOOLTIPID>
+  <TOOLTIPID>XFEED VALVE</TOOLTIPID>
   <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-  <INDEX>7</INDEX>
-</UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
-  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-  <NODE_ID>SWITCH_ENG_FIRE_CUTOFF_3</NODE_ID>
-  <TOOLTIPID>TOGGLE ENG3 CUTOFF</TOOLTIPID>
-  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-  <INDEX>3</INDEX>
+  <INDEX>15</INDEX>
 </UseTemplate>
 
+<UseTemplate Name="Korry_Emmis_FuelPump_FlowLine_DELTASIM">
+  <ENG>3</ENG>
+  <POSITION>FWD</POSITION>
+  <INDEX>5</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelPump_FlowLine_DELTASIM">
+  <ENG>3</ENG>
+  <POSITION>AFT</POSITION>
+  <INDEX>6</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelValve_FlowLine_DELTASIM">
+  <ENG>3</ENG>
+  <POSITION>FILL</POSITION>
+  <INDEX>8</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelPump_FlowLine_DELTASIM">
+  <ENG>3</ENG>
+  <POSITION>XFER</POSITION>
+  <INDEX>11</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelValve_FlowLine_DELTASIM">
+  <ENG>3</ENG>
+  <POSITION>XFEED</POSITION>
+  <INDEX>15</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelPump_Low_DELTASIM">
+  <ENG>3</ENG>
+  <POSITION>FWD</POSITION>
+  <INDEX>5</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelPump_Low_DELTASIM">
+  <ENG>3</ENG>
+  <POSITION>AFT</POSITION>
+  <INDEX>6</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelPump_Low_DELTASIM">
+  <ENG>3</ENG>
+  <POSITION>XFEED</POSITION>
+  <INDEX>11</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelValve_Disag_DELTASIM">
+  <ENG>3</ENG>
+  <POSITION>XFEED</POSITION>
+  <INDEX>15</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelValve_Disag_DELTASIM">
+  <ENG>3</ENG>
+  <POSITION>FILL</POSITION>
+  <INDEX>8</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelValve_Open_Outboard_DELTASIM">
+  <ENG>3</ENG>
+  <POSITION>FILL</POSITION>
+  <INDEX>8</INDEX>
+</UseTemplate>
+
+<!-- FUEL PANEL ENG 4 -->
+<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
+  <NODE_ID>SWITCH_ENG_FIRE_CUTOFF_4</NODE_ID>
+  <TOOLTIPID>FUEL CUTOFF</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
+  <INDEX>4</INDEX>
+</UseTemplate>
 <UseTemplate Name="AircraftVar_Switch_DELTASIM">
   <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
   <NODE_ID>BUTTON_ENG4_FWD_PUMP</NODE_ID>
-  <TOOLTIPID>ENG3 FWD PUMP</TOOLTIPID>
+  <TOOLTIPID>FWD PUMP</TOOLTIPID>
   <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
   <INDEX>7</INDEX>
 </UseTemplate>
 <UseTemplate Name="AircraftVar_Switch_DELTASIM">
   <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
   <NODE_ID>BUTTON_ENG4_AFT_PUMP</NODE_ID>
-  <TOOLTIPID>ENG4 AFT PUMP</TOOLTIPID>
+  <TOOLTIPID>AFT PUMP</TOOLTIPID>
   <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
   <INDEX>8</INDEX>
 </UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+<UseTemplate Name="FuelSystem_Button_DELTASIM">
   <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
   <NODE_ID>BUTTON_ENG4_FILL_VALVE</NODE_ID>
-  <TOOLTIPID>ENG4 FILL VALVE</TOOLTIPID>
+  <TOOLTIPID>XFEED FILL VALVE</TOOLTIPID>
   <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-  <INDEX>14</INDEX>
+  <INDEX>9</INDEX>
 </UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+<UseTemplate Name="FuelSystem_Button_DELTASIM">
   <SIMVAR>FUELSYSTEM PUMP SWITCH</SIMVAR>
   <NODE_ID>BUTTON_ENG4_XFER_PUMP</NODE_ID>
-  <TOOLTIPID>ENG4 XFER PUMP</TOOLTIPID>
+  <TOOLTIPID>XFER PUMP</TOOLTIPID>
   <EVENT_SIMVAR>FUELSYSTEM_PUMP_TOGGLE</EVENT_SIMVAR>
-  <INDEX>13</INDEX>
+  <INDEX>12</INDEX>
 </UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+<UseTemplate Name="FuelSystem_Button_DELTASIM">
   <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
   <NODE_ID>BUTTON_ENG4_XFD_VALVE</NODE_ID>
-  <TOOLTIPID>ENG4 XFEED VALVE</TOOLTIPID>
+  <TOOLTIPID>XFEED VALVE</TOOLTIPID>
   <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-  <INDEX>8</INDEX>
-</UseTemplate>
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
-  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
-  <NODE_ID>SWITCH_ENG_FIRE_CUTOFF_4</NODE_ID>
-  <TOOLTIPID>TOGGLE ENG4 CUTOFF</TOOLTIPID>
-  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-  <INDEX>4</INDEX>
+  <INDEX>16</INDEX>
 </UseTemplate>
 
+<UseTemplate Name="Korry_Emmis_FuelPump_FlowLine_DELTASIM">
+  <ENG>4</ENG>
+  <POSITION>FWD</POSITION>
+  <INDEX>7</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelPump_FlowLine_DELTASIM">
+  <ENG>4</ENG>
+  <POSITION>AFT</POSITION>
+  <INDEX>8</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelValve_FlowLine_DELTASIM">
+  <ENG>4</ENG>
+  <POSITION>FILL</POSITION>
+  <INDEX>9</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelPump_FlowLine_DELTASIM">
+  <ENG>4</ENG>
+  <POSITION>XFER</POSITION>
+  <INDEX>12</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelValve_FlowLine_DELTASIM">
+  <ENG>4</ENG>
+  <POSITION>XFEED</POSITION>
+  <INDEX>16</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelPump_Low_DELTASIM">
+  <ENG>4</ENG>
+  <POSITION>FWD</POSITION>
+  <INDEX>7</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelPump_Low_DELTASIM">
+  <ENG>4</ENG>
+  <POSITION>AFT</POSITION>
+  <INDEX>8</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelPump_Low_DELTASIM">
+  <ENG>4</ENG>
+  <POSITION>XFEED</POSITION>
+  <INDEX>12</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelValve_Disag_DELTASIM">
+  <ENG>4</ENG>
+  <POSITION>XFEED</POSITION>
+  <INDEX>16</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelValve_Disag_DELTASIM">
+  <ENG>4</ENG>
+  <POSITION>FILL</POSITION>
+  <INDEX>9</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelValve_Open_Outboard_DELTASIM">
+  <ENG>4</ENG>
+  <POSITION>FILL</POSITION>
+  <INDEX>9</INDEX>
+</UseTemplate>
+
+
 <!-- WING ISOLATION -->
-<UseTemplate Name="AircraftVar_Switch_DELTASIM">
+<UseTemplate Name="FuelSystem_Button_DELTASIM">
   <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
   <NODE_ID>BUTTON_FUEL_SEPERATION</NODE_ID>
   <TOOLTIPID>TOGGLE WING ISOLATION</TOOLTIPID>
   <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
-  <INDEX>10</INDEX>
+  <INDEX>7</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelValve_FlowLine_DELTASIM">
+  <ENG>X</ENG>
+  <POSITION>SEPERATION</POSITION>
+  <INDEX>7</INDEX>
 </UseTemplate>
 
 <UseTemplate Name="Korry_Emmis_FuelValve_Disag_DELTASIM">
   <ENG>X</ENG>
   <POSITION>SEPERATION</POSITION>
+  <INDEX>7</INDEX>
+</UseTemplate>
+<!-- UARRSI LINES -->
+<UseTemplate Name="FuelSystem_Button_DELTASIM">
+  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_UARRSI_L_VALVE</NODE_ID>
+  <TOOLTIPID>L UARRSI VALVE</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
+  <INDEX>10</INDEX>
+</UseTemplate>
+<UseTemplate Name="FuelSystem_Button_DELTASIM">
+  <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
+  <NODE_ID>BUTTON_UARRSI_R_VALVE</NODE_ID>
+  <TOOLTIPID>R UARRSI VALVE</TOOLTIPID>
+  <EVENT_SIMVAR>FUELSYSTEM_VALVE_TOGGLE</EVENT_SIMVAR>
+  <INDEX>11</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelValve_FlowLine_DELTASIM">
+  <ENG>X</ENG>
+  <POSITION>UARRSIL</POSITION>
   <INDEX>10</INDEX>
 </UseTemplate>
 <UseTemplate Name="Korry_Emmis_FuelValve_FlowLine_DELTASIM">
   <ENG>X</ENG>
-  <POSITION>SEPERATION</POSITION>
+  <POSITION>UARRSIR</POSITION>
+  <INDEX>11</INDEX>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelValve_Disag_DELTASIM">
+  <ENG>X</ENG>
+  <POSITION>UARRSIL</POSITION>
   <INDEX>10</INDEX>
 </UseTemplate>
+<UseTemplate Name="Korry_Emmis_FuelValve_Disag_DELTASIM">
+  <ENG>X</ENG>
+  <POSITION>UARRSIR</POSITION>
+  <INDEX>11</INDEX>
+</UseTemplate>
+
+<UseTemplate Name="Korry_Emmis_DELTASIM">
+  <NODE_ID>KORRY_FuelMGT_MAN_MODE</NODE_ID>
+  <TRUECODE>
+    (L:C17_SYS_FUEL_MGT_MODE, bool)
+  </TRUECODE>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_DELTASIM">
+  <NODE_ID>KORRY_FuelMGT_SCHD</NODE_ID>
+  <TRUECODE>
+    (A:FUELSYSTEM TANK WEIGHT:1,Pounds) 37700 &lt;
+    (A:FUELSYSTEM TANK WEIGHT:2,Pounds) 40400 &gt; and
+    (A:FUELSYSTEM TANK WEIGHT:4,Pounds) 37700 &lt;
+    (A:FUELSYSTEM TANK WEIGHT:3,Pounds) 40400 &gt; and or
+
+    (A:FUELSYSTEM TANK LEVEL:1,percent) 99 &gt;
+    (A:FUELSYSTEM TANK WEIGHT:2,Pounds) 36900 &lt; and
+    (A:FUELSYSTEM TANK LEVEL:4,percent) 99 &gt;
+    (A:FUELSYSTEM TANK WEIGHT:3,Pounds) 36900 &lt; and or or
+
+  </TRUECODE>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_DELTASIM">
+  <NODE_ID>KORRY_FuelMGT_SCHED_L</NODE_ID>
+  <TRUECODE>
+    (A:FUELSYSTEM TANK WEIGHT:1,Pounds) 37700 &lt;
+    (A:FUELSYSTEM TANK WEIGHT:2,Pounds) 40400 &gt; and
+
+    (A:FUELSYSTEM TANK LEVEL:1,percent) 99 &gt;
+    (A:FUELSYSTEM TANK WEIGHT:2,Pounds) 36900 &lt; and or
+
+  </TRUECODE>
+</UseTemplate>
+<UseTemplate Name="Korry_Emmis_DELTASIM">
+  <NODE_ID>KORRY_FuelMGT_SCHED_R</NODE_ID>
+  <TRUECODE>
+    (A:FUELSYSTEM TANK WEIGHT:4,Pounds) 37700 &lt;
+    (A:FUELSYSTEM TANK WEIGHT:3,Pounds) 40400 &gt; and
+
+    (A:FUELSYSTEM TANK LEVEL:4,percent) 99 &gt;
+    (A:FUELSYSTEM TANK WEIGHT:3,Pounds) 36900 &lt; and or
+
+  </TRUECODE>
+</UseTemplate>
+
+
+<UseTemplate Name="GENERIC_Toggle_Switch_Template">
+  <ANIM>(L:C17_SYS_FUEL_MGT_MODE, bool) 100 *</ANIM>
+  <NODE_ID>BUTTON_Fuel_MGT_MODE</NODE_ID>
+  <TOOLTIPID>FUEL MANAGEMENT MODE</TOOLTIPID>
+  <INTERACT_CODE>
+    (L:C17_SYS_FUEL_MGT_MODE, bool) ! (&gt;L:C17_SYS_FUEL_MGT_MODE, bool)
+  </INTERACT_CODE>
+</UseTemplate>
+
 
 </Component>
 <Component ID="ElectricalSystem" > 
@@ -3272,11 +3364,15 @@
     <TOOLTIPID>%EXT PWR %((A:EXTERNAL POWER ON:1, Bool))%{if}%ON%{else}%OFF%</TOOLTIPID>
     <EVENT_SIMVAR>TOGGLE_EXTERNAL_POWER</EVENT_SIMVAR>
   </UseTemplate>
-  <UseTemplate Name="AircraftVar_Switch_Toggle_DELTASIM">
-    <SIMVAR>ELECTRICAL MASTER BATTERY</SIMVAR>
+
+  <UseTemplate Name="GENERIC_Toggle_Switch_Template">
+    <ANIM>(A:ELECTRICAL MASTER BATTERY:1, bool) 100 *</ANIM>
     <NODE_ID>BUTTON_BATTERY</NODE_ID>
-    <TOOLTIPID>MASTER BATTERY</TOOLTIPID>
-    <EVENT_SIMVAR>TOGGLE_MASTER_BATTERY</EVENT_SIMVAR>
+    <TOOLTIPID>TOGGLE MASTER BATTERY</TOOLTIPID>
+    <INTERACT_CODE>
+      (A:ELECTRICAL MASTER BATTERY:1, bool) ! (&gt;K:BATTERY1_SET)
+    </INTERACT_CODE>
+    <ANIM_LAG>150</ANIM_LAG>	
   </UseTemplate>
 
   <Component ID="Switch_Emer_Batt" Node="Switch_Emer_Batt">
