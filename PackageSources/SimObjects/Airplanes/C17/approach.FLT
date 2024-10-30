@@ -117,11 +117,19 @@ Valve.1=True
 Valve.2=True
 Valve.3=True
 Valve.4=True
+
 Valve.5=False
 Valve.6=False
 Valve.7=False
 Valve.8=False
-Valve.9=True
+Valve.9=False
+Valve.10=False
+Valve.11=False
+Valve.12=False
+Valve.13=False
+Valve.14=False
+Valve.15=False
+Valve.16=False
 Pump.1=True
 Pump.2=True
 Pump.3=True
@@ -130,7 +138,14 @@ Pump.5=True
 Pump.6=True
 Pump.7=True
 Pump.8=True
-Pump.9=True
+Pump.9=False
+Pump.10=False
+Pump.11=False
+Pump.12=False
+Tank.1=1
+Tank.2=0.5
+Tank.3=0.5
+Tank.4=1
 
 [Systems.0]
 BatterySwitch=True
