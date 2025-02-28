@@ -1,28 +1,33 @@
 <PlaneHTMLConfig>
 
 	<Instrument>
-		<Name>B747_8_FMC</Name>
+		<Name>B747_8_FMC_1</Name>
+		<Electric>
+			<Simvar name="CIRCUIT ON:70" unit="Boolean"/>
+		</Electric>
+	</Instrument>
+	<Instrument>
+		<Name>B747_8_FMC_2</Name>
+		<Electric>
+			<Simvar name="CIRCUIT ON:71" unit="Boolean"/>
+		</Electric>
+	</Instrument>
+
+	<Instrument>
+		<Name>GTN750_INT_1</Name>
 		<Electric>
 			<Simvar name="CIRCUIT ON:72" unit="Boolean"/>
 		</Electric>
 	</Instrument>
 
-
 	<Instrument>
-		<Name>WTB748_CDU_1</Name>
+		<Name>GTN750_INT_2</Name>
 		<Electric>
-			<Simvar name="CIRCUIT ON:72" unit="Boolean"/>
+			<Simvar name="CIRCUIT ON:73" unit="Boolean"/>
 		</Electric>
 		<AlwaysUpdate>True</AlwaysUpdate>
 	</Instrument>
 
-	<Instrument>
-		<Name>WTB748_CDU_2</Name>
-		<Electric>
-			<Simvar name="CIRCUIT ON:72" unit="Boolean"/>
-		</Electric>
-		<AlwaysUpdate>True</AlwaysUpdate>
-	</Instrument>
 
 	<!-- WT: Sensors -->
 	<Sensors adc-count="1" ahrs-count="1" radar-altimeter-count="1" gps-count="2">

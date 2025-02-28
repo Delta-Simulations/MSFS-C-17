@@ -1,0 +1,44 @@
+<script type="text/html" id="WTT2_INT">
+  <div id="Mainframe">
+      <div id="Electricity" state="off">
+        <wtt2-element></wtt2-element>
+      </div>
+  </div>
+</script>
+<script type="text/javascript">
+  // Class used if the GTN750 instrument is not installed in the community directory
+  class PMS50_NOAP2 extends BaseInstrument {
+      get templateID() { return "WTT2_INT"; }  // ID if the instrument in HTML
+      get instrumentAlias() { return "WTT2"; }
+      constructor() {
+          super();
+      }
+      connectedCallback() {
+          super.connectedCallback();
+      }
+  }
+
+
+  // Check if the GTN750 instrument is installed 
+  // We try to read a file of the package in the Virtual file system
+  let httpRequest = new XMLHttpRequest();
+  httpRequest.onreadystatechange = function (data) {
+      if (this.readyState === XMLHttpRequest.DONE) {
+          let loaded = this.status === 200 || this.status === 0;
+          if (loaded) {
+              // GTN750 is installed
+              // Nothing to do here
+            }
+          else {
+              // GTN750 is NOT installed
+              // Register the fake instrument
+              registerInstrument("wtt2-int-element", PMS50_NOAP2);
+          }
+      }
+  };
+  var milliseconds = new Date().getTime().toString();
+  httpRequest.open("GET", "/VFS/Integration/gtn750_interface/check.txt?id=" + milliseconds);
+  httpRequest.send();
+</script>
+
+<script type="text/html" import-template="/PMS50/gtn750/Pages/VCockpit/Instruments/Shared/WT/v2/WTT2.html"></script>

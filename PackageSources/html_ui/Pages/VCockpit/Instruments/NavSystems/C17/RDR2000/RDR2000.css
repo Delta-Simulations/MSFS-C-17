@@ -1,0 +1,53 @@
+html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+@font-face {
+    font-family: "GlassGauge";
+    src: url("/Pages/VCockpit/Instruments/NextGenSim/EMB110/Shared/Fonts/GlassGauge-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: GlassGauge-Condensed;
+    src: url('/Pages/VCockpit/Instruments/NextGenSim/EMB110/Shared/Fonts/glassga.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html body {
+    -webkit-user-select: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#Electricity {
+    width: 100%;
+    height: 100%;
+}
+#Electricity[state=off] {
+    display: none;
+}
+
+ngs-rdr2000-element {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(1, 1, 1);
+    overflow: hidden;
+}
+ngs-rdr2000-element #Mainframe {
+    width: 100%;
+    height: 100%;
+}
+ngs-rdr2000-element #Electricity #TopDisplay #WXRadarBase {
+    position: absolute;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+}

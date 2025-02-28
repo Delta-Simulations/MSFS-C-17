@@ -6,17 +6,72 @@
     <LOD minSize="20" ModelFile="C17int_LOD01.gltf"/>
 	</LODS>
 	<Behaviors>
-		<Include ModelBehaviorFile="Asobo\Common.xml"/> <!-- ###################################### -->
-		<Include ModelBehaviorFile="Asobo\Airliner\AirlinerCommon.xml"/>
-		<Include ModelBehaviorFile="Asobo\Airliner\Boeing.xml"/>
-		<Include ModelBehaviorFile="Asobo\Airliner\FMC.xml"/>
-		<Include ModelBehaviorFile="Asobo\Airliner\GlassCockpit.xml"/>
-		<Include ModelBehaviorFile="Asobo\Airliner\Airbus.xml"/>
-    <Include Path="DeltaSim-XML\DeltaSim_Switch_Template.xml"/>
-    <Include Path="DeltaSim-XML\DeltaSim_Lighting_Template.xml"/>
-    <Include Path="DeltaSim-XML\DeltaSim_Anim_Template.xml"/>
+    <Include ModelBehaviorFile="Asobo\Common.xml" /> <!-- ###################################### -->
+    <Include ModelBehaviorFile="Asobo\Airliner\AirlinerCommon.xml" />
+    <Include ModelBehaviorFile="Asobo\Airliner\Boeing.xml" />
+    <Include ModelBehaviorFile="Asobo\Airliner\FMC.xml" />
+    <Include ModelBehaviorFile="Asobo\Airliner\GlassCockpit.xml" />
+    <Include ModelBehaviorFile="Asobo\Airliner\Airbus.xml" />
+    <Include Path="DeltaSim-XML\DeltaSim_Switch_Template.xml" />
+    <Include Path="DeltaSim-XML\DeltaSim_Lighting_Template.xml" />
+    <Include Path="DeltaSim-XML\DeltaSim_Anim_Template.xml" />
 
     <Component ID="CDUs">
+
+      <!-- DU DISPLAY BRIGHTNESS 
+      C17_DU_UPR_P_BRT
+      C17_DU_LWR_P_BRT
+      -->
+      <UseTemplate Name="DELTASIM_Finite_Knob_Template">
+        <NODE_ID>Knob_DU_PWR_LWR_P</NODE_ID>
+        <ANIM_CODE>(L:C17_DU_LWR_P_BRT)</ANIM_CODE>
+        <CLOCKWISE_CODE>
+          (L:C17_DU_LWR_P_BRT) ++ 100 min (&gt;L:C17_DU_LWR_P_BRT)
+        </CLOCKWISE_CODE>
+        <ANTICLOCKWISE_CODE>
+          (L:C17_DU_LWR_P_BRT) -- 0 max (&gt;L:C17_DU_LWR_P_BRT)
+        </ANTICLOCKWISE_CODE>
+        <CW_ANIMTIP>DU BRT</CW_ANIMTIP>
+        <CCW_ANIMTIP>DU BRT</CCW_ANIMTIP>
+      </UseTemplate>
+      <UseTemplate Name="DELTASIM_Finite_Knob_Template">
+        <NODE_ID>Knob_DU_PWR_UPR_P</NODE_ID>
+        <ANIM_CODE>(L:C17_DU_UPR_P_BRT)</ANIM_CODE>
+        <CLOCKWISE_CODE>
+          (L:C17_DU_UPR_P_BRT) ++ 100 min (&gt;L:C17_DU_UPR_P_BRT)
+        </CLOCKWISE_CODE>
+        <ANTICLOCKWISE_CODE>
+          (L:C17_DU_UPR_P_BRT) -- 0 max (&gt;L:C17_DU_UPR_P_BRT)
+        </ANTICLOCKWISE_CODE>
+        <CW_ANIMTIP>DU BRT</CW_ANIMTIP>
+        <CCW_ANIMTIP>DU BRT</CCW_ANIMTIP>
+      </UseTemplate>
+
+      <UseTemplate Name="DELTASIM_Finite_Knob_Template">
+        <NODE_ID>Knob_DU_PWR_LWR_CP</NODE_ID>
+        <ANIM_CODE>(L:C17_DU_LWR_CP_BRT)</ANIM_CODE>
+        <CLOCKWISE_CODE>
+          (L:C17_DU_LWR_CP_BRT) ++ 100 min (&gt;L:C17_DU_LWR_CP_BRT)
+        </CLOCKWISE_CODE>
+        <ANTICLOCKWISE_CODE>
+          (L:C17_DU_LWR_CP_BRT) -- 0 max (&gt;L:C17_DU_LWR_CP_BRT)
+        </ANTICLOCKWISE_CODE>
+        <CW_ANIMTIP>DU BRT</CW_ANIMTIP>
+        <CCW_ANIMTIP>DU BRT</CCW_ANIMTIP>
+      </UseTemplate>
+      <UseTemplate Name="DELTASIM_Finite_Knob_Template">
+        <NODE_ID>Knob_DU_PWR_UPR_CP</NODE_ID>
+        <ANIM_CODE>(L:C17_DU_UPR_CP_BRT)</ANIM_CODE>
+        <CLOCKWISE_CODE>
+          (L:C17_DU_UPR_CP_BRT) ++ 100 min (&gt;L:C17_DU_UPR_CP_BRT)
+        </CLOCKWISE_CODE>
+        <ANTICLOCKWISE_CODE>
+          (L:C17_DU_UPR_CP_BRT) -- 0 max (&gt;L:C17_DU_UPR_CP_BRT)
+        </ANTICLOCKWISE_CODE>
+        <CW_ANIMTIP>DU BRT</CW_ANIMTIP>
+        <CCW_ANIMTIP>DU BRT</CCW_ANIMTIP>
+      </UseTemplate>
+      
       <DefaultTemplateParameters>
         <ANIM_NEVER_FAILS>True</ANIM_NEVER_FAILS>
         <FAILURE>(A:LIGHT PANEL ON:3, Bool)</FAILURE>
@@ -181,6 +236,163 @@
           <NODE_ID_EMISSIVE_EXEC>CDU_EXEC_Active_1</NODE_ID_EMISSIVE_EXEC>
         </UseTemplate>
       </Component>
+      <Component ID="CDU_2">
+        <UseTemplate Name="ASOBO_FMC_B747">
+          <WWISE_EVENT_1>cdu_in</WWISE_EVENT_1>
+          <WWISE_EVENT_2>cdu_out</WWISE_EVENT_2>
+          <NODE_ID_SCREEN>CDU.001</NODE_ID_SCREEN>
+          <CIRCUIT_ID>27</CIRCUIT_ID>
+          <ID>2</ID>
+          <SEQ1_SUFFIX>_decal</SEQ1_SUFFIX>
+          <NODE_ID_INIT>btn_CDU2_INIT</NODE_ID_INIT>
+          <ANIM_NAME_INIT>btn_CDU2_INIT</ANIM_NAME_INIT>
+          <NODE_ID_RTE>btn_CDU2_RTE</NODE_ID_RTE>
+          <ANIM_NAME_RTE>btn_CDU2_RTE</ANIM_NAME_RTE>
+          <NODE_ID_DEP_ARR>btn_CDU2_DEP_ARR</NODE_ID_DEP_ARR>
+          <ANIM_NAME_DEP_ARR>btn_CDU2_DEP_ARR</ANIM_NAME_DEP_ARR>
+          <NODE_ID_ATC>btn_CDU2_ATC</NODE_ID_ATC>
+          <ANIM_NAME_ATC>btn_CDU2_ATC</ANIM_NAME_ATC>
+          <NODE_ID_VNAV>btn_CDU2_VNAV</NODE_ID_VNAV>
+          <ANIM_NAME_VNAV>btn_CDU2_VNAV</ANIM_NAME_VNAV>
+          <NODE_ID_BRT_DIM>btn_CDU2_BRT</NODE_ID_BRT_DIM>
+          <ANIM_NAME_BRT_DIM>btn_CDU2_BRT</ANIM_NAME_BRT_DIM>
+          <NODE_ID_BRT_DIM_SEQ1>btn_CDU2_BRT_DECAL</NODE_ID_BRT_DIM_SEQ1>
+          <NODE_ID_FIX>btn_CDU2_FIX</NODE_ID_FIX>
+          <ANIM_NAME_FIX>btn_CDU2_FIX</ANIM_NAME_FIX>
+          <NODE_ID_LEGS>btn_CDU2_LEGS</NODE_ID_LEGS>
+          <ANIM_NAME_LEGS>btn_CDU2_LEGS</ANIM_NAME_LEGS>
+          <NODE_ID_HOLD>btn_CDU2_HOLD</NODE_ID_HOLD>
+          <ANIM_NAME_HOLD>btn_CDU2_HOLD</ANIM_NAME_HOLD>
+          <NODE_ID_FMC_COMM>btn_CDU2_FMC_COMM</NODE_ID_FMC_COMM>
+          <ANIM_NAME_FMC_COMM>btn_CDU2_FMC_COMM</ANIM_NAME_FMC_COMM>
+          <NODE_ID_PROG>btn_CDU2_PROG</NODE_ID_PROG>
+          <ANIM_NAME_PROG>btn_CDU2_PROG</ANIM_NAME_PROG>
+          <NODE_ID_EXEC>btn_CDU2_EXE</NODE_ID_EXEC>
+          <ANIM_NAME_EXEC>btn_CDU2_EXE</ANIM_NAME_EXEC>
+          <NODE_ID_MENU>btn_CDU2_MENU</NODE_ID_MENU>
+          <ANIM_NAME_MENU>btn_CDU2_MENU</ANIM_NAME_MENU>
+          <NODE_ID_NAV_RAD>btn_CDU2_NAV_RAD</NODE_ID_NAV_RAD>
+          <ANIM_NAME_NAV_RAD>btn_CDU2_NAV_RAD</ANIM_NAME_NAV_RAD>
+          <NODE_ID_PREV_PAGE>btn_CDU2_PAGE_PREV</NODE_ID_PREV_PAGE>
+          <ANIM_NAME_PREV_PAGE>btn_CDU2_PAGE_PREV</ANIM_NAME_PREV_PAGE>
+          <NODE_ID_NEXT_PAGE>btn_CDU2_PAGE_NEXT</NODE_ID_NEXT_PAGE>
+          <ANIM_NAME_NEXT_PAGE>btn_CDU2_PAGE_NEXT</ANIM_NAME_NEXT_PAGE>
+          <NODE_ID_SP>btn_CDU2_SP</NODE_ID_SP>
+          <ANIM_NAME_SP>btn_CDU2_SP</ANIM_NAME_SP>
+          <NODE_ID_DEL>btn_CDU2_DEL</NODE_ID_DEL>
+          <ANIM_NAME_DEL>btn_CDU2_DEL</ANIM_NAME_DEL>
+          <NODE_ID_CLR>btn_CDU2_CLR</NODE_ID_CLR>
+          <ANIM_NAME_CLR>btn_CDU2_CLR</ANIM_NAME_CLR>
+          <NODE_ID_DIV>btn_CDU2_DIVIDE</NODE_ID_DIV>
+          <ANIM_NAME_DIV>btn_CDU2_DIVIDE</ANIM_NAME_DIV>
+          <NODE_ID_L1>btn_CDU2_L_1</NODE_ID_L1>
+          <ANIM_NAME_L1>btn_CDU2_L_1</ANIM_NAME_L1>
+          <NODE_ID_L2>btn_CDU2_L_2</NODE_ID_L2>
+          <ANIM_NAME_L2>btn_CDU2_L_2</ANIM_NAME_L2>
+          <NODE_ID_L3>btn_CDU2_L_3</NODE_ID_L3>
+          <ANIM_NAME_L3>btn_CDU2_L_3</ANIM_NAME_L3>
+          <NODE_ID_L4>btn_CDU2_L_4</NODE_ID_L4>
+          <ANIM_NAME_L4>btn_CDU2_L_4</ANIM_NAME_L4>
+          <NODE_ID_L5>btn_CDU2_L_5</NODE_ID_L5>
+          <ANIM_NAME_L5>btn_CDU2_L_5</ANIM_NAME_L5>
+          <NODE_ID_L6>btn_CDU2_L_6</NODE_ID_L6>
+          <ANIM_NAME_L6>btn_CDU2_L_6</ANIM_NAME_L6>
+          <NODE_ID_R1>btn_CDU2_R_1</NODE_ID_R1>
+          <ANIM_NAME_R1>btn_CDU2_R_1</ANIM_NAME_R1>
+          <NODE_ID_R2>btn_CDU2_R_2</NODE_ID_R2>
+          <ANIM_NAME_R2>btn_CDU2_R_2</ANIM_NAME_R2>
+          <NODE_ID_R3>btn_CDU2_R_3</NODE_ID_R3>
+          <ANIM_NAME_R3>btn_CDU2_R_3</ANIM_NAME_R3>
+          <NODE_ID_R4>btn_CDU2_R_4</NODE_ID_R4>
+          <ANIM_NAME_R4>btn_CDU2_R_4</ANIM_NAME_R4>
+          <NODE_ID_R5>btn_CDU2_R_5</NODE_ID_R5>
+          <ANIM_NAME_R5>btn_CDU2_R_5</ANIM_NAME_R5>
+          <NODE_ID_R6>btn_CDU2_R_6</NODE_ID_R6>
+          <ANIM_NAME_R6>btn_CDU2_R_6</ANIM_NAME_R6>
+          <NODE_ID_A>btn_CDU2_A</NODE_ID_A>
+          <ANIM_NAME_A>btn_CDU2_A</ANIM_NAME_A>
+          <NODE_ID_B>btn_CDU2_B</NODE_ID_B>
+          <ANIM_NAME_B>btn_CDU2_B</ANIM_NAME_B>
+          <NODE_ID_C>btn_CDU2_C</NODE_ID_C>
+          <ANIM_NAME_C>btn_CDU2_C</ANIM_NAME_C>
+          <NODE_ID_D>btn_CDU2_D</NODE_ID_D>
+          <ANIM_NAME_D>btn_CDU2_D</ANIM_NAME_D>
+          <NODE_ID_E>btn_CDU2_E</NODE_ID_E>
+          <ANIM_NAME_E>btn_CDU2_E</ANIM_NAME_E>
+          <NODE_ID_F>btn_CDU2_F</NODE_ID_F>
+          <ANIM_NAME_F>btn_CDU2_F</ANIM_NAME_F>
+          <NODE_ID_G>btn_CDU2_G</NODE_ID_G>
+          <ANIM_NAME_G>btn_CDU2_G</ANIM_NAME_G>
+          <NODE_ID_H>btn_CDU2_H</NODE_ID_H>
+          <ANIM_NAME_H>btn_CDU2_H</ANIM_NAME_H>
+          <NODE_ID_I>btn_CDU2_I</NODE_ID_I>
+          <ANIM_NAME_I>btn_CDU2_I</ANIM_NAME_I>
+          <NODE_ID_J>btn_CDU2_J</NODE_ID_J>
+          <ANIM_NAME_J>btn_CDU2_J</ANIM_NAME_J>
+          <NODE_ID_K>btn_CDU2_K</NODE_ID_K>
+          <ANIM_NAME_K>btn_CDU2_K</ANIM_NAME_K>
+          <NODE_ID_L>btn_CDU2_L</NODE_ID_L>
+          <ANIM_NAME_L>btn_CDU2_L</ANIM_NAME_L>
+          <NODE_ID_M>btn_CDU2_M</NODE_ID_M>
+          <ANIM_NAME_M>btn_CDU2_M</ANIM_NAME_M>
+          <NODE_ID_N>btn_CDU2_N</NODE_ID_N>
+          <ANIM_NAME_N>btn_CDU2_N</ANIM_NAME_N>
+          <NODE_ID_O>btn_CDU2_O</NODE_ID_O>
+          <ANIM_NAME_O>btn_CDU2_O</ANIM_NAME_O>
+          <NODE_ID_P>btn_CDU2_P</NODE_ID_P>
+          <ANIM_NAME_P>btn_CDU2_P</ANIM_NAME_P>
+          <NODE_ID_Q>btn_CDU2_Q</NODE_ID_Q>
+          <ANIM_NAME_Q>btn_CDU2_Q</ANIM_NAME_Q>
+          <NODE_ID_R>btn_CDU2_R</NODE_ID_R>
+          <ANIM_NAME_R>btn_CDU2_R</ANIM_NAME_R>
+          <NODE_ID_S>btn_CDU2_S</NODE_ID_S>
+          <ANIM_NAME_S>btn_CDU2_S</ANIM_NAME_S>
+          <NODE_ID_T>btn_CDU2_T</NODE_ID_T>
+          <ANIM_NAME_T>btn_CDU2_T</ANIM_NAME_T>
+          <NODE_ID_U>btn_CDU2_U</NODE_ID_U>
+          <ANIM_NAME_U>btn_CDU2_U</ANIM_NAME_U>
+          <NODE_ID_V>btn_CDU2_V</NODE_ID_V>
+          <ANIM_NAME_V>btn_CDU2_V</ANIM_NAME_V>
+          <NODE_ID_W>btn_CDU2_W</NODE_ID_W>
+          <ANIM_NAME_W>btn_CDU2_W</ANIM_NAME_W>
+          <NODE_ID_X>btn_CDU2_X</NODE_ID_X>
+          <ANIM_NAME_X>btn_CDU2_X</ANIM_NAME_X>
+          <NODE_ID_Y>btn_CDU2_Y</NODE_ID_Y>
+          <ANIM_NAME_Y>btn_CDU2_Y</ANIM_NAME_Y>
+          <NODE_ID_Z>btn_CDU2_Z</NODE_ID_Z>
+          <ANIM_NAME_Z>btn_CDU2_Z</ANIM_NAME_Z>
+          <NODE_ID_0>btn_CDU2_0</NODE_ID_0>
+          <ANIM_NAME_0>btn_CDU2_0</ANIM_NAME_0>
+          <NODE_ID_1>btn_CDU2_1</NODE_ID_1>
+          <ANIM_NAME_1>btn_CDU2_1</ANIM_NAME_1>
+          <NODE_ID_2>btn_CDU2_2</NODE_ID_2>
+          <ANIM_NAME_2>btn_CDU2_2</ANIM_NAME_2>
+          <NODE_ID_3>btn_CDU2_3</NODE_ID_3>
+          <ANIM_NAME_3>btn_CDU2_3</ANIM_NAME_3>
+          <NODE_ID_4>btn_CDU2_4</NODE_ID_4>
+          <ANIM_NAME_4>btn_CDU2_4</ANIM_NAME_4>
+          <NODE_ID_5>btn_CDU2_5</NODE_ID_5>
+          <ANIM_NAME_5>btn_CDU2_5</ANIM_NAME_5>
+          <NODE_ID_6>btn_CDU2_6</NODE_ID_6>
+          <ANIM_NAME_6>btn_CDU2_6</ANIM_NAME_6>
+          <NODE_ID_7>btn_CDU2_7</NODE_ID_7>
+          <ANIM_NAME_7>btn_CDU2_7</ANIM_NAME_7>
+          <NODE_ID_8>btn_CDU2_8</NODE_ID_8>
+          <ANIM_NAME_8>btn_CDU2_8</ANIM_NAME_8>
+          <NODE_ID_9>btn_CDU2_9</NODE_ID_9>
+          <ANIM_NAME_9>btn_CDU2_9</ANIM_NAME_9>
+          <NODE_ID_DOT>btn_CDU2_DOT</NODE_ID_DOT>
+          <ANIM_NAME_DOT>btn_CDU2_DOT</ANIM_NAME_DOT>
+          <NODE_ID_PLUSMINUS>btn_CDU2_OPE</NODE_ID_PLUSMINUS>
+          <ANIM_NAME_PLUSMINUS>btn_CDU2_OPE</ANIM_NAME_PLUSMINUS>
+          <NODE_ID_OFST>CDU2_OFST_decal</NODE_ID_OFST>
+          <NODE_ID_MSG>CDU2_MSG_decal</NODE_ID_MSG>
+          <NODE_ID_FAIL>CDU2_FAIL_decal</NODE_ID_FAIL>
+          <NODE_ID_DSPL>CDU2_DSPY_decal</NODE_ID_DSPL>
+          <NODE_ID_EMISSIVE_EXEC>CDU_EXEC_Active_1</NODE_ID_EMISSIVE_EXEC>
+        </UseTemplate>
+      </Component>
+
     </Component>
 
 
@@ -373,8 +585,18 @@
 <Component ID="FRONT_PANEL" >
 
    
-
-
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_DU_UPR_P_MSG</NODE_ID>
+    <TRUECODE>
+      (L:GTN750_HAVE_MESSAGE:1, bool)
+    </TRUECODE>
+  </UseTemplate>
+  <UseTemplate Name="Korry_Emmis_DELTASIM">
+    <NODE_ID>KORRY_DU_UPR_CP_MSG</NODE_ID>
+    <TRUECODE>
+      (L:GTN750_HAVE_MESSAGE:2, bool)
+    </TRUECODE>
+  </UseTemplate>
 
   <UseTemplate Name="DELTASIM_PushButton_Template">
     <NODE_ID>PushButton_Master_Caution</NODE_ID>
@@ -547,7 +769,7 @@
   </INTERACT_CODE>
 </UseTemplate>
 
-<!-- HUD DISPLAY BRIGHTNESS -->
+      <!-- HUD DISPLAY BRIGHTNESS -->
 <UseTemplate Name="DELTASIM_Finite_Knob_Template">
   <NODE_ID>Knob_Hud_Master_Control</NODE_ID>
   <ANIM_CODE>(L:C17_HUD_CNTRL) 33.3 *</ANIM_CODE>
@@ -598,7 +820,7 @@
   </LEFT_SINGLE_CODE>
 </UseTemplate>
 
-<!-- <UseTemplate Name="DELTASIM_PushButton_Template">
+      <!-- <UseTemplate Name="DELTASIM_PushButton_Template">
   <NODE_ID>PushButton_Stby_Att_Adjust_P_Cage</NODE_ID>
   <TOOLTIPID>CAGE</TOOLTIPID>
   <LEFT_SINGLE_CODE>
@@ -641,7 +863,7 @@
   <CCW_ANIMTIP>ADJUST ATTITUDE</CCW_ANIMTIP>
 </UseTemplate>
 
-<!-- PFD DISPLAY BRIGHTNESS -->
+      <!-- PFD DISPLAY BRIGHTNESS -->
 <UseTemplate Name="DELTASIM_Finite_Knob_Template">
   <NODE_ID>Knob_PFD_BRT_1</NODE_ID>
   <ANIM_CODE>(L:C17_PFD1_BRT) 50 *</ANIM_CODE>
@@ -670,7 +892,7 @@
 </Component>
 
 <Component ID="Turn_Coordinator_1" Node="Turn_Coordinator_1">
-  <!-- <UseTemplate name="ASOBO_GT_Anim_Code">
+          <!-- <UseTemplate name="ASOBO_GT_Anim_Code">
       <PART_ID>Turn_Coordinator_1</PART_ID>
       <ANIM_NAME>Turn_Coordinator_1</ANIM_NAME>
       <ANIM_CODE>            
@@ -902,7 +1124,34 @@
   <CCW_ANIMTIP>DISP BRT</CCW_ANIMTIP>
 </UseTemplate>
 
-
+<Component ID="DISP_DU_LWR_P" Node="DISP_DU_LWR_P">
+  <UseTemplate Name="ASOBO_GT_Material_Emissive_Code">
+<EMISSIVE_CODE>
+  (L:C17_DU_LWR_P_BRT,enum) 20 / (A:GLASSCOCKPIT AUTOMATIC BRIGHTNESS, number) * (L:C17_Cpit_Pacs,bool) *
+</EMISSIVE_CODE>
+</UseTemplate>
+</Component>
+<Component ID="DISP_DU_UPR_P" Node="DISP_DU_UPR_P">
+  <UseTemplate Name="ASOBO_GT_Material_Emissive_Code">
+<EMISSIVE_CODE>
+  (L:C17_DU_UPR_P_BRT,enum) 20 / (A:GLASSCOCKPIT AUTOMATIC BRIGHTNESS, number) * (L:C17_Cpit_Pacs,bool) *
+</EMISSIVE_CODE>
+</UseTemplate>
+</Component>
+<Component ID="DISP_DU_LWR_CP" Node="DISP_DU_LWR_CP">
+  <UseTemplate Name="ASOBO_GT_Material_Emissive_Code">
+<EMISSIVE_CODE>
+  (L:C17_DU_LWR_CP_BRT,enum) 20 / (A:GLASSCOCKPIT AUTOMATIC BRIGHTNESS, number) * (L:C17_Cpit_Pacs,bool) *
+</EMISSIVE_CODE>
+</UseTemplate>
+</Component>
+<Component ID="DISP_DU_UPR_CP" Node="DISP_DU_UPR_CP">
+  <UseTemplate Name="ASOBO_GT_Material_Emissive_Code">
+<EMISSIVE_CODE>
+  (L:C17_DU_UPR_CP_BRT,enum) 20 / (A:GLASSCOCKPIT AUTOMATIC BRIGHTNESS, number) * (L:C17_Cpit_Pacs,bool) *
+</EMISSIVE_CODE>
+</UseTemplate>
+</Component>
 
 <Component ID="PFD1" Node="PFD1">
   <UseTemplate Name="ASOBO_GT_Material_Emissive_Code">
@@ -926,7 +1175,7 @@
 <EMISSIVE_CODE>(L:C17_PFD4_BRT,enum) (A:GLASSCOCKPIT AUTOMATIC BRIGHTNESS, number) * (L:C17_Cpit_Pacs,bool) *</EMISSIVE_CODE>
 </UseTemplate>
 </Component>
-<!-- PFD CONTROLS -->
+      <!-- PFD CONTROLS -->
 <UseTemplate Name="DELTASIM_PushButton_Template">
   <NODE_ID>PushButton_PFD_1_1</NODE_ID>
   <TOOLTIPID>PFD</TOOLTIPID>
@@ -2225,6 +2474,49 @@
         }
     </LEFT_SINGLE_CODE>
   </UseTemplate>
+
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>Button_Jump_Rel_CargoHold</NODE_ID>
+    <TOOLTIPID>ADS Jump/Release</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+      (L:C17_AD_ADS_ARMED, bool)
+      if{
+        (L:C17_AD_GreenLT, bool) ! (&gt;L:C17_AD_GreenLT, bool)
+      }
+        
+        (L:C17_AD_GreenLT,bool) 1 == 
+        if{
+          (E:ZULU TIME, seconds) (&gt;L:C17_AD_TIME_GREENLT, seconds)
+          (A:PAYLOAD STATION WEIGHT:3, pounds) (&gt;L:C17_AD_ORIG_WEIGHT_STA3, seconds)
+          (A:PAYLOAD STATION WEIGHT:4, pounds) (&gt;L:C17_AD_ORIG_WEIGHT_STA4, seconds)
+        }
+    </LEFT_SINGLE_CODE>
+  </UseTemplate>
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>BUTTON_RED_LT_CargoHold</NODE_ID>
+    <TOOLTIPID>ADS Red Light</TOOLTIPID>
+    <LEFT_SINGLE_CODE>
+      (L:C17_AD_ADS_ARMED, bool) 0 ==
+      (L:C17_AD_RedLT, bool) 1 == and
+      if{
+        (L:C17_AD_ADS_ARMED, bool) ! (&gt;L:C17_AD_ADS_ARMED, bool)
+      } els{
+        (L:C17_AD_RedLT, bool) ! (&gt;L:C17_AD_RedLT, bool)
+        (L:C17_AD_ADS_ARMED, bool) ! (&gt;L:C17_AD_ADS_ARMED, bool)
+
+      }
+    </LEFT_SINGLE_CODE>
+  </UseTemplate>
+  <UseTemplate Name="DELTASIM_PushButton_Template">
+    <NODE_ID>Button_Ready_Drogue_CargoHold</NODE_ID>
+    <TOOLTIPID>ADS Ready/Drogue</TOOLTIPID>    
+      <LEFT_SINGLE_CODE>
+        (L:C17_AD_ADS_ARMED, bool)
+        if{
+          (L:C17_AD_AmberLT, bool) ! (&gt;L:C17_AD_AmberLT, bool)
+        }
+    </LEFT_SINGLE_CODE>
+  </UseTemplate>
   <UseTemplate Name="Korry_Emmis_DELTASIM">
     <NODE_ID>KORRY_Pedestal_RedLt</NODE_ID>
     <TRUECODE>(L:C17_AD_RedLT, bool)</TRUECODE>
@@ -2617,7 +2909,7 @@
     <ANIM_LENGTH>200</ANIM_LENGTH>
   </UseTemplate>
 
-<!-- FOR NACE NACE============================================= FBW SYSTEMS CONTROLS =========================== -->
+      <!-- FOR NACE NACE============================================= FBW SYSTEMS CONTROLS =========================== -->
 <UseTemplate Name="GENERIC_Toggle_Switch_Template">
   <ANIM>(A:FLY BY WIRE SEC SWITCH, bool) ! 100 * </ANIM>
   <NODE_ID>Switch_Pitch_EFCS</NODE_ID>
@@ -2720,7 +3012,7 @@
     </INTERACT_CODE>
   </UseTemplate>
 
-<!-- FUEL PANEL ENG 1 -->
+      <!-- FUEL PANEL ENG 1 -->
 <UseTemplate Name="AircraftVar_Switch_DELTASIM">
   <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
   <NODE_ID>SWITCH_ENG_FIRE_CUTOFF_1</NODE_ID>
@@ -2821,7 +3113,7 @@
 </UseTemplate>
 
 
-<!-- FUEL PANEL ENG 2 -->
+      <!-- FUEL PANEL ENG 2 -->
 <UseTemplate Name="AircraftVar_Switch_DELTASIM">
   <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
   <NODE_ID>SWITCH_ENG_FIRE_CUTOFF_2</NODE_ID>
@@ -2921,7 +3213,7 @@
   <INDEX>6</INDEX>
 </UseTemplate>
 
-<!-- FUEL PANEL ENG 3 -->
+      <!-- FUEL PANEL ENG 3 -->
 <UseTemplate Name="AircraftVar_Switch_DELTASIM">
   <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
   <NODE_ID>SWITCH_ENG_FIRE_CUTOFF_3</NODE_ID>
@@ -3021,7 +3313,7 @@
   <INDEX>8</INDEX>
 </UseTemplate>
 
-<!-- FUEL PANEL ENG 4 -->
+      <!-- FUEL PANEL ENG 4 -->
 <UseTemplate Name="AircraftVar_Switch_DELTASIM">
   <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
   <NODE_ID>SWITCH_ENG_FIRE_CUTOFF_4</NODE_ID>
@@ -3122,7 +3414,7 @@
 </UseTemplate>
 
 
-<!-- WING ISOLATION -->
+      <!-- WING ISOLATION -->
 <UseTemplate Name="FuelSystem_Button_DELTASIM">
   <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
   <NODE_ID>BUTTON_FUEL_SEPERATION</NODE_ID>
@@ -3141,7 +3433,7 @@
   <POSITION>SEPERATION</POSITION>
   <INDEX>7</INDEX>
 </UseTemplate>
-<!-- UARRSI LINES -->
+      <!-- UARRSI LINES -->
 <UseTemplate Name="FuelSystem_Button_DELTASIM">
   <SIMVAR>FUELSYSTEM VALVE SWITCH</SIMVAR>
   <NODE_ID>BUTTON_UARRSI_L_VALVE</NODE_ID>
@@ -3708,7 +4000,7 @@
               <ANIM_NAME>Knob_Min_Set_Alt_P</ANIM_NAME>					
               <CLOCKWISE_CODE>  
                 (L:C17_Alt_Set_P, feet) 10 + (&gt;L:C17_Alt_Set_P, feet)
-                <!-- (L:C17_Alt_Set_P, feet) 1000 &gt; if{ 0 (&gt;L:C17_Alt_Set_P, feet) } -->
+            <!-- (L:C17_Alt_Set_P, feet) 1000 &gt; if{ 0 (&gt;L:C17_Alt_Set_P, feet) } -->
               </CLOCKWISE_CODE>
               <ANTICLOCKWISE_CODE>
                 (L:C17_Alt_Set_P, feet) 10 - 0 max (&gt;L:C17_Alt_Set_P, feet) 
@@ -3745,15 +4037,20 @@
 
           <UseTemplate Name="DELTASIM_Finite_Knob_Template">
             <NODE_ID>KNOB_SPOILER_ARM</NODE_ID>
-            <ANIM_CODE>(A:SPOILERS ARMED, bool) 100 * </ANIM_CODE>
+            <ANIM_CODE>(L:C17_AGS_RTO_SWITCH, bool) 100 * (L:C17_AGS_LAND_SWITCH, bool) 100 * +</ANIM_CODE>
             <CLOCKWISE_CODE>
-              0 (&gt;K:SPOILERS_ARM_SET) 
-              0 (&gt;K:SET_AUTOBRAKE_CONTROL)
+              0 (&gt;L:C17_AGS_RTO_SWITCH) 
+              0 (&gt;L:C17_AGS_LAND_SWITCH)
 
+              1 (&gt;K:SPOILERS_OFF)
             </CLOCKWISE_CODE>
             <ANTICLOCKWISE_CODE>
-              1 (&gt;K:SPOILERS_ARM_SET)
-              1 (&gt;K:SET_AUTOBRAKE_CONTROL)
+              (A:SIM ON GROUND,bool) 1 ==
+              if{ 
+                1 (&gt;L:C17_AGS_RTO_SWITCH) 
+              } els{
+                1 (&gt;L:C17_AGS_LAND_SWITCH)
+              }    
 
             </ANTICLOCKWISE_CODE>
             <CW_ANIMTIP>SPOILERS ARM</CW_ANIMTIP>
@@ -3862,7 +4159,7 @@
               <NODE_ID>P_TILLER</NODE_ID>
               <ANIM_NAME>P_TILLER</ANIM_NAME> 
           </UseTemplate>
-          <!-- <UseTemplate Name="ASOBO_HANDLING_Steering_Tiller_Template">
+        <!-- <UseTemplate Name="ASOBO_HANDLING_Steering_Tiller_Template">
             <NODE_ID>CP_TILLER</NODE_ID>
             <ANIM_NAME>CP_TILLER</ANIM_NAME> 
         </UseTemplate> -->
@@ -4026,7 +4323,7 @@
             <TRIM_LIMIT>35</TRIM_LIMIT>
             <NO_RESET_PUSH/>
             <TT_ICON>ROTATE</TT_ICON>
-            <!-- This is to get around the broken knob light material. -->
+          <!-- This is to get around the broken knob light material. -->
           </UseTemplate>
           <UseTemplate Name="ASOBO_HANDLING_Switch_AileronTrim_Template">
             <NODE_ID>switch_ailerons_altn</NODE_ID>
@@ -4049,27 +4346,7 @@
             </VISIBILITY_CODE>
           </UseTemplate>
         </Component>
-        <Component ID="Humvee_STA5" Node="Main_Anim.001">
-          <UseTemplate Name="ASOBO_GT_Visibility">
-            <VISIBILITY_CODE>(A:LIGHT RECOGNITION:4, bool)</VISIBILITY_CODE>
-          </UseTemplate>
-        </Component>
-        <Component ID="Humvee_STA4" Node="Main_Anim.002">
-          <UseTemplate Name="ASOBO_GT_Visibility">
-            <VISIBILITY_CODE>(A:LIGHT RECOGNITION:4, bool)</VISIBILITY_CODE>
-          </UseTemplate>
-        </Component>
-        <Component ID="Humvee_STA3" Node="Main_Anim.003">
-          <UseTemplate Name="ASOBO_GT_Visibility">
-            <VISIBILITY_CODE>(A:LIGHT RECOGNITION:4, bool)</VISIBILITY_CODE>
-          </UseTemplate>
-        </Component>
-        <Component ID="Humvee_STA2" Node="Main_Anim.004">
-          <UseTemplate Name="ASOBO_GT_Visibility">
-            <VISIBILITY_CODE>(A:LIGHT RECOGNITION:4, bool)</VISIBILITY_CODE>
-          </UseTemplate>
-        </Component>
-        <Component ID="Humvee_STA1" Node="Main_Anim.005">
+        <Component ID="Humvee_STA5" Node="Airdrop_Pivot">
           <UseTemplate Name="ASOBO_GT_Visibility">
             <VISIBILITY_CODE>(A:LIGHT RECOGNITION:4, bool)</VISIBILITY_CODE>
           </UseTemplate>
@@ -4079,7 +4356,7 @@
 </Component>
 </Behaviors>
 
-<!--============================================================= CUSTOM ANIMS  ===================================================================================================================== -->
+  <!--============================================================= CUSTOM ANIMS  ===================================================================================================================== -->
 
 <Animation name="PANEL_BACKLIGHT" guid="0369a924-8bfd-479d-8477-26fed569b4a3" length="1" type="Sim" typeParam="AutoPlay" />
 <PartInfo>
@@ -4335,7 +4612,7 @@
       </Parameter>
     </Animation>
   </PartInfo>
-<!-- RMI -->
+  <!-- RMI -->
 <Animation name="RMI_INTERIOR" guid="6cce1a5d-0c77-4bfc-9350-8d28f20a3a88" length="360" type="Sim" typeParam="AutoPlay" />
         <PartInfo>
             <Name>RMI_INTERIOR</Name>
@@ -4590,8 +4867,8 @@
 		</Parameter>
 	</Visibility>
 </PartInfo>
- 
-<!-- +++++++++++++++++++++=======LOWER PANEL++++++++++++++________________===================-->
+
+  <!-- +++++++++++++++++++++=======LOWER PANEL++++++++++++++________________===================-->
 
 
 <Animation name="lever_flap" guid="5dedae81-ab3b-44a3-8665-5d70ec216fd7" typeParam2="lever_flap" length="100" type="Sim" typeParam="AutoPlay" />
@@ -4744,7 +5021,7 @@
   </Animation>
 </PartInfo>
 
-<!-- ===========================================  ENGINE QUADRANT ===============================================-->
+  <!-- ===========================================  ENGINE QUADRANT ===============================================-->
 
 <Animation name="lever_trimtab_elevator_trimotor" guid="29bb9907-d2bc-44dd-8550-5780e0539203" length="100" type="Sim" typeParam2="lever_trimtab_elevator_trimotor" typeParam="AutoPlay" />
 <Animation name="lever_speed_brake" guid="fb0ef2ea-47a9-41a7-8ad4-3f2a7601024a" typeParam2="lever_speed_brake" length="50" type="Sim" typeParam="AutoPlay" />
@@ -4853,8 +5130,7 @@
 </PartInfo>
 
 
-
-<!-- ===========================================  HUD  CONTROLS ===============================================-->
+  <!-- ===========================================  HUD  CONTROLS ===============================================-->
 <Animation name="Wiper_Glass" guid="c8b4b4df-928c-4452-88b3-e7979bcea697" length="1" type="Sim" typeParam="AutoPlay" />
     <PartInfo>
     <Name>Wiper_Glass</Name>
@@ -4962,16 +5238,16 @@ typeParam="AutoPlay" />
 </Animation>
 </PartInfo>
 
-<Animation name="AIRDROP_HUMMER" guid="dd8909ca-5776-460a-8694-ce9933cd81e9" type="Sim" typeParam="AutoPlay" />
+<Animation name="AIRDROP_HUMMER" guid="54fd02b4-f2d7-4a05-8eea-2ef5120ed3c6" type="Sim" typeParam="AutoPlay" />
 <PartInfo>
 <Name>AIRDROP_HUMMER</Name>
-<AnimLength>1000</AnimLength>
+<AnimLength>530</AnimLength>
 <Animation>
 <Parameter>
    <Code>
-    (A:LIGHT RECOGNITION:3, bool) 1000 *
+    (A:LIGHT RECOGNITION:3, bool) 400 *
   </Code> 
-  <Lag>60</Lag>
+  <Lag>8</Lag>
 </Parameter>
 </Animation>
 </PartInfo>
@@ -4985,7 +5261,7 @@ typeParam="AutoPlay" />
    <Code>
     (A:LIGHT RECOGNITION:5, bool) 10 *
   </Code> 
-  <Lag>30</Lag>
+  <Lag>20</Lag>
 </Parameter>
 </Animation>
 

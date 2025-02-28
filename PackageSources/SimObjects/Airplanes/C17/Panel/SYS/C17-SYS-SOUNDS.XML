@@ -72,6 +72,21 @@
     </Select>
   </Element>	
 
+   <!-- ARM AGS RTO SPOILERS ON TAKEOFF-->
+   <Element>
+    <Select>
+        <Value>
+      (A:CIRCUIT ON:65,bool) 1 ==
+      (L:C17_AGS_RTO_SWITCH, bool) 0 == and
+      (A:SIM ON GROUND,bool) 1 == and
+      (L:C17_AVG_THROTTLE_POS,percent) 70 &gt; and
+      (A:TRAILING EDGE FLAPS RIGHT PERCENT,percent) 30 &gt; and
+      if{ 1 (&gt;L:C17_ARM_AGS_SPOILERS,bool) }
+      els{ 0 (&gt;L:C17_ARM_AGS_SPOILERS,bool) }
+        </Value>
+    </Select>
+  </Element>	
+
 
    <!-- FIRE ALERTING TEST-->
    <Element>
@@ -359,7 +374,7 @@ C17_AP_PILOT_SEL
         <Value>        
           (A:CIRCUIT ON:65,bool) 1 ==
           (L:C17_APUDOOR_OPEN,bool) 1 == and
-          (A:TURB ENG THROTTLE COMMANDED N1:2,percent) 70 &gt; and
+          (L:C17_AVG_THROTTLE_POS,percent) 70 &gt; and
           if{ 1 (&gt;L:C17_ALERT_APU_DOOR,bool) }
           els{ 0 (&gt;L:C17_ALERT_APU_DOOR,bool) }					
         </Value>
@@ -372,7 +387,7 @@ C17_AP_PILOT_SEL
         <Value>        
           (A:CIRCUIT ON:65,bool) 1 ==
           (A:SIM ON GROUND,bool) 1 == and
-          (A:TURB ENG THROTTLE COMMANDED N1:2,percent) 70 &gt; and
+          (L:C17_AVG_THROTTLE_POS,percent) 70 &gt; and
           (A:TRAILING EDGE FLAPS RIGHT PERCENT,percent) 30 &lt; and
           if{ 1 (&gt;L:C17_SET_TAKEOFF_FLAPS,bool) }
           els{ 0 (&gt;L:C17_SET_TAKEOFF_FLAPS,bool) }					
@@ -387,7 +402,7 @@ C17_AP_PILOT_SEL
         <Value>        
           (A:CIRCUIT ON:65,bool) 1 ==
           (A:SIM ON GROUND,bool) 1 == and
-          (A:TURB ENG THROTTLE COMMANDED N1:2,percent) 70 &gt; and
+          (L:C17_AVG_THROTTLE_POS,percent) 70 &gt; and
           (A:BRAKE PARKING POSITION,bool) 1 == and
           if{ 1 (&gt;L:C17_SET_TAKEOFF_BRAKE,bool) }
           els{ 0 (&gt;L:C17_SET_TAKEOFF_BRAKE,bool) }					
@@ -401,7 +416,7 @@ C17_AP_PILOT_SEL
         <Value>        
           (A:CIRCUIT ON:65,bool) 1 ==
           (A:SIM ON GROUND,bool) 1 == and
-          (A:TURB ENG THROTTLE COMMANDED N1:2,percent) 70 &gt; and
+          (L:C17_AVG_THROTTLE_POS,percent) 70 &gt; and
           (A:SPOILERS HANDLE POSITION,bool) 1 == and
           if{ 1 (&gt;L:C17_SET_TAKEOFF_SPOILERS,bool) }
           els{ 0 (&gt;L:C17_SET_TAKEOFF_SPOILERS,bool) }					
@@ -448,6 +463,19 @@ C17_AP_PILOT_SEL
   </Select>
 </Element>
 
+  <!--		LANDING AGS NOT SET		-->	
+  <Element>
+    <Select>
+          <Value>        
+            (L:C17_AURAL_ACTIVE, bool) 1 ==
+            (L:C17_IN_LANDING_CFG, bool) 1 == and
+            (L:C17_AGS_LAND_SWITCH, bool) 0 == and
+            if{ 1 (&gt;L:C17_ARM_AGS_LAND_SPOILERS,BOOL) }
+            els{ 0 (&gt;L:C17_ARM_AGS_LAND_SPOILERS,BOOL) }							
+          </Value>
+    </Select>
+  </Element>
+
   <!--		TERRAIN FLY UP		-->	
 <Element>
   <Select>
@@ -468,7 +496,7 @@ C17_AP_PILOT_SEL
         <Value>        
           (L:C17_AURAL_ACTIVE, bool) 1 ==
           (A:TRAILING EDGE FLAPS RIGHT PERCENT,percent) 0 == and
-          (A:GEAR HANDLE POSITION,percent) 1 == and
+          (A:GEAR HANDLE POSITION, bool) 1 == and
           (L:C17_RADALT,feet) 500 &lt; and	
           (A:VERTICAL SPEED,feet per minute) -100 &lt; and
           if{ 1 (&gt;L:C17_RETRACT_FLAPS,BOOL) }
@@ -483,7 +511,7 @@ C17_AP_PILOT_SEL
         <Value>
           (A:CIRCUIT ON:65,bool) 1 ==
           (L:C17_GEAR_ANNUN_TEST, bool) 1 == and
-          if{1 (&gt;L:C17_EXTEND_GEAR,BOOL) }
+          if{ 1 (&gt;L:C17_EXTEND_GEAR,BOOL) }
           els{ 0 (&gt;L:C17_EXTEND_GEAR,BOOL) }
         </Value>
   </Select>

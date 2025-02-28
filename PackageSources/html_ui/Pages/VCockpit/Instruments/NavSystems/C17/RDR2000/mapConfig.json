@@ -1,0 +1,121 @@
+{
+    "waypointLabelFontSize": 10,
+    "waypointLabelFontFamily": "Consolas",
+    "waypointLabelColor": "black",
+    "waypointLabelStrokeColor": "black",
+    "waypointLabelStrokeWidth": 0,
+    "waypointLabelUseBackground": false,
+    "waypointLabelBackgroundColor": "black",
+    "waypointLabelBackgroundStrokeColor": "black",
+    "waypointLabelBackgroundStrokeWidth": 0,
+    "waypointLabelBackgroundPadding": "1 1 1 1",
+    "waypointLabelBackgroundPaddingTop": 1,
+    "waypointLabelBackgroundPaddingRight": 1,
+    "waypointLabelBackgroundPaddingBottom": 1,
+    "waypointLabelBackgroundPaddingLeft": 1,
+    "waypointLabelDistanceX": 0,
+    "waypointLabelDistance": 0,
+    "waypointIconSize": 10,
+    "intersectionLabelColor": "black",
+    "vorLabelColor": "black",
+    "ndbLabelColor": "black",
+    "airportLabelColor": "black",
+    "preventLabelOverlap": true,
+    "cityLabelFontSize": 10,
+    "cityLabelFontFamily": "Consolas",
+    "cityLabelColor": "black",
+    "cityLabelStrokeColor": "black",
+    "cityLabelStrokeWidth": 0,
+    "cityLabelUseBackground": false,
+    "cityLabelBackgroundColor": "black",
+    "cityLabelBackgroundStrokeColor": "black",
+    "cityLabelBackgroundStrokeWidth": 0,
+    "cityLabelBackgroundPadding": "1 1 1 1",
+    "cityLabelDistance": 0.25,
+    "cityIconSize": 10,
+    "airplaneIconSize": 32,
+    "airplaneIcon1": "ICON_MAP_PLANE",
+    "airplaneIcon2": "ICON_MAP_PLANE",
+    "airplaneIcon3": "ICON_MAP_PLANE",
+    "imagesDir": "/Pages/VCockpit/Instruments/Airliners/Destroyer_C17/FMC/Images/",
+    "delay": 0,
+    "runwayFillColor": "white",
+    "runwayStrokeColor": "white",
+    "runwayStrokeWidth": 0,
+    "runwayCornerRadius": 1,
+    "runwayMinimalWidth": 10,
+    "latLonStrokeColor": "gray",
+    "latLonStrokeWidth": 2,
+    "latLonDashWidth": 10,
+    "latLonLabelFontFamily": "Consolas",
+    "latLonLabelFontSize": 9,
+    "latLonLabelColor": "gray",
+    "latLonLabelStrokeColor": "black",
+    "latLonLabelStrokeWidth": 2,
+    "flightPlanActiveLegColor": "MediumOrchid",
+    "flightPlanActiveLegWidth": 3,
+    "flightPlanActiveLegStrokeColor": "black",
+    "flightPlanActiveLegStrokeWidth": 3,
+    "flightPlanNonActiveLegColor": "LightGray",
+    "flightPlanNonActiveLegWidth": 2,
+    "flightPlanNonActiveLegStrokeColor": "black",
+    "flightPlanNonActiveLegStrokeWidth": 2,
+    "flightPlanDirectLegColor": "MediumOrchid",
+    "flightPlanDirectLegWidth": 3,
+    "flightPlanDirectLegStrokeColor": "black",
+    "flightPlanDirectLegStrokeWidth": 3,
+    "roadMotorWayColor": "gray",
+    "roadMotorWayWidth": 6,
+    "roadTrunkColor": "gray",
+    "roadTrunkWidth": 4,
+    "roadPrimaryColor": "gray",
+    "roadPrimaryWidth": 2,
+    "railwayStrokeColor": "gray",
+    "railwayWidth": 2,
+    "railwayDashLength": 6,
+    "netBingTextureResolution": 1024,
+    "netBingAltitudeColors1": [],
+    "netBingWaterColor1": "#000000",
+    "netBingHeightColor1": [
+        {
+            "alt": 0,
+            "color": "#000000"
+        },
+        {
+            "alt": 9000,
+            "color": "#000000"
+        }
+    ],
+    "netBingAltitudeColors2": [],
+    "netBingWaterColor2": "#000000",
+    "netBingHeightColor2": [
+        {
+            "alt": 0,
+            "color": "#E53F37"
+        },
+        {
+            "alt": 100,
+            "color": "#E53F37"
+        },
+        {
+            "alt": 500,
+            "color": "#FF6A00"
+        },
+        {
+            "alt": 1000,
+            "color": "#FF6A00"
+        },
+        {
+            "alt": 2000,
+            "color": "#37A238"
+        },
+        {
+            "alt": 2500,
+            "color": "#37A238"
+        },
+        {
+            "alt": 3500,
+            "color": "#000000"
+        }
+    ]
+}

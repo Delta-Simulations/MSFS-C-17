@@ -11,6 +11,12 @@ Cockpit Lights
 <Element>
 <Select>
 <Value>
+<!-- DU CONTROLS -->
+(L:C17_DU_LWR_P_BRT,enum) 0 == (L:C17_Cpit_Pacs,bool) 0 == or if{ 1 (&gt;A:CIRCUIT BREAKER PULLED:70,bool) } els{ 0 (&gt;A:CIRCUIT BREAKER PULLED:70,bool) }
+(L:C17_DU_LWR_CP_BRT,enum) 0 == (L:C17_Cpit_Pacs,bool) 0 == or if{ 1 (&gt;A:CIRCUIT BREAKER PULLED:71,bool) } els{ 0 (&gt;A:CIRCUIT BREAKER PULLED:71,bool) }
+
+(L:C17_DU_UPR_P_BRT,enum) 0 == (L:C17_Cpit_Pacs,bool) 0 == or if{ 1 (&gt;A:CIRCUIT BREAKER PULLED:72,bool) } els{ 0 (&gt;A:CIRCUIT BREAKER PULLED:72,bool) }
+(L:C17_DU_UPR_CP_BRT,enum) 0 == (L:C17_Cpit_Pacs,bool) 0 == or if{ 1 (&gt;A:CIRCUIT BREAKER PULLED:73,bool) } els{ 0 (&gt;A:CIRCUIT BREAKER PULLED:73,bool) }
 
 
 <!-- PFD CONTROLS -->
@@ -18,6 +24,7 @@ Cockpit Lights
 (L:C17_PFD2_BRT,enum) 0 == (L:C17_Cpit_Pacs,bool) 0 == or if{ 1 (&gt;L:MFDX2 on,bool) } els{ 0 (&gt;L:MFDX2 on,bool) }
 (L:C17_PFD3_BRT,enum) 0 == (L:C17_Cpit_Pacs,bool) 0 == or if{ 1 (&gt;L:MFDX3 on,bool) } els{ 0 (&gt;L:MFDX3 on,bool) }
 (L:C17_PFD4_BRT,enum) 0 == (L:C17_Cpit_Pacs,bool) 0 == or if{ 1 (&gt;L:MFDX4 on,bool) } els{ 0 (&gt;L:MFDX4 on,bool) }
+
 
 
 <!--  LANDING/TAXI ===============-->

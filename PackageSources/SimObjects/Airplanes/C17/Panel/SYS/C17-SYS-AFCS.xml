@@ -4,24 +4,76 @@
   FOR DELTA SIMULATIONS C-17 (delta.simulations0@gmail.com)
   *************************************************
   AFCS/FLIGHT CONTROL SYSTEMS
-  
-  
+</Comment>  
+<Comment>
+*************************************************
+AUTO SPOILER SYSTEM
+Mode 1 - AGS RTO
+TOGA or
+3 throttles past 60percent 
+Flap/slat handle in new detent
+Will Sound SPOILERS NOT ARMED if AGS not armed
 
-  <Comment>
-    *************************************************
-    AUTO SPOILER SYSTEM
-
-    </Comment>
-  <Element>
-  <Select>
-  <Value>
-
-  </Value>
-  </Select>
-  </Element>
-
-  
+AGS LAND 
+No WoW
+Landing gear DOWN
+When AGS Land Armed, deployed when
+2+ levers pulled to idle
+Wheel spin of main gear is less than 50konts
+aircraft on ground OR
+WoW true, 2+ levers in reverse thrust
+If not armed when gear down, flap handle 3/4 sound SPOILER NOT ARMED and show on WAP
 </Comment>
+
+<Element>
+<Select>
+<Value>
+  (* AGS REJECTED TAKEOFF MODE *)
+  (* If aircraft NOT on ground, reset pos *)
+  (L:C17_AGS_RTO_SWITCH, bool) 1 ==
+  (A:SIM ON GROUND,bool) 0 ==
+  if{ 0 (&gt;L:C17_AGS_RTO_SWITCH) }
+
+  (* If aircraft LAND armed, arm AGS for RTO on landing *)
+  (L:C17_AGS_LAND_SWITCH, bool) 1 ==
+  (L:C17_AGS_RTO_SWITCH, bool) 0 == and
+  (A:SIM ON GROUND,bool) 1 == and
+  (L:C17_AVG_THROTTLE_POS,percent) 80 &gt;
+  (A:AUTOPILOT TAKEOFF POWER ACTIVE, bool) 1 == or and
+  if{ 
+    1 (&gt;L:C17_AGS_RTO_SWITCH) 
+    0 (&gt;L:C17_AGS_LAND_SWITCH) 
+    1 (&gt;K:SPOILERS_OFF) 
+  
+  }
+
+
+  (L:C17_AGS_RTO_SWITCH, bool) 1 ==
+  (L:C17_AVG_THROTTLE_POS,percent) -1 &lt; and
+  if{ 1 (&gt;K:SPOILERS_ON) }
+
+</Value>
+</Select>
+</Element>
+<Element>
+<Select>
+<Value>
+  (* AGS LANDING MODE *)
+
+  (* If aircraft NOT configured right, reset pos *)
+  (L:C17_AGS_LAND_SWITCH, bool) 1 ==
+  (A:GEAR HANDLE POSITION, bool) 0 == and
+  if{ 0 (&gt;L:C17_AGS_LAND_SWITCH) }
+
+  (L:C17_AGS_LAND_SWITCH, bool) 1 ==
+  (A:SIM ON GROUND,bool) 1 == and
+  (L:C17_AVG_THROTTLE_POS,percent) 0 &lt; and
+  if{ 1 (&gt;K:SPOILERS_ON) }
+</Value>
+</Select>
+</Element>
+
+
 
    
 

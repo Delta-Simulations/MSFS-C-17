@@ -45,7 +45,7 @@ if{
 
 
   (A:FUELSYSTEM TANK WEIGHT:2,Pounds) 38000 &gt;
-  (A:FUELSYSTEM TANK LEVEL:1,percent) 99.5 &lt; and
+  (A:FUELSYSTEM TANK LEVEL:1,percent) 99 &lt; and
   (A:FUELSYSTEM VALVE SWITCH:1,bool) 1 == and
   (A:FUELSYSTEM VALVE SWITCH:2,bool) 1 == and
   if{ 
@@ -62,7 +62,7 @@ if{
   }
 
   (A:FUELSYSTEM TANK WEIGHT:3,Pounds) 38000 &gt;
-  (A:FUELSYSTEM TANK LEVEL:4,percent) 99.5 &lt; and
+  (A:FUELSYSTEM TANK LEVEL:4,percent) 99 &lt; and
   (A:FUELSYSTEM VALVE SWITCH:3,bool) 1 == and
   (A:FUELSYSTEM VALVE SWITCH:4,bool) 1 == and
   if{ 

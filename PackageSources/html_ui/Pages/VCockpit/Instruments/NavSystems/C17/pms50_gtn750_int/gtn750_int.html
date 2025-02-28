@@ -1,0 +1,139 @@
+﻿<script type="text/html" id="GTN750_INT">
+    <div id="Mainframe">
+        <div id="Electricity" state="off">
+            <div id="Gtn750_Int_Container">
+                <gtn750-element></gtn750-element>
+            </div>
+        </div>
+    </div>
+</script>
+
+
+<script type="text/html" import-script="/Pages/VCockpit/Instruments/NavSystems/Shared/NavSystem.js"></script>
+<script type="text/html" import-script="/Pages/VCockpit/Instruments/NavSystems/Shared/NavSystemTouch.js"></script>
+<script type="text/html" import-template="/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/GTN750.html"></script>
+
+<script type="text/javascript">
+    // Class used if the GTN750 instrument is not installed in the community directory
+    class GTN750_NOGTN750 extends BaseInstrument {
+        get templateID() { return "GTN750_INT"; }  // ID if the instrument in HTML
+        get instrumentAlias() { return "GTN750"; }
+        constructor() {
+            super();
+        }
+        connectedCallback() {
+            super.connectedCallback();
+            diffAndSetHTML(this.getChildById("Mainframe"), '<div style="font-size: 4vh">PMS50 GTN750 package not found.<br/>Get it from https://pms50.com</div>');
+        }
+    }
+    
+    
+    // Check if the GTN750 instrument is installed 
+    // We try to read a file of the package in the Virtual file system
+    setTimeout(() => {
+        let httpRequest = new XMLHttpRequest();
+        httpRequest.onreadystatechange = function (data) {
+            if (this.readyState === XMLHttpRequest.DONE) {
+                let loaded = this.status === 200 || this.status === 0;
+                if (loaded) {
+                    // GTN750 is installed
+                    // Register the instrument
+                    Include.addScript("/Pms50/gtn750/Pages/VCockpit/Instruments/NavSystems/GPS/GTN750/js/GTN750.js", function () {
+                        registerInstrument("gtn750-int-element", GTN750_INT);
+                        // Set a global variable telling we are installed
+                        SimVar.SetSimVarValue("L:PMS50_GTN750_INSTALLED", "bool", true);
+                    });
+                }
+                else {
+                    // GTN750 is NOT installed
+                    // Set a global variable telling we are not installed
+                    SimVar.SetSimVarValue("L:PMS50_GTN750_INSTALLED", "bool", false);
+                    // Register the fake instrument
+                    registerInstrument("gtn750-int-element", GTN750_NOGTN750);
+                }
+            }
+        };
+        var milliseconds = new Date().getTime().toString();
+        httpRequest.open("GET", "/VFS/Integration/gtn750_interface/check.txt?id=" + milliseconds);
+        httpRequest.send();
+
+    }, 1000);
+    
+</script>
+
+<style>
+    :root {
+      --bodyHeightScale: 1;
+    }
+    
+    html {
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+    html body {
+      -webkit-user-select: none;
+      font-family: Roboto-Regular;
+      font-size: calc(var(--viewportHeightRatio) * (36px / 21.6) * var(--currentPageHeight) / 100);
+      color: white;
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    
+    #highlight {
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      z-index: 10;
+    }
+    
+    #Electricity {
+      width: 100%;
+      height: 100%;
+    }
+    
+    #Electricity[state=off] {
+      display: none;
+    }
+    
+    gtn750-int-element #highlight {
+      pointer-events: none;
+      z-index: 10000;
+    }
+    
+    gtn750-int-element {
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      font-family: Roboto-Bold;
+      overflow: hidden;
+    }
+    gtn750-int-element #Electricity {
+      width: 100%;
+      height: 100%;
+    }
+    gtn750-int-element #Electricity[state=off] {
+      display: none;
+    }
+    gtn750-int-element #Mainframe {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      position: relative;
+    }
+    gtn750-int-element #Mainframe #Electricity {
+      position: relative;
+    }
+    gtn750-int-element #Mainframe #Electricity  #Gtn750_Int_Container {
+      height: 100%;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background-color: black;
+      position: absolute;
+    }
+</style>
