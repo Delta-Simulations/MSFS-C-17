@@ -354,6 +354,108 @@ C17_AP_PILOT_SEL
       </Value>
     </Select>
   </Element>
+<!-- COPILOT MKR CONTROLS -->
+  <Element>
+    <Select>
+      <Value>
+        <!-- MDA -->
+        (A:CIRCUIT ON:65,bool) 1 ==
+        (L:C17_AP_PILOT_SEL, bool) 1 == and
+        (L:C17_Alt_Ref_CP, enum) 0 == and
+        (L:C17_Alt_Set_CP, feet) 0 &gt; and
+
+        (L:C17_Alt_RaBARO_CP, bool) 0 ==
+        (L:C17_Alt_Set_CP, feet) (A:INDICATED ALTITUDE, feet) - abs 1 &lt; and
+
+        (L:C17_Alt_RaBARO_CP, bool) 1 ==
+        (L:C17_Alt_Set_CP, feet) (A:PLANE ALT ABOVE GROUND, feet) - abs 1 &lt; and or and
+
+        (A:VERTICAL SPEED,feet per minute) 0 &lt; and
+        if{ 1 (&gt;L:C17_GPWS_MDA_CP,bool) }
+        els{
+        0 (&gt;L:C17_GPWS_MDA_CP,bool)
+        }
+
+
+      </Value>
+    </Select>
+  </Element>
+  <!-- 100' ABOVE PILOT -->
+  <Element>
+    <Select>
+      <Value>
+
+        (A:CIRCUIT ON:65,bool) 1 ==
+        (L:C17_AP_PILOT_SEL, bool) 1 == and
+        (L:C17_Alt_Ref_CP, enum) 0 ==
+        (L:C17_Alt_Ref_CP, enum) 2 == or and
+        (L:C17_Alt_Set_CP, feet) 0 &gt; and
+
+
+        (L:C17_Alt_RaBARO_CP, bool) 0 ==
+        (A:INDICATED ALTITUDE, feet) (L:C17_Alt_Set_CP, feet) - near 100 == and
+
+        (L:C17_Alt_RaBARO_CP, bool) 1 ==
+        (A:PLANE ALT ABOVE GROUND, feet) (L:C17_Alt_Set_CP, feet) - near 100 == and or and
+
+        (A:VERTICAL SPEED,feet per minute) 0 &lt; and
+
+        if{ 1 (&gt;L:C17_GPWS_100Above_CP,bool) }
+        els{
+        0 (&gt;L:C17_GPWS_100Above_CP,bool)
+        }
+      </Value>
+    </Select>
+  </Element>
+
+  <!-- DH -->
+  <Element>
+    <Select>
+      <Value>
+
+        (A:CIRCUIT ON:65,bool) 1 ==
+        (L:C17_AP_PILOT_SEL, bool) 1 == and
+        (L:C17_Alt_Ref_CP, enum) 2 == and
+        (L:C17_Alt_Set_CP, feet) 0 &gt; and
+
+        (L:C17_Alt_RaBARO_CP, bool) 0 ==
+        (L:C17_Alt_Set_CP, feet) (A:INDICATED ALTITUDE, feet) - abs 1 &lt; and
+
+        (L:C17_Alt_RaBARO_CP, bool) 1 ==
+        (L:C17_Alt_Set_CP, feet) (A:PLANE ALT ABOVE GROUND, feet) - abs 1 &lt; and or and
+        (A:VERTICAL SPEED,feet per minute) 0 &lt; and
+        if{ 1 (&gt;L:C17_GPWS_DH_CP,bool) }
+        els{
+        0 (&gt;L:C17_GPWS_DH_CP,bool)
+        }
+      </Value>
+    </Select>
+  </Element>
+
+  <!-- MKR -->
+  <Element>
+    <Select>
+      <Value>
+
+        (A:CIRCUIT ON:65,bool) 1 ==
+        (L:C17_Alt_Ref_CP, enum) 1 == and
+        (L:C17_Alt_Set_CP, feet) 0 &gt; and
+
+        (L:C17_Alt_RaBARO_CP, bool) 0 ==
+        (L:C17_Alt_Set_CP, feet) (A:INDICATED ALTITUDE, feet) - abs 1 &lt; and
+
+        (L:C17_Alt_RaBARO_CP, bool) 1 ==
+        (L:C17_Alt_Set_CP, feet) (A:PLANE ALT ABOVE GROUND, feet) - abs 1 &lt; and or and
+        (A:VERTICAL SPEED,feet per minute) 0 &lt; and
+        if{ 1 (&gt;L:C17_GPWS_MKR_CP,bool) }
+        els{
+        0 (&gt;L:C17_GPWS_MKR_CP,bool)
+        }
+      </Value>
+    </Select>
+  </Element>
+
+
 
   <!--		MISSILE WARNING		-->	
 <Element>

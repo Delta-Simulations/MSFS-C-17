@@ -222,6 +222,23 @@
         <Range LowerBound="1.0" />    
     </Sound>
 
+	<Sound WwiseData="true" WwiseEvent="Landing_MDA" LocalVar="C17_GPWS_MDA_CP" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+
+	<Sound WwiseData="true" WwiseEvent="Landing_MDA" LocalVar="C17_GPWS_DH_CP" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+
+    <Sound WwiseData="true" WwiseEvent="Landing_100Above" LocalVar="C17_GPWS_100Above_CP" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+
+    <Sound WwiseData="true" WwiseEvent="Landing_100Above" LocalVar="C17_GPWS_MKR_CP" Continuous="true" NodeName="Plane.093" BreakOnStop="true" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
+        <Range LowerBound="1.0" />    
+    </Sound>
+
+
 
 	<Sound WwiseData="true" WwiseEvent="Warning_MissileLaunch" LocalVar="C17_MissileLaunch" NodeName="Plane.093" ViewPoint="Inside" FadeOutType="1" FadeOutTime="0.1" Model="Interior">
         <Range LowerBound="1.0" />    

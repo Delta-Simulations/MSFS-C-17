@@ -4034,6 +4034,47 @@
             <CCW_ANIMTIP>ALT REFERENCE RA/BA</CCW_ANIMTIP>
           </UseTemplate>
 
+          <!-- COPILOT MKR -->
+          <Component ID="Knob_Min_Set_Alt_CP" Node="Knob_Min_Set_Alt_CP">
+            <UseTemplate Name="ASOBO_GT_Knob_Infinite">
+              <ANIM_NAME>Knob_Min_Set_Alt_CP</ANIM_NAME>					
+              <CLOCKWISE_CODE>  
+                (L:C17_Alt_Set_CP, feet) 10 + (&gt;L:C17_Alt_Set_CP, feet)
+            <!-- (L:C17_Alt_Set_CP, feet) 1000 &gt; if{ 0 (&gt;L:C17_Alt_Set_CP, feet) } -->
+              </CLOCKWISE_CODE>
+              <ANTICLOCKWISE_CODE>
+                (L:C17_Alt_Set_CP, feet) 10 - 0 max (&gt;L:C17_Alt_Set_CP, feet) 
+              </ANTICLOCKWISE_CODE>
+              <ANIMTIP_0>MIN ALT</ANIMTIP_0>
+              <ANIMTIP_1>MIN ALT</ANIMTIP_1>
+            </UseTemplate>
+          </Component>
+          <UseTemplate Name="DELTASIM_Finite_Knob_Template">
+            <NODE_ID>Knob_Alt_Ref_CP</NODE_ID>
+            <ANIM_CODE>(L:C17_Alt_Ref_CP) 50 *</ANIM_CODE>
+            <CLOCKWISE_CODE>
+              (L:C17_Alt_Ref_CP) ++ 2 min (&gt;L:C17_Alt_Ref_CP)
+            </CLOCKWISE_CODE>
+            <ANTICLOCKWISE_CODE>
+              (L:C17_Alt_Ref_CP) -- 0 max (&gt;L:C17_Alt_Ref_CP)
+            </ANTICLOCKWISE_CODE>
+            <CW_ANIMTIP>ALT REFERENCE MODE</CW_ANIMTIP>
+            <CCW_ANIMTIP>ALT REFERENCE MODE</CCW_ANIMTIP>
+          </UseTemplate>
+          <UseTemplate Name="DELTASIM_Finite_Knob_Template">
+            <NODE_ID>Knob_Min_Set_Baro_RA_CP</NODE_ID>
+            <ANIM_CODE>(L:C17_Alt_RaBARO_CP) 50 *</ANIM_CODE>
+            <CLOCKWISE_CODE>
+              (L:C17_Alt_RaBARO_CP) ++ 1 min (&gt;L:C17_Alt_RaBARO_CP)
+            </CLOCKWISE_CODE>
+            <ANTICLOCKWISE_CODE>
+              (L:C17_Alt_RaBARO_CP) -- 0 max (&gt;L:C17_Alt_RaBARO_CP)
+            </ANTICLOCKWISE_CODE>
+            <CW_ANIMTIP>ALT REFERENCE RA/BA</CW_ANIMTIP>
+            <CCW_ANIMTIP>ALT REFERENCE RA/BA</CCW_ANIMTIP>
+          </UseTemplate>
+
+
 
           <UseTemplate Name="DELTASIM_Finite_Knob_Template">
             <NODE_ID>KNOB_SPOILER_ARM</NODE_ID>
