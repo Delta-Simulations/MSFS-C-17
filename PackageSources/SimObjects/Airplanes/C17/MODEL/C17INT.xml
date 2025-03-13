@@ -1175,6 +1175,39 @@
 <EMISSIVE_CODE>(L:C17_PFD4_BRT,enum) (A:GLASSCOCKPIT AUTOMATIC BRIGHTNESS, number) * (L:C17_Cpit_Pacs,bool) *</EMISSIVE_CODE>
 </UseTemplate>
 </Component>
+<Component ID="OH_DISP_BACKLIGHT" Node="OH_DISP_BACKLIGHT">
+  <UseTemplate Name="ASOBO_GT_Material_Emissive_Code">
+<EMISSIVE_CODE>(L:C17_OH_DISP_BACKLIGHT, percent) (A:CIRCUIT ON:65,bool) *</EMISSIVE_CODE>
+</UseTemplate>
+</Component>
+<Component ID="AFCS_Disp" Node="AFCS_Disp">
+  <UseTemplate Name="ASOBO_GT_Material_Emissive_Code">
+<EMISSIVE_CODE>(L:C17_AFCS_DISP_BACKLIGHT, percent) (A:CIRCUIT ON:65,bool) *</EMISSIVE_CODE>
+</UseTemplate>
+</Component>
+<Component ID="WAP_Disp" Node="WAP_Disp">
+  <UseTemplate Name="ASOBO_GT_Material_Emissive_Code">
+<EMISSIVE_CODE>(L:C17_WACAP_BRT, bool) (A:CIRCUIT ON:65,bool) 3 * * 0.5 +</EMISSIVE_CODE>
+</UseTemplate>
+</Component>
+<Component ID="STBY_ENG_DISP" Node="STBY_ENG_DISP">
+  <UseTemplate Name="ASOBO_GT_Material_Emissive_Code">
+<EMISSIVE_CODE>1 (A:GLASSCOCKPIT AUTOMATIC BRIGHTNESS, number) +</EMISSIVE_CODE>
+</UseTemplate>
+</Component>
+<Component ID="Pedestal_Display" Node="Pedestal_Display">
+  <UseTemplate Name="ASOBO_GT_Material_Emissive_Code">
+<EMISSIVE_CODE>1 (A:GLASSCOCKPIT AUTOMATIC BRIGHTNESS, number) +</EMISSIVE_CODE>
+</UseTemplate>
+</Component>
+<Component ID="Radio_Disp_1" Node="Radio_Disp_1">
+  <UseTemplate Name="ASOBO_GT_Material_Emissive_Code">
+<EMISSIVE_CODE>1 (A:GLASSCOCKPIT AUTOMATIC BRIGHTNESS, number) +</EMISSIVE_CODE>
+</UseTemplate>
+</Component>
+
+
+
       <!-- PFD CONTROLS -->
 <UseTemplate Name="DELTASIM_PushButton_Template">
   <NODE_ID>PushButton_PFD_1_1</NODE_ID>
@@ -4467,28 +4500,7 @@
 </PartInfo>
 
 
-<Animation name="AFCS_Disp" guid="be18a2df-dde6-4adf-9e38-f320e6ae97ca" length="1" type="Sim" typeParam="AutoPlay" />
-<PartInfo>
-<Name>AFCS_Disp</Name>
-<Materials> <Emissive> <Parameter>
-<Code>(L:C17_AFCS_DISP_BACKLIGHT, percent) (A:CIRCUIT ON:65,bool) *</Code> 
-</Parameter> </Emissive> </Materials>
-</PartInfo>
-<Animation name="OH_DISP_BACKLIGHT" guid="428745e2-824a-4b3f-8d24-806a5dc3ecd4" length="1" type="Sim" typeParam="AutoPlay" />
-<PartInfo>
-<Name>OH_DISP_BACKLIGHT</Name>
-<Materials> <Emissive> <Parameter>
-<Code>(L:C17_OH_DISP_BACKLIGHT, percent) (A:CIRCUIT ON:65,bool) *</Code> 
-</Parameter> </Emissive> </Materials>
-</PartInfo>
 
-<Animation name="WAP_Disp" guid="c85e2c79-e349-4c55-9c07-bde9aa5b7e45" length="1" type="Sim" typeParam="AutoPlay" />
-<PartInfo>
-<Name>WAP_Disp</Name>
-<Materials> <Emissive> <Parameter>
-<Code>(L:C17_WACAP_BRT, bool) (A:CIRCUIT ON:65,bool) 3 * * 0.5 +</Code> 
-</Parameter> </Emissive> </Materials>
-</PartInfo>
   
 
 

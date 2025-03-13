@@ -37,7 +37,7 @@
     "airplaneIcon1": "ICON_MAP_PLANE",
     "airplaneIcon2": "ICON_MAP_PLANE",
     "airplaneIcon3": "ICON_MAP_PLANE",
-    "imagesDir": "/Pages/VCockpit/Instruments/Airliners/Destroyer_C17/FMC/Images/",
+    "imagesDir": "/Pages/VCockpit/Instruments/Airliners/Shared/MFD/Images/",
     "delay": 0,
     "runwayFillColor": "white",
     "runwayStrokeColor": "white",
