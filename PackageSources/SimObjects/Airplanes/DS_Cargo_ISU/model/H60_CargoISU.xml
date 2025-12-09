@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModelInfo>
+    <LODS>
+        <LOD minSize="0" ModelFile="ISU.gltf"/>
+    </LODS>
+    <Behaviors>
+        <Include ModelBehaviorFile="Asobo\Generic.xml"/>
+        <Include ModelBehaviorFile="Asobo\Generic\FX.xml"/>
+        <Component ID="ISU_Cargo" Node="ISU_Offset_Y">
+            <UseTemplate Name="ASOBO_GT_Anim_Code">
+                <ANIM_NAME>ISU_Offset_Y</ANIM_NAME>
+                <ANIM_CODE>
+                    (L:H60_CARGO_OFFSET_Y, feet) 50 + 
+                </ANIM_CODE>
+                <ANIM_LENGTH>100</ANIM_LENGTH>
+            </UseTemplate>
+            <UseTemplate Name="ASOBO_GT_Anim_Code">
+                <ANIM_NAME>ISU_Offset_X</ANIM_NAME>
+                <ANIM_CODE>
+                    (L:H60_CARGO_OFFSET_X, feet) 50 + 
+                </ANIM_CODE>
+                <ANIM_LENGTH>100</ANIM_LENGTH>
+            </UseTemplate>
+        </Component>
+    </Behaviors>
+</ModelInfo>

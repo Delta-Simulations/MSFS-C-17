@@ -19,6 +19,15 @@
 			<AssetDir>PackageSources\SimObjects\Airplanes\C17\</AssetDir>
 			<OutputDir>SimObjects\Airplanes\C17\</OutputDir>
 		</AssetGroup>
+		<AssetGroup Name="DS_Cargo_ISU">
+			<Type>SimObject</Type>
+			<Flags>
+				<FSXCompatibility>false</FSXCompatibility>
+			</Flags>
+			<AssetDir>PackageSources\SimObjects\Airplanes\DS_Cargo_ISU\</AssetDir>
+			<OutputDir>SimObjects\Airplanes\DS_Cargo_ISU\</OutputDir>
+		</AssetGroup>
+
 		<AssetGroup Name="ContentInfo">
 			<Type>Copy</Type>
 			<Flags>
@@ -69,4 +78,3 @@
 		</AssetGroup>
 	</AssetGroups>
 </AssetPackage>
-

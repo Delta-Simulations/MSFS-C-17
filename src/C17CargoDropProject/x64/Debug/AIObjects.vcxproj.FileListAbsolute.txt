@@ -1,0 +1,2 @@
+C:\MSFS SDK\Samples\VisualStudio\SimConnectSamples\AIObjectsAndWaypoints\x64\Debug\AIObjects.exe
+D:\MSFS SDK\C-17 Cargo Drop\AIObjectsAndWaypoints\x64\Debug\AIObjects.exe

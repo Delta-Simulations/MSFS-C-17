@@ -1,0 +1,505 @@
+{
+    "asset" : {
+        "extensions" : {
+            "ASOBO_normal_map_convention" : {
+                "tangent_space_convention" : "DirectX"
+            }
+        },
+        "generator" : "Khronos glTF Blender I/O v1.8.19 and Asobo Studio MSFS Blender I/O v1.3.2",
+        "version" : "2.0"
+    },
+    "extensionsUsed" : [
+        "ASOBO_normal_map_convention",
+        "ASOBO_unique_id"
+    ],
+    "scene" : 0,
+    "scenes" : [
+        {
+            "extras" : {
+                "sna_starttime_vechms" : [
+                    19,
+                    55,
+                    30
+                ],
+                "sna_startdate_vecymd" : [
+                    2025,
+                    4,
+                    21
+                ],
+                "sna_startttomin" : 1195,
+                "sna_previous_sesion" : 5,
+                "sna_full_time" : 53,
+                "sna_sesion_str" : "",
+                "sna_all_sesions_str" : "2025-04-21 -  5min \n2025-04-21 -  6min \n2025-04-21 -  25min \n2025-04-21 -  16min \n2025-04-21 -  1min \n -  0min \n",
+                "sna_delta_time_min" : 0,
+                "vr_landmarks" : [
+                    {
+                        "type" : 0,
+                        "base_scale" : 1.0
+                    }
+                ],
+                "synch_settings" : {},
+                "sna_activesec_add" : 835,
+                "sna_mausewindow" : [
+                    3233,
+                    917
+                ],
+                "sna_asctivestring" : "S",
+                "sna_inactivesec" : 472,
+                "sna_endtime_vechms" : [
+                    19,
+                    55,
+                    59
+                ],
+                "sna_enddate_vecymd" : [
+                    2025,
+                    4,
+                    21
+                ],
+                "sna_enddatestr" : "2025-04-21",
+                "sna_endttomin" : 1195,
+                "sna_delta_sec" : 59,
+                "msfs_exporter_properties" : {
+                    "use_unique_id" : 1
+                },
+                "msfs_multi_exporter_current_tab" : 1,
+                "msfs_multi_exporter_lod_groups" : [
+                    {
+                        "group_name" : "ISU_Cargo",
+                        "lods" : [
+                            {
+                                "objectLOD" : {
+                                    "name" : "ISU_Cargo",
+                                    "type" : "Object"
+                                },
+                                "file_name" : "ISU_Cargo"
+                            }
+                        ]
+                    }
+                ],
+                "msfs_multi_exporter_presets" : [
+                    {
+                        "name" : "ISU",
+                        "file_path" : "D:\\MSFS SDK\\H-60M\\PackageSources\\Simobjects\\Airplanes\\UH60_CargoISU\\model\\",
+                        "enabled" : 1,
+                        "layers" : [
+                            {
+                                "collection" : {
+                                    "name" : "ISU_Container",
+                                    "type" : "Collection"
+                                },
+                                "enabled" : 1
+                            }
+                        ]
+                    }
+                ],
+                "msfs_multi_exporter_settings" : {
+                    "export_extras" : 1,
+                    "export_apply" : 1,
+                    "remember_export_settings" : 1,
+                    "export_frame_range" : 0,
+                    "export_force_sampling" : 1,
+                    "export_nla_strips" : 1
+                }
+            },
+            "name" : "Scene",
+            "nodes" : [
+                2
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "ISU_Cargo"
+                }
+            },
+            "mesh" : 0,
+            "name" : "ISU_Cargo",
+            "rotation" : [
+                0,
+                0.7071068286895752,
+                0,
+                0.7071067094802856
+            ]
+        },
+        {
+            "children" : [
+                0
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Offset_Y"
+                }
+            },
+            "name" : "Offset_Y",
+            "translation" : [
+                0,
+                0,
+                15.239999771118164
+            ]
+        },
+        {
+            "children" : [
+                1
+            ],
+            "extensions" : {
+                "ASOBO_unique_id" : {
+                    "id" : "Offset_X"
+                }
+            },
+            "name" : "Offset_X",
+            "translation" : [
+                15.239999771118164,
+                0,
+                0
+            ]
+        }
+    ],
+    "animations" : [
+        {
+            "channels" : [
+                {
+                    "sampler" : 0,
+                    "target" : {
+                        "node" : 1,
+                        "path" : "translation"
+                    }
+                }
+            ],
+            "name" : "ISU_Offset_Y",
+            "samplers" : [
+                {
+                    "input" : 12,
+                    "interpolation" : "LINEAR",
+                    "output" : 13
+                }
+            ]
+        },
+        {
+            "channels" : [
+                {
+                    "sampler" : 0,
+                    "target" : {
+                        "node" : 2,
+                        "path" : "translation"
+                    }
+                }
+            ],
+            "name" : "ISU_Offset_X",
+            "samplers" : [
+                {
+                    "input" : 12,
+                    "interpolation" : "LINEAR",
+                    "output" : 14
+                }
+            ]
+        }
+    ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "emissiveFactor" : [
+                0,
+                0,
+                0
+            ],
+            "extras" : {},
+            "name" : "PalletBolt",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.2718486487865448,
+                    0.2718486487865448,
+                    0.2718486487865448,
+                    1
+                ],
+                "roughnessFactor" : 0.1600000262260437
+            }
+        },
+        {
+            "doubleSided" : true,
+            "emissiveFactor" : [
+                0,
+                0,
+                0
+            ],
+            "extras" : {},
+            "name" : "PalletHandle",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.038009751588106155,
+                    0.038009751588106155,
+                    0.038009751588106155,
+                    1
+                ],
+                "metallicFactor" : 0,
+                "roughnessFactor" : 0.5200000405311584
+            }
+        },
+        {
+            "doubleSided" : true,
+            "emissiveFactor" : [
+                0,
+                0,
+                0
+            ],
+            "extras" : {},
+            "name" : "PalletBase",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.1734829843044281,
+                    0.1734829843044281,
+                    0.1734829843044281,
+                    1
+                ],
+                "roughnessFactor" : 0.7266666889190674
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "ID41.001",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2
+                    },
+                    "indices" : 3,
+                    "material" : 0
+                },
+                {
+                    "attributes" : {
+                        "POSITION" : 4,
+                        "NORMAL" : 5,
+                        "TEXCOORD_0" : 6
+                    },
+                    "indices" : 7,
+                    "material" : 1
+                },
+                {
+                    "attributes" : {
+                        "POSITION" : 8,
+                        "NORMAL" : 9,
+                        "TEXCOORD_0" : 10
+                    },
+                    "indices" : 11,
+                    "material" : 2
+                }
+            ]
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 2496,
+            "max" : [
+                1.1686064004898071,
+                2.003253936767578,
+                0.9517094492912292
+            ],
+            "min" : [
+                -1.1793575286865234,
+                0.1195884644985199,
+                -0.9517094492912292
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 2496,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 2496,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5123,
+            "count" : 4788,
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 4,
+            "componentType" : 5126,
+            "count" : 1568,
+            "max" : [
+                1.177647590637207,
+                0.13814958930015564,
+                0.9607505202293396
+            ],
+            "min" : [
+                -1.1693944931030273,
+                0.08021965622901917,
+                -0.9607505202293396
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 5,
+            "componentType" : 5126,
+            "count" : 1568,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 6,
+            "componentType" : 5126,
+            "count" : 1568,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 7,
+            "componentType" : 5123,
+            "count" : 4512,
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 8,
+            "componentType" : 5126,
+            "count" : 5768,
+            "max" : [
+                1.2019346952438354,
+                2.0163779258728027,
+                0.9868285059928894
+            ],
+            "min" : [
+                -1.1970937252044678,
+                -0.1588590443134308,
+                -0.9868285059928894
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 9,
+            "componentType" : 5126,
+            "count" : 5768,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 10,
+            "componentType" : 5126,
+            "count" : 5768,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 11,
+            "componentType" : 5123,
+            "count" : 14064,
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 12,
+            "componentType" : 5126,
+            "count" : 101,
+            "max" : [
+                4.166666666666667
+            ],
+            "min" : [
+                0
+            ],
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 13,
+            "componentType" : 5126,
+            "count" : 101,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 14,
+            "componentType" : 5126,
+            "count" : 101,
+            "type" : "VEC3"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 29952,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 29952,
+            "byteOffset" : 29952
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 19968,
+            "byteOffset" : 59904
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 9576,
+            "byteOffset" : 79872
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 18816,
+            "byteOffset" : 89448
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 18816,
+            "byteOffset" : 108264
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 12544,
+            "byteOffset" : 127080
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 9024,
+            "byteOffset" : 139624
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 69216,
+            "byteOffset" : 148648
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 69216,
+            "byteOffset" : 217864
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 46144,
+            "byteOffset" : 287080
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 28128,
+            "byteOffset" : 333224
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 404,
+            "byteOffset" : 361352
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1212,
+            "byteOffset" : 361756
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 1212,
+            "byteOffset" : 362968
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 364180,
+            "uri" : "ISU.bin"
+        }
+    ]
+}

@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\MSFS SDK\\C-17\\src\\C17CargoDropProject\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C5506594-7AB9-48CC-94A4-80967A9F4228}|AIObjects.vcxproj|D:\\MSFS SDK\\C-17\\src\\C17CargoDropProject\\AIObjects.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C5506594-7AB9-48CC-94A4-80967A9F4228}|AIObjects.vcxproj|solutionrelative:AIObjects.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AIObjects.cpp",
+              "DocumentMoniker": "D:\\MSFS SDK\\C-17\\src\\C17CargoDropProject\\AIObjects.cpp",
+              "RelativeDocumentMoniker": "AIObjects.cpp",
+              "ToolTip": "D:\\MSFS SDK\\C-17\\src\\C17CargoDropProject\\AIObjects.cpp",
+              "RelativeToolTip": "AIObjects.cpp",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAC8AAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-02-28T17:26:06.999Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

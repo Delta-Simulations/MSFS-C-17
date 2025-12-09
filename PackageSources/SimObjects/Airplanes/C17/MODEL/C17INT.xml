@@ -1165,7 +1165,7 @@
 <EMISSIVE_CODE>(L:C17_PFD2_BRT,enum) (A:GLASSCOCKPIT AUTOMATIC BRIGHTNESS, number) * (L:C17_Cpit_Pacs,bool) *</EMISSIVE_CODE>
 </UseTemplate>
 </Component>
-<Component ID="PFD3" Node="PFD3">
+<Component ID="PFD3" Node="PFD3"> 
   <UseTemplate Name="ASOBO_GT_Material_Emissive_Code">
 <EMISSIVE_CODE>(L:C17_PFD3_BRT,enum) (A:GLASSCOCKPIT AUTOMATIC BRIGHTNESS, number) * (L:C17_Cpit_Pacs,bool) *</EMISSIVE_CODE>
 </UseTemplate>
