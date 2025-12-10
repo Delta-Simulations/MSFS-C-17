@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModelInfo version="1.1" guid="{cc244ead-d24b-4d0b-ada0-8aaafcbb9294}">
+
+    <LODS>
+        <LOD minSize="0" ModelFile="Cargo.gltf">
+            <AnimationFileList>
+                <AnimationFile>Deployment.gltf</AnimationFile>
+                <AnimationFile>Deployed.gltf</AnimationFile>
+            </AnimationFileList>
+        </LOD>
+    </LODS>
+
+    <AnimationInclude>
+        <Include File=".\..\animations.xml" />
+    </AnimationInclude>
+
+    <Behaviors>
+
+
+        <Include ModelBehaviorFile="Asobo\Misc\SimObjects.xml" />
+        <Include ModelBehaviorFile="Asobo\Exterior.xml" />
+        <Include ModelBehaviorFile="Asobo\Common.xml" />
+        <Include Path="DeltaSim-XML\DeltaSim_Anim_Template.xml" />
+
+        <Component ID="Parachute_1" Node="Parachute_1">
+            <UseTemplate Name="ASOBO_GT_Anim_Code">
+                <ANIM_NAME>Chute_ANIM_1</ANIM_NAME>
+                <ANIM_CODE>
+                    100
+                </ANIM_CODE>
+                <ANIM_LAG>100</ANIM_LAG>
+                <ANIM_LENGTH>100</ANIM_LENGTH>
+            </UseTemplate>
+            <UseTemplate Name="ASOBO_GT_Visibility">
+                <VISIBILITY_CODE>(A:SIM ON GROUND, bool) 0 ==</VISIBILITY_CODE>
+            </UseTemplate>
+        </Component>
+        <Component ID="Pallet_1" Node="Pallet_1">
+            <UseTemplate Name="ASOBO_GT_Anim_Code">
+                <ANIM_NAME>Pallet_1</ANIM_NAME>
+                <ANIM_CODE>
+                    100
+                </ANIM_CODE>
+                <ANIM_LAG>20</ANIM_LAG>
+                <ANIM_LENGTH>100</ANIM_LENGTH>
+            </UseTemplate>
+        </Component>
+        <Component ID="Chute_Deflate" Node="Chute_Deflate">
+            <UseTemplate Name="ASOBO_GT_Anim_Code">
+                <ANIM_NAME>Chute_Deflate</ANIM_NAME>
+                <ANIM_CODE>
+                    (A:SIM ON GROUND, bool) 100 *
+                </ANIM_CODE>
+                <ANIM_LAG>30</ANIM_LAG>
+                <ANIM_LENGTH>100</ANIM_LENGTH>
+            </UseTemplate>
+        </Component>
+        <Component ID="Parachute_Deflated" Node="Parachute_Deflated">
+            <UseTemplate Name="ASOBO_GT_Visibility">
+                <VISIBILITY_CODE>(A:SIM ON GROUND, bool) 1 ==</VISIBILITY_CODE>
+            </UseTemplate>
+        </Component>
+
+    </Behaviors>
+</ModelInfo>

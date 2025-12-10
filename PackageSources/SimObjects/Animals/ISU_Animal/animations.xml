@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModelInfo version="1.1" guid="{8fb716ab-ad96-4d72-bc3c-d90a147cc13a}">
+
+    <Animation name="Deployment" guid="f9a35c22-74fe-42af-9de3-fc01c9188e53" type="Standard"/>
+    <Animation name="Deployed" guid="a1b2c3d4-e5f6-7890-1234-56789abcdef0" type="Standard"/>
+    <Animation name="Deflated" guid="eb8e6510-521e-4843-8a7e-5747c1e2143f" type="Standard"/>
+
+    <AnimGraph>
+        <DefaultState name="DeflatedState"/>
+
+        <BlendTreeState name="DeflatedState">
+            <Animations>
+                <Animation guid="eb8e6510-521e-4843-8a7e-5747c1e2143f" loop="True" speed="1" threshold="0"/>
+            </Animations>
+        </BlendTreeState>
+
+        <BlendTreeState name="DeploymentState">
+            <Animations>
+                <Animation guid="f9a35c22-74fe-42af-9de3-fc01c9188e53" loop="False" speed="1" threshold="0"/>
+            </Animations>
+        </BlendTreeState>
+
+        <BlendTreeState name="DeployedState">
+            <Animations>
+                <Animation guid="a1b2c3d4-e5f6-7890-1234-56789abcdef0" loop="True" speed="1" threshold="0"/>
+            </Animations>
+        </BlendTreeState>
+
+        <!-- Transition: Default -> Deployment for the first 2 seconds -->
+        <Transition start="DeflatedState" end="DeploymentState">
+            <Condition>(A:SIMULATION TIME, Seconds) &lt;= 2</Condition>
+        </Transition>
+
+        <!-- Transition: Deployment -> Deployed after 2 seconds -->
+        <Transition start="DeploymentState" end="DeployedState">
+            <Condition>(A:SIMULATION TIME, Seconds) &gt; 2</Condition>
+        </Transition>
+
+        <!-- Transition: Deflated -> Deployed when not on the ground -->
+        <Transition start="DeflatedState" end="DeployedState">
+            <Condition>(A:SIM ON GROUND, Bool) 0 ==</Condition>
+        </Transition>
+    </AnimGraph>
+</ModelInfo>

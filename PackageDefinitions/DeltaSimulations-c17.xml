@@ -27,7 +27,14 @@
 			<AssetDir>PackageSources\SimObjects\Airplanes\DS_Cargo_ISU\</AssetDir>
 			<OutputDir>SimObjects\Airplanes\DS_Cargo_ISU\</OutputDir>
 		</AssetGroup>
-
+		<AssetGroup Name="DS_Cargo_ISU_Animal">
+			<Type>SimObject</Type>
+			<Flags>
+				<FSXCompatibility>false</FSXCompatibility>
+			</Flags>
+			<AssetDir>PackageSources\SimObjects\Animals\ISU_Animal\</AssetDir>
+			<OutputDir>SimObjects\Animals\ISU_Animal\</OutputDir>
+		</AssetGroup>
 		<AssetGroup Name="ContentInfo">
 			<Type>Copy</Type>
 			<Flags>

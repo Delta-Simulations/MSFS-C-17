@@ -74,4 +74,53 @@
         </Component>
     </Template>
 
+    <Template Name="ADS_Chute_DELTASIM">
+        <DefaultTemplateParameters>
+            <ID>1</ID>
+        </DefaultTemplateParameters>
+        <Component ID="Parachute_#ID#" Node="Parachute_#ID#">
+            <UseTemplate Name="ASOBO_GT_Anim_Code">
+                <ANIM_NAME>Chute_ANIM_#ID#</ANIM_NAME>
+                <ANIM_CODE>
+                    100
+                </ANIM_CODE>
+                <ANIM_LAG>100</ANIM_LAG>
+                <ANIM_LENGTH>100</ANIM_LENGTH>
+            </UseTemplate>
+            <UseTemplate Name="ASOBO_GT_Visibility">
+                <VISIBILITY_CODE> (A:SIM ON GROUND, bool) 0 == </VISIBILITY_CODE>
+            </UseTemplate>
+        </Component>
+        <Component ID="Pallet_#ID#" Node="Pallet_#ID#">
+            <UseTemplate Name="ASOBO_GT_Anim_Code">
+                <ANIM_NAME>Pallet_#ID#</ANIM_NAME>
+                <ANIM_CODE>
+                    100
+                </ANIM_CODE>
+                <ANIM_LAG>100</ANIM_LAG>
+                <ANIM_LENGTH>100</ANIM_LENGTH>
+            </UseTemplate>
+            <UseTemplate Name="ASOBO_GT_Anim_Code">
+                <ANIM_NAME>Translate_Pos_X_#ID#</ANIM_NAME>
+                <ANIM_CODE>
+                    rand * 100
+                </ANIM_CODE>
+                <ANIM_LAG>20</ANIM_LAG>
+                <ANIM_LENGTH>100</ANIM_LENGTH>
+            </UseTemplate>
+            <UseTemplate Name="ASOBO_GT_Anim_Code">
+                <ANIM_NAME>Translate_Pos_Y_#ID#</ANIM_NAME>
+                <ANIM_CODE>
+                    rand * 100
+                </ANIM_CODE>
+                <ANIM_LAG>20</ANIM_LAG>
+                <ANIM_LENGTH>100</ANIM_LENGTH>
+            </UseTemplate>
+        </Component>
+
+    </Template>
+
+
+
+
 </ModelBehaviors>
