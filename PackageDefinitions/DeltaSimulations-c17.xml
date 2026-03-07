@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<AssetPackage Version="0.1.0">
+<AssetPackage ReleaseNotes="PackageDefinitions\deltasimulations-c17\ReleaseNotes.xml" Version="4.7.0">
 	<ItemSettings>
 		<ContentType>AIRCRAFT</ContentType>
 		<Title>Deltasimulations-C17</Title>
@@ -19,6 +19,22 @@
 			<AssetDir>PackageSources\SimObjects\Airplanes\C17\</AssetDir>
 			<OutputDir>SimObjects\Airplanes\C17\</OutputDir>
 		</AssetGroup>
+		<AssetGroup Name="ContentInfo">
+			<Type>Copy</Type>
+			<Flags>
+				<FSXCompatibility>false</FSXCompatibility>
+			</Flags>
+			<AssetDir>PackageDefinitions\deltasimulations-c17\ContentInfo</AssetDir>
+			<OutputDir>ContentInfo\DeltaSimulations-c17\</OutputDir>
+		</AssetGroup>
+		<AssetGroup Name="CopyFiles">
+			<Type>Copy</Type>
+			<Flags>
+				<FSXCompatibility>false</FSXCompatibility>
+			</Flags>
+			<AssetDir>PackageSources\CopyFiles\</AssetDir>
+			<OutputDir>DOCUMENTATION\</OutputDir>
+		</AssetGroup>
 		<AssetGroup Name="DS_Cargo_ISU">
 			<Type>SimObject</Type>
 			<Flags>
@@ -34,14 +50,6 @@
 			</Flags>
 			<AssetDir>PackageSources\SimObjects\Animals\ISU_Animal\</AssetDir>
 			<OutputDir>SimObjects\Animals\ISU_Animal\</OutputDir>
-		</AssetGroup>
-		<AssetGroup Name="ContentInfo">
-			<Type>Copy</Type>
-			<Flags>
-				<FSXCompatibility>false</FSXCompatibility>
-			</Flags>
-			<AssetDir>PackageDefinitions\DeltaSimulations-c17\ContentInfo\</AssetDir>
-			<OutputDir>ContentInfo\DeltaSimulations-c17\</OutputDir>
 		</AssetGroup>
 		<AssetGroup Name="Effects">
 			<Type>Copy</Type>
@@ -85,3 +93,4 @@
 		</AssetGroup>
 	</AssetGroups>
 </AssetPackage>
+

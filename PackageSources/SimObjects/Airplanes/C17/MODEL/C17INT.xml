@@ -3940,7 +3940,7 @@
             (L:C17_MACHIAS, bool) 0 == if{ (&gt;K:AP_SPD_VAR_INC) }
           </CLOCKWISE_CODE_DEFAULT_IM>
           <ANTICLOCKWISE_CODE_DEFAULT_IM>
-            (L:C17_MACHIAS, bool) 1 == if{ (&gt;K:AP_MACH_VAR_INC) } 
+            (L:C17_MACHIAS, bool) 1 == if{ (&gt;K:AP_MACH_VAR_DEC) } 
             (L:C17_MACHIAS, bool) 0 == if{ (&gt;K:AP_SPD_VAR_DEC) }
           </ANTICLOCKWISE_CODE_DEFAULT_IM>
           <CLOCKWISE_CODE_DRAG_IM>

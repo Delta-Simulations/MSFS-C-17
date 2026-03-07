@@ -38,7 +38,7 @@
                 (E:ZULU TIME, seconds) (L:C17_AD_TIME_GREENLT, seconds) - (&gt;L:C17_AD_MAN_DZ_TIME, seconds)
             }
 
-            (* Countdown logic *)
+            (* Countdown logic for aural cues *)
             (L:C17_AD_WP_ID, number) (A:GPS FLIGHT PLAN WP INDEX, number) == and
             (L:C17_AD_ADS_ARMED,bool) 1 == and
             (L:C17_AD_DirTo, bool) 1 == and
