@@ -1,6 +1,6 @@
 import React from 'react'
 import { PFDProvider } from './Components/PFDProvider.tsx/PFDProvider'
-import { type T_PFDVars } from './Components/PFDProvider.tsx/PFDProvider'
+import { T_PFDVars } from './Components/PFDProvider.tsx/PFDProvider'
 import { useSimVar } from '../../../Hooks/simVars'
 
 export const PFD = () => {

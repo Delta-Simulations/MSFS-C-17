@@ -1,4 +1,4 @@
-import React, { type FC } from 'react'
+import React, { FC } from 'react'
 import './PFDProvider.scss'
 import { Heading } from '../Heading/Heading'
 import { Attitude } from '../Attitude/Attitude'

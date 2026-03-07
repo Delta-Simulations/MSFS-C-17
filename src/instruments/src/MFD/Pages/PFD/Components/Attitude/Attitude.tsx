@@ -1,4 +1,4 @@
-import React, { type FC } from 'react'
+import React, { FC } from 'react';
 import { Horizon } from './Components/Horizon'
 
 type T_AttitudeProps = {

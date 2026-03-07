@@ -1,13 +1,43 @@
 {
     "elements": [
         {
-            "__uuid": "6f340c4c-4997-4d36-9084-3daeb72fea2f",
-            "title": "fm",
+            "__uuid": "b8dc232b-be85-46d2-91de-0bae00fc5072",
+            "title": "Debug",
             "varPrefix": "L",
-            "varName": "C17_EFB_FM_TYPE",
+            "varName": "C17_WAP_Debug",
             "varUnit": "number",
             "style": {
                 "type": 3
+            }
+        },
+        {
+            "__uuid": "eacc3418-8fe2-46f9-891d-83769da904dc",
+            "title": "PWR",
+            "varPrefix": "A",
+            "varName": "CIRCUIT ON:65",
+            "varUnit": "number",
+            "style": {
+                "type": 3
+            }
+        },
+        {
+            "__uuid": "db632214-a4eb-4f8c-8b45-ef80c067ca9f",
+            "title": "PWR",
+            "varPrefix": "A",
+            "varName": "CIRCUIT ON:81",
+            "varUnit": "number",
+            "style": {
+                "type": 3
+            }
+        },
+        {
+            "__uuid": "593ba328-bd1f-498c-94a2-979bab8f6636",
+            "title": "Total Fuel",
+            "varPrefix": "A",
+            "varName": "FUEL TOTAL QUANTITY",
+            "varUnit": "number",
+            "style": {
+                "type": 1
             }
         }
     ]

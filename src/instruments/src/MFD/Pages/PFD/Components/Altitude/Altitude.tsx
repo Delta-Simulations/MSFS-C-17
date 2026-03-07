@@ -1,4 +1,4 @@
-import React, { type FC } from 'react'
+import React, { FC } from 'react';
 import { AltitudeTape } from './Components/AltitudeTape'
 import { AltitudeScroller } from './Components/AltitudeScroller'
 

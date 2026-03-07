@@ -7,9 +7,9 @@
 	</WwisePackages>
 
    <AcousticParameters>
-      <!-- <Parameter Name="ReverberationPreset" ShareSetInside="rev_inside_default"/> -->
-      <Parameter Name="Insulation_ExitClosed" Value="-40"/>
-      <Parameter Name="Insulation_ExitOpen" Value="-40"/>
+      <Parameter Name="ReverberationPreset" ShareSetInside="rev_inside_default"/>
+      <Parameter Name="Insulation_ExitClosed" Value="-10"/>
+      <Parameter Name="Insulation_ExitOpen" Value="-5"/>
   </AcousticParameters>
   
 

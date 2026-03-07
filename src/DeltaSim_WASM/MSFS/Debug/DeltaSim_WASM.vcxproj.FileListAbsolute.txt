@@ -1,0 +1,1 @@
+D:\MSFS SDK\C-17\src\DeltaSim_WASM\MSFS\Debug\DeltaSim_WASM.wasm

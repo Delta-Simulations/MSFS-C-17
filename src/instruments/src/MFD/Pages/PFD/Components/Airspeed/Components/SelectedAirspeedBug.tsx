@@ -1,4 +1,4 @@
-import React, { type FC } from 'react'
+import React, { FC } from 'react';
 
 type T_SelectedAirspeedBugProps = {
   x: number

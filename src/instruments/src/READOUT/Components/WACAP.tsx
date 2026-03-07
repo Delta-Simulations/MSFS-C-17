@@ -13,7 +13,7 @@ export const WACAP = (props) => {
   const [Speed_brake] = useSimVar('A:Spoilers right position', 'bool');
   const [Landing_light] = useSimVar('A:Light landing', 'bool');
   const [Taxi_light] = useSimVar('A:Light taxi', 'bool');
-  const [Fuel_quantity] = useSimVar('A:FUEL TOTAL QUANTITY', 'gallons');
+  const [Fuel_quantity] = useSimVar('A:FUEL TOTAL QUANTITY WEIGHT', 'Pounds');
   const [Cargo_door] = useSimVar('L:C17_CargoDoor_POS', 'enum');
   const [SlatDisable] = useSimVar('L:C17_Slat_Disable', 'bool');
   const [cautionMessages, setCautionMessages] = useState<CautionMessage[]>([]);

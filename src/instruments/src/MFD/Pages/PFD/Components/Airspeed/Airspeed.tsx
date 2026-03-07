@@ -1,4 +1,4 @@
-import React, { type FC } from 'react'
+import React, { FC } from 'react';
 import { AirspeedScroller } from './Components/AirspeedScroller'
 import { AirspeedTape } from './Components/AirspeedTape'
 
