@@ -18,7 +18,12 @@
         C17_AD_1Sec
         C17_AD_GreenLT
         C17_AD_RedLT
-        C17_AD_Autodrop
+        C17_AD_Autodrop\
+    TODO:
+    GPS FLIGHT PLAN WP INDEX can fetch the current WP, and compare to the ID of a set WP id for DZ calculations
+    When ID matches, begin countdown logic and autodrop logic
+    Can integrate into EFB maybe?
+        
 	</Comment>
 
 
