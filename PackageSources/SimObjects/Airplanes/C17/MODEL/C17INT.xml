@@ -4201,7 +4201,6 @@
           <LEFT_SINGLE_CODE>
             (L:C17_AD_ACTIVE,bool) ! (&gt;L:C17_AD_ACTIVE,bool)
             1 (&gt;L:C17_AD_DirTo, bool)
-            (A:GPS FLIGHT PLAN WP COUNT, number) 1 - (&gt;L:C17_AD_WP_ID, number)
           </LEFT_SINGLE_CODE>
         </UseTemplate>
 
@@ -4711,6 +4710,8 @@
             <Code>
 				(A:Payload Station Weight:3, pounds) 5000 &gt;
         (A:Payload Station Weight:3, pounds) 15000 &lt; and
+        (L:C17_PAYLOAD_MODE, bool) 0 == and
+
 				 if{ 1 } els{ 0 }
 			</Code>
         </Parameter>
@@ -4724,6 +4725,7 @@
             <Code>
 				(A:Payload Station Weight:3, pounds) 15000 &gt;
         (A:Payload Station Weight:3, pounds) 23000 &lt; and
+        (L:C17_PAYLOAD_MODE, bool) 0 == and
 				 if{ 1 } els{ 0 }
 			</Code>
         </Parameter>
@@ -4738,6 +4740,7 @@
             <Code>
 				(A:Payload Station Weight:3, pounds) 23000 &gt;
         (A:Payload Station Weight:3, pounds) 40000 &lt; and
+        (L:C17_PAYLOAD_MODE, bool) 0 == and
 				 if{ 1 } els{ 0 }
 			</Code>
         </Parameter>
@@ -4750,6 +4753,7 @@
         <Parameter>
             <Code>
 				(A:Payload Station Weight:3, pounds) 40000 &gt;
+        (L:C17_PAYLOAD_MODE, bool) 0 == and
 				 if{ 1 } els{ 0 }
 			</Code>
         </Parameter>
@@ -4786,6 +4790,7 @@
             <Code>
 				(A:Payload Station Weight:4, pounds) 5000 &gt;
         (A:Payload Station Weight:4, pounds) 15000 &lt; and
+        (L:C17_PAYLOAD_MODE, bool) 0 == and
 				 if{ 1 } els{ 0 }
 			</Code>
         </Parameter>
@@ -4799,6 +4804,7 @@
             <Code>
 				(A:Payload Station Weight:4, pounds) 15000 &gt;
         (A:Payload Station Weight:4, pounds) 23000 &lt; and
+        (L:C17_PAYLOAD_MODE, bool) 0 == and
 				 if{ 1 } els{ 0 }
 			</Code>
         </Parameter>
@@ -4813,6 +4819,7 @@
             <Code>
 				(A:Payload Station Weight:4, pounds) 23000 &gt;
         (A:Payload Station Weight:4, pounds) 40000 &lt; and
+        (L:C17_PAYLOAD_MODE, bool) 0 == and
 				 if{ 1 } els{ 0 }
 			</Code>
         </Parameter>
@@ -4825,6 +4832,7 @@
         <Parameter>
             <Code>
 				(A:Payload Station Weight:4, pounds) 40000 &gt;
+        (L:C17_PAYLOAD_MODE, bool) 0 == and
 				 if{ 1 } els{ 0 }
 			</Code>
         </Parameter>
@@ -5303,6 +5311,7 @@ typeParam="AutoPlay" />
   <Lag>8</Lag>
 </Parameter>
 </Animation>
+
 </PartInfo>
 
 <Animation name="Drogue_Deploy" guid="1c3f57a1-2543-4c93-915c-49e173954441" type="Sim" typeParam="AutoPlay" />
@@ -5354,6 +5363,8 @@ typeParam="AutoPlay" />
   <Parameter>
     <Code>
       (L:C17_AD_DROGUE_VIS, bool) 0 ==
+        (L:C17_PAYLOAD_MODE, bool) 1 == and
+				 if{ 1 } els{ 0 }
     </Code>
   </Parameter>
 </Visibility>

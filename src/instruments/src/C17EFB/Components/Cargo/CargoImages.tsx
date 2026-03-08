@@ -31,15 +31,15 @@ export const ImagesCargo = () => {
 				<Box
 					sx={{
 						position: 'absolute',
-						width: 2050,
-						height: 1000,
-						left: -300,
+						width: 1280,
+						height: 1200,
+						left: -252,
 						top: 0,
-						backgroundImage: 'url(/images/EFB/C17Base.png)',
+						backgroundImage: 'url(/images/EFB/Cargoflooring.svg)',
 						backgroundPosition: 'right',
 						backgroundSize: '80%',
 						backgroundRepeat: 'no-repeat',
-						transform: 'rotate(-180deg)',
+						transform: 'rotate(0deg)',
 					}}
 				/>
 

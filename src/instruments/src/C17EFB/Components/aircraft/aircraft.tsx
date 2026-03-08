@@ -28,7 +28,6 @@ export const Aircraft = () => {
 	let [FARPSHOW, setFARPSHOW] = useSimVar('L:C17_FARPSHOW', 'bool');
 	let [FARPTANK, setFARPTANK] = useSimVar('L:C17_FARP_TANK', 'bool');
 	let [DevModeEFB] = useSimVar('L:C17_DevModeEFB', 'bool');
-	let [CargoLightMode, setCargoLightMode] = useSimVar('L:C17_CARGO_LGT_MODE', 'bool');
 
 
 	return (
@@ -144,13 +143,7 @@ export const Aircraft = () => {
 
       }}
     >
-      <ButtonGroup
-        orientation="horizontal"
-        aria-label="horizontal outlined button group"
-      >
-    <Button  size="large" variant={CargoLightMode === 0 ? 'contained' : 'outlined'} onClick={() => setCargoLightMode(CargoLightMode=0)} key="one">DAY</Button>
-    <Button sx={{ backgroundColor: CargoLightMode === 0 ? 'transparent' : '#8B0000' }} size="large" variant={CargoLightMode === 1 ? 'contained' : 'outlined'} onClick={() => setCargoLightMode(CargoLightMode=1)} key="two">NIGHT</Button>
-      </ButtonGroup>
+
 
     </Box>
 

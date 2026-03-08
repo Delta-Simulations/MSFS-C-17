@@ -11327,7 +11327,7 @@
 		isPlainObject: isPlainObject
 	});
 
-	const _excluded$q = ["values", "unit", "step"];
+	const _excluded$r = ["values", "unit", "step"];
 	const sortBreakpointsValues = values => {
 	  const breakpointsAsArray = Object.keys(values).map(key => ({
 	    key,
@@ -11361,7 +11361,7 @@
 	      unit = 'px',
 	      step = 5
 	    } = breakpoints,
-	    other = _objectWithoutPropertiesLoose$1(breakpoints, _excluded$q);
+	    other = _objectWithoutPropertiesLoose$1(breakpoints, _excluded$r);
 	  const sortedValues = sortBreakpointsValues(values);
 	  const keys = Object.keys(sortedValues);
 	  function up(key) {
@@ -12506,7 +12506,7 @@
 	  return {};
 	}
 
-	const _excluded$p = ["breakpoints", "palette", "spacing", "shape"];
+	const _excluded$q = ["breakpoints", "palette", "spacing", "shape"];
 	function createTheme$2() {
 	  let options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 	  const {
@@ -12515,7 +12515,7 @@
 	      spacing: spacingInput,
 	      shape: shapeInput = {}
 	    } = options,
-	    other = _objectWithoutPropertiesLoose$1(options, _excluded$p);
+	    other = _objectWithoutPropertiesLoose$1(options, _excluded$q);
 	  const breakpoints = createBreakpoints(breakpointsInput);
 	  const spacing = createSpacing(spacingInput);
 	  let muiTheme = deepmerge$1({
@@ -12603,7 +12603,7 @@
 	  });
 	}
 
-	const _excluded$o = ["sx"];
+	const _excluded$p = ["sx"];
 	const splitProps = props => {
 	  var _props$theme$unstable, _props$theme;
 	  const result = {
@@ -12624,7 +12624,7 @@
 	  const {
 	      sx: inSx
 	    } = props,
-	    other = _objectWithoutPropertiesLoose$1(props, _excluded$o);
+	    other = _objectWithoutPropertiesLoose$1(props, _excluded$p);
 	  const {
 	    systemProps,
 	    otherProps
@@ -12689,7 +12689,7 @@
 	  return n;
 	}
 
-	const _excluded$n = ["className", "component"];
+	const _excluded$o = ["className", "component"];
 	function createBox() {
 	  let options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 	  const {
@@ -12708,7 +12708,7 @@
 	        className,
 	        component = 'div'
 	      } = _extendSxProp,
-	      other = _objectWithoutPropertiesLoose$1(_extendSxProp, _excluded$n);
+	      other = _objectWithoutPropertiesLoose$1(_extendSxProp, _excluded$o);
 	    return /*#__PURE__*/jsxRuntime.jsx(BoxRoot, _extends$1({
 	      as: component,
 	      ref: ref,
@@ -12884,12 +12884,12 @@
 	  typeOf: typeOf_1
 	};
 
-	var require$$0$1 = reactIs_production;
+	var require$$0$2 = reactIs_production;
 
 	var reactIs = createCommonjsModule(function (module) {
 
 	  {
-	    module.exports = require$$0$1;
+	    module.exports = require$$0$2;
 	  }
 	});
 
@@ -12946,7 +12946,7 @@
 		getFunctionName: getFunctionName
 	});
 
-	const _excluded$m = ["ownerState"],
+	const _excluded$n = ["ownerState"],
 	  _excluded2 = ["variants"],
 	  _excluded3 = ["name", "slot", "skipVariantsResolver", "skipSx", "overridesResolver"];
 	function isEmpty(obj) {
@@ -12998,7 +12998,7 @@
 	  let {
 	      ownerState
 	    } = _ref,
-	    props = _objectWithoutPropertiesLoose$1(_ref, _excluded$m);
+	    props = _objectWithoutPropertiesLoose$1(_ref, _excluded$n);
 	  const resolvedStylesArg = typeof callableStyle === 'function' ? callableStyle(_extends$1({
 	    ownerState
 	  }, props)) : callableStyle;
@@ -13269,6 +13269,30 @@
 		'default': clamp$1
 	});
 
+	/**
+	 * Safe chained function.
+	 *
+	 * Will only create a new function if needed,
+	 * otherwise will pass back existing functions or null.
+	 */
+	function createChainedFunction() {
+	  for (var _len = arguments.length, funcs = new Array(_len), _key = 0; _key < _len; _key++) {
+	    funcs[_key] = arguments[_key];
+	  }
+	  return funcs.reduce((acc, func) => {
+	    if (func == null) {
+	      return acc;
+	    }
+	    return function chainedFunction() {
+	      for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+	        args[_key2] = arguments[_key2];
+	      }
+	      acc.apply(this, args);
+	      func.apply(this, args);
+	    };
+	  }, () => {});
+	}
+
 	// Corresponds to 10 frames at 60 Hz.
 	// A few bytes payload overhead when lodash/debounce is ~3 kB and debounce ~300 B.
 	function debounce(func) {
@@ -13291,6 +13315,21 @@
 	  return debounced;
 	}
 
+	function deprecatedPropType(validator, reason) {
+	  {
+	    return () => null;
+	  }
+	}
+
+	function isMuiElement(element, muiNames) {
+	  var _muiName, _element$type;
+	  return /*#__PURE__*/ /*#__PURE__*/react.isValidElement(element) && muiNames.indexOf(
+	  // For server components `muiName` is avaialble in element.type._payload.value.muiName
+	  // relevant info - https://github.com/facebook/react/blob/2807d781a08db8e9873687fccc25c0f12b4fb3d4/packages/react/src/ReactLazy.js#L45
+	  // eslint-disable-next-line no-underscore-dangle
+	  (_muiName = element.type.muiName) != null ? _muiName : (_element$type = element.type) == null || (_element$type = _element$type._payload) == null || (_element$type = _element$type.value) == null ? void 0 : _element$type.muiName) !== -1;
+	}
+
 	function ownerDocument(node) {
 	  return node && node.ownerDocument || document;
 	}
@@ -13298,6 +13337,12 @@
 	function ownerWindow(node) {
 	  const doc = ownerDocument(node);
 	  return doc.defaultView || window;
+	}
+
+	function requirePropFactory(componentNameInError, Component) {
+	  {
+	    return () => null;
+	  }
 	}
 
 	/**
@@ -13353,6 +13398,12 @@
 	  }
 	  // eslint-disable-next-line react-hooks/rules-of-hooks -- `React.useId` is invariant at runtime.
 	  return useGlobalId(idOverride);
+	}
+
+	function unsupportedProp(props, propName, componentName, location, propFullName) {
+	  {
+	    return null;
+	  }
 	}
 
 	function useControlled(_ref) {
@@ -13904,7 +13955,7 @@
 	  return componentProps;
 	}
 
-	const _excluded$l = ["elementType", "externalSlotProps", "ownerState", "skipResolvingSlotProps"];
+	const _excluded$m = ["elementType", "externalSlotProps", "ownerState", "skipResolvingSlotProps"];
 	/**
 	 * @ignore - do not document.
 	 * Builds the props to be passed into the slot of an unstyled component.
@@ -13921,7 +13972,7 @@
 	      ownerState,
 	      skipResolvingSlotProps = false
 	    } = parameters,
-	    rest = _objectWithoutPropertiesLoose$1(parameters, _excluded$l);
+	    rest = _objectWithoutPropertiesLoose$1(parameters, _excluded$m);
 	  const resolvedComponentsProps = skipResolvingSlotProps ? {} : resolveComponentProps(externalSlotProps, ownerState);
 	  const {
 	    props: mergedProps,
@@ -13979,13 +14030,13 @@
 	  });
 	}
 
-	const _excluded$k = ["value"];
+	const _excluded$l = ["value"];
 	const RtlContext = /*#__PURE__*/react.createContext();
 	function RtlProvider(_ref) {
 	  let {
 	      value
 	    } = _ref,
-	    props = _objectWithoutPropertiesLoose$1(_ref, _excluded$k);
+	    props = _objectWithoutPropertiesLoose$1(_ref, _excluded$l);
 	  return /*#__PURE__*/jsxRuntime.jsx(RtlContext.Provider, _extends$1({
 	    value: value != null ? value : true
 	  }, props));
@@ -14142,7 +14193,7 @@
 	  });
 	}
 
-	const _excluded$j = ["component", "direction", "spacing", "divider", "children", "className", "useFlexGap"];
+	const _excluded$k = ["component", "direction", "spacing", "divider", "children", "className", "useFlexGap"];
 	const defaultTheme$3 = createTheme$2();
 	// widening Theme to any so that the consumer can own the theme structure.
 	const defaultCreateStyledComponent = systemStyled('div', {
@@ -14277,7 +14328,7 @@
 	        className,
 	        useFlexGap = false
 	      } = props,
-	      other = _objectWithoutPropertiesLoose$1(props, _excluded$j);
+	      other = _objectWithoutPropertiesLoose$1(props, _excluded$k);
 	    const ownerState = {
 	      direction,
 	      spacing,
@@ -14321,7 +14372,7 @@
 	  module.exports = _interopRequireDefault, module.exports.__esModule = true, module.exports["default"] = module.exports;
 	});
 
-	var require$$0 = /*@__PURE__*/getAugmentedNamespace(formatMuiErrorMessage);
+	var require$$0$1 = /*@__PURE__*/getAugmentedNamespace(formatMuiErrorMessage);
 
 	var require$$1 = /*@__PURE__*/getAugmentedNamespace(clamp);
 
@@ -14348,7 +14399,7 @@
 	  exports.private_safeLighten = private_safeLighten;
 	  exports.recomposeColor = recomposeColor;
 	  exports.rgbToHex = rgbToHex;
-	  var _formatMuiErrorMessage2 = interopRequireDefault(require$$0);
+	  var _formatMuiErrorMessage2 = interopRequireDefault(require$$0$1);
 	  var _clamp = interopRequireDefault(require$$1);
 	  /* eslint-disable @typescript-eslint/naming-convention */
 
@@ -14698,7 +14749,7 @@
 	  }
 	});
 
-	const _excluded$i = ["mode", "contrastThreshold", "tonalOffset"];
+	const _excluded$j = ["mode", "contrastThreshold", "tonalOffset"];
 	const light = {
 	  // The colors used to style the text.
 	  text: {
@@ -14873,7 +14924,7 @@
 	      contrastThreshold = 3,
 	      tonalOffset = 0.2
 	    } = palette,
-	    other = _objectWithoutPropertiesLoose$1(palette, _excluded$i);
+	    other = _objectWithoutPropertiesLoose$1(palette, _excluded$j);
 	  const primary = palette.primary || getDefaultPrimary(mode);
 	  const secondary = palette.secondary || getDefaultSecondary(mode);
 	  const error = palette.error || getDefaultError(mode);
@@ -14973,7 +15024,7 @@
 	  return paletteOutput;
 	}
 
-	const _excluded$h = ["fontFamily", "fontSize", "fontWeightLight", "fontWeightRegular", "fontWeightMedium", "fontWeightBold", "htmlFontSize", "allVariants", "pxToRem"];
+	const _excluded$i = ["fontFamily", "fontSize", "fontWeightLight", "fontWeightRegular", "fontWeightMedium", "fontWeightBold", "htmlFontSize", "allVariants", "pxToRem"];
 	function round(value) {
 	  return Math.round(value * 1e5) / 1e5;
 	}
@@ -15004,7 +15055,7 @@
 	      allVariants,
 	      pxToRem: pxToRem2
 	    } = _ref,
-	    other = _objectWithoutPropertiesLoose$1(_ref, _excluded$h);
+	    other = _objectWithoutPropertiesLoose$1(_ref, _excluded$i);
 	  const coef = fontSize / 14;
 	  const pxToRem = pxToRem2 || (size => "".concat(size / htmlFontSize * coef, "rem"));
 	  const buildVariant = (fontWeight, size, lineHeight, letterSpacing, casing) => _extends$1({
@@ -15064,7 +15115,7 @@
 	const shadows = ['none', createShadow(0, 2, 1, -1, 0, 1, 1, 0, 0, 1, 3, 0), createShadow(0, 3, 1, -2, 0, 2, 2, 0, 0, 1, 5, 0), createShadow(0, 3, 3, -2, 0, 3, 4, 0, 0, 1, 8, 0), createShadow(0, 2, 4, -1, 0, 4, 5, 0, 0, 1, 10, 0), createShadow(0, 3, 5, -1, 0, 5, 8, 0, 0, 1, 14, 0), createShadow(0, 3, 5, -1, 0, 6, 10, 0, 0, 1, 18, 0), createShadow(0, 4, 5, -2, 0, 7, 10, 1, 0, 2, 16, 1), createShadow(0, 5, 5, -3, 0, 8, 10, 1, 0, 3, 14, 2), createShadow(0, 5, 6, -3, 0, 9, 12, 1, 0, 3, 16, 2), createShadow(0, 6, 6, -3, 0, 10, 14, 1, 0, 4, 18, 3), createShadow(0, 6, 7, -4, 0, 11, 15, 1, 0, 4, 20, 3), createShadow(0, 7, 8, -4, 0, 12, 17, 2, 0, 5, 22, 4), createShadow(0, 7, 8, -4, 0, 13, 19, 2, 0, 5, 24, 4), createShadow(0, 7, 9, -4, 0, 14, 21, 2, 0, 5, 26, 4), createShadow(0, 8, 9, -5, 0, 15, 22, 2, 0, 6, 28, 5), createShadow(0, 8, 10, -5, 0, 16, 24, 2, 0, 6, 30, 5), createShadow(0, 8, 11, -5, 0, 17, 26, 2, 0, 6, 32, 5), createShadow(0, 9, 11, -5, 0, 18, 28, 2, 0, 7, 34, 6), createShadow(0, 9, 12, -6, 0, 19, 29, 2, 0, 7, 36, 6), createShadow(0, 10, 13, -6, 0, 20, 31, 3, 0, 8, 38, 7), createShadow(0, 10, 13, -6, 0, 21, 33, 3, 0, 8, 40, 7), createShadow(0, 10, 14, -6, 0, 22, 35, 3, 0, 8, 42, 7), createShadow(0, 11, 14, -7, 0, 23, 36, 3, 0, 9, 44, 8), createShadow(0, 11, 15, -7, 0, 24, 38, 3, 0, 9, 46, 8)];
 	var shadows$1 = shadows;
 
-	const _excluded$g = ["duration", "easing", "delay"];
+	const _excluded$h = ["duration", "easing", "delay"];
 	// Follow https://material.google.com/motion/duration-easing.html#duration-easing-natural-easing-curves
 	// to learn the context in which each easing should be used.
 	const easing = {
@@ -15117,7 +15168,7 @@
 	        easing: easingOption = mergedEasing.easeInOut,
 	        delay = 0
 	      } = options;
-	      _objectWithoutPropertiesLoose$1(options, _excluded$g);
+	      _objectWithoutPropertiesLoose$1(options, _excluded$h);
 	    return (Array.isArray(props) ? props : [props]).map(animatedProp => "".concat(animatedProp, " ").concat(typeof durationOption === 'string' ? durationOption : formatMs(durationOption), " ").concat(easingOption, " ").concat(typeof delay === 'string' ? delay : formatMs(delay))).join(',');
 	  };
 	  return _extends$1({
@@ -15143,7 +15194,7 @@
 	};
 	var zIndex$1 = zIndex;
 
-	const _excluded$f = ["breakpoints", "mixins", "spacing", "palette", "transitions", "typography", "shape"];
+	const _excluded$g = ["breakpoints", "mixins", "spacing", "palette", "transitions", "typography", "shape"];
 	function createTheme() {
 	  let options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
 	  const {
@@ -15152,7 +15203,7 @@
 	      transitions: transitionsInput = {},
 	      typography: typographyInput = {}
 	    } = options,
-	    other = _objectWithoutPropertiesLoose$1(options, _excluded$f);
+	    other = _objectWithoutPropertiesLoose$1(options, _excluded$g);
 	  if (options.vars &&
 	  // The error should throw only for the root theme creation because user is not allowed to use a custom node `vars`.
 	  // `generateCssVars` is the closest identifier for checking that the `options` is a result of `extendTheme` with CSS variables so that user can create new theme for nested ThemeProvider.
@@ -15510,12 +15561,12 @@
 	});
 	var styled$1 = styled;
 
-	const _excluded$e = ["theme"];
+	const _excluded$f = ["theme"];
 	function ThemeProvider(_ref) {
 	  let {
 	      theme: themeInput
 	    } = _ref,
-	    props = _objectWithoutPropertiesLoose$1(_ref, _excluded$e);
+	    props = _objectWithoutPropertiesLoose$1(_ref, _excluded$f);
 	  const scopedTheme = themeInput[THEME_ID];
 	  let finalTheme = scopedTheme || themeInput;
 	  if (typeof themeInput !== 'function') {
@@ -15571,8 +15622,8 @@
 	}
 	generateUtilityClasses('MuiSvgIcon', ['root', 'colorPrimary', 'colorSecondary', 'colorAction', 'colorError', 'colorDisabled', 'fontSizeInherit', 'fontSizeSmall', 'fontSizeMedium', 'fontSizeLarge']);
 
-	const _excluded$d = ["children", "className", "color", "component", "fontSize", "htmlColor", "inheritViewBox", "titleAccess", "viewBox"];
-	const useUtilityClasses$a = ownerState => {
+	const _excluded$e = ["children", "className", "color", "component", "fontSize", "htmlColor", "inheritViewBox", "titleAccess", "viewBox"];
+	const useUtilityClasses$b = ownerState => {
 	  const {
 	    color,
 	    fontSize,
@@ -15640,7 +15691,7 @@
 	      titleAccess,
 	      viewBox = '0 0 24 24'
 	    } = props,
-	    other = _objectWithoutPropertiesLoose$1(props, _excluded$d);
+	    other = _objectWithoutPropertiesLoose$1(props, _excluded$e);
 	  const hasSvgAsChild = /*#__PURE__*/ /*#__PURE__*/react.isValidElement(children) && children.type === 'svg';
 	  const ownerState = _extends$1({}, props, {
 	    color,
@@ -15655,7 +15706,7 @@
 	  if (!inheritViewBox) {
 	    more.viewBox = viewBox;
 	  }
-	  const classes = useUtilityClasses$a(ownerState);
+	  const classes = useUtilityClasses$b(ownerState);
 	  return /*#__PURE__*/jsxRuntime.jsxs(SvgIconRoot, _extends$1({
 	    as: component,
 	    className: clsx(classes.root, className),
@@ -15674,7 +15725,7 @@
 	SvgIcon.muiName = 'SvgIcon';
 	var SvgIcon$1 = SvgIcon;
 
-	function createSvgIcon(path, displayName) {
+	function createSvgIcon$1(path, displayName) {
 	  function Component(props, ref) {
 	    return /*#__PURE__*/jsxRuntime.jsx(SvgIcon$1, _extends$1({
 	      "data-testid": "".concat(displayName, "Icon"),
@@ -15686,6 +15737,36 @@
 	  Component.muiName = SvgIcon$1.muiName;
 	  return /*#__PURE__*/react.memo(/*#__PURE__*/react.forwardRef(Component));
 	}
+
+	// TODO: remove this export once ClassNameGenerator is stable
+	// eslint-disable-next-line @typescript-eslint/naming-convention
+	const unstable_ClassNameGenerator = {
+	  configure: generator => {
+	    ClassNameGenerator$1.configure(generator);
+	  }
+	};
+
+	var utils = /*#__PURE__*/Object.freeze({
+		__proto__: null,
+		unstable_ClassNameGenerator: unstable_ClassNameGenerator,
+		capitalize: capitalize$1,
+		createChainedFunction: createChainedFunction,
+		createSvgIcon: createSvgIcon$1,
+		debounce: debounce,
+		deprecatedPropType: deprecatedPropType,
+		isMuiElement: isMuiElement,
+		ownerDocument: ownerDocument,
+		ownerWindow: ownerWindow,
+		requirePropFactory: requirePropFactory,
+		setRef: setRef,
+		unstable_useEnhancedEffect: useEnhancedEffect$1,
+		unstable_useId: useId,
+		unsupportedProp: unsupportedProp,
+		useControlled: useControlled,
+		useEventCallback: useEventCallback,
+		useForkRef: useForkRef,
+		useIsFocusVisible: useIsFocusVisible
+	});
 
 	function _setPrototypeOf(t, e) {
 	  return _setPrototypeOf = Object.setPrototypeOf ? Object.setPrototypeOf.bind() : function (t, e) {
@@ -15943,8 +16024,8 @@
 	}
 	generateUtilityClasses('MuiPaper', ['root', 'rounded', 'outlined', 'elevation', 'elevation0', 'elevation1', 'elevation2', 'elevation3', 'elevation4', 'elevation5', 'elevation6', 'elevation7', 'elevation8', 'elevation9', 'elevation10', 'elevation11', 'elevation12', 'elevation13', 'elevation14', 'elevation15', 'elevation16', 'elevation17', 'elevation18', 'elevation19', 'elevation20', 'elevation21', 'elevation22', 'elevation23', 'elevation24']);
 
-	const _excluded$c = ["className", "component", "elevation", "square", "variant"];
-	const useUtilityClasses$9 = ownerState => {
+	const _excluded$d = ["className", "component", "elevation", "square", "variant"];
+	const useUtilityClasses$a = ownerState => {
 	  const {
 	    square,
 	    elevation,
@@ -15999,14 +16080,14 @@
 	      square = false,
 	      variant = 'elevation'
 	    } = props,
-	    other = _objectWithoutPropertiesLoose$1(props, _excluded$c);
+	    other = _objectWithoutPropertiesLoose$1(props, _excluded$d);
 	  const ownerState = _extends$1({}, props, {
 	    component,
 	    elevation,
 	    square,
 	    variant
 	  });
-	  const classes = useUtilityClasses$9(ownerState);
+	  const classes = useUtilityClasses$a(ownerState);
 	  return /*#__PURE__*/jsxRuntime.jsx(PaperRoot, _extends$1({
 	    as: component,
 	    ownerState: ownerState,
@@ -16075,7 +16156,7 @@
 	var touchRippleClasses$1 = touchRippleClasses;
 
 	var _templateObject, _templateObject2, _templateObject3, _templateObject4;
-	const _excluded$b = ["center", "classes", "className"];
+	const _excluded$c = ["center", "classes", "className"];
 	let _ = t => t,
 	  _t,
 	  _t2,
@@ -16143,7 +16224,7 @@
 	      classes = {},
 	      className
 	    } = props,
-	    other = _objectWithoutPropertiesLoose$1(props, _excluded$b);
+	    other = _objectWithoutPropertiesLoose$1(props, _excluded$c);
 	  const [ripples, setRipples] = react.useState([]);
 	  const nextKey = react.useRef(0);
 	  const rippleCallback = react.useRef(null);
@@ -16327,8 +16408,8 @@
 	const buttonBaseClasses = generateUtilityClasses('MuiButtonBase', ['root', 'disabled', 'focusVisible']);
 	var buttonBaseClasses$1 = buttonBaseClasses;
 
-	const _excluded$a = ["action", "centerRipple", "children", "className", "component", "disabled", "disableRipple", "disableTouchRipple", "focusRipple", "focusVisibleClassName", "LinkComponent", "onBlur", "onClick", "onContextMenu", "onDragLeave", "onFocus", "onFocusVisible", "onKeyDown", "onKeyUp", "onMouseDown", "onMouseLeave", "onMouseUp", "onTouchEnd", "onTouchMove", "onTouchStart", "tabIndex", "TouchRippleProps", "touchRippleRef", "type"];
-	const useUtilityClasses$8 = ownerState => {
+	const _excluded$b = ["action", "centerRipple", "children", "className", "component", "disabled", "disableRipple", "disableTouchRipple", "focusRipple", "focusVisibleClassName", "LinkComponent", "onBlur", "onClick", "onContextMenu", "onDragLeave", "onFocus", "onFocusVisible", "onKeyDown", "onKeyUp", "onMouseDown", "onMouseLeave", "onMouseUp", "onTouchEnd", "onTouchMove", "onTouchStart", "tabIndex", "TouchRippleProps", "touchRippleRef", "type"];
+	const useUtilityClasses$9 = ownerState => {
 	  const {
 	    disabled,
 	    focusVisible,
@@ -16428,7 +16509,7 @@
 	      touchRippleRef,
 	      type
 	    } = props,
-	    other = _objectWithoutPropertiesLoose$1(props, _excluded$a);
+	    other = _objectWithoutPropertiesLoose$1(props, _excluded$b);
 	  const buttonRef = react.useRef(null);
 	  const rippleRef = react.useRef(null);
 	  const handleRippleRef = useForkRef(rippleRef, touchRippleRef);
@@ -16588,7 +16669,7 @@
 	    tabIndex,
 	    focusVisible
 	  });
-	  const classes = useUtilityClasses$8(ownerState);
+	  const classes = useUtilityClasses$9(ownerState);
 	  return /*#__PURE__*/jsxRuntime.jsxs(ButtonBaseRoot, _extends$1({
 	    as: ComponentProp,
 	    className: clsx(classes.root, className),
@@ -16619,6 +16700,124 @@
 	  }));
 	});
 	var ButtonBase$1 = ButtonBase;
+
+	function getTypographyUtilityClass(slot) {
+	  return generateUtilityClass('MuiTypography', slot);
+	}
+	generateUtilityClasses('MuiTypography', ['root', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'subtitle1', 'subtitle2', 'body1', 'body2', 'inherit', 'button', 'caption', 'overline', 'alignLeft', 'alignRight', 'alignCenter', 'alignJustify', 'noWrap', 'gutterBottom', 'paragraph']);
+
+	const _excluded$a = ["align", "className", "component", "gutterBottom", "noWrap", "paragraph", "variant", "variantMapping"];
+	const useUtilityClasses$8 = ownerState => {
+	  const {
+	    align,
+	    gutterBottom,
+	    noWrap,
+	    paragraph,
+	    variant,
+	    classes
+	  } = ownerState;
+	  const slots = {
+	    root: ['root', variant, ownerState.align !== 'inherit' && "align".concat(capitalize$1(align)), gutterBottom && 'gutterBottom', noWrap && 'noWrap', paragraph && 'paragraph']
+	  };
+	  return composeClasses(slots, getTypographyUtilityClass, classes);
+	};
+	const TypographyRoot = styled$1('span', {
+	  name: 'MuiTypography',
+	  slot: 'Root',
+	  overridesResolver: (props, styles) => {
+	    const {
+	      ownerState
+	    } = props;
+	    return [styles.root, ownerState.variant && styles[ownerState.variant], ownerState.align !== 'inherit' && styles["align".concat(capitalize$1(ownerState.align))], ownerState.noWrap && styles.noWrap, ownerState.gutterBottom && styles.gutterBottom, ownerState.paragraph && styles.paragraph];
+	  }
+	})(_ref => {
+	  let {
+	    theme,
+	    ownerState
+	  } = _ref;
+	  return _extends$1({
+	    margin: 0
+	  }, ownerState.variant === 'inherit' && {
+	    // Some elements, like <button> on Chrome have default font that doesn't inherit, reset this.
+	    font: 'inherit'
+	  }, ownerState.variant !== 'inherit' && theme.typography[ownerState.variant], ownerState.align !== 'inherit' && {
+	    textAlign: ownerState.align
+	  }, ownerState.noWrap && {
+	    overflow: 'hidden',
+	    textOverflow: 'ellipsis',
+	    whiteSpace: 'nowrap'
+	  }, ownerState.gutterBottom && {
+	    marginBottom: '0.35em'
+	  }, ownerState.paragraph && {
+	    marginBottom: 16
+	  });
+	});
+	const defaultVariantMapping = {
+	  h1: 'h1',
+	  h2: 'h2',
+	  h3: 'h3',
+	  h4: 'h4',
+	  h5: 'h5',
+	  h6: 'h6',
+	  subtitle1: 'h6',
+	  subtitle2: 'h6',
+	  body1: 'p',
+	  body2: 'p',
+	  inherit: 'p'
+	};
+
+	// TODO v6: deprecate these color values in v5.x and remove the transformation in v6
+	const colorTransformations = {
+	  primary: 'primary.main',
+	  textPrimary: 'text.primary',
+	  secondary: 'secondary.main',
+	  textSecondary: 'text.secondary',
+	  error: 'error.main'
+	};
+	const transformDeprecatedColors = color => {
+	  return colorTransformations[color] || color;
+	};
+	const Typography = /*#__PURE__*/react.forwardRef(function Typography(inProps, ref) {
+	  const themeProps = useDefaultProps({
+	    props: inProps,
+	    name: 'MuiTypography'
+	  });
+	  const color = transformDeprecatedColors(themeProps.color);
+	  const props = extendSxProp(_extends$1({}, themeProps, {
+	    color
+	  }));
+	  const {
+	      align = 'inherit',
+	      className,
+	      component,
+	      gutterBottom = false,
+	      noWrap = false,
+	      paragraph = false,
+	      variant = 'body1',
+	      variantMapping = defaultVariantMapping
+	    } = props,
+	    other = _objectWithoutPropertiesLoose$1(props, _excluded$a);
+	  const ownerState = _extends$1({}, props, {
+	    align,
+	    color,
+	    className,
+	    component,
+	    gutterBottom,
+	    noWrap,
+	    paragraph,
+	    variant,
+	    variantMapping
+	  });
+	  const Component = component || (paragraph ? 'p' : variantMapping[variant] || defaultVariantMapping[variant]) || 'span';
+	  const classes = useUtilityClasses$8(ownerState);
+	  return /*#__PURE__*/jsxRuntime.jsx(TypographyRoot, _extends$1({
+	    as: Component,
+	    ref: ref,
+	    ownerState: ownerState,
+	    className: clsx(classes.root, className)
+	  }, other));
+	});
+	var Typography$1 = Typography;
 
 	function getAppBarUtilityClass(slot) {
 	  return generateUtilityClass('MuiAppBar', slot);
@@ -19136,11 +19335,11 @@
 	});
 	var Tab$1 = Tab;
 
-	var KeyboardArrowLeft = createSvgIcon(/*#__PURE__*/jsxRuntime.jsx("path", {
+	var KeyboardArrowLeft = createSvgIcon$1(/*#__PURE__*/jsxRuntime.jsx("path", {
 	  d: "M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z"
 	}), 'KeyboardArrowLeft');
 
-	var KeyboardArrowRight = createSvgIcon(/*#__PURE__*/jsxRuntime.jsx("path", {
+	var KeyboardArrowRight = createSvgIcon$1(/*#__PURE__*/jsxRuntime.jsx("path", {
 	  d: "M8.59 16.34l4.58-4.59-4.58-4.59L10 5.75l6 6-6 6z"
 	}), 'KeyboardArrowRight');
 
@@ -20222,15 +20421,15 @@
 	  const tabs = [{
 	    label: 'Aircraft',
 	    path: '/'
-	  },
-	  // { label: 'Cargo', path: '/Cargo' },
-	  {
+	  }, {
+	    label: 'Cargo',
+	    path: '/Cargo'
+	  }, {
 	    label: 'Manual',
 	    path: '/PDF'
-	  }, {
-	    label: 'Browser',
-	    path: '/Browser'
-	  }, {
+	  },
+	  // { label: 'Browser', path: '/Browser' },
+	  {
 	    label: 'Settings',
 	    path: '/Settings'
 	  }];
@@ -20418,7 +20617,6 @@
 	  let [FARPSHOW, setFARPSHOW] = useSimVar('L:C17_FARPSHOW', 'bool');
 	  let [FARPTANK, setFARPTANK] = useSimVar('L:C17_FARP_TANK', 'bool');
 	  let [DevModeEFB] = useSimVar('L:C17_DevModeEFB', 'bool');
-	  let [CargoLightMode, setCargoLightMode] = useSimVar('L:C17_CARGO_LGT_MODE', 'bool');
 	  return /*#__PURE__*/jsxRuntime.jsx("div", {
 	    className: "aircraftContainer",
 	    children: /*#__PURE__*/jsxRuntime.jsxs(Box$1, {
@@ -20534,25 +20732,7 @@
 	            left: 824,
 	            top: 640,
 	            position: 'absolute'
-	          },
-	          children: /*#__PURE__*/jsxRuntime.jsxs(ButtonGroup$1, {
-	            orientation: "horizontal",
-	            "aria-label": "horizontal outlined button group",
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	              size: "large",
-	              variant: CargoLightMode === 0 ? 'contained' : 'outlined',
-	              onClick: () => setCargoLightMode(CargoLightMode = 0),
-	              children: "DAY"
-	            }, "one"), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	              sx: {
-	                backgroundColor: CargoLightMode === 0 ? 'transparent' : '#8B0000'
-	              },
-	              size: "large",
-	              variant: CargoLightMode === 1 ? 'contained' : 'outlined',
-	              onClick: () => setCargoLightMode(CargoLightMode = 1),
-	              children: "NIGHT"
-	            }, "two")]
-	          })
+	          }
 	        }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
 	          onClick: () => setARSlipway(!ARSlipway),
 	          size: "large",
@@ -20612,11 +20792,43 @@
 	};
 
 	const Browser = () => {
-	  return /*#__PURE__*/jsxRuntime.jsx("iframe", {
-	    width: "1040",
-	    height: "810",
-	    src: "https://www.bing.com/",
-	    frameBorder: "0"
+	  const [url, setUrl] = react.useState("https://www.bing.com");
+	  const [input, setInput] = react.useState("https://www.bing.com");
+	  const goToPage = () => {
+	    let formatted = input;
+	    if (!formatted.startsWith("http://") && !formatted.startsWith("https://")) {
+	      formatted = "https://" + formatted;
+	    }
+	    setUrl(formatted);
+	  };
+	  return /*#__PURE__*/jsxRuntime.jsxs("div", {
+	    children: [/*#__PURE__*/jsxRuntime.jsxs("div", {
+	      style: {
+	        marginBottom: "8px"
+	      },
+	      children: [/*#__PURE__*/jsxRuntime.jsx("input", {
+	        type: "text",
+	        value: input,
+	        onChange: e => setInput(e.target.value),
+	        style: {
+	          width: "900px",
+	          padding: "6px"
+	        }
+	      }), /*#__PURE__*/jsxRuntime.jsx("button", {
+	        onClick: goToPage,
+	        style: {
+	          marginLeft: "6px",
+	          padding: "6px 10px"
+	        },
+	        children: "Go"
+	      })]
+	    }), /*#__PURE__*/jsxRuntime.jsx("iframe", {
+	      width: "1040",
+	      height: "810",
+	      src: url,
+	      frameBorder: "0",
+	      title: "browser"
+	    })]
 	  });
 	};
 
@@ -20999,6 +21211,42 @@
 	  });
 	};
 
+	var _utils = /*@__PURE__*/getAugmentedNamespace(utils);
+
+	var createSvgIcon = createCommonjsModule(function (module, exports) {
+	  'use client';
+
+	  Object.defineProperty(exports, "__esModule", {
+	    value: true
+	  });
+	  Object.defineProperty(exports, "default", {
+	    enumerable: true,
+	    get: function () {
+	      return _utils.createSvgIcon;
+	    }
+	  });
+	});
+
+	var require$$0 = createSvgIcon;
+
+	var CameraAlt = createCommonjsModule(function (module, exports) {
+	  "use client";
+
+	  Object.defineProperty(exports, "__esModule", {
+	    value: true
+	  });
+	  exports.default = void 0;
+	  var _createSvgIcon = interopRequireDefault(require$$0);
+	  exports.default = (0, _createSvgIcon.default)([/*#__PURE__*/(0, jsxRuntime.jsx)("circle", {
+	    cx: "12",
+	    cy: "12",
+	    r: "3.2"
+	  }, "0"), /*#__PURE__*/(0, jsxRuntime.jsx)("path", {
+	    d: "M9 2 7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5"
+	  }, "1")], 'CameraAlt');
+	});
+	var CameraAltIcon = /*@__PURE__*/getDefaultExportFromCjs(CameraAlt);
+
 	const ImagesCargo = () => {
 	  useSimVar('L:C17_GPU_Vis', 'bool');
 	  useSimVar('L:C17_RBF_TAGS', 'bool');
@@ -21021,15 +21269,15 @@
 	      children: /*#__PURE__*/jsxRuntime.jsx(Box$1, {
 	        sx: {
 	          position: 'absolute',
-	          width: 2050,
-	          height: 1000,
-	          left: -300,
+	          width: 1280,
+	          height: 1200,
+	          left: -252,
 	          top: 0,
-	          backgroundImage: 'url(/images/EFB/C17Base.png)',
+	          backgroundImage: 'url(/images/EFB/Cargoflooring.svg)',
 	          backgroundPosition: 'right',
 	          backgroundSize: '80%',
 	          backgroundRepeat: 'no-repeat',
-	          transform: 'rotate(-180deg)'
+	          transform: 'rotate(0deg)'
 	        }
 	      })
 	    })
@@ -21037,18 +21285,21 @@
 	};
 
 	const Cargo = () => {
-	  useSimVar('L:C17_GPU_Vis', 'bool');
-	  let [removeTags, setremoveTags] = useSimVar('L:C17_RBF_TAGS', 'bool');
-	  let [rearDoorL, setRearDoorL] = useSimVar('L:C17_PARA_L', 'bool');
-	  useSimVar('L:C17_PARA_R', 'bool');
-	  useSimVar('L:C17_CargoDoor_POS', 'enum');
-	  useSimVar('L:C17_UARRSI_Slipway', 'bool');
-	  useSimVar('L:C17_Crew_Enterance', 'bool');
-	  let [WXDome, setWXDome] = useSimVar('L:C17_Radome_Open', 'bool');
-	  const [CargoHoldFlood, setCargoHoldFlood] = useSimVar('A:LIGHT POTENTIOMETER:18', 'percent');
-	  const handleChange = (event, newValue) => {
-	    setCargoHoldFlood(newValue);
-	  };
+	  let [CargoLoadout, setCargoLoadout] = useSimVar('L:C17_PAYLOAD_SEL', 'enum');
+	  let [cargoMode, setCargoMode] = useSimVar('L:C17_PAYLOAD_MODE', 'BOOL');
+	  const [ac_on_ground] = useSimVar('SIM ON GROUND', 'bool');
+	  let [airdrop_control_mode, setairdrop_control_mode] = useSimVar('L:C17_AD_MODE', 'bool');
+	  const [fp_Waypoint_count] = useSimVar('GPS FLIGHT PLAN WP COUNT', 'number');
+	  let [Airdrop_drop_WP, setAirdrop_drop_WP] = useSimVar('L:C17_AD_DROP_WP', 'enum');
+	  let [FwdCargo_Station, setFwdCargo_Station] = useSimVar('PAYLOAD STATION WEIGHT:3', 'pounds');
+	  let [AftCargo_Station, setAftCargo_Station] = useSimVar('PAYLOAD STATION WEIGHT:4', 'pounds');
+	  useSimVar('L:C17_Radome_Open', 'bool');
+	  let [CargoHoldFlood, setCargoHoldFlood] = useSimVar('K:LIGHT_POTENTIOMETER_18_SET', 'number');
+	  let [CargoLightMode, setCargoLightMode] = useSimVar('L:C17_CARGO_LGT_MODE', 'bool');
+	  let [camera_instrument_index, setcamera_instrument_index] = useSimVar('A:CAMERA VIEW TYPE AND INDEX:1', 'enum');
+	  let [camera_substate, setcamera_substate] = useSimVar('A:CAMERA VIEW TYPE AND INDEX', 'enum');
+
+	  // (&gt;A:CAMERA VIEW TYPE AND INDEX:1, enum)
 	  return /*#__PURE__*/jsxRuntime.jsx("div", {
 	    className: "aircraftContainer",
 	    children: /*#__PURE__*/jsxRuntime.jsxs(Box$1, {
@@ -21063,7 +21314,7 @@
 	        textAlign: 'center',
 	        fontSize: 14
 	      },
-	      children: [/*#__PURE__*/jsxRuntime.jsx(ImagesCargo, {}), /*#__PURE__*/jsxRuntime.jsxs(Box$1, {
+	      children: [/*#__PURE__*/jsxRuntime.jsx(ImagesCargo, {}), /*#__PURE__*/jsxRuntime.jsx(Box$1, {
 	        sx: {
 	          position: 'absolute',
 	          width: 240,
@@ -21071,7 +21322,7 @@
 	          backgroundColor: '#343a40',
 	          borderRadius: 1,
 	          left: 15,
-	          top: 20,
+	          top: 15,
 	          boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.699)',
 	          justifyContent: 'start',
 	          display: 'flex',
@@ -21080,57 +21331,275 @@
 	          fontSize: 14,
 	          padding: 1
 	        },
-	        children: [/*#__PURE__*/jsxRuntime.jsx("h2", {
-	          style: {
-	            marginTop: 0,
-	            color: '#aeb0b3'
-	          },
-	          children: "Cargo Bay Flood"
-	        }), /*#__PURE__*/jsxRuntime.jsx(Stack$1, {
+	        children: /*#__PURE__*/jsxRuntime.jsx(Stack$1, {
 	          direction: "column",
 	          spacing: 1,
 	          children: /*#__PURE__*/jsxRuntime.jsxs(ThemeProvider, {
 	            theme: ButtonColour,
-	            children: [/*#__PURE__*/jsxRuntime.jsx(Slider$1, {
-	              "aria-labelledby": "CargoHoldFlood",
-	              value: CargoHoldFlood,
-	              onChange: handleChange,
-	              sx: {
-	                color: 'orange',
-	                // Set the color to orange
-	                "& .MuiSlider-thumb": {
-	                  backgroundColor: '#ffaa00' // Set the color of the slider thumb to orange
-	                }
-	              }
-	            }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	              onClick: () => setWXDome(!WXDome),
-	              size: "large",
-	              variant: WXDome ? 'contained' : 'outlined',
-	              children: "WX Dome"
-	            }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	              onClick: () => setremoveTags(!removeTags),
-	              size: "large",
-	              variant: removeTags ? 'contained' : 'outlined',
-	              children: "Cones & Covers"
+	            children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+	              style: {
+	                marginTop: 0,
+	                color: '#aeb0b3'
+	              },
+	              children: "Cargo Bay Lighting"
+	            }), /*#__PURE__*/jsxRuntime.jsxs(ButtonGroup$1, {
+	              variant: "outlined",
+	              fullWidth: true,
+	              children: [/*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	                onClick: () => setCargoHoldFlood(0),
+	                children: "Off"
+	              }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	                onClick: () => setCargoHoldFlood(40),
+	                children: "Dim"
+	              }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	                onClick: () => setCargoHoldFlood(100),
+	                children: "Bright"
+	              })]
+	            }), /*#__PURE__*/jsxRuntime.jsxs(ButtonGroup$1, {
+	              variant: "outlined",
+	              fullWidth: true,
+	              children: [/*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	                size: "medium",
+	                variant: CargoLightMode === 0 ? 'contained' : 'outlined',
+	                onClick: () => setCargoLightMode(CargoLightMode = 0),
+	                children: "DAY"
+	              }, "one"), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	                sx: {
+	                  backgroundColor: CargoLightMode === 0 ? 'transparent' : '#8B0000'
+	                },
+	                size: "medium",
+	                variant: CargoLightMode === 1 ? 'contained' : 'outlined',
+	                onClick: () => setCargoLightMode(CargoLightMode = 1),
+	                children: "NIGHT"
+	              }, "two")]
 	            })]
 	          })
-	        })]
-	      }), /*#__PURE__*/jsxRuntime.jsx(ThemeProvider, {
+	        })
+	      }), /*#__PURE__*/jsxRuntime.jsxs(ThemeProvider, {
 	        theme: ButtonColour,
-	        children: /*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	          onClick: () => setRearDoorL(!rearDoorL),
+	        children: [/*#__PURE__*/jsxRuntime.jsxs(Box$1, {
+	          sx: {
+	            position: 'absolute',
+	            width: 600,
+	            height: 155,
+	            backgroundColor: '#343a40',
+	            borderRadius: 1,
+	            left: 15,
+	            top: 310,
+	            boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.699)',
+	            justifyContent: 'start',
+	            display: 'flex',
+	            flexDirection: 'column',
+	            textAlign: 'center',
+	            fontSize: 14,
+	            padding: 1
+	          },
+	          children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+	            style: {
+	              marginTop: 0,
+	              color: '#aeb0b3'
+	            },
+	            children: "Payload Options"
+	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
+	            direction: "column",
+	            spacing: 1,
+	            sx: {
+	              opacity: !ac_on_ground ? 0.4 : 1,
+	              pointerEvents: !ac_on_ground ? "none" : "auto"
+	            },
+	            children: [/*#__PURE__*/jsxRuntime.jsxs(ButtonGroup$1, {
+	              fullWidth: true,
+	              orientation: "horizontal",
+	              "aria-label": "horizontal outlined button group",
+	              children: [/*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	                size: "large",
+	                variant: cargoMode === 0 ? 'contained' : 'outlined',
+	                onClick: () => setCargoMode(0),
+	                children: "STATIC CARGO"
+	              }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	                size: "large",
+	                variant: cargoMode === 1 ? 'contained' : 'outlined',
+	                onClick: () => setCargoMode(1),
+	                children: "AIRDROP CARGO"
+	              })]
+	            }), cargoMode === 0 && /*#__PURE__*/jsxRuntime.jsxs(ButtonGroup$1, {
+	              fullWidth: true,
+	              orientation: "horizontal",
+	              "aria-label": "horizontal outlined button group",
+	              children: [/*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	                size: "medium",
+	                variant: CargoLoadout === 0 ? 'contained' : 'outlined',
+	                onClick: () => {
+	                  setFwdCargo_Station(0);
+	                  setAftCargo_Station(0);
+	                },
+	                children: "EMPTY"
+	              }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	                size: "medium",
+	                variant: CargoLoadout === 1 ? 'contained' : 'outlined',
+	                onClick: () => {
+	                  setFwdCargo_Station(14000);
+	                  setAftCargo_Station(14000);
+	                },
+	                children: "PALLET"
+	              }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	                size: "medium",
+	                variant: CargoLoadout === 2 ? 'contained' : 'outlined',
+	                onClick: () => {
+	                  setFwdCargo_Station(22000);
+	                  setAftCargo_Station(22000);
+	                },
+	                children: "ISU"
+	              }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	                size: "medium",
+	                variant: CargoLoadout === 3 ? 'contained' : 'outlined',
+	                onClick: () => {
+	                  setFwdCargo_Station(40000);
+	                  setAftCargo_Station(40000);
+	                },
+	                children: "UH-60"
+	              }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	                size: "medium",
+	                variant: CargoLoadout === 4 ? 'contained' : 'outlined',
+	                onClick: () => {
+	                  setFwdCargo_Station(50000);
+	                  setAftCargo_Station(50000);
+	                },
+	                children: "FUEL BLADDER"
+	              })]
+	            }), cargoMode === 1 && /*#__PURE__*/jsxRuntime.jsxs(ButtonGroup$1, {
+	              fullWidth: true,
+	              orientation: "horizontal",
+	              "aria-label": "horizontal outlined button group",
+	              children: [/*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	                size: "medium",
+	                variant: CargoLoadout === 0 ? 'contained' : 'outlined',
+	                onClick: () => {
+	                  setFwdCargo_Station(0);
+	                  setAftCargo_Station(0);
+	                },
+	                children: "EMPTY"
+	              }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	                size: "medium",
+	                variant: CargoLoadout === 6 ? 'contained' : 'outlined',
+	                onClick: () => {
+	                  setFwdCargo_Station(10000);
+	                  setAftCargo_Station(10000);
+	                },
+	                children: "PALLET"
+	              })]
+	            })]
+	          })]
+	        }), cargoMode === 1 && CargoLoadout === 6 && /*#__PURE__*/jsxRuntime.jsxs(Box$1, {
+	          sx: {
+	            position: 'absolute',
+	            width: 350,
+	            height: 155,
+	            backgroundColor: '#343a40',
+	            borderRadius: 1,
+	            left: 650,
+	            top: 310,
+	            boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.699)',
+	            justifyContent: 'start',
+	            display: 'flex',
+	            flexDirection: 'column',
+	            textAlign: 'center',
+	            fontSize: 14,
+	            padding: 1
+	          },
+	          children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+	            style: {
+	              marginTop: 0,
+	              color: '#aeb0b3'
+	            },
+	            children: "Airdrop Configuration"
+	          }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
+	            direction: "column",
+	            spacing: 1,
+	            children: [/*#__PURE__*/jsxRuntime.jsxs(ButtonGroup$1, {
+	              fullWidth: true,
+	              orientation: "horizontal",
+	              "aria-label": "horizontal outlined button group",
+	              children: [/*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	                size: "medium",
+	                variant: airdrop_control_mode === 1 ? 'contained' : 'outlined',
+	                onClick: () => setairdrop_control_mode(1),
+	                children: "MANUAL DROP"
+	              }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	                size: "medium",
+	                variant: airdrop_control_mode === 0 ? 'contained' : 'outlined',
+	                onClick: () => setairdrop_control_mode(0),
+	                children: "AUTO DROP"
+	              })]
+	            }), /*#__PURE__*/jsxRuntime.jsxs(Stack$1, {
+	              direction: "column",
+	              spacing: 0.5,
+	              sx: {
+	                opacity: airdrop_control_mode === 1 ? 0.4 : 1,
+	                pointerEvents: airdrop_control_mode === 1 ? "none" : "auto"
+	              },
+	              children: [/*#__PURE__*/jsxRuntime.jsx("h3", {
+	                style: {
+	                  marginTop: 0,
+	                  color: '#aeb0b3'
+	                },
+	                children: "Autodrop WP Select"
+	              }), /*#__PURE__*/jsxRuntime.jsxs(ButtonGroup$1, {
+	                fullWidth: true,
+	                children: [/*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	                  disabled: true,
+	                  sx: {
+	                    width: 400
+	                  },
+	                  children: /*#__PURE__*/jsxRuntime.jsx(Typography$1, {
+	                    sx: {
+	                      color: '#aeb0b3'
+	                    },
+	                    children: Airdrop_drop_WP
+	                  })
+	                }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	                  onClick: () => setAirdrop_drop_WP(Math.max(0, Airdrop_drop_WP - 1)),
+	                  children: "-"
+	                }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	                  onClick: () => setAirdrop_drop_WP(Math.min(fp_Waypoint_count, Airdrop_drop_WP + 1)),
+	                  children: "+"
+	                })]
+	              })]
+	            })]
+	          })]
+	        }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	          startIcon: /*#__PURE__*/jsxRuntime.jsx(CameraAltIcon, {}),
+	          onClick: () => {
+	            setcamera_instrument_index(8);
+	            setcamera_substate(2);
+	          },
 	          size: "large",
-	          variant: rearDoorL ? 'contained' : 'outlined',
+	          variant: "outlined",
 	          style: {
 	            position: 'absolute',
-	            top: '640px',
-	            left: '620px',
+	            top: '700px',
+	            left: '45px',
 	            margin: '10px',
-	            boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.699)',
-	            backgroundColor: rearDoorL ? ButtonColour.palette.primary.main : '#22262a'
+	            boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.699)'
 	          },
-	          children: "Para Door L"
-	        })
+	          children: "Loadmaster"
+	        }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	          startIcon: /*#__PURE__*/jsxRuntime.jsx(CameraAltIcon, {}),
+	          onClick: () => {
+	            setcamera_instrument_index(7);
+	            setcamera_substate(2);
+	          },
+	          size: "large",
+	          variant: "outlined",
+	          style: {
+	            position: 'absolute',
+	            top: '700px',
+	            left: '667px',
+	            margin: '10px',
+	            boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.699)'
+	          },
+	          children: "Cargo Door"
+	        })]
 	      })]
 	    })
 	  });
@@ -21145,13 +21614,13 @@
 	          className: "EFBContainer",
 	          children: [/*#__PURE__*/jsxRuntime.jsxs(Routes, {
 	            children: [/*#__PURE__*/jsxRuntime.jsx(Route, {
-	              path: "/",
+	              path: "/Cargo",
 	              element: /*#__PURE__*/jsxRuntime.jsx(Aircraft, {})
 	            }), /*#__PURE__*/jsxRuntime.jsx(Route, {
 	              path: "/Browser",
 	              element: /*#__PURE__*/jsxRuntime.jsx(Browser, {})
 	            }), /*#__PURE__*/jsxRuntime.jsx(Route, {
-	              path: "/Cargo",
+	              path: "/",
 	              element: /*#__PURE__*/jsxRuntime.jsx(Cargo, {})
 	            }), /*#__PURE__*/jsxRuntime.jsx(Route, {
 	              path: "/PDF",

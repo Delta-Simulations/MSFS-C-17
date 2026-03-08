@@ -23,7 +23,16 @@
     GPS FLIGHT PLAN WP INDEX can fetch the current WP, and compare to the ID of a set WP id for DZ calculations
     When ID matches, begin countdown logic and autodrop logic
     Can integrate into EFB maybe?
-        
+    
+    C17_PAYLOAD_MODE
+    Selected through the EFB, toggles between Static and Airdop Cargo loadouts
+    C17_AD_MODE
+    Toggles between manual and auto airdrop modes
+    C17_AD_DROP_WP
+    User-selected waypoint to use for Auto ADS calculations
+
+    TODO:
+    Merge the 2 payload stations into 1 for ease of accessing and writing to
 	</Comment>
 
 
@@ -44,7 +53,8 @@
             }
 
             (* Countdown logic for aural cues *)
-            (L:C17_AD_WP_ID, number) (A:GPS FLIGHT PLAN WP INDEX, number) == and
+            (* Selected WP is same as designated AD WP *)
+            (L:C17_AD_DROP_WP, number) (A:GPS FLIGHT PLAN WP INDEX, number) == and
             (L:C17_AD_ADS_ARMED,bool) 1 == and
             (L:C17_AD_DirTo, bool) 1 == and
                 if{
@@ -158,6 +168,7 @@
 
                 (A:PAYLOAD STATION WEIGHT:3, pounds) 10000 &gt; 
                 (A:PAYLOAD STATION WEIGHT:4, pounds) 10000 &gt; or
+                (L:C17_PAYLOAD_MODE, bool) 1 == AND
                 if{ 1 (&gt;A:LIGHT RECOGNITION:4, bool) } els{ 0 (&gt;A:LIGHT RECOGNITION:4, bool) }
 
 

@@ -8,9 +8,9 @@ export const ButtonBar = () => {
 
   const tabs = [
     { label: 'Aircraft', path: '/' },
-    // { label: 'Cargo', path: '/Cargo' },
+    { label: 'Cargo', path: '/Cargo' },
     { label: 'Manual', path: '/PDF' },
-    { label: 'Browser', path: '/Browser' },
+    // { label: 'Browser', path: '/Browser' },
     { label: 'Settings', path: '/Settings' },
   ];
 

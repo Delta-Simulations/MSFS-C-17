@@ -21,16 +21,6 @@
             }
         },
         {
-            "__uuid": "db632214-a4eb-4f8c-8b45-ef80c067ca9f",
-            "title": "PWR",
-            "varPrefix": "A",
-            "varName": "CIRCUIT ON:81",
-            "varUnit": "number",
-            "style": {
-                "type": 3
-            }
-        },
-        {
             "__uuid": "593ba328-bd1f-498c-94a2-979bab8f6636",
             "title": "Total Fuel",
             "varPrefix": "A",
@@ -38,6 +28,29 @@
             "varUnit": "number",
             "style": {
                 "type": 1
+            }
+        },
+        {
+            "__uuid": "25fd9b47-3921-4fbc-b8c0-50cc682fb2a0",
+            "title": "On ground?",
+            "varPrefix": "A",
+            "varName": "SIM ON GROUND",
+            "varUnit": "number",
+            "style": {
+                "type": 3
+            }
+        },
+        {
+            "__uuid": "c9a9a92c-2fc3-4d7c-9804-e346258c62b0",
+            "title": "ADS Mode",
+            "varPrefix": "L",
+            "varName": "C17_PAYLOAD_MODE",
+            "varUnit": "enum",
+            "style": {
+                "type": 2,
+                "min": 0,
+                "max": 3,
+                "step": 1
             }
         }
     ]

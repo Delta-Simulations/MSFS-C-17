@@ -23,9 +23,9 @@ const C17EFB = () => {
 				<div className="EFBContainer">
 					<Routes>
 						
-						<Route path="/" element={<Aircraft />} />
+						<Route path="/Cargo" element={<Aircraft />} />
 						<Route path="/Browser" element={<Browser />} />
-						<Route path="/Cargo" element={<Cargo />} />
+						<Route path="/" element={<Cargo />} />
 						<Route path="/PDF" element={<MANUAL />} />
 						<Route path="/Settings" element={<Settings />} />
 					</Routes>

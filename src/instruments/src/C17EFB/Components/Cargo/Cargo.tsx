@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Checkbox from '@mui/material/Checkbox';
-import { Typography } from '@mui/material';
+import { Alert, Divider, IconButton, TextField, ToggleButtonGroup, Typography } from '@mui/material';
 import { Button, Slider, ThemeProvider } from '@mui/material';
+import CameraAltIcon from '@mui/icons-material/CameraAlt';
 
 import MuiInput from '@mui/material/Input';
 import Container from '@mui/material/Container';
@@ -16,19 +17,24 @@ import './cargo.scss';
 
 
 export const Cargo = () => {
-	let [GPU] = useSimVar('L:C17_GPU_Vis', 'bool');
+	let [CargoLoadout, setCargoLoadout] = useSimVar('L:C17_PAYLOAD_SEL', 'enum');
+	let [cargoMode, setCargoMode] = useSimVar('L:C17_PAYLOAD_MODE', 'BOOL');
+	const [ac_on_ground] = useSimVar('SIM ON GROUND', 'bool');
+	let [airdrop_control_mode, setairdrop_control_mode] = useSimVar('L:C17_AD_MODE', 'bool');
+	const [fp_Waypoint_count] = useSimVar('GPS FLIGHT PLAN WP COUNT', 'number');
+	let [Airdrop_drop_WP, setAirdrop_drop_WP] = useSimVar('L:C17_AD_DROP_WP', 'enum');
 
-	let [removeTags, setremoveTags] = useSimVar('L:C17_RBF_TAGS', 'bool');
-	let [rearDoorL, setRearDoorL] = useSimVar('L:C17_PARA_L', 'bool');
-	let [rearDoorR, setRearDoorR] = useSimVar('L:C17_PARA_R', 'bool');
-	let [CargoDoor, setCargoDoor] = useSimVar('L:C17_CargoDoor_POS', 'enum');
-	let [ARSlipway, setARSlipway] = useSimVar('L:C17_UARRSI_Slipway', 'bool');
-	let [EnteranceDoor, setEnteranceDoor] = useSimVar('L:C17_Crew_Enterance', 'bool');
+	let [FwdCargo_Station, setFwdCargo_Station] = useSimVar('PAYLOAD STATION WEIGHT:3', 'pounds');
+	let [AftCargo_Station, setAftCargo_Station] = useSimVar('PAYLOAD STATION WEIGHT:4', 'pounds');
+
 	let [WXDome, setWXDome] = useSimVar('L:C17_Radome_Open', 'bool');
-	const [CargoHoldFlood, setCargoHoldFlood] = useSimVar('A:LIGHT POTENTIOMETER:18', 'percent');
-	const handleChange = (event: Event, newValue: number | number[]) => {
-		setCargoHoldFlood(newValue as number);
-	};
+	let [CargoHoldFlood, setCargoHoldFlood] = useSimVar('K:LIGHT_POTENTIOMETER_18_SET', 'number');
+	let [CargoLightMode, setCargoLightMode] = useSimVar('L:C17_CARGO_LGT_MODE', 'bool');
+	
+	let [camera_instrument_index, setcamera_instrument_index] = useSimVar('A:CAMERA VIEW TYPE AND INDEX:1', 'enum');
+	let [camera_substate, setcamera_substate] = useSimVar('A:CAMERA VIEW TYPE AND INDEX', 'enum');
+
+// (&gt;A:CAMERA VIEW TYPE AND INDEX:1, enum)
 	return (
 		<div className="aircraftContainer">
 			<Box
@@ -53,7 +59,7 @@ export const Cargo = () => {
 						backgroundColor: '#343a40',
 						borderRadius: 1,
 						left: 15,
-						top: 20,
+						top: 15,
 						boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.699)',
 						justifyContent: 'start',
 						display: 'flex',
@@ -63,60 +69,193 @@ export const Cargo = () => {
 						padding: 1,
 					}}
 				>
-					<h2 style={{ marginTop: 0, color: '#aeb0b3' }}>Cargo Bay Flood</h2>
-					<Stack direction="column" spacing={1}>
+					<Stack direction="column" spacing={1} >
+
 						<ThemeProvider theme={ButtonColour}>
+							<h3 style={{ marginTop: 0, color: '#aeb0b3' }}>Cargo Bay Lighting</h3>
+							<ButtonGroup variant="outlined" fullWidth>
+								<Button onClick={() => setCargoHoldFlood(0)}>Off</Button>
+								<Button onClick={() => setCargoHoldFlood(40)}>Dim</Button>
+								<Button onClick={() => setCargoHoldFlood(100)}>Bright</Button >
+							</ButtonGroup>
+							<ButtonGroup variant="outlined" fullWidth>
+    <Button  size="medium" variant={CargoLightMode === 0 ? 'contained' : 'outlined'} onClick={() => setCargoLightMode(CargoLightMode=0)} key="one">DAY</Button>
+    <Button sx={{ backgroundColor: CargoLightMode === 0 ? 'transparent' : '#8B0000' }} size="medium" variant={CargoLightMode === 1 ? 'contained' : 'outlined'} onClick={() => setCargoLightMode(CargoLightMode=1)} key="two">NIGHT</Button>
+      
+							</ButtonGroup>
 
-						<Slider aria-labelledby="CargoHoldFlood" value={CargoHoldFlood} onChange={handleChange}
-								sx={{
-									color: 'orange', // Set the color to orange
-									"& .MuiSlider-thumb": {
-										backgroundColor: '#ffaa00', // Set the color of the slider thumb to orange
-									},
-								}}
-							/>
-							<Button
-								onClick={() => setWXDome(!WXDome)}
-								size="large"
-								variant={WXDome ? 'contained' : 'outlined'}
-							>
-								WX Dome
-							</Button>
-							<Button
-								onClick={() => setremoveTags(!removeTags)}
-								size="large"
-								variant={removeTags ? 'contained' : 'outlined'}
-
-							>
-								Cones & Covers
-							</Button></ThemeProvider>
-
-
-
+						</ThemeProvider>
 
 					</Stack>
 
 				</Box>
+
 				<ThemeProvider theme={ButtonColour}>
-
-					<Button
-						onClick={() => setRearDoorL(!rearDoorL)}
-						size="large"
-						variant={rearDoorL ? 'contained' : 'outlined'}
-						style={{
+					{/* Payload Options */}
+					<Box
+						sx={{
 							position: 'absolute',
-							top: '640px',
-							left: '620px',
-							margin: '10px',
+							width: 600,
+							height: 155,
+							backgroundColor: '#343a40',
+							borderRadius: 1,
+							left: 15,
+							top: 310,
 							boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.699)',
-							backgroundColor: rearDoorL ? ButtonColour.palette.primary.main : '#22262a'
-
+							justifyContent: 'start',
+							display: 'flex',
+							flexDirection: 'column',
+							textAlign: 'center',
+							fontSize: 14,
+							padding: 1,
 						}}
 					>
-						Para Door L
+						<h3 style={{ marginTop: 0, color: '#aeb0b3' }}>Payload Options</h3>
+						<Stack
+							direction="column"
+							spacing={1}
+							sx={{
+								opacity: !ac_on_ground ? 0.4 : 1,
+								pointerEvents: !ac_on_ground ? "none" : "auto"
+							}}
+						>
+							<ButtonGroup
+								fullWidth
+								orientation="horizontal"
+								aria-label="horizontal outlined button group"
+							>
+								<Button size="large" variant={cargoMode === 0 ? 'contained' : 'outlined'} onClick={() => setCargoMode(0)}>STATIC CARGO</Button>
+								<Button size="large" variant={cargoMode === 1 ? 'contained' : 'outlined'} onClick={() => setCargoMode(1)}>AIRDROP CARGO</Button>
+							</ButtonGroup>
+							{cargoMode === 0 && (
+								<ButtonGroup
+									fullWidth
+									orientation="horizontal"
+									aria-label="horizontal outlined button group"
+								>
+									<Button size="medium" variant={CargoLoadout === 0 ? 'contained' : 'outlined'} onClick={() => {setFwdCargo_Station(0);setAftCargo_Station(0)}} >EMPTY</Button>
+									<Button size="medium" variant={CargoLoadout === 1 ? 'contained' : 'outlined'} onClick={() => {setFwdCargo_Station(14000);setAftCargo_Station(14000)}} >PALLET</Button>
+									<Button size="medium" variant={CargoLoadout === 2 ? 'contained' : 'outlined'} onClick={() => {setFwdCargo_Station(22000);setAftCargo_Station(22000)}} >ISU</Button>
+									<Button size="medium" variant={CargoLoadout === 3 ? 'contained' : 'outlined'} onClick={() => {setFwdCargo_Station(40000);setAftCargo_Station(40000)}} >UH-60</Button>
+									<Button size="medium" variant={CargoLoadout === 4 ? 'contained' : 'outlined'} onClick={() => {setFwdCargo_Station(50000);setAftCargo_Station(50000)}} >FUEL BLADDER</Button>
+								</ButtonGroup>)}
+							{cargoMode === 1 && (
+								<ButtonGroup
+									fullWidth
+									orientation="horizontal"
+									aria-label="horizontal outlined button group"
+								>
+									<Button size="medium" variant={CargoLoadout === 0 ? 'contained' : 'outlined'} onClick={() => {setFwdCargo_Station(0);setAftCargo_Station(0)}}>EMPTY</Button>
+									<Button size="medium" variant={CargoLoadout === 6 ? 'contained' : 'outlined'} onClick={() => {setFwdCargo_Station(10000);setAftCargo_Station(10000)}} >PALLET</Button>
+
+								</ButtonGroup>)}
+						</Stack>
+					</Box>
+
+					{/* Airdrop Configuration */}
+					{cargoMode === 1 && CargoLoadout === 6&& (
+						<Box
+							sx={{
+								position: 'absolute',
+								width: 350,
+								height: 155,
+								backgroundColor: '#343a40',
+								borderRadius: 1,
+								left: 650,
+								top: 310,
+								boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.699)',
+								justifyContent: 'start',
+								display: 'flex',
+								flexDirection: 'column',
+								textAlign: 'center',
+								fontSize: 14,
+								padding: 1,
+							}}
+						>
+							<h3 style={{ marginTop: 0, color: '#aeb0b3' }}>Airdrop Configuration</h3>
+							<Stack
+								direction="column"
+								spacing={1}
+							>
+
+
+								<ButtonGroup
+									fullWidth
+									orientation="horizontal"
+									aria-label="horizontal outlined button group"
+								>
+									<Button size="medium" variant={airdrop_control_mode === 1 ? 'contained' : 'outlined'} onClick={() => setairdrop_control_mode(1)} >MANUAL DROP</Button>
+									<Button size="medium" variant={airdrop_control_mode === 0 ? 'contained' : 'outlined'} onClick={() => setairdrop_control_mode(0)} >AUTO DROP</Button>
+								</ButtonGroup>
+								<Stack direction="column" spacing={0.5}
+									sx={{
+									opacity: airdrop_control_mode === 1 ? 0.4 : 1,
+									pointerEvents: airdrop_control_mode === 1 ? "none" : "auto"
+								}}
+								>
+
+								<h3 style={{ marginTop: 0, color: '#aeb0b3' }}>Autodrop WP Select</h3>
+
+									<ButtonGroup fullWidth>
+										<Button disabled sx={{ width: 400 }}>
+											
+											<Typography sx={{ color: '#aeb0b3' }}>
+												{Airdrop_drop_WP}
+											</Typography>
+										</Button>
+										<Button
+											onClick={() => setAirdrop_drop_WP(Math.max(0, Airdrop_drop_WP - 1))}
+										>
+											-
+										</Button>
+
+										<Button
+											onClick={() => setAirdrop_drop_WP(Math.min(fp_Waypoint_count, Airdrop_drop_WP + 1))}
+										>
+											+
+										</Button>
+									</ButtonGroup>
+								</Stack>
+
+							</Stack>
+
+						</Box>)}
+
+
+					<Button
+					startIcon={<CameraAltIcon />}
+						onClick={() => {setcamera_instrument_index(8); setcamera_substate(2);}}
+						size="large"
+						variant="outlined"
+						style={{
+							position: 'absolute',
+							top: '700px',
+							left: '45px',
+							margin: '10px',
+							boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.699)',
+						}}
+					>
+						Loadmaster
 					</Button>
+					<Button
+					startIcon={<CameraAltIcon />}
+						onClick={() => {setcamera_instrument_index(7); setcamera_substate(2);}}
+						size="large"
+						variant="outlined"
+						style={{
+							position: 'absolute',
+							top: '700px',
+							left: '667px',
+							margin: '10px',
+							boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.699)',
+						}}
+					>
+						Cargo Door
+					</Button>
+
+
 				</ThemeProvider>
-				
+
 
 			</Box>
 
