@@ -9485,7 +9485,7 @@
 	}();
 
 	var e$1 = "-ms-";
-	var r$4 = "-moz-";
+	var r$2 = "-moz-";
 	var a = "-webkit-";
 	var n$1 = "comm";
 	var c$1 = "rule";
@@ -9975,7 +9975,7 @@
 	    case 4810:
 	    case 6968:
 	    case 2756:
-	      return a + value + r$4 + value + e$1 + value + value;
+	      return a + value + r$2 + value + e$1 + value + value;
 	    // flex, flex-direction
 
 	    case 6828:
@@ -10056,7 +10056,7 @@
 	        // (f)ill-available, (f)it-content
 
 	        case 102:
-	          return z$1(value, /(.+:)(.+)-([^]+)/, '$1' + a + '$2-$3' + '$1' + r$4 + (O(value, length + 3) == 108 ? '$3' : '$2-$3')) + value;
+	          return z$1(value, /(.+:)(.+)-([^]+)/, '$1' + a + '$2-$3' + '$1' + r$2 + (O(value, length + 3) == 108 ? '$3' : '$2-$3')) + value;
 	        // (s)tretch
 
 	        case 115:
@@ -10117,7 +10117,7 @@
 	          case ':read-only':
 	          case ':read-write':
 	            return oe([K(element, {
-	              props: [z$1(value, /:(read-\w+)/, ':' + r$4 + '$1')]
+	              props: [z$1(value, /:(read-\w+)/, ':' + r$2 + '$1')]
 	            })], callback);
 	          // :placeholder
 
@@ -10125,7 +10125,7 @@
 	            return oe([K(element, {
 	              props: [z$1(value, /:(plac\w+)/, ':' + a + 'input-$1')]
 	            }), K(element, {
-	              props: [z$1(value, /:(plac\w+)/, ':' + r$4 + '$1')]
+	              props: [z$1(value, /:(plac\w+)/, ':' + r$2 + '$1')]
 	            }), K(element, {
 	              props: [z$1(value, /:(plac\w+)/, e$1 + 'input-$1')]
 	            })], callback);
@@ -10280,7 +10280,7 @@
 	  n = b ? Symbol.for("react.forward_ref") : 60112,
 	  p = b ? Symbol.for("react.suspense") : 60113,
 	  q = b ? Symbol.for("react.suspense_list") : 60120,
-	  r$3 = b ? Symbol.for("react.memo") : 60115,
+	  r$1 = b ? Symbol.for("react.memo") : 60115,
 	  t = b ? Symbol.for("react.lazy") : 60116,
 	  v = b ? Symbol.for("react.block") : 60121,
 	  w = b ? Symbol.for("react.fundamental") : 60117,
@@ -10304,7 +10304,7 @@
 	              case k:
 	              case n:
 	              case t:
-	              case r$3:
+	              case r$1:
 	              case h:
 	                return a;
 	              default:
@@ -10327,7 +10327,7 @@
 	var ForwardRef$1 = n;
 	var Fragment$1 = e;
 	var Lazy$1 = t;
-	var Memo$1 = r$3;
+	var Memo$1 = r$1;
 	var Portal$1 = d;
 	var Profiler$1 = g;
 	var StrictMode$1 = f;
@@ -10355,7 +10355,7 @@
 	  return z(a) === t;
 	};
 	var isMemo$1 = function (a) {
-	  return z(a) === r$3;
+	  return z(a) === r$1;
 	};
 	var isPortal$1 = function (a) {
 	  return z(a) === d;
@@ -10370,7 +10370,7 @@
 	  return z(a) === p;
 	};
 	var isValidElementType$1 = function (a) {
-	  return "string" === typeof a || "function" === typeof a || a === e || a === m || a === g || a === f || a === p || a === q || "object" === typeof a && null !== a && (a.$$typeof === t || a.$$typeof === r$3 || a.$$typeof === h || a.$$typeof === k || a.$$typeof === n || a.$$typeof === w || a.$$typeof === x || a.$$typeof === y || a.$$typeof === v);
+	  return "string" === typeof a || "function" === typeof a || a === e || a === m || a === g || a === f || a === p || a === q || "object" === typeof a && null !== a && (a.$$typeof === t || a.$$typeof === r$1 || a.$$typeof === h || a.$$typeof === k || a.$$typeof === n || a.$$typeof === w || a.$$typeof === x || a.$$typeof === y || a.$$typeof === v);
 	};
 	var typeOf$1 = z;
 	var reactIs_production_min = {
@@ -12674,18 +12674,18 @@
 	const ClassNameGenerator = createClassNameGenerator();
 	var ClassNameGenerator$1 = ClassNameGenerator;
 
-	function r$2(e) {
+	function r(e) {
 	  var t,
 	    f,
 	    n = "";
 	  if ("string" == typeof e || "number" == typeof e) n += e;else if ("object" == typeof e) if (Array.isArray(e)) {
 	    var o = e.length;
-	    for (t = 0; t < o; t++) e[t] && (f = r$2(e[t])) && (n && (n += " "), n += f);
+	    for (t = 0; t < o; t++) e[t] && (f = r(e[t])) && (n && (n += " "), n += f);
 	  } else for (f in e) e[f] && (n && (n += " "), n += f);
 	  return n;
 	}
-	function clsx$2() {
-	  for (var e, t, f = 0, n = "", o = arguments.length; f < o; f++) (e = arguments[f]) && (t = r$2(e)) && (n && (n += " "), n += t);
+	function clsx() {
+	  for (var e, t, f = 0, n = "", o = arguments.length; f < o; f++) (e = arguments[f]) && (t = r(e)) && (n && (n += " "), n += t);
 	  return n;
 	}
 
@@ -12712,7 +12712,7 @@
 	    return /*#__PURE__*/jsxRuntime.jsx(BoxRoot, _extends$1({
 	      as: component,
 	      ref: ref,
-	      className: clsx$2(className, generateClassName ? generateClassName(defaultClassName) : defaultClassName),
+	      className: clsx(className, generateClassName ? generateClassName(defaultClassName) : defaultClassName),
 	      theme: themeId ? theme[themeId] || theme : theme
 	    }, other));
 	  });
@@ -13826,21 +13826,6 @@
 	  });
 	}
 
-	function r$1(e) {
-	  var t,
-	    f,
-	    n = "";
-	  if ("string" == typeof e || "number" == typeof e) n += e;else if ("object" == typeof e) if (Array.isArray(e)) {
-	    var o = e.length;
-	    for (t = 0; t < o; t++) e[t] && (f = r$1(e[t])) && (n && (n += " "), n += f);
-	  } else for (f in e) e[f] && (n && (n += " "), n += f);
-	  return n;
-	}
-	function clsx$1() {
-	  for (var e, t, f = 0, n = "", o = arguments.length; f < o; f++) (e = arguments[f]) && (t = r$1(e)) && (n && (n += " "), n += t);
-	  return n;
-	}
-
 	/**
 	 * Extracts event handlers from a given object.
 	 * A prop is considered an event handler if it is a function and its name starts with `on`.
@@ -13902,7 +13887,7 @@
 	  if (!getSlotProps) {
 	    // The simpler case - getSlotProps is not defined, so no internal event handlers are defined,
 	    // so we can simply merge all the props without having to worry about extracting event handlers.
-	    const joinedClasses = clsx$1(additionalProps == null ? void 0 : additionalProps.className, className, externalForwardedProps == null ? void 0 : externalForwardedProps.className, externalSlotProps == null ? void 0 : externalSlotProps.className);
+	    const joinedClasses = clsx(additionalProps == null ? void 0 : additionalProps.className, className, externalForwardedProps == null ? void 0 : externalForwardedProps.className, externalSlotProps == null ? void 0 : externalSlotProps.className);
 	    const mergedStyle = _extends$1({}, additionalProps == null ? void 0 : additionalProps.style, externalForwardedProps == null ? void 0 : externalForwardedProps.style, externalSlotProps == null ? void 0 : externalSlotProps.style);
 	    const props = _extends$1({}, additionalProps, externalForwardedProps, externalSlotProps);
 	    if (joinedClasses.length > 0) {
@@ -13929,7 +13914,7 @@
 	  // Emotion (that we use in libraries consuming Base UI) depends on this order
 	  // to properly override style. It requires the most important classes to be last
 	  // (see https://github.com/mui/material-ui/pull/33205) for the related discussion.
-	  const joinedClasses = clsx$1(internalSlotProps == null ? void 0 : internalSlotProps.className, additionalProps == null ? void 0 : additionalProps.className, className, externalForwardedProps == null ? void 0 : externalForwardedProps.className, externalSlotProps == null ? void 0 : externalSlotProps.className);
+	  const joinedClasses = clsx(internalSlotProps == null ? void 0 : internalSlotProps.className, additionalProps == null ? void 0 : additionalProps.className, className, externalForwardedProps == null ? void 0 : externalForwardedProps.className, externalSlotProps == null ? void 0 : externalSlotProps.className);
 	  const mergedStyle = _extends$1({}, internalSlotProps == null ? void 0 : internalSlotProps.style, additionalProps == null ? void 0 : additionalProps.style, externalForwardedProps == null ? void 0 : externalForwardedProps.style, externalSlotProps == null ? void 0 : externalSlotProps.style);
 	  const props = _extends$1({}, internalSlotProps, additionalProps, otherPropsWithoutEventHandlers, componentsPropsWithoutEventHandlers);
 	  if (joinedClasses.length > 0) {
@@ -14339,7 +14324,7 @@
 	      as: component,
 	      ownerState: ownerState,
 	      ref: ref,
-	      className: clsx$2(classes.root, className)
+	      className: clsx(classes.root, className)
 	    }, other, {
 	      children: divider ? joinChildren(children, divider) : children
 	    }));
@@ -15597,21 +15582,6 @@
 	  return (alphaValue / 100).toFixed(2);
 	};
 	var getOverlayAlpha$1 = getOverlayAlpha;
-
-	function r(e) {
-	  var t,
-	    f,
-	    n = "";
-	  if ("string" == typeof e || "number" == typeof e) n += e;else if ("object" == typeof e) if (Array.isArray(e)) {
-	    var o = e.length;
-	    for (t = 0; t < o; t++) e[t] && (f = r(e[t])) && (n && (n += " "), n += f);
-	  } else for (f in e) e[f] && (n && (n += " "), n += f);
-	  return n;
-	}
-	function clsx() {
-	  for (var e, t, f = 0, n = "", o = arguments.length; f < o; f++) (e = arguments[f]) && (t = r(e)) && (n && (n += " "), n += t);
-	  return n;
-	}
 
 	function useDefaultProps(params) {
 	  return useDefaultProps$1(params);
@@ -21285,7 +21255,6 @@
 	};
 
 	const Cargo = () => {
-	  let [CargoLoadout, setCargoLoadout] = useSimVar('L:C17_PAYLOAD_SEL', 'enum');
 	  let [cargoMode, setCargoMode] = useSimVar('L:C17_PAYLOAD_MODE', 'BOOL');
 	  const [ac_on_ground] = useSimVar('SIM ON GROUND', 'bool');
 	  let [airdrop_control_mode, setairdrop_control_mode] = useSimVar('L:C17_AD_MODE', 'bool');
@@ -21298,6 +21267,13 @@
 	  let [CargoLightMode, setCargoLightMode] = useSimVar('L:C17_CARGO_LGT_MODE', 'bool');
 	  let [camera_instrument_index, setcamera_instrument_index] = useSimVar('A:CAMERA VIEW TYPE AND INDEX:1', 'enum');
 	  let [camera_substate, setcamera_substate] = useSimVar('A:CAMERA VIEW TYPE AND INDEX', 'enum');
+	  useSimVar('C:fs9gps:FlightPlanWaypointsNumber', 'number');
+	  const isEmpty = FwdCargo_Station < 5000 && AftCargo_Station < 5000;
+	  const isPallet = FwdCargo_Station >= 5000 && FwdCargo_Station < 15000;
+	  const isISU = FwdCargo_Station >= 15000 && FwdCargo_Station < 23000;
+	  const isUH60 = FwdCargo_Station >= 23000 && FwdCargo_Station < 40000;
+	  const isFuel = FwdCargo_Station >= 40000;
+	  const isADSCargo = FwdCargo_Station >= 10000 && AftCargo_Station >= 10000;
 
 	  // (&gt;A:CAMERA VIEW TYPE AND INDEX:1, enum)
 	  return /*#__PURE__*/jsxRuntime.jsx("div", {
@@ -21428,7 +21404,7 @@
 	              "aria-label": "horizontal outlined button group",
 	              children: [/*#__PURE__*/jsxRuntime.jsx(Button$1, {
 	                size: "medium",
-	                variant: CargoLoadout === 0 ? 'contained' : 'outlined',
+	                variant: isEmpty ? 'contained' : 'outlined',
 	                onClick: () => {
 	                  setFwdCargo_Station(0);
 	                  setAftCargo_Station(0);
@@ -21436,7 +21412,7 @@
 	                children: "EMPTY"
 	              }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
 	                size: "medium",
-	                variant: CargoLoadout === 1 ? 'contained' : 'outlined',
+	                variant: isPallet ? 'contained' : 'outlined',
 	                onClick: () => {
 	                  setFwdCargo_Station(14000);
 	                  setAftCargo_Station(14000);
@@ -21444,7 +21420,7 @@
 	                children: "PALLET"
 	              }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
 	                size: "medium",
-	                variant: CargoLoadout === 2 ? 'contained' : 'outlined',
+	                variant: isISU ? 'contained' : 'outlined',
 	                onClick: () => {
 	                  setFwdCargo_Station(22000);
 	                  setAftCargo_Station(22000);
@@ -21452,15 +21428,15 @@
 	                children: "ISU"
 	              }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
 	                size: "medium",
-	                variant: CargoLoadout === 3 ? 'contained' : 'outlined',
+	                variant: isUH60 ? 'contained' : 'outlined',
 	                onClick: () => {
-	                  setFwdCargo_Station(40000);
-	                  setAftCargo_Station(40000);
+	                  setFwdCargo_Station(35000);
+	                  setAftCargo_Station(35000);
 	                },
 	                children: "UH-60"
 	              }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
 	                size: "medium",
-	                variant: CargoLoadout === 4 ? 'contained' : 'outlined',
+	                variant: isFuel ? 'contained' : 'outlined',
 	                onClick: () => {
 	                  setFwdCargo_Station(50000);
 	                  setAftCargo_Station(50000);
@@ -21473,7 +21449,7 @@
 	              "aria-label": "horizontal outlined button group",
 	              children: [/*#__PURE__*/jsxRuntime.jsx(Button$1, {
 	                size: "medium",
-	                variant: CargoLoadout === 0 ? 'contained' : 'outlined',
+	                variant: isEmpty ? 'contained' : 'outlined',
 	                onClick: () => {
 	                  setFwdCargo_Station(0);
 	                  setAftCargo_Station(0);
@@ -21481,16 +21457,16 @@
 	                children: "EMPTY"
 	              }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
 	                size: "medium",
-	                variant: CargoLoadout === 6 ? 'contained' : 'outlined',
+	                variant: isADSCargo ? 'contained' : 'outlined',
 	                onClick: () => {
-	                  setFwdCargo_Station(10000);
-	                  setAftCargo_Station(10000);
+	                  setFwdCargo_Station(12000);
+	                  setAftCargo_Station(12000);
 	                },
 	                children: "PALLET"
 	              })]
 	            })]
 	          })]
-	        }), cargoMode === 1 && CargoLoadout === 6 && /*#__PURE__*/jsxRuntime.jsxs(Box$1, {
+	        }), cargoMode === 1 && isADSCargo && /*#__PURE__*/jsxRuntime.jsxs(Box$1, {
 	          sx: {
 	            position: 'absolute',
 	            width: 350,
@@ -21558,7 +21534,7 @@
 	                    children: Airdrop_drop_WP
 	                  })
 	                }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
-	                  onClick: () => setAirdrop_drop_WP(Math.max(0, Airdrop_drop_WP - 1)),
+	                  onClick: () => setAirdrop_drop_WP(Math.max(1, Airdrop_drop_WP - 1)),
 	                  children: "-"
 	                }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
 	                  onClick: () => setAirdrop_drop_WP(Math.min(fp_Waypoint_count, Airdrop_drop_WP + 1)),

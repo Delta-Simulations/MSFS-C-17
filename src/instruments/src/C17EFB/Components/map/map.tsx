@@ -4,41 +4,21 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-
+import { CanvasMap} from 'react-msfs';
+import { useSimVar } from '../../../Hooks/simVars';
 export const Map = () => {
-	const [mapProvider, setMapProvider] = useState('Windy');
-	const handleChange = (event: SelectChangeEvent) => {
-		setMapProvider(event.target.value);
-	};
+
+const [latitude] = useSimVar('A:PLANE LATITUDE', 'Degrees');
+const [longitude] = useSimVar('A:PLANE LONGITUDE', 'Degrees');
+const [headingTrue] = useSimVar('A:PLANE HEADING DEGREES TRUE', 'Degrees');
+
 	return (
-		<g>
-			<Box
-				sx={{
-					position: 'absolute',
-					backgroundColor: 'white',
-					left: '0',
-					top: '0',
-					width: 1040,
-					height: 750,
-				}}
-			>
-				<Box
-					sx={{
-						position: 'absolute',
-						backgroundColor: 'white',
-						left: '0',
-						top: '0',
-						width: 1040,
-						height: 750,
-					}}
-				>
-					<iframe
-						width="1040"
-						height="750"
-						src="https://opentopomap.org/#map=6/38.505/-84.639"
-					></iframe>
-				</Box>
-			</Box>
-		</g>
-	);
+    <CanvasMap
+        bingConfigFolder="/Pages/VCockpit/Instruments/C17/C17EFB/"
+        mapId="MAPC17"
+        centerLla={{ lat: latitude, long: longitude }}
+        range={10}
+        rotation={-headingTrue}
+    />
+);
 };

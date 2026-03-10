@@ -35,10 +35,35 @@
     Merge the 2 payload stations into 1 for ease of accessing and writing to
 	</Comment>
 
+<Element>
+    <Select>
+        <Value>
+(A:PAYLOAD STATION WEIGHT:3, pounds) 10000 &gt;
+(A:PAYLOAD STATION WEIGHT:4, pounds) 10000 &gt; or
+(L:C17_PAYLOAD_MODE, enum) and
+if{ 
+    1 (&gt;A:LIGHT RECOGNITION:4, bool) 
+} els{ 
+    0 (&gt;A:LIGHT RECOGNITION:4, bool) 
+}
+
+(A:GPS WP ETE:2, seconds)(&gt;L:TESTWP, enum)
+
+
+        </Value>
+    </Select>
+</Element>
+
+
 
 <Element>
 		<Select>
 			<Value>
+
+
+
+
+
 
 (A:CIRCUIT ON:65,bool) 1 == if{
 
@@ -164,12 +189,6 @@
                     10000 (&gt;A:PAYLOAD STATION WEIGHT:4, pounds)
                 }
 
-                (* Show/Hide Cargo based on weight *)
-
-                (A:PAYLOAD STATION WEIGHT:3, pounds) 10000 &gt; 
-                (A:PAYLOAD STATION WEIGHT:4, pounds) 10000 &gt; or
-                (L:C17_PAYLOAD_MODE, bool) 1 == AND
-                if{ 1 (&gt;A:LIGHT RECOGNITION:4, bool) } els{ 0 (&gt;A:LIGHT RECOGNITION:4, bool) }
 
 
                 (* Reset all on ADS Arm Fail *)
@@ -265,12 +284,6 @@
                 10000 (&gt;A:PAYLOAD STATION WEIGHT:3, pounds) 
                 10000 (&gt;A:PAYLOAD STATION WEIGHT:4, pounds)
             }
-
-            (* Show/Hide Cargo based on weight *)
-
-            (A:PAYLOAD STATION WEIGHT:3, pounds) 10000 &gt; 
-            (A:PAYLOAD STATION WEIGHT:4, pounds) 10000 &gt; or
-            if{ 1 (&gt;A:LIGHT RECOGNITION:4, bool) } els{ 0 (&gt;A:LIGHT RECOGNITION:4, bool) }
 
 
             (* Reset all on ADS Arm Fail *)

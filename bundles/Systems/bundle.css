@@ -56,20 +56,20 @@
 }
 
 .OHDispBackrnd {
-  fill: #000e02;
+  fill: rgb(0, 14, 2);
 }
 
 .OHPNL {
   font-family: "Digital";
-  fill: #00ff2a;
+  fill: rgb(0, 255, 42);
 }
 
 .YllwAccent {
-  fill: #f5ff89;
+  fill: rgb(245, 255, 137);
 }
 
 .YllwRect {
-  stroke: #f5ff89;
+  stroke: rgb(245, 255, 137);
 }
 
 .caution-zone {

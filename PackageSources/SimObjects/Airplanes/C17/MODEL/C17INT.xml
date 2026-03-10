@@ -4739,7 +4739,7 @@
         <Parameter>
             <Code>
 				(A:Payload Station Weight:3, pounds) 23000 &gt;
-        (A:Payload Station Weight:3, pounds) 40000 &lt; and
+        (A:Payload Station Weight:3, pounds) 40001 &lt; and
         (L:C17_PAYLOAD_MODE, bool) 0 == and
 				 if{ 1 } els{ 0 }
 			</Code>
@@ -4818,7 +4818,7 @@
         <Parameter>
             <Code>
 				(A:Payload Station Weight:4, pounds) 23000 &gt;
-        (A:Payload Station Weight:4, pounds) 40000 &lt; and
+        (A:Payload Station Weight:4, pounds) 40001 &lt; and
         (L:C17_PAYLOAD_MODE, bool) 0 == and
 				 if{ 1 } els{ 0 }
 			</Code>

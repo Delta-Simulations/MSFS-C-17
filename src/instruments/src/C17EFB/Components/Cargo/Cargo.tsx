@@ -17,7 +17,6 @@ import './cargo.scss';
 
 
 export const Cargo = () => {
-	let [CargoLoadout, setCargoLoadout] = useSimVar('L:C17_PAYLOAD_SEL', 'enum');
 	let [cargoMode, setCargoMode] = useSimVar('L:C17_PAYLOAD_MODE', 'BOOL');
 	const [ac_on_ground] = useSimVar('SIM ON GROUND', 'bool');
 	let [airdrop_control_mode, setairdrop_control_mode] = useSimVar('L:C17_AD_MODE', 'bool');
@@ -30,11 +29,21 @@ export const Cargo = () => {
 	let [WXDome, setWXDome] = useSimVar('L:C17_Radome_Open', 'bool');
 	let [CargoHoldFlood, setCargoHoldFlood] = useSimVar('K:LIGHT_POTENTIOMETER_18_SET', 'number');
 	let [CargoLightMode, setCargoLightMode] = useSimVar('L:C17_CARGO_LGT_MODE', 'bool');
-	
+
 	let [camera_instrument_index, setcamera_instrument_index] = useSimVar('A:CAMERA VIEW TYPE AND INDEX:1', 'enum');
 	let [camera_substate, setcamera_substate] = useSimVar('A:CAMERA VIEW TYPE AND INDEX', 'enum');
 
-// (&gt;A:CAMERA VIEW TYPE AND INDEX:1, enum)
+	const totalGpsWaypoints = useSimVar('C:fs9gps:FlightPlanWaypointsNumber', 'number');
+
+	const isEmpty = FwdCargo_Station < 5000 && AftCargo_Station < 5000;
+	const isPallet = FwdCargo_Station >= 5000 && FwdCargo_Station < 15000;
+	const isISU = FwdCargo_Station >= 15000 && FwdCargo_Station < 23000;
+	const isUH60 = FwdCargo_Station >= 23000 && FwdCargo_Station < 40000;
+	const isFuel = FwdCargo_Station >= 40000;
+	const isADSCargo = FwdCargo_Station >= 10000 && AftCargo_Station >= 10000;
+
+
+	// (&gt;A:CAMERA VIEW TYPE AND INDEX:1, enum)
 	return (
 		<div className="aircraftContainer">
 			<Box
@@ -79,9 +88,9 @@ export const Cargo = () => {
 								<Button onClick={() => setCargoHoldFlood(100)}>Bright</Button >
 							</ButtonGroup>
 							<ButtonGroup variant="outlined" fullWidth>
-    <Button  size="medium" variant={CargoLightMode === 0 ? 'contained' : 'outlined'} onClick={() => setCargoLightMode(CargoLightMode=0)} key="one">DAY</Button>
-    <Button sx={{ backgroundColor: CargoLightMode === 0 ? 'transparent' : '#8B0000' }} size="medium" variant={CargoLightMode === 1 ? 'contained' : 'outlined'} onClick={() => setCargoLightMode(CargoLightMode=1)} key="two">NIGHT</Button>
-      
+								<Button size="medium" variant={CargoLightMode === 0 ? 'contained' : 'outlined'} onClick={() => setCargoLightMode(CargoLightMode = 0)} key="one">DAY</Button>
+								<Button sx={{ backgroundColor: CargoLightMode === 0 ? 'transparent' : '#8B0000' }} size="medium" variant={CargoLightMode === 1 ? 'contained' : 'outlined'} onClick={() => setCargoLightMode(CargoLightMode = 1)} key="two">NIGHT</Button>
+
 							</ButtonGroup>
 
 						</ThemeProvider>
@@ -133,11 +142,11 @@ export const Cargo = () => {
 									orientation="horizontal"
 									aria-label="horizontal outlined button group"
 								>
-									<Button size="medium" variant={CargoLoadout === 0 ? 'contained' : 'outlined'} onClick={() => {setFwdCargo_Station(0);setAftCargo_Station(0)}} >EMPTY</Button>
-									<Button size="medium" variant={CargoLoadout === 1 ? 'contained' : 'outlined'} onClick={() => {setFwdCargo_Station(14000);setAftCargo_Station(14000)}} >PALLET</Button>
-									<Button size="medium" variant={CargoLoadout === 2 ? 'contained' : 'outlined'} onClick={() => {setFwdCargo_Station(22000);setAftCargo_Station(22000)}} >ISU</Button>
-									<Button size="medium" variant={CargoLoadout === 3 ? 'contained' : 'outlined'} onClick={() => {setFwdCargo_Station(40000);setAftCargo_Station(40000)}} >UH-60</Button>
-									<Button size="medium" variant={CargoLoadout === 4 ? 'contained' : 'outlined'} onClick={() => {setFwdCargo_Station(50000);setAftCargo_Station(50000)}} >FUEL BLADDER</Button>
+									<Button size="medium" variant={isEmpty ? 'contained' : 'outlined'} onClick={() => { setFwdCargo_Station(0); setAftCargo_Station(0) }} >EMPTY</Button>
+									<Button size="medium" variant={isPallet ? 'contained' : 'outlined'} onClick={() => { setFwdCargo_Station(14000); setAftCargo_Station(14000) }} >PALLET</Button>
+									<Button size="medium" variant={isISU ? 'contained' : 'outlined'} onClick={() => { setFwdCargo_Station(22000); setAftCargo_Station(22000) }} >ISU</Button>
+									<Button size="medium" variant={isUH60 ? 'contained' : 'outlined'} onClick={() => { setFwdCargo_Station(35000); setAftCargo_Station(35000) }} >UH-60</Button>
+									<Button size="medium" variant={isFuel ? 'contained' : 'outlined'} onClick={() => { setFwdCargo_Station(50000); setAftCargo_Station(50000) }} >FUEL BLADDER</Button>
 								</ButtonGroup>)}
 							{cargoMode === 1 && (
 								<ButtonGroup
@@ -145,15 +154,15 @@ export const Cargo = () => {
 									orientation="horizontal"
 									aria-label="horizontal outlined button group"
 								>
-									<Button size="medium" variant={CargoLoadout === 0 ? 'contained' : 'outlined'} onClick={() => {setFwdCargo_Station(0);setAftCargo_Station(0)}}>EMPTY</Button>
-									<Button size="medium" variant={CargoLoadout === 6 ? 'contained' : 'outlined'} onClick={() => {setFwdCargo_Station(10000);setAftCargo_Station(10000)}} >PALLET</Button>
+									<Button size="medium" variant={isEmpty ? 'contained' : 'outlined'} onClick={() => { setFwdCargo_Station(0); setAftCargo_Station(0) }}>EMPTY</Button>
+									<Button size="medium" variant={isADSCargo ? 'contained' : 'outlined'} onClick={() => { setFwdCargo_Station(12000); setAftCargo_Station(12000) }} >PALLET</Button>
 
 								</ButtonGroup>)}
 						</Stack>
 					</Box>
 
 					{/* Airdrop Configuration */}
-					{cargoMode === 1 && CargoLoadout === 6&& (
+					{cargoMode === 1 && isADSCargo && (
 						<Box
 							sx={{
 								position: 'absolute',
@@ -189,22 +198,22 @@ export const Cargo = () => {
 								</ButtonGroup>
 								<Stack direction="column" spacing={0.5}
 									sx={{
-									opacity: airdrop_control_mode === 1 ? 0.4 : 1,
-									pointerEvents: airdrop_control_mode === 1 ? "none" : "auto"
-								}}
+										opacity: airdrop_control_mode === 1 ? 0.4 : 1,
+										pointerEvents: airdrop_control_mode === 1 ? "none" : "auto"
+									}}
 								>
 
-								<h3 style={{ marginTop: 0, color: '#aeb0b3' }}>Autodrop WP Select</h3>
+									<h3 style={{ marginTop: 0, color: '#aeb0b3' }}>Autodrop WP Select</h3>
 
 									<ButtonGroup fullWidth>
 										<Button disabled sx={{ width: 400 }}>
-											
+
 											<Typography sx={{ color: '#aeb0b3' }}>
 												{Airdrop_drop_WP}
 											</Typography>
 										</Button>
 										<Button
-											onClick={() => setAirdrop_drop_WP(Math.max(0, Airdrop_drop_WP - 1))}
+											onClick={() => setAirdrop_drop_WP(Math.max(1, Airdrop_drop_WP - 1))}
 										>
 											-
 										</Button>
@@ -223,8 +232,8 @@ export const Cargo = () => {
 
 
 					<Button
-					startIcon={<CameraAltIcon />}
-						onClick={() => {setcamera_instrument_index(8); setcamera_substate(2);}}
+						startIcon={<CameraAltIcon />}
+						onClick={() => { setcamera_instrument_index(8); setcamera_substate(2); }}
 						size="large"
 						variant="outlined"
 						style={{
@@ -238,8 +247,8 @@ export const Cargo = () => {
 						Loadmaster
 					</Button>
 					<Button
-					startIcon={<CameraAltIcon />}
-						onClick={() => {setcamera_instrument_index(7); setcamera_substate(2);}}
+						startIcon={<CameraAltIcon />}
+						onClick={() => { setcamera_instrument_index(7); setcamera_substate(2); }}
 						size="large"
 						variant="outlined"
 						style={{
