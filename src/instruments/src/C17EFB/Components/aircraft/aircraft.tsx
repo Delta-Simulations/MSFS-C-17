@@ -17,6 +17,7 @@ import './aircraft.scss';
 export const Aircraft = () => {
 	let [removeTags, setremoveTags] = useSimVar('L:C17_RBF_EngCovers', 'bool');
 	let [removeCones, setremoveCones] = useSimVar('L:C17_RBF_ChocksCones', 'bool');
+	let [CargoLightMode, setCargoLightMode] = useSimVar('L:C17_CARGO_LGT_MODE', 'bool');
 
 	let [rearDoorL, setRearDoorL] = useSimVar('L:C17_PARA_L', 'bool');
 	let [rearDoorR, setRearDoorR] = useSimVar('L:C17_PARA_R', 'bool');
@@ -213,6 +214,42 @@ export const Aircraft = () => {
 					>
 						Para Door L
 					</Button>
+
+<Box
+  sx={{
+    display: 'flex',
+    '& > *': {
+      m: 1,
+    },
+    left: 884,
+    top: 645, // adjust this to where you want it
+    position: 'absolute',
+  }}
+>
+  <ButtonGroup
+    orientation="vertical"
+    aria-label="cargo light mode"
+  >
+    <Button
+      size="large"
+      variant={CargoLightMode === 0 ? 'contained' : 'outlined'}
+      onClick={() => setCargoLightMode(0)}
+    >
+      DAY
+    </Button>
+
+    <Button
+      size="large"
+      variant={CargoLightMode === 1 ? 'contained' : 'outlined'}
+      onClick={() => setCargoLightMode(1)}
+      sx={{
+        backgroundColor: CargoLightMode === 1 ? '#8B0000' : undefined,
+      }}
+    >
+      NIGHT
+    </Button>
+  </ButtonGroup>
+</Box>
 				</ThemeProvider>
 
 

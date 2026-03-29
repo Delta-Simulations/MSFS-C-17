@@ -48,21 +48,7 @@ export const Images = () => {
 					fontSize: 14,
 				}}
 			>
-				<Box
-					sx={{
-						position: 'absolute',
-						width: 2050,
-						height: 1000,
-						left: -300,
-						top: 0,
-						backgroundImage: 'url(/images/EFB/C17Base.png)',
-						backgroundPosition: 'right',
-						backgroundSize: '80%',
-						backgroundRepeat: 'no-repeat',
-						transform: 'rotate(-180deg)', // Apply the rotation here
 
-					}}
-				/>
 				{removeTags && (
 					<Box
 						sx={{

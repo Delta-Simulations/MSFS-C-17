@@ -20577,6 +20577,7 @@
 	const Aircraft = () => {
 	  let [removeTags, setremoveTags] = useSimVar('L:C17_RBF_EngCovers', 'bool');
 	  let [removeCones, setremoveCones] = useSimVar('L:C17_RBF_ChocksCones', 'bool');
+	  let [CargoLightMode, setCargoLightMode] = useSimVar('L:C17_CARGO_LGT_MODE', 'bool');
 	  let [rearDoorL, setRearDoorL] = useSimVar('L:C17_PARA_L', 'bool');
 	  let [rearDoorR, setRearDoorR] = useSimVar('L:C17_PARA_R', 'bool');
 	  let [CargoDoor, setCargoDoor] = useSimVar('L:C17_CargoDoor_POS', 'enum');
@@ -20755,6 +20756,35 @@
 	            backgroundColor: rearDoorL ? ButtonColour.palette.primary.main : '#22262a'
 	          },
 	          children: "Para Door L"
+	        }), /*#__PURE__*/jsxRuntime.jsx(Box$1, {
+	          sx: {
+	            display: 'flex',
+	            '& > *': {
+	              m: 1
+	            },
+	            left: 884,
+	            top: 645,
+	            // adjust this to where you want it
+	            position: 'absolute'
+	          },
+	          children: /*#__PURE__*/jsxRuntime.jsxs(ButtonGroup$1, {
+	            orientation: "vertical",
+	            "aria-label": "cargo light mode",
+	            children: [/*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	              size: "large",
+	              variant: CargoLightMode === 0 ? 'contained' : 'outlined',
+	              onClick: () => setCargoLightMode(0),
+	              children: "DAY"
+	            }), /*#__PURE__*/jsxRuntime.jsx(Button$1, {
+	              size: "large",
+	              variant: CargoLightMode === 1 ? 'contained' : 'outlined',
+	              onClick: () => setCargoLightMode(1),
+	              sx: {
+	                backgroundColor: CargoLightMode === 1 ? '#8B0000' : undefined
+	              },
+	              children: "NIGHT"
+	            })]
+	          })
 	        })]
 	      })]
 	    })
@@ -21219,12 +21249,20 @@
 
 	const ImagesCargo = () => {
 	  useSimVar('L:C17_GPU_Vis', 'bool');
+	  let [cargoMode, setCargoMode] = useSimVar('L:C17_PAYLOAD_MODE', 'BOOL');
+	  const [FwdCargo_Station, setFwdCargo_Station] = useSimVar('PAYLOAD STATION WEIGHT:3', 'pounds');
+	  const [AftCargo_Station, setAftCargo_Station] = useSimVar('PAYLOAD STATION WEIGHT:4', 'pounds');
 	  useSimVar('L:C17_RBF_TAGS', 'bool');
 	  useSimVar('L:C17_Crew_Enterance', 'bool');
 	  useSimVar('L:C17_Radome_Open', 'bool');
-	  return /*#__PURE__*/jsxRuntime.jsx("div", {
+	  const isPallet = FwdCargo_Station >= 5000 && FwdCargo_Station < 15000 && cargoMode === 0;
+	  const isISU = FwdCargo_Station >= 15000 && FwdCargo_Station < 23000 && cargoMode === 0;
+	  const isUH60 = FwdCargo_Station >= 23000 && FwdCargo_Station < 40000 && cargoMode === 0;
+	  const isFuel = FwdCargo_Station >= 40000 && cargoMode === 0;
+	  const isADSCargo = FwdCargo_Station >= 10000 && AftCargo_Station >= 10000 && cargoMode === 1;
+	  return /*#__PURE__*/jsxRuntime.jsxs("div", {
 	    className: "aircraftContainer",
-	    children: /*#__PURE__*/jsxRuntime.jsx(Box$1, {
+	    children: [/*#__PURE__*/jsxRuntime.jsx(Box$1, {
 	      sx: {
 	        position: 'absolute',
 	        width: 1040,
@@ -21250,7 +21288,72 @@
 	          transform: 'rotate(0deg)'
 	        }
 	      })
-	    })
+	    }), /*#__PURE__*/jsxRuntime.jsx(Box$1, {
+	      sx: {
+	        position: 'absolute',
+	        width: 1280,
+	        height: 1200,
+	        left: -252,
+	        top: 0,
+	        backgroundImage: isUH60 ? 'url(/images/EFB/UH60.png)' : 'none',
+	        backgroundPosition: 'right',
+	        backgroundSize: '80%',
+	        backgroundRepeat: 'no-repeat',
+	        transform: 'rotate(0deg)'
+	      }
+	    }), /*#__PURE__*/jsxRuntime.jsx(Box$1, {
+	      sx: {
+	        position: 'absolute',
+	        width: 1280,
+	        height: 1200,
+	        left: -252,
+	        top: 0,
+	        backgroundImage: isPallet ? 'url(/images/EFB/Palletized.png)' : 'none',
+	        backgroundPosition: 'right',
+	        backgroundSize: '80%',
+	        backgroundRepeat: 'no-repeat',
+	        transform: 'rotate(0deg)'
+	      }
+	    }), /*#__PURE__*/jsxRuntime.jsx(Box$1, {
+	      sx: {
+	        position: 'absolute',
+	        width: 1280,
+	        height: 1200,
+	        left: -252,
+	        top: 0,
+	        backgroundImage: isISU ? 'url(/images/EFB/ISU.png)' : 'none',
+	        backgroundPosition: 'right',
+	        backgroundSize: '80%',
+	        backgroundRepeat: 'no-repeat',
+	        transform: 'rotate(0deg)'
+	      }
+	    }), /*#__PURE__*/jsxRuntime.jsx(Box$1, {
+	      sx: {
+	        position: 'absolute',
+	        width: 1280,
+	        height: 1200,
+	        left: -252,
+	        top: 0,
+	        backgroundImage: isFuel ? 'url(/images/EFB/FuelBladder.png)' : 'none',
+	        backgroundPosition: 'right',
+	        backgroundSize: '80%',
+	        backgroundRepeat: 'no-repeat',
+	        transform: 'rotate(0deg)'
+	      }
+	    }), /*#__PURE__*/jsxRuntime.jsx(Box$1, {
+	      sx: {
+	        position: 'absolute',
+	        width: 1280,
+	        height: 1200,
+	        left: -252,
+	        top: 0,
+	        backgroundImage: isADSCargo ? 'url(/images/EFB/Pallet_ADS.png)' : 'none',
+	        backgroundPosition: 'right',
+	        backgroundSize: '80%',
+	        backgroundRepeat: 'no-repeat',
+	        transform: 'rotate(0deg)'
+	      }
+	    })]
 	  });
 	};
 
@@ -21590,13 +21693,13 @@
 	          className: "EFBContainer",
 	          children: [/*#__PURE__*/jsxRuntime.jsxs(Routes, {
 	            children: [/*#__PURE__*/jsxRuntime.jsx(Route, {
-	              path: "/Cargo",
+	              path: "/",
 	              element: /*#__PURE__*/jsxRuntime.jsx(Aircraft, {})
 	            }), /*#__PURE__*/jsxRuntime.jsx(Route, {
 	              path: "/Browser",
 	              element: /*#__PURE__*/jsxRuntime.jsx(Browser, {})
 	            }), /*#__PURE__*/jsxRuntime.jsx(Route, {
-	              path: "/",
+	              path: "/Cargo",
 	              element: /*#__PURE__*/jsxRuntime.jsx(Cargo, {})
 	            }), /*#__PURE__*/jsxRuntime.jsx(Route, {
 	              path: "/PDF",

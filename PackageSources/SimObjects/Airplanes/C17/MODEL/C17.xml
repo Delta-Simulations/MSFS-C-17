@@ -12,7 +12,7 @@
 		<Include Path="Asobo\Exterior.xml" />
 		<Include Path="DeltaSim-XML\DeltaSim_Anim_Template.xml" />
 
-		<!-- FLARES - DISABLED FOR PERFORMANCE REASONS
+	
 		<Component ID="FX_FLARES_LEFT" node="C-17_LG_doors_mainF_R">
 			<UseTemplate Name="ASOBO_GT_FX">
 				  <FX_GUID>{7E7AFC8D-0EC2-4EC9-BAD4-E5AE509EFB55}</FX_GUID>
@@ -43,7 +43,7 @@
 					 <FX_CODE>(L:C17_EFFECT_FLARE,bool)</FX_CODE>
 					 <FX_GRAPH_PARAM_0>FlareOrientation, -6</FX_GRAPH_PARAM_0>
 			   </UseTemplate>
-		   </Component> -->
+		   </Component>
 
 
 		<Component ID="HANDLING">
