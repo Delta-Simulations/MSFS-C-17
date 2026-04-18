@@ -1123,6 +1123,26 @@
   <CW_ANIMTIP>DISP BRT</CW_ANIMTIP>
   <CCW_ANIMTIP>DISP BRT</CCW_ANIMTIP>
 </UseTemplate>
+  <Component ID="HUDEMIS_P" Node="HUDEMIS">
+    <UseTemplate Name="ASOBO_GT_Material_Emissive_Code">
+      <EMISSIVE_CODE>
+      (A:GLASSCOCKPIT AUTOMATIC BRIGHTNESS, number)
+      (L:C17_HUD_CNTRL) 0.5 * *
+      (L:C17_Cpit_Pacs,bool) *
+      (L:C17_HUD_BRIGHTNESS) *
+      </EMISSIVE_CODE>
+    </UseTemplate>
+  </Component>
+  <Component ID="HUDEMIS_CP" Node="HUDEMIS.001">
+    <UseTemplate Name="ASOBO_GT_Material_Emissive_Code">
+      <EMISSIVE_CODE>
+      (A:GLASSCOCKPIT AUTOMATIC BRIGHTNESS, number)
+      (L:C17_HUD_CNTRL) 0.5 * *
+      (L:C17_Cpit_Pacs,bool) *
+      (L:C17_HUD_BRIGHTNESS) *
+      </EMISSIVE_CODE>
+    </UseTemplate>
+  </Component>
 
 <Component ID="DISP_DU_LWR_P" Node="DISP_DU_LWR_P">
   <UseTemplate Name="ASOBO_GT_Material_Emissive_Code">
@@ -5226,14 +5246,6 @@
     <PartInfo>
     <Name>HUDEMIS</Name>
     <AnimLength>1</AnimLength>
-    <Materials> <Emissive> <Parameter>
-    <Code>
-      (A:GLASSCOCKPIT AUTOMATIC BRIGHTNESS, number)
-      (L:C17_HUD_CNTRL) 0.5 * *
-      (L:C17_Cpit_Pacs,bool) *
-      (L:C17_HUD_BRIGHTNESS) *
-    </Code> 
-    </Parameter> </Emissive> </Materials>
     <Visibility>
       <Parameter>
         <Code>
