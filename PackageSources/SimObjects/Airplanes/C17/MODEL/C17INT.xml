@@ -1126,7 +1126,8 @@
   <Component ID="HUDEMIS_P" Node="HUDEMIS">
     <UseTemplate Name="ASOBO_GT_Material_Emissive_Code">
       <EMISSIVE_CODE>
-      (A:GLASSCOCKPIT AUTOMATIC BRIGHTNESS, number)
+      (A:CAMERA STATE, Enum) 2 ==
+      (A:GLASSCOCKPIT AUTOMATIC BRIGHTNESS, number) *
       (L:C17_HUD_CNTRL) 0.5 * *
       (L:C17_Cpit_Pacs,bool) *
       (L:C17_HUD_BRIGHTNESS) *
@@ -1136,7 +1137,8 @@
   <Component ID="HUDEMIS_CP" Node="HUDEMIS.001">
     <UseTemplate Name="ASOBO_GT_Material_Emissive_Code">
       <EMISSIVE_CODE>
-      (A:GLASSCOCKPIT AUTOMATIC BRIGHTNESS, number)
+      (A:CAMERA STATE, Enum) 2 ==
+      (A:GLASSCOCKPIT AUTOMATIC BRIGHTNESS, number) *
       (L:C17_HUD_CNTRL) 0.5 * *
       (L:C17_Cpit_Pacs,bool) *
       (L:C17_HUD_BRIGHTNESS) *
@@ -5242,7 +5244,7 @@
       </Parameter>
       </Visibility>
     </PartInfo>
-<Animation name="HUDEMIS" guid="d134cbff-c2db-4f4d-aa02-56234fda0f08" typeParam2="HUDEMIS" length="1" type="Sim" typeParam="AutoPlay" />
+<!-- <Animation name="HUDEMIS" guid="d134cbff-c2db-4f4d-aa02-56234fda0f08" typeParam2="HUDEMIS" length="1" type="Sim" typeParam="AutoPlay" />
     <PartInfo>
     <Name>HUDEMIS</Name>
     <AnimLength>1</AnimLength>
@@ -5255,7 +5257,7 @@
         </Code>
       </Parameter>
       </Visibility>
-    </PartInfo>
+    </PartInfo> -->
 
 <Animation name="RBF_Tags" guid="6f65e8f4-b677-4e43-952e-c806cf2dafa6" length="1" type="Sim" typeParam="AutoPlay" />
 <PartInfo>
